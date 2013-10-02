@@ -496,7 +496,7 @@ td, th {
       left: -9999px;
     }
     
-    tr.header {position: absolute;
+    .registered tr.header, .result tr.header, {position: absolute;
     left: -9999px;
     top: -9999px;}
 
