@@ -3603,8 +3603,8 @@
           
           $content .= '
                       <p id="'.$field.'Parahraph">
-                        <span>'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).'</span>'
-                        .$value.'</p><br/>
+                        <span>'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</span> '
+                        .$value.'</p>
                       </p>
           ';
         }
