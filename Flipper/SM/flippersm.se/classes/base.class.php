@@ -101,7 +101,7 @@
     public function getLink($href = true) {
       switch ($this->class) {
         default:
-          $url = __baseHref__.'/'.$this->class.'/?obj='.$this->class.'&id='.$this->id;
+          $url = __baseHref__.'/?s=object&obj='.$this->class.'&id='.$this->id;
           return ($href) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
         break;
       }
