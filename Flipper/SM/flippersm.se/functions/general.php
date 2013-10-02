@@ -3603,8 +3603,8 @@
           
           $content .= '
                       <div id="'.$field.'Div">
-                        <label id="'.$field.'Label" class="infoLabel" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
-                        <div id="'.$field.'ValueDiv" class="infoValueDiv">'.$value.'</div>
+                        <p id="'.$field.'Parahraph"><span>'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).'</span>'
+                        .$value.'</p>
                       </div>
           ';
         }
