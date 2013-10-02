@@ -1337,22 +1337,19 @@
         <input name="dateRegistered" id="dateRegisteredHidden" type="hidden" value="'.date('Y-m-d').'">
         <input name="registerPerson_id" id="registerPerson_idHidden" type="hidden" value="'.$player->id.'">
         <input name="tournamentDivision_id" id="tournamentDivision_idHidden" type="hidden" value="3">
-        <table id="regTeamTable">
-          <tr>
-            <th colspan="2" id="regTeamTh">Team registration form</th>
-          </tr>
-          <tr id="nameTr">
-            <td id="nameLabelTd" class="labelTd"><label id="nameLabel" for="nameText">Name</label></td>
-            <td id="nameTd"><input name="name" id="nameText" type="text" class=" mandatory" onkeyup="checkField(this);" value="'.$team->name.'"><span id="nameSpan" class=" errorSpan">*</span></td>
-          </tr>    
-          <tr id="initialsTr">
-            <td id="initialsLabelTd" class="labelTd"><label id="initialsLabel" for="initialsText">Team tag</label></td>
-            <td id="initialsTd"><input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$team->initials.'"><span id="initialsSpan" class=" errorSpan toolTip"></span></td>
-          </tr>
-          <tr>
-            <td class="labelTd"></td>
-            <td><button id="submit" type="button" value="Submit!" class="formInput" onclick="regTeam()" disabled>Submit!</button><button id="delete" type="button" value="Delete team!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'">Delete team!</button><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
-          </tr>
+        <div id="regTeamTable">
+          <h3>Team registration form</h3>
+          <div id="nameTr">
+            <label id="nameLabel" for="nameText">Name</label>
+            <input name="name" id="nameText" type="text" class=" mandatory" onkeyup="checkField(this);" value="'.$team->name.'"><span id="nameSpan" class=" errorSpan">*</span>
+          </div>
+          <div id="initialsTr">
+            <label id="initialsLabel" for="initialsText">Team tag</label>
+            <input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$team->initials.'"><span id="initialsSpan" class=" errorSpan toolTip"></span>
+          </div>
+          <div>
+            <input id="submit" type="button" value="Submit!" class="formInput" onclick="regTeam()" disabled>Submit!</button><button id="delete" type="button" value="Delete team!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'">Delete team!</button><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
+          </div>
     ';
     $playerNum = array(1,2,3,4);
     foreach($playerNum as $num) {
@@ -1384,19 +1381,18 @@
         $incomplete = 'none';
       }
       $content .= '
-          <tr id="teamPlayer'.$num.'Tr" style="display: '.$editTeamDisplay.';" class="editTeam">
-            <td id="teamPlayer'.$num.'LabelTd" class="labelTd"><label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Player #'.$num.'</label></td>
-            <td id="teamPlayer'.$num.'Td" class="labelTd">'.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Captain</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Team is incomplete</span>
-          </tr>
+          <div id="teamPlayer'.$num.'Tr" style="display: '.$editTeamDisplay.';" class="editTeam">
+            <label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Player #'.$num.'</label>
+            '.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Captain</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Team is incomplete</span>
+          </div>
       ';
     }
     
     $content .= '
-          <tr class="editTeam" style="display: '.$editTeamDisplay.'">
-            <td></td>
-            <td><button id="leaveTeam" type="button" value="Leave team!" class="editTeam formInput" onclick="removeTeamMember('.$player->id.', \'leaveSpan\');">Leave team!</button><br /><span id="leaveSpan" class="editTeam italic errorSpan">Note: This can only be undone by another member of the team.</span></td></td>
-          </tr>
-        </table>
+          <div class="editTeam" style="display: '.$editTeamDisplay.'">
+            <button id="leaveTeam" type="button" value="Leave team!" class="editTeam formInput" onclick="removeTeamMember('.$player->id.', \'leaveSpan\');">Leave team!</button><br /><span id="leaveSpan" class="editTeam italic errorSpan">Note: This can only be undone by another member of the team.</span>
+          </div>
+        </div>
       </form>
     ';
     return $content;
@@ -1559,7 +1555,7 @@
     $content .= '
           </div>
           <div id="qualGroupTableDiv" class="periodTable">
-            <p><label>Klicka i/ur alla: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
+            <p>Klicka i/ur alla: <input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
     if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
       $content .= ' checked';
     }            
@@ -1580,7 +1576,7 @@
               <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
                 <div>
                   <input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>
-                  <h3><b>'.$date.' ('.ucfirst($type).')</b></h3>
+                  <b>'.$date.' ('.ucfirst($type).')</b>
                 </div>
             ';
           }
@@ -1864,7 +1860,7 @@
     $content .= '</select><span class="error errorSpan toolTip" id="volunteerHoursSpan"></span></p>
           </div>
           <div id="periodTableDiv" class="periodTable">
-            <h2>Periods: <label>Check/uncheck all: </label><input type="checkbox" id="periodChackAll" onclick="periodCheckAll(this);" ';
+            <h3>Periods: Check/uncheck all: <input type="checkbox" id="periodChackAll" onclick="periodCheckAll(this);" ';
     if ($volunteerPeriods && count($volunteerPeriods) == count($periods)) {
       $content .= 'checked';
     }            
@@ -1913,7 +1909,7 @@
   
   function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false) {
     $content = '<div id="'.$item->id.'_'.$type.'Div">';
-    $content .= ($type == 'task') ? '<label>'.ucfirst($item->name).'</label>' : '';
+    $content .= ($type == 'task') ? ucfirst($item->name) : '';
     $content .= '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ';
     $content .= ($checked) ? ' checked ' : '';
     $content .= ($disabled) ? ' disabled ' : '';
@@ -1921,7 +1917,7 @@
     $content .= ($type == 'qualGroup') ? '<input type="radio" id="'.$item->id.'_'.$type.'Radio" name="'.$type.'Div'.$item->tournamentDivision_id.'Radio" onchange="timeSlotPreferedChanged(this, '.$item->id.')" class="'.$type.'Radio '.$item->date.'" '.(($prefered) ? ' checked ' : '').(($disabled) ? ' disabled ' : '').'>' : '';
     $content .= '<span class="error errorSpan toolTip qualGroupSpan" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
-    $content .= ($type == 'period' || $type == 'qualGroup') ? '<label>'.ucfirst($item->name).'</label>' : '';
+    $content .= ($type == 'period' || $type == 'qualGroup') ? ucfirst($item->name) : '';
     $content .= '</div>';
     return $content;
   }
