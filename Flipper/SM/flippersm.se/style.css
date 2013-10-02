@@ -778,6 +778,12 @@ td, th {
   margin-left: 5px;
 }
 
+#content input.payInput {
+  width: auto;
+  margin-right: 15px;
+  margin-left: 5px;
+}
+
 #content div#tabs {
   margin-left: 15px;
   margin-right: 15px;

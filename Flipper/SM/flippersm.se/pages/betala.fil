@@ -55,28 +55,28 @@
       </div>
       <div>
         <p>
-          Huvudtävlingen: <input type="text" size="3em" id="mainCosts" value="'.$main.'" onchange="paymentChange(this);">
+          <label class="infoLabel">Huvudtävlingen:</label><input type="text" size="3em" id="mainCosts" value="'.$main.'" onchange="paymentChange(this);" class="payInput>
           <input type="hidden" size="3em" id="mainCost" value="'.$mainCost.'">
           <span id="mainCostSpan">'.$currency.' '.$mainCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          Classics: <input type="text" size="3em" id="classicsCosts" value="'.$classics.'" onchange="paymentChange(this);">
+          <label class="infoLabel">Classics:</label><input type="text" size="3em" id="classicsCosts" value="'.$classics.'" onchange="paymentChange(this);" class="payInput>
           <input type="hidden" size="3em" id="classicsCost" value="'.$classicsCost.'">
           <span id="classicsCostSpan">'.$currency.' '.$classicsCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          Dubbeltävlingen (per person): <input type="text" size="3em" id="teamCosts" value="'.$team.'" onchange="paymentChange(this);">
+          <label class="infoLabel">Dubbeltävlingen (per person):</label><input type="text" size="3em" id="teamCosts" value="'.$team.'" onchange="paymentChange(this);" class="payInput>
           <input type="hidden" size="3em" id="teamCost" value="'.$teamCost.'">
           <span id="teamCostSpan">'.$currency.' '.$teamCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          Tröjor: <input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);">
+          <label class="infoLabel">Tröjor:</label><input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="tShirtCost" value="'.$tShirtCost.'">
           <span id="tShirtCostSpan">'.$currency.' '.$tShirtCosts[$currency].'</span>
         </p>
@@ -97,15 +97,15 @@
       </div>
       <div id="domesticTable" style="display: none;">
         <p>Betala '.$currency.' '.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).' till något av följande:</p>
-        <label>Bankgiro:</label>
+        <label class="infoLabel">Bankgiro:</label>
         <p>5909-5182</p>
-        <label>Swedbank:</label>
+        <label class="infoLabel">Swedbank:</label>
         <p>8327-9 903.192.049-0</p>
-        <label>SEB:</label>
+        <label class="infoLabel">SEB:</label>
         <p>5267-2992762</p>
       </div>
       <div id="paypalTable">
-        <span class="italic">Klicka på PayPal-ikonen för att betala med kreditkort eller ett PayPal-konto. För att betala med kreditkort på PayPal, välj "Don\'t have a PayPal account" på nästa sida.</span>
+        <p class="italic">Klicka på PayPal-ikonen för att betala med kreditkort eller ett PayPal-konto. För att betala med kreditkort på PayPal, välj "Don\'t have a PayPal account" på nästa sida.</p>
         <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
           <input type="hidden" name="cmd" value="_xclick">
           <input type="hidden" name="business" value="the@pal.pp.se">
@@ -133,8 +133,5 @@
     $content .= showLogin($ulogin, 'Om du redan har ett användarnamn, logga in här.');
   }
 
-
-
   echo($content);
-  printFooter($dbh, $ulogin);
 ?>
