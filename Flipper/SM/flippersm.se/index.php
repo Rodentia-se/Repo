@@ -7,31 +7,20 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 function undermenu($page)
   {
   
-  if($page == "anmal")
+  if($page == "anmal" or $page == "object")
      {echo "
      <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a><a href = '?s=funktionar'>Bli funktionär</a>";
 	}
 
-  if($page == "regler")
+  if($page == "regler" or $page == "schema" or $page == "resultat" or $page == "narvar")
      {echo "
-     <a href=\"?s=regler\">Regler</a> <a href=\"?s=system\">Tävlingssystem</a><a href=\"?s=former\">Tävlingsformer & spellista</a>
+     <a href=\"?s=regler\">Regler</a> <a href=\"?s=schema\">Kvalschema</a><a href=\"?s=resultat\">Liveresultat</a><a href=\"?s=narvar\">Praktisk info</a>
      ";}
-     
-  if($page == "blandat")
-	{echo "<a href=\"?s=blandat\">Är flipper lagligt?</a> <a href =\"?s=stories\">Berättelser</a> <a href = \"?s=stories2\">Fler berättelser</a>";}
 
-     
-  if($page == "tidigare")
-     {echo "<a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
+  if($page == "2012" or $page == "kontakt" or $page == "stories" or $page == "blandat" or $page == "spellista")
+     {echo "
+     <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=kontakt\">Kontakt</a><a href=\"?s=stories\">Berättelser</a><a href=\"?s=stories\">Spellista</a>
      ";}
-     
-  if($page == "resultat")
-    /* {echo "<a href=\"?s=resultat2011\">Huvudt&auml;vling</a> &middot; <a href=\"?s=resultatclassics2011\">Classics</a> &middot; <a href=\"?s=11kvalspel\">Main per spel</a> &middot; <a href=\"?s=11classicskvalspel\">Classics per spel</a> <br> <a href=\"bilder/diverse/11slutspelmainA.png\">Slutspelsträd main A</a> &middot; <a href=\"bilder/diverse/11slutspelclassics.png\">
-Slutspelsträd classics</a>
-     ";} */
-
-  if($page == "kvaltider")
-	echo "<a href=\"?s=kvaltider\">Kvaltider</a>";
 
  }
 
@@ -58,13 +47,10 @@ function submenu2($category)
      {echo "<a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
      ";}
      
-  if($category == "resultat")
-    /* {echo "<a href=\"?s=resultat2011\">Huvudt&auml;vling</a> &middot; <a href=\"?s=resultatclassics2011\">Classics</a> &middot; <a href=\"?s=11kvalspel\">Main per spel</a> &middot; <a href=\"?s=11classicskvalspel\">Classics per spel</a> <br> <a href=\"bilder/diverse/11slutspelmainA.png\">Slutspelsträd main A</a> &middot; <a href=\"bilder/diverse/11slutspelclassics.png\">
-Slutspelsträd classics</a>
-     ";} */
+  if($category == "regler")
+     {echo "<a href = '?s=regler'>Regler</a>  <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=former\">Tävlingsformer</a>
+     ";}
 
-  if($page == "kvaltider")
-	echo "<a href=\"?s=kvaltider\">Kvaltider</a>";
 
   echo "</p>";
  }
