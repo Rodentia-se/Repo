@@ -496,9 +496,6 @@ td, th {
       height: 3.6em;
     }
 
-    .registered tr:nth-of-type(1) {
-      height: 1em;
-    }
 
 
     .registered td:nth-of-type(1) {
