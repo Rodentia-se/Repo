@@ -7,7 +7,7 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 function undermenu($page)
   {
   
-  if($page == "anmal" or $page == "object")
+  if($page == "anmal" or $page == "object" or $page == 'start' or $page == 'edit')
      {echo "
      <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a><a href = '?s=funktionar'>Bli funktionär</a>";
 	}
