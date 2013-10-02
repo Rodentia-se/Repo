@@ -1,4 +1,4 @@
-
+<?php
   $choice = true;
 
   if ($choice) {
