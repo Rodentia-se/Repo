@@ -711,6 +711,7 @@ td, th {
 
 div#tabs {
   margin-left: 15px;
+  margin-right: 15px;
 }
 
 div#tabs ul li.tabs {
@@ -720,4 +721,5 @@ div#tabs ul li.tabs {
 
 div#tabs ul {
   margin-left: 15px;
+  margin-right: 15px;
 }
