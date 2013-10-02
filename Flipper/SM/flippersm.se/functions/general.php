@@ -3602,10 +3602,10 @@
           }
           
           $content .= '
-                      <div id="'.$field.'Div">
-                        <p id="'.$field.'Parahraph"><span>'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).'</span>'
-                        .$value.'</p>
-                      </div>
+                      <p id="'.$field.'Parahraph">
+                        <span>'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).'</span>'
+                        .$value.'</p><br/>
+                      </p>
           ';
         }
       } 
