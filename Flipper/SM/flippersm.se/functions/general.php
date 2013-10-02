@@ -1169,7 +1169,7 @@
     foreach(array('number' => 'antal', 'color' => 'färg', 'size' => 'storlek') as $param => $label) {
       $json[$param]['label'] = ucfirst($label).': ';
       $content .= $json[$param]['label'];
-      $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.'" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
+      $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.' tshirtSelect" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
       foreach($options[$param] as $option_id => $option) {
         $json[$param]['select'] .= '<option value="'.$option_id.'"';
         if ($playerTshirt && count($playerTshirt) > 0 && $playerTshirt->{$param.'_id'} == $option_id) {

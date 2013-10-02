@@ -772,24 +772,29 @@ td, th {
   margin-left: 0px;
 }
 
-div#tabs {
+#content select.tshirtSelect {
+  width: auto;
+  margin-right: 10px;
+}
+
+#content div#tabs {
   margin-left: 15px;
   margin-right: 15px;
 }
 
-div#tabs ul li.tabs {
+#content div#tabs ul li.tabs {
   float: left;
   margin: 0px;
   list-style: none;
 }
 
-div#tabs ul li.tabs h2 {
+#content div#tabs ul li.tabs h2 {
   margin: 0px 10px 0px 10px;
   color: #FFFFFF;
   text-transform: none;
 }
 
-div#tabs ul {
+#content div#tabs ul {
   margin-left: 15px;
   margin-right: 15px;
 }
