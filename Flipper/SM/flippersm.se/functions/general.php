@@ -1122,7 +1122,7 @@
           </div>
           <p style="display: '.((__tshirtsDisabled__) ? 'none' : '').';">Lägg till fler tröjor:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Klicka för att lägga till fler tröjor" title="Klicka för att lägga till fler tröjor"><span id="tshirtAddSpan" class="errorSpan toolTip"></span></p>
           <br />
-          <p><span id="tshirtCostSpan">Total cost: SEK '.($total * 100).' kr / EUR € '.(ceil($total * 100 / 8)).' / GBP £ '.(ceil($total * 100 / 10)).' / USD $ '.(ceil($total * 100 / 6)).'</span></p>
+          <p><span id="tshirtCostSpan">Totalt pris: SEK '.($total * 100).' kr</span></p>
           <input type="hidden" id="tshirtCostHidden" value="'.($total * 100).'" />
           <input type="hidden" id="tshirtTotalHidden" value="'.$total.'" />
           <input type="hidden" id="tshirtHighestHidden" value="'.$highest.'" />

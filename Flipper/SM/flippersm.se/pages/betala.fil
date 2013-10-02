@@ -1,0 +1,140 @@
+<?php
+
+  $content = '<h1>Betalning</h1>';
+  $content .= '
+    <p>Kontrollera att du har anmält dig till allting du vill vara med i, och att du har beställt de tröjor du vill ha:
+      <ul>
+        <li><a href="'.__baseHref__.'/?s=anmal">Player registration</a></li>
+        <li><a href="'.__baseHref__.'/?s=dubbelanmalan">Team registration</a></li>
+        <li><a href="'.__baseHref__.'/?s=kvalval">Qualification groups</a></li>
+        <li><a href="'.__baseHref__.'/?s=tshirt">T-shirts</a></li>
+        <li><a href="'.__baseHref__.'/?s=funktionar">Volunteer registration</a></li>
+      </ul>
+    </p>
+  ';
+  if (checkLogin($dbh, $ulogin, false)) {
+
+    $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
+
+    $main = ($player->mainPlayerId > 0) ? 1 : 0;
+    $classics = ($player->classicsPlayerId > 0) ? 1 : 0;
+    $team = $player->getTeam($dbh);
+    $team = ($team) ? count($team) : 0;
+    $tShirt = $player->getNoOfTshirts($dbh);
+
+    $currencies = array('SEK');
+    $rate['SEK'] = 1;
+    $rate['EUR'] = 8;
+    $rate['GBP'] = 10;
+    $rate['USD'] = 6;
+
+    $mainCost = 300;
+    $classicsCost = 200;
+    $teamCost = 100;
+    $tShirtCost = 100;
+
+    foreach($currencies as $currency) {
+      $mainCosts[$currency] = round($main * $mainCost / $rate[$currency]);
+      $classicsCosts[$currency] = round($classics * $classicsCost / $rate[$currency]);
+      $teamCosts[$currency] = round($team * $teamCost / $rate[$currency]);
+      $tShirtCosts[$currency] = round($tShirt * $tShirtCost / $rate[$currency]);
+      $totalCost[$currency] = $mainCosts[$currency] + $classicsCosts[$currency] + $teamCosts[$currency] + $tShirtCosts[$currency];
+      $currencyChoice .= '<input type="radio" id="currency" name="currency" value="'.$currency.'" onchange="currencyChange(this);" '.(($currency == 'SEK') ? 'checked' : '').'><label class="labelTd">'.$currency.'</label>';
+    }
+
+    $currency = 'SEK';
+    $content .= '
+      <input type="hidden" id="idHidden" value="'.$player->id.'">
+      <input type="hidden" id="nameHidden" value="'.$player->name.'">
+      <input type="hidden" id="currency" value="'.$currency.'">
+      <input type="hidden" id="paid" value="'.$player->paid.'">
+      <p class="italic">OBS: Priset för dubbel är per person. Vill du betala för hela laget så anger du 2 i lag-fältet.<br />
+      Fälten är förifyllda efter hur du har registrerat dig, men du kan ändra siffrorna om du vill betala för fler än dig själv.</p>
+      <div>
+        <p class="invisible">Välj valuta: '.$currencyChoice.'</p>
+      </div>
+      <div>
+        <p>
+          Huvudtävlingen: <input type="text" size="3em" id="mainCosts" value="'.$main.'" onchange="paymentChange(this);">
+          <input type="hidden" size="3em" id="mainCost" value="'.$mainCost.'">
+          <span id="mainCostSpan">'.$currency.' '.$mainCosts[$currency].'</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          Classics: <input type="text" size="3em" id="classicsCosts" value="'.$classics.'" onchange="paymentChange(this);">
+          <input type="hidden" size="3em" id="classicsCost" value="'.$classicsCost.'">
+          <span id="classicsCostSpan">'.$currency.' '.$classicsCosts[$currency].'</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          Dubbeltävlingen (per person): <input type="text" size="3em" id="teamCosts" value="'.$team.'" onchange="paymentChange(this);">
+          <input type="hidden" size="3em" id="teamCost" value="'.$teamCost.'">
+          <span id="teamCostSpan">'.$currency.' '.$teamCosts[$currency].'</span>
+        </p>
+      </div>
+      <div>
+        <p>
+          Tröjor: <input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);">
+          <input type="hidden" size="3em" id="tShirtCost" value="'.$tShirtCost.'">
+          <span id="tShirtCostSpan">'.$currency.' '.$tShirtCosts[$currency].'</span>
+        </p>
+      </div>
+      <div class="sumTr">
+        <p>
+          <span class="bold">Totalt</span>'.(($player->paid > 0) ? ' (<span id="paidCurrency">'.$currency.'</span> <span id="curPaid">'.$player->paid.'</span> är redan betalt)' : '').':
+          <input type="hidden" id="totalCost" value="'.$totalCost[$currency].'">
+          <span id="totalCostSpan">'.$currency.' '.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'</span>
+        </p>
+      </div>
+      <div id="paymentMethodTable">
+        <p>
+          Choose payment method:
+          <input type="radio" checked id="paymentTypePayPal" name="paymentType" value="paypal" onchange="paymentMethodChange(this);"> Electronic/credit card
+          <input type="radio" id="paymentTypeDomestic" name="paymentType" value="domestic" onchange="paymentMethodChange(this);"> Banköverföring eller bankgiro
+        </p>
+      </div>
+      <div id="domesticTable" style="display: none;">
+        <p>Betala '.$currency.' '.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).' till något av följande:</p>
+        <label>Bankgiro:</label>
+        <p>5909-5182</p>
+        <label>Swedbank:</label>
+        <p>8327-9 903.192.049-0</p>
+        <label>SEB:</label>
+        <p>5267-2992762</p>
+      </div>
+      <div id="paypalTable">
+        <span class="italic">Klicka på PayPal-ikonen för att betala med kreditkort eller ett PayPal-konto. För att betala med kreditkort på PayPal, välj "Don\'t have a PayPal account" på nästa sida.</span>
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="the@pal.pp.se">
+          <input type="hidden" name="undefined_quantity" value="1">
+          <input type="hidden" name="item_name" value="EPC Entrance Fee">
+          <input type="hidden" name="item_number" value="1">
+          <input type="hidden" id="payPalAmount" name="amount" value="'.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'">
+          <input type="hidden" name="page_style" value="StockholmOpen">
+          <input type="hidden" name="no_shipping" value="1">
+          <input type="hidden" name="return" value="https://www.europinball.org/payment-successful/">
+          <input type="hidden" name="cancel_return" value="https://www.europinball.org/payment-canceled/">
+          <input type="hidden" name="cn" value="What you are paying for">
+          <input type="hidden" name="on0" value="Pay for">
+          <input type="hidden" id="payPalMsg" name="os0" value="ID: '.$player->id.' Main: '.$main.' Classics: '.$classics.' Teams: '.$team.' T-shirts: '.$tShirt.'">
+          <input type="hidden" id="payPalCurrency" name="currency_code" value="'.$currency.'">
+          <input type="image" src="'.__baseHref__.'/images/paypal_'.$currency.'.gif" border="0" name="submit" alt="Make payments with PayPal - it\'s fast, free and secure!" id="payPalImg">
+        </form>
+        <p class="italic">OBS: Betalningssidan kommer att säga &quot;Stockholm Open&quot;. Det är helt okej, eftersom det är Stockolm som arrangerar SM i år.</p>
+      </div>
+      <p>När du betalar med kreditkort eller PayPal så får vi all info om vad du betalar för automatiskt. Men om du betalar via bankgiro eller överföring, så måste du meddela vem/vilka du betalar för. Vad du betalar för vet vi dock, så länge du ger oss rätt namn/TAG eller dylikt.</p>
+    ';
+
+  } else {
+    $content .= '<p>Du måste <a href="'.__baseHref__.'/?s=anmal">anmäla dig</a> och få ett användarnamn innan du kan använda den här sidan.</p>';
+    $content .= showLogin($ulogin, 'Om du redan har ett användarnamn, logga in här.');
+  }
+
+
+
+  echo($content);
+  printFooter($dbh, $ulogin);
+?>

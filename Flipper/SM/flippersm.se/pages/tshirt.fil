@@ -8,11 +8,11 @@
   if (checkLogin($dbh, $ulogin, false)) {
     $content .= getTshirtForm($dbh, $ulogin);
   } else {
-    $content .= '<p>You need to <a href="../">register</a> to create a user before you can buy T-shirts.</p>';
-    $content .= showLogin($ulogin, 'If you already have a user, please login.');
+    $content .= '<p>Du måste <a href="../">anmäla dig</a> och få ett användarnamn för att kunna köpra tröjor.</p>';
+    $content .= showLogin($ulogin, 'Om du redan har ett användarnamn, logga in här.');
   }
 
-  $content .= '<p>You pay for your T-shirt(s) on the <a href="'.__baseHref__.'/registration/payment-options/">payment page</a>';
+  $content .= '<p>Du betalar för dina tröjor på <a href="'.__baseHref__.'/?s=betala">betalningssidan</a>';
 
   echo($content);
 ?>
