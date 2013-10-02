@@ -1548,8 +1548,8 @@
           <div id="qualGroupDiv">
             <h2 class="entry-title">Välj dina kvaltider här</h2>
             <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
-            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
-            <p class="italic">Numret efter respektive kvaltid visar antal spelare med kvaltiden som förstahandsval.</P>
+            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.<br />
+            Numret efter respektive kvaltid visar antal spelare med kvaltiden som förstahandsval.</P>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
     ';
