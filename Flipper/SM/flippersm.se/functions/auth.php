@@ -257,10 +257,6 @@ function showEditPlayer($dbh, $ulogin) {
       </div>
     </form>
     <div id="changeUser"><p><a href="'.__baseHref__.'/your-pages/change-credentials/">Ändra användarnamn eller lösenord</a></p></div>
-    <form action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-      <input type="hidden" name="action" value="logout">
-      <input type="submit" value="Logga ut">
-    </form>
   ';
   return $content;
 }
