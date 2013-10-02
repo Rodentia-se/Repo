@@ -172,27 +172,6 @@ var currencies = {
     symbol: ' kr',
     symbolPlace: 1,
     rate: 1
-  },
-  EUR: {
-    name: 'euro',
-    shortName: 'EUR',
-    symbol: '€ ',
-    symbolPlace: -1,
-    rate: 8
-  },
-  GBP: {
-    name: 'pounds',
-    shortName: 'GBP',
-    symbol: '£ ',
-    symbolPlace: -1,
-    rate: 10
-  },
-  USD: {
-    name: 'dollar',
-    shortName: 'USD',
-    symbol: '$ ',
-    symbolPlace: -1,
-    rate: 6
   }
 }
 
