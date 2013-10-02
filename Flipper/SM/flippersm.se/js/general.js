@@ -1409,7 +1409,6 @@ function checkForm(el) {
   for (var prop in classes[obj.class].fields) {
     if (prop != 'paid') {
       var meta = classes[obj.class].fields[prop]
-      debugOut(prop);
       obj[prop] = document.getElementById(prop + ucfirst(meta.type)).value;
       if (meta.type == 'select') {
         if (meta.special == 'add') { // For selects we want to store the IDs, unless they added something
