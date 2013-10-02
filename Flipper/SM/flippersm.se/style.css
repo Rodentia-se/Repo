@@ -709,6 +709,10 @@ td, th {
   margin: 10px;
 }
 
+div#tabs {
+  margin-left: 15px;
+}
+
 div#tabs ul li.tabs {
   float: left;
   margin: 0px;
