@@ -194,11 +194,11 @@ div#content {
   font-weight: bold;}
 
 #content a {
-  color: #999;
+  color: #555;
 }
 
 #content a:hover {
-  color: #37f;
+  color: #777;
 }
 
 #content li, #content dd, #content dt {
