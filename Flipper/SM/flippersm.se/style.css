@@ -711,8 +711,9 @@ td, th {
 
 div#tabs ul li.tabs {
   float: left;
+  margin: 0px;
 }
 
 div#tabs ul {
-  clear: both;
+  margin-left: 15px;
 }
