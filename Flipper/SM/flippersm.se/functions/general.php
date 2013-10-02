@@ -1105,7 +1105,7 @@
     }
     $content = '
         <div id="tshirtOrderDiv">
-          <h2 class="entry-title">T-shirts order form</h3>
+          <h2 class="entry-title">Tröjbeställningar</h3>
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
           <input type="hidden" id="playerIdHidden" value="'.$player->id.'">
           <div id="tshirtOrderTable">
@@ -1120,7 +1120,7 @@
     } 
     $content .= '
           </div>
-          <p style="display: '.((__tshirtsDisabled__) ? 'none' : '').';">Add more T-shirts:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Click to add a new T-shirt" title="Click to add a new T-shirt"><span id="tshirtAddSpan" class="errorSpan toolTip"></span></p>
+          <p style="display: '.((__tshirtsDisabled__) ? 'none' : '').';">Lägg till fler tröjor:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Klicka för att lägga till fler tröjor" title="Klicka för att lägga till fler tröjor"><span id="tshirtAddSpan" class="errorSpan toolTip"></span></p>
           <br />
           <p><span id="tshirtCostSpan">Total cost: SEK '.($total * 100).' kr / EUR € '.(ceil($total * 100 / 8)).' / GBP £ '.(ceil($total * 100 / 10)).' / USD $ '.(ceil($total * 100 / 6)).'</span></p>
           <input type="hidden" id="tshirtCostHidden" value="'.($total * 100).'" />
