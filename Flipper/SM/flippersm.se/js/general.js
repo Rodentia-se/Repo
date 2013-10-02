@@ -2241,7 +2241,7 @@ function curCalc(sel) {
 function infoSelected(sel) {
   var type = sel.name.replace('all', '').replace('Select', '').toLowerCase();
   var id = sel.options[sel.selectedIndex].value;
-  window.location.href = baseHref + '/' + type + '/?obj=' + type + '&id=' + id;
+  window.location.href = baseHref + '/?s=object&obj=' + type + '&id=' + id;
 }
 
 /*
