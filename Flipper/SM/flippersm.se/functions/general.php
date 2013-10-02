@@ -1919,6 +1919,7 @@
     $content .= '<span class="error errorSpan toolTip qualGroupSpan" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
     $content .= ($type == 'period' || $type == 'qualGroup') ? ucfirst($item->name) : '';
+    $content .= ($type == 'qualGroup') ? ': '.$item->getNoOfPlayers($dbh, true) : '';
     $content .= '</div>';
     return $content;
   }
