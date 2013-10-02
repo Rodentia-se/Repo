@@ -1198,7 +1198,7 @@ function submitChecked(obj) {
   .done(function(data) {
     if (pageMode == 'team') {
       if (data.success && data.reason.match(/^[0-9]+$/)) {
-        fade(document.getElementById('submitSpan'), 'Team updated!', true);
+        fade(document.getElementById('submitSpan'), 'Laget är uppdaterat!', true);
         document.getElementById('idHidden').value = data.reason;
         for (var num = 4; num > 0; num--) {
           var sel = document.getElementById('teamPlayer' + num + 'Select');
@@ -1227,7 +1227,7 @@ function submitChecked(obj) {
         }
         showMemberSelects();
       } else {
-        var reason = (data.success) ? 'Something went wrong - team not updated!' : data.reason ;
+        var reason = (data.success) ? 'Nånting gick fel - laget uppdaterades inte!' : data.reason ;
         fade(document.getElementById('submitSpan'), reason, false);
       }
     } else { 
@@ -1689,7 +1689,7 @@ function memberSelected(sel) {
     }
   } else {
     selectOption(sel, sel.getAttribute('previous'));
-    fade(document.getElementById(errorId), 'Member is already on the team! Choose another player.', false);
+    fade(document.getElementById(errorId), 'Spelaren är ju redan med i laget! Välj en annan spelare.', false);
   }
 }
 
