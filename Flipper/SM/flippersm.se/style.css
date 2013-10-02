@@ -674,6 +674,31 @@ td, th {
   background-color: #FFFF00;
 }
 
+#content .error {
+  color: #FF0000;
+  font-style: bold;
+}
+
+#content .errorSpan {
+  font-size: 75%;
+  margin-left: 10px;
+}
+
+#content .errorTd {
+  background-color: #FF0000;
+}
+
+#content .toolTip {
+  display: none;
+  position: absolute;
+  background-color: #FFFFFF;
+  border: solid 1px black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 #content input#ifpaButton {
   float: left;
   margin-right: 20px;
