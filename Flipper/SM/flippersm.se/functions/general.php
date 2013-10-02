@@ -1099,7 +1099,7 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     $tshirts = $player->getTshirts($dbh, $tournament);
     if($tshirts && count($tshirts > 0)) {
-      $shown = 'Nedan ser du de ttröjor du redan har beställt.<br />';
+      $shown = 'Nedan ser du de tröjor du redan har beställt.<br />';
     } else {
       $shown = '<p id="tshirtNoneSpan" class="italic">Du har inte beställt några tröjor än. '.((__tshirtsDisabled__) ? '' : 'Beställ tröjor nu genom att klicka på plus-tecknet!').'<br /></p>';
     }
@@ -1153,10 +1153,10 @@
   
   function getTshirtRow($dbh, $tournament, $num, $playerTshirt = null, $warning = true, $asJson = false) {
     $tshirts = getTshirts($dbh, $tournament);
-    $content = '<div id="'.$num.'_tshirtTr">';
+    $content = '<div id="'.$num.'_tshirtTr"><p>';
     $json['trId'] = $num.'_tshirtTr';
-    $options['size'] = array('0' => 'Choose...');
-    $options['color'] = array('0' => 'Choose...');
+    $options['size'] = array('0' => 'Välj...');
+    $options['color'] = array('0' => 'Välj...');
     foreach($tshirts as $tshirt) {
      if (!in_array($tshirt->size, $options['size'])) {
         $options['size'][$tshirt->size_id] = $tshirt->size;
@@ -1166,8 +1166,8 @@
       }
     }
     $options['number'] = array(0=>0,1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10);
-    foreach(array('number', 'color', 'size') as $param) {
-      $json[$param]['label'] = '<label>'.ucfirst($param).':</label>';
+    foreach(array('number' => 'antal', 'color' => 'färg', 'size' => 'storlek') as $param => $label) {
+      $json[$param]['label'] = ucfirst($label).': ';
       $content .= $json[$param]['label'];
       $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.'" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
       foreach($options[$param] as $option_id => $option) {
@@ -1182,10 +1182,10 @@
     }
     $json[$param]['img'] = (!__tshirtsDisabled__) ? '<img id="'.$num.'_tshirtDel" src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="delTshirt('.$num.');" alt="Click to delete this T-shirt" title="Click to delete this T-shirt"/><span class="error errorSpan" id="'.$num.'_tshirtSpan">' : '';
     if ($warning && $playerTshirt && count($playerTshirt) > 0 && (!($playerTshirt->number_id > 0) || !($playerTshirt->color_id > 0) || !($playerTshirt->size_id > 0))) {
-      $json[$param]['img'] .= 'You have not chosen all options for these T-shirts!';
+      $json[$param]['img'] .= 'Tröjan är beställd när alla tre valen är ifyllda';
     }
     $json[$param]['img'] .= '</span>';
-    $content .= $json[$param]['img'].'</div>';
+    $content .= $json[$param]['img'].'</p></div>';
     $json['success'] = true;
     return ($asJson) ? $json : $content;
   }
@@ -2970,7 +2970,7 @@
     return $output;
   }
 
-  function createSelect($objs, $name = 'select', $selectedId = 0, $onchange = 'infoSelected', $disabled = '', $header = 'Choose...') {
+  function createSelect($objs, $name = 'select', $selectedId = 0, $onchange = 'infoSelected', $disabled = '', $header = 'Välj...') {
     $content = '<select name="'.$name.'" id="'.$name.'" onchange="'.$onchange.'(this);" previous="'.$selectedId.'" '.$disabled.">\n";
     $content .= '<option value="0">'.$header.'</options>';
     if ($objs && count($objs) > 0) {
