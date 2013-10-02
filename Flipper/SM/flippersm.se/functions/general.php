@@ -1550,7 +1550,7 @@
             <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
             <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.<br />
             Numret efter respektive kvaltid visar antal spelare med kvaltiden som förstahandsval.<br />
-            Om kvaltiderna för Classics är utgråade, så beror det på att du inte har anmält dig i Classics. Klicka i Classics-rutan under <a href="'.__baseHref__.'/?s=edit">ändra uppgifter</a>.</P>
+            Om kvaltiderna för Classics är utgråade, så beror det på att du inte har anmält dig i Classics. Gör det <a href="'.__baseHref__.'/?s=edit">här</a>.</P>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
     ';
