@@ -1,0 +1,19 @@
+<?php
+
+  $content = '<h1>T-shirts</h1>';
+  $content .= '<p>Här kan du köpa årets SM-tröja. Du hämtar ut tröjan/tröjorna på plats på SM. Priset är 100 kr/st. Du kan välja mellan ljusgul, ljusblå eller ljusgrå. Vi kommer även att sälja ett begränsat antal tröjor på plats, men om du vill vara säker på att få en så bör du förbeställa.</p>';
+  $content .= '<div id="tshirtPhoto"><p><img src="'.getPhoto($dbh, 'tshirt', 4).'" alt="SM 2013 T-shirt" /></p></div>';
+  
+
+  if (checkLogin($dbh, $ulogin, false)) {
+    $content .= getTshirtForm($dbh, $ulogin);
+  } else {
+    $content .= '<p>You need to <a href="../">register</a> to create a user before you can buy T-shirts.</p>';
+    $content .= showLogin($ulogin, 'If you already have a user, please login.');
+  }
+
+  $content .= '<p>You pay for your T-shirt(s) on the <a href="'.__baseHref__.'/registration/payment-options/">payment page</a>';
+
+  echo($content);
+?>
+
