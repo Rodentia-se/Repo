@@ -12,9 +12,9 @@ var classes = {
     plural: 'continents',
     headers: ['name', 'latitude', 'longitude'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      latitude: { label: 'Latitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      longitude: { label: 'Longtitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
+      latitude: { label: 'Latitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      longitude: { label: 'Longitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -24,10 +24,10 @@ var classes = {
     plural: 'countries',
     headers: ['name', 'continent', 'latitude', 'longitude'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      continent: { label: 'Continent', type: 'text', mandatory: true, special: false, bundle: false},
-      latitude: { label: 'Latitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      longitude: { label: 'Longtitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
+      continent: { label: 'Kontinent', type: 'text', mandatory: true, special: false, bundle: false},
+      latitude: { label: 'Latitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      longitude: { label: 'Longitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -37,11 +37,11 @@ var classes = {
     plural: 'regions',
     headers: ['name', 'country', 'continent', 'latitude', 'longitude'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      continent: { label: 'Continent', type: 'text', mandatory: true, special: false, bundle: 1},
-      country: { label: 'Country', type: 'text', mandatory: true, special: false, bundle: 1},
-      latitude: { label: 'Latitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      longitude: { label: 'Longtitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
+      continent: { label: 'Kontinent', type: 'text', mandatory: true, special: false, bundle: 1},
+      country: { label: 'Land', type: 'text', mandatory: true, special: false, bundle: 1},
+      latitude: { label: 'Latitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      longitude: { label: 'Longtitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -51,12 +51,12 @@ var classes = {
     plural: 'cities',
     headers: ['name', 'region', 'country', 'continent', 'latitude', 'longitude'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      continent: { label: 'Continent', type: 'text', mandatory: true, special: false, bundle: 1},
-      country: { label: 'Country', type: 'text', mandatory: true, special: false, bundle: 1},
-      region: { label: 'Region', type: 'text', mandatory: true, special: false, bundle: 1},
-      latitude: { label: 'Latitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      longitude: { label: 'Longtitude', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
+      continent: { label: 'Kontinent', type: 'text', mandatory: true, special: false, bundle: 1},
+      country: { label: 'Land', type: 'text', mandatory: true, special: false, bundle: 1},
+      region: { label: 'Landskap', type: 'text', mandatory: true, special: false, bundle: 1},
+      latitude: { label: 'Latitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      longitude: { label: 'Longitud', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -66,13 +66,13 @@ var classes = {
     plural: 'games',
     headers: ['name', 'type', 'acronym', 'manufacturer', 'year', 'ipdb', 'rules'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      type: { label: 'Type', type: 'select', mandatory: false, special: false, bundle: false, default: ''},
-      acronym: { label: 'Acronym', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      manufacturer: { label: 'Manufacturer', type: 'select', mandatory: true, special: false, bundle: 1},
-      year: { label: 'Year', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      name: { label: 'Namn', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      type: { label: 'Typ', type: 'select', mandatory: false, special: false, bundle: false, default: ''},
+      acronym: { label: 'Kortnamn', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      manufacturer: { label: 'Tillverkare', type: 'select', mandatory: true, special: false, bundle: 1},
+      year: { label: 'År', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
       ipdb: { label: 'IPDB', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      rules: { label: 'Rules', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      rules: { label: 'Regler', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -82,8 +82,8 @@ var classes = {
     plural: 'manufacturers',
     headers: ['name', 'link'], // Headers normally used in tables and lists
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      link: { label: 'Link', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      link: { label: 'Länk', type: 'text', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -94,12 +94,12 @@ var classes = {
     headers: ['name', 'initials'], // Headers normally used in tables and lists
     fields: {
       id: { label: 'ID', type: 'hidden', mandatory: false, special: false, bundle: false, default: 0},
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      initials: { label: 'Initials', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
-      dateRegistered: { label: 'dateRegistered', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
-      tournamentDivision_id: { label: 'tournamentDivision_id', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
-      registerPerson_id: { label: 'registerPerson_id', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
-      contactPlayer_id: { label: 'contactPlayer_id', type: 'radio', mandatory: false, special: false, bundle: false, default: ''}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
+      initials: { label: 'TAG', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      dateRegistered: { label: 'Anmäld', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
+      tournamentDivision_id: { label: 'Division', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
+      registerPerson_id: { label: 'Anmäld av', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
+      contactPlayer_id: { label: 'Kapten', type: 'radio', mandatory: false, special: false, bundle: false, default: ''}
     },
     complete: false
   },
@@ -113,13 +113,13 @@ var classes = {
       name: { label: 'Namn', type: 'hidden', mandatory: false, special: false, bundle: false, default: ''},
       ifpa_id: { label: 'IFPA ID', type: 'hidden', mandatory: false, special: false, bundle: false, default: 0},
       ifpaRank: { label: 'IFPA', type: 'hidden', mandatory: false, special: false, bundle: false, default: 0},
-      class: { label: 'Class', type: 'hidden', mandatory: false, special: false, bundle: false, default: 'player'},
+      class: { label: 'Klass', type: 'hidden', mandatory: false, special: false, bundle: false, default: 'player'},
       isPlayer: { label: 'isPlayer', type: 'hidden', mandatory: false, special: false, bundle: false, default: true},
       isPerson: { label: 'isPerson', type: 'hidden', mandatory: false, special: false, bundle: false, default: true},
       isIfpa: { label: 'isIfpa', type: 'hidden', mandatory: false, special: false, bundle: false, default: true},
       firstName: { label: 'Förnamn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
       lastName: { label: 'Efternamn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
-      initials: { label: 'Tag', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
+      initials: { label: 'TAG', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
       username: { label: 'Användarnamn', type: 'text', mandatory: true, special: false, bundle: false, default: ''},
       password: { label: 'Lösenord', type: 'password', mandatory: true, special: false, bundle: false, default: ''},
       passwordRequired: { label: 'Password', type: 'hidden', mandatory: false, special: false, bundle: false, default: true},
@@ -149,7 +149,7 @@ var classes = {
     headers: ['name'],
     mandatory: ['name'],
     fields: {
-      name: { label: 'Name', type: 'text', mandatory: true, special: false, bundle: false}
+      name: { label: 'Namn', type: 'text', mandatory: true, special: false, bundle: false}
     },
     complete: true
   }
@@ -2895,7 +2895,7 @@ function addIpdbLink(ipdb_id) {
 }
 
 function addRulesLink(link) {
-  var txt = document.createTextNode('Rules');
+  var txt = document.createTextNode('Regler');
   if (link) {
     var a = document.createElement('a');
     a.href = link;

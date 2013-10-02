@@ -8,7 +8,7 @@
   if (checkLogin($dbh, $ulogin, false)) {
     $content .= getTshirtForm($dbh, $ulogin);
   } else {
-    $content .= '<p>Du måste <a href="../">anmäla dig</a> och få ett användarnamn för att kunna köpra tröjor.</p>';
+    $content .= '<p>Du måste <a href="../">anmäla dig</a> och få ett användarnamn för att kunna köpa tröjor.</p>';
     $content .= showLogin($ulogin, 'Om du redan har ett användarnamn, logga in här.');
   }
 
