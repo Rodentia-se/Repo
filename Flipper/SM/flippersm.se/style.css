@@ -708,3 +708,11 @@ td, th {
   max-width: 400px;
   margin: 10px;
 }
+
+div#tabs ul li.tabs {
+  float: left;
+}
+
+div#tabs ul {
+  clear: both;
+}
