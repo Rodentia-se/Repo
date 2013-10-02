@@ -55,28 +55,28 @@
       </div>
       <div>
         <p>
-          <label class="infoLabel">Huvudtävlingen:</label><input type="text" size="3em" id="mainCosts" value="'.$main.'" onchange="paymentChange(this);" class="payInput>
+          <label class="payLabel">Huvudtävlingen:</label><input type="text" size="3em" id="mainCosts" value="'.$main.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="mainCost" value="'.$mainCost.'">
           <span id="mainCostSpan">'.$currency.' '.$mainCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          <label class="infoLabel">Classics:</label><input type="text" size="3em" id="classicsCosts" value="'.$classics.'" onchange="paymentChange(this);" class="payInput>
+          <label class="payLabel">Classics:</label><input type="text" size="3em" id="classicsCosts" value="'.$classics.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="classicsCost" value="'.$classicsCost.'">
           <span id="classicsCostSpan">'.$currency.' '.$classicsCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          <label class="infoLabel">Dubbeltävlingen (per person):</label><input type="text" size="3em" id="teamCosts" value="'.$team.'" onchange="paymentChange(this);" class="payInput>
+          <label class="payLabel">Dubbeltävlingen (per person):</label><input type="text" size="3em" id="teamCosts" value="'.$team.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="teamCost" value="'.$teamCost.'">
           <span id="teamCostSpan">'.$currency.' '.$teamCosts[$currency].'</span>
         </p>
       </div>
       <div>
         <p>
-          <label class="infoLabel">Tröjor:</label><input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);" class="payInput">
+          <label class="infoLapayLabelbel">Tröjor:</label><input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="tShirtCost" value="'.$tShirtCost.'">
           <span id="tShirtCostSpan">'.$currency.' '.$tShirtCosts[$currency].'</span>
         </p>

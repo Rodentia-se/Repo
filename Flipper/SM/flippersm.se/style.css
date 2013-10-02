@@ -756,6 +756,11 @@ td, th {
   width: 150px;
 }
 
+#content label.payLabel {
+  float: left;
+  width: 225px;
+}
+
 #content img.objectPhoto {
   max-width: 400px;
   margin: 10px;
@@ -780,6 +785,7 @@ td, th {
 
 #content input.payInput {
   width: auto;
+  size: 3em;
   margin-right: 15px;
   margin-left: 5px;
 }
