@@ -1555,7 +1555,7 @@
     $content .= '
           </div>
           <div id="qualGroupTableDiv" class="periodTable">
-            <p>Klicka i/ur alla: <input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
+            <p>Klicka i/ur alla: <input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);"';
     if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
       $content .= ' checked';
     }            
