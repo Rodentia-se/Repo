@@ -716,6 +716,7 @@ td, th {
 
 #content input.qualGroupRadio, #content input.qualGroupCheckbox {
   margin-right: 10px;
+  margin-left: 0px;
 }
 
 div#tabs {
