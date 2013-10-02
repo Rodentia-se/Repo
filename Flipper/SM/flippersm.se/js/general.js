@@ -945,6 +945,13 @@ function printPlayerAsList(obj,dstId) {
   for (var prop in classes[obj.class].fields) { // Loop through all object properties (player names and such)
     if (prop != 'paid') {
       addFieldDiv(div, obj, prop);
+      if (prop == 'birthDate') {
+        var birthDateP = document.createElement('p');
+        birthDateP.className = 'comment';
+        birthDateP.id = 'birthDateP';
+        birthDateP.innerHTML = 'Födelsedatum är obligatoriskt för de som önskar deltaga i U18.';
+        div.appendChild(birthDateP);
+      }
     }
   }
   if (!document.getElementById('nonPlayerLogin') && (!document.getElementById('loggedIn') || document.getElementById('loggedIn').value != 'true')) {
