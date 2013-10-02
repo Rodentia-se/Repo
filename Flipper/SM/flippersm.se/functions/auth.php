@@ -162,7 +162,7 @@ function checkLogin($dbh, $ulogin, $req = true, $title = 'You need to login to a
 
 function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den här sidan') {
   $content = '
-  	<h2 id="loginTitle" class="loginTable">'.$title.'</h2>
+  	<h1 class="loginTable">'.$title.'</h1>
     <script type="text/javascript">
       $(document).ready(function() {
         setTimeout(function() {
