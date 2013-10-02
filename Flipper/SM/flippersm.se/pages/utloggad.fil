@@ -1,5 +1,5 @@
 <?php
   echo('<h1>Logout</h1>');
   appLogout($ulogin);
-  <p>Du är nu utloggad</p>
+  echo('<p>Du är nu utloggad</p>');
 ?>
