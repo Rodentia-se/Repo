@@ -61,7 +61,7 @@ div#menu {
 }
 
 #menu #buttons a.link {
-  color: #ccc;
+  color: #039;
 }
 
 #menu #buttons a.link:hover {
@@ -194,7 +194,7 @@ div#content {
   font-weight: bold;}
 
 #content a {
-  color: #03f;
+  color: #999;
 }
 
 #content a:hover {
