@@ -695,7 +695,7 @@ td, th {
   height: 1px;
 }
 
-.leftInfoDiv {
+.leftInfoDiv, infoLabelDiv {
   float: left;
 }
 
