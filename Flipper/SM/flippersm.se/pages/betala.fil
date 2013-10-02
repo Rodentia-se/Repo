@@ -76,7 +76,7 @@
       </div>
       <div>
         <p>
-          <label class="infoLapayLabelbel">Tröjor:</label><input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);" class="payInput">
+          <label class="payLabel">Tröjor:</label><input type="text" size="3em" id="tShirtCosts" value="'.$tShirt.'" onchange="paymentChange(this);" class="payInput">
           <input type="hidden" size="3em" id="tShirtCost" value="'.$tShirtCost.'">
           <span id="tShirtCostSpan">'.$currency.' '.$tShirtCosts[$currency].'</span>
         </p>
