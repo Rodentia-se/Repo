@@ -711,7 +711,8 @@ td, th {
 
 #content div.qualGroupTable {
   float: left;
-  margin-right: 20px;
+  margin-left: 15px;
+  margin-right: 5px;
 }
 
 #content input.qualGroupRadio, #content input.qualGroupCheckbox {
