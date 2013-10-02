@@ -180,16 +180,26 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
         '.(($_REQUEST['id']) ? '<input type="hidden" name="id" id="id" value="'.$_REQUEST['id'].'">' : '').'
         <input type="hidden" name="baseHref" id="baseHref" value="'.__baseHref__.'">
 			  <input type="hidden" id="nonce" name="nonce" value="'.ulNonce::Create('login').'">
-        <label for="username">Användarnamn:</label>
-  		  <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);">
-        <span id="usernameLoginSpan" class="errorSpan">*</span>
-        <label for="password">Lösenord:</label>
-        <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);">
-        <span id="passwordSpan" class="errorSpan">*</span>
-        <label for="autologin" class="infoLabel">Kom ihåg mig:</label>
-        <input type="checkbox" name="autologin" value="1" id="autologinCheckbox">
-  		  <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>
-        <p><a href="'.__baseHref__.'/your-pages/password-reset/" class="italic">Glömt löesnordet?</a></p>
+        <div id="usernameDiv">
+          <label for="username">Användarnamn:</label>
+  		    <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);">
+          <span id="usernameLoginSpan" class="errorSpan">*</span>
+        </div>
+        <div id="passwordDiv">
+          <label for="password">Lösenord:</label>
+          <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);">
+          <span id="passwordSpan" class="errorSpan">*</span>
+        </div>
+        <div id="autologinDiv">
+          <label for="autologin" class="infoLabel">Kom ihåg mig:</label>
+          <input type="checkbox" name="autologin" value="1" id="autologinCheckbox">
+        </div>
+        <div id="loginDiv">
+    		  <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>
+        </div>
+        <div id="forgotPasswordDiv">
+          <p><a href="'.__baseHref__.'/your-pages/password-reset/" class="italic">Glömt löesnordet?</a></p>
+        </div>
   	  </form>
     </div>
   ';
