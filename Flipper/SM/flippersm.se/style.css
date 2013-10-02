@@ -695,16 +695,16 @@ td, th {
   height: 1px;
 }
 
-.leftInfoDiv {
+#content div.leftInfoDiv {
   float: left;
 }
 
-.infoLabel {
+#content label.infoLabel {
   float: left;
   width: 150px;
 }
 
-.objectPhoto {
+#content img.objectPhoto {
   max-width: 400px;
   margin: 10px;
 }
