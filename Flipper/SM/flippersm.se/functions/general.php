@@ -1573,11 +1573,11 @@
             }
             $date = $qualGroup->date;
             $content .= '
-              <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
-                <div>
-                  <input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>
-                  <b>'.$date.' ('.ucfirst($type).')</b>
-                </div>
+            <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
+              <div>
+                <input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>
+                <b>'.$date.' ('.ucfirst($type).')</b>
+              </div>
             ';
           }
           $checked = (in_array($qualGroup->id, $playerQualGroupIds)) ? true : false;
@@ -1586,8 +1586,9 @@
         }
       } 
       $content .= '
-              </div>
             </div>
+          </div>
+
       ';
     }
     return $content;

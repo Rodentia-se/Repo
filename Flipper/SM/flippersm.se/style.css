@@ -662,7 +662,7 @@ td, th {
   display: none;
 }
 
-#content .italic, #content p.italic, #content span.italic {
+#content .italic, #content p.italic, #content span.italic, #content .comment, #content p.comment, #content span.comment {
   font-style: italic;
 }
 
@@ -674,12 +674,44 @@ td, th {
   background-color: #FFFF00;
 }
 
+#content input#ifpaIdTextDiv {
+  float: left;
+  margin-right: 20px;
+}
+
+#content input#ifpaButton {
+  float: left;
+  margin-right: 20px;
+}
+
+#content div#ifpaButtonDiv {
+  display: none;
+}
+
+#content div#newButtonDiv {
+  display: none;
+}
+
+#content input#newButton {
+  float: left;
+  margin-right: 20px;
+}
+
+#content p#noHits {
+  display: none;
+}
+
+#content form#newData {
+  clear: left;
+}
+
 #content img.icon {
   position: relative;
   width: 26px;
   height: 16px;
   top: 2px;
   padding: 0px 0px 0px 10px;
+  cursor: pointer;
 }
 
 #content #countryDiv {
