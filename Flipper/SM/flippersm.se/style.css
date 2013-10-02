@@ -674,7 +674,7 @@ td, th {
   background-color: #FFFF00;
 }
 
-#content input#ifpaIdTextDiv {
+#content div#ifpaIdTextDiv {
   float: left;
   margin-right: 20px;
 }
