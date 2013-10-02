@@ -1,5 +1,4 @@
 <br class="clearboth">
-</div>
 
 <div id="loggedInOut">
 <?php
@@ -10,6 +9,7 @@
     echo('<p class="italic">Du är inte inloggad.</p>');
   }
 ?>
+</div>
 </div>
 <div id="debug" align="left"></div>
 <div id="debug2"></div><br/>
