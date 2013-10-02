@@ -2,7 +2,7 @@
 <div class = 'bred'>
 <?php
 
-  if (checkLogin($dbh, $ulogin, true, 'Please use your login details to access the page.')) {
+  if (checkLogin($dbh, $ulogin, true, 'Du måste vara inloggad för att komma åt den här sidan.')) {
     $content = showEditPlayer($dbh, $ulogin);
     echo($content);
   }
