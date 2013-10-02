@@ -1547,8 +1547,8 @@
     $content = '
           <div id="qualGroupDiv">
             <h2 class="entry-title">Välj dina kvaltider här</h2>
-            <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample" class="qualGroupRadio">Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
-            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample" class="qualGroupCheckbox">Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
+            <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
+            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
     ';
