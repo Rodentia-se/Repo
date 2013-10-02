@@ -3586,12 +3586,12 @@
           } else if ($field == 'type') {
             $divisionId = ($obj->{$field} == 'main') ? 1 : (($obj->{$field} == 'classics') ? 2 : '');
             if ($divisionId) {
-              $value = '<a href="?d='.$divisionId.'">'.ucfirst($obj->{$field}).'</a>';
+              $value = '<a href="?s=object&obj='.$type.'&d='.$divisionId.'">'.ucfirst($obj->{$field}).'</a>';
             } else {
               $value = ucfirst($obj->{$field});
             }
           } else if ($field == 'rules') {
-            $value = '<a href="'.$obj->{$field}.'" target="_new">Rules sheet</a>';
+            $value = '<a href="'.$obj->{$field}.'" target="_new">Regler</a>';
           } else if ($field == 'noOfPlayers') {
             $value = $obj->getNoOfAssignedPlayers($dbh);
           } else {
