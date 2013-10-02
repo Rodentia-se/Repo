@@ -2424,12 +2424,14 @@ function addTheaders (thead, type, meBtn) { // meBtn is the "This is me!" button
   var tr = thead.insertRow(-1);
   tr.className += ' header';
   for (var header in type.headers) { // Let's go through the headers form the meta information objects
-    var th = document.createElement('th');
-    tr.appendChild(th)
-    th.appendChild(document.createTextNode(type.fields[type.headers[header]].label + ': '));
+    if (!meBtn || (meBtn && type.headers[header] != 'classics' && type.headers[header] != 'dateRegistered' && type.headers[header] != 'paid'))
+      var th = document.createElement('th');
+      tr.appendChild(th)
+      th.appendChild(document.createTextNode(type.fields[type.headers[header]].label + ': '));
+    }
   }
-  var th = document.createElement('th');
   if (meBtn) { // "This is me!" should be shown
+    var th = document.createElement('th');
     tr.appendChild(th)
     th.appendChild(document.createTextNode('Jag?'));
   }
@@ -2464,32 +2466,34 @@ function addRow(tbody, obj, link, meBtn, sels) {
   var tr = tbody.insertRow(-1);
   var headers = classes[obj.class].headers; // Get the headers to use
   for (var header in headers) {
-    var td = tr.insertCell(-1);
+    if (!meBtn || (meBtn && headers[header] != 'classics' && headers[header] != 'dateRegistered' && headers[header] != 'paid'))
+      var td = tr.insertCell(-1);
 //    td.className = 'tdFix'
-    if ((typeof obj[headers[header]] !== 'undefined' && obj[headers[header]] != null) || obj[headers[header] + '_id']) { // Check that the header exist on this object
-      obj.addParents(); // Make sure all parent-child relations are there
-      var item = null;
-      if (sels && obj[headers[header]].hasOwnProperty('name')) { // If there is a name on the content, it means that this header contains another object - so let's make a select
-        item = document.createElement('select');
-        item.id = headers[header] + 'Select';
-        popSel(item); // Populate it with all objectofs  the specific type
-        selectOption(item, obj[headers[header]].id); // Select the correct option
-      } else {
-        if (link) {
-          if (!obj.links) {
-            obj.addLinks(); // Make sure all links have been generated
+      if ((typeof obj[headers[header]] !== 'undefined' && obj[headers[header]] != null) || obj[headers[header] + '_id']) { // Check that the header exist on this object
+        obj.addParents(); // Make sure all parent-child relations are there
+        var item = null;
+        if (sels && obj[headers[header]].hasOwnProperty('name')) { // If there is a name on the content, it means that this header contains another object - so let's make a select
+          item = document.createElement('select');
+          item.id = headers[header] + 'Select';
+          popSel(item); // Populate it with all objectofs  the specific type
+          selectOption(item, obj[headers[header]].id); // Select the correct option
+        } else {
+          if (link) {
+            if (!obj.links) {
+              obj.addLinks(); // Make sure all links have been generated
+            }
+            item = (obj.links[headers[header]]) ? obj.links[headers[header]] : null; // If there is a link - let's use it
           }
-          item = (obj.links[headers[header]]) ? obj.links[headers[header]] : null; // If there is a link - let's use it
-        } 
-        item = (item) ? item : ((obj[headers[header]].hasOwnProperty('name')) ? document.createTextNode(obj[headers[header]].name) : document.createTextNode(obj[headers[header]])); // There was no link - so let's just add the text (either a name - if this is an object, or the actual content - if this is a string)
-      }
-      item = (classes[obj.class].fields[headers[header]].type == 'checkbox') ? ((obj[headers[header]] == 1) ? document.createTextNode('Ja') : document.createTextNode('Nej')) : item; // Change checkbox to Ja/Nej in stead of 1/0
-      if (obj[headers[header]] && obj[headers[header]].hasOwnProperty('name')) {
-        if (obj[headers[header]].id > 0) {
+          item = (item) ? item : ((obj[headers[header]].hasOwnProperty('name')) ? document.createTextNode(obj[headers[header]].name) : document.createTextNode(obj[headers[header]])); // There was no link - so let's just add the text (either a name - if this is an object, or the actual content - if this is a string)
+        }
+        item = (classes[obj.class].fields[headers[header]].type == 'checkbox') ? ((obj[headers[header]] == 1) ? document.createTextNode('Ja') : document.createTextNode('Nej')) : item; // Change checkbox to Ja/Nej in stead of 1/0
+        if (obj[headers[header]] && obj[headers[header]].hasOwnProperty('name')) {
+          if (obj[headers[header]].id > 0) {
+            td.appendChild(item);
+          }
+        } else {
           td.appendChild(item);
-        } 
-      } else {
-        td.appendChild(item);
+        }
       }
     }
   }
