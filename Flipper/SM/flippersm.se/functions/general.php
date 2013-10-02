@@ -3658,7 +3658,7 @@
             $content .= '
               <tr>
                 <td>'.$qualScore->place.'</td>
-                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                 <td>'.$qualScore->score.'</td>
                 <td>'.$qualScore->points.'</td>
               </tr>
@@ -3690,7 +3690,7 @@
               $content .= '
               <tr>
                 <td>'.$qualScore->place.'</td>
-                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                 <td>'.$qualScore->score.'</td>
                 <td>'.$qualScore->points.'</td>
               </tr>
@@ -3725,7 +3725,7 @@
             $content .= '
             <tr>
               <td>'.$qualScore->place.'</td>
-              <td><a href="'.__baseHref__.'/player/?obj=player&id='.$qualScore->id.'">'.$qualScore->player.'</a></td>
+              <td><a href="'.__baseHref__.'/?s=object&obj=player&id='.$qualScore->id.'">'.$qualScore->player.'</a></td>
               <td>'.$qualScore->score.'</td>
               <td>'.$qualScore->points.'</td>
             </tr>
@@ -3757,7 +3757,7 @@
             $content .= '
               <tr>
                 <td>'.$qualScore->place.'</td>
-                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                 <td>'.$qualScore->score.'</td>
                 <td>'.$qualScore->points.'</td>
               </tr>
