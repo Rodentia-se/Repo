@@ -2952,7 +2952,6 @@
     $groupBy = ' group by o.id';
     $where .= ($where) ? ' and '.$name.' is not null and '.$name.' != ""' : 'where '.$name.' is not null and '.$name.' != ""';
     $query = 'select o.id as id, '.$name.' as name from '.$type.' o '.$join.' '.$where.' '.$groupBy.' '.$order;
-echo $query;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject(($type == 'person') ? 'player' : $type)) {
       $objs[] = $obj;
