@@ -3603,8 +3603,8 @@
           
           $content .= '
                       <div id="'.$field.'Div">
-                        <label id="'.$field.'Label" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
-                        <div id="'.$field.'ValueDiv" >'.$value.'</div>
+                        <label id="'.$field.'Label" class="infoLabelDiv" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
+                        <div id="'.$field.'ValueDiv" class="infoValueDiv">'.$value.'</div>
                       </div>
           ';
         }
@@ -3612,13 +3612,13 @@
       if ($type == 'team') {
         $players = $obj->getMembers($dbh);
         $content .= '
-                      <div id="membersDiv">
+                      <div id="membersDiv" class="infoLabelDiv">
                         <label>Members:</label>
         ';
         if ($players[0]) {
           foreach ($players as $player) {
             $content .= '
-                        <div class="memberDiv" id="'.$player->id.'memberDiv">
+                        <div class="memberDiv infoValueDiv" id="'.$player->id.'memberDiv">
                           <p>'.getLink($player).'</p>
                         </div>
             ';
@@ -3634,7 +3634,7 @@
       ';
       if ($type == 'player') {
         $content .= '
-        <div id="tabs">
+        <div id="tabs" class="clearboth">
           <ul>
             <li class="tabs"><a href="#mainTable"><h2>Main tournament</h2></a></li>
             '.(($obj->classics) ? '<li class="tabs"><a href="#classicsTable"><h2>Classics tournament</h2></a></li>' : '').'
