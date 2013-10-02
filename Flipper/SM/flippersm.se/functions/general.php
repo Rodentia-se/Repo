@@ -1919,7 +1919,7 @@
     $content .= ($disabled) ? ' disabled ' : '';
     $content .= '>';
     $content .= ($type == 'qualGroup') ? '<input type="radio" id="'.$item->id.'_'.$type.'Radio" name="'.$type.'Div'.$item->tournamentDivision_id.'Radio" onchange="timeSlotPreferedChanged(this, '.$item->id.')" class="'.$type.'Radio '.$item->date.'" '.(($prefered) ? ' checked ' : '').(($disabled) ? ' disabled ' : '').'>' : '';
-    $content .= '<span class="error errorSpan toolTip" id="'.$item->id.'_'.$type.'Span"></span>';
+    $content .= '<span class="error errorSpan toolTip qualGroupSpan" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
     $content .= ($type == 'period' || $type == 'qualGroup') ? '<label>'.ucfirst($item->name).'</label>' : '';
     $content .= '</div>';

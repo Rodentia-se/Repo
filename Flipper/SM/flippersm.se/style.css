@@ -709,6 +709,10 @@ td, th {
   margin: 10px;
 }
 
+#content input.qualGroupCheckbox, #content input.qualGroupRadio, #content input.qualGroupSpan {
+  float: left;
+}
+
 div#tabs {
   margin-left: 15px;
   margin-right: 15px;
