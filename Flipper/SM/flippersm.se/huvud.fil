@@ -47,7 +47,7 @@
 				</a>
 			</div>
 			<div id="buttons">
-				<a href="&#63;s=start" class="link">Start</a><a href="&#63;s=2012" class="link">Om Flipper-SM</a><a href="&#63;s=anmal" class="link">Anmälan</a><a href="&#63;s=start" class="regler">På plats</a>
+				<a href="&#63;s=start" class="link">Start</a><a href="&#63;s=2012" class="link">Om Flipper-SM</a><a href="&#63;s=anmal" class="link">Anmälan</a><a href="&#63;s=regler" class="link">På plats</a>
 			</div>
 			<div id="submenu1">
    			<?php
