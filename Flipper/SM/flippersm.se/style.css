@@ -755,6 +755,13 @@ div#tabs {
 div#tabs ul li.tabs {
   float: left;
   margin: 0px;
+  list-style: none;
+}
+
+div#tabs ul li.tabs h2 {
+  margin: 0px;
+  color: #FFFFFF;
+  text-transform: none;
 }
 
 div#tabs ul {
