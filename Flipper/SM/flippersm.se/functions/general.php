@@ -289,7 +289,7 @@
           'default' => ''  
         ),
         'longitude' => (object) array(  
-          'label' => 'Longtitud',
+          'label' => 'Longitud',
           'type' => 'text',  
           'mandatory' => false,  
           'special' => false,  
@@ -342,7 +342,7 @@
           'bundle' => 1  
         ),
         'parentRegion' => (object) array(
-          'label' => 'Tillhör landsdel',
+          'label' => 'Landsdel',
           'type' => 'select',  
           'mandatory' => false,  
           'special' => false,  
@@ -369,7 +369,7 @@
           'default' => ''  
         ),
         'longitude' => (object) array(  
-          'label' => 'Longtitud',
+          'label' => 'Longitud',
           'type' => 'text',  
           'mandatory' => false,  
           'special' => false,  
@@ -430,7 +430,7 @@
           'bundle' => 1  
         ),
         'parentRegion' => (object) array(
-          'label' => 'Tillhör landsdel',
+          'label' => 'Landsdel',
           'type' => 'select',  
           'mandatory' => false,  
           'special' => false,  
@@ -1547,8 +1547,9 @@
     $content = '
           <div id="qualGroupDiv">
             <h2 class="entry-title">Välj dina kvaltider här</h2>
-            <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
-            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
+            <p class="italic"><input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
+            <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
+            <p class="italic">Numret efter respektive kvaltid visar antal spelare med kvaltiden som förstahandsval.</P>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
     ';
