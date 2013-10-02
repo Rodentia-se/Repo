@@ -3540,7 +3540,9 @@
   }
   
   function getTable($type, $national = false) {
-    $content = '<div id="'.$type.'Div">
+    $content = '
+                <h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>
+                <div id="'.$type.'Div">
                   <h3 id="'.$type.'H3" class="entry-title">'.ucfirst(getPlural($type)).'</h3>
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>

@@ -82,7 +82,6 @@
   }
 
   if ($table) {
-    $content .= '<h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>';
     if ($type == 'team') {
       printTopper('getObjects(\'teams\')');
       $content .= getTable('team', $national);
