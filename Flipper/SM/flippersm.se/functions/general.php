@@ -3562,7 +3562,9 @@ echo $query;
   
   function getInfo($dbh, $type, $id, $select = true) {
     global $classes;
+    echo 1;
     if ($obj = getObjectById($dbh, $type, $id)) {
+    echo 2;
       $content = '
                   <h1>'.$obj->name.'</h1>
                   <div id="infoDiv" class="infoDiv">
@@ -3570,6 +3572,7 @@ echo $query;
                       '.(($select) ? '<span id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'</span>' : '').'
                       <h2 class="entry-title">'.$obj->name.'</h2>
       ';
+      echo 3;
       foreach($classes->{$type}->info as $field) {
         $label = '';
         if ($obj->{$field} && $obj->{$field} != '') {
