@@ -51,7 +51,9 @@
 			</div>
 			<div id="submenu1">
    			<?php
-	    		undermenu("anmal");
+   				$s = isset($_GET['s']) ? $_GET['s'] : 'start';
+
+	    		undermenu($s);
 			  ?>
    		</div>
 		</div>
