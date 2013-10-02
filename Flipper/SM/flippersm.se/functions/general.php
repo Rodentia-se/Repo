@@ -3605,7 +3605,7 @@
           
           $content .= '
                       <div id="'.$field.'Div">
-                        <label id="'.$field.'Label" class="infoLabelDiv" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
+                        <label id="'.$field.'Label" class="infoLabel" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
                         <div id="'.$field.'ValueDiv" class="infoValueDiv">'.$value.'</div>
                       </div>
           ';
@@ -3614,7 +3614,7 @@
       if ($type == 'team') {
         $players = $obj->getMembers($dbh);
         $content .= '
-                      <div id="membersDiv" class="infoLabelDiv">
+                      <div id="membersDiv" class="infoLabel">
                         <label>Members:</label>
         ';
         if ($players[0]) {
