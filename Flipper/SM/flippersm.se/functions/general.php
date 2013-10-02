@@ -3708,7 +3708,7 @@
       }
       if ($type == 'game') {
         $content .= '
-          <table class="scores">
+          <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
             <thead>
               <tr>
                 <th>Place</th>
@@ -3740,7 +3740,7 @@
       }
       if ($type == 'team') {
         $content .= '
-            <table class="scores">
+            <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
               <thead>
                 <tr>
                   <th>Place</th>
