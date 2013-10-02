@@ -2952,7 +2952,6 @@
     $groupBy = ' group by o.id';
     $where .= ($where) ? ' and '.$name.' is not null and '.$name.' != ""' : 'where '.$name.' is not null and '.$name.' != ""';
     $query = 'select o.id as id, '.$name.' as name from '.$type.' o '.$join.' '.$where.' '.$groupBy.' '.$order;
-echo $query;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject(($type == 'person') ? 'player' : $type)) {
       $objs[] = $obj;
@@ -3562,9 +3561,7 @@ echo $query;
   
   function getInfo($dbh, $type, $id, $select = true) {
     global $classes;
-    echo 1;
     if ($obj = getObjectById($dbh, $type, $id)) {
-    echo 2;
       $content = '
                   <h1>'.$obj->name.'</h1>
                   <div id="infoDiv" class="infoDiv">
@@ -3572,7 +3569,6 @@ echo $query;
                       '.(($select) ? '<span id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'</span>' : '').'
                       <h2 class="entry-title">'.$obj->name.'</h2>
       ';
-      echo 3;
       foreach($classes->{$type}->info as $field) {
         $label = '';
         if ($obj->{$field} && $obj->{$field} != '') {
@@ -3607,8 +3603,8 @@ echo $query;
           
           $content .= '
                       <div id="'.$field.'Div">
-                        <label id="'.$field.'Label" class="infoLabelDiv" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
-                        <div id="'.$field.'ValueDiv" class="infoValueDiv">'.$value.'</div>
+                        <label id="'.$field.'Label" for="'.$field.'ValueDiv">'.(($label) ? $label : $classes->{$type}->fields->{$field}->label).':</label>
+                        <div id="'.$field.'ValueDiv" >'.$value.'</div>
                       </div>
           ';
         }
@@ -3616,13 +3612,13 @@ echo $query;
       if ($type == 'team') {
         $players = $obj->getMembers($dbh);
         $content .= '
-                      <div id="membersDiv" class="infoLabelDiv">
+                      <div id="membersDiv">
                         <label>Members:</label>
         ';
         if ($players[0]) {
           foreach ($players as $player) {
             $content .= '
-                        <div class="memberDiv infoValueDiv" id="'.$player->id.'memberDiv">
+                        <div class="memberDiv" id="'.$player->id.'memberDiv">
                           <p>'.getLink($player).'</p>
                         </div>
             ';
@@ -3638,7 +3634,7 @@ echo $query;
       ';
       if ($type == 'player') {
         $content .= '
-        <div id="tabs" class="clearboth">
+        <div id="tabs">
           <ul>
             <li class="tabs"><a href="#mainTable"><h2>Main tournament</h2></a></li>
             '.(($obj->classics) ? '<li class="tabs"><a href="#classicsTable"><h2>Classics tournament</h2></a></li>' : '').'
