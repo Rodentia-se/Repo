@@ -709,6 +709,15 @@ td, th {
   margin: 10px;
 }
 
+#content div.qualGroupTable {
+  float: left;
+  margin-right: 20px;
+}
+
+#content input.qualGroupRadio {
+  margin-right: 10px;
+}
+
 div#tabs {
   margin-left: 15px;
   margin-right: 15px;
