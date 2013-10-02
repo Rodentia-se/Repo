@@ -2574,6 +2574,7 @@ function addTshirt() {
     div.id = json.trId;
     var tshirtP = document.createElement('p');
     div.appendChild(tshirtP);
+    tshirtP.innerHTML = '';
     selectTypes = ['number', 'color', 'size'];
     for (var selectType in selectTypes) {
       for (var tdEl in json[selectTypes[selectType]]) {
