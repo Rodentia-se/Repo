@@ -182,7 +182,13 @@ div#content {
   color: #666;
 }
 
-#content #leftInfoDiv span {font-weight: bold;}
+#content #leftInfoDiv p {
+  margin-top: 0;
+}
+
+#content #leftInfoDiv span {
+  font: 0.9em Arial, sans-serif;
+  font-weight: bold;}
 
 #content a {
   color: #03f;
