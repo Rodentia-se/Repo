@@ -1550,16 +1550,16 @@
     $checked = ($playerQualGroups) ? 'checked' : '';
     $content = '
           <div id="qualGroupDiv">
-            <h2 class="entry-title">Indicate your preference</h3>
-            <p class="italic"><input type="radio" '.$prefered.'>Use radio button to indicate your most wanted time slot.<br/>
-            <input type="checkbox" '.$checked.'>Use checkboxes to indicate optional time slots. All changes are instant.</p>
+            <h2 class="entry-title">Välj dina kvaltider här</h2>
+            <p class="italic"><input type="radio" '.$prefered.'>Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
+            <input type="checkbox" '.$checked.'>Använd checkboxarna för att välja övriga kvaltider som passar dig.</p>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
     ';
     $content .= '
           </div>
           <div id="qualGroupTableDiv" class="periodTable">
-            <h2><label>Check/uncheck all: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
+            <h2><label>Klicka i/ur alla: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
     if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
       $content .= ' checked';
     }            
@@ -1570,7 +1570,7 @@
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
           $disabled = ($player->{$type}) ? false : true;
-          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
+//          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</table>';
