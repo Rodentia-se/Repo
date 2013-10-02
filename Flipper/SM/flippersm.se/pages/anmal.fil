@@ -17,7 +17,7 @@
     }
   } else {
     $content .= showLogin($ulogin, 'Om du deltog i EPC - logga in och anmäl dig här!');
-    $content .= '<br /><br /><h3 class="entry-title regTitle">Om du inte deltog i EPC, sök reda på dig själv!</h3>';
+    $content .= '<br /><br /><h2 class="entry-title regTitle">Om du inte deltog i EPC, sök reda på dig själv!</h2>';
   }
 
   $form = new regForm();
