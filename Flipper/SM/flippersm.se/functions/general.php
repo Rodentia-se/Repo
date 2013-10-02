@@ -1099,17 +1099,17 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     $tshirts = $player->getTshirts($dbh, $tournament);
     if($tshirts && count($tshirts > 0)) {
-      $shown = 'Any info already shown is what you have already ordered.<br />';
+      $shown = 'Nedan ser du de ttröjor du redan har beställt.<br />';
     } else {
-      $shown = '<span id="tshirtNoneSpan" class="italic">You have no previsously ordered T-shirts. '.((__tshirtsDisabled__) ? 'You can no longer order T-shirts online, but we will sell a limited number of T-shirts on site.' : 'Order one now by clicking the icon below!').'<br /></span>';
+      $shown = '<p id="tshirtNoneSpan" class="italic">Du har inte beställt några tröjor än. '.((__tshirtsDisabled__) ? '' : 'Beställ tröjor nu genom att klicka på plus-tecknet!').'<br /></p>';
     }
     $content = '
         <div id="tshirtOrderDiv">
           <h2 class="entry-title">T-shirts order form</h3>
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
           <input type="hidden" id="playerIdHidden" value="'.$player->id.'">
-          <table id="tshirtOrderTable">
-            <tr id="tshirtOrderTr"><td colspan="7"><span class="italic">'.$shown.((__tshirtsDisabled__) ? 'You can no longer add or change any orders online,<br />but we will sell a limited number of T-shirts on site.' : 'Changes will take effect immediately.').'<br />&nbsp;</span><td><tr>
+          <div id="tshirtOrderTable">
+            <p id="tshirtOrderTr" class="italic">'.$shown.((__tshirtsDisabled__) ? 'Det går inte längre att beställa tröjor online, men vi kommer att sälja ett begränsat antal tröjor på plats.' : 'Alla ändringar nedan utförs direkt.').'<br />&nbsp;</p>
     ';
     if($tshirts && count($tshirts > 0)) {
       foreach($tshirts as $tshirt) {
@@ -1119,7 +1119,7 @@
       }
     } 
     $content .= '
-          </table>
+          </div>
           <p style="display: '.((__tshirtsDisabled__) ? 'none' : '').';">Add more T-shirts:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Click to add a new T-shirt" title="Click to add a new T-shirt"><span id="tshirtAddSpan" class="errorSpan toolTip"></span></p>
           <br />
           <p><span id="tshirtCostSpan">Total cost: SEK '.($total * 100).' kr / EUR € '.(ceil($total * 100 / 8)).' / GBP £ '.(ceil($total * 100 / 10)).' / USD $ '.(ceil($total * 100 / 6)).'</span></p>
@@ -1153,7 +1153,7 @@
   
   function getTshirtRow($dbh, $tournament, $num, $playerTshirt = null, $warning = true, $asJson = false) {
     $tshirts = getTshirts($dbh, $tournament);
-    $content = '<tr id="'.$num.'_tshirtTr">';
+    $content = '<div id="'.$num.'_tshirtTr">';
     $json['trId'] = $num.'_tshirtTr';
     $options['size'] = array('0' => 'Choose...');
     $options['color'] = array('0' => 'Choose...');
@@ -1168,7 +1168,7 @@
     $options['number'] = array(0=>0,1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10);
     foreach(array('number', 'color', 'size') as $param) {
       $json[$param]['label'] = '<label>'.ucfirst($param).':</label>';
-      $content .= '<td class="labelTd">'.$json[$param]['label'].'</td>';
+      $content .= $json[$param]['label'];
       $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.'" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
       foreach($options[$param] as $option_id => $option) {
         $json[$param]['select'] .= '<option value="'.$option_id.'"';
@@ -1178,14 +1178,14 @@
         $json[$param]['select'] .= '>'.$option."</option>\n";
       }
       $json[$param]['select'] .= '</select>';
-      $content .= '<td class="selectTd">'.$json[$param]['select'].'</td>';
+      $content .= $json[$param]['select'];
     }
     $json[$param]['img'] = (!__tshirtsDisabled__) ? '<img id="'.$num.'_tshirtDel" src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="delTshirt('.$num.');" alt="Click to delete this T-shirt" title="Click to delete this T-shirt"/><span class="error errorSpan" id="'.$num.'_tshirtSpan">' : '';
     if ($warning && $playerTshirt && count($playerTshirt) > 0 && (!($playerTshirt->number_id > 0) || !($playerTshirt->color_id > 0) || !($playerTshirt->size_id > 0))) {
       $json[$param]['img'] .= 'You have not chosen all options for these T-shirts!';
     }
     $json[$param]['img'] .= '</span>';
-    $content .= '<td>'.$json[$param]['img'].'</td></tr>';
+    $content .= $json[$param]['img'].'</div>';
     $json['success'] = true;
     return ($asJson) ? $json : $content;
   }
