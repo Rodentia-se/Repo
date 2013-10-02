@@ -2569,13 +2569,15 @@ function addTshirt() {
     if (document.getElementById('tshirtNoneSpan')) {
       document.getElementById('tshirtNoneSpan').parentNode.removeChild(document.getElementById('tshirtNoneSpan'));
     }
-    var tr = document.getElementById('tshirtOrderTr').parentNode.insertRow(-1);
-    tr.id = json.trId;
+    var div = document.createElement('div');
+    document.getElementById('tshirtOrderTr').parentNode.appendChild(div);
+    div.id = json.trId;
+    var tshirtP = document.createElement('p');
+    div.appendChild(tshirtP);
     selectTypes = ['number', 'color', 'size'];
     for (var selectType in selectTypes) {
       for (var tdEl in json[selectTypes[selectType]]) {
-        var td = tr.insertCell(-1);
-        td.innerHTML = json[selectTypes[selectType]][tdEl];
+        tshirtP.innerHTML .= json[selectTypes[selectType]][tdEl];
       }
     }
     calcTshirtCost();
