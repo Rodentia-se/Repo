@@ -195,7 +195,7 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
           <input type="checkbox" name="autologin" value="1" id="autologinCheckbox">
         </div>
         <div id="loginDiv">
-    		  <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>
+    		  <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>&nbsp;&nbsp;
           <a href="'.__baseHref__.'/your-pages/password-reset/" class="italic">Glömt löesnordet?</a>
         </div>
   	  </form>
