@@ -6,15 +6,15 @@
     function getAdminMenu() {
       return '
         <ul>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=player">Player tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=user">User tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=payment">Payment tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=results">Results tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=qualGroup">Qualification group tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=team">Team tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=volunteer">Volunteer tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=tshirt">T-shirt tools</a></li>
-          <li><a href="'.__baseHref__.'/admin-tools/?tool=game">Game tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=player">Player tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=user">User tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=payment">Payment tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=results">Results tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=qualGroup">Qualification group tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=team">Team tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=volunteer">Volunteer tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=tshirt">T-shirt tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=game">Game tools</a></li>
           <li><a href="#" onclick="deNorm(this);" id="deNorm">Denormalization</a><span class="error errorSpan toolTip" id="deNormSpan"></span></li>
         </ul>
       ';
