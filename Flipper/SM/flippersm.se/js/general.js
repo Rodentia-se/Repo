@@ -2424,7 +2424,7 @@ function addTheaders (thead, type, meBtn) { // meBtn is the "This is me!" button
   var tr = thead.insertRow(-1);
   tr.className += ' header';
   for (var header in type.headers) { // Let's go through the headers form the meta information objects
-    if (!meBtn || (meBtn && type.headers[header] != 'classics' && type.headers[header] != 'dateRegistered' && type.headers[header] != 'paid'))
+    if (!meBtn || (meBtn && type.headers[header] != 'classics' && type.headers[header] != 'dateRegistered' && type.headers[header] != 'paid')) {
       var th = document.createElement('th');
       tr.appendChild(th)
       th.appendChild(document.createTextNode(type.fields[type.headers[header]].label + ': '));
@@ -2466,7 +2466,7 @@ function addRow(tbody, obj, link, meBtn, sels) {
   var tr = tbody.insertRow(-1);
   var headers = classes[obj.class].headers; // Get the headers to use
   for (var header in headers) {
-    if (!meBtn || (meBtn && headers[header] != 'classics' && headers[header] != 'dateRegistered' && headers[header] != 'paid'))
+    if (!meBtn || (meBtn && headers[header] != 'classics' && headers[header] != 'dateRegistered' && headers[header] != 'paid')) {
       var td = tr.insertCell(-1);
 //    td.className = 'tdFix'
       if ((typeof obj[headers[header]] !== 'undefined' && obj[headers[header]] != null) || obj[headers[header] + '_id']) { // Check that the header exist on this object
