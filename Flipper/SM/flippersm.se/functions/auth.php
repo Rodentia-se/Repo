@@ -14,10 +14,10 @@ function changeUser($dbh, $ulogin, $newUser, $newPass) {
     if (isset($_REQUEST['changeNonce']) && ulNonce::Verify('change', $_REQUEST['changeNonce'])) {
       if ($ulogin->Username($_SESSION['uid']) == $newUser) {
         if ($ulogin->SetPassword($_SESSION['uid'], $newPass)) {
-          echo('Password changed for '.$newUser.'<br />');
+          echo('Lösenordet för '.$newUser.' byttes<br />');
           return true;
         } else {
-          echo('Password changed for '.$newUser.' failed<br />');
+          echo('Lösenordsbyte för '.$newUser.' misslyckades<br />');
           return false;
         }
       } else {
@@ -26,27 +26,27 @@ function changeUser($dbh, $ulogin, $newUser, $newPass) {
             appLogout($ulogin);
             $ulogin->Authenticate($newUser,  $newPass);
             if ($ulogin->IsAuthSuccess()) {
-              echo('Logged in as '.$newUser.'<br />');
+              echo('Inloggad som '.$newUser.'<br />');
               return true;
             } else {
-              echo('Could not login as '.$newUser.'<br />');
+              echo('Kunde inte logga in som '.$newUser.'<br />');
               return false;
             }
           } else {
-            echo('Old account deletion failure<br />');
+            echo('Kunde inte ta bort det gamla kontot<br />');
             return false;
           }
         } else {
-          echo('New account creation failure<br />');
+          echo('Kunde inte skapa det nya kontot<br />');
           return false;
         }
       }
     } else {
-      echo('invalid nonce: '.$_POST['changeNonce'].'<br />');
+      echo('Felaktig nonce: '.$_POST['changeNonce'].'<br />');
       return false;
     }
   } else {
-    echo('You need to login first<br />');
+    echo('Du måste logga in först<br />');
     return false;
   }
 }
@@ -67,13 +67,13 @@ function appLogin($uid, $username, $ulogin) {
 	if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === true)) {
 		// Enable remember-me
 		if ( !$ulogin->SetAutologin($username, true)) {
-			echo "cannot enable autologin<br>";
+			echo "Kan inte slå på autologin<br>";
     }
 		unset($_SESSION['appRememberMeRequested']);
 	}	else {
 		// Disable remember-me
 		if ( !$ulogin->SetAutologin($username, false)) {
-			echo 'cannot disable autologin<br>';
+			echo 'Kan inte stänga av autologin<br>';
     }
 	}
 }
@@ -81,7 +81,7 @@ function appLogin($uid, $username, $ulogin) {
 function appLoginFail($uid = null, $username = null, $ulogin = null) {
 	// Note, in case of a failed login, $uid, $username or both
 	// might not be set (might be NULL).
-	$response = json_decode(getError('Login failed for '.$username, false))->reason;
+	$response = json_decode(getError('Login misslyckades för '.$username, false))->reason;
   echo $response->reason;
   echo $response;
 }
@@ -95,19 +95,19 @@ function appLogout($ulogin = null) {
 	unset($_SESSION['loggedIn']);
 }
 
-function checkLogin($dbh, $ulogin, $req = true, $title = 'You need to login to access this page') {
+function checkLogin($dbh, $ulogin, $req = true, $title = 'Du måste logga in för att kunna titta på den här sidan') {
   $action = @$_REQUEST['action'];
   $msg = null;
   if (isAppLoggedIn()) {
     if ($action == 'logout') { // We've been requested to log out
       appLogout($ulogin);
     } else if ($action == 'changeUsername') {
-      echo('Changing credentials...<br />');
+      echo('Ändrar loginuppgifter...<br />');
       $ulogin->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
       if ($ulogin->IsAuthSuccess()) {
         changeUser($dbh, $ulogin, $_REQUEST['username'], $_REQUEST['newPassword']);
       } else {
-        echo('Wrong credentials for current login<br />');
+        echo('Fel loginuppgifter för nuvarande login<br />');
       }
     }
   } else if (!isAppLoggedIn()) {
@@ -132,19 +132,18 @@ function checkLogin($dbh, $ulogin, $req = true, $title = 'You need to login to a
         // redirect the user to a different page, in which case it does not return.
         $ulogin->Authenticate($_POST['username'],  $_POST['password']);
         if ($ulogin->IsAuthSuccess()) {
-          echo 'LOGIN';
           // Since we have specified callback functions to uLogin,
           // we don't have to do anything here.
         }
       } else {
-        $msg = 'invalid nonce: '.$_POST['nonce'];
+        $msg = 'Felaktig nonce: '.$_POST['nonce'];
       }
     } else if ($action == 'autologin'){	// We were requested to use the remember-me function for logging in.
       // Note, there is no username or password for autologin ('remember me')
       if (!$ulogin->IsAuthSuccess()) {
-        $msg = 'autologin failure';
+        $msg = 'Autologin misslyckades';
       } else {
-        $msg = 'autologin ok';
+        $msg = 'Autologin ok';
       }
     }
   }
@@ -162,7 +161,7 @@ function checkLogin($dbh, $ulogin, $req = true, $title = 'You need to login to a
 
 function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den här sidan') {
   $content = '
-  	<h1 class="loginTable">'.$title.'</h1>
+  	<h2 class="loginTable">'.$title.'</h2>
     <script type="text/javascript">
       $(document).ready(function() {
         setTimeout(function() {
@@ -196,7 +195,7 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
         </div>
         <div id="loginDiv">
     		  <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>&nbsp;&nbsp;
-          <a href="'.__baseHref__.'/your-pages/password-reset/" class="italic">Glömt lösenordet?</a>
+          <a href="'.__baseHref__.'/?s=losenreset" class="italic">Glömt lösenordet?</a>
         </div>
   	  </form>
     </div>
@@ -214,22 +213,22 @@ function showChangeUsername($dbh, $username) {
         <input type="hidden" id="action" name="action" value="changeUsername">
         <input type="hidden" id="idHidden" name="id" value="'.$id.'">
         <input type="hidden" id="currentUsernameHidden" name="currentUsername" value="'.$username.'">
-        <h3 class="entry-title">Change username and/or password:</h3>
-        <span class="italic">Changing username requires setting a new password</span>
-        <label for="user">New username:</label>
+        <h3 class="entry-title">Ändra användarnamn och/eller lösenord:</h3>
+        <span class="italic">Att ändra användarnamn kräver att lösenordet också ändras</span>
+        <label for="user">Nytt användarnamn:</label>
         <input type="text" name="username" id="usernameText" value="'.$username.'" onkeyup="checkField(this);" class="mandatory">
         <span id="usernameSpan" class="errorSpan">*</span>
-        <label for="pwd">Current password:</label>
+        <label for="pwd">Nuvarande lösenord:</label>
         <input type="password" name="currentPassword" id="currentPasswordText" onkeyup="checkUsernameFields();" class="mandatory">
         <span id="currentPasswordSpan" class="errorSpan">*</span>
-        <label for="user">New password:</label>
+        <label for="user">Nytt lösenord:</label>
         <input type="password" name="newPassword" id="newPasswordText" onkeyup="checkField(this);" class="mandatory">
         <span id="newPasswordSpan" class="errorSpan">*</span>
-        <label for="user">Retype new password:</label>
+        <label for="user">Nya lösenordet igen:</label>
         <input type="password" name="newPassword2" id="newPassword2Text" onkeyup="checkField(this);" class="mandatory">
         <span id="newPassword2Span" class="errorSpan">*</span>
-        <label for="submit">Change credentials:</label>
-        <input type="submit" value="Change" id="submit" onclick="changeUsername(this);" disabled>
+        <label for="submit">Byt användaruppgifter:</label>
+        <input type="submit" value="Byt!" id="submit" onclick="changeUsername(this);" disabled>
       </form>
     </div>
   ';
@@ -256,7 +255,7 @@ function showEditPlayer($dbh, $ulogin) {
         </div>
       </div>
     </form>
-    <div id="changeUser"><p><a href="'.__baseHref__.'/your-pages/change-credentials/">Ändra användarnamn eller lösenord</a></p></div>
+    <div id="changeUser"><p><a href="'.__baseHref__.'/?s=andralogin">Ändra användarnamn eller lösenord</a></p></div>
   ';
   return $content;
 }

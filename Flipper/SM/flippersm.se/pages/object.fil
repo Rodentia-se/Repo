@@ -64,7 +64,7 @@
       if ($team) {
         $id = $team->id;
       } else {
-        $content = '<div class="infoDiv">You are not a member of any team. You can <a href="'.__baseHref__.'/registration/team-registration/">go here</a> to register a team, or you can ask a member of an already existing team to add you to his/her team.</div>';
+        $content = '<div class="infoDiv">Du är inte medlem i något lag. Du kan <a href="'.__baseHref__.'/?s=dubbelanmalan">anmäla dig här</a> för att anmäla ett lag. Om din partner redan har anmält laget så ska du inte anmäla ett lag till, utan be honom/henne att lägga till dig laget.</div>';
       }
     }
     $table = false;
@@ -73,7 +73,7 @@
   if (preg_match('/^[0-9]+$/', $id)) {
     $content = getInfo($dbh, $type, $id);
     if (!$content) {
-      $content = '<div class="infoDiv">No '.$type.' with ID '.$id.' found!</div>';
+      $content = '<div class="infoDiv">Hittar ingen '.$type.' med ID '.$id.'!</div>';
       $table = false;
     }
     if ($type == 'player' || $type == 'game' || $type == 'team') {
