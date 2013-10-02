@@ -1559,11 +1559,11 @@
     $content .= '
           </div>
           <div id="qualGroupTableDiv" class="periodTable">
-            <h2><label>Klicka i/ur alla: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
+            <p><label>Klicka i/ur alla: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
     if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
       $content .= ' checked';
     }            
-    $content .= '></h2>
+    $content .= '></p>
     ';
     if($qualGroups && count($qualGroups > 0)) {
       foreach($tournamentDivisionIds as $tournamentDivisionId) {
@@ -1573,15 +1573,15 @@
 //          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
-              $content .= '</table>';
+              $content .= '</div>';
             }
             $date = $qualGroup->date;
             $content .= '
-              <table id="qualGroupMain'.$date.'Table" class="qualGroupTable">
-                <tr>
-                  <td><input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'> </td>
-                  <td><h2><b>'.$date.' ('.ucfirst($type).')</b></h2></td>
-                </tr>
+              <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
+                <div>
+                  <input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>
+                  <h3><b>'.$date.' ('.ucfirst($type).')</b></h3>
+                </div>
             ';
           }
           $checked = (in_array($qualGroup->id, $playerQualGroupIds)) ? true : false;
@@ -1590,7 +1590,7 @@
         }
       } 
       $content .= '
-              </table>
+              </div>
             </div>
       ';
     }
@@ -1912,18 +1912,17 @@
   }
   
   function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false) {
-    $content = '<tr id="'.$item->id.'_'.$type.'Tr">';
-    $content .= ($type == 'task') ? '<td class="labelTd"><label>'.ucfirst($item->name).'</label></td>' : '';
-    $content .= '<td class="checkboxTd"><input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ';
+    $content = '<div id="'.$item->id.'_'.$type.'Div">';
+    $content .= ($type == 'task') ? '<label>'.ucfirst($item->name).'</label>' : '';
+    $content .= '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ';
     $content .= ($checked) ? ' checked ' : '';
     $content .= ($disabled) ? ' disabled ' : '';
     $content .= '>';
     $content .= ($type == 'qualGroup') ? '<input type="radio" id="'.$item->id.'_'.$type.'Radio" name="'.$type.'Div'.$item->tournamentDivision_id.'Radio" onchange="timeSlotPreferedChanged(this, '.$item->id.')" class="'.$type.'Radio '.$item->date.'" '.(($prefered) ? ' checked ' : '').(($disabled) ? ' disabled ' : '').'>' : '';
     $content .= '<span class="error errorSpan toolTip" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
-    $content .= '</td>';
-    $content .= ($type == 'period' || $type == 'qualGroup') ? '<td class="labelTd"><label>'.ucfirst($item->name).'</label></td>' : '';
-    $content .= '</tr>';
+    $content .= ($type == 'period' || $type == 'qualGroup') ? '<label>'.ucfirst($item->name).'</label>' : '';
+    $content .= '</div>';
     return $content;
   }
       
