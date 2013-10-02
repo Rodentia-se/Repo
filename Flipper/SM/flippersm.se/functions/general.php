@@ -3567,7 +3567,7 @@
                   <h1>'.$obj->name.'</h1>
                   <div id="infoDiv" class="infoDiv">
                     <div class="leftInfoDiv" id="leftInfoDiv">
-                      '.(($select) ? '<p id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'</p>' : '').'
+                      '.(($select) ? '<h3 id="all'.ucfirst($type).'Span">Andra '.getPlural($type).'</h3>: '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'' : '').'
       ';
       foreach($classes->{$type}->info as $field) {
         $label = '';
