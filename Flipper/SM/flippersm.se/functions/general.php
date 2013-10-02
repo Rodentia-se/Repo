@@ -3569,7 +3569,6 @@
                   <div id="infoDiv" class="infoDiv">
                     <div class="leftInfoDiv" id="leftInfoDiv">
                       '.(($select) ? '<span id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'</span>' : '').'
-                      <h2 class="entry-title">'.$obj->name.'</h2>
       ';
       foreach($classes->{$type}->info as $field) {
         $label = '';
@@ -3772,7 +3771,15 @@
 //        $content .= getDataTables('.scores');
       }
       $content .= '</div>';
-      
+      $content .= "
+        <script type=\"text/javascript\">
+          $(document).ready(function() {
+            $(function() {
+              $('#tabs').tabs();
+            });
+          });
+        </script>
+      ";
       return $content;
     } else {
       return false;
