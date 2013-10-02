@@ -949,7 +949,7 @@ function printPlayerAsList(obj,dstId) {
         var birthDateP = document.createElement('p');
         birthDateP.className = 'comment';
         birthDateP.id = 'birthDateP';
-        birthDateP.innerHTML = 'Födelsedatum är obligatoriskt för de som önskar deltaga i U18.';
+        birthDateP.innerHTML = 'OBS: Födelsedatum är obligatoriskt för U18.';
         div.appendChild(birthDateP);
       }
     }
