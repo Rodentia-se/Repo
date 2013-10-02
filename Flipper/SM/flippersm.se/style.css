@@ -360,7 +360,7 @@ input, select {
 
 /* Zebra striping */
 
-tr:nth-of-type(odd) {
+tr:nth-of-type(even) {
   background: #6df;
 }
 
