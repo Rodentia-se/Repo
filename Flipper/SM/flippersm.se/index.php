@@ -3,28 +3,29 @@
   require_once(__ROOT__.'/functions/general.php');
 
 $s = isset($_GET['s']) ? $_GET['s'] : 'start';
+$m = isset($_GET['m']) ? $_GET['m'] : 'om';
 
 function undermenu($page)
   {
   
   if($page == "start_inloggad") //replace with check if logged in
      {echo "
-     <a href=\"?s=start\">Start</a> <a href=\"?s=?s=object&obj=player&id=self\">Dina sidor</a>";
+     <a href=\"?s=start\">Start</a> <a href=\"?s=?s=object&obj=player&id=self&m=start\">Dina sidor</a>";
 	}
   
-  if($page == "anmal" or $page == "object" or $page == 'edit') // "object" and "edit" needs extra identifiers
+  if($page == "anmal" or ($page == "object" and $m == "anmal" ) or $page == 'edit') // "object" and "edit" needs extra identifiers
      {echo "
-     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game\">Spel</a>";
+     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
 	}
 
-  if($page == "om" or $page == "2012"  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
+  if($page == "om" or ($page == "2012" and $m == "om")  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
      {echo "
-     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>
+     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>
      ";}
 
-  if($page == "kvalresultat" or $page == "slutspel" or $page == "sidoresultat" or $page == "2012") // 2012 will need an extra identifier to know which menu it belongs to
+  if($page == "kvalresultat" or $page == "slutspel" or $page == "sidoresultat" or ($page == "2012" and $m == "resultat") ) // 2012 will need an extra identifier to know which menu it belongs to
      {echo "
-     <a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012\">Tidigare SM</a>
+     <a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012&m=resultat\">Tidigare SM</a>
      ";}
 
  }
@@ -44,7 +45,7 @@ function submenu2($category)
 
      
   if($category == "tidigare")
-     {echo "<a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
+     {echo "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
      ";}
      
   if($category == "regler")
