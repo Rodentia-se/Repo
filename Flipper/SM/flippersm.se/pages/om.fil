@@ -10,7 +10,7 @@
 </script>
 <div id="tabs" class="clearboth">
   <ul>
-    <li class="tabs"><a href="#varDiv" onclick="showMap(\'varMap\')><h3>Var</h3></a></li>
+    <li class="tabs"><a href="#varDiv" onclick="showMap(\'varMap\');"><h3>Var</h3></a></li>
     <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
     <li class="tabs"><a href="#resaDiv" onclick="showMap(\'resaMap\');"><h3>Resa</h3></a></li>
     <li class="tabs"><a href="#boDiv"><h3>Bo</h3></a></li>
