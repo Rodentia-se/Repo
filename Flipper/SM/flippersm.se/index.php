@@ -14,7 +14,7 @@ function undermenu($page,$m)
   
   if($page == "anmal" or ($page == "object" and $m == "anmal" ) or $page == 'edit') // "object" and "edit" needs extra identifiers
      {echo "
-     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
+     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
 	}
 
   if($page == "om" or ($page == "2012" and $m == "om")  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
