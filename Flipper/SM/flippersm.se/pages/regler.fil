@@ -1,8 +1,8 @@
-<h1>REGLER FLIPPER-SM 2011</h1>
+<h1>REGLER FLIPPER-SM 2013</h1>
 
 <?php
 
-undermenu("regler");
+submenu2("regler");
 
 ?>
 
