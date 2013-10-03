@@ -661,6 +661,12 @@ td, th {
     div#menu #submenu1 {
       text-align: center;
     }
+    
+    
+	#content input[type="text"], #content input[type="password"] {
+	  width: 100%;
+	  height: 20px;
+	}
 
     .container {
       width: auto
