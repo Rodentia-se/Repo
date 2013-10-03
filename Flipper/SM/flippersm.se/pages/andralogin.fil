@@ -1,6 +1,7 @@
 <?php
   if (checkLogin($dbh, $ulogin)) {
     $content = '
+      <h1>Ändra användaruppgifter</h1>
       <div id="changeUser">
         '.showChangeUsername($dbh, $_SESSION['username']).'
       </div>
