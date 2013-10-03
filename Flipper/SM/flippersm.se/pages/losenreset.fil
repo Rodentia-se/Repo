@@ -46,7 +46,7 @@
 
   $player = getCurrentPlayer($dbh, $ulogin);
   if ($player) {
-    $content .= 'Du är redan inloggad som '.$player->firstName.' '.$player->lastName.'! Om du menade att nollställa lösenordet för en annan användare så måste du <a href="'.__baseHref__.'/?s=utloggad">logga ut</a> först, och sen återvända till den här sidan.';
+    $content .= '<p>Du är redan inloggad som '.$player->firstName.' '.$player->lastName.'! Om du menade att nollställa lösenordet för en annan användare så måste du <a href="'.__baseHref__.'/?s=utloggad">logga ut</a> först, och sen återvända till den här sidan.</p>';
   } else {
     if ($nonce) {
       $player = getPlayerFromNonce($dbh, $nonce);
@@ -57,15 +57,15 @@
             <input type="hidden" name="person_id" id="personId" value="'.$player->id.'">
             <input type="hidden" name="resetNonce" id="resetNonce" value="'.$resetNonce.'">
             <p>Du är identifierad som '.$player->firstName.' '.$player->lastName.'. Ditt användarnamn är '.$player->username.'.</p>
-            <table>
-              <tr>
-                <td class="labelTd"><label>Sätt ett nytt lösenord:</label><td><input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><input type="submit" value="Submit" id="submit" onclick="resetPassword(this);" disabled></td>
-              </tr>
-            </table>
+            <div>
+              <p>
+                <label>Sätt ett nytt lösenord:</label>
+                <input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span>
+              </p>
+              <p>
+                <input type="submit" value="Submit" id="submit" onclick="resetPassword(this);" disabled>
+              </p>
+            </div>
           ';
           $success = true;
           $player->setNonce($dbh, null);
@@ -74,7 +74,7 @@
           $playerId = $player->id;
         }
       } else {
-        $content .= 'Vi lyckades inte identifiera dig, eller så har du redan använt den här identitetskoden. Försök igen, eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
+        $content .= '<p>Vi lyckades inte identifiera dig, eller så har du redan använt den här identitetskoden. Försök igen, eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
       }
     } else {
       $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
@@ -117,13 +117,13 @@
               $content .= '<p>Något gick fel när vi försökte att maila en länk för lösenordsbyte till dig. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
             }
           } else {
-            $content .= 'Det är något som är fel med mailadressen som finns registrerad för den här användaren. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
+            $content .= '<p>Det är något som är fel med mailadressen som finns registrerad för den här användaren. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
           }
         } else {
-          $content .= 'Det finns ingen registrerad mailadress för den användaren. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
+          $content .= '<p>Det finns ingen registrerad mailadress för den användaren. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
         }
       } else {
-        $content .= 'Vi lyckades inte att identifiera dig. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
+        $content .= '<p>Vi lyckades inte att identifiera dig. Försök igen eller <a href="mailto:support@flippersm.se">maila oss</a> så hjälper vi dig.</p>';
       }
     } else if (!$success) {
       $content .= '
