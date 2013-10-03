@@ -827,6 +827,10 @@ td, th {
   width: 100px;
 }
 
+#content img.right {
+  float: right;
+}
+
 #content div#tabs {
   margin-left: 15px;
   margin-right: 15px;

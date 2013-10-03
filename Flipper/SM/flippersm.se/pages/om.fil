@@ -55,8 +55,8 @@
     <h3>Åka kommunalt</h3>
     <p>SL sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras reseplanerare.</p>
     <h3>Med tunnelbana</h3>
+    <img src="'.__baseHref__.'/images/tbana.png" class="right">
     <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg” och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T” i en vit cirkel.</p>
-    <p><img src="'.__baseHref__.'/images/tbana.png"></p>
 
     <h3>Med buss</h3>
     <p>Använd SL:s reseplanerare och skriv in” Kungens Kurva”, “Månskärsvägen” eller “Dialogvägen 2” som destination. Reseplaneraren föreslår alla möjliga kombinationer av kommunaltrafik och hur lång tid varje alternativ tar. Välj den kombination som passar dig.</p>
