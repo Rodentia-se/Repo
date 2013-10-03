@@ -20,8 +20,8 @@
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort I baren vid receptionen eller på O´Learys restaurang. Samma spelkort gäller även i alla arkadspel I huset. Samtliga turneringsspel är givetvis satta på free play.</p>
     <p><iframe width="650" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=O\'Learys,+Heron+City&amp;ll=59.269162,17.9114&amp;spn=0.002574,0.008256&amp;layer=c&amp;cbll=59.269184,17.91155&amp;hq=O\'Learys,+Heron+City&amp;t=h&amp;z=18&amp;panoid=C5KfthXvZdNnePQKOy6xzg&amp;cbp=12,192.54,,0,-2.16&amp;output=svembed"></iframe></p>
-    <p><img src="'..__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
-    <p><img src="'..__baseHref__.'/images/heron2.jpg" alt="heron2" width="650" /></p>
+    <p><img src="'.__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
+    <p><img src="'.__baseHref__.'/images/heron2.jpg" alt="heron2" width="650" /></p>
   </div>
   <div id="narDiv">
   </div>
