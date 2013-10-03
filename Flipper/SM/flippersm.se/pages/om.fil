@@ -18,7 +18,7 @@
     <h3>O\'Learys</h3>
     <p>O\'Learys har ett fullgott utbud av mat och dryck, inklusive fullständiga rättigheter. Vi är ytterst tacksamma för att O\'Learys låter oss anordna våra tävlingar i deras lokaler, och de har varit sjukt hjälpsamma när det gäller allehanda logistik.</p>
     <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O\'Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
-    <p><img src="'.__baseHref.'/images/partners/olearys.png"></p>
+    <p><img src="'.__baseHref__.'/images/partners/olearys.png"></p>
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort I baren vid receptionen eller på O\'Learys restaurang. Samma spelkort gäller även i alla arkadspel I huset. Samtliga turneringsspel är givetvis satta på free play.</p>
     <p><img src="'.__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
@@ -56,7 +56,7 @@
     <p>SL sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras reseplanerare.</p>
     <h3>Med tunnelbana</h3>
     <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg” och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T” i en vit cirkel.</p>
-    <p><img src="'.__baseHref.'/images/tbana.png"></p>
+    <p><img src="'.__baseHref__.'/images/tbana.png"></p>
 
     <h3>Med buss</h3>
     <p>Använd SL:s reseplanerare och skriv in” Kungens Kurva”, “Månskärsvägen” eller “Dialogvägen 2” som destination. Reseplaneraren föreslår alla möjliga kombinationer av kommunaltrafik och hur lång tid varje alternativ tar. Välj den kombination som passar dig.</p>
@@ -73,7 +73,7 @@
 Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
 
     <h3>Den (ö)kända inzoomningskartan</h3>
-    <p><a href="'.__baseHref.'/images/magnifying_map.png" target="_blank"><img src="'.__baseHref.'/images/magnifying_map.png"></a></p>
+    <p><a href="'.__baseHref__.'/images/magnifying_map.png" target="_blank"><img src="'.__baseHref__.'/images/magnifying_map.png"></a></p>
   </div>
   <div id="boDiv">
   </div>
