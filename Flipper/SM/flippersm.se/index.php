@@ -7,19 +7,24 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 function undermenu($page)
   {
   
-  if($page == "anmal" or $page == "object" or $page == 'edit')
+  if($page == "start_inloggad") //replace with check if logged in
      {echo "
-     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a><a href = '?s=funktionar'>Bli funktionär</a>";
+     <a href=\"?s=start\">Start</a> <a href=\"?s=?s=object&obj=player&id=self\">Dina sidor</a>";
+	}
+  
+  if($page == "anmal" or $page == "object" or $page == 'edit') // "object" and "edit" needs extra identifiers
+     {echo "
+     <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game\">Spel</a>";
 	}
 
-  if($page == "regler" or $page == "schema" or $page == "resultat" or $page == "narvar")
+  if($page == "om" or $page == "2012"  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
      {echo "
-     <a href=\"?s=regler\">Regler</a> <a href=\"?s=schema\">Kvalschema</a><a href=\"?s=resultat\">Liveresultat</a><a href=\"?s=narvar\">Praktisk info</a>
+     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=social\">Sociala media</a> <a href=\"?s=video\">Videosändningar</a> <a href=\"?s=kontakt\">Kontakt</a>
      ";}
 
-  if($page == "2012" or $page == "kontakt" or $page == "stories" or $page == "blandat" or $page == "spellista")
+  if($page == "kvalresultat" or $page == "slutspel" or $page == "sidoresultat" or $page == "2012") // 2012 will need an extra identifier to know which menu it belongs to
      {echo "
-     <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=kontakt\">Kontakt</a><a href=\"?s=stories\">Berättelser</a><a href=\"?s=stories\">Spellista</a>
+     <a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012\">Tidigare SM</a>
      ";}
 
  }
@@ -29,18 +34,13 @@ function submenu2($category)
   
   echo "<p class=\"submenu2\">";
   
-  if($category == "anmalan")
-     {echo "
-     <a href=\"?s=anmal\">Anmälan ordinarie & U18</a> <a href=\"?s=anmal_small_family\">Liten familj</a> <a href=\"?s=anmal_big_family\">Stor familj</a>";
-	}
-
   if($category == "anmalda")
      {echo "
-      <a href=\"?s=anmalda\">Anmälda spelare</a><br /> <a href=\"?s=ko\">Kölista</a>
+      <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>
      ";}
      
   if($category == "funktionar")
-	{echo "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=funkislista'>Dessa är funktionärer</a>";}
+	{echo "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";}
 
      
   if($category == "tidigare")
@@ -48,10 +48,14 @@ function submenu2($category)
      ";}
      
   if($category == "regler")
-     {echo "<a href = '?s=regler'>Regler</a>  <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=former\">Tävlingsformer</a>
+     {echo "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a> 
      ";}
 
-
+  if($category == "slutspel")
+     {echo "<a href = '?s=slutspel&type=main'>Huvudtävlingen</a>  <a href=\"?s=slutspel&type=b\">B-slutspel</a> <a href=\"?s=slutspel&type=classics\">Classics</a> <a href=\"?s=slutspel&type=dubbel\">Dubbel</a> <a href=\"?s=slutspel&type=u18\">U18</a>
+     ";}
+     
+     
   echo "</p>";
  }
 
