@@ -26,25 +26,24 @@
   </div>
   <div id="narDiv">
     <h2>Kronologiskt schema</h2>
-      <p class="bold">Friday 2013-09-13:</p>
-      <p><span class="schedule">Before 1800</span>Register at the reception</p>
-      <p><span class="schedule">1800-0000</td><td>Main and classics qualifications</p>
-      <p><span class="schedule">1830</td><td>One minute pinball</p>
-      <p><span class="schedule">2000</td><td>Pinball orienteering</p>
-      <p class="bold">Saturday 2013-09-14:</p>
-      <p><span class="schedule">1000-1900</td><td>Classics qualifications</p>
-      <p><span class="schedule">1000-2200</td><td>Main qualifications</p>
-      <p><span class="schedule">1300-1600</td><td>Team qualifications</p>
-      <p><span class="schedule">1500</td><td>Pinball orienteering</p>
-      <p><span class="schedule">1600-1900</td><td>Team finals</p>
-      <p><span class="schedule">1900</td><td>One minute pinball</p>
-      <p><span class="schedule">1900-0000</td><td>Classics finals</p>
-      <p><span class="schedule">2200-0000</td><td>Main qualifications margin hours</p>
-      <p class="bold">Sunday 2013-09-15:</p>
-      <p><span class="schedule">1000-1800</td><td>Main finals</p>
-      <p><span class="schedule">1200</td><td>One minute pinball</p>
-      <p><span class="schedule">1500</td><td>Pinball orienteering</p>
-      <p><span class="schedule">1800-1900</td><td>Price ceremony</p>
+      <p class="bold">Fredag 2013-11-08:</p>
+      <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
+      <p><span class="schedule">1800-0000</span>Kvalspel i huvudtävlingen och classics</p>
+      <p><span class="schedule">1830</span>Bäst på en minut</p>
+      <p><span class="schedule">2000</span>Flipperorientering</p>
+      <p class="bold">Lördag 2013-11-09:</p>
+      <p><span class="schedule">1000-1900</span>Kvalspel i classics</p>
+      <p><span class="schedule">1000-2200</span>Kvalspel i huvudtävlingen</p>
+      <p><span class="schedule">1500</span>Flipperorientering</p>
+      <p><span class="schedule">1900</span>Bäst på en minut</p>
+      <p><span class="schedule">1900-0000</span>Slutspel i classics</p>
+      <p><span class="schedule">2200-0000</span>Extratimmar för kvalspel</p>
+      <p class="bold">Söndag 2013-11-10:</p>
+      <p><span class="schedule">1000-1800</span>Slutspel i huvudtävlingen</p>
+      <p><span class="schedule">1400-1800</span>Slutspel i U18</p>
+      <p><span class="schedule">1200</span>Bäst på en minut</p>
+      <p><span class="schedule">1500</span>Flipperorientering</p>
+      <p><span class="schedule">1800-1900</span>Prisutdelning</p>
     </div>
   <div id="resaDiv">
   </div>
