@@ -4146,7 +4146,7 @@
         <script type=\"text/javascript\">
           $(document).ready(function() {
             $('#tabs').tabs();
-            $(".$identifier.").tablesorter();
+            $('".$identifier."').tablesorter();
           });
         </script>
     ";
