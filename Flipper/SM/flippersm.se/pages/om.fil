@@ -1,0 +1,38 @@
+<h1>Om Flipper-SM 2013</h1>
+
+<div id="tabs" class="clearboth">
+  <ul>
+    <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
+    <li class="tabs"><a href="#varDiv"><h3>Var</h3></a></li>
+    <li class="tabs"><a href="#resaDiv"><h3>Resa</h3></a></li>
+    <li class="tabs"><a href="#boDiv"><h3>Bo</h3></a></li>
+  </ul>
+  <div id="varDiv">
+    <h3>Spellokal</h3>
+    <p>Heron City är ett kombinerat nöjes- och shoppingcenter. Där finns mataffär, alla andra typer av butiker, flera restauranger (både snabbmat- och ”riktiga” restauranger), biograf, arkadspel och givetvis flipperspel.</p>
+    <p>I området ligger även massor med andra affärer, t ex världens största IKEA-varuhus. Skärholmens centrum (SKHLM), som ligger på 10 minuters promenadavstånd, har ännu mer att erbjuda. Centrala Stockholm ligger inte längre bort än 20-30 minuter med bil eller kommunaltrafik.</p>
+    <h3>O'Learys</h3>
+    <p>O'Learys har ett fullgott utbud av mat och dryck, inklusive fullständiga rättigheter. Vi är ytterst tacksamma för att O'Learys låter oss anordna våra tävlingar i deras lokaler, och de har varit sjukt hjälpsamma när det gäller allehanda logistik.</p>
+    <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O´Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
+    <h3>Spelkort</h3>
+    <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort I baren vid receptionen eller på O´Learys restaurang. Samma spelkort gäller även i alla arkadspel I huset. Samtliga turneringsspel är givetvis satta på free play.</p>
+    <p><iframe width="650" height="650" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=O'Learys,+Heron+City&amp;ll=59.269162,17.9114&amp;spn=0.002574,0.008256&amp;layer=c&amp;cbll=59.269184,17.91155&amp;hq=O'Learys,+Heron+City&amp;t=h&amp;z=18&amp;panoid=C5KfthXvZdNnePQKOy6xzg&amp;cbp=12,192.54,,0,-2.16&amp;output=svembed"></iframe></p>
+<?php
+  echo '
+    <p><img src="'..__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
+    <p><img src="'..__baseHref__.'/images/heron2.jpg" alt="heron2" width="650" /></p>
+  ';
+?>
+  </div>
+  <div id="narDiv">
+  </div>
+  <div id="resaDiv">
+  </div>
+  <div id="boDiv">
+  </div>
+</div>
+<script type=\"text/javascript\">
+  $(document).ready(function() {
+    $('#tabs').tabs();
+  });
+</script>
