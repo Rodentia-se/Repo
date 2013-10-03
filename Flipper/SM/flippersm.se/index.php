@@ -3,9 +3,8 @@
   require_once(__ROOT__.'/functions/general.php');
 
 $s = isset($_GET['s']) ? $_GET['s'] : 'start';
-$m = isset($_GET['m']) ? $_GET['m'] : 'om';
 
-function undermenu($page)
+function undermenu($page,$m)
   {
   
   if($page == "start_inloggad") //replace with check if logged in
