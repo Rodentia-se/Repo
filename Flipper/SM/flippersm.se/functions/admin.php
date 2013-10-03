@@ -98,7 +98,7 @@
       $players = getPlayers($dbh, ' where tournamentEdition_id = 1');
       foreach($players as $player) {
         $team = $player->getTeam($dbh);
-        $team = ($team) ? $team : $player->getTeam($dbh, 12);
+//        $team = ($team) ? $team : $player->getTeam($dbh, 12);
 
         $costs = $player->getCosts($dbh, 'all', 'SEK')['all']['SEK'];
         $diff = $costs - $player->paid;
@@ -227,7 +227,7 @@
             }
           }
           $qualGroups = getQualGroups($dbh);
-          $teamNoQualIds = array(4, 5, 10, 11);
+          $teamNoQualIds = array(0);
           $mainClassicsDiff = 6;
           foreach ($qualGroups as $qualGroup) {
             if (!($team && (in_array($qualGroup->id, $teamNoQualIds)))) {
@@ -320,7 +320,7 @@
       $volunteers = getVolunteers($dbh);
       $tasks = getTasks($dbh);
       $periods = getPeriods($dbh);
-      $teamPeriods = array(27, 10, 5, 7);
+      $teamPeriods = array(0);
       $mainTasks = array(1, 3, 4);
       $volTable .= '
         <table>
@@ -464,7 +464,7 @@
                 if ($volunteers) {
                   foreach ($volunteers as $volunteer) {
                     $team = $volunteer->getTeam($dbh);
-                    $team = ($team) ? $team : $volunteer->getTeam($dbh, 12);
+//                    $team = ($team) ? $team : $volunteer->getTeam($dbh, 12);
                     if($volunteer->checkIfVolFree($dbh, $period) && !($team && in_array($period->id, $teamPeriods))) {
                       $needTable .= '<option value="'.$volunteer->id.'"';
                       $needTable .= ($volunteer->id == $allocVol->id) ? ' selected' : '';
@@ -496,7 +496,7 @@
                 if ($volunteers) {
                   foreach ($volunteers as $volunteer) {
                     $team = $volunteer->getTeam($dbh);
-                    $team = ($team) ? $team : $volunteer->getTeam($dbh, 12);
+//                    $team = ($team) ? $team : $volunteer->getTeam($dbh, 12);
                     if($volunteer->checkIfVolFree($dbh, $period) && !($team && in_array($period->id, $teamPeriods))) {
                       $needTable .= '<option value="'.$volunteer->id.'">'.$volunteer->name.'</option>';
                       $assignmentTable .= (in_array($task->id, $mainTasks)) ? '<option value="'.$volunteer->id.'">'.$volunteer->name.'</option>' : '';
@@ -539,7 +539,7 @@
       }
     }
   
-    function getAdminTeamTable($dbh, $national = true) {
+    function getAdminTeamTable($dbh, $national = false) {
       $content = '<br /><br /><h2 class="entry-title">'.(($national) ? 'National' : 'Other').' teams</h2>';
       $content .= '
         <table>
@@ -597,7 +597,7 @@
               </td>
               <td>
         ';
-        for($i = 1; $i < 5; $i++) {
+        for($i = 1; $i < 3; $i++) {
           $content .= ($i == 3) ? '<br />' : '';
           $content .= createSelect($potentialMembers, $idPrefix.'memberSelect_'.$i, (($members[$i - 1]) ? $members[$i - 1]->id : 0), 'adminTeam', (($team->id) ? '' : 'disabled'));
           $content .= '<span class="error errorSpan toolTip" id="'.$idPrefix.'memberSelect_'.$i.'Span"></span>';
@@ -743,7 +743,6 @@
                   <option value="1">Main</option>
                   <option value="2">Classics</option>
                   <option value="3">Team</option>
-                  <option value="12">National team</option>
                   <option value="13">Side</option>
                   <option value="14">Recreational</option>
                 </select>
@@ -774,7 +773,6 @@
                 <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
                 <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
                 <option value="3"'.(($game->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>
-                <option value="12"'.(($game->tournamentDivision_id == 12) ? ' selected' : '').'>National Team</option>
                 <option value="13"'.(($game->tournamentDivision_id == 13) ? ' selected' : '').'>Side Tournament</option>
                 <option value="14"'.(($game->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
               </select>

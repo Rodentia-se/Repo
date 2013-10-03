@@ -1347,10 +1347,10 @@
             <input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$team->initials.'"><span id="initialsSpan" class=" errorSpan toolTip"></span>
           </div>
           <div>
-            <input id="submit" type="button" value="Skicka!" class="formInput" onclick="regTeam()" disabled>Submit!</button><input id="delete" type="button" value="Ta bort laget!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'"><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
+            <input id="submit" type="button" value="Skicka!" class="formInput" onclick="regTeam()" disabled><input id="delete" type="button" value="Ta bort laget!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'"><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
           </div>
     ';
-    $playerNum = array(1,2,3,4);
+    $playerNum = array(1,2);
     foreach($playerNum as $num) {
       $checked = '';
       $disabled = '';

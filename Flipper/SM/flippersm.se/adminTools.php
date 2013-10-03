@@ -35,7 +35,7 @@
           $content .= $volunteerTables['assignments'];
         break;
         case 'team':
-          $content .= getAdminTeamTable($dbh, true);
+//          $content .= getAdminTeamTable($dbh, true);
           $content .= getAdminTeamTable($dbh, false);
         break;
         case 'tshirt':
