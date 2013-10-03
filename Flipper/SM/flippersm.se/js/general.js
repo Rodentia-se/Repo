@@ -2914,9 +2914,20 @@ function addRulesLink(link) {
 function addTypeLink(type) {
   if (type) {
     var txt = document.createTextNode(ucfirst(type));
-    if (type == 'main' || type == 'classics') {
+    if (type == 'main' || type == 'classics' || type == 'team') {
        var a = document.createElement('a');
-       a.href = (type == 'main') ? baseHref + '/?s=object&obj=game&d=1' : baseHref + '/?s=object&obj=game&d=2';
+       switch (type) {
+         case 'main':
+           var d = 1;
+         break;
+         case 'classics':
+           var d = 2;
+         break;
+         case 'team':
+           var d = 3;
+         break;
+       }
+       a.href = baseHref + '/?s=object&obj=game&d=' + d;
        a.appendChild(txt);
        return a;
     } else {
