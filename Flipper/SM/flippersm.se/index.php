@@ -19,7 +19,7 @@ function undermenu($page)
 
   if($page == "om" or $page == "2012"  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
      {echo "
-     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=social\">Sociala media</a> <a href=\"?s=video\">Videosändningar</a> <a href=\"?s=kontakt\">Kontakt</a>
+     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>
      ";}
 
   if($page == "kvalresultat" or $page == "slutspel" or $page == "sidoresultat" or $page == "2012") // 2012 will need an extra identifier to know which menu it belongs to
