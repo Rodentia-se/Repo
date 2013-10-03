@@ -664,7 +664,7 @@ td, th {
     
     
 	#content input[type="text"], #content input[type="password"] {
-	  width: calc(100% - 40px);
+	  width: calc(100% - 50px);
 	  height: 20px;
 	}
 
