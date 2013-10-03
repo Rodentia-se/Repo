@@ -129,20 +129,19 @@
       $content .= '
         <p>Ange ditt användarnamn eller din mailadress:</p>
         <form action="?" method="POST">
-          <table>
-            <tr>
-              <td class="labelTd"><label>Användarnamn:</label></td>
-              <td><input type="text" name="username" id="username" onchange="resetPass(this);"><span id="usernameSpan" class="errorSpan"></span></td>
-            </tr>
-            <tr>
-              <td class="labelTd"><label>Mailadress:</label></td>
-              <td><input type="text" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input type="submit" value="Skicka" id="submit" disabled></td>
-            </tr>
-          </table>
+          <div>
+            <p>
+              <label>Användarnamn:</label>
+              <input type="text" name="username" id="username" onchange="resetPass(this);"><span id="usernameSpan" class="errorSpan"></span>
+            </p>
+            <p>
+              <label>Mailadress:</label></td>
+              <input type="text" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span>
+            </p>
+            <p>
+              <input type="submit" value="Skicka" id="submit" disabled>
+            </p>
+          </div>
         </form>
         <script type="text/javascript">document.getElementById(\'username\').focus();</script>
       ';
