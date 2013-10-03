@@ -1,3 +1,5 @@
+<?php
+echo '
 <h1>Kontakt</h1>
 
 <div class="spalt">
@@ -8,9 +10,7 @@
      patrik.bodin@flippersm.se</a><br />
 +46 733 103233</p>
      <br/>
-<?php
-  echo ('<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title = 'SM-direktör Patrik Bodin' />');
-?>
+<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title="SM-direktör Patrik Bodin" />
 
 </div>
 <div class="spalt">
@@ -28,6 +28,8 @@
      info@flippersm.se</a></p>
 <hr/>
 
-     <p>Glöm inte bort att <a href='http://www.svenskaflippersallskapet.com/forum' target='blank'>SFS forum</a> finns. Där kan du ställa frågor och diskutera Flipper-SM så att även andra kan ta del av svaren.</p>
+     <p>Glöm inte bort att <a href="http://www.svenskaflippersallskapet.com/forum" target="_blank">SFS forum</a> finns. Där kan du ställa frågor och diskutera Flipper-SM så att även andra kan ta del av svaren.</p>
      
 </div>
+';
+?>
