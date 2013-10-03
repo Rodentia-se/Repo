@@ -58,7 +58,7 @@
   }
 
   if ($type == 'team' && $id == 'self') {
-    if (checkLogin($dbh, $ulogin, true)) {
+    if (checkLogin($dbh, $ulogin, true, '</h2><h1>Din lagsida</h1><h2 class="loginTable">Du måste logga in för att kunna titta på den här sidan')) {
       $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
       $team = $player->getTeam($dbh);
       if ($team) {
