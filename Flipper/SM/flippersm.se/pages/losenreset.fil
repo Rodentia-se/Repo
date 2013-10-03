@@ -136,7 +136,7 @@
             </tr>
             <tr>
               <td class="labelTd"><label>Mailadress:</label></td>
-              <td><input type="test" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span></td>
+              <td><input type="text" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span></td>
             </tr>
             <tr>
               <td></td>
