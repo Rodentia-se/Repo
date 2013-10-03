@@ -11,6 +11,11 @@
 
     $content = getInfo($dbh, 'qualGroup', $id);
     $content .= getTable('player');
+    $content .= '
+      $(document).ready(function() {
+        getObjects();
+      });
+    ';
 
   } else {
 
