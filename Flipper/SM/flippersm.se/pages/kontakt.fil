@@ -1,18 +1,21 @@
- <h1>Kontakt</h1>
+<h1>Kontakt</h1>
 
 <div class="spalt">
 
- <h3>SM-direktör:</h3>
+ <h3>SM-direktÃ¶r:</h3>
   <p>Patrik Bodin<br/>
   <a href="mailto:patrik.bodin@flippersm.se">
-     patrik.bodin@flippersm.se</a></p>
-+46 733 103233
+     patrik.bodin@flippersm.se</a><br />
++46 733 103233</p>
      <br/>
-<?php echo '<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title = 'SM-direktör Patrik Bodin' />'; ?>
+<?php
+  echo ('<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktÃ¶r Patrik Bodin" title = 'SM-direktÃ¶r Patrik Bodin' />');
+?>
+
 </div>
 <div class="spalt">
 
- <h3>Press och frågor:</h3>
+ <h3>Press och frÃ¥gor:</h3>
   <p>Pressansvarig: Helena Walter<br/>
   <a href="mailto:press@flippersm.se">
      press@flippersm.se</a><br/>
@@ -20,11 +23,11 @@
   <p>Teknisk support:<br/>
   <a href="mailto:support@flippersm.se">
      support@flippersm.se</a></p>
-  <p>Övriga frågor:<br/>
+  <p>Ã–vriga frÃ¥gor:<br/>
   <a href="mailto:info@flippersm.se">
      info@flippersm.se</a></p>
 <hr/>
 
-     <p>Glöm inte bort att <a href='http://www.svenskaflippersallskapet.com/forum' target='blank'>SFS forum</a> finns. Där kan du ställa frågor och diskutera Flipper-SM så att även andra kan ta del av svaren.</p>
+     <p>GlÃ¶m inte bort att <a href='http://www.svenskaflippersallskapet.com/forum' target='blank'>SFS forum</a> finns. DÃ¤r kan du stÃ¤lla frÃ¥gor och diskutera Flipper-SM sÃ¥ att Ã¤ven andra kan ta del av svaren.</p>
      
 </div>
