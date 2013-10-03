@@ -1319,10 +1319,9 @@
       $editTeamDisplay = 'none';
     }
     $content = '
-      <p class="regTeam"><b>National teams do NOT register here! Please have your IFPA country director send an email to <a href="mailto:support@flippersm.se">support@flippersm.se</a></b></p>
-      <p id="regTeamHeader" class="regTeam" style="display: '.$regTeamDisplay.';"><b>You are not a member of a team.</b> If you are supposed to be a member of an already registered team, please ask one of the existing members to add you to that team. If you want to register a new team, please fill in the details below.</p>
-      <p id="editTeamHeader" class="editTeam" style="display: '.$editTeamDisplay.';">You are a member of the following team, and may change any parameters. <span class="italic">Use the button to change name or tag. Member changes are instant.</span></p>
-      <p class="italic" class="editTeam" style="display: '.$editTeamDisplay.';">Note: You can not add players to this team if they are already members of another team, they need to leave their existing team before they can join your team.</p>
+      <p id="regTeamHeader" class="regTeam" style="display: '.$regTeamDisplay.';"><b>Du är inte medlem i något lag.</b> Om du ska vara medlem i ett lag som redan är anmält, be din medspelare att stoppa in dig i laget. Om du vill anmäla ett nytt lag så fyller du fälten nedan.</p>
+      <p id="editTeamHeader" class="editTeam" style="display: '.$editTeamDisplay.';">Du är medlem i nedanstående lag, och har rätt att ändra uppgifterna. <span class="italic">Använd knappen för att ändra namn eller TAG. Ändrar du medlem eller kapten så ändras det direkt.</span></p>
+      <p class="italic" class="editTeam" style="display: '.$editTeamDisplay.';">OBS: Du kan inte lägga till spelare som redan är medlem i ett annat lag, de måste gå ur det andra laget först.</p>
     ';
     $content .= getUploadForm($dbh, $team, (($editTeamDisplay == 'none') ? false : true ));
     $content .= '
@@ -1338,17 +1337,17 @@
         <input name="registerPerson_id" id="registerPerson_idHidden" type="hidden" value="'.$player->id.'">
         <input name="tournamentDivision_id" id="tournamentDivision_idHidden" type="hidden" value="3">
         <div id="regTeamTable">
-          <h3>Team registration form</h3>
+          <h3>Laganmälan</h3>
           <div id="nameTr">
-            <label id="nameLabel" for="nameText">Name</label>
+            <label id="nameLabel" for="nameText">Lagnamn</label>
             <input name="name" id="nameText" type="text" class=" mandatory" onkeyup="checkField(this);" value="'.$team->name.'"><span id="nameSpan" class=" errorSpan">*</span>
           </div>
           <div id="initialsTr">
-            <label id="initialsLabel" for="initialsText">Team tag</label>
+            <label id="initialsLabel" for="initialsText">Lag-TAG</label>
             <input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$team->initials.'"><span id="initialsSpan" class=" errorSpan toolTip"></span>
           </div>
           <div>
-            <input id="submit" type="button" value="Submit!" class="formInput" onclick="regTeam()" disabled>Submit!</button><button id="delete" type="button" value="Delete team!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'">Delete team!</button><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
+            <input id="submit" type="button" value="Skicka!" class="formInput" onclick="regTeam()" disabled>Submit!</button><input id="delete" type="button" value="Ta bort laget!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'"><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
           </div>
     ';
     $playerNum = array(1,2,3,4);
@@ -1382,15 +1381,15 @@
       }
       $content .= '
           <div id="teamPlayer'.$num.'Tr" style="display: '.$editTeamDisplay.';" class="editTeam">
-            <label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Player #'.$num.'</label>
-            '.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Captain</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Team is incomplete</span>
+            <label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Spelare #'.$num.'</label>
+            '.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Kapten</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Laget är inte komplett</span>
           </div>
       ';
     }
     
     $content .= '
           <div class="editTeam" style="display: '.$editTeamDisplay.'">
-            <button id="leaveTeam" type="button" value="Leave team!" class="editTeam formInput" onclick="removeTeamMember('.$player->id.', \'leaveSpan\');">Leave team!</button><br /><span id="leaveSpan" class="editTeam italic errorSpan">Note: This can only be undone by another member of the team.</span>
+            <input id="leaveTeam" type="button" value="Gå ur laget!" class="editTeam formInput" onclick="removeTeamMember('.$player->id.', \'leaveSpan\');"><br /><span id="leaveSpan" class="editTeam italic errorSpan">OBS: Går du ur kan du bara gå med igen med hjälp av din medspelare.</span>
           </div>
         </div>
       </form>
@@ -1404,14 +1403,14 @@
       <form id="imageForm" method="post" enctype="multipart/form-data" action="'.__baseHref__.'/ajax/imageUpload.php?obj='.$obj->class.'&id='.$obj->id.'" style="display: '.(($display) ? '' : 'none').';" class="edit'.ucfirst($obj->class).'">
         <h2 colspan="2" id="reg'.ucfirst($obj->class).'ImgH2">Ändra foto/logga</h2>
   	    <div id="preview">
-  		    <img src="'.$obj->getPhoto(true).'" id="thumb" class="preview" alt="Preview of '.$obj->name.'">
+  		    <img src="'.$obj->getPhoto(true).'" id="thumb" class="preview" alt="Förhandsbild av '.$obj->name.'">
           <div id="imageLoader"></div>
   	    </div>
   	    <div id="uploadForm">
           <label id="imageUploadLabel" class="italic">Klicka på bilden för att byta bild (spara med skicka-knappen)</label>
           <input type="file" name="imageUpload" id="imageUpload">
         </div>
-        <button id="submitImg" type="button" value="Skicka upp bilden!" class="formInput" onclick="'.$obj->class.'Photo();" style="display: '.(($button) ? '' : 'none').'" disabled>Skicka in bilden!</button><span id="submitImgSpan" class=" errorSpan" style="display: none;"></span>
+        <input id="submitImg" type="button" value="Skicka upp bilden!" class="formInput" onclick="'.$obj->class.'Photo();" style="display: '.(($button) ? '' : 'none').'" disabled><span id="submitImgSpan" class=" errorSpan" style="display: none;"></span>
         <script type="text/javascript">
           $(document).ready(function() { 
             $(\'#imageUpload\').on(\'change\', function() {
