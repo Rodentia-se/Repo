@@ -1382,7 +1382,7 @@
       $content .= '
           <div id="teamPlayer'.$num.'Tr" style="display: '.$editTeamDisplay.';" class="editTeam">
             <label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Spelare #'.$num.'</label>
-            '.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Kapten</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Laget är inte komplett</span>
+            '.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">&nbsp;&nbsp;Kapten</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Laget är inte komplett</span>
           </div>
       ';
     }
