@@ -50,7 +50,7 @@
       }
     }
 
-    $content .= ($choice) ? '<p>Överfulla kvalgrupper är markerade med <span class="red">röd text</span>.</p><p>Om en kvalgrupp är överfull så kommer vi att flytta på folk till andra kvalgrupper. Spelarna kommer att tilldelas kvalgrupper i samma ordning som de har betalat deltagaravgiften, och volontärer kommer att då sina förstahandsval tillgodosedda först.</p><br />' : '';
+    $content .= ($choice) ? '<p>Överfulla kvalgrupper är markerade med <span class="red">röd text</span>. Om en kvalgrupp är överfull så kommer vi att flytta på folk till andra kvalgrupper. Spelarna kommer att tilldelas kvalgrupper i samma ordning som de har betalat deltagaravgiften, och volontärer kommer att få sina förstahandsval tillgodosedda först.</p><br />' : '';
 
     if($qualGroups && count($qualGroups > 0)) {
 
