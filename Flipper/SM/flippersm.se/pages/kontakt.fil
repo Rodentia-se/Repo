@@ -3,21 +3,26 @@
 <div class="spalt">
 
  <h3>SM-direktör:</h3>
-  <p>Hans Andersson<br/>
-  <a href="mailto:hans@hulabeck.se">
-     hans@hulabeck.se</a></p>
-
+  <p>Patrik Bodin<br/>
+  <a href="mailto:patrik.bodin@flippersm.se">
+     patrik.bodin@flippersm.se</a></p>
++46 733 103233
      <br/>
-<img src="bilder/foton/2012/sm-direktor_hans.png" alt="SM-direktör Hans Andersson" title = 'SM-direktör Hans Andersson' />
+<?php echo '<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title = 'SM-direktör Patrik Bodin' />'; ?>
 </div>
 <div class="spalt">
 
  <h3>Press och frågor:</h3>
-  <p>Hans Andersson<br/>
-  <a href="mailto:hans@hulabeck.se">
-     hans@hulabeck.se</a><br/>
-0731-51 01 71</p>
-
+  <p>Pressansvarig: Helena Walter<br/>
+  <a href="mailto:press@flippersm.se">
+     press@flippersm.se</a><br/>
++46 70 2885111</p>
+  <p>Teknisk support:<br/>
+  <a href="mailto:support@flippersm.se">
+     support@flippersm.se</a></p>
+  <p>Övriga frågor:<br/>
+  <a href="mailto:info@flippersm.se">
+     info@flippersm.se</a></p>
 <hr/>
 
      <p>Glöm inte bort att <a href='http://www.svenskaflippersallskapet.com/forum' target='blank'>SFS forum</a> finns. Där kan du ställa frågor och diskutera Flipper-SM så att även andra kan ta del av svaren.</p>
