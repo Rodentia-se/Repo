@@ -10,7 +10,7 @@ echo '
      patrik.bodin@flippersm.se</a><br />
 +46 733 103233</p>
      <br/>
-<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title="SM-direktör Patrik Bodin" />
+<img src="'.__baseHref__.'/images/objects/player/1.jpg" alt="SM-direktör Patrik Bodin" title="SM-direktör Patrik Bodin" class="palle" />
 
 </div>
 <div class="spalt">
