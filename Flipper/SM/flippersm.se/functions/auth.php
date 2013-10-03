@@ -214,7 +214,7 @@ function showChangeUsername($dbh, $username) {
         <input type="hidden" id="idHidden" name="id" value="'.$id.'">
         <input type="hidden" id="currentUsernameHidden" name="currentUsername" value="'.$username.'">
         <h3 class="entry-title">Ändra användarnamn och/eller lösenord:</h3>
-        <span class="italic">Att ändra användarnamn kräver att lösenordet också ändras</span>
+        <p class="italic">Att ändra användarnamn kräver att lösenordet också ändras</p>
         <label for="user">Nytt användarnamn:</label>
         <input type="text" name="username" id="usernameText" value="'.$username.'" onkeyup="checkField(this);" class="mandatory">
         <span id="usernameSpan" class="errorSpan">*</span>
