@@ -1200,7 +1200,7 @@ function submitChecked(obj) {
       if (data.success && data.reason.match(/^[0-9]+$/)) {
         fade(document.getElementById('submitSpan'), 'Laget är uppdaterat!', true);
         document.getElementById('idHidden').value = data.reason;
-        for (var num = 4; num > 0; num--) {
+        for (var num = 2; num > 0; num--) {
           var sel = document.getElementById('teamPlayer' + num + 'Select');
           if (sel.value == newObj.registerPerson_id) {
             sel.disabled = true;
@@ -1797,7 +1797,7 @@ function deleteTeam(errorId) {
 
 function checkMember(sel, adminPrefix) {
   adminPrefix = (adminPrefix) ? adminPrefix : false;
-  for (var num = 4; num > 0; num--) {
+  for (var num = 2; num > 0; num--) {
     sel2 = document.getElementById(((adminPrefix) ? adminPrefix + 'memberSelect_' + num : 'teamPlayer' + num + 'Select'));
     if (sel != sel2 && sel.value != 0 && sel.value == sel2.value) {
       return false;
@@ -1807,7 +1807,7 @@ function checkMember(sel, adminPrefix) {
 }
 
 function checkMembers() {
-  for (var num = 4; num > 0; num--) {
+  for (var num = 2; num > 0; num--) {
     sel = document.getElementById('teamPlayer' + num + 'Select');
     if (sel.value == 0 || !checkMember(sel)) {
       $('#teamIncomplete' + num + 'Span').show();
@@ -2369,6 +2369,7 @@ function popTbl(tbl, type) { // Let's populate a table
     addThead(tbl, type); // Add headers...
     var tbody = addTbody(tbl); // ...body...
     addRows(tbody, type, true); // ...and rows
+/*
     if (type.name == 'player') {
   		aoColumns = [
   	    {'sSortDataType': 'dom-link' },
@@ -2383,8 +2384,6 @@ function popTbl(tbl, type) { // Let's populate a table
     } else {
       aoColumns = null;
     }
-    $('#' + tbl.id).tablesorter();
-/*
     $('#' + tbl.id).dataTable({
       'bProcessing': true, 
       'bDestroy': true, 
@@ -2396,6 +2395,7 @@ function popTbl(tbl, type) { // Let's populate a table
     }); // Rebuild the datatable
     $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
 */
+    $('#' + tbl.id).tablesorter();
     hideLoading(type);
   }
 }
@@ -2833,7 +2833,7 @@ function adminTeam(el) {
           document.getElementById(idPrefix + 'initials').value = '';
           document.getElementById(idPrefix + 'regSelect').selectedIndex = 0;
           document.getElementById(idPrefix + 'contactSelect').selectedIndex = 0;
-          for (var num = 1; num < 5; num++) {
+          for (var num = 1; num < 3; num++) {
             document.getElementById(idPrefix + 'memberSelect_' + num).selectedIndex = 0;
           }
         } else {
@@ -2857,7 +2857,7 @@ function adminTeam(el) {
             document.getElementById(idPrefix + elements[element] + 'Span').id = newIdPrefix + elements[element] + 'Span';
           }
         }
-        for (var num = 1; num < 5; num++) {
+        for (var num = 1; num < 3; num++) {
           document.getElementById(idPrefix + 'memberSelect_' + num).disabled = disabled;
           document.getElementById(idPrefix + 'memberSelect_' + num).id = newIdPrefix + 'memberSelect_' + num;
           document.getElementById(idPrefix + 'memberSelect_' + num + 'Span').id = newIdPrefix + 'memberSelect_' + num + 'Span';
