@@ -52,8 +52,9 @@
 			<div id="submenu1">
    			<?php
    				$s = isset($_GET['s']) ? $_GET['s'] : 'start';
+				$m = isset($_GET['m']) ? $_GET['m'] : 'om';
 
-	    		undermenu($s);
+	    		undermenu($s,$m);
 			  ?>
    		</div>
 		</div>
