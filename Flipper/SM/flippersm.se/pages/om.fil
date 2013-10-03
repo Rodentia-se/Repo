@@ -4,15 +4,15 @@
 <h1>Om Flipper-SM 2013</h1>
 
 <script type="text/javascript">
-  function showMap() {
-    document.getElementById(\'gmaps\').innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
+  function showMap(id) {
+    document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
   }
 </script>
 <div id="tabs" class="clearboth">
   <ul>
-    <li class="tabs"><a href="#varDiv"><h3>Var</h3></a></li>
+    <li class="tabs"><a href="#varDiv" onclick="showMap(\'varMap\')><h3>Var</h3></a></li>
     <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
-    <li class="tabs"><a href="#resaDiv" onclick="showMap();"><h3>Resa</h3></a></li>
+    <li class="tabs"><a href="#resaDiv" onclick="showMap(\'resaMap\');"><h3>Resa</h3></a></li>
     <li class="tabs"><a href="#boDiv"><h3>Bo</h3></a></li>
   </ul>
   <div id="varDiv">
@@ -20,12 +20,13 @@
     <h3>Spellokal</h3>
     <p>Heron City är ett kombinerat nöjes- och shoppingcenter. Där finns mataffär, alla andra typer av butiker, flera restauranger (både snabbmat- och ”riktiga” restauranger), biograf, arkadspel och givetvis flipperspel.</p>
     <p>I området ligger även massor med andra affärer, t ex världens största IKEA-varuhus. Skärholmens centrum (SKHLM), som ligger på 10 minuters promenadavstånd, har ännu mer att erbjuda. Centrala Stockholm ligger inte längre bort än 20-30 minuter med bil eller kommunaltrafik.</p>
+    <img src="'.__baseHref__.'/images/partners/olearys.png" class="right">
     <h3>O\'Learys</h3>
     <p>O\'Learys har ett fullgott utbud av mat och dryck, inklusive fullständiga rättigheter. Vi är ytterst tacksamma för att O\'Learys låter oss anordna våra tävlingar i deras lokaler, och de har varit sjukt hjälpsamma när det gäller allehanda logistik.</p>
     <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O\'Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
-    <p><img src="'.__baseHref__.'/images/partners/olearys.png"></p>
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort I baren vid receptionen eller på O\'Learys restaurang. Samma spelkort gäller även i alla arkadspel I huset. Samtliga turneringsspel är givetvis satta på free play.</p>
+    <p class="fluid-wrapper" id="varMap"></p>
     <p><img src="'.__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
     <p><img src="'.__baseHref__.'/images/heron2.jpg" alt="Heron City" width="650" /></p>
   </div>
@@ -52,15 +53,15 @@
     </div>
   <div id="resaDiv">
     <h2>Färdvägar</h2>
-    <p class="fluid-wrapper" id="gmaps"></p>
+    <p class="fluid-wrapper" id="resaMap"></p>
     <p>O\'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O\'Learys är den naturliga samlingsplatsen på Heron City.
     <h3>Med taxi</h3>
     <p>Tävlingen äger rum på O\'Learys på Heron City i Skärholmen, en dryg kvart utanför Stockholms centrum. Taxi Stockholm är den största taxifirman och man kan beställa en taxi direkt på deras hemsida. Alla taxichaufförer vet var Heron City ligger (om inte – hoppa ur bilen direkt!). Gatuadressen är Dialogvägen 2. Två andra firmor som ofta rekommenderas är Taxi Kurir och Taxi 020. Samtliga tre, och alla andra stora operatörer, har fasta priser från Arlanda in till stan. Taxi Stockholms pris är 520:- och till spellokalen 690:-. Betala inte mer än så alltså!</p>
 
     <h3>Åka kommunalt</h3>
     <p>SL sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras reseplanerare.</p>
-    <h3>Med tunnelbana</h3>
     <img src="'.__baseHref__.'/images/tbana.jpg" class="right">
+    <h3>Med tunnelbana</h3>
     <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg” och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T” i en vit cirkel.</p>
 
     <h3>Med buss</h3>
