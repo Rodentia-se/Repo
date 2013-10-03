@@ -5,8 +5,8 @@
 
 <div id="tabs" class="clearboth">
   <ul>
-    <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
     <li class="tabs"><a href="#varDiv"><h3>Var</h3></a></li>
+    <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
     <li class="tabs"><a href="#resaDiv"><h3>Resa</h3></a></li>
     <li class="tabs"><a href="#boDiv"><h3>Bo</h3></a></li>
   </ul>
@@ -20,7 +20,7 @@
     <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O´Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort I baren vid receptionen eller på O´Learys restaurang. Samma spelkort gäller även i alla arkadspel I huset. Samtliga turneringsspel är givetvis satta på free play.</p>
-    <p><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
+    <p class="fluid-wrapper"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
     <p><img src="'.__baseHref__.'/images/heron1.jpg" alt="Heron City" width="650" /></p>
     <p><img src="'.__baseHref__.'/images/heron2.jpg" alt="Heron City" width="650" /></p>
   </div>
