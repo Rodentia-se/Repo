@@ -825,7 +825,7 @@ td, th {
 #content span.schedule {
   display: inline-block;
   text-align: right;
-  width: 100px;
+  width: 11em;
 }
 
 #content div#tabs {
