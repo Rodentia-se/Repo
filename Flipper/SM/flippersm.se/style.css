@@ -823,7 +823,7 @@ td, th {
 }
 
 #content span.schedule {
-  float: left;
+  display: inline-block;
   width: 75px;
 }
 
