@@ -1,17 +1,16 @@
-<br class="clearboth">
-
-<div id="loggedInOut">
-<?php
-  if (checkLogin($dbh, $ulogin, false)) {
-    $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
-    echo('<p class="italic">Du är inloggad som '.$player->firstName.' '.$player->lastName.'. <a href="'.__baseHref__.'/?s=utloggad"><input type="button" id="logoutButton" value="Logga ut"></a></p>');
-  } else {
-    echo('<p class="italic">Du är inte inloggad.</p>');
-  }
-?>
-</div>
-</div>
-<div id="debug" align="left"></div>
-<div id="debug2"></div><br/>
-</body>
+      <br class="clearboth">
+      <div id="loggedInOut">
+        <?php
+          if (checkLogin($dbh, $ulogin, false)) {
+            $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
+            echo('<p class="italic">Du är inloggad som '.$player->firstName.' '.$player->lastName.'. <a href="'.__baseHref__.'/?s=utloggad"><input type="button" id="logoutButton" value="Logga ut"></a></p>');
+          } else {
+            echo('<p class="italic">Du är inte inloggad. <a href="'.__baseHref__.'/?s=loggain"><input type="button" id="loginButton" value="Logga in"></a></p>');
+          }
+        ?>
+      </div>
+    </div>
+    <div id="debug" align="left"></div>
+    <div id="debug2"></div><br/>
+  </body>
 </html>

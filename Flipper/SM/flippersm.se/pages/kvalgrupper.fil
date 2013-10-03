@@ -1,0 +1,230 @@
+<?php
+  $choice = true;
+
+  $id = (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? $_REQUEST['id'] : false;
+
+  if ($id) {
+    $qualGroup = getQualGroupById($dbh, $id);
+  }
+
+  if ($qualGroup) {
+
+    $content = getInfo($dbh, 'qualGroup', $id);
+    $content .= getTable('player');
+
+  } else {
+
+    $qualLimit['main'] = __mainQualLimit__;
+    $qualLimit['classics'] = __classicsQualLimit__;
+    $qualLimit['main'] = 40;
+    $qualLimit['classics'] = 40;
+
+    $content = '<h1>Kvalgrupper</h2>';
+    if ($choice) {
+      $content .= '<p>Här hittar du alla kvalgrupper, inklusive info om hur många spelare som har har valt respektive grupp. Efter varje kvalgrupp hittar du två nummer - antalet spelare som kan tänka sig att spela i den gruppen, och efter snedstrecket ser du hur många som har gruppen som förstahandsval.</p>';
+      $content .= '<p>Det maximala antalet spelare per kvalgrupp beror på hur många spel som kommer att finnas med i tävlingen, men det kommer att landa någonstans mellan 40 och 50. <b>Så länge numret efter snedstrecket är under '.$qualLimit['main'].' ('.$qualLimit['classics'].' för Classics), så kommer alla att få sitt förstahandsval.</b></p>';
+    } else {
+      $content .= '<p>Nedan ser du alla kvalgrupper, samt antalet spelare i respektive grupp.</p>';
+    }
+    $qualGroups = getQualGroups($dbh);
+
+    $player = getCurrentPlayer($dbh, $ulogin);
+
+    if ($player) {
+      $content .= '<p>Du är med i kvalgruperna som har <span="bold">fet stil</span>.</p>';
+      $playerQualGroups = $player->getQualGroups($dbh, 1, false);
+      $playerPreferedQualGroups = $player->getQualGroups($dbh, 1, true);
+    }
+
+    if ($playerQualGroups) {
+      $content .= ($choice) ? '<p>De kvalgrupper du har valt har <span class="yellow">gul bakgrund</span>.</p>' : '';
+      foreach($playerQualGroups as $playerQualGroup) {
+        $playerQualGroupIds[] = $playerQualGroup->id;
+      }
+    }
+
+    if ($playerPreferedQualGroups) {
+      $content .= ($choice) ? '<p>Ditt förstahandsval är markerat med <span class="yellow bold">fet stil på gul bakgrund</span>.</p>' : '';
+      foreach($playerPreferedQualGroups as $playerPreferedQualGroup) {
+        $playerPreferedQualGroupIds[] = $playerPreferedQualGroup->id;
+      }
+    }
+
+    $content .= ($choice) ? '<p>Överfulla kvalgrupper är markerade med <span class="red">röd text</span>.</p><p>Om en kvalgrupp är överfull så kommer vi att flytta på folk till andra kvalgrupper. Spelarna kommer att tilldelas kvalgrupper i samma ordning som de har betalat deltagaravgiften, och volontärer kommer att då sina förstahandsval tillgodosedda först.</p><br />' : '';
+
+    if($qualGroups && count($qualGroups > 0)) {
+
+      $tournamentDivisionIds = [];
+      foreach($qualGroups as $qualGroup) {
+        if (!in_array($qualGroup->tournamentDivision_id, $tournamentDivisionIds)) {
+          $tournamentDivisionIds[] = $qualGroup->tournamentDivision_id;
+          $qualGroupsByDiv[$qualGroup->tournamentDivision_id] = [];
+        }
+        array_push($qualGroupsByDiv[$qualGroup->tournamentDivision_id], $qualGroup);
+      }
+
+      foreach($tournamentDivisionIds as $tournamentDivisionId) {
+        $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
+        foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
+          if (!($date) || $date != $qualGroup->date) {
+            if ($date) {
+              $content .= '</div>';
+            }
+            $date = $qualGroup->date;
+            $content .= '
+              <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
+            <p><b>'.$date.' ('.ucfirst($type).')</b></p>
+            ';
+          }
+          $content .= '<p';
+          if ($choice) {
+            $content .= ' class="';
+            if ($player) {
+              $content .= ($playerQualGroups && in_array($qualGroup->id, $playerQualGroupIds)) ? ' yellow' : '';
+              $content .= ($playerPreferedQualGroups && in_array($qualGroup->id, $playerPreferedQualGroupIds)) ? ' bold' : '';
+            }
+            $content .= ($qualGroup->getNoOfPlayers($dbh, true) > $qualLimit[$type]) ? ' red">' : '">';
+            $content .= ucfirst($qualGroup->name).': '.$qualGroup->getNoOfPlayers($dbh).' / '.$qualGroup->getNoOfPlayers($dbh, true);
+          } else {
+            $content .= ($qualGroup->getNoOfPlayers($dbh, true) > $qualLimit[$type]) ? ' red' : '';
+            $content .= ($player && ($player->mainQualGroup_id == $qualGroup->id || $player->classicsQualGroup_id == $qualGroup->id)) ? ' class="bold">' : '>';
+            $content .= '<a href="'.$qualGroup->getLink(false).'">'.ucfirst($qualGroup->name).'</a>: '.$qualGroup->getNoOfAssignedPlayers($dbh);
+          }
+          $content .= '</p>';
+        }
+      }
+      $content .= '
+        </div>
+        <br /><p style="clear: left;">Lagtävlingens kvalgrupper kommer att beslutas senare, när vi vet mer om hur många lag som kommer att deltaga.</p>
+      ';
+      if ($player) {
+        $team = $player->getTeam($dbh);
+        if ($team) {
+          $content .= '<p>Du är medlem i laget "'.$team->getLink().'".</p>';
+        }
+      }
+      $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1');
+      $content .= '
+        <div id="tabs">
+          <ul>
+            <li class="tabs"><a href="#mainTable"><h2>Main tournament</h2></a></li>
+            <li class="tabs next"><a href="#classicsTable"><h2>Classics tournament</h2></a></li>
+          </ul>
+          <div id="mainTable">
+            <table class="standings">
+              <thead>
+                <tr>
+                  <th>Plats</th>
+                  <th>Namn</th>
+                  <th>Spel</th>
+                  <th>Poäng</th>
+                </tr>
+              </thead>
+              <tbody>
+      ';
+      foreach ($players as $player) {
+        $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', 1);
+        foreach ($qualEntries as $qualEntry) {
+          $content .= '
+                <tr>
+                  <td>'.$qualEntry->entryPlace.'</td>
+                  <td>'.$player->getLink().'</td>
+                  <td>
+          ';
+          $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', 1);
+          foreach ($qualScores as $qualScore) {
+            $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+          }
+          $content = preg_replace('/, $/', '', $content).'
+                  </td>
+                  <td>'.$qualScore->entryPoints.'</td>
+                </tr>
+          ';
+        }
+      }
+      $content .=  '</tbody></table></div>';
+      $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = 1');
+      $content .= '
+          <div id="classicsTable">
+            <table class="standings">
+              <thead>
+                <tr>
+                  <th>Plats</th>
+                  <th>Namn</th>
+                  <th>Spel</th>
+                  <th>Poäng</th>
+                </tr>
+              </thead>
+              <tbody>
+      ';
+      foreach ($players as $player) {
+        $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', 2);
+        foreach ($qualEntries as $qualEntry) {
+          $content .= '
+                <tr>
+                  <td>'.$qualEntry->entryPlace.'</td>
+                  <td>'.$player->getLink().'</td>
+                  <td>
+          ';
+          $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', 2);
+          foreach ($qualScores as $qualScore) {
+            $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').$qualScore->game.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+          }
+          $content = preg_replace('/, $/', '', $content).'
+                  </td>
+                  <td>'.$qualScore->entryPoints.'</td>
+              </tr>
+          ';
+        }
+      }
+      $content .=  '</tbody></table></div></div>';
+      $content .= getDataTables('.standings');
+
+     /*
+      $content .= '
+        <table id="scores">
+          <thead>
+            <tr>
+              <th>Place</th>
+              <th>Name</th>
+              <th>Game</th>
+              <th>Score</th>
+              <th>Points</th>
+            </tr>
+          </thead>
+          <tbody>
+      ';
+      foreach($players as $player) {
+        $qualScores = $player->getAllEntries($dbh);
+          $content .= '
+            <tr>
+              <td>'.$qualScore->place.'</td>
+              <td>'.$player->getLink().'</td>
+              <td>'.$qualScore->game.'</td>
+              <td>'.$qualScore->score.'</td>
+              <td>'.$qualScore->points.'</td>
+            </tr>
+          ';
+        }
+      }
+      $content .= '
+          |</tbody>
+        </table>
+      ';
+      $content .= getDataTables('#scores');
+      */
+/*      foreach ($players as $player) {
+          echo('<p>'.$player->name.': ');
+         $qualScores = $player->getAllEntries($dbh, ' group by qs.machine_id');
+         foreach ($qualScores as $qualScore) {
+          echo($qualScore->game.', ');
+         }
+         echo '<br />';
+       }
+       */
+      } else {
+      $content .= 'Nåt måste ha gått snett, för jag hittar inga kvalgrupper i databasen?';
+    }
+  }
+  echo $content;
+?>
