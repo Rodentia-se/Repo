@@ -6,8 +6,9 @@
 <script type="text/javascript">
   function showMap(id) {
     document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
+  }
   function showHotelMap(id) {
-    document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
+    document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe>\';
   }
 </script>
 <div id="tabs" class="clearboth">
