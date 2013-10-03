@@ -51,7 +51,7 @@
   $table = true;
 
   if ($type == 'player' && $id == 'self') {
-    if (checkLogin($dbh, $ulogin, true)) {
+    if (checkLogin($dbh, $ulogin, true, '</h2><h1>Dina sidor</h1><h2 class="loginTable">Du måste logga in för att kunna titta på den här sidan')) {
       $id = getIdFromUser($dbh, $_SESSION['username']);
     }
     $table = false;
