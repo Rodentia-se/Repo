@@ -82,6 +82,13 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
     <p><a href="'.__baseHref__.'/images/magnifying_map.png" target="_blank"><img src="'.__baseHref__.'/images/magnifying_map.png"></a></p>
   </div>
   <div id="boDiv">
+    <h2>Boende</h2>
+    <img src="'.__baseHref__.'/images/partners/dialog.jpg" class="right">
+    <h3>Hotell Dialog</h3>
+    <p>Samtliga deltagare i Flipper-SM har 10 % rabatt på Hotell Dialog, som ligger 200 meter från Heron City.</p>
+    <p>Enkelrum: 445:- per natt</p>
+    <p>Dubbelrum: 585:- per natt</p>
+    <p>Boka direkt via <a href="http://www.hoteldialog.se/" target="_blank">deras hemsida</a> och uppge bokningskod: "Flipper-SM".</p>
   </div>
 </div>
 <script type="text/javascript">
