@@ -1,0 +1,13 @@
+<?php
+  $content = '<h1>Dubbellag</h2>';
+  $content .= '<p>I dubbel spelar ni med varsin flipper. Exakta regler hittas <a href="'.__baseHref.'/?s=dubbel">här</a></p>';
+
+  if (checkLogin($dbh, $ulogin, false)) {
+    $content .= getTeamForm($dbh, $ulogin);
+  } else {
+    $content .= '<p>Du måsta <a href="../">anmäla dig</a> och skapa en användare innan du kan anmäla ett lag.</p>';
+    $content .= showLogin($ulogin, 'Om du redan har en användare, logga in här.');
+  }
+
+  echo($content);
+?>
