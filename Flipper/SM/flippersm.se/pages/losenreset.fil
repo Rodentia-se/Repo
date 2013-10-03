@@ -42,7 +42,7 @@
     }
   }
 
-  $content = '<h2 class="entry-title">Password reset '.$nonce.'</h2>';
+  $content = '<h1>Nolställning av lösenord</h1><p>Identitetskod: '.$nonce;
 
   $player = getCurrentPlayer($dbh, $ulogin);
   if ($player) {
