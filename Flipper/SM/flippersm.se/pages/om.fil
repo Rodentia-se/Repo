@@ -25,7 +25,27 @@
     <p><img src="'.__baseHref__.'/images/heron2.jpg" alt="Heron City" width="650" /></p>
   </div>
   <div id="narDiv">
-  </div>
+    <h1>Kronologiskt schema</h1>
+      <p class="bold">Friday 2013-09-13:</p>
+      <p><span class="schedule">Before 1800</span>Register at the reception</p>
+      <p><span class="schedule">1800-0000</td><td>Main and classics qualifications</p>
+      <p><span class="schedule">1830</td><td>One minute pinball</p>
+      <p><span class="schedule">2000</td><td>Pinball orienteering</p>
+      <p class="bold">Saturday 2013-09-14:</p>
+      <p><span class="schedule">1000-1900</td><td>Classics qualifications</p>
+      <p><span class="schedule">1000-2200</td><td>Main qualifications</p>
+      <p><span class="schedule">1300-1600</td><td>Team qualifications</p>
+      <p><span class="schedule">1500</td><td>Pinball orienteering</p>
+      <p><span class="schedule">1600-1900</td><td>Team finals</p>
+      <p><span class="schedule">1900</td><td>One minute pinball</p>
+      <p><span class="schedule">1900-0000</td><td>Classics finals</p>
+      <p><span class="schedule">2200-0000</td><td>Main qualifications margin hours</p>
+      <p class="bold">Sunday 2013-09-15:</p>
+      <p><span class="schedule">1000-1800</td><td>Main finals</p>
+      <p><span class="schedule">1200</td><td>One minute pinball</p>
+      <p><span class="schedule">1500</td><td>Pinball orienteering</p>
+      <p><span class="schedule">1800-1900</td><td>Price ceremony</p>
+    </div>
   <div id="resaDiv">
   </div>
   <div id="boDiv">

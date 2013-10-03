@@ -822,6 +822,11 @@ td, th {
   margin-left: 5px;
 }
 
+#content p.schedule {
+  width: 75px;
+  float: left;
+}
+
 #content div#tabs {
   margin-left: 15px;
   margin-right: 15px;
@@ -849,6 +854,7 @@ td, th {
 }
 
 #content p.fluid-wrapper {
+
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
