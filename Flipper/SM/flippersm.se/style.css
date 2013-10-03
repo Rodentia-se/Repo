@@ -822,9 +822,8 @@ td, th {
   margin-left: 5px;
 }
 
-#content p.schedule {
+#content span.schedule {
   width: 75px;
-  float: left;
 }
 
 #content div#tabs {
