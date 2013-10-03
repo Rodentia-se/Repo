@@ -2916,7 +2916,7 @@ function addTypeLink(type) {
     var txt = document.createTextNode(ucfirst(type));
     if (type == 'main' || type == 'classics') {
        var a = document.createElement('a');
-       a.href = (type == 'main') ? '?d=1' : '?d=2';
+       a.href = (type == 'main') ? baseHref + '/?s=object&obj=game&d=1' : baseHref + '/?s=object&obj=game&d=2';
        a.appendChild(txt);
        return a;
     } else {
