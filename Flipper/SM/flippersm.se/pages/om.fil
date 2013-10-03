@@ -6,6 +6,8 @@
 <script type="text/javascript">
   function showMap(id) {
     document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
+  function showHotelMap(id) {
+    document.getElementById(id).innerHTML = \'<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>\';
   }
 </script>
 <div id="tabs" class="clearboth">
@@ -13,15 +15,15 @@
     <li class="tabs"><a href="#varDiv" onclick="showMap(\'varMap\');"><h3>Var</h3></a></li>
     <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
     <li class="tabs"><a href="#resaDiv" onclick="showMap(\'resaMap\');"><h3>Resa</h3></a></li>
-    <li class="tabs"><a href="#boDiv"><h3>Bo</h3></a></li>
+    <li class="tabs"><a href="#boDiv" onclick="showHotelMap(\'boMap\');"><h3>Bo</h3></a></li>
   </ul>
   <div id="varDiv">
     <p></p>
     <h3>Spellokal</h3>
     <p>Heron City är ett kombinerat nöjes- och shoppingcenter. Där finns mataffär, alla andra typer av butiker, flera restauranger (både snabbmat- och ”riktiga” restauranger), biograf, arkadspel och givetvis flipperspel.</p>
     <p>I området ligger även massor med andra affärer, t ex världens största IKEA-varuhus. Skärholmens centrum (SKHLM), som ligger på 10 minuters promenadavstånd, har ännu mer att erbjuda. Centrala Stockholm ligger inte längre bort än 20-30 minuter med bil eller kommunaltrafik.</p>
-    <img src="'.__baseHref__.'/images/partners/olearys.png" class="right">
     <h3>O\'Learys</h3>
+    <img src="'.__baseHref__.'/images/partners/olearys.png" class="right">
     <p>O\'Learys har ett fullgott utbud av mat och dryck, inklusive fullständiga rättigheter. Vi är ytterst tacksamma för att O\'Learys låter oss anordna våra tävlingar i deras lokaler, och de har varit sjukt hjälpsamma när det gäller allehanda logistik.</p>
     <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O\'Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
     <h3>Spelkort</h3>
@@ -58,9 +60,9 @@
     <h3>Med taxi</h3>
     <p>Tävlingen äger rum på O\'Learys på Heron City i Skärholmen, en dryg kvart utanför Stockholms centrum. Taxi Stockholm är den största taxifirman och man kan beställa en taxi direkt på deras hemsida. Alla taxichaufförer vet var Heron City ligger (om inte – hoppa ur bilen direkt!). Gatuadressen är Dialogvägen 2. Två andra firmor som ofta rekommenderas är Taxi Kurir och Taxi 020. Samtliga tre, och alla andra stora operatörer, har fasta priser från Arlanda in till stan. Taxi Stockholms pris är 520:- och till spellokalen 690:-. Betala inte mer än så alltså!</p>
 
+    <img src="'.__baseHref__.'/images/tbana.jpg" class="right">
     <h3>Åka kommunalt</h3>
     <p>SL sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras reseplanerare.</p>
-    <img src="'.__baseHref__.'/images/tbana.jpg" class="right">
     <h3>Med tunnelbana</h3>
     <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg” och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T” i en vit cirkel.</p>
 
@@ -89,6 +91,7 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
     <p>Enkelrum: 445:- per natt</p>
     <p>Dubbelrum: 585:- per natt</p>
     <p>Boka direkt via <a href="http://www.hoteldialog.se/" target="_blank">deras hemsida</a> och uppge bokningskod: "Flipper-SM".</p>
+    <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
   </div>
 </div>
 <script type="text/javascript">
