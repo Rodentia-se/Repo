@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   define('__mainQualLimit__', '60'); 
   define('__classicsQualLimit__', '30'); 
-  define('__baseHref__', 'https://flippersm.pal.pp.se');
+  define('__baseHref__', 'https://www.flippersm.se');
   require_once(__ROOT__.'/functions/db.php');
   require_once(__ROOT__.'/contrib/ulogin/config/all.inc.php');
   require_once(__ROOT__.'/contrib/ulogin/main.inc.php');

@@ -9,7 +9,7 @@
 // fetch your website, without the protocol specifier (don't use 'http(s)://').
 // For development on the local machine, use 'localhost'.
 // Takes the same format as the 'domain' parameter of the PHP setcookie function.
-define('UL_DOMAIN', 'flippersm.pal.pp.se');
+define('UL_DOMAIN', 'www.flippersm.se');
 
 // Set to the path of the "ulogin" directory containing the source files.
 // Do not use a trailing slash.
