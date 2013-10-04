@@ -29,34 +29,39 @@ function undermenu($page,$m)
 
  }
 
-function submenu2($category)
+function submenu2($category, $echo = true)
   {
   
-  echo "<p class=\"submenu2\">";
+  $content = "<p class=\"submenu2\">";
   
   if($category == "anmalda")
-     {echo "
+     {$content .= "
       <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>
      ";}
      
   if($category == "funktionar")
-	{echo "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";}
+	{$content .= "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";}
 
      
   if($category == "tidigare")
-     {echo "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
+     {$content .= "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
      ";}
      
   if($category == "regler")
-     {echo "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a> 
+     {$content .= "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a>
      ";}
 
   if($category == "slutspel")
-     {echo "<a href = '?s=slutspel&type=main'>Huvudtävlingen</a>  <a href=\"?s=slutspel&type=b\">B-slutspel</a> <a href=\"?s=slutspel&type=classics\">Classics</a> <a href=\"?s=slutspel&type=dubbel\">Dubbel</a> <a href=\"?s=slutspel&type=u18\">U18</a>
+     {$content .= "<a href = '?s=slutspel&type=main'>Huvudtävlingen</a>  <a href=\"?s=slutspel&type=b\">B-slutspel</a> <a href=\"?s=slutspel&type=classics\">Classics</a> <a href=\"?s=slutspel&type=dubbel\">Dubbel</a> <a href=\"?s=slutspel&type=u18\">U18</a>
      ";}
      
      
-  echo "</p>";
+  $content .= "</p>";
+  if ($echo) {
+    echo $content;
+  } else {
+    return $content;
+  }
  }
 
 
