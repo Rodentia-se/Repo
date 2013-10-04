@@ -82,6 +82,7 @@
   }
 
   if ($table) {
+    submenu2("anmalda");
     if ($type == 'team') {
       printTopper('getObjects(\'teams\')');
       $content .= getTable('team', $national);
