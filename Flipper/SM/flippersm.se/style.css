@@ -238,19 +238,31 @@ div#content {
   height: 29px;
 }
 
-#content input[type="submit"], #content input[type="button"] #content button, #content input[type="submit"]:disabled, #content input[type="button"]:disabled #content button:disabled, #loggedInOut input[type="submit"], #loggedInOut input[type="button"] #loggedInOut button, #loggedInOut input[type="submit"]:disabled, #loggedInOut input[type="button"]:disabled #loggedInOut button:disabled {
-  background-color: #cccccc;
+#content input[type="submit"], #content input[type="button"], #content button, #loggedInOut input[type="submit"], #loggedInOut input[type="button"], #loggedInOut button {
+  background-color: #CCCCCC;
   -moz-border-radius: 5px;
   -webkit-border-radius: 5px;
   border-radius:6px;
   color: #000000;
   text-decoration: none;
   cursor: poiner;
+  border: 1px solid #66DDFF;
+  padding: 2px 5px 2px 5px;
+}
+
+#content input[type="submit"]:disabled, #content input[type="button"]:disabled, #content button:disabled, #loggedInOut input[type="submit"]:disabled, #loggedInOut input[type="button"]:disabled, #loggedInOut button:disabled {
+  background-color: #EEEEEE;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  border-radius:6px;
+  color: #AAAAAA;
+  text-decoration: none;
+  cursor: default;
   border: 1px solid #66ddff;
   padding: 2px 5px 2px 5px;
 }
 
-#content input[type="submit"]:hover, #content input[type="button"]:hover #content button:hover, #loggedInOut input[type="submit"]:hover, #loggedInOut input[type="button"]:hover #loggedInOut button:hover {
+#content input[type="submit"]:hover, #content input[type="button"]:hover, #content button:hover, #loggedInOut input[type="submit"]:hover, #loggedInOut input[type="button"]:hover, #loggedInOut button:hover {
   background: #66ddff;
   box-shadow: 0px 0px 1px #777;
 }
