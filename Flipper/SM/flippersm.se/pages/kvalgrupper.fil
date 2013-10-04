@@ -27,6 +27,7 @@
     $qualLimit['classics'] = 40;
 
     $content = '<h1>Kvalgrupper</h2>';
+    $content .= submenu2('anmalda', false);
     if ($choice) {
       $content .= '<p>Här hittar du alla kvalgrupper, inklusive info om hur många spelare som har har valt respektive grupp. Efter varje kvalgrupp hittar du två nummer - antalet spelare som kan tänka sig att spela i den gruppen, och efter snedstrecket ser du hur många som har gruppen som förstahandsval.</p>';
       $content .= '<p>Det maximala antalet spelare per kvalgrupp beror på hur många spel som kommer att finnas med i tävlingen, men det kommer att landa någonstans mellan 40 och 50. <b>Så länge numret efter snedstrecket är under '.$qualLimit['main'].' ('.$qualLimit['classics'].' för Classics), så kommer alla att få sitt förstahandsval.</b></p>';
