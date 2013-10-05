@@ -1104,7 +1104,7 @@
     } else {
       $shown = '<p id="tshirtNoneSpan" class="italic">Du har inte beställt några tröjor än. '.((__tshirtsDisabled__) ? '' : 'Beställ tröjor nu genom att klicka på plus-tecknet!').'<br /></p>';
     }
-    $content = '
+    $content .= '
         <div id="tshirtOrderDiv">
           <h2 class="entry-title">Tröjbeställningar</h3>
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
