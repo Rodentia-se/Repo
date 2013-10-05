@@ -101,7 +101,7 @@
     4 => '1994-11-13'
   );
   $content .=  '</tbody></table></div>';
-  $players = getPlayers($dbh, ' where m.id is not null and m.tournamentEdition_id = '.$tournament.' && m.birthDate > "'.$ageLimit[$tournament].'" ');
+  $players = getPlayers($dbh, ' where m.id is not null and m.tournamentEdition_id = '.$tournament.' and m.birthDate > "'.$ageLimit[$tournament].'" ');
   $content .= '
           <div id="u18Table" class="section hidden">
             <table class="standings">
