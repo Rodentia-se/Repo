@@ -511,19 +511,21 @@ td, th {
     }
 
     /* Force table to not be like tables anymore */
-    #content table.result, #content table.registered, #content table.volunteer {
+    #content table.result, #content table.registered, #content table.volunteer, #content #ifpaRegResultsTable {
       border: 0;
       padding: 0;
       margin: 0;
       width: 100%;
+      display: block;
     }
 
-    table.result , table.registered , .result thead, .registered thead, .result  tbody, .registered  tbody, .result th, .registered th, .result td, .registered td, .result  tr, .registered  tr {
+    .result thead, .registered thead, #ifpaRegResultsTable thead, .result  tbody, .registered  tbody, #ifpaRegResultsTable tbody {
       display: block;
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
     .result th, .registered th {
+      display: block;
       position: absolute;
       top: -9999px;
       left: -9999px;
@@ -533,12 +535,14 @@ td, th {
     left: -9999px;
     top: -9999px;}
 
-    .result td, .registered td, .volunteer td {
+    .result td, .registered td, .volunteer td, #ifpaRegResultsTable td {
+      display: block;
       border: 0;
       font-size: 1.05em;
     }
 
-    .result tr, .registered tr, .volunteer tr {
+    .result tr, .registered tr, .volunteer tr, #ifpaRegResultsTable tr {
+      display: block;
       position: relative;
       border: 0;
       height: 3.6em;
