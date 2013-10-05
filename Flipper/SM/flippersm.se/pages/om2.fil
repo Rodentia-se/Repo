@@ -22,6 +22,8 @@
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort i baren vid receptionen eller på O'Learys restaurang. Samma spelkort gäller även i alla arkadspel i huset. Samtliga turneringsspel är givetvis satta på free play.</p>
     <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
 
+	<hr/>
+
     <h2>Färdvägar</h2>
     <p>O'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O'Learys är den naturliga samlingsplatsen på Heron City.
     <h3>Med taxi</h3>
@@ -69,7 +71,8 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
       <p><span class="schedule">1500</span>Flipperorientering</p>
       <p><span class="schedule">1800-1900</span>Prisutdelning</p>
 
-
+	<hr/>
+	
     <h2>Boende</h2>
     <img src="https://www.flippersm.se/images/partners/dialog.jpg" class="right">
     <h3>Hotell Dialog</h3>
