@@ -1,0 +1,103 @@
+<h1>Om Flipper-SM 2013</h1>
+
+<script type="text/javascript">
+  function showMap(id) {
+    document.getElementById(id).innerHTML = '<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe>';
+  }
+  function showHotelMap(id) {
+    document.getElementById(id).innerHTML = '<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe>';
+  }
+</script>
+<div id="tabs" class="clearboth">
+  <ul>
+    <li class="tabs"><a href="#varDiv" onclick="showMap('varMap');"><h3>Var</h3></a></li>
+    <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
+    <li class="tabs"><a href="#resaDiv" onclick="showMap('resaMap');"><h3>Resa</h3></a></li>
+    <li class="tabs"><a href="#boDiv" onclick="showHotelMap('boMap');"><h3>Bo</h3></a></li>
+  </ul>
+  <div id="varDiv">
+    <p></p>
+    <h3>Spellokal</h3>
+    <p>Heron City är ett kombinerat nöjes- och shoppingcenter. Där finns mataffär, alla andra typer av butiker, flera restauranger (både snabbmat- och "riktiga" restauranger), biograf, arkadspel och givetvis flipperspel.</p>
+    <p>I området ligger även massor med andra affärer, t ex världens största IKEA-varuhus. Skärholmens centrum (SKHLM), som ligger på 10 minuters promenadavstånd, har ännu mer att erbjuda. Centrala Stockholm ligger inte längre bort än 20-30 minuter med bil eller kommunaltrafik.</p>
+    <h3>O'Learys</h3>
+    <img src="https://www.flippersm.se/images/partners/olearys.png" class="right">
+    <p>O'Learys har ett fullgott utbud av mat och dryck, inklusive fullständiga rättigheter. Vi är ytterst tacksamma för att O'Learys låter oss anordna våra tävlingar i deras lokaler, och de har varit sjukt hjälpsamma när det gäller allehanda logistik.</p>
+    <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O'Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
+    <h3>Spelkort</h3>
+    <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort i baren vid receptionen eller på O'Learys restaurang. Samma spelkort gäller även i alla arkadspel i huset. Samtliga turneringsspel är givetvis satta på free play.</p>
+    <p class="fluid-wrapper" id="varMap"><iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
+    <p><img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" /></p>
+    <p><img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" /></p>
+  </div>
+  <div id="narDiv">
+    <h2>Kronologiskt schema</h2>
+      <p class="bold">Fredag 2013-11-08:</p>
+      <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
+      <p><span class="schedule">1800-0000</span>Kvalspel i huvudtävlingen och classics</p>
+      <p><span class="schedule">1830</span>Bäst på en minut</p>
+      <p><span class="schedule">2000</span>Flipperorientering</p>
+      <p class="bold">Lördag 2013-11-09:</p>
+      <p><span class="schedule">1000-1900</span>Kvalspel i classics</p>
+      <p><span class="schedule">1000-2200</span>Kvalspel i huvudtävlingen</p>
+      <p><span class="schedule">1500</span>Flipperorientering</p>
+      <p><span class="schedule">1900</span>Bäst på en minut</p>
+      <p><span class="schedule">1900-0000</span>Slutspel i classics</p>
+      <p><span class="schedule">2200-0000</span>Extratimmar för kvalspel</p>
+      <p class="bold">Söndag 2013-11-10:</p>
+      <p><span class="schedule">1000-1800</span>Slutspel i huvudtävlingen</p>
+      <p><span class="schedule">1400-1800</span>Slutspel i U18</p>
+      <p><span class="schedule">1200</span>Bäst på en minut</p>
+      <p><span class="schedule">1500</span>Flipperorientering</p>
+      <p><span class="schedule">1800-1900</span>Prisutdelning</p>
+    </div>
+  <div id="resaDiv">
+    <h2>Färdvägar</h2>
+    <p class="fluid-wrapper" id="resaMap"><iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
+    <p>O'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O'Learys är den naturliga samlingsplatsen på Heron City.
+    <h3>Med taxi</h3>
+    <p>Tävlingen äger rum på <a href="www.olearys.se/heroncity" target="_blank">O'Learys</a> på <a href="http://www.heroncity.se/" target="_blank"> i Skärholmen, en dryg kvart utanför Stockholms centrum. <a href="http://www.taxistockholm.se/english/" target="_blank">Taxi Stockholm</a> är den största taxifirman och man kan beställa en taxi direkt på deras hemsida. Alla taxichaufförer vet var Heron City ligger (om inte – hoppa ur bilen direkt!). Gatuadressen är Dialogvägen 2. Två andra firmor som ofta rekommenderas är <a href="http://www.taxikurir.se/inenglish.4.514cc05910c58eb13ad800018308.html" target="_blank">Taxi Kurir</a> och <a href="http://www.taxi020.se/in-english/" target="_blank">Taxi 020</a>. Samtliga tre, och alla andra stora operatörer, har fasta priser från Arlanda in till stan. Taxi Stockholms pris är 520:- och till spellokalen 690:-. Betala inte mer än så alltså!</p>
+
+    <img src="https://www.flippersm.se/images/tbana.jpg" class="right">
+    <h3>Åka kommunalt</h3>
+    <p><a href="http://www.sl.se/english/" target="_blank">SL</a> sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras <a href="http://sl.se/en/Visitor/Plan-your-journey/" target="_blank">reseplanerare</a>.</p>
+    <h3>Med tunnelbana</h3>
+    <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg" och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T" i en vit cirkel.</p>
+
+    <h3>Med buss</h3>
+    <p>Använd SL:s reseplanerare och skriv in "Kungens Kurva", "Månskärsvägen" eller "Dialogvägen 2" som destination. Reseplaneraren föreslår alla möjliga kombinationer av kommunaltrafik och hur lång tid varje alternativ tar. Välj den kombination som passar dig.</p>
+
+    <h3>Med pendeltåg</h3>
+    <p>Närmaste pendeltågstation är Älvsjö. Man kan gå därifrån, men vi rekommenderar att istället ta buss, taxi, cykel, skateboard eller vad annat färdmedel som helst med hjul.</p>
+
+    <h3>Med bil</h3>
+    <p>Heron City ligger precis vid E4:an, Sveriges stora nord-sydliga motorväg.</p>
+    <p>Korta versionen: Ta avfart #151 och sväng hela tiden höger tills du ser Heron City.</p>
+    <p>Längre version:</p>
+    <p>Kommer du från norr (Stockholm), ta avfart 151 som heter "Skärholmen N, Kungens Kurva N". Håll höger mot "Kungens Kurva", sväng höger vid rondellen vid IKEA och sedan ser du Heron City framför dig.</p>
+    <p>Kommer du från söder så tar du samma avfart (151) och efter att ha svängt höger i tre rondeller så star du på Heron Citys parkeringsplats.
+Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
+
+    <h3>Den (ö)kända inzoomningskartan</h3>
+    <p><a href="https://www.flippersm.se/images/magnifying_map.png" target="_blank"><img src="https://www.flippersm.se/images/magnifying_map.png"></a></p>
+  </div>
+  <div id="boDiv">
+    <h2>Boende</h2>
+    <img src="https://www.flippersm.se/images/partners/dialog.jpg" class="right">
+    <h3>Hotell Dialog</h3>
+    <p>Samtliga deltagare i Flipper-SM har 10 % rabatt på Hotell Dialog, som ligger 200 meter från Heron City.</p>
+    <p>Enkelrum: 445:- per natt</p>
+    <p>Dubbelrum: 585:- per natt</p>
+    <p>Boka direkt via <a href="http://www.hoteldialog.se/" target="_blank">deras hemsida</a> och uppge bokningskod: "Flipper-SM".</p>
+    <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
+    <h3>Quality Hotel Prince Philip</h3>
+    <p><a href="https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/" target="_blank">https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/</a></p>
+    <h3>Scandic Kungens Kurva</h3>
+    <p><a href="http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU" target="_blank">http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU</a></p>
+  </div>
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#tabs').tabs();
+  });
+</script>
