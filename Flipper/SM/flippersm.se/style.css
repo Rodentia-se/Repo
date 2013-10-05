@@ -625,6 +625,99 @@ top: -9999px;
       content: "Betalat: ";
     }
 
+
+    .standings td:nth-of-type(1) {
+      position: absolute;
+      left: 0em;
+      top: 0em;
+      width: 2.5em;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 0.8em;
+    }
+
+    .standings td:nth-of-type(2) {
+      position: absolute;
+      top: 1.6em;
+      right: 0.2em;
+    }
+
+    .standings td:nth-of-type(3) {
+      position: absolute;
+      left: 0em;
+      top: 1.6em;
+      width: 2.5em;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 0.8em;
+    }
+
+    .standings td:nth-of-type(4) {
+      float: left;
+      margin-top: 0em;
+      margin-left: 4em;
+      font-weight: bold;
+    }
+    .standings td:nth-of-type(5) {
+      float: left;
+      margin-top: 0em;
+    }
+
+    .standings td:nth-of-type(6) {
+      position: absolute;
+      top: 1.6em;
+      left: 3.6em;
+    }
+
+
+
+    .result td:nth-of-type(1) {
+      position: absolute;
+      left: 0em;
+      top: 0em;
+      width: 2.5em;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 0.8em;
+    }
+
+    .result td:nth-of-type(2) {
+      position: absolute;
+      top: 1.6em;
+      right: 0.2em;
+    }
+
+    .result td:nth-of-type(3) {
+      position: absolute;
+      left: 0em;
+      top: 1.6em;
+      width: 2.5em;
+      font-weight: bold;
+      text-align: right;
+      padding-right: 0.8em;
+    }
+
+    .result td:nth-of-type(4) {
+      float: left;
+      margin-top: 0em;
+      margin-left: 4em;
+      font-weight: bold;
+    }
+    .result td:nth-of-type(5) {
+      float: left;
+      margin-top: 0em;
+    }
+
+    .result td:nth-of-type(6) {
+      position: absolute;
+      top: 1.6em;
+      left: 3.6em;
+    }
+
+    .result td:nth-of-type(2):after {
+      content: "kvalpoäng";
+    }
+
     .result td:nth-of-type(1) {
       position: absolute;
       left: 0em;
