@@ -8,3 +8,7 @@ AuthExternal pwauth
 AuthzUnixgroup on
 require group smstaff
 
+<Files  ~ "\.fil$">
+  Order allow,deny
+  Deny from all
+</Files>
