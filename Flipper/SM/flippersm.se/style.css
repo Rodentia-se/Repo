@@ -594,13 +594,6 @@ td, th {
       content: "IFPA: ";
     }
 
-    #ifpaRegResultsTable td:nth-of-type(5):before {
-      content: "Classics: ";
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(7):before {
-      content: "Betalat: ";
-    }
     
     
     
