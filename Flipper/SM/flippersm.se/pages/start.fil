@@ -5,14 +5,15 @@
 
 <hr/>
       <h2>Flipper-SM 2013</h2>
-      <p>De elfte svenska mästerskapen i flipper, arrangerade av Svenska flippersällskapet, kommer att spelas den 8-10 november 2013 hos <a href="http://www.olearys.se/Default.aspx?ArticleID=3674">O'Learys Heron City</a> vid Kungens Kurva i Stockholm.</p>
-<p><a href="?s=anmal">Anm&auml;lan &auml;r nu &ouml;ppnad</a>, mer information om t&auml;vlingen kommer f&ouml;lja i takt med att vi hinner uppdatera hemsidan.</p>
+      <p>De elfte svenska mästerskapen i flipper, arrangerade av Svenska flippersällskapet, kommer att spelas den 8-10 november 2013 hos <a href="http://www.olearys.se/Default.aspx?ArticleID=3674">O'Learys i Heron City</a> vid Kungens Kurva i Skärholmen, Stockholm.</p>
+<p><a href="?s=anmal">Anm&auml;lan &auml;r nu &ouml;ppnad</a>!</p>
 </div>
 <br class="clearboth">
 
 <br/>
 
 <hr />
+<h3>Följ oss på sociala media!</h3>
 <?php
 echo '
 <p><a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a></p>
