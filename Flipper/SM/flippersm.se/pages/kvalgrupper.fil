@@ -92,7 +92,7 @@
               $content .= ($playerPreferedQualGroups && in_array($qualGroup->id, $playerPreferedQualGroupIds)) ? ' bold' : '';
             }
             $content .= ($qualGroup->getNoOfPlayers($dbh, true) > $qualLimit[$type]) ? ' red">' : '">';
-            $content .= ucfirst($qualGroup->name).': '.$qualGroup->getNoOfPlayers($dbh).' / '.$qualGroup->getNoOfPlayers($dbh, true);
+            $content .= $qualGroup->getLink().': '.$qualGroup->getNoOfPlayers($dbh).' / '.$qualGroup->getNoOfPlayers($dbh, true);
           } else {
             $content .= ($qualGroup->getNoOfPlayers($dbh, true) > $qualLimit[$type]) ? ' red' : '';
             $content .= ($player && ($player->mainQualGroup_id == $qualGroup->id || $player->classicsQualGroup_id == $qualGroup->id)) ? ' class="bold">' : '>';

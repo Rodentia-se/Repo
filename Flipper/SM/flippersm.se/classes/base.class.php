@@ -100,6 +100,10 @@
     
     public function getLink($href = true) {
       switch ($this->class) {
+        case 'qualGroup':
+          $url = __baseHref__.'/?s=kvalgrupper&id='.$this->id;
+          return ($href) ? '<a href="'.$url.'">'.ucfirst($this->name).'</a>' : $url;
+        break;
         default:
           $url = __baseHref__.'/?s=object&obj='.$this->class.'&id='.$this->id;
           return ($href) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
