@@ -7,8 +7,6 @@ submenu2($dbh, $ulogin, "regler");
 
 <div class="bred">
 
-<hr/>
-
 <p>
 Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska m&auml;staren i flipperspel 2013. Parallellt med kvalspel och slutspel kommer sidot&auml;vlingar p&aring;g&aring;, regler och system f&ouml;r dessa redovisas p&aring; plats. För Classic-divisionen så gäller samma regler som huvudtävlingen när inget annat anges.
 </p>
