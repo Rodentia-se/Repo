@@ -119,6 +119,7 @@ div#content {
   width: 1200px;
   margin: 0 auto;
   background-color: #cef;
+  z-index: 9px;
 }
 
 #content h1, #content h2, #content h3, #content label {
