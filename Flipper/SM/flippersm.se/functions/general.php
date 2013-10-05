@@ -1097,6 +1097,7 @@
     
   function getTshirtForm($dbh, $ulogin, $tournament = 1) {
     $player = getCurrentPlayer($dbh, $ulogin);
+    $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
     $tshirts = $player->getTshirts($dbh, $tournament);
     if($tshirts && count($tshirts > 0)) {
       $shown = 'Nedan ser du de tröjor du redan har beställt.<br />';
