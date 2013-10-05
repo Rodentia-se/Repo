@@ -10,7 +10,7 @@ function undermenu($dbh, $ulogin, $page, $m)
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam() : false;
 
-  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href=\"?s=anmal\">Anmälan</a>';
+  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmal">Anmälan</a>';
 
   if($page == "anmal" or $page == "object" or $page == 'edit' or $page == 'funktionar') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
     {
