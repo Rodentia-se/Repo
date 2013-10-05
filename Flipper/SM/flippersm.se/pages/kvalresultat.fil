@@ -24,7 +24,7 @@
               </thead>
               <tbody>
   ';
-  if (count($players) > 0) {
+  if (is_array($players) && count($players) > 0) {
     foreach ($players as $player) {
       $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', 1);
       foreach ($qualEntries as $qualEntry) {
