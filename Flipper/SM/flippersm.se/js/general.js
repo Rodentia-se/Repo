@@ -3302,18 +3302,3 @@ function debugOut(obj, name) { // Send some info to the debug div, if debugMode 
 }
 
 
-// much simpler tab solution:
-hide_all_sections()
-
-$("#tab_links a").click(function() {
-	var section_to_show = $(this).attr('href');
-	hide_all_sections();
-	$(section_to_show).removeClass("hidden");
-	return false;
-});
-
-function hide_all_sections() {
-	for (var n=0;n<$(".section").length;n++) {
-		$(".section").eq(n).addClass("hidden");
-	}
-}
