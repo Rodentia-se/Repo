@@ -521,6 +521,12 @@ top: -9999px;
       float: none;
       width: 100%;
     }
+    
+    #content .section {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    }
 
     /* Force table to not be like tables anymore */
     #content table.result, #content table.registered, #content table.volunteer {
