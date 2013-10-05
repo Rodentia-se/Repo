@@ -1306,6 +1306,7 @@
   
   function getTeamForm($dbh, $ulogin, $tournament = 1) {
     $player = getCurrentPlayer($dbh, $ulogin);
+    $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
     $players = (array) getFreeTeamMembers($dbh, $tournament);
     $team = $player->getTeam($dbh);
     if ($team) {
@@ -1318,7 +1319,7 @@
       $regTeamDisplay = '';
       $editTeamDisplay = 'none';
     }
-    $content = '
+    $content .= '
       <p id="regTeamHeader" class="regTeam" style="display: '.$regTeamDisplay.';"><b>Du är inte medlem i något lag.</b> Om du ska vara medlem i ett lag som redan är anmält, be din medspelare att stoppa in dig i laget. Om du vill anmäla ett nytt lag så fyller du fälten nedan.</p>
       <p id="editTeamHeader" class="editTeam" style="display: '.$editTeamDisplay.';">Du är medlem i nedanstående lag, och har rätt att ändra uppgifterna. <span class="italic">Använd knappen för att ändra namn eller TAG. Ändrar du medlem eller kapten så ändras det direkt.</span></p>
       <p class="italic" class="editTeam" style="display: '.$editTeamDisplay.';">OBS: Du kan inte lägga till spelare som redan är medlem i ett annat lag, de måste gå ur det andra laget först.</p>
