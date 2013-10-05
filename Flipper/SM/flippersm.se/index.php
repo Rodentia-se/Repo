@@ -11,7 +11,7 @@ function undermenu($page, $m, $dbh, $ulogin)
 
   if($page == "anmal" or $page == "object" or $page == 'edit') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
     {
-      echo $registrationUrl." <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
+      echo $registrationLink." <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
 	  }
 
   if($page == "om" or ($page == "2012" and $m == "om")  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
