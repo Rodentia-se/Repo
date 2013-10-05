@@ -2,7 +2,7 @@
 
 <p class="submenu2">
 <?php
-	print_menu(2,$s);
+submenu2($dbh, $ulogin, "regler");
 ?>
 </p>
 
@@ -62,54 +62,54 @@
 <tr>
     <td class="regler" width="177">2012-11-17, 22.00-24.00</td>
     <td class="regler" width="164">Slutspel, Split</td>
-    <td class="regler" width="193">De åtta bästa lagen från kvalet.</td>
+    <td class="regler" width="193">De Ã¥tta bÃ¤sta lagen frÃ¥n kvalet.</td>
   </tr>
-<tr><td></tr><tr><th class ="regler" colspan="3" >Kval övriga sidotävlingar (Enhands, Set-the-highscore & Dragster)</td></tr>
+<tr><td></tr><tr><th class ="regler" colspan="3" >Kval Ã¶vriga sidotÃ¤vlingar (Enhands, Set-the-highscore & Dragster)</td></tr>
   <tr>
     <td class="regler" width="177">2012-11-16, 16.00</td>
-    <td class="regler" width="164">Starttid kval övr. sidotävl.</td>
+    <td class="regler" width="164">Starttid kval Ã¶vr. sidotÃ¤vl.</td>
     <td class="regler" width="193">Alla</td>
   </tr>
 <tr>
     <td class="regler" width="177">2012-11-18, 12.00</td>
-    <td class="regler" width="164">Sluttid kval övr. sidotävl. (Inga resultat registreras efter detta.)</td>
+    <td class="regler" width="164">Sluttid kval Ã¶vr. sidotÃ¤vl. (Inga resultat registreras efter detta.)</td>
     <td class="regler" width="193">Alla</td>
   </tr>
 <tr><td></tr><tr><th class ="regler" colspan="3" >Slutspel Main A (spelare 1-64)</td></tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 09.00</td>
-    <td class="regler" width="164">Omgång A1</td>
+    <td class="regler" width="164">OmgÃ¥ng A1</td>
     <td class="regler" width="193">Spelare 33-64</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 10.00</td>
-    <td class="regler" width="164">Omgång A2</td>
-    <td class="regler" width="193">Spelare 17-32 + 16 från Omgång A1</td>
+    <td class="regler" width="164">OmgÃ¥ng A2</td>
+    <td class="regler" width="193">Spelare 17-32 + 16 frÃ¥n OmgÃ¥ng A1</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 11.00</td>
-    <td class="regler" width="164">Omgång A3</td>
-    <td class="regler" width="193">Spelare 1-16 + 16 från Omgång A2</td>
+    <td class="regler" width="164">OmgÃ¥ng A3</td>
+    <td class="regler" width="193">Spelare 1-16 + 16 frÃ¥n OmgÃ¥ng A2</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 12.00</td>
-    <td class="regler" width="164">Omgång A4</td>
-    <td class="regler" width="193">16 från Omgång A3</td>
+    <td class="regler" width="164">OmgÃ¥ng A4</td>
+    <td class="regler" width="193">16 frÃ¥n OmgÃ¥ng A3</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 14.00</td>
-    <td class="regler" width="164">Omgång A5, kvartsfinaler</td>
-    <td class="regler" width="193">8 från Omgång A4</td>
+    <td class="regler" width="164">OmgÃ¥ng A5, kvartsfinaler</td>
+    <td class="regler" width="193">8 frÃ¥n OmgÃ¥ng A4</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 15.00</td>
-    <td class="regler" width="164">Omgång A6, semifinaler</td>
-    <td class="regler" width="193">4 från Omgång A5, kvartsfinaler</td>
+    <td class="regler" width="164">OmgÃ¥ng A6, semifinaler</td>
+    <td class="regler" width="193">4 frÃ¥n OmgÃ¥ng A5, kvartsfinaler</td>
   </tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 16.00</td>
-    <td class="regler" width="164">Omgång A7, final & brons</td>
-    <td class="regler" width="193">Alla från Omgång 6, semifinaler</td>
+    <td class="regler" width="164">OmgÃ¥ng A7, final & brons</td>
+    <td class="regler" width="193">Alla frÃ¥n OmgÃ¥ng 6, semifinaler</td>
   </tr>
 <tr><td></tr><tr><th class ="regler" colspan="3" >Slutspel Main B (spelare 65-96)</td></tr>
    <tr>
@@ -141,32 +141,32 @@
 <tr>
     <td class="regler" width="177">2012-11-18, 11.30</td>
     <td class="regler" width="164">Fas Beta</td>
-    <td class="regler" width="193">Spelare 1-16 + 16 från Alfa *</td>
+    <td class="regler" width="193">Spelare 1-16 + 16 frÃ¥n Alfa *</td>
   </tr>
 <tr>
     <td class="regler" width="177">2012-11-18, 12.30</td>
     <td class="regler" width="164">Fas Gamma</td>
-    <td class="regler" width="193">16 från Beta</td>
+    <td class="regler" width="193">16 frÃ¥n Beta</td>
   </tr>
 <tr>
     <td class="regler" width="177">2012-11-18, 14.30</td>
     <td class="regler" width="164">Fas Delta (Kvartsfinal)</td>
-    <td class="regler" width="193">8 från Gamma</td>
+    <td class="regler" width="193">8 frÃ¥n Gamma</td>
   </tr>
 <tr>
     <td class="regler" width="177">2012-11-18, 15.15</td>
     <td class="regler" width="164">Fas Epsilon (Semifinal)</td>
-    <td class="regler" width="193">4 från Delta</td>
+    <td class="regler" width="193">4 frÃ¥n Delta</td>
   </tr>
 <tr>
     <td class="regler" width="177">2012-11-18, 15.45</td>
     <td class="regler" width="164">Fas Zeta (Final)</td>
-    <td class="regler" width="193">2 från Epsilon</td>
+    <td class="regler" width="193">2 frÃ¥n Epsilon</td>
   </tr>
-<tr><td colspan = "3">Notera att tiderna i Classic är riktmärken, då Mainslutspelet har prioritet.</td></tr>
-<tr><td colspan = "3">(*) Fas Alfa och Beta utgörs av 16 par spelare, vilket är mer än de 12 spel vi förfogar över. Därför gäller det för varje spelarpar att hålla koll på lediga platser. Det står varje par fritt att byta ordning på de två första spelen i matchen, om båda parter är överens.</td></tr>
+<tr><td colspan = "3">Notera att tiderna i Classic Ã¤r riktmÃ¤rken, dÃ¥ Mainslutspelet har prioritet.</td></tr>
+<tr><td colspan = "3">(*) Fas Alfa och Beta utgÃ¶rs av 16 par spelare, vilket Ã¤r mer Ã¤n de 12 spel vi fÃ¶rfogar Ã¶ver. DÃ¤rfÃ¶r gÃ¤ller det fÃ¶r varje spelarpar att hÃ¥lla koll pÃ¥ lediga platser. Det stÃ¥r varje par fritt att byta ordning pÃ¥ de tvÃ¥ fÃ¶rsta spelen i matchen, om bÃ¥da parter Ã¤r Ã¶verens.</td></tr>
 
-<tr><td></tr><tr><th class ="regler" colspan="3" >Slutspel U18 (de sex bästa från Mainkvalet)</td></tr>
+<tr><td></tr><tr><th class ="regler" colspan="3" >Slutspel U18 (de sex bÃ¤sta frÃ¥n Mainkvalet)</td></tr>
    <tr>
     <td class="regler" width="177">2012-11-18, 13.00</td>
     <td class="regler" width="164">Kvartsfinaler</td>
@@ -193,7 +193,7 @@
 <hr/>
 
 <p>
-Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska m&auml;staren i flipperspel 2011. Parallellt med kvalspel och slutspel kommer sidot&auml;vlingar p&aring;g&aring;, regler och system f&ouml;r dessa redovisas p&aring; plats. För Classic-divisionen så gäller samma regler som huvudtävlingen när inget annat anges.
+Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska m&auml;staren i flipperspel 2011. Parallellt med kvalspel och slutspel kommer sidot&auml;vlingar p&aring;g&aring;, regler och system f&ouml;r dessa redovisas p&aring; plats. FÃ¶r Classic-divisionen sÃ¥ gÃ¤ller samma regler som huvudtÃ¤vlingen nÃ¤r inget annat anges.
 </p>
 
 <hr/>
@@ -222,8 +222,8 @@ Noll spelpo&auml;ng kan aldrig ge kvalpo&auml;ng, &auml;ven om scoren skulle var
 
 <h3>Kvalpo&auml;ngber&auml;kning</h3>
 
-<p>Flipper-SM 2011 kommer att genomföras med en poängstege till viss del baserad på gyllene snittet. Bästa resultat på ett spel får 100 kvalpoäng, sämsta resultat får 1 kvalpoäng och exakt 50 kvalpoäng får den som kommer på sextonde plats.
-Detta system ger dels lite extra åt de som spelar riktigt bra, men ger även bra betalt (jämfört med tidigare använda system) åt de som har ganska låga scorer.</p>
+<p>Flipper-SM 2011 kommer att genomfÃ¶ras med en poÃ¤ngstege till viss del baserad pÃ¥ gyllene snittet. BÃ¤sta resultat pÃ¥ ett spel fÃ¥r 100 kvalpoÃ¤ng, sÃ¤msta resultat fÃ¥r 1 kvalpoÃ¤ng och exakt 50 kvalpoÃ¤ng fÃ¥r den som kommer pÃ¥ sextonde plats.
+Detta system ger dels lite extra Ã¥t de som spelar riktigt bra, men ger Ã¤ven bra betalt (jÃ¤mfÃ¶rt med tidigare anvÃ¤nda system) Ã¥t de som har ganska lÃ¥ga scorer.</p>
 
 
 <p>F&ouml;r varje kvalspel sammanst&auml;lls de inrapporterade t&auml;vlingspo&auml;ngen. De rangordnas och spelaren erh&aring;ller kvalpo&auml;ng enligt:</p>
@@ -399,18 +399,18 @@ Detta system ger dels lite extra åt de som spelar riktigt bra, men ger även bra 
 
 <h2>Slutspel</h2>
 
-<p>Slutspelet f&ouml;r Flipper-SM 2011 &auml;r ett enkelt slutspelstr&auml;d, fast med f&ouml;rdelar f&ouml;r spelare med kvalrank 1-32 som f&aring;r st&aring; &ouml;ver en (17-32) respektive tv&aring; (1-16) omg&aring;ngar. T&auml;vlingen kommer att avg&ouml;ras i matcher mellan två spelare. Matcherna avg&ouml;rs i b&auml;st av tre set. Skulle en spelare vinna de f&ouml;rsta tv&aring; seten spelas inte det tredje setet i den matchen. Vilka spel som skall anv&auml;ndas i respektive set best&auml;ms av t&auml;vlingsledningen (olika spel f&ouml;r varje set).</p>
-<p>F&ouml;r classicslutspelet g&auml;ller i alla omgångar förutom finalen match mellan två spelare i bäst av tre set, tre kulor. Finalen spelas mellan fyra spelare över tre spel och med poängberäkningen 3-2-1-0 (högst poäng till vinnaren). Bäst rankad i finalen väljer bana först på spel 1, därefter näst bäst rankad osv. På spel 2 börjar den som vann spel 1, den som kom tvåa spelar som tvåa osv. På spel 3 börjar den som vann spel 2, därefter den som kom tvåa på spel 2.</p>
+<p>Slutspelet f&ouml;r Flipper-SM 2011 &auml;r ett enkelt slutspelstr&auml;d, fast med f&ouml;rdelar f&ouml;r spelare med kvalrank 1-32 som f&aring;r st&aring; &ouml;ver en (17-32) respektive tv&aring; (1-16) omg&aring;ngar. T&auml;vlingen kommer att avg&ouml;ras i matcher mellan tvÃ¥ spelare. Matcherna avg&ouml;rs i b&auml;st av tre set. Skulle en spelare vinna de f&ouml;rsta tv&aring; seten spelas inte det tredje setet i den matchen. Vilka spel som skall anv&auml;ndas i respektive set best&auml;ms av t&auml;vlingsledningen (olika spel f&ouml;r varje set).</p>
+<p>F&ouml;r classicslutspelet g&auml;ller i alla omgÃ¥ngar fÃ¶rutom finalen match mellan tvÃ¥ spelare i bÃ¤st av tre set, tre kulor. Finalen spelas mellan fyra spelare Ã¶ver tre spel och med poÃ¤ngberÃ¤kningen 3-2-1-0 (hÃ¶gst poÃ¤ng till vinnaren). BÃ¤st rankad i finalen vÃ¤ljer bana fÃ¶rst pÃ¥ spel 1, dÃ¤refter nÃ¤st bÃ¤st rankad osv. PÃ¥ spel 2 bÃ¶rjar den som vann spel 1, den som kom tvÃ¥a spelar som tvÃ¥a osv. PÃ¥ spel 3 bÃ¶rjar den som vann spel 2, dÃ¤refter den som kom tvÃ¥a pÃ¥ spel 2.</p>
 <p><b>Observera att slutspelssystemet fram till t&auml;vlingsstart och &auml;ven under SM-helgen kan komma att &auml;ndras, vilket i s&aring; fall meddelas h&auml;r och p&aring; plats i lokalen.</b></p>
-<p>I Split-t&auml;vlingen g&aring;r de åtta b&auml;sta lagen fr&aring;n kvalet till kvartsfinal och spelas enligt samma regler som main. Lag 1 möter lag 8, lag 2 möter lag 7 osv.</p> 
+<p>I Split-t&auml;vlingen g&aring;r de Ã¥tta b&auml;sta lagen fr&aring;n kvalet till kvartsfinal och spelas enligt samma regler som main. Lag 1 mÃ¶ter lag 8, lag 2 mÃ¶ter lag 7 osv.</p> 
 <br>
 <p>F&ouml;r spelare som tar sig till slutspel i flera olika grenar, g&auml;ller en prioriteringsordning om matcherna krockar tidsm&auml;ssigt. F&ouml;rst Main, sedan Classic.<br>
 
 
 
 <p>
-I &aring;r kommer det vara ett upprop innan slutspelet för spelarna 33-64. Om någon spelare inte är där när spelet ska börja så fyller man på med närvarande spelare som har hamnat utanför slutspelet. I de senare omgångarna när spelare 1-32 kommer in i slutspelet kommer det inte vara något upprop, utan saknas en spelare då så vinner motspelaren på w.o. Alla andra är varmt v&auml;lkomna att f&ouml;lja slutspelet och/eller delta i diverse sidot&auml;vlingar.
-För B-slutspelet i Main kommer det också att vara ett upprop för spelarna 65-96. Saknas någon så fyller vi på underifrån, vilket gör att det kan löna sig att komma på söndagen även om man skulle sluta kvalet på plats 100. <br />Under 2011 års SM kunde Sven Jansson ta den sista platsen i B-slutspelet, efter att ha blivit 143:a i kvalet.
+I &aring;r kommer det vara ett upprop innan slutspelet fÃ¶r spelarna 33-64. Om nÃ¥gon spelare inte Ã¤r dÃ¤r nÃ¤r spelet ska bÃ¶rja sÃ¥ fyller man pÃ¥ med nÃ¤rvarande spelare som har hamnat utanfÃ¶r slutspelet. I de senare omgÃ¥ngarna nÃ¤r spelare 1-32 kommer in i slutspelet kommer det inte vara nÃ¥got upprop, utan saknas en spelare dÃ¥ sÃ¥ vinner motspelaren pÃ¥ w.o. Alla andra Ã¤r varmt v&auml;lkomna att f&ouml;lja slutspelet och/eller delta i diverse sidot&auml;vlingar.
+FÃ¶r B-slutspelet i Main kommer det ocksÃ¥ att vara ett upprop fÃ¶r spelarna 65-96. Saknas nÃ¥gon sÃ¥ fyller vi pÃ¥ underifrÃ¥n, vilket gÃ¶r att det kan lÃ¶na sig att komma pÃ¥ sÃ¶ndagen Ã¤ven om man skulle sluta kvalet pÃ¥ plats 100. <br />Under 2011 Ã¥rs SM kunde Sven Jansson ta den sista platsen i B-slutspelet, efter att ha blivit 143:a i kvalet.
 </p>
 
 <!--
