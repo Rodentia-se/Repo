@@ -8,8 +8,8 @@ function undermenu($page,$m)
   {
   
   if(getCurrentPlayerId($dbh, $ulogin)->mainPlayerId) //replace with check if logged in
-     {echo "
-     <a href=\"?s=start\">Start</a> <a href=\"?s=?s=object&obj=player&id=self&m=start\">Dina sidor</a>";
+  {
+    echo '<a href="?s=?s=object&obj=player&id=self">Dina sidor</a> <a href="?s=object&obj=player">Anmälda spelare</a> <a href="?s=funktionar">Funktionärer</a> <a href="?s=object&obj=game">Spel</a>';
 	}
   
   if($page == "anmal" or $page == "object" or $page == 'edit') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
