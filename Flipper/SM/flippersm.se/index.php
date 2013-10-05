@@ -33,6 +33,9 @@ function undermenu($dbh, $ulogin, $page, $m)
 function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
   
+  $player = getCurrentPlayer($dbh, $ulogin);
+  $team = ($player) ? $player->getTeam($dbh) : false;
+
   $content = "<p class=\"submenu2\">";
   var_dump($obj);
   if($category == "anmalda")
