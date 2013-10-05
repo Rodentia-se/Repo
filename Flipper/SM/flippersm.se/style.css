@@ -883,20 +883,20 @@ td, th {
   text-transform: none;
 }
 
-#content div#tabs .ui-widget-header {
+#content div#tabs ul.ui-widget-header {
   background: #CDEEFF;
   border: none;
 }
 
-#content div#tabs .ui-widget-content {
-  background: #CDEEFF url(..images/ui-bg_insert-hard_100_11badc_1x100.png) 50% bottom repeat-x;
-}
-
-#content div#tabs .ui-state-active {
+#content div#tabs li.ui-state-active {
   background: #0078ae url(../images/ui-bg_glass_45_0078ae_1x400.png) 50% 50 repeat-x;
 }
 
-#content div#tabs .ui-state-default {
+#content div#tabs div.ui-widget-content {
+  background: #CDEEFF url(..images/ui-bg_insert-hard_100_11badc_1x100.png) 50% bottom repeat-x;
+}
+
+#content div#tabs li.ui-state-default {
   background: #66ddff;
 }
 
