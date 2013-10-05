@@ -1,7 +1,55 @@
 <h1>Svenska mästerskapen i flipper 2013</h1>
 
 <div class="bred">
-<img src="images/ettan.jpg" alt="" />
+
+<script src="js/contrib/jquery.slides.min.js"></script>
+  <script>
+    $(function() {
+      $('#slides').slidesjs({
+        width: 1200,
+        height: 420,
+        play: {
+          active: false,
+          auto: true,
+          interval: 4000,
+          swap: true,
+          effect: "fade"
+        },
+        pagination: {
+        active: false
+        },
+        navigation: {
+      	active: false,
+		}
+      });
+    });
+  </script>
+
+<h1>Svenska m&auml;sterskapen i flipperspel 2013</h1>
+<div id="slides">
+<?php
+
+require_once 'php/Mobile_Detect.php';
+$detect = new Mobile_Detect;
+ 
+if ( $detect->isMobile() ) {
+	echo "<img src=\"bilder/foton/slide/slide1.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide2.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide3.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide4.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide5.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide6.jpg\" alt=\"\" />";
+}
+else {
+	echo "<img src=\"bilder/foton/slide/slide1.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide2.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide3.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide4.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide5.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide6.jpg\" alt=\"\" />";
+}
+?>
+</div>
 
       <h2>Flipper-SM 2013</h2>
       <p>De elfte svenska mästerskapen i flipper, arrangerade av Svenska flippersällskapet, kommer att spelas den 8-10 november 2013 hos <a href="http://www.olearys.se/Default.aspx?ArticleID=3674">O'Learys i Heron City</a> vid Kungens Kurva i Skärholmen, Stockholm.</p>
