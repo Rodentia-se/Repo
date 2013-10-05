@@ -37,8 +37,9 @@
           ';
           $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', 1);
           if (is_array($qualScores) && count($qualScores) > 0) {
-          foreach ($qualScores as $qualScore) {
-            $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+            foreach ($qualScores as $qualScore) {
+              $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+            }
           }
           $content = preg_replace('/, $/', '', $content).'
                   </td>
