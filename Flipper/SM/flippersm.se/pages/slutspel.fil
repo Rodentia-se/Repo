@@ -1,0 +1,31 @@
+<?php
+
+  $content = '
+    <h1>Slutspel</h1>
+    <p>Slutspelet har inte börjat än</p>
+  ';
+
+  $content .= '
+          <div id="tabs">
+          <ul>
+            <li class="tabs"><a href="#mainDiv"><h3>Main</h3></a></li>
+            <li class="tabs next"><a href="#bDiv"><h3>B</h3></a></li>
+            <li class="tabs next"><a href="#classicsDiv"><h3>Classics</h3></a></li>
+            <li class="tabs next"><a href="#u18Div"><h3>U18</h3></a></li>
+            <li class="tabs next"><a href="#teamDiv"><h3>Dubbel</h3></a></li>
+          </ul>
+          <div id="mainDiv">
+          </div>
+          <div id="bDiv">
+          </div>
+          <div id="classicsDiv">
+          </div>
+          <div id="u18Div">
+          </div>
+          <div id="teamDiv">
+          </div>
+  ';
+
+  echo $content;
+
+?>
