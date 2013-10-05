@@ -563,7 +563,7 @@ td, th {
 
     #ifpaRegResultsTable td:nth-of-type(2) {
       position: absolute;
-      left: 4em;
+      left: 5.5em;
       top: 0em;
       width: 13em;
       font-weight: bold;
@@ -580,26 +580,15 @@ td, th {
     #ifpaRegResultsTable td:nth-of-type(4) {
       position: absolute;
       top: 1.6em;
-      left: 16em;
+      left: 5.5em;
     }
 
     #ifpaRegResultsTable td:nth-of-type(5) {
       position: absolute;
+      left: 0em;
       top: 1.6em;
-      left: 10em;
     }
 
-    #ifpaRegResultsTable td:nth-of-type(6) {
-      position: absolute;
-      top: -9999px;
-      left: -9999px;
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(7) {
-      position: absolute;
-      left: 4em;
-      margin-top: 1.6em;
-    }
 
     #ifpaRegResultsTable td:nth-of-type(4):before {
       content: "IFPA: ";
