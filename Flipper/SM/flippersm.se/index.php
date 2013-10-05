@@ -61,6 +61,8 @@ function undermenu($dbh, $ulogin, $page, $m)
 
 function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
+
+  $m = isset($_GET['m']) ? '&m='.$_GET['m'] : null;
   
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam($dbh) : false;
@@ -70,31 +72,27 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   if($category == "anmalda")
     {
       if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id = $team->id)) {
-        $content .= "<a href=\"?s=object&obj=player&id=self\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self\">Ditt lag</a> <a href=\"?s=editdubbel\">Ändra lag</a> <a href=\"?s=tshirt\">Tröjor</a> <a href=\"?s=kvalval\">Välj kvaltider</a> <a href=\"?s=funktionarsval\">Bli funktionär!</a> <a href=\"?s=betala\">Betala</a>";
+        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."\">Bli funktionär!</a> <a href=\"?s=betala".$m."\">Betala</a>";
       } else {
-        $content .= "<a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>";
+        $content .= "<a href=\"?s=anmalda".$m."\">Anmälda spelare</a> <a href=\"?s=kvalgrupper".$m."\">Kvalgrupper</a> <a href=\"?s=object&obj=team".$m."\">Dubbellag</a>";
       }
     }
 
   if($category == "funktionar")
     {
-      $content .= "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";
+      $content .= "<a href = '?s=funktionar".$m."'>Bli funktionär</a> <a href = '?s=instruktioner".$m."'>Instruktioner</a>";
     }
 
      
   if($category == "tidigare")
     {
-      $content .= "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>";
+      $content .= "<a href = '?s=2012".$m."'>2012</a> <a href = '?s=2011".$m."'>2011</a>  <a href=\"?s=2010".$m."\">2010</a> <a href=\"?s=2009".$m."\">2009</a> <a href=\"?s=2008".$m."\">2008</a> <a href=\"?s=2007".$m."\">2007</a> <a href=\"?s=2006".$m."\">2006</a> <a href=\"?s=2005".$m."\">2005</a> <a href=\"?s=2004".$m."\">2004</a> <a href=\"?s=2003".$m."\">2003</a> <a href=\"?s=90tal".$m."\">90-talet</a>";
     }
      
   if($category == "regler")
     {
-      $content .= "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a>";
+      $content .= "<a href = '?s=regler".$m."'>Regler</a> <a href=\"?s=system".$m."\">Tävlingssystem</a> <a href=\"?s=finalsystem".$m."\">Slutspelssystem</a> <a href=\"?s=dubbel".$m."\">Dubbelregler</a> <a href=\"?s=sido".$m."\">Sidotävlingar</a>";
     }
-
-  if($category == '2012') {
-    $content .= '2012: <a href = "?s=resultat2012">Kval</a> ';
-  }
      
      
   $content .= "</p>";
