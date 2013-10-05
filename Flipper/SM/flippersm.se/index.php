@@ -33,7 +33,7 @@ function submenu2($category, $echo = true, $dbh, $ulogin, $obj = null)
   
   if($category == "anmalda")
     {
-      if (($obj->class == 'player' && $obj->id == getCurrentPlayer($dbh, $ulogin)->id) || ($obj->class == 'team') && $obj->id == getCurrentPlayer($dbh, $ulogin)->getTeam($dbh)->id)) {
+      if (($obj->class == 'player' && $obj->id == getCurrentPlayer($dbh, $ulogin)->id) || ($obj->class == 'team' && $obj->id == getCurrentPlayer($dbh, $ulogin)->getTeam($dbh)->id)) {
         $content .= "<a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>";
       } else {
         $content .= "<a href=\"?s=object&obj=player&id=self\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self\">Ditt lag</a> <a href=\"?s=editdubbel\">Ändra lag</a> <a href=\"?s=tshirt\">Tröjor</a> <a href=\"?s=kvalval\">Välj kvaltider</a> <a href=\"?s=funktionarsval\">Bli funktionär!</a> <a href=\"?s=betala\">Betala</a>";
