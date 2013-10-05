@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Kvalresultat</h1>
-    <p id="submenu2"><a href="#mainTable">Main</a> <a href="#classicsTable">Classics</a> <a href="#u18Table">U18</a> <a href="#teamTable">Dubbel</a></p>
+    <p class="submenu2"><a href="#mainTable">Main</a> <a href="#classicsTable">Classics</a> <a href="#u18Table">U18</a> <a href="#teamTable">Dubbel</a></p>
     <p>Nedan hittar du direktsända kvalresultat från samtliga divisioner.</p>
     <p>"Här" betyder att spelaren är registrerad som närvarande idag, vilket ju har stor betydelse innan finalspelet startar i respektive division.</p>
   ';
