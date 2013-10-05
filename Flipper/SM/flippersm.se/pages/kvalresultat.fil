@@ -2,13 +2,14 @@
 
   $content = '
     <h1>Kvalresultat</h1>
-    <p class="submenu2"><a href="#mainTable">Main</a> <a href="#classicsTable">Classics</a> <a href="#u18Table">U18</a> <a href="#teamTable">Dubbel</a></p>
+    <p class="submenu2" id="tab_links"><a href="#mainTable">Main</a> <a href="#classicsTable">Classics</a> <a href="#u18Table">U18</a> <a href="#teamTable">Dubbel</a></p>
     <p>Nedan hittar du direktsända kvalresultat från samtliga divisioner.</p>
     <p>"Här" betyder att spelaren är registrerad som närvarande idag, vilket ju har stor betydelse innan finalspelet startar i respektive division.</p>
   ';
 
   $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1');
   $content .= '
+          <div id="simpler_tabs">
           <div id="mainTable">
             <table class="standings">
               <thead>
@@ -158,7 +159,7 @@
       ';
     }
   }
-  $content .=  '</tbody></table></div>';
+  $content .=  '</tbody></table></div></div>';
   $content .= getDataTables('.standings');
 
   echo $content;
