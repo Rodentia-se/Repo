@@ -8,7 +8,7 @@ function undermenu($dbh, $ulogin, $page, $m)
   {
 
   $player = getCurrentPlayer($dbh, $ulogin);
-  $team = ($player) ? $player->getTeam() : false;
+  $team = ($player) ? $player->getTeam($dbh) : false;
 
   $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmal">Anmälan</a>';
 
@@ -28,6 +28,7 @@ function undermenu($dbh, $ulogin, $page, $m)
      ";}
 
  }
+
 
 function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
