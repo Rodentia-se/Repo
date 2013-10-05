@@ -1,0 +1,10 @@
+<?php
+
+  $content = '
+    <h1>Funktionärer</h1>
+    <p>Här kommer funktionärsschemat att visas</p>
+  ';
+
+  echo $content;
+
+?>
