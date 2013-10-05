@@ -10,12 +10,13 @@
   ';
 
   $players = getPlayers($dbh, ' where m.tournamentEdition_id = '.$tournament);
+  echo count($players);
   $content .= '
           <div id="mainTable" class="section">
             <table class="standings">
               <thead>
                 <tr>
-                  <th>PLats</th>
+                  <th>Plats</th>
                   <th>Namn</th>
                   <th>Spel</th>
                   <th>Poäng</th>
