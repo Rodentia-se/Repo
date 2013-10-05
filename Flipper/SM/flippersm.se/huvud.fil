@@ -60,7 +60,7 @@
    				$s = isset($_GET['s']) ? $_GET['s'] : 'start';
 				$m = isset($_GET['m']) ? $_GET['m'] : 'om';
 
-	    		undermenu($s, $m, $dbh, $ulogin);
+	    		undermenu($dbh, $ulogin, $s, $m);
 			  ?>
    		</div>
 		</div>
