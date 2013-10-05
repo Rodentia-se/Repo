@@ -530,27 +530,27 @@ top: -9999px;
       width: 100%;
     }
 
-    table.result , table.registered , .result thead, .registered thead, .result  tbody, .registered  tbody, .result th, .registered th, .result td, .registered td, .result  tr, .registered  tr {
+    table.result , table.registered , table.standings, .result thead, .registered thead, .standings thead, .result  tbody, .registered  tbody, .standings  tbody, .result th, .registered th, .standings th, .result td, .registered td, .standings td, .result  tr, .registered  tr, .standings  tr {
       display: block;
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
-    .result th, .registered th {
+    .result th, .registered th, .standings th {
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
     
-    .registered tr.header, .result tr.header, {position: absolute;
+    .registered tr.header, .result tr.header, .result tr.standings {position: absolute;
     left: -9999px;
     top: -9999px;}
 
-    .result td, .registered td, .volunteer td {
+    .result td, .registered td, .volunteer td, .standings td {
       border: 0;
       font-size: 1.05em;
     }
 
-    .result tr, .registered tr, .volunteer tr {
+    .result tr, .registered tr, .volunteer tr, .standings tr {
       position: relative;
       border: 0;
       height: 3.6em;
