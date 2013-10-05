@@ -30,6 +30,7 @@ div#menu {
   position: relative;
   width: 1200px;
   margin: 0 auto;
+  z-index: 999;
 }
 
 #menu #buttons {
@@ -113,6 +114,7 @@ div#logo {
 /* main: */
 
 div#content {
+  position: relative;
   clear: both;
   width: 1200px;
   margin: 0 auto;
