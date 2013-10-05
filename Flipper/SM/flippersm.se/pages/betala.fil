@@ -1,6 +1,10 @@
 <?php
 
   $content = '<h1>Betalning</h1>';
+  if (checkLogin($dbh, $ulogin, false)) {
+
+    $player = getCurrentPlayer($dbh, $ulogin);
+  $content .= submenu2($dbh, $ulogin, 'anmalda', false, $player);
   $content .= '
     <p>Kontrollera att du har anmält dig till allting du vill vara med i, och att du har beställt de tröjor du vill ha:
       <ul>
@@ -12,9 +16,6 @@
       </ul>
     </p>
   ';
-  if (checkLogin($dbh, $ulogin, false)) {
-
-    $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
 
     $main = ($player->mainPlayerId > 0) ? 1 : 0;
     $classics = ($player->classicsPlayerId > 0) ? 1 : 0;
