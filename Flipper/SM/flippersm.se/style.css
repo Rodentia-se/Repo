@@ -867,6 +867,8 @@ td, th {
 #content div#tabs {
   margin-left: 15px;
   margin-right: 15px;
+  border: none;
+  background: none;
 }
 
 #content div#tabs ul li.tabs {
@@ -882,15 +884,23 @@ td, th {
 }
 
 #content div#tabs .ui-widget-header {
-  background: #66ddff3;
+  background: #CDEEFF;
+  border: none;
 }
 
 #content div#tabs .ui-widget-content {
   background: #CDEEFF url(..images/ui-bg_insert-hard_100_11badc_1x100.png) 50% bottom repeat-x;
 }
 
-#content p.fluid-wrapper {
+#content div#tabs .ui-state-active {
+  background: #0078ae url(../images/ui-bg_glass_45_0078ae_1x400.png) 50% 50 repeat-x;
+}
 
+#content div#tabs .ui-state-default {
+  background: #66ddff;
+}
+
+#content p.fluid-wrapper {
   position: relative;
   padding-bottom: 56.25%; /* 16:9 */
   height: 0;
