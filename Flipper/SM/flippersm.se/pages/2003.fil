@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,7 +9,7 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2003</h2>
-      <p>Sju år efter att det senast hade spelats ett SM i flipperspel bestämde sig ett antal medlemmar i Svenska flippersällskapet för att återuppliva tävlingen. 4-5 oktober 2003 spelades Flipper-SM på Kårhuset Nymble, Stockholm. Vinnare av de 99 deltagande spelarna blev Stellan Blomqvist.
+      <p>Sju Ã¥r efter att det senast hade spelats ett SM i flipperspel bestÃ¤mde sig ett antal medlemmar i Svenska flippersÃ¤llskapet fÃ¶r att Ã¥teruppliva tÃ¤vlingen. 4-5 oktober 2003 spelades Flipper-SM pÃ¥ KÃ¥rhuset Nymble, Stockholm. Vinnare av de 99 deltagande spelarna blev Stellan Blomqvist.
       </p>
       
       <hr/>
@@ -23,7 +23,7 @@ submenu2($dbh, $ulogin, "tidigare");
       <img src="bilder/foton/2003/03_4.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Robert Eldrim</i>
+      <i>Samtliga bilder Ã¤r tagna av Robert Eldrim</i>
       </p>
       
       
@@ -32,7 +32,7 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Stellan S B Blomqvist
 </p><p>
@@ -52,7 +52,7 @@ Mattias MAT Vesterlund (Tales of the Arabian Nights, 88M)</p>
 
 <h3>Parflipper</h3>
 <p>
-Karl KGB Broström och Christian MAG Magnusson
+Karl KGB BrostrÃ¶m och Christian MAG Magnusson
 </p>
 
 <h3>B&auml;st-p&aring;-en-minut (Attack from Mars)</h3>
@@ -78,7 +78,7 @@ Slutspelsresultat
 
 <hr/>
 
-<img src="bilder/foton/2003/logo03.png" alt="Loggan fšr Flipper-SM 2003" />
+<img src="bilder/foton/2003/logo03.png" alt="Loggan fÅ¡r Flipper-SM 2003" />
 <p><i>Loggan f&ouml;r Flipper-SM 2003, framtagen av Robert Eldrim</i></p>
 
 

@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 <p class="submenu2">
 <?php
 submenu2($dbh, $ulogin, "tidigare");
@@ -8,42 +8,42 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM p&aring; 90-talet</h2>
-      <p>Under 90-talet spelades ett antal Flipper-SM. Tyvärr har vi ganska knapphändig information om dessa mästerskap, men här är en sammanställning av det vi vet. Om du har några ytterligare fakta, resultat, bilder, korrigeringar eller annan information är vi mycket tacksamma om du <a href="mailto:webb@flippersm.se">hör av dig</a>.
+      <p>Under 90-talet spelades ett antal Flipper-SM. TyvÃ¤rr har vi ganska knapphÃ¤ndig information om dessa mÃ¤sterskap, men hÃ¤r Ã¤r en sammanstÃ¤llning av det vi vet. Om du har nÃ¥gra ytterligare fakta, resultat, bilder, korrigeringar eller annan information Ã¤r vi mycket tacksamma om du <a href="mailto:webb@flippersm.se">hÃ¶r av dig</a>.
       </p>
       
       <hr/>
       
       <h2>Flipper-SM 1991</h2>
-      <p>1991 Spelades mästerskapen i Göteborg och ska enligt uppgift ha spelats enbart på spelet Funhouse.</p>
+      <p>1991 Spelades mÃ¤sterskapen i GÃ¶teborg och ska enligt uppgift ha spelats enbart pÃ¥ spelet Funhouse.</p>
       <hr/>
 
       
 	  <h2>Flipper-SM 1992</h2>
-      <p>Också 1992 hölls SM i Göteborg. Detta år tävlades det enbart på spelet The Addams Family.</p>
+      <p>OcksÃ¥ 1992 hÃ¶lls SM i GÃ¶teborg. Detta Ã¥r tÃ¤vlades det enbart pÃ¥ spelet The Addams Family.</p>
       <hr/>
 
 	  <h2>Flipper-SM 1993</h2>
-	  <p>1993 Spelades faktiskt två olika SM. Flipper-SM i Stockholm arrangerades av Arcadia AB, som var importör för Gottlieb och Data East. SM i Göteborg arrangerades av Bjuvia fritid, som var importör för Williams/Bally.</p>
+	  <p>1993 Spelades faktiskt tvÃ¥ olika SM. Flipper-SM i Stockholm arrangerades av Arcadia AB, som var importÃ¶r fÃ¶r Gottlieb och Data East. SM i GÃ¶teborg arrangerades av Bjuvia fritid, som var importÃ¶r fÃ¶r Williams/Bally.</p>
 	  
 	  <h3>SM i Stockholm</h3>
-      <p>27 augusti spelades SM på Gröna Lund i Stockholm. Fyra speltitlar ingick i tävlingen: Star Wars, Jurassic Park, Gladiators och Tee'd Off.</p>
+      <p>27 augusti spelades SM pÃ¥ GrÃ¶na Lund i Stockholm. Fyra speltitlar ingick i tÃ¤vlingen: Star Wars, Jurassic Park, Gladiators och Tee'd Off.</p>
 	  
-	  <h3>SM i Göteborg</h3>
-	  <p>Mästerskapen i Göteborg spelades 25 september 1993 på Liseberg. Spelen som användes ska ha varit White Water och Creature from the Black Lagoon.</p>
+	  <h3>SM i GÃ¶teborg</h3>
+	  <p>MÃ¤sterskapen i GÃ¶teborg spelades 25 september 1993 pÃ¥ Liseberg. Spelen som anvÃ¤ndes ska ha varit White Water och Creature from the Black Lagoon.</p>
 	        
       <hr/>
 
 	  <h2>Flipper-SM 1994</h2>
-	  <p>1994 Spelades SM i Älvsjö i Stockholm. Tävlingen ska ha spelats på WWF Royal Rumble, Corvette, Flintstones och Rescue 911.</p>
+	  <p>1994 Spelades SM i Ã„lvsjÃ¶ i Stockholm. TÃ¤vlingen ska ha spelats pÃ¥ WWF Royal Rumble, Corvette, Flintstones och Rescue 911.</p>
 	  
 	  <hr/>
 
 	  <h2>Flipper-SM 1995</h2>
-	  <p>Flipper-SM 1995 gick i Göteborg 7-19 november, i Nordstan. Bland spelen i tävlingen ingick Who Dunnit, Water World, Apollo&nbsp;13, Johnny Mnemonic och Pinball Magic. <a href="http://www.dtek.chalmers.se/~d3karl/spc/spc.html" target="_blank">Karl Broströms sida</a> med information om Flipper-SM 1995 ligger fortfarande uppe. Räkna dock inte med att några kontaktuppgifter där fungerar.</p>
+	  <p>Flipper-SM 1995 gick i GÃ¶teborg 7-19 november, i Nordstan. Bland spelen i tÃ¤vlingen ingick Who Dunnit, Water World, Apollo&nbsp;13, Johnny Mnemonic och Pinball Magic. <a href="http://www.dtek.chalmers.se/~d3karl/spc/spc.html" target="_blank">Karl BrostrÃ¶ms sida</a> med information om Flipper-SM 1995 ligger fortfarande uppe. RÃ¤kna dock inte med att nÃ¥gra kontaktuppgifter dÃ¤r fungerar.</p>
 	  <hr/>
 
 	  <h2>Flipper-SM 1996</h2>
-	  <p>Detta var det sista Flipper-SM som spelades på 90-talet. Denna gång gick tävlingen åter i Älvsjö i Stockholm, den 1-3 november. Tävlingen spelades på Attack from Mars, Tales of the Arabian Nights, Twitter, Scared Stiff, Space Jam och Airborne.</p>
+	  <p>Detta var det sista Flipper-SM som spelades pÃ¥ 90-talet. Denna gÃ¥ng gick tÃ¤vlingen Ã¥ter i Ã„lvsjÃ¶ i Stockholm, den 1-3 november. TÃ¤vlingen spelades pÃ¥ Attack from Mars, Tales of the Arabian Nights, Twitter, Scared Stiff, Space Jam och Airborne.</p>
 	  
 	  
       
@@ -80,13 +80,13 @@ submenu2($dbh, $ulogin, "tidigare");
 <hr/>
 
       <img src="bilder/foton/90tal/95_1.jpg" alt="" class="spaltbild" />
-      <p><i>Flipper-SM 1995. Foto: Karl Broström</i></p>
+      <p><i>Flipper-SM 1995. Foto: Karl BrostrÃ¶m</i></p>
       
 <hr/>
 
-      <img src="bilder/foton/90tal/logo93.png" alt="Loggan för Flipper-SM 1993" />
+      <img src="bilder/foton/90tal/logo93.png" alt="Loggan fÃ¶r Flipper-SM 1993" />
 
-      <img src="bilder/foton/90tal/logo95.png" alt="Loggan för Flipper-SM 1995" />
+      <img src="bilder/foton/90tal/logo95.png" alt="Loggan fÃ¶r Flipper-SM 1995" />
 
 
 </div>

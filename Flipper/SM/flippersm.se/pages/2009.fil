@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,10 +9,10 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2009</h2>
-      <p>Borås blev första plats att ta över stafettpinnen från Stockholm och Göteborg. Christian Holmstens lokal Pinballseye tog hand om 171 spelare från hela landet. <br/>
-Vinnare i huvudtävlingen blev Jörgen Holm, som i finalen slog Per Holknekt med 2-1. Jorian Engelbrektsson, som vunnit de två föregående mästerskapen, fick nöja sig med en bronspeng efter att ha slagit Patrik Bodin med 2-1.
+      <p>BorÃ¥s blev fÃ¶rsta plats att ta Ã¶ver stafettpinnen frÃ¥n Stockholm och GÃ¶teborg. Christian Holmstens lokal Pinballseye tog hand om 171 spelare frÃ¥n hela landet. <br/>
+Vinnare i huvudtÃ¤vlingen blev JÃ¶rgen Holm, som i finalen slog Per Holknekt med 2-1. Jorian Engelbrektsson, som vunnit de tvÃ¥ fÃ¶regÃ¥ende mÃ¤sterskapen, fick nÃ¶ja sig med en bronspeng efter att ha slagit Patrik Bodin med 2-1.
       </p>
-<p>De yngre förmågorna släpptes nu också för första gången in i tävlingshelgen på allvar, och fick två egna klasser att husera i.
+<p>De yngre fÃ¶rmÃ¥gorna slÃ¤pptes nu ocksÃ¥ fÃ¶r fÃ¶rsta gÃ¥ngen in i tÃ¤vlingshelgen pÃ¥ allvar, och fick tvÃ¥ egna klasser att husera i.
       
       <hr/>
       
@@ -25,7 +25,7 @@ Vinnare i huvudtävlingen blev Jörgen Holm, som i finalen slog Per Holknekt med 2
       <img src="bilder/foton/2009/players2.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Fredrik Dahlén</i>
+      <i>Samtliga bilder Ã¤r tagna av Fredrik DahlÃ©n</i>
       </p>
       
       
@@ -34,9 +34,9 @@ Vinnare i huvudtävlingen blev Jörgen Holm, som i finalen slog Per Holknekt med 2
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
-1. Jörgen IFK Holm
+1. JÃ¶rgen IFK Holm
 </p><p>
 2. Per APB Holknekt
 </p><p>
@@ -49,31 +49,31 @@ Vinnare i huvudtävlingen blev Jörgen Holm, som i finalen slog Per Holknekt med 2
 </p><p>
 2. Eric JEE Erlandsson
 </p><p>
-3. Karl KGB Broström</p>
+3. Karl KGB BrostrÃ¶m</p>
 
-<h3>Juniorer (11-17 år)</h3>
+<h3>Juniorer (11-17 Ã¥r)</h3>
 <p>
 1. Jakob JFW Wikner
 </p>
 
-<h3>Miniorer (5-10 år)</h3>
+<h3>Miniorer (5-10 Ã¥r)</h3>
 <p>
-1. Gustav Bågmark
+1. Gustav BÃ¥gmark
 </p>
 
 <h3>Set the Highscore (Jokerz!)</h3>
 <p>
-Magnus LIX Rostö
+Magnus LIX RostÃ¶
 </p>
 
 <h3>Enhands (Elvira and the Partymonsters)</h3>
 <p>
-Victor TFF Håkansson
+Victor TFF HÃ¥kansson
 </p>
 
 <h3>Parflipper</h3>
 <p>
-1. Jörgen Holm & Jorian Engelbrektsson</p>
+1. JÃ¶rgen Holm & Jorian Engelbrektsson</p>
 <p>
 2. Henrik Hultin & Jonas Andersson
 </p>
@@ -91,7 +91,7 @@ Kval efter spel
 </a></p>
 
 <p><a href="bilder/diverse/09slutspelmain.png">
-Splutspelsträd
+SplutspelstrÃ¤d
 </a></p>
 
 <p><a href="?s=09classickval">
@@ -103,11 +103,11 @@ Classics efter spel
 </a></p>
 
 <p><a href="bilder/diverse/09slutspelclassics.png">
-Slutspelsträd classics
+SlutspelstrÃ¤d classics
 </a></p>
 
 <hr/>
-<img src="bilder/layout/logo.png" width=360 px alt="Loggan för Flipper-SM 2009" />
+<img src="bilder/layout/logo.png" width=360 px alt="Loggan fÃ¶r Flipper-SM 2009" />
 
-<p><i>Logotypen för Flipper-SM 2009, framtagen av Christian Holmsten.</i></p>
+<p><i>Logotypen fÃ¶r Flipper-SM 2009, framtagen av Christian Holmsten.</i></p>
 </div>

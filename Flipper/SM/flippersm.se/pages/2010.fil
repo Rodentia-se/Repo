@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,22 +9,22 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2010</h2>
-      <p>Malmö tog hand om arrangemanget för första gången, när biljardrestaurangen Interpool var spelplats. Huvudklassen vanns av göteborgaren <strong>Alvar Palm</strong> (med rötter i Härnösand), och för andra året i rad tvingades <strong>Per Holknekt</strong> ta hand om silvermedaljen. Trea blev <strong>Fredrik Malmqvist</strong> före <strong>Reidar Spets</strong>. <br /><strong>Mats Runsten</strong> tog för andra året i rad hand om guldet i classics. 140 spelare kom till start helgen 12-14 november.<br />
+      <p>MalmÃ¶ tog hand om arrangemanget fÃ¶r fÃ¶rsta gÃ¥ngen, nÃ¤r biljardrestaurangen Interpool var spelplats. Huvudklassen vanns av gÃ¶teborgaren <strong>Alvar Palm</strong> (med rÃ¶tter i HÃ¤rnÃ¶sand), och fÃ¶r andra Ã¥ret i rad tvingades <strong>Per Holknekt</strong> ta hand om silvermedaljen. Trea blev <strong>Fredrik Malmqvist</strong> fÃ¶re <strong>Reidar Spets</strong>. <br /><strong>Mats Runsten</strong> tog fÃ¶r andra Ã¥ret i rad hand om guldet i classics. 140 spelare kom till start helgen 12-14 november.<br />
 
       
       <hr/>
       
       <img src="bilder/foton/2010/alvar360.png" alt="Alvar Palm, vinnare 2010" class="spaltbild" />
-      <br/><p>Alvar Palm, vinnare i huvudtävlingen.</p><br/>
+      <br/><p>Alvar Palm, vinnare i huvudtÃ¤vlingen.</p><br/>
       <img src="bilder/foton/2010/not360.png" alt="NOT, Henrik Tomson & Christian Balac" class="spaltbild" />
       <br/><p>SM-generalen Christian INK Holmsten delar ut splitpokalen till Henrik Tomson och Christian Balac.</p><br/>
       <img src="bilder/foton/2010/palochjl360.png" alt="JL och PAL" class="spaltbild" />
-      <br/><p>Svartklädda herrarna Johan Lundin och Patrik Bodin betraktar slutspelet.</p><br/>
+      <br/><p>SvartklÃ¤dda herrarna Johan Lundin och Patrik Bodin betraktar slutspelet.</p><br/>
       <img src="bilder/foton/2010/perochlel360.png" alt="PER och LEL" class="spaltbild" />
-	<br/><p>En något uppgiven Per Ahlenius ser Reidar Spets vinna åttondelen.</p><br/>
-      <img src="bilder/foton/2010/smslut360.png" alt="Tack för den här gången" class="spaltbild" />
+	<br/><p>En nÃ¥got uppgiven Per Ahlenius ser Reidar Spets vinna Ã¥ttondelen.</p><br/>
+      <img src="bilder/foton/2010/smslut360.png" alt="Tack fÃ¶r den hÃ¤r gÃ¥ngen" class="spaltbild" />
       <p>
-      <i>Samtliga bilder (även de skakiga) av Hans Andersson.</i>
+      <i>Samtliga bilder (Ã¤ven de skakiga) av Hans Andersson.</i>
       </p>
       
       
@@ -33,7 +33,7 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Alvar APA Palm
 </p><p>
@@ -48,7 +48,7 @@ submenu2($dbh, $ulogin, "tidigare");
 </p><p>
 2. Fredrik REY Malmqvist
 </p><p>
-3. Jörgen BOT Boström</p>
+3. JÃ¶rgen BOT BostrÃ¶m</p>
 
 <h3>Split</h3>
 <p>
@@ -58,12 +58,12 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h3>Enhands</h3>
 <p>
-1. Fredrik REY Malmqvist (ca 12M på Scared Stiff)
+1. Fredrik REY Malmqvist (ca 12M pÃ¥ Scared Stiff)
 </p>
 
 <h3>Set the Highscore (Iron Man)</h3>
 <p>
-Henrik Lagercrantz (poäng okänd.)
+Henrik Lagercrantz (poÃ¤ng okÃ¤nd.)
 </p>
 
 <h3>Set the Highscore (Cherokee)</h3>
@@ -84,7 +84,7 @@ Kval efter spel
 </a></p>
 
 <p><a href="bilder/diverse/10slutspelmain.png">
-Splutspelsträd
+SplutspelstrÃ¤d
 </a></p>
 
 <p><a href="?s=10classicskval">
@@ -96,11 +96,11 @@ Classics efter spel
 </a></p>
 
 <p><a href="bilder/diverse/10slutspelclassics.png">
-Slutspelsträd classics
+SlutspelstrÃ¤d classics
 </a></p>
 
 <hr/>
-<img src="bilder/loggor/malmoflippersm2010logo.png" width=360 px alt="Loggan för Flipper-SM 2010" />
+<img src="bilder/loggor/malmoflippersm2010logo.png" width=360 px alt="Loggan fÃ¶r Flipper-SM 2010" />
 
-<p><i>Logotypen för Flipper-SM 2010, framtagen av Christian Holmsten.</i></p>
+<p><i>Logotypen fÃ¶r Flipper-SM 2010, framtagen av Christian Holmsten.</i></p>
 </div>

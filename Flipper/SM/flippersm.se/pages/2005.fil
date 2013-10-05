@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,7 +9,7 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2005</h2>
-      <p>För tredje året i rad spelades Flipper-SM 25-27 november 2005 på Kårhuset Nymble i Stockholm. Mats Runsten tog hem titeln detta år då 169 spelare deltog.
+      <p>FÃ¶r tredje Ã¥ret i rad spelades Flipper-SM 25-27 november 2005 pÃ¥ KÃ¥rhuset Nymble i Stockholm. Mats Runsten tog hem titeln detta Ã¥r dÃ¥ 169 spelare deltog.
       </p>
       
       <hr/>
@@ -23,7 +23,7 @@ submenu2($dbh, $ulogin, "tidigare");
       <img src="bilder/foton/2005/05_4.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Peter Jonsson</i>
+      <i>Samtliga bilder Ã¤r tagna av Peter Jonsson</i>
       </p>
       
       
@@ -32,17 +32,17 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Mats MCR Runsten
 </p><p>
-2. Jörgen IFK Holm
+2. JÃ¶rgen IFK Holm
 </p><p>
 3. Linus S P Jorenbo</p>
 
 <h3>Set the Highscore</h3>
 <p>
-Karl KGB Broström (Popeye)
+Karl KGB BrostrÃ¶m (Popeye)
 </p><p>
 Per APB Holknekt (Attack from Mars)</p>
 
@@ -64,7 +64,7 @@ Helena YOO Walter
 
 <h3>Rumpa</h3>
 <p>
-Jorian JOE Engelbrektsson, Linus S P Jorenbo, Jörgen IFK Holm och Fredrik REY Malmqvist
+Jorian JOE Engelbrektsson, Linus S P Jorenbo, JÃ¶rgen IFK Holm och Fredrik REY Malmqvist
 </p>
 
 <hr/>
@@ -80,7 +80,7 @@ Kval efter spel
 </a></p>
 
 <p><a href="?s=05forspel">
-Förspel
+FÃ¶rspel
 </a></p>
 
 <p><a href="?s=05grupp">
@@ -88,7 +88,7 @@ Gruppspel
 </a></p>
 
 <p><a href="?s=05attondel">
-Åttondelsfinaler
+Ã…ttondelsfinaler
 </a></p>
 
 <p><a href="?s=05kvart">
@@ -109,7 +109,7 @@ Final
 
 <hr/>
 
-<img src="bilder/foton/2005/logo05.png" alt="Loggan fšr Flipper-SM 2005" />
+<img src="bilder/foton/2005/logo05.png" alt="Loggan fÅ¡r Flipper-SM 2005" />
 <p><i>Loggan f&ouml;r Flipper-SM 2005, framtagen av Per Martinson</i></p>
 
 </div>

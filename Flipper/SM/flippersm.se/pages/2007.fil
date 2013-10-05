@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,7 +9,7 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2007</h2>
-      <p>2007 spelades Flipper-SM likt föregående år på Möbelgatan i Mölndal. Vinnare blev Jorian Engelbrektsson och totalt deltog 187 spelare.
+      <p>2007 spelades Flipper-SM likt fÃ¶regÃ¥ende Ã¥r pÃ¥ MÃ¶belgatan i MÃ¶lndal. Vinnare blev Jorian Engelbrektsson och totalt deltog 187 spelare.
       </p>
       
       <hr/>
@@ -23,7 +23,7 @@ submenu2($dbh, $ulogin, "tidigare");
       <img src="bilder/foton/2007/07_4.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Christian Balac</i>
+      <i>Samtliga bilder Ã¤r tagna av Christian Balac</i>
       </p>
       
       
@@ -32,13 +32,13 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Jorian JOE Engelbrektsson
 </p><p>
 2. Fredrik F L Lindberg
 </p><p>
-3. Jörgen IFK Holm</p>
+3. JÃ¶rgen IFK Holm</p>
 
 
 <h3>Classics</h3>
@@ -47,19 +47,19 @@ submenu2($dbh, $ulogin, "tidigare");
 </p><p>
 2. Henrik HNK Hultman
 </p><p>
-3. Jörgen IFK Holm</p>
+3. JÃ¶rgen IFK Holm</p>
 
 
 <h3>Set the Highscore</h3>
 <p>
-Karl KGB Broström (Partyzone, 174M)
+Karl KGB BrostrÃ¶m (Partyzone, 174M)
 </p><p>
 Christian MAG Magnusson (Black Rose, 4,5B)</p>
 
 
 <h3>Parflipper (Funhouse)</h3>
 <p>
-Jorian JOE Engelbrektsson och Jörgen IFK Holm
+Jorian JOE Engelbrektsson och JÃ¶rgen IFK Holm
 </p>
 
 
@@ -88,7 +88,7 @@ Kval efter spel
 </a></p>
 
 <p><a href="?s=07attondel">
-Åttondelsfinaler
+Ã…ttondelsfinaler
 </a></p>
 
 <p><a href="?s=07kvart">
@@ -116,7 +116,7 @@ SLutresultat classics
 </a></p>
 
 <hr/>
-<img src="bilder/foton/2007/logo07.png" alt="Loggan för Flipper-SM 2007" />
+<img src="bilder/foton/2007/logo07.png" alt="Loggan fÃ¶r Flipper-SM 2007" />
 
-<p><i>Loggan för Flipper-SM 2007, framtagen av Christian Holmsten</i></p>
+<p><i>Loggan fÃ¶r Flipper-SM 2007, framtagen av Christian Holmsten</i></p>
 </div>

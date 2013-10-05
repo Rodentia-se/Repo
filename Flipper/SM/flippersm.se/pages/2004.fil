@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -23,7 +23,7 @@ submenu2($dbh, $ulogin, "tidigare");
       <img src="bilder/foton/2004/04_4.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Robert Eldrim</i>
+      <i>Samtliga bilder Ã¤r tagna av Robert Eldrim</i>
       </p>
       
       
@@ -32,11 +32,11 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
-1. Jörgen IFK Holm
+1. JÃ¶rgen IFK Holm
 </p><p>
-2. Karl KGB Broström
+2. Karl KGB BrostrÃ¶m
 </p><p>
 3. Mats MCR Runsten</p>
 
@@ -48,7 +48,7 @@ Christian MAG Magnusson (X-Files, 58M)</p>
 
 <h3>Parflipper (Theatre of Magic)</h3>
 <p>
-Jorian JOE Engelbrektsson och Jörgen IFK Holm
+Jorian JOE Engelbrektsson och JÃ¶rgen IFK Holm
 </p>
 
 <h3>B&auml;st-p&aring;-en-minut (WWF Royal Rumble)</h3>
@@ -68,11 +68,11 @@ Kval efter spel
 </a></p>
 
 <p><a href="?s=04forspel">
-Förspel
+FÃ¶rspel
 </a></p>
 
 <p><a href="?s=04attondel">
-Åttondelsfinaler
+Ã…ttondelsfinaler
 </a></p>
 
 <p><a href="?s=04kvart">
@@ -89,7 +89,7 @@ Final
 
 <hr/>
 
-<img src="bilder/foton/2004/logo04.png" alt="Loggan fšr Flipper-SM 2004" />
+<img src="bilder/foton/2004/logo04.png" alt="Loggan fÅ¡r Flipper-SM 2004" />
 <p><i>Loggan f&ouml;r Flipper-SM 2004, framtagen av Robert Eldrim</i></p>
 
 </div>

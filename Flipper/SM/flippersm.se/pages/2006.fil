@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -9,7 +9,7 @@ submenu2($dbh, $ulogin, "tidigare");
 <div class="spalt">
 
       <h2>Flipper-SM 2006</h2>
-      <p>För att avlasta stockholmarna och ge tävlingen ny kraft spelades Flipper-SM i Göteborg 2006, 10-12 november. På Möbelgatan i Mölndal gjorde 154 spelare upp om titeln Svensk mästare. Reidar&nbsp;Spets gick vinnande ur striden.
+      <p>FÃ¶r att avlasta stockholmarna och ge tÃ¤vlingen ny kraft spelades Flipper-SM i GÃ¶teborg 2006, 10-12 november. PÃ¥ MÃ¶belgatan i MÃ¶lndal gjorde 154 spelare upp om titeln Svensk mÃ¤stare. Reidar&nbsp;Spets gick vinnande ur striden.
       </p>
       
       <hr/>
@@ -23,7 +23,7 @@ submenu2($dbh, $ulogin, "tidigare");
       <img src="bilder/foton/2006/06_4.jpg" alt="" class="spaltbild" />
 
       <p>
-      <i>Samtliga bilder är tagna av Robert Eldrim</i>
+      <i>Samtliga bilder Ã¤r tagna av Robert Eldrim</i>
       </p>
       
       
@@ -32,13 +32,13 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Reidar LEL Spets
 </p><p>
 2. Patrik PAL Bodin
 </p><p>
-3. Karl KGB Broström</p>
+3. Karl KGB BrostrÃ¶m</p>
 
 
 <h3>Classics</h3>
@@ -52,14 +52,14 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h3>Set the Highscore</h3>
 <p>
-Jörgen IFK Holm (Johnny Mnemonic, 27B)
+JÃ¶rgen IFK Holm (Johnny Mnemonic, 27B)
 </p><p>
-Michael MIC Lindström (Turtles, 42M)</p>
+Michael MIC LindstrÃ¶m (Turtles, 42M)</p>
 
 
 <h3>Parflipper (World Cup Soccer)</h3>
 <p>
-Karl KGB Broström och Mats MCR Runsten
+Karl KGB BrostrÃ¶m och Mats MCR Runsten
 </p>
 
 
@@ -84,7 +84,7 @@ Kval efter spel
 </a></p>
 
 <p><a href="?s=06attondel">
-Åttondelsfinaler
+Ã…ttondelsfinaler
 </a></p>
 
 <p><a href="?s=06kvart">
@@ -105,7 +105,7 @@ Final
 
 <hr/>
 
-<img src="bilder/foton/2006/logo06.png" alt="Loggan fšr Flipper-SM 2006" />
+<img src="bilder/foton/2006/logo06.png" alt="Loggan fÅ¡r Flipper-SM 2006" />
 <p><i>Loggan f&ouml;r Flipper-SM 2006, framtagen av Christian Holmsten</i></p>
 
 </div>
