@@ -511,93 +511,38 @@ td, th {
     }
 
     /* Force table to not be like tables anymore */
-    #content table.result, #content table.registered, #content table.volunteer, #content #ifpaRegResultsTable {
+    #content table.result, #content table.registered, #content table.volunteer {
       border: 0;
       padding: 0;
       margin: 0;
       width: 100%;
-      display: block;
     }
 
-    .result thead, .registered thead, #ifpaRegResultsTable thead, .result  tbody, .registered  tbody, #ifpaRegResultsTable tbody {
+    table.result , table.registered , .result thead, .registered thead, .result  tbody, .registered  tbody, .result th, .registered th, .result td, .registered td, .result  tr, .registered  tr {
       display: block;
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
-    .result th, .registered th, #ifpaRegResultsTable th {
-      display: block;
+    .result th, .registered th {
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
     
-    .registered tr.header, .result tr.header,  #ifpaRegResultsTable tr.header {position: absolute;
+    .registered tr.header, .result tr.header, {position: absolute;
     left: -9999px;
     top: -9999px;}
 
-    .result td, .registered td, .volunteer td, #ifpaRegResultsTable td {
-      display: block;
+    .result td, .registered td, .volunteer td {
       border: 0;
       font-size: 1.05em;
     }
 
-    .result tr, .registered tr, .volunteer tr, #ifpaRegResultsTable tr {
-      display: block;
+    .result tr, .registered tr, .volunteer tr {
       position: relative;
       border: 0;
       height: 3.6em;
     }
-    
-    
-    
-    #ifpaRegResultsTable td:nth-of-type(1) {
-      position: absolute;
-      left: 0em;
-      top: 0em;
-      width: 2.5em;
-      font-weight: bold;
-      text-align: right;
-      text-transform: uppercase;
-      padding-right: 0.8em;
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(2) {
-      position: absolute;
-      left: 5.5em;
-      top: 0em;
-      width: 13em;
-      font-weight: bold;
-      text-align: left;
-      padding-right: 0.8em;
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(3) {
-      position: absolute;
-      top: 0em;
-      right: 0.2em;
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(4) {
-      position: absolute;
-      top: 1.6em;
-      left: 5.5em;
-    }
-
-    #ifpaRegResultsTable td:nth-of-type(5) {
-      position: absolute;
-      top: 1.6em;
-      right: 0.2em;
-      text-align: right;
-    }
-
-
-    #ifpaRegResultsTable td:nth-of-type(4):before {
-      content: "IFPA: ";
-    }
-
-    
-    
-    
 
     .registered td:nth-of-type(1) {
       position: absolute;
