@@ -34,7 +34,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
   
   $content = "<p class=\"submenu2\">";
-  
+  var_dump($obj);
   if($category == "anmalda")
     {
       if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id = $team->id)) {
