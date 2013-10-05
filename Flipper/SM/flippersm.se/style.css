@@ -524,14 +524,14 @@ td, th {
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
-    .result th, .registered th {
+    .result th, .registered th, #ifpaRegResultsTable th {
       display: block;
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
     
-    .registered tr.header, .result tr.header, {position: absolute;
+    .registered tr.header, .result tr.header,  #ifpaRegResultsTable tr.header {position: absolute;
     left: -9999px;
     top: -9999px;}
 
