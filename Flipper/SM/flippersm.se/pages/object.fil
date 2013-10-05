@@ -71,7 +71,7 @@
   }
 
   if (preg_match('/^[0-9]+$/', $id)) {
-    $content = getInfo($dbh, $type, $id);
+    $content = getInfo($dbh, $ulogin, $type, $id);
     if (!$content) {
       $content = '<div class="infoDiv">Hittar ingen '.$type.' med ID '.$id.'!</div>';
       $table = false;
@@ -84,10 +84,10 @@
   if ($table) {
     if ($type == 'team') {
       printTopper('getObjects(\'teams\')');
-      $content .= getTable('team', $national);
+      $content .= getTable($dbh, $ulogin, 'team', $national);
     } else {
       printTopper(($type == 'manufacturer' || $type == 'game') ? 'getObjects(\'games\');' : 'getObjects();');
-      $content .= getTable(($type == 'manufacturer' || $type == 'game') ? 'game' : 'player');
+      $content .= getTable($dbh, $ulogin, ($type == 'manufacturer' || $type == 'game') ? 'game' : 'player');
     }
   } else {
     printTopper();

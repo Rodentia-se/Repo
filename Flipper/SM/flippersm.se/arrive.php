@@ -23,7 +23,7 @@
         $team = ($team) ? $team : $player->getTeam($dbh, 12);
         if ($player) {
           $content .= '
-            <div>'.getInfo($dbh, 'player', $player->id, false).'</div>
+            <div>'.getInfo($dbh, $ulogin, 'player', $player->id, false).'</div>
             <h2 class="entry-title">Please have the player confirm that all info above and below is correct!</h2><br />
             <h2 class="big">Player login:</h2>
             <p>Player username is <span class="big">'.$player->username.'</span>. Check that the player knows his/her password, or reset it here: <input type="button" value="Reset" id="'.$player->id.'_passwordBtn" onclick="resetPassword(this)" class="passwordBtn">
@@ -120,7 +120,7 @@
             <br /><h2 class="big">Team tournament:</h2>
           ';
           if ($team) {
-            $content .= getInfo($dbh, 'team', $team->id, false).'
+            $content .= getInfo($dbh, $ulogin, 'team', $team->id, false).'
               <p>Have the player confirm that the team information is correct.<br />
               The team tournament qualification is scheduled for <span class="big">Saturday 2013-09-14 1300-1600</span> and finals at <span class="big">1600-1900</span>.</p>
             ';

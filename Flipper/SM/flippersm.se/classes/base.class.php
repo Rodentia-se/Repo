@@ -35,8 +35,8 @@
       }
     }
     
-    public function getInfo($dbh) {
-      return getInfo($dbh, $this->class, $this->id);
+    public function getInfo($dbh, $ulogin) {
+      return getInfo($dbh, $ulogin, $this->class, $this->id);
     }
     
     public function getPhoto($thumbnail = false) {

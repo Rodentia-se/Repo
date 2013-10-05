@@ -2,7 +2,7 @@
 
 <?php
 
-submenu2("regler", true, $dbh, $ulogin);
+submenu2($dbh, $ulogin, "regler");
 
 ?>
 

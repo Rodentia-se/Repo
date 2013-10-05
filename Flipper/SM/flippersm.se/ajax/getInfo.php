@@ -9,7 +9,7 @@
     if ($id) {
       $object = getObjectById($dbh, $obj, $id);
       if ($object) {
-        echo $object->getInfo($dbh);
+        echo $object->getInfo($dbh, $ulogin);
       } else {
         $errorMsg = 'Error: No '.$obj.' with ID '.$id.' found!';
       }
