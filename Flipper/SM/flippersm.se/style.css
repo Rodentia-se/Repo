@@ -889,7 +889,13 @@ td, th {
 }
 
 #content div#tabs div.ui-widget-content {
-  background: #CDEEFF url(..images/ui-bg_insert-hard_100_11badc_1x100.png) 50% bottom repeat-x;
+  background: #CDEEFF;
+  border: 1px solid #66DDFF;
+}
+
+#content div#tabs li.ui-state-default {
+  background: #66DDFF;
+  border: 1px solid #FFFFFF;
 }
 
 #content div#tabs li.ui-state-active {
@@ -897,9 +903,8 @@ td, th {
   border: 1px solid #66DDFF;
 }
 
-#content div#tabs li.ui-state-default {
-  background: #66DDFF;
-  border: 1px solid #FFFFFF;
+#content div#tabs li.ui-state-active a:focus {
+  outline: none;
 }
 
 #content p.fluid-wrapper {
