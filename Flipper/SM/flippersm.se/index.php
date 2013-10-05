@@ -12,22 +12,51 @@ function undermenu($dbh, $ulogin, $page, $m)
 
   $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmal">Anmälan</a>';
 
-  if($page == "anmal" or $page == "object" or $page == 'edit' or $page == 'editdubbel' or $page == 'tshirt' or $page == 'kvalval' or $page == 'funktionarsval' or $page == 'betala' or $page == 'funktionar') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
-    {
+  switch ($page) {
+    case 'anmal':
+    case 'object':
+    case 'edit':
+    case 'editdubbel':
+    case 'tshirt':
+    case 'kvalval':
+    case 'funktionar':
+    case 'betala':
+    case 'funktionarsval':
       echo $registrationLink." <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
-	  }
-
-  if($page == "om" or ($page == "2012" and $m == "om")  or $page == "regler" or $page == "schema" or $page == "press" or $page == "social" or $page == "video" or $page == "kontakt") // 2012 will need an extra identifier to know which menu it belongs to
-     {echo "
-     <a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>
-     ";}
-
-  if($page == "kvalresultat" or $page == "slutspel" or $page == "sidoresultat" or ($page == "2012" and $m == "resultat") ) // 2012 will need an extra identifier to know which menu it belongs to
-     {echo "
-     <a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012&m=resultat\">Tidigare SM</a>
-     ";}
-
- }
+    break;
+    case 'om':
+    case 'regler':
+    case 'schema':
+    case 'press':
+    case 'social':
+    case 'video':
+    case 'kontakt':
+      echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
+    break;
+    case '2012':
+    case '2011':
+    case '2010':
+    case '2009':
+    case '2008':
+    case '2007':
+    case '2006':
+    case '2005':
+    case '2004':
+    case '2003':
+    case '90tal':
+      if ($m == 'om') {
+       echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
+      } else {
+        echo "<a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012&m=resultat\">Tidigare SM</a>";
+      }
+    break;
+    case 'kvalresultat':
+    case 'slutspel':
+    case 'sidoresultat':
+      echo "<a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012&m=resultat\">Tidigare SM</a>";
+    break;
+  }
+}
 
 
 function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
