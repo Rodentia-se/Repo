@@ -1,8 +1,9 @@
 <?php
 
   $content = '
-    <h1>Funktionärer</h1>
-    <p>Här kommer finalsystemet att beskrivas</p>
+    <h1>Slutspelssyetem</h1>
+    '.submenu2($dbh, $ulogin, "regler").'
+    <p>Här kommer slutspelssystemet att beskrivas</p>
   ';
 
   echo $content;
