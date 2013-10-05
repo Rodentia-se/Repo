@@ -4,7 +4,7 @@
 
 $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 
-function undermenu($page,$m)
+function undermenu($page, $m, $dbh, $ulogin)
   {
 
   if(getCurrentPlayer($dbh, $ulogin)->mainPlayerId) //replace with check if logged in
