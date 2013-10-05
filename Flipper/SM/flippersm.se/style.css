@@ -898,11 +898,13 @@ td, th {
   border: 1px solid #FFFFFF;
 }
 
+/*
 #content div#tabs li.ui-state-default:hover {
   border: 1px solid #77d5f7;
   background: #0078ae url(../images/ui-bg_glass_45_0078ae_1x400.png) 50% 50% repeat-x;
   color: #FFFFFF;
 }
+*/
 
 #content div#tabs li.ui-state-active {
   background: #0078ae url(../images/ui-bg_glass_45_0078ae_1x400.png) 50% 50% repeat-x;
