@@ -529,7 +529,7 @@ top: -9999px;
     }
 
     /* Force table to not be like tables anymore */
-    #content table.result, #content table.registered, #content table.volunteer {
+    #content table.result, #content table.registered, #content table.volunteer, #content table.standings {
       border: 0;
       padding: 0;
       margin: 0;
