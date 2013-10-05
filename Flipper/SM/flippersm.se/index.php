@@ -26,31 +26,40 @@ function undermenu($page, $m, $dbh, $ulogin)
 
  }
 
-function submenu2($category, $echo = true, $dbh, $ulogin)
+function submenu2($category, $echo = true, $dbh, $ulogin, $obj = null)
   {
   
   $content = "<p class=\"submenu2\">";
   
   if($category == "anmalda")
-     {$content .= "
-      <a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>
-     ";}
-     
+    {
+      if (($obj->class == 'player' && $obj->id == getCurrentPlayer($dbh, $ulogin)->id) || ($obj->class == 'team') && $obj->id == getCurrentPlayer($dbh, $ulogin)->getTeam($dbh)->id)) {
+        $content .= "<a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>";
+      } else {
+        $content .= "<a href=\"?s=object&obj=player&id=self\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self\">Ditt lag</a> <a href=\"?s=editdubbel\">Ändra lag</a> <a href=\"?s=tshirt\">Tröjor</a> <a href=\"?s=kvalval\">Välj kvaltider</a> <a href=\"?s=funktionarsval\">Bli funktionär!</a> <a href=\"?s=betala\">Betala</a>";
+      }
+    }
+
   if($category == "funktionar")
-	{$content .= "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";}
+    {
+      $content .= "<a href = '?s=funktionar'>Bli funktionär</a> <a href = '?s=instruktioner'>Instruktioner</a>";
+    }
 
      
   if($category == "tidigare")
-     {$content .= "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>
-     ";}
+    {
+      $content .= "<a href = '?s=2012'>2012</a> <a href = '?s=2011'>2011</a>  <a href=\"?s=2010\">2010</a> <a href=\"?s=2009\">2009</a> <a href=\"?s=2008\">2008</a> <a href=\"?s=2007\">2007</a> <a href=\"?s=2006\">2006</a> <a href=\"?s=2005\">2005</a> <a href=\"?s=2004\">2004</a> <a href=\"?s=2003\">2003</a> <a href=\"?s=90tal\">90-talet</a>";
+    }
      
   if($category == "regler")
-     {$content .= "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a>
-     ";}
+    {
+      $content .= "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a>";
+    }
 
   if($category == "slutspel")
-     {$content .= "<a href = '?s=slutspel&type=main'>Huvudtävlingen</a>  <a href=\"?s=slutspel&type=b\">B-slutspel</a> <a href=\"?s=slutspel&type=classics\">Classics</a> <a href=\"?s=slutspel&type=dubbel\">Dubbel</a> <a href=\"?s=slutspel&type=u18\">U18</a>
-     ";}
+    {
+      $content .= "<a href = '?s=slutspel&type=main'>Huvudtävlingen</a>  <a href=\"?s=slutspel&type=b\">B-slutspel</a> <a href=\"?s=slutspel&type=classics\">Classics</a> <a href=\"?s=slutspel&type=dubbel\">Dubbel</a> <a href=\"?s=slutspel&type=u18\">U18</a>";
+    }
      
      
   $content .= "</p>";

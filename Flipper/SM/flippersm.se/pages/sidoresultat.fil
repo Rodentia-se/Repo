@@ -1,0 +1,10 @@
+<?php
+
+  $content = '
+    <h1>Sidotävlingar</h1>
+    <p>Tävlingen har inte börjat än</p>
+  ';
+
+  echo $content;
+
+?>
