@@ -451,7 +451,7 @@ top: -9999px;
 #jubileum {
 	position: absolute;
 	right: 20px;
-	top: -15px;
+	top: -10px;
 	width: 111px;
 	height: 139px;
 	z-index: 999;
@@ -477,6 +477,7 @@ top: -9999px;
     margin-left: 10px;
     width: 290px;
     border: 0px;
+    z-index: 999px;
   }
 
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
