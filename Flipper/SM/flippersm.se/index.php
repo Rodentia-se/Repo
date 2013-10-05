@@ -7,7 +7,10 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 function undermenu($dbh, $ulogin, $page, $m)
   {
 
-  $registrationLink = (getCurrentPlayer($dbh, $ulogin)->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href=\"?s=anmal\">Anmälan</a>';
+  $player = getCurrentPlayer($dbh, $ulogin);
+  $team = ($player) ? $player->getTeam() : false;
+
+  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href=\"?s=anmal\">Anmälan</a>';
 
   if($page == "anmal" or $page == "object" or $page == 'edit' || $page == 'funktionar') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
     {
@@ -33,7 +36,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   
   if($category == "anmalda")
     {
-      if (($obj->class == 'player' && $obj->id == getCurrentPlayer($dbh, $ulogin)->id) || ($obj->class == 'team' && $obj->id == getCurrentPlayer($dbh, $ulogin)->getTeam($dbh)->id)) {
+      if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id = $team->id)) {
         $content .= "<a href=\"?s=object&obj=player&id=self\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self\">Ditt lag</a> <a href=\"?s=editdubbel\">Ändra lag</a> <a href=\"?s=tshirt\">Tröjor</a> <a href=\"?s=kvalval\">Välj kvaltider</a> <a href=\"?s=funktionarsval\">Bli funktionär!</a> <a href=\"?s=betala\">Betala</a>";
       } else {
         $content .= "<a href=\"?s=anmalda\">Anmälda spelare</a> <a href=\"?s=kvalgrupper\">Kvalgrupper</a> <a href=\"?s=object&obj=team\">Dubbellag</a>";
