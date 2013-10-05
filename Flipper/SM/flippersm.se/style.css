@@ -477,7 +477,7 @@ top: -9999px;
     margin-left: 10px;
     width: 290px;
     border: 0px;
-    z-index: 999px;
+    z-index: 9999px;
   }
 
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
