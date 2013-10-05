@@ -1,28 +1,21 @@
 <?php
 
   $content = '
-    <h1>Slutspelsresultat</h1>
+    <h1>Slutspelsresultat</h1
+        <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#bDiv">B</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
     <p>Slutspelet har inte börjat än</p>
   ';
 
   $content .= '
-          <div id="tabs">
-          <ul>
-            <li class="tabs"><a href="#mainDiv"><h3>Main</h3></a></li>
-            <li class="tabs next"><a href="#bDiv"><h3>B</h3></a></li>
-            <li class="tabs next"><a href="#classicsDiv"><h3>Classics</h3></a></li>
-            <li class="tabs next"><a href="#u18Div"><h3>U18</h3></a></li>
-            <li class="tabs next"><a href="#teamDiv"><h3>Dubbel</h3></a></li>
-          </ul>
-          <div id="mainDiv">
+          <div id="mainDiv" class="section">
           </div>
-          <div id="bDiv">
+          <div id="bDiv" class="section hidden">
           </div>
-          <div id="classicsDiv">
+          <div id="classicsDiv" class="section hidden">
           </div>
-          <div id="u18Div">
+          <div id="u18Div" class="section hidden">
           </div>
-          <div id="teamDiv">
+          <div id="teamDiv" class="section hidden">
           </div>
   ';
   $content .= getDataTables('.standings');
