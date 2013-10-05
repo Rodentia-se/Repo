@@ -1307,7 +1307,7 @@
   function getTeamForm($dbh, $ulogin, $tournament = 1) {
     $player = getCurrentPlayer($dbh, $ulogin);
     $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
-    $players = (array) getFreeTeamMembers($dbh, $tournament);
+    $content .= '<p>I dubbel spelar ni med varsin flipper. Exakta regler hittas <a href="'.__baseHref.'/?s=dubbel">här</a></p>';    $players = (array) getFreeTeamMembers($dbh, $tournament);
     $team = $player->getTeam($dbh);
     if ($team) {
       $regTeamDisplay = 'none';

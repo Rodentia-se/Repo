@@ -1,6 +1,5 @@
 <?php
   $content = '<h1>Dubbellag</h2>';
-  $content .= '<p>I dubbel spelar ni med varsin flipper. Exakta regler hittas <a href="'.__baseHref.'/?s=dubbel">här</a></p>';
 
   if (checkLogin($dbh, $ulogin, false)) {
     $content .= getTeamForm($dbh, $ulogin);
