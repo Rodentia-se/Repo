@@ -25,6 +25,7 @@
     <p><img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" /></p>
     <p><img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" /></p>
   </div>
+  
   <div class="spalt">
     <h2>Kronologiskt schema</h2>
       <p class="bold">Fredag 2013-11-08:</p>
@@ -46,6 +47,7 @@
       <p><span class="schedule">1500</span>Flipperorientering</p>
       <p><span class="schedule">1800-1900</span>Prisutdelning</p>
     </div>
+    
   <div class="bred">
     <h2>Färdvägar</h2>
     <p class="fluid-wrapper" id="resaMap"><iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
@@ -85,8 +87,8 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
     <p><a href="https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/" target="_blank">https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/</a></p>
     <h3>Scandic Kungens Kurva</h3>
     <p><a href="http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU" target="_blank">http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU</a></p>
-  </div>
 </div>
+
 <script type="text/javascript">
   $(document).ready(function() {
     $('#tabs').tabs();
