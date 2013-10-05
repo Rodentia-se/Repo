@@ -1,11 +1,16 @@
 <?php
 
-  $content = '<h1>T-shirts</h1>';
-  $content .= '<p>Här kan du köpa årets SM-tröja. Du hämtar ut tröjan/tröjorna på plats på SM. Priset är 100 kr/st. Du kan välja mellan ljusgul, ljusblå eller ljusgrå. Vi kommer även att sälja ett begränsat antal tröjor på plats, men om du vill vara säker på att få en så bör du förbeställa.</p>';
-  $content .= '<div id="tshirtPhoto"><p><img src="'.getPhoto($dbh, 'tshirt', 4).'" alt="SM 2013 T-shirt" /></p></div>';
   
 
   if (checkLogin($dbh, $ulogin, false)) {
+    $content = '<h1>T-shirts</h1>';
+    $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
+    $content .= '
+      <p>Här kan du köpa årets SM-tröja. Du hämtar ut tröjan/tröjorna på plats på SM. Priset är 100 kr/st. Du kan välja mellan ljusgul, ljusblå eller ljusgrå. Vi kommer även att sälja ett begränsat antal tröjor på plats, men om du vill vara säker på att få en så bör du förbeställa.</p>
+    ';
+    $content .= '
+      <div id="tshirtPhoto"><p><img src="'.getPhoto($dbh, 'tshirt', 4).'" alt="SM 2013 T-shirt" /></p></div>
+    ';
     $content .= getTshirtForm($dbh, $ulogin);
   } else {
     $content .= '<p>Du måste <a href="../">anmäla dig</a> och få ett användarnamn för att kunna köpa tröjor.</p>';

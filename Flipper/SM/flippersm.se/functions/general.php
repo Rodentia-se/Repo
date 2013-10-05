@@ -1097,14 +1097,13 @@
     
   function getTshirtForm($dbh, $ulogin, $tournament = 1) {
     $player = getCurrentPlayer($dbh, $ulogin);
-    $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
     $tshirts = $player->getTshirts($dbh, $tournament);
     if($tshirts && count($tshirts > 0)) {
       $shown = 'Nedan ser du de tröjor du redan har beställt.<br />';
     } else {
       $shown = '<p id="tshirtNoneSpan" class="italic">Du har inte beställt några tröjor än. '.((__tshirtsDisabled__) ? '' : 'Beställ tröjor nu genom att klicka på plus-tecknet!').'<br /></p>';
     }
-    $content .= '
+    $content = '
         <div id="tshirtOrderDiv">
           <h2 class="entry-title">Tröjbeställningar</h3>
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
