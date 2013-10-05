@@ -3,6 +3,7 @@
 
   if ($choice) {
     $content = '<h1>Val av kvaltider</h1>';
+    $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
     $content .= '
       <p>Nedan väljer du vilka kvatider du vill spela. Är du här för att ändra redan gjorda val, så ser du dina nuvarande val nedan.</p>
       <p>Regler för kvaltider:</p>
