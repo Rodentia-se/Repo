@@ -6,8 +6,8 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 
 function undermenu($page,$m)
   {
-  
-  if(getCurrentPlayerId($dbh, $ulogin)->mainPlayerId) //replace with check if logged in
+  echo
+  if(getCurrentPlayer($dbh, $ulogin)->mainPlayerId) //replace with check if logged in
   {
     echo '<a href="?s=?s=object&obj=player&id=self">Dina sidor</a> <a href="?s=object&obj=player">Anmälda spelare</a> <a href="?s=funktionar">Funktionärer</a> <a href="?s=object&obj=game">Spel</a>';
 	}
