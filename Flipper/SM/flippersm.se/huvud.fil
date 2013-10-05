@@ -48,7 +48,7 @@
 			</div>
 			<div id="buttons">
       <?php
-        if(getCurrentPlayerId($dbh, $ulogin)->mainPlayerId) {
+        if(getCurrentPlayer($dbh, $ulogin)->mainPlayerId) {
 				  echo '<a href="&#63;s=start" class="link">Start</a><a href="?s=object&obj=player&id=self" class="link">Dina sidor</a><a href="&#63;s=kvalresultat" class="link">Resultat</a><a href="&#63;s=om" class="link">Om Flipper-SM</a>';
         } else {
 				  echo '<a href="&#63;s=start" class="link">Start</a><a href="&#63;s=anmal" class="link">Anmälan</a><a href="&#63;s=kvalresultat" class="link">Resultat</a><a href="&#63;s=om" class="link">Om Flipper-SM</a>';
