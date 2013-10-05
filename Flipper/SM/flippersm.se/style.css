@@ -446,6 +446,13 @@ top: -9999px;
 
 #content img.palle {max-width: 250px;}
 
+#jubileum {
+	width: 111px;
+	height: 139px;
+	z-position: 999;
+	background: url("bilder/layout/jubileum.png");
+	}
+
 
 /* smŒ skŠrmar: */
 
