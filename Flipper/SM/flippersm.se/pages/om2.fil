@@ -22,31 +22,6 @@
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort i baren vid receptionen eller på O'Learys restaurang. Samma spelkort gäller även i alla arkadspel i huset. Samtliga turneringsspel är givetvis satta på free play.</p>
     <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
 
-	<hr/>
-
-    <h2>Färdvägar</h2>
-    <p>O'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O'Learys är den naturliga samlingsplatsen på Heron City.
-    <h3>Med taxi</h3>
-    <p>Tävlingen äger rum på <a href="www.olearys.se/heroncity" target="_blank">O'Learys</a> på <a href="http://www.heroncity.se/" target="_blank"> i Skärholmen, en dryg kvart utanför Stockholms centrum. <a href="http://www.taxistockholm.se/english/" target="_blank">Taxi Stockholm</a> är den största taxifirman och man kan beställa en taxi direkt på deras hemsida. Alla taxichaufförer vet var Heron City ligger (om inte – hoppa ur bilen direkt!). Gatuadressen är Dialogvägen 2. Två andra firmor som ofta rekommenderas är <a href="http://www.taxikurir.se/inenglish.4.514cc05910c58eb13ad800018308.html" target="_blank">Taxi Kurir</a> och <a href="http://www.taxi020.se/in-english/" target="_blank">Taxi 020</a>. Samtliga tre, och alla andra stora operatörer, har fasta priser från Arlanda in till stan. Taxi Stockholms pris är 520:- och till spellokalen 690:-. Betala inte mer än så alltså!</p>
-
-    <h3>Åka kommunalt</h3>
-    <p><a href="http://www.sl.se/english/" target="_blank">SL</a> sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras <a href="http://sl.se/en/Visitor/Plan-your-journey/" target="_blank">reseplanerare</a>.</p>
-    <h3>Med tunnelbana</h3>
-    <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg" och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T" i en vit cirkel.</p>
-
-    <h3>Med buss</h3>
-    <p>Använd SL:s reseplanerare och skriv in "Kungens Kurva", "Månskärsvägen" eller "Dialogvägen 2" som destination. Reseplaneraren föreslår alla möjliga kombinationer av kommunaltrafik och hur lång tid varje alternativ tar. Välj den kombination som passar dig.</p>
-
-    <h3>Med pendeltåg</h3>
-    <p>Närmaste pendeltågstation är Älvsjö. Man kan gå därifrån, men vi rekommenderar att istället ta buss, taxi, cykel, skateboard eller vad annat färdmedel som helst med hjul.</p>
-
-    <h3>Med bil</h3>
-    <p>Heron City ligger precis vid E4:an, Sveriges stora nord-sydliga motorväg.</p>
-    <p>Korta versionen: Ta avfart #151 och sväng hela tiden höger tills du ser Heron City.</p>
-    <p>Längre version:</p>
-    <p>Kommer du från norr (Stockholm), ta avfart 151 som heter "Skärholmen N, Kungens Kurva N". Håll höger mot "Kungens Kurva", sväng höger vid rondellen vid IKEA och sedan ser du Heron City framför dig.</p>
-    <p>Kommer du från söder så tar du samma avfart (151) och efter att ha svängt höger i tre rondeller så star du på Heron Citys parkeringsplats.
-Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
 
   </div>
   
@@ -86,6 +61,36 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
     <h3>Scandic Kungens Kurva</h3>
     <p><a href="http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU" target="_blank">http://www.scandichotels.se/Hotels/Sverige/Stockholm/Scandic-Kungens-kurva/#.Ugnx4WVdyfU</a></p>
 </div>
+
+<div class="bred">
+
+	<hr/>
+
+    <h2>Färdvägar</h2>
+    <p>O'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O'Learys är den naturliga samlingsplatsen på Heron City.
+    <h3>Med taxi</h3>
+    <p>Tävlingen äger rum på <a href="www.olearys.se/heroncity" target="_blank">O'Learys</a> på <a href="http://www.heroncity.se/" target="_blank"> i Skärholmen, en dryg kvart utanför Stockholms centrum. <a href="http://www.taxistockholm.se/english/" target="_blank">Taxi Stockholm</a> är den största taxifirman och man kan beställa en taxi direkt på deras hemsida. Alla taxichaufförer vet var Heron City ligger (om inte – hoppa ur bilen direkt!). Gatuadressen är Dialogvägen 2. Två andra firmor som ofta rekommenderas är <a href="http://www.taxikurir.se/inenglish.4.514cc05910c58eb13ad800018308.html" target="_blank">Taxi Kurir</a> och <a href="http://www.taxi020.se/in-english/" target="_blank">Taxi 020</a>. Samtliga tre, och alla andra stora operatörer, har fasta priser från Arlanda in till stan. Taxi Stockholms pris är 520:- och till spellokalen 690:-. Betala inte mer än så alltså!</p>
+
+    <h3>Åka kommunalt</h3>
+    <p><a href="http://www.sl.se/english/" target="_blank">SL</a> sköter i princip all kommunaltrafik i Stockholm. Använd gärna deras <a href="http://sl.se/en/Visitor/Plan-your-journey/" target="_blank">reseplanerare</a>.</p>
+    <h3>Med tunnelbana</h3>
+    <p>Man tar sig enklast hit från Stockholms centrum med tunnelbana. Ta den röda linjen söderut i riktning mot “Norsborg" och kliv av på stationen Skärholmen. Därefrån är det tio minuters promenad till Heron Clty. Det går också många bussar dit från busstorget utanför tunnelbanestationen. Tunnelbanan är markerad med runda skyltar med ett stort, blått “T" i en vit cirkel.</p>
+
+    <h3>Med buss</h3>
+    <p>Använd SL:s reseplanerare och skriv in "Kungens Kurva", "Månskärsvägen" eller "Dialogvägen 2" som destination. Reseplaneraren föreslår alla möjliga kombinationer av kommunaltrafik och hur lång tid varje alternativ tar. Välj den kombination som passar dig.</p>
+
+    <h3>Med pendeltåg</h3>
+    <p>Närmaste pendeltågstation är Älvsjö. Man kan gå därifrån, men vi rekommenderar att istället ta buss, taxi, cykel, skateboard eller vad annat färdmedel som helst med hjul.</p>
+
+    <h3>Med bil</h3>
+    <p>Heron City ligger precis vid E4:an, Sveriges stora nord-sydliga motorväg.</p>
+    <p>Korta versionen: Ta avfart #151 och sväng hela tiden höger tills du ser Heron City.</p>
+    <p>Längre version:</p>
+    <p>Kommer du från norr (Stockholm), ta avfart 151 som heter "Skärholmen N, Kungens Kurva N". Håll höger mot "Kungens Kurva", sväng höger vid rondellen vid IKEA och sedan ser du Heron City framför dig.</p>
+    <p>Kommer du från söder så tar du samma avfart (151) och efter att ha svängt höger i tre rondeller så star du på Heron Citys parkeringsplats.
+Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
+</div>
+
 
 <script type="text/javascript">
   $(document).ready(function() {
