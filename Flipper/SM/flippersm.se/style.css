@@ -131,6 +131,7 @@ div#content {
 
 #content h1 {
   color: #000;
+  width: calc(100% - 140px);
   font: 3em YukarimobileRegular;
   margin-bottom: 0.4em;
   padding-top: 1.8em;
