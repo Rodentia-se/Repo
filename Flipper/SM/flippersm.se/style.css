@@ -453,7 +453,7 @@ top: -9999px;
 	top: -15px;
 	width: 111px;
 	height: 139px;
-	z-position: 999;
+	z-index: 999;
 	background: url("bilder/layout/jubileum.png");
 	}
 
@@ -479,7 +479,13 @@ top: -9999px;
   }
 
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
-
+  
+	#jubileum {
+	  position: absolute;
+	  left: 9999px;
+	  top: 9999px;
+	}
+	
     div#logo {
       position: relative;
       height: 190px;
