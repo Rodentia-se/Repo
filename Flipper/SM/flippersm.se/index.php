@@ -26,7 +26,7 @@ function undermenu($page, $m, $dbh, $ulogin)
 
  }
 
-function submenu2($category, $echo = true)
+function submenu2($category, $echo = true, $dbh, $ulogin)
   {
   
   $content = "<p class=\"submenu2\">";

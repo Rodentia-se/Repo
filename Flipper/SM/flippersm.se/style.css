@@ -245,7 +245,7 @@ div#content {
   border-radius:6px;
   color: #000000;
   text-decoration: none;
-  cursor: poiner;
+  cursor: pointer;
   border: 1px solid #EEEEEE;
   padding: 2px 5px 2px 5px;
 }

@@ -1,7 +1,7 @@
 <?php
 
   $content = '
-    <h1>Slutspel</h1>
+    <h1>Slutspelsresultat</h1>
     <p>Slutspelet har inte börjat än</p>
   ';
 
