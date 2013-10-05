@@ -3,6 +3,20 @@
   $content = '
     <h1>Funktionärer</h1>
     <p>Här kommer funktionärsschemat att visas</p>
+
+    <h3>Instruktioner för scorekeeping</h3>
+    <p>Poänginsamlingen görs med en väldigt intuitiv app i din egen smartphone (eller en lånad om du inte har någon lämplig apparat själv).</p>
+    <p>Apple iOS (iPhone, iPad, etc): Registrera dig på "Test Flight" http://tflig.ht/13zsK24 för att ladda ner appen.</p>
+    <p>Android: Ladda ner och installera "Score Keeper - Stockholm Open" från Google Play eller via länken nedan.</p>
+    <p>När du anländer till tävlingen:</p>
+    <p>1. Meddela receptionen att du ska vara scorekeeper, så att de kan ge dig rättigheter.</p>
+    <p>2. Starta appen och logga in med din vanliga SM-login.</p>
+    <p>3. Scanna spelar QR-kod. Du kan slå på/av ljuset och autofokus om det behövs (olika telefonmodeller beter sig på olika sätt).</p>
+    <p>4. Rikta kameran mot spelets QR-kod, och klicka OK för att scanna den.</p>
+    <p>5. Skriv in poängen från spelet, och klicka på "Register". Visa poängen för spelaren så att denne kan konfirmera att det är rätt.</p>
+    <p>6. Om några felmeddelanden eller andra problem uppstår, skriv ner poängen och kontakta receptionen.</p>
+    <p>Du kan ladda ned appen för Android <a title="Score Keeper - Stockholm Open" href="https://play.google.com/store/apps/details?id=com.widepixelgames.scorekeeper" target="_blank">här</a> eller scanna nedanstående kod med din telefon:</p>
+    <p><img alt="QRCode" src="http://qrfree.kaywa.com/?l=1&amp;s=8&amp;d=https%3A%2F%2Fplay.google.com%2Fstore%2Fapps%2Fdetails%3Fid%3Dcom.widepixelgames.scorekeeper" /></p>
   ';
 
   echo $content;
