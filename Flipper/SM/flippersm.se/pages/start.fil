@@ -10,16 +10,18 @@
 </div>
 <br class="clearboth">
 
+<hr />
+
 <br/>
 
-<hr />
 <h3>Följ oss på sociala media!</h3>
-<?php
-echo '
-<p><a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a></p>
-';
-?>
-<hr />
+</div>
+<div class="spalt">
+<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a>
+
+</div>
+
+<div class="spalt">
 
 <h3>Vinnare i huvudtävlingen</h3>
 <p>
@@ -44,5 +46,6 @@ echo '
 2008 - Patrik Bodin, Stockholm<br />
 2007 - Mats Runsten, Stockholm<br />
 2006 - Anders Birgersson, Stockholm<br />
-</p>      <hr/>
+</p>
 
+</div>
