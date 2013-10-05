@@ -46,7 +46,7 @@
   $content .=  '</tbody></table></div>';
   $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = 1');
   $content .= '
-          <div id="classicsTable" class="section">
+          <div id="classicsTable" class="section hidden">
             <table class="standings">
               <thead>
                 <tr>
@@ -83,7 +83,7 @@
   $content .=  '</tbody></table></div>';
   $teams = getTeams($dbh, false, true);
   $content .= '
-          <div id="u18Table" class="section">
+          <div id="u18Table" class="section hidden">
             <table class="standings">
               <thead>
                 <tr>
@@ -122,7 +122,7 @@
   $content .=  '</tbody></table></div>';
   $teams = getTeams($dbh);
   $content .= '
-          <div id="teamTable" class="section">
+          <div id="teamTable" class="section hidden">
             <table class="standings">
               <thead>
                 <tr>
@@ -166,8 +166,6 @@
 ?>
 
 <script>
-hide_all_sections()
-
 $("#tab_links a").click(function() {
 	var section_to_show = $(this).attr('href');
 	hide_all_sections();
