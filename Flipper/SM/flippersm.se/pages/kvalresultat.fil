@@ -95,10 +95,10 @@
     }
   }
   $ageLimit = array(
-    '1' => '1995-11-07',
-    '2' => '1994-11-17',
-    '3' => '1993-11-26',
-    '4' => '1994-11-13'
+    1 => '1995-11-07',
+    2 => '1994-11-17',
+    3 => '1993-11-26',
+    4 => '1994-11-13'
   );
   $content .=  '</tbody></table></div>';
   $players = getPlayers($dbh, ' where m.id is not null and m.tournamentEdition_id = '.$tournament.' && m.birthDate > "'.$ageLimit[$tournament].'" ');
