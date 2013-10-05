@@ -1,0 +1,11 @@
+<?php
+
+  $content = '
+    <h1>Sidotävlingar</h1>
+    '.submenu2($dbh, $ulogin, "regler", false).'
+    <p>Följande sidotävlingar kommer att finnas</p>
+  ';
+
+  echo $content;
+
+?>
