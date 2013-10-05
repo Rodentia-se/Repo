@@ -63,7 +63,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
       $content .= "<a href = '?s=regler'>Regler</a> <a href=\"?s=system\">Tävlingssystem</a> <a href=\"?s=finalsystem\">Slutspelssystem</a> <a href=\"?s=dubbel\">Dubbelregler</a> <a href=\"?s=sido\">Sidotävlingar</a>";
     }
 
-  if($category == '2012' {
+  if($category == '2012') {
     $content .= '2012: <a href = "?s=resultat2012">Kval</a> ";
   }
      
