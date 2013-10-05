@@ -1,4 +1,5 @@
       <br class="clearboth">
+      <hr/>
       <div id="loggedInOut">
         <?php
           if (checkLogin($dbh, $ulogin, false)) {
