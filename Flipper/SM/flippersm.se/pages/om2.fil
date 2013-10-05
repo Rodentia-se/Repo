@@ -21,9 +21,10 @@
     <p>Samtliga spelare erhåller 20 % rabatt på allt de köper (såväl mat som dryck) på O'Learys restaurant. Man får sin rabattkupong i receptionen när man anländer till tävlingen.</p>
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort i baren vid receptionen eller på O'Learys restaurang. Samma spelkort gäller även i alla arkadspel i huset. Samtliga turneringsspel är givetvis satta på free play.</p>
-    <p class="fluid-wrapper" id="varMap"><iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
-    <p><img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" /></p>
-    <p><img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" /></p>
+    <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
+    
+    <img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" />
+    <img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" />
   </div>
   
   <div class="spalt">
@@ -80,7 +81,7 @@ Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av 
     <p>Enkelrum: 445:- per natt</p>
     <p>Dubbelrum: 585:- per natt</p>
     <p>Boka direkt via <a href="http://www.hoteldialog.se/" target="_blank">deras hemsida</a> och uppge bokningskod: "Flipper-SM".</p>
-    <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
+
     <h3>Quality Hotel Prince Philip</h3>
     <p><a href="https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/" target="_blank">https://www.nordicchoicehotels.com/Quality/Quality-Hotel-Prince-Philip/</a></p>
     <h3>Scandic Kungens Kurva</h3>
