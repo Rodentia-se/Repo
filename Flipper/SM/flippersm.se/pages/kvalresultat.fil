@@ -9,13 +9,6 @@
 
   $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1');
   $content .= '
-          <div id="tabs">
-          <ul>
-            <li class="tabs"><a href="#mainTable"><h3>Main</h3></a></li>
-            <li class="tabs next"><a href="#classicsTable"><h3>Classics</h3></a></li>
-            <li class="tabs next"><a href="#u18Table"><h3>U18</h3></a></li>
-            <li class="tabs next"><a href="#teamTable"><h3>Dubbel</h3></a></li>
-          </ul>
           <div id="mainTable">
             <table class="standings">
               <thead>
@@ -165,7 +158,7 @@
       ';
     }
   }
-  $content .=  '</tbody></table></div></div>';
+  $content .=  '</tbody></table></div>';
   $content .= getDataTables('.standings');
 
   echo $content;
