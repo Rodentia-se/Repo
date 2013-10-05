@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Dubbelregler</h1>
-    '.submenu2($dbh, $ulogin, "regler").'
+    '.submenu2($dbh, $ulogin, "regler", false).'
     <p>Här finns regler som är annorlunda i dubbel jämfört med övriga klasser</p>
   ';
 

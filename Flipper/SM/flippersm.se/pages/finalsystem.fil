@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Slutspelssyetem</h1>
-    '.submenu2($dbh, $ulogin, "regler").'
+    '.submenu2($dbh, $ulogin, "regler", false).'
     <p>Här kommer slutspelssystemet att beskrivas</p>
   ';
 
