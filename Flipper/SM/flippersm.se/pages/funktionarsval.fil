@@ -1,0 +1,4 @@
+<?php
+  $content = '<h1>Bli funktionär!</h1>';
+  $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
+?>
