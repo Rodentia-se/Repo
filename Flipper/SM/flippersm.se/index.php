@@ -7,12 +7,12 @@ $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 function undermenu($page,$m)
   {
   
-  if($page == "start_inloggad") //replace with check if logged in
+  if(getCurrentPlayerId($dbh, $ulogin)->mainPlayerId) //replace with check if logged in
      {echo "
      <a href=\"?s=start\">Start</a> <a href=\"?s=?s=object&obj=player&id=self&m=start\">Dina sidor</a>";
 	}
   
-  if($page == "anmal" or ($page == "object" and $m == "anmal" ) or $page == 'edit') // "object" and "edit" needs extra identifiers
+  if($page == "anmal" or $page == "object" or $page == 'edit') // "object" and "edit" needs extra identifiers - PAL: going for a unified "object" and "edit" for now...
      {echo "
      <a href=\"?s=anmal\">Anmälan</a> <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
 	}
