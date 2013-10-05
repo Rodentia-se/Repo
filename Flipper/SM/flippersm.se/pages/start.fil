@@ -11,12 +11,11 @@
 
 <br/>
 
-<hr />
 </div>
 
 
 <div class="spalt">
-
+<h2>Tdigare vinnare</h2>
 <h3>Vinnare i huvudtävlingen</h3>
 <p>
 2012 - Jorian Engelbrektsson, Stockholm<br />
@@ -30,7 +29,7 @@
 2004 - Jörgen Holm, Stockholm<br />
 2003 - Stellan Blomqvist, Stockholm<br />
 </p>
-<hr/>
+
 <h3>Vinnare i classictävlingen</h3>
 <p>
 2012 - Mats Runsten, Stockholm<br />
@@ -47,7 +46,9 @@
 
 <div class="spalt">
 
-<h3>Följ oss på sociala media!</h3>
-<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a>
+<h2>Följ oss på sociala media!</h2>
+<?php echo:
+"<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a>";
+?>
 
 </div>
