@@ -237,7 +237,8 @@ function showChangeUsername($dbh, $username) {
 
 function showEditPlayer($dbh, $ulogin) {
   $player = getCurrentPlayer($dbh, $ulogin);
-  $content =  getUploadForm($dbh, $player, true, false);
+  $content .= submenu2($dbh, $ulogin, 'anmalda', false, $player);
+  $content .= getUploadForm($dbh, $player, true, false);
   $content .= '
     <form id="newData" name="newData">
       <input type="hidden" name="newPhoto" id="newPhoto" value="false">
