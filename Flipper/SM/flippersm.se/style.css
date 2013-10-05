@@ -659,20 +659,16 @@ top: -9999px;
 
     .standings td:nth-of-type(4) {
       position: absolute;
-      top: 1.6em;
+      top: 0em;
       right: 0.2em;
       }
+      
     .standings td:nth-of-type(5) {
       position: absolute;
       top: 1.6em;
       right: 0.2em;
     }
 
-    .standings td:nth-of-type(6) {
-      position: absolute;
-      top: 0em;
-      left: 3.6em;
-    }
 
     .standings td:nth-of-type(4):after {
       content: " kvalpoäng";
