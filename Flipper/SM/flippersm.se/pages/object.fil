@@ -59,12 +59,13 @@
 
   if ($type == 'team' && $id == 'self') {
     if (checkLogin($dbh, $ulogin, true, '</h2><h1>Din lagsida</h1><h2 class="loginTable">Du måste logga in för att kunna titta på den här sidan')) {
-      $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
+      $player = getCurrentPlayer($dbh, $ulogin);
       $team = $player->getTeam($dbh);
       if ($team) {
         $id = $team->id;
       } else {
-        $content = '<div class="infoDiv">Du är inte medlem i något lag. Du kan <a href="'.__baseHref__.'/?s=dubbelanmalan">anmäla dig här</a> för att anmäla ett lag. Om din partner redan har anmält laget så ska du inte anmäla ett lag till, utan be honom/henne att lägga till dig laget.</div>';
+        $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
+        $content .= '<div class="infoDiv">Du är inte medlem i något lag. Du kan <a href="'.__baseHref__.'/?s=dubbelanmalan">anmäla dig här</a> för att anmäla ett lag. Om din partner redan har anmält laget så ska du inte anmäla ett lag till, utan be honom/henne att lägga till dig laget.</div>';
       }
     }
     $table = false;
@@ -73,7 +74,8 @@
   if (preg_match('/^[0-9]+$/', $id)) {
     $content = getInfo($dbh, $ulogin, $type, $id);
     if (!$content) {
-      $content = '<div class="infoDiv">Hittar ingen '.$type.' med ID '.$id.'!</div>';
+      $content = submenu2($dbh, $ulogin, 'anmalda', false);
+      $content .= '<div class="infoDiv">Hittar ingen '.$type.' med ID '.$id.'!</div>';
       $table = false;
     }
     if ($type == 'player' || $type == 'game' || $type == 'team') {
@@ -83,16 +85,11 @@
 
   if ($table) {
     if ($type == 'team') {
-      printTopper('getObjects(\'teams\')');
       $content .= getTable($dbh, $ulogin, 'team', $national);
     } else {
-      printTopper(($type == 'manufacturer' || $type == 'game') ? 'getObjects(\'games\');' : 'getObjects();');
       $content .= getTable($dbh, $ulogin, ($type == 'manufacturer' || $type == 'game') ? 'game' : 'player');
     }
-  } else {
-    printTopper();
   }
-
 
   echo($content);
 

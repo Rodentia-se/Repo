@@ -3541,7 +3541,7 @@
   function getTable($dbh, $ulogin, $type, $national = false) {
     $content = '
                 <h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>
-                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $login, 'anmalda', false) : '').'
+                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false) : '').'
                 <div id="'.$type.'Div">
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
