@@ -103,6 +103,7 @@ div#logo {
   position: absolute;
   left: -10px;
   top: 10px;
+  z-index: 999px;
 }
 
 #logo img {
@@ -477,7 +478,6 @@ top: -9999px;
     margin-left: 10px;
     width: 290px;
     border: 0px;
-    z-index: 9999px;
   }
 
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
