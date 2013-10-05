@@ -35,6 +35,16 @@
        case 'edit':
          echo ' onload="getObjects(\'geo\');"';
        break;
+       case 'object':
+         $type = $_REQUEST['obj'];
+         if ($type == 'game' || $type == 'manufacturer') {
+           echo ' onload="getObjects(\'games\');"';
+         } else if ($type == 'team') {
+           echo ' onload="getObjects(\'teams\');"';
+         } else {
+           echo ' onload="getObjects();"';
+         }
+       break;
      }
    ?>
   >
