@@ -3,11 +3,7 @@
 <p class="submenu2">
 
 <?php
-<<<<<<< .mine
 	submenu2($dbh, $ulogin, 'tidigare');
-=======
-submenu2($dbh, $ulogin, "tidigare");
->>>>>>> .r632
 ?>
 
 
