@@ -2,7 +2,7 @@
 
 <p class="submenu2">
 <?php
-	print_menu(2,$s);
+submenu2($dbh, $ulogin, "tidigare");
 ?>
 </p>
 
