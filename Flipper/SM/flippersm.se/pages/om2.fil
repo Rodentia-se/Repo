@@ -22,9 +22,7 @@
     <h3>Spelkort</h3>
     <p>Övningsspelen kostar pengar, men är inte myntopererade. Man betalar sina krediter via ett elektroniskt kortsystem. Man kan köpa sitt spelkort i baren vid receptionen eller på O'Learys restaurang. Samma spelkort gäller även i alla arkadspel i huset. Samtliga turneringsspel är givetvis satta på free play.</p>
     <p class="fluid-wrapper" id="boMap"><iframe src="http://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe></p>
-    
-    <img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" />
-    <img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" />
+
   </div>
   
   <div class="spalt">
