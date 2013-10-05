@@ -556,12 +556,18 @@ top: -9999px;
       font-size: 1.05em;
     }
 
-    .result tr, .registered tr, .volunteer tr, .standings tr {
+    .result tr, .registered tr, .volunteer tr {
       position: relative;
       border: 0;
       height: 3.6em;
     }
-
+    
+    .standings tr {
+      position: relative;
+      border: 0;
+      height: 8em;
+    }
+    
     .registered td:nth-of-type(1) {
       position: absolute;
       left: 0em;
@@ -644,7 +650,7 @@ top: -9999px;
 
     .standings td:nth-of-type(3) {
       position: absolute;
-      left: 10em;
+      left: 18em;
       top: 0em;
       width: 2.5em;
       text-align: right;
@@ -658,13 +664,13 @@ top: -9999px;
       }
     .standings td:nth-of-type(5) {
       position: absolute;
-      top: 0em;
+      top: 1.6em;
       right: 0.2em;
     }
 
     .standings td:nth-of-type(6) {
       position: absolute;
-      top: 1.6em;
+      top: 0em;
       left: 3.6em;
     }
 
