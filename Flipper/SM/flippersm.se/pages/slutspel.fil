@@ -25,6 +25,7 @@
           <div id="teamDiv">
           </div>
   ';
+  $content .= getDataTables('.standings');
 
   echo $content;
 
