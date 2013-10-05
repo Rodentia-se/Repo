@@ -64,7 +64,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
     }
 
   if($category == '2012') {
-    $content .= '2012: <a href = "?s=resultat2012">Kval</a> ";
+    $content .= '2012: <a href = "?s=resultat2012">Kval</a> ';
   }
      
      
