@@ -379,6 +379,12 @@ input, select {
   float: left;
 }
 
+.hidden {
+position: absolute;
+left: -9999px;
+top: -9999px;
+}
+
 /* tabeller: */
 
 #content .spalt #smal {
@@ -430,6 +436,12 @@ td, th {
 .container {
   margin: 0 auto
   width: 1170px
+}
+
+.hidden {
+position: absolute;
+left: -9999px;
+top: -9999px;
 }
 
 #content img.palle {max-width: 250px;}
