@@ -585,8 +585,9 @@ td, th {
 
     #ifpaRegResultsTable td:nth-of-type(5) {
       position: absolute;
-      left: 0em;
-      top: 1.6em;
+      top: 0em;
+      right: 0.2em;
+      text-align: right;
     }
 
 
