@@ -8,14 +8,9 @@
     document.getElementById(id).innerHTML = '<iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kIH4BDwipEaY" width="640" height="480"></iframe>';
   }
 </script>
-<div id="tabs" class="clearboth">
-  <ul>
-    <li class="tabs"><a href="#varDiv" onclick="showMap('varMap');"><h3>Var</h3></a></li>
-    <li class="tabs"><a href="#narDiv"><h3>När</h3></a></li>
-    <li class="tabs"><a href="#resaDiv" onclick="showMap('resaMap');"><h3>Resa</h3></a></li>
-    <li class="tabs"><a href="#boDiv" onclick="showHotelMap('boMap');"><h3>Bo</h3></a></li>
-  </ul>
-  <div id="varDiv">
+  <p><a href="#varDiv" onclick="showMap('varMap');">Var</a> <a href="#narDiv">När</a> <a href="#resaDiv" onclick="showMap('resaMap');">Resa</a> <a href="#boDiv" onclick="showHotelMap('boMap');">Bo</a>
+  
+  <div class="spalt">
     <p></p>
     <h3>Spellokal</h3>
     <p>Heron City är ett kombinerat nöjes- och shoppingcenter. Där finns mataffär, alla andra typer av butiker, flera restauranger (både snabbmat- och "riktiga" restauranger), biograf, arkadspel och givetvis flipperspel.</p>
@@ -30,7 +25,7 @@
     <p><img src="https://www.flippersm.se/images/heron1.jpg" alt="Heron City" width="650" /></p>
     <p><img src="https://www.flippersm.se/images/heron2.jpg" alt="Heron City" width="650" /></p>
   </div>
-  <div id="narDiv">
+  <div class="spalt">
     <h2>Kronologiskt schema</h2>
       <p class="bold">Fredag 2013-11-08:</p>
       <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
@@ -51,7 +46,7 @@
       <p><span class="schedule">1500</span>Flipperorientering</p>
       <p><span class="schedule">1800-1900</span>Prisutdelning</p>
     </div>
-  <div id="resaDiv">
+  <div class="bred">
     <h2>Färdvägar</h2>
     <p class="fluid-wrapper" id="resaMap"><iframe src="https://mapsengine.google.com/map/u/0/embed?mid=zpem9ZzWXmjc.kFzxVp6NztIE" width="640" height="480"></iframe></p>
     <p>O'Learys på Heron City är mer än bara en bar – det är en upplevelse som väntar på dig! Bra mat och dryck, bowling, biljard, arkadspel, sportbar, café och sist men inte minst - flipperspel. O'Learys är den naturliga samlingsplatsen på Heron City.
@@ -78,10 +73,6 @@
     <p>Kommer du från söder så tar du samma avfart (151) och efter att ha svängt höger i tre rondeller så star du på Heron Citys parkeringsplats.
 Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
 
-    <h3>Den (ö)kända inzoomningskartan</h3>
-    <p><a href="https://www.flippersm.se/images/magnifying_map.png" target="_blank"><img src="https://www.flippersm.se/images/magnifying_map.png"></a></p>
-  </div>
-  <div id="boDiv">
     <h2>Boende</h2>
     <img src="https://www.flippersm.se/images/partners/dialog.jpg" class="right">
     <h3>Hotell Dialog</h3>
