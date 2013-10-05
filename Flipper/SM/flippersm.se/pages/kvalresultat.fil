@@ -1,5 +1,7 @@
 <?php
 
+  $tournament = (isset($_REQUEST['t']) && preg_match('/^[0-9]+$/', $_REQUEST['t'])) ? $_REQUEST['t'] : 1;
+
   $content = '
     <h1>Kvalresultat</h1>
     <p class="submenu2" id="tab_links"><a href="#mainTable">Main</a> <a href="#classicsTable">Classics</a> <a href="#u18Table">U18</a> <a href="#teamTable">Dubbel</a></p>
@@ -22,25 +24,27 @@
               </thead>
               <tbody>
   ';
-  foreach ($players as $player) {
-    $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', 1);
-    foreach ($qualEntries as $qualEntry) {
-      $content .= '
+  if (count($players) > 0) {
+    foreach ($players as $player) {
+      $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', 1);
+      foreach ($qualEntries as $qualEntry) {
+        $content .= '
                 <tr>
                   <td>'.$qualEntry->entryPlace.'</td>
                   <td>'.$player->getLink().'</td>
                   <td>
-      ';
-      $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', 1);
-      foreach ($qualScores as $qualScore) {
-         $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
-     }
-      $content = preg_replace('/, $/', '', $content).'
+        ';
+        $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', 1);
+        foreach ($qualScores as $qualScore) {
+          $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+        }
+        $content = preg_replace('/, $/', '', $content).'
                   </td>
                   <td>'.$qualScore->entryPoints.'</td>
                   <td><input type="checkbox" '.(($player->here) ? 'checked' : '').' disabled></td>
                 </tr>
-      ';
+        ';
+      }
     }
   }
   $content .=  '</tbody></table></div>';

@@ -1,4 +1,6 @@
 <h1>Flipper-SM 2012 kvalresultat</h1>
+submenu2($dbh, $ulogin, "tidigare");
+submenu2($dbh, $ulogin, "2012");
 
 
 

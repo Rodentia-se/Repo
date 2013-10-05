@@ -1,4 +1,4 @@
-<h1>Tidigare mästerskap</h1>
+<h1>Tidigare mÃ¤sterskap</h1>
 
 <p class="submenu2">
 <?php
@@ -8,18 +8,18 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <div class="spalt">
       <h2>Flipper-SM 2011</h2>
-      <p>För första gången stod Göteborg som spelort, när Svenska flippersällskapet arrangerade de nionde svenska mästerskapen. <i>(Tidigare tävlingar i Göteborgstrakten - 2006 & 2007 - spelades i Mölndal.)</i></p>
-<p>Inte mindre än 197 spelare kom till start i huvudklassen, vilket är rekord för SM. </p>
-<p>Suveräne <strong>Jorian Engelbrektsson</strong> tog sin tredje vinst i SM, efter att ha betvingat <strong>Per Ahlenius</strong> i finalen. Bronset gick till <strong>Jörgen Holm</strong>, som vann över <strong>Mats Runsten</strong> 
+      <p>FÃ¶r fÃ¶rsta gÃ¥ngen stod GÃ¶teborg som spelort, nÃ¤r Svenska flippersÃ¤llskapet arrangerade de nionde svenska mÃ¤sterskapen. <i>(Tidigare tÃ¤vlingar i GÃ¶teborgstrakten - 2006 & 2007 - spelades i MÃ¶lndal.)</i></p>
+<p>Inte mindre Ã¤n 197 spelare kom till start i huvudklassen, vilket Ã¤r rekord fÃ¶r SM. </p>
+<p>SuverÃ¤ne <strong>Jorian Engelbrektsson</strong> tog sin tredje vinst i SM, efter att ha betvingat <strong>Per Ahlenius</strong> i finalen. Bronset gick till <strong>JÃ¶rgen Holm</strong>, som vann Ã¶ver <strong>Mats Runsten</strong> 
       
       <hr/>
       
-      <img src="bilder/foton/2011/mainroom.jpg" alt="Slutspel pågår i main" title="Slutspel pågår i main" class="spaltbild" />
-      <br/><p>Slutspel pågår inne i main-rummet.</p><br/>
-      <img src="bilder/foton/2011/pokaler.jpg" alt="Årets bucklor" title = "Årets bucklor" class="spaltbild" />
-      <br/><p>Årets bucklor.</p><br/>
-      <img src="bilder/foton/2011/joe.jpg" alt="Jorian Engelbrektsson, vinnare för tredje gången." title="Jorian Engelbrektsson, vinnare för tredje gången." class="spaltbild" />
-      <br/><p>Jorian Engelbrektsson, vinnare för tredje gången.</p><br/>
+      <img src="bilder/foton/2011/mainroom.jpg" alt="Slutspel pÃ¥gÃ¥r i main" title="Slutspel pÃ¥gÃ¥r i main" class="spaltbild" />
+      <br/><p>Slutspel pÃ¥gÃ¥r inne i main-rummet.</p><br/>
+      <img src="bilder/foton/2011/pokaler.jpg" alt="Ã…rets bucklor" title = "Ã…rets bucklor" class="spaltbild" />
+      <br/><p>Ã…rets bucklor.</p><br/>
+      <img src="bilder/foton/2011/joe.jpg" alt="Jorian Engelbrektsson, vinnare fÃ¶r tredje gÃ¥ngen." title="Jorian Engelbrektsson, vinnare fÃ¶r tredje gÃ¥ngen." class="spaltbild" />
+      <br/><p>Jorian Engelbrektsson, vinnare fÃ¶r tredje gÃ¥ngen.</p><br/>
       <img src="bilder/foton/2011/blaochhot.jpg" alt="Balac och Tomson i split-bryderi" title="Balac och Tomson i split-bryderi" class="spaltbild" />
 	<br/><p>Balac och Tomson i split-bryderi.</p><br/>
       <p>
@@ -32,13 +32,13 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h2>Resultat</h2>
 
-<h3>Huvudtävlingen</h3>
+<h3>HuvudtÃ¤vlingen</h3>
 <p>
 1. Jorian Engelbrektsson, Stockholm
 </p><p>
-2. Per Ahlenius, Mölndal
+2. Per Ahlenius, MÃ¶lndal
 </p><p>
-3. Jörgen Holm, Stockholm</p>
+3. JÃ¶rgen Holm, Stockholm</p>
 
 
 <h3>Classics</h3>
@@ -51,7 +51,7 @@ submenu2($dbh, $ulogin, "tidigare");
 
 <h3>Split</h3>
 <p>1. Alvar Palm & Reidar Spets</p>
-<p>2. Jorian Engelbrektsson & Jörgen Holm</p>
+<p>2. Jorian Engelbrektsson & JÃ¶rgen Holm</p>
 <p>3. Christian Balac & Henrik Tomson</p>
 
 <h3>Enhands (Junk Yard)</h3>
@@ -61,7 +61,7 @@ Marcus Hugosson, Korsberga (27M)
 
 <h3>Set the Highscore (Elvis)</h3>
 <p>
-Jörgen Holm, Stockholm (399M)
+JÃ¶rgen Holm, Stockholm (399M)
 </p>
 
 <h3>Set the Highscore (Transformers)</h3>
@@ -76,7 +76,7 @@ Reidar Spets, Sunne (43M)
 <p>Jakob Wikner, Askim (5:a i B-slutspel Main)
 
 <h3>Best in Show</h3>
-<p>Fathom (Markus Salo, Alingsås)
+<p>Fathom (Markus Salo, AlingsÃ¥s)
 
 <hr/>
 
@@ -91,11 +91,11 @@ Kval efter spel
 </a></p>
 
 <p><a href="bilder/diverse/11slutspelmainA.png">
-Splutspelsträd A
+SplutspelstrÃ¤d A
 </a></p>
 
 <p><a href="bilder/diverse/11slutspelmainB.png">
-Splutspelsträd B
+SplutspelstrÃ¤d B
 </a></p>
 
 <p><a href="?s=resultatclassics2011">
@@ -107,11 +107,11 @@ Classics efter spel
 </a></p>
 
 <p><a href="bilder/diverse/11slutspelclassics.png">
-Slutspelsträd classics
+SlutspelstrÃ¤d classics
 </a></p>
 
 <hr/>
-<img src="bilder/loggor/SM2011_logo_30bred.png" width=360 px alt="Loggan för Flipper-SM 2011" />
+<img src="bilder/loggor/SM2011_logo_30bred.png" width=360 px alt="Loggan fÃ¶r Flipper-SM 2011" />
 
-<p><i>Logotypen för Flipper-SM 2011, framtagen av Christian Holmsten.</i></p>
+<p><i>Logotypen fÃ¶r Flipper-SM 2011, framtagen av Christian Holmsten.</i></p>
 </div>
