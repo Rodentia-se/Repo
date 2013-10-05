@@ -28,6 +28,7 @@
   </head>
   <body
     <?php
+     var_dump($ulogin);
      switch ($s) {
        case 'anmal':
          echo ' onload="getObjects(\'geo\'); document.getElementById(\'ifpaIdText\').focus();"';
