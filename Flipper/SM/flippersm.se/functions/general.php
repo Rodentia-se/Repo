@@ -3537,10 +3537,10 @@
     $sth->execute($update);
   }
   
-  function getTable($type, $national = false) {
+  function getTable($dbh, $ulogin, $type, $national = false) {
     $content = '
                 <h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>
-                '.submenu2('anmalda', false, $dbh, $ulogin).'
+                '.submenu2($dbh, $ulogin, 'anmalda', false).'
                 <div id="'.$type.'Div">
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
@@ -3559,12 +3559,12 @@
     return $content;
   }
   
-  function getInfo($dbh, $type, $id, $select = true) {
+  function getInfo($dbh, $ulogin, $type, $id, $select = true) {
     global $classes;
     if ($obj = getObjectById($dbh, $type, $id)) {
       $content = '
                   <h1>'.$obj->name.'</h1>
-                  '.submenu2('anmalda', false, $dbh, $ulogin, $obj).'
+                  '.submenu2($dbh, $login, 'anmalda', false, $obj).'
                   <div id="infoDiv" class="infoDiv">
                     <div class="leftInfoDiv" id="leftInfoDiv">
                       '.(($select) ? '<h3 id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': </h3> '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'' : '').'

@@ -4,7 +4,7 @@
 
 $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 
-function undermenu($page, $m, $dbh, $ulogin)
+function undermenu($dbh, $ulogin, $page, $m)
   {
 
   $registrationLink = (getCurrentPlayer($dbh, $ulogin)->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href=\"?s=anmal\">Anmälan</a>';
@@ -26,7 +26,7 @@ function undermenu($page, $m, $dbh, $ulogin)
 
  }
 
-function submenu2($category, $echo = true, $dbh, $ulogin, $obj = null)
+function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
   
   $content = "<p class=\"submenu2\">";
