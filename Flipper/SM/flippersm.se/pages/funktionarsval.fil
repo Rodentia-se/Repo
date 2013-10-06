@@ -48,7 +48,7 @@
                 $volTable .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
                 if ($selfTaken) {
                   $volTable .= ' checked';
-                  $selfSlot = $date.' '.$clock.' ('.$length.'): '.$task->name;
+                  $selfSlot = $date.', '.$clock.' ('.$length.' timmar): som <span class="bold">'.$task->name.'</span>';
                   $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_volSlot">'.$selfSlot.'</p>';
                 }
                 if ($player->checkIfVolFree($dbh, $period)) {
