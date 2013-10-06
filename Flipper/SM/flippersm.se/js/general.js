@@ -1981,7 +1981,7 @@ function adminAlloc(icon, open) {
   if(open) {
     $('#' + icon.id + 'Edit').show();
   } else {
-    $('#' + icon.id.replace('Close', 'Edit')).hide();
+    $('#' + icon.id.replace('Close', '') + 'Edit').hide();
   }
 }
 
