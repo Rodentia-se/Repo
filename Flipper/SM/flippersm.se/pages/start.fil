@@ -95,8 +95,8 @@ else {
 
 <h2>Följ oss på sociala media!</h2>
 <?php
+  echo showLogin($ulogin, 'Logga in');
   echo '<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" width="100" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" width="100" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" width="100" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" width="100" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" width="100" /></a>';
-  showLogin($ulogin, 'Logga in');
 ?>
 
 
