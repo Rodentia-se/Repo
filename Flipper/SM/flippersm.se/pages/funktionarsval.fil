@@ -38,9 +38,11 @@
           }
           if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
             for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
-              $content .= 'Vakant';
+              $content .= '<input type="checkbox"';
               if ($player->checkIfVolFree($dbh, $period)) {
-                $content .= '<input type="checkbox">';
+                $content .= ' disabled>&nbsp;Kvaltid';
+              } else {
+                $content .= '>&nbsp;Jag tar det!'
               }
               $content .= '<br />';
             }
