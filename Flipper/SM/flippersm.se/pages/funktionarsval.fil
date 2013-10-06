@@ -19,7 +19,7 @@
         $content .= '
         	<hr/ class="clearboth">
             <div class="volPeriod clearboth">
-              <div class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p><p>'.$length.' tim</p></div>
+              <div class="volTime volDiv"><h3>'.$date.'<br/>'.$clock.'<br/>'.$length.' tim</h3></div>
               <div>
         ';
         foreach ($tasks as $task) {
