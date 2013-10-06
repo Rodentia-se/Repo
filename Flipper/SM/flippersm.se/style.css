@@ -1133,6 +1133,7 @@ top: -9999px;
 }
 
 #content .volTable {
+	margin-left: 15px;
 	display:table;
 	width: calc(100% - 30px);
 }
@@ -1140,7 +1141,6 @@ top: -9999px;
 #content .volPeriod {
 	margin: 0px 15px 0pc 15x;
 	width: calc(100% - 30px);
-	border-top: 2px solid #000;
 	display: table-row;
 }
 
