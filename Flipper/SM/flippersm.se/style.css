@@ -456,8 +456,7 @@ top: -9999px;
 }
 
 #content .volTime {
-	height: 100%;
-    display: inline-block;
+    display: table-cell;
 }
 
 #content .volTime h2 {
