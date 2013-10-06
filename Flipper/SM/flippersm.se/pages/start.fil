@@ -94,7 +94,9 @@ else {
 <div class="spalt">
 
 <?php
-  echo showLogin($ulogin, 'Redan anmäld? Logga in!');
+  if (!checkLogin($dbh, $ulogin, false) {
+    echo showLogin($ulogin, 'Redan anmäld? Logga in!');
+  }
   echo '<h2>Följ oss på sociala media!</h2>';
   echo '<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" class="social" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" class="social" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" class="social" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" class="social" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" class="social" /></a>';
 ?>

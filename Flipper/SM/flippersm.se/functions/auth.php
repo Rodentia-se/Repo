@@ -149,7 +149,6 @@ function checkLogin($dbh, $ulogin, $req = true, $title = 'Du måste logga in fö
   }
   if (!isAppLoggedIn()) {
     if ($req == true) {
-      printTopper();
       echo(showLogin($ulogin, $title));
     }
     echo($msg);
