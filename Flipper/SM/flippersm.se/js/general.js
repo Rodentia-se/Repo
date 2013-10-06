@@ -2006,8 +2006,8 @@ function allocEdit(el) {
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
     fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
-    if (!$(el).is(':checkbox')) {
-      if (data.success) {
+    if (data.success) {
+      if (!$(el).is(':checkbox')) {
         if(el.getAttribute('previous') == 0) {
           document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML = (+ parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) + 1);
         } else {
@@ -2026,8 +2026,12 @@ function allocEdit(el) {
           $('#' + taskId + '_' + periodId + '_needsTd').removeClass('errorTd');
         }
         el.setAttribute('previous', el.value);
-      } else {
+      }
+    } else {
+      if (!$(el).is(':checkbox')) {
         selectOption(el, el.getAttribute('previous'));
+      } else {
+        el.checked = !el.checked;
       }
     }
   })
