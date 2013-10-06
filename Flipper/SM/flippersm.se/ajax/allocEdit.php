@@ -6,7 +6,7 @@
   $periodId = (isset($_REQUEST['periodId']) && preg_match('/^[0-9]+$/', $_REQUEST['periodId'])) ? $_REQUEST['periodId'] : null;
   $playerId = (isset($_REQUEST['playerId']) && preg_match('/^[0-9]+$/', $_REQUEST['playerId'])) ? $_REQUEST['playerId'] : null;
   $otherPlayerId = (isset($_REQUEST['otherPlayerId']) && preg_match('/^[0-9]+$/', $_REQUEST['otherPlayerId'])) ? $_REQUEST['otherPlayerId'] : null;
-  $change = (isset($_REQUEST['c']) && preg_match('/^[01]$/', $_REQUEST['c'])) ? $_REQUEST['c'] : null;
+  $change = (isset($_REQUEST['change']) && preg_match('/^[01]$/', $_REQUEST['change'])) ? $_REQUEST['change'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
@@ -43,7 +43,11 @@
                   } else {
                     $errorMsg = 'No or invalid previous player ID specified';
                   }
-                  echo('{"success": true, "reason": "'.$reason.' as '.$task->name.' at '.$period->name.'"}');
+                  if ($reason) {
+                    echo('{"success": true, "reason": "'.$reason.' as '.$task->name.' at '.$period->name.'"}');
+                  } else {
+                    $errorMsg = 'Something went wrong - plaease reload page.';
+                  }
                 } else {
                   $errorMsg = 'No or invalid player ID specified';
                 }
