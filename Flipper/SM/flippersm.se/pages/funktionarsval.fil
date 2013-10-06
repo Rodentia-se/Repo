@@ -11,14 +11,14 @@
       $periods = getPeriods($dbh);
       $mainTasks = array(1, 3, 4);
       foreach ($periods as $period) {
-        $date = preg_replace('/^2013-[0-9]+-/', '', $period->date).'th';
+        $date = preg_replace('/^0/', '', preg_replace('/^2013-[0-9]+-/', '', $period->date)).'/11';
         $clock = preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->startTime)).'-'.preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->endTime));
         $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
         $length = ($length) ? $length : 0;
         $content .= '
             <div class="volPeriod clearboth">
               <div class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p><p>'.$length.' tim</p></div>
-              <div class="volDiv">
+              <div>
         ';
         foreach ($tasks as $task) {
           $content .= '<div class="volDiv vol'.$task->shortName.'">';
