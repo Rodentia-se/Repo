@@ -1130,3 +1130,7 @@ top: -9999px;
 #content div.volTime {
   width: 100px;
 }
+
+#content input.volCheckbox {
+  margin: 0;
+}
