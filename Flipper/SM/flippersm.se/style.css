@@ -447,6 +447,11 @@ left: -9999px;
 top: -9999px;
 }
 
+#content .volTime {
+	height: 100%;
+    display: inline-block;
+}
+
 #content .volTime h2 {
 	margin-top: 0;
 }
