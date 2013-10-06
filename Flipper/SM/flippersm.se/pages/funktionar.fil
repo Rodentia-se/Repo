@@ -3,8 +3,45 @@
   $content = '
     <h1>Funktionärer</h1>
     '.submenu2($dbh, $ulogin, "funktionar", false).'
-    <p>Här kommer funktionärsschemat att visas</p>
+    <p>Nedan ser du alla funktionärspass, och vem som gör vad när.</p>
   ';
+  $volunteers = getVolunteers($dbh);
+  $tasks = getTasks($dbh);
+  $periods = getPeriods($dbh);
+  $mainTasks = array(1, 3, 4);
+  foreach ($periods as $period) {
+    $date = preg_replace('/^0/', '', preg_replace('/^2013-[0-9]+-/', '', $period->date)).'/11';
+    $clock = preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->startTime)).'-'.preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->endTime));
+    $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
+    $length = ($length) ? $length : 0;
+    $content .= '
+        <div class="volPeriod clearboth">
+          <div class="volTime volDiv"><h2>'.$date.'</h2><h3>'.$clock.'</h3><h3>'.$length.' tim</h3></div>
+          <div>
+    ';
+    foreach ($tasks as $task) {
+      $content .= '<div class="volDiv vol'.$task->shortName.'">';
+      $alloc = $task->getAlloc($dbh, $period);
+      $need = $task->getNeed($dbh, $period);
+      if ($need || $alloc) {
+        $content .= '<h3>'.$task->name.' ('.$need.'):</h3>';
+        $allocVols = $task->getAllocVols($dbh, $period);
+        $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
+        if ($allocVols && $noOfAllocVols > 0) {
+          foreach($allocVols as $allocVol) {
+            $content .= '<p>'.$allocVol->firstName.' '.$allocVol->lastName.'</p>';
+          }
+        }
+      }
+      if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
+        for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
+          $content .= '<p>Vakant</p>';
+        }
+      }
+      $content .= '</div>';
+    }
+    $content .= '</div></div>';
+  }
 
   echo $content;
 

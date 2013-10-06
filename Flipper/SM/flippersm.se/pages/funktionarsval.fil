@@ -61,6 +61,7 @@
         }
         $content .= '</div></div>';
       }
+      $content .= '</div>';
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';
     }
@@ -69,7 +70,5 @@
     $content .= showLogin($ulogin, 'Om du redan har en användare, logga in här.');
   }
 
-
   echo $content;
 ?>
-</div>
