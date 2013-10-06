@@ -26,7 +26,7 @@
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {
-            $content .= '<h3>'.$task->name.'s:</h3>';
+            $content .= '<h3>'.$task->name.':</h3>';
             $allocVols = $task->getAllocVols($dbh, $period);
             $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
             if ($allocVols && $noOfAllocVols > 0) {
