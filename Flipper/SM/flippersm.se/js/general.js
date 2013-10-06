@@ -1995,15 +1995,13 @@ function allocEdit(el) {
   var taskId = el.id.split('_')[0];
   var periodId = el.id.split('_')[1];
   if ($(el).is(':checkbox')) {
-    var admin = 0;
     var change = (el.checked) ? 1 : 0;
-    var urlParams = {admin: admin, taskId: taskId, periodId: periodId, change: change};
+    var urlParams = {taskId: taskId, periodId: periodId, change: change};
   } else {
-    var admin = 1;
     var playerId = el.value;
     var otherPlayerId = el.getAttribute('previous');
     var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
-    var urlParams = {admin: admin, taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
+    var urlParams = {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
   }
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
