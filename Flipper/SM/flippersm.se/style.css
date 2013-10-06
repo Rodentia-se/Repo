@@ -1124,5 +1124,9 @@ top: -9999px;
 #content div.volDiv {
   position: relative;
   float: left;
-  width: 100px;
+  width: 150px;
+}
+
+#content div.volTime, #content div.volLength {
+  width: 50px;
 }
