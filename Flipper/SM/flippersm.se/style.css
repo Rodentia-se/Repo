@@ -484,9 +484,7 @@ top: -9999px;
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
   
 	#jubileum {
-	  position: absolute;
-	  left: 9999px;
-	  top: 9999px;
+	  display: hidden;
 	}
 	
     div#logo {
