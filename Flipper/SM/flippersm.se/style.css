@@ -447,6 +447,10 @@ left: -9999px;
 top: -9999px;
 }
 
+#content .volPeriod {
+	display:table;
+}
+
 #content .volTime {
 	height: 100%;
     display: inline-block;
