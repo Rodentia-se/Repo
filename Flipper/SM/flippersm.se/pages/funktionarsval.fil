@@ -25,12 +25,12 @@
           $content .= '<div class="volDiv vol'.$task->shortName.'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
+          $selfTaken = false;
           if ($need || $alloc) {
             $content .= '<h3>'.$task->name.' ('.$need.'):</h3>';
             $allocVols = $task->getAllocVols($dbh, $period);
             $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
             if ($allocVols && $noOfAllocVols > 0) {
-              $selfTaken = false;
               foreach($allocVols as $allocVol) {
                 if ($allocVol->id == $player->id) {
                   $selfTaken = true;
@@ -40,9 +40,8 @@
               }
             }
           }
-          $vacancies = ($selfTaken) ? $noOfAllocVols - 1 : $noOfAllocVols;
-          if ($need && (!$allocVols || $need - $vacancies > 0)) {
-            for ($i = 0 + $vacancies; $i < $need; $i++) {
+          if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
+            for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
               if ($need - $i == 1) {
                 $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
                 $content .= ($selfTaken) ? ' checked' : '';
