@@ -1991,36 +1991,46 @@ function allocShowAll(box) {
   });
 } 
 
-function allocEdit(sel) {
-  var taskId = sel.id.split('_')[0];
-  var periodId = sel.id.split('_')[1];
-  var playerId = sel.value;
-  var otherPlayerId = sel.getAttribute('previous');
-  var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
-  $.post(baseHref + '/ajax/allocEdit.php', {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId}) // Send to server
+function allocEdit(el) {
+  var taskId = el.id.split('_')[0];
+  var periodId = el.id.split('_')[1];
+  if ($(el).is(':checkbox')) {
+    var admin = 0;
+    var change = (el.checked) ? 1 : 0;
+    var urlParams = {admin: admin, taskId: taskId, periodId: periodId, change: change};
+  } else {
+    var admin = 1;
+    var playerId = el.value;
+    var otherPlayerId = el.getAttribute('previous');
+    var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
+    var urlParams = {admin: admin, taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
+  }
+  $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
-    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
-    if (data.success) {
-      if(sel.getAttribute('previous') == 0) {
-        document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML = (+ parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) + 1);
+    fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
+    if (!$(el).is(':checkbox')) {
+      if (data.success) {
+        if(el.getAttribute('previous') == 0) {
+          document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML = (+ parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) + 1);
+        } else {
+          var alloc = (parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) : 0;
+          document.getElementById(otherPlayerId + '_alloc').innerHTML = alloc - length;
+          document.getElementById(otherPlayerId + '_diff').innerHTML =  (+  parseInt(document.getElementById(otherPlayerId + '_hours').value) - alloc - length);
+        }
+        if (playerId != 0) {
+          var alloc = (parseInt(document.getElementById(playerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(playerId + '_alloc').innerHTML) : 0;
+          document.getElementById(playerId + '_alloc').innerHTML = alloc + length;
+          document.getElementById(playerId + '_diff').innerHTML = (+  parseInt(document.getElementById(playerId + '_hours').value) - alloc - length);
+        }
+        if(parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) < parseInt(document.getElementById(taskId + '_' + periodId + '_needs').innerHTML)) {
+          $('#' + taskId + '_' + periodId + '_needsTd').addClass('errorTd');
+        } else {
+          $('#' + taskId + '_' + periodId + '_needsTd').removeClass('errorTd');
+        }
+        el.setAttribute('previous', el.value);
       } else {
-        var alloc = (parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) : 0;
-        document.getElementById(otherPlayerId + '_alloc').innerHTML = alloc - length;
-        document.getElementById(otherPlayerId + '_diff').innerHTML =  (+  parseInt(document.getElementById(otherPlayerId + '_hours').value) - alloc - length);
+        selectOption(el, el.getAttribute('previous'));
       }
-      if (playerId != 0) {
-        var alloc = (parseInt(document.getElementById(playerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(playerId + '_alloc').innerHTML) : 0;
-        document.getElementById(playerId + '_alloc').innerHTML = alloc + length;
-        document.getElementById(playerId + '_diff').innerHTML = (+  parseInt(document.getElementById(playerId + '_hours').value) - alloc - length); 
-      }
-      if(parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) < parseInt(document.getElementById(taskId + '_' + periodId + '_needs').innerHTML)) {
-        $('#' + taskId + '_' + periodId + '_needsTd').addClass('errorTd');
-      } else {
-        $('#' + taskId + '_' + periodId + '_needsTd').removeClass('errorTd');
-      }
-      sel.setAttribute('previous', sel.value);
-    } else {
-      selectOption(sel, sel.getAttribute('previous'));
     }
   })
   .fail(function(jqHXR,status,error) {
