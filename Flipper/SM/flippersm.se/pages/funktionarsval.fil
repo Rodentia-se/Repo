@@ -17,12 +17,12 @@
         $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
         $length = ($length) ? $length : 0;
         $content .= '
-            <div>
-              <div class="volPeriod">'.$date.'<br />'.$clock.'</div>
-              <div class="volLength "id="'.$period->id.'_assLength">'.$length.'</div>
+            <div class="volPeriod">
+              <div class="volTime volDiv">'.$date.'<br />'.$clock.'</div>
+              <div class="volLength volDiv" id="'.$period->id.'_assLength">'.$length.'</div>
         ';
         foreach ($tasks as $task) {
-          $content .= '<div class="vol'.$task->shortName.'">';
+          $content .= '<div class="volDiv vol'.$task->shortName.'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {

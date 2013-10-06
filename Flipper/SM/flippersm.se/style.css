@@ -1120,3 +1120,8 @@ top: -9999px;
   width: 90px;
   padding: 0 5px 0 5px;
 }
+
+#content div.volDiv {
+  position: relative;
+  float: left;
+}
