@@ -847,10 +847,7 @@ top: -9999px;
   }
 
   @media only screen and (max-device-width: 460px), (max-width: 460px) {
-  	div#head, div#menu {
-  	position:relative;
-  	width: 100%;
-  	}
+  
 
     .result td:nth-of-type(2):after {
       content: " p";
@@ -870,6 +867,13 @@ top: -9999px;
       padding-left: 20px;
       border: 0px;
     }
+    
+  	div#head, div#menu {
+  	position:relative;
+  	margin: 0;
+    padding: 0;
+  	width: 100%;
+  	}
 
     div#menu #buttons {
       position: relative;
