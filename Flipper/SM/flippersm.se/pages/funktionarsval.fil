@@ -16,18 +16,18 @@
         $clock = preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->startTime)).'-'.preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->endTime));
         $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
         $length = ($length) ? $length : 0;
-        $content .= '
+        $volTable .= '
             <div class="volPeriod clearboth">
               <div class="volTime volDiv"><h2>'.$date.'</h2><h3>'.$clock.'</h3><h3>'.$length.' tim</h3></div>
               <div>
         ';
         foreach ($tasks as $task) {
-          $content .= '<div class="volDiv vol'.$task->shortName.'">';
+          $volTable .= '<div class="volDiv vol'.$task->shortName.'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           $selfTaken = false;
           if ($need || $alloc) {
-            $content .= '<h3>'.$task->name.' ('.$need.'):</h3>';
+            $volTable .= '<h3>'.$task->name.' ('.$need.'):</h3>';
             $allocVols = $task->getAllocVols($dbh, $period);
             $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
             if ($allocVols && $noOfAllocVols > 0) {
@@ -35,7 +35,7 @@
                 if ($allocVol->id == $player->id) {
                   $selfTaken = true;
                 } else {
-                  $content .= '<p>'.$allocVol->firstName.' '.$allocVol->lastName.'</p>';
+                  $volTable .= '<p>'.$allocVol->firstName.' '.$allocVol->lastName.'</p>';
                 }
               }
             }
@@ -44,24 +44,30 @@
           if ($need && (!$allocVols || $need - $vacancies > 0)) {
             for ($i = 0 + $vacancies; $i < $need; $i++) {
               if ($need - $i == 1) {
-                $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
-                $content .= ($selfTaken) ? ' checked' : '';
+                $volTable .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
+                if ($selfTaken) {
+                  $volTable .= ' checked';
+                  $selfSlot = $date.' '.$clock.' ('.$length.'): '.$task->name;
+                  $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_volSlot">'.$selfSlot.'</p>';
                 if ($player->checkIfVolFree($dbh, $period)) {
-                  $content .= '>&nbsp;Jag tar det!';
+                  $volTable .= '>&nbsp;Jag tar det!';
                 } else {
-                  $content .= ' disabled>&nbsp;Kvaltid';
+                  $volTable .= ' disabled>&nbsp;Kvaltid';
                 }
-                $content .= '<span class="error errorSpan toolTip" id="'.$task->id.'_'.$period->id.'_volCheckboxSpan"></span></p>';
+                $volTable .= '
+                  <span class="error errorSpan toolTip" id="'.$task->id.'_'.$period->id.'_volCheckboxSpan"></span></p>
+                  <input type="hidden" id="'.$task->id.'_'.$period->id.'_volSlotHidden" value="'.$selfSlot.'">
+                ';
               } else {
-                $content .= '<p>Vakant</p>';
+                $volTable .= '<p>Vakant</p>';
               }
             }
           }
-          $content .= '</div>';
+          $volTable .= '</div>';
         }
-        $content .= '</div></div>';
+        $volTable .= '</div></div>';
       }
-      $content .= '</div>';
+      $content .= '<div>'.$selfSlots.'</div>'.$volTable.'</div>';
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';
     }
