@@ -876,6 +876,7 @@ top: -9999px;
   	}
 
     div#menu #buttons {
+      float: right;
       position: relative;
       width: 100%;
       line-height: 2.5em;
