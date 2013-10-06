@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
   
-  printHeader('EPC 2013', __baseHref__);
+  printHeader('SM 2013', __baseHref__);
   printTopper();
 
   $content = '<h2 class="entry-title">Admin tools</h2>';
