@@ -94,7 +94,7 @@ else {
 <div class="spalt">
 
 <?php
-  if (!checkLogin($dbh, $ulogin, false) {
+  if (!checkLogin($dbh, $ulogin, false)) {
     echo showLogin($ulogin, 'Redan anmäld? Logga in!');
   }
   echo '<h2>Följ oss på sociala media!</h2>';
