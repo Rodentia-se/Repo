@@ -46,7 +46,7 @@
                 } else {
                   $content .= ' disabled>&nbsp;Kvaltid';
                 }
-                $content .= '<span class="error errorSpan toolTip" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckboxSpan"></span></p>';
+                $content .= '<span class="error errorSpan toolTip" id="'.$task->id.'_'.$period->id.'_volCheckboxSpan"></span></p>';
               } else {
                 $content .= '<p>Vakant</p>';
               }
