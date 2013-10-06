@@ -448,7 +448,7 @@ top: -9999px;
 }
 
 #content .volPeriod {
-	display:table;
+	display:table-row;
 }
 
 #content .volTime {
