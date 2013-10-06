@@ -33,7 +33,6 @@
               $selfTaken = false;
               foreach($allocVols as $allocVol) {
                 if ($allocVol->id == $player->id) {
-                  $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);" checked>&nbsp;Jag tar det!';
                   $selfTaken = true;
                 } else {
                   $content .= '<p>'.$allocVol->firstName.' '.$allocVol->lastName.'</p>';
@@ -46,6 +45,7 @@
             for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
               if ($need - $i == 1) {
                 $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
+                $content .= ($selfTaken) ? ' checked' : '';
                 if ($player->checkIfVolFree($dbh, $period)) {
                   $content .= '>&nbsp;Jag tar det!';
                 } else {
