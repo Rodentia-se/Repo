@@ -175,14 +175,13 @@ var currencies = {
   }
 }
 
-/*
-$.fn.dataTableExt.afnSortData['dom-link'] = function  ( oSettings, iColumn )
-{
-	return $.map( oSettings.oApi._fnGetTrNodes(oSettings), function (tr, i) {
-		return $('td:eq('+iColumn+') a', tr).text().replace(/^$/, '20000').replace(/^0$/, '20000');
-	} );
+if ($.url().attr('file') == 'adminTools.php') {
+  $.fn.dataTableExt.afnSortData['dom-link'] = function(oSettings, iColumn) {
+	  return $.map( oSettings.oApi._fnGetTrNodes(oSettings), function (tr, i) {
+		  return $('td:eq('+iColumn+') a', tr).text().replace(/^$/, '20000').replace(/^0$/, '20000');
+	  });
+  }
 }
-*/
 
 // Classes definitions for continents, countries, regions, cities, players and genders.
 // Implemented as JS functions with protoypes.
@@ -749,28 +748,28 @@ function printPlayers(objs, dstId, meBtns, sels) {
   var tbody = addTbody(tbl);
   addRows(tbody, classes['player'], false, meBtns, sels, objs); // Add the rows, and include info about meBtn and sels.
   $('#' + dstId).show(); // Allright, table done, let's show it
-/*
-  $('#' + tbl.id).dataTable({
-    'bProcessing': true, 
-    'bDestroy': true, 
-    'bJQueryUI': true,
-		'sPaginationType': 'full_numbers', 
-    'iDisplayLength': 200,
-		'aoColumns': [
-	    {'sSortDataType': 'dom-link' },
-			null,
-	    {'sSortDataType': 'dom-link' },
-	    {'sSortDataType': 'dom-link' },
-	    {'sSortDataType': 'dom-link' },
-	    {'sSortDataType': 'dom-link' },
-	    {'sSortDataType': 'dom-link' },
-      null
-		],
-    'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
-  }); // Rebuild the datatable  
-  $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
-  $('#newData').css('width', ''); // This is needed, or the table is butt ugly!
-*/
+  if ($.url().attr('file') == 'adminTools.php') {
+    $('#' + tbl.id).dataTable({
+      'bProcessing': true,
+      'bDestroy': true,
+      'bJQueryUI': true,
+	  	'sPaginationType': 'full_numbers',
+      'iDisplayLength': 200,
+		  'aoColumns': [
+	      {'sSortDataType': 'dom-link' },
+	  		null,
+	      {'sSortDataType': 'dom-link' },
+	      {'sSortDataType': 'dom-link' },
+	      {'sSortDataType': 'dom-link' },
+	      {'sSortDataType': 'dom-link' },
+	      {'sSortDataType': 'dom-link' },
+        null
+  		],
+      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+    }); // Rebuild the datatable
+    $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
+    $('#newData').css('width', ''); // This is needed, or the table is butt ugly!
+  }
 }
 
 // This is me!
@@ -2369,33 +2368,34 @@ function popTbl(tbl, type) { // Let's populate a table
     addThead(tbl, type); // Add headers...
     var tbody = addTbody(tbl); // ...body...
     addRows(tbody, type, true); // ...and rows
-/*
-    if (type.name == 'player') {
-  		aoColumns = [
-  	    {'sSortDataType': 'dom-link' },
-  			null,
-  	    {'sSortDataType': 'dom-link' },
-  	    {'sSortDataType': 'dom-link' },
-  	    {'sSortDataType': 'dom-link' },
-  	    {'sSortDataType': 'dom-link' },
-  	    {'sSortDataType': 'dom-link', 'sType': 'numeric'},
-        null
-      ];
+    if ($.url().attr('file') == 'adminTools.php') {
+      if (type.name == 'player') {
+    		aoColumns = [
+  	      {'sSortDataType': 'dom-link' },
+  		  	null,
+  	      {'sSortDataType': 'dom-link' },
+  	      {'sSortDataType': 'dom-link' },
+  	      {'sSortDataType': 'dom-link' },
+  	      {'sSortDataType': 'dom-link' },
+  	      {'sSortDataType': 'dom-link', 'sType': 'numeric'},
+          null
+        ];
+      } else {
+        aoColumns = null;
+      }
+      $('#' + tbl.id).dataTable({
+        'bProcessing': true,
+        'bDestroy': true,
+        'bJQueryUI': true,
+	  	  'sPaginationType': 'full_numbers',
+        'iDisplayLength': 200,
+    		'aoColumns': aoColumns,
+        'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+      }); // Rebuild the datatable
+      $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
     } else {
-      aoColumns = null;
+      $('#' + tbl.id).tablesorter();
     }
-    $('#' + tbl.id).dataTable({
-      'bProcessing': true, 
-      'bDestroy': true, 
-      'bJQueryUI': true,
-		  'sPaginationType': 'full_numbers', 
-      'iDisplayLength': 200, 
-  		'aoColumns': aoColumns,
-      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
-    }); // Rebuild the datatable
-    $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
-*/
-    $('#' + tbl.id).tablesorter();
     hideLoading(type);
   }
 }

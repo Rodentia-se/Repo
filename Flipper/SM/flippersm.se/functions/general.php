@@ -4063,95 +4063,96 @@
   }
   
   function getDataTables($identifier = 'table') {
-/*
-    switch($identifier) {
-      case '.scores':
-        $sort = "
-          'aoColumns': [
-            {'sType': 'numeric-empty-last' },
-            null,
-            {'sType': 'numeric-empty-last' },
-            {'sType': 'numeric-empty-last' }
-          ],
-        ";
-      break;
-      case '.standings':
-        $sort = "
-          'aoColumns': [
-            {'sType': 'numeric-empty-last' },
-            null,
-            null,
-            {'sType': 'numeric-empty-last' }
-          ],
-        ";
-      break;
-      case '.mainStandings':
-        $sort = "
-          'aoColumns': [
-            {'sType': 'numeric-empty-last' },
-            null,
-            null,
-            {'sType': 'numeric-empty-last' },
-            null
-          ],
-        ";
-      break;
-      case '.listView':
-        $sort = "
-          'aoColumns': [
-            {'sType': 'numeric-empty-last' },
-            {'sType': 'numeric-empty-last' },
-            null,
-            null,
-            null,
-            null
-          ],
-        ";
-      break;
-    }
+    if($_SERVER['SCRIPT_NAME'] == '/adminTools.php') {
+      switch($identifier) {
+        case '.scores':
+          $sort = "
+            'aoColumns': [
+              {'sType': 'numeric-empty-last' },
+              null,
+              {'sType': 'numeric-empty-last' },
+              {'sType': 'numeric-empty-last' }
+            ],
+          ";
+        break;
+        case '.standings':
+          $sort = "
+            'aoColumns': [
+              {'sType': 'numeric-empty-last' },
+              null,
+              null,
+              {'sType': 'numeric-empty-last' }
+            ],
+          ";
+        break;
+        case '.mainStandings':
+          $sort = "
+            'aoColumns': [
+              {'sType': 'numeric-empty-last' },
+              null,
+              null,
+              {'sType': 'numeric-empty-last' },
+              null
+            ],
+          ";
+        break;
+        case '.listView':
+          $sort = "
+            'aoColumns': [
+              {'sType': 'numeric-empty-last' },
+              {'sType': 'numeric-empty-last' },
+              null,
+              null,
+              null,
+              null
+            ],
+          ";
+        break;
+      }
 
-    return "
-        <script type=\"text/javascript\">
-          $(document).ready(function() {
-           $.fn.dataTableExt.oSort['numeric-empty-last-asc'] = function(a,b) {
-              var x = a.replace( /^$/, 200000);
-              var y = b.replace( /^$/, 200000);
-              x = parseFloat( x );
-              y = parseFloat( y );
-              return ((x < y) ?  1 : ((x > y) ? -1 : 0));
-            };
-           $.fn.dataTableExt.oSort['numeric-empty-last-desc'] = function(a,b) {
-              var y = a.replace( /^$/, 200000);
-              var x = b.replace( /^$/, 200000);
-              x = parseFloat( x );
-              y = parseFloat( y );
-              return ((x < y) ?  1 : ((x > y) ? -1 : 0));
-            };
-            $('".$identifier."').dataTable({
-              'bProcessing': true,
-              'bDestroy': true,
-              'bJQueryUI': true,
-              'sPaginationType': 'full_numbers',
-              'iDisplayLength': 300,
-              'aaSorting': [[0, 'desc' ], [2, 'asc']],
-              ".$sort."
-              'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+      return "
+          <script type=\"text/javascript\">
+            $(document).ready(function() {
+             $.fn.dataTableExt.oSort['numeric-empty-last-asc'] = function(a,b) {
+                var x = a.replace( /^$/, 200000);
+                var y = b.replace( /^$/, 200000);
+                x = parseFloat( x );
+                y = parseFloat( y );
+                return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+              };
+              $.fn.dataTableExt.oSort['numeric-empty-last-desc'] = function(a,b) {
+                var y = a.replace( /^$/, 200000);
+                var x = b.replace( /^$/, 200000);
+                x = parseFloat( x );
+                y = parseFloat( y );
+                return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+              };
+              $('".$identifier."').dataTable({
+                'bProcessing': true,
+                'bDestroy': true,
+                'bJQueryUI': true,
+                'sPaginationType': 'full_numbers',
+                'iDisplayLength': 300,
+                'aaSorting': [[0, 'desc' ], [2, 'asc']],
+                ".$sort."
+                'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+              });
             });
-          });
-          $(function() {
-            $('#tabs').tabs();
-          });
-        </script>
-    ";
-*/
-    return "
-        <script type=\"text/javascript\">
-          $(document).ready(function() {
-            $('#tabs').tabs();
-            $('".$identifier."').tablesorter();
-          });
-        </script>
-    ";
+            $(function() {
+              $('#tabs').tabs();
+            });
+          </script>
+      ";
+    } else {
+      return "
+          <script type=\"text/javascript\">
+            $(document).ready(function() {
+              $('#tabs').tabs();
+              $('".$identifier."').tablesorter();
+            });
+          </script>
+      ";
+    }
   }
   
 ?>
