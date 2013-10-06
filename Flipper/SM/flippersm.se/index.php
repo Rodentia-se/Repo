@@ -65,7 +65,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   {
 
   $m = isset($_GET['m']) ? '&m='.$_GET['m'] : null;
-  
+
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam($dbh) : false;
 
@@ -74,7 +74,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
   if($category == "anmalda")
     {
       if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id = $team->id)) {
-        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."\">Bli funktionär!</a> <a href=\"?s=betala".$m."\">Betala</a>";
+        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."&m2=anmalda\">Bli funktionär!</a> <a href=\"?s=betala".$m."\">Betala</a>";
       } else {
         $content .= "<a href=\"?s=anmalda".$m."\">Anmälda spelare</a> <a href=\"?s=kvalgrupper".$m."\">Kvalgrupper</a> <a href=\"?s=object&obj=team".$m."\">Dubbellag</a>";
       }
@@ -82,7 +82,10 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
 
   if($category == "funktionar")
     {
-      $content .= "<a href = '?s=funktionar".$m."'>Bli funktionär</a> <a href = '?s=instruktioner".$m."'>Instruktioner</a>";
+      $content .= "<a href = '?s=funktionar".$m."'>Funktionärer</a> <a href = '?s=instruktioner".$m."'>Instruktioner</a>";
+      if ($player) {
+        $content .= ' <a href="?s=funktionarsval'.$m.'&m2=funktionar">Bli funktionär!</a>'
+      }
     }
 
      
