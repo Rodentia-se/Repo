@@ -40,9 +40,9 @@
             for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
               $content .= '<input type="checkbox"';
               if ($player->checkIfVolFree($dbh, $period)) {
-                $content .= ' disabled>&nbsp;Kvaltid';
-              } else {
                 $content .= '>&nbsp;Jag tar det!';
+              } else {
+                $content .= ' disabled>&nbsp;Kvaltid';
               }
               $content .= '<br />';
             }
