@@ -447,21 +447,7 @@ left: -9999px;
 top: -9999px;
 }
 
-#content .volTable {
-	display:table;
-}
 
-#content .volPeriod {
-	display:table-row;
-}
-
-#content .volTime, #content .volDiv {
-    display: table-cell;
-}
-
-#content .volTime h2 {
-	margin-top: 0;
-}
 
 #content img.palle {max-width: 250px;}
 
@@ -1137,11 +1123,6 @@ top: -9999px;
   padding: 0 5px 0 5px;
 }
 
-#content div.volDiv {
-  position: relative;
-  float: left;
-  width: 150px;
-}
 
 #content div.volTime {
   width: 100px;
@@ -1149,4 +1130,20 @@ top: -9999px;
 
 #content input.volCheckbox {
   margin: 0;
+}
+
+#content .volTable {
+	display:table;
+}
+
+#content .volPeriod {
+	display: table-row;
+}
+
+#content .volTime, #content .volDiv {
+    display: table-cell;
+}
+
+#content .volTime h2 {
+	margin-top: 0;
 }
