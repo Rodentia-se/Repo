@@ -167,6 +167,7 @@
     }
     
     function assign($dbh, $player, $period, $assign = true) {
+      $period->addPlayer($dbh, $player, 1);
       $query = '
         update volunteerPeriod vp 
           left join volunteer v
