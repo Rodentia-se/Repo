@@ -19,7 +19,7 @@
         $content .= '
         	<hr/ class="clearboth">
             <div class="volPeriod clearboth">
-              <div class="volTime volDiv"><h3>'.$date.'<br/>'.$clock.'<br/>'.$length.' tim</h3></div>
+              <div class="volTime volDiv"><p>'.$date.'<br/>'.$clock.'<br/>'.$length.' tim</p></div>
               <div>
         ';
         foreach ($tasks as $task) {
@@ -27,7 +27,7 @@
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {
-            $content .= '<p>'.$task->name.'s</p>';
+            $content .= '<h3>'.$task->name.'s</h3>';
             $allocVols = $task->getAllocVols($dbh, $period);
             $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
             if ($allocVols && $noOfAllocVols > 0) {
