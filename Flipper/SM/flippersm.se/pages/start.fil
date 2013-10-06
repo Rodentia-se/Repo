@@ -94,8 +94,6 @@ else {
 <div class="spalt">
 
 <?php
-  $player = getCurrentPlayer($dbh, $ulogin);
-  var_dump($player);
   if (!$loggedIn) {
     echo showLogin($ulogin, 'Redan anmäld? Logga in!');
   }
