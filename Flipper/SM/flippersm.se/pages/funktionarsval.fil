@@ -17,8 +17,8 @@
         $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
         $length = ($length) ? $length : 0;
         $content .= '
-        	<hr/ class="clearboth">
             <div class="volPeriod clearboth">
+        	<hr/ class="clearboth">
               <div class="volTime volDiv"><h2>'.$date.'</h2><h3>'.$clock.'</h3><h3>'.$length.' tim</h3></div>
               <div>
         ';
