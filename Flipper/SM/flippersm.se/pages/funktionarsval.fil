@@ -50,9 +50,9 @@
               $content .= '</p>';
             }
           }
-          $content .= '</div></div>';
+          $content .= '</div>';
         }
-        $content .= '</div>';
+        $content .= '</div></div>';
       }
       $content .= '</div>';
     } else {
