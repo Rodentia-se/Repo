@@ -39,7 +39,7 @@
           if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
             for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
               if ($need - $i == 1) {
-                $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckbox" onclick="volSelfAssign(this);"';
+                $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
                 if ($player->checkIfVolFree($dbh, $period)) {
                   $content .= '>&nbsp;Jag tar det!';
                 } else {
