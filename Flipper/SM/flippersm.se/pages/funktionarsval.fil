@@ -22,7 +22,7 @@
               <td>
         ';
         foreach ($tasks as $task) {
-          $content .= '<div class="volDiv vol'.$task->shortName.'">';
+          $content .= '<td class="volDiv vol'.$task->shortName.'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {
