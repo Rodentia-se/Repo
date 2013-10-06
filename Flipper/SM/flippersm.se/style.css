@@ -1134,6 +1134,7 @@ top: -9999px;
 
 #content .volTable {
 	display:table;
+	width: calc(100% - 30px);
 }
 
 #content .volPeriod {
