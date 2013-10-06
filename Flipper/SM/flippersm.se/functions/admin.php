@@ -425,7 +425,7 @@
         foreach ($tasks as $task) {
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
-          $volunteers = $task->getVolunteersByPeriod($dbh, $period);
+//          $volunteers = $task->getVolunteersByPeriod($dbh, $period);
           $needTable .= '
             <td id="'.$task->id.'_'.$period->id.'_needsTd" class="'.(($alloc < $need) ? 'errorTd' : '').'">
               Alloc: <span id="'.$task->id.'_'.$period->id.'_alloc">'.$alloc.'</span><br />
