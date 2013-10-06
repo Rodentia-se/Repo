@@ -1,10 +1,8 @@
 <h1>Tidigare mästerskap</h1>
 
-<p class="submenu2">
 <?php
 submenu2($dbh, $ulogin, "tidigare");
 ?>
-</p>
 
 <div class="spalt">
       <h2>Flipper-SM 2011</h2>

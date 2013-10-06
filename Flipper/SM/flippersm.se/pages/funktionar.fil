@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Funktionärer</h1>
-    <p class="submenu2">'.submenu2($dbh, $ulogin, "funktionar", false).'</p>
+    '.submenu2($dbh, $ulogin, "funktionar", false).'
     <p>Här kommer funktionärsschemat att visas</p>
   ';
 

@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Instruktioner</h1>
-    <p class="submenu2">'.submenu2($dbh, $ulogin, "funktionar", false).'</p>
+    '.submenu2($dbh, $ulogin, "funktionar", false).'
     <h3>Instruktioner för scorekeeping</h3>
     <p>Poänginsamlingen görs med en väldigt intuitiv app i din egen smartphone (eller en lånad om du inte har någon lämplig apparat själv).</p>
     <p><span class="bold">Apple iOS</span> (iPhone, iPad, etc): Registrera dig på "Test Flight" http://tflig.ht/13zsK24 för att ladda ner appen.</p>
