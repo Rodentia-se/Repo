@@ -18,8 +18,11 @@
         $length = ($length) ? $length : 0;
         $content .= '
             <div class="volPeriod clearboth">
-              <div class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p></div>
-              <div class="volLength volDiv"><p>'.$length.'</p></div>
+              <div class="volDiv">
+                <div class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p></div>
+                <div class="volLength volDiv"><p>'.$length.'</p></div>
+              </div>
+              <div class="volDiv">
         ';
         foreach ($tasks as $task) {
           $content .= '<div class="volDiv vol'.$task->shortName.'">';
@@ -47,7 +50,7 @@
               $content .= '</p>';
             }
           }
-          $content .= '</div>';
+          $content .= '</div></div>';
         }
         $content .= '</div>';
       }
