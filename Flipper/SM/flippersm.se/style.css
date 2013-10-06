@@ -862,6 +862,7 @@ top: -9999px;
     }
 
     div#logo {
+      right: 0;
       margin: 0px auto;
       float: none;
       padding-left: 20px;
@@ -876,7 +877,7 @@ top: -9999px;
   	}
 
     div#menu #buttons {
-      float: right;
+      right: 0;
       position: relative;
       width: 100%;
       line-height: 2.5em;
