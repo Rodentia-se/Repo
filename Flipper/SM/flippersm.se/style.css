@@ -1127,6 +1127,6 @@ top: -9999px;
   width: 150px;
 }
 
-#content div.volTime, #content div.volLength {
-  width: 50px;
+#content div.volTime {
+  width: 100px;
 }
