@@ -856,7 +856,6 @@ top: -9999px;
     }
     
     #menu #tagline, #menu #buttons, #menu #submenu1 {
-    	float: none;
       padding-right: 0px;
     }
 
@@ -872,7 +871,8 @@ top: -9999px;
       width: 100%;
       line-height: 2.5em;
       top: 20px;
-      margin-left: 40px;
+      margin: 0;
+      padding: 0;
       text-align: center;
     }
 
