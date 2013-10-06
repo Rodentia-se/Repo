@@ -22,10 +22,11 @@
               <div class="volLength "id="'.$period->id.'_assLength">'.$length.'</div>
         ';
         foreach ($tasks as $task) {
-          $content .= '<div class="vol'.ucfirst($task->acronym).'">'.$task->name.'s<br />';
+          $content .= '<div class="vol'.ucfirst($task->acronym).'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {
+            $content .= $task->name.'s<br />';
             $allocVols = $task->getAllocVols($dbh, $period);
             $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
             if ($allocVols && $noOfAllocVols > 0) {
