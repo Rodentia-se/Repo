@@ -6,6 +6,7 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
       $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
+      $content .= '<p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p>'
       $volunteers = getVolunteers($dbh);
       $tasks = getTasks($dbh);
       $periods = getPeriods($dbh);
@@ -36,14 +37,18 @@
             }
           }
           if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
-            for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
-              $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckbox" onclick="volSelfAssign(this);"';
-              if ($player->checkIfVolFree($dbh, $period)) {
-                $content .= '>&nbsp;Jag tar det!';
+            if ($need - $noOfAllocVols == 1) {
+              for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
+                $content .= '<p><input type="checkbox" class="volCheckbox" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckbox" onclick="volSelfAssign(this);"';
+                if ($player->checkIfVolFree($dbh, $period)) {
+                  $content .= '>&nbsp;Jag tar det!';
+                } else {
+                  $content .= ' disabled>&nbsp;Kvaltid';
+                }
+                $content .= '<span class="error errorSpan toolTip" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckboxSpan"></span></p>';
               } else {
-                $content .= ' disabled>&nbsp;Kvaltid';
+                echo '<p>Vakant</p>';
               }
-              $content .= '<span class="error errorSpan toolTip" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckboxSpan"></span></p>';
             }
           }
           $content .= '</div>';
