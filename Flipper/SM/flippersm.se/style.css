@@ -447,6 +447,10 @@ left: -9999px;
 top: -9999px;
 }
 
+#content .volTime h2 {
+	margin-top: 0;
+}
+
 #content img.palle {max-width: 250px;}
 
 #jubileum {
