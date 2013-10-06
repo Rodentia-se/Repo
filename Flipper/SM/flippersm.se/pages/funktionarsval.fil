@@ -18,7 +18,6 @@
         $length = ($length) ? $length : 0;
         $content .= '
             <div class="volPeriod clearboth">
-        	<hr/ class="clearboth">
               <div class="volTime volDiv"><h2>'.$date.'</h2><h3>'.$clock.'</h3><h3>'.$length.' tim</h3></div>
               <div>
         ';
