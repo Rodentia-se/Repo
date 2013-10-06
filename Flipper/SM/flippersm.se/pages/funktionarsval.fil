@@ -47,7 +47,7 @@
                 }
                 $content .= '<span class="error errorSpan toolTip" id="'.$period->id.'_'.$task->id.'_'.$i.'_volCheckboxSpan"></span></p>';
               } else {
-                echo '<p>Vakant</p>';
+                $content .= '<p>Vakant</p>';
               }
             }
           }
