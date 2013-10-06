@@ -95,6 +95,7 @@ else {
 
 <?php
   $player = getCurrentPlayer($dbh, $ulogin);
+  var_dump($player);
   if (!$player) {
     showLogin($ulogin, 'Redan anmäld? Logga in!');
   }
