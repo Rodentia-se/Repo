@@ -96,7 +96,7 @@ else {
 <?php
   $player = getCurrentPlayer($dbh, $ulogin);
   var_dump($player);
-  if (!checkLogin($dbh, $ulogin, false)) {
+  if (!$loggedIn) {
     echo checkLogin($ulogin, 'Redan anmäld? Logga in!');
   }
   echo '<h2>Följ oss på sociala media!</h2>';

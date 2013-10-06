@@ -2,6 +2,8 @@
   define('__ROOT__', dirname(__FILE__));
   require_once(__ROOT__.'/functions/general.php');
 
+$loggedIn = checkLogin($dbh, $ulogin, false);
+
 $s = isset($_GET['s']) ? $_GET['s'] : 'start';
 
 function undermenu($dbh, $ulogin, $page, $m)
