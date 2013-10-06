@@ -49,6 +49,7 @@
                   $volTable .= ' checked';
                   $selfSlot = $date.' '.$clock.' ('.$length.'): '.$task->name;
                   $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_volSlot">'.$selfSlot.'</p>';
+                }
                 if ($player->checkIfVolFree($dbh, $period)) {
                   $volTable .= '>&nbsp;Jag tar det!';
                 } else {
