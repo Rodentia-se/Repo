@@ -447,6 +447,10 @@ left: -9999px;
 top: -9999px;
 }
 
+#content .volTable {
+	display:table;
+}
+
 #content .volPeriod {
 	display:table-row;
 }
