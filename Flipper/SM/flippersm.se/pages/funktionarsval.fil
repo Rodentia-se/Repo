@@ -6,7 +6,7 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
       $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
-      $content .= '<p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p><table>';
+      $content .= '<p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p>';
       $volunteers = getVolunteers($dbh);
       $tasks = getTasks($dbh);
       $periods = getPeriods($dbh);
@@ -17,12 +17,13 @@
         $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
         $length = ($length) ? $length : 0;
         $content .= '
-            <tr class="volPeriod clearboth">
-              <td class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p><p>'.$length.' tim</p></td>
-              <td>
+        	<hr/>
+            <div class="volPeriod clearboth">
+              <div class="volTime volDiv"><p>'.$date.'</p><p>'.$clock.'</p><p>'.$length.' tim</p></div>
+              <div>
         ';
         foreach ($tasks as $task) {
-          $content .= '<td class="volDiv vol'.$task->shortName.'">';
+          $content .= '<div class="volDiv vol'.$task->shortName.'">';
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           if ($need || $alloc) {
@@ -51,9 +52,9 @@
               }
             }
           }
-          $content .= '</td>';
+          $content .= '</div>';
         }
-        $content .= '</td></tr>';
+        $content .= '</div></div>';
       }
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';
@@ -66,4 +67,3 @@
 
   echo $content;
 ?>
-</table>
