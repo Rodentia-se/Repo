@@ -18,7 +18,7 @@
       $player = getCurrentPlayer($dbh, $ulogin);
       $content .= getQualGroupForm($dbh, $player);
     } else {
-      $content .= '<p>Du måste <a href="../">anmäla dig</a> och skapa en användare innan du kan välja kvaltider.</p>';
+      $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> och skapa en användare innan du kan välja kvaltider.</p>';
       $content .= showLogin($ulogin, 'Om du redan har en användare, logga in här.');
     }
   } else {

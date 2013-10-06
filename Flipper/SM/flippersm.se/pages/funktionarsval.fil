@@ -1,6 +1,62 @@
 <?php
   $m2 = isset($_GET['m2']) ? $_GET['m2'] : 'anmalda';
   $content = '<h1>Bli funktionär!</h1>';
-  $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
+
+  if (checkLogin($dbh, $ulogin, false)) {
+    $player = getCurrentPlayer($dbh, $ulogin);
+    if ($player->mainPlayerId) {
+      $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
+      $volunteers = getVolunteers($dbh);
+      $tasks = getTasks($dbh);
+      $periods = getPeriods($dbh);
+      $mainTasks = array(1, 3, 4);
+      $content .= '<div>';
+      foreach ($periods as $period) {
+        $date = preg_replace('/^2013-[0-9]+-/', '', $period->date).'th';
+        $clock = preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->startTime)).'-'.preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->endTime));
+        $length = preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $period->length)));
+        $length = ($length) ? $length : 0;
+        $content .= '
+            <p>
+              <div class="volPeriod">'.$date.'<br />'.$clock.'</div>
+              <div class="volLength "id="'.$period->id.'_assLength">'.$length.'</div>
+        ';
+        foreach ($tasks as $task) {
+          $content .= '<div class="vol'.ucfirst($task->acronym).'">'.$task->name.'s<br />';
+          $alloc = $task->getAlloc($dbh, $period);
+          $need = $task->getNeed($dbh, $period);
+          if ($need || $alloc) {
+            $allocVols = $task->getAllocVols($dbh, $period);
+            $noOfAllocVols = ($allocVols) ? count($allocVols) : 0;
+            if ($allocVols && $noOfAllocVols > 0) {
+              foreach($allocVols as $allocVol) {
+                $content .= $allocVol->firstName.' '.$allocVol->lastNamwe.'<br />';
+              }
+              $i++;
+            }
+          }
+          if ($need && (!$allocVols || $need - $noOfAllocVols > 0)) {
+            for ($i = 0 + $noOfAllocVols; $i < $need; $i++) {
+              $content .= 'Vakant';
+              if ($player->checkIfVolFree($dbh, $period)) {
+                $content .= '<input type="checkbox">';
+              }
+              $content .= '<br />';
+            }
+          }
+          $content .= '</div>';
+        }
+        $content .= '</p>';
+      }
+      $content .= '</div>';
+    } else {
+      $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';
+    }
+  } else {
+    $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> och skapa en användare innan du kan bli funktionär.</p>';
+    $content .= showLogin($ulogin, 'Om du redan har en användare, logga in här.');
+  }
+
+
   echo $content;
 ?>
