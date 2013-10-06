@@ -84,7 +84,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
     {
       $content .= "<a href = '?s=funktionar".$m."'>Funktionärer</a> <a href = '?s=instruktioner".$m."'>Instruktioner</a>";
       if ($player) {
-        $content .= ' <a href="?s=funktionarsval'.$m.'&m2=funktionar">Bli funktionär!</a>'
+        $content .= ' <a href="?s=funktionarsval'.$m.'&m2=funktionar">Bli funktionär!</a>';
       }
     }
 
