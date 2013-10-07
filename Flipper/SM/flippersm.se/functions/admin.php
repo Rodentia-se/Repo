@@ -151,7 +151,7 @@
         }
 
         $td = array(
-          'player' => '<td>'.$player->getLink().'</td>',
+          'player' => '<td>'.$player->getLink().'&nbsp;'.$player->getQR().'</td>',
           'main' => '<td>'.$player->mainPlayerId.'</td>',
           'classics' => '<td>'.$player->classicsPlayerId.'</td>',
           'team' => '<td>'.(($team) ? '<a href="'.$team->getLink(false).'" target="_blank">'.$team->id.'</a>' : '').'</td>',
