@@ -772,7 +772,7 @@
                 <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
                 <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
                 <option value="3"'.(($game->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>
-                <option value="13"'.(($game->tournamentDivision_id == 13) ? ' selected' : '').'>Side Tournament</option>
+                <option value="13"'.(($game->tournamentDivision_id == 13) ? ' selected' : '').'>Side</option>
                 <option value="14"'.(($game->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
               </select>
               <span class="error errorSpan toolTip" id="'.$game->machine_id.'_usageSpan"></span>
