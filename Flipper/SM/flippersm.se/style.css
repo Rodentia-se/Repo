@@ -1182,11 +1182,11 @@ top: -9999px;
 }
 
 #content div.curCalc select {
-  display: inline;
   width: 50px;
+  margin: 0px 0px 0px 5px
 }
 
-#content div.curCalc select {
+#content div.curCalc label {
   display: inline;
-  width: 50px;
+  margin: 0px 0px 0px 15px
 }
