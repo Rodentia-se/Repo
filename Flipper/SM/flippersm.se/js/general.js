@@ -1907,7 +1907,6 @@ function adminGameDel(icon) {
     if (data.success) {
       var tr = icon.parentNode.parentNode;
       $('#adminGameTable').dataTable().fnDeleteRow(tr);
-      debugOut($('#adminGameTable').dataTable().aoColumns);
     }
   })
   .fail(function(jqHXR,status,error) {
