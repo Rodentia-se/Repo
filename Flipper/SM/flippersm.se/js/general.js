@@ -1194,7 +1194,9 @@ function submitChecked(obj) {
   }
   var jsonObj = JSON.stringify(obj, props); // I stringify the object...
   var newObj = JSON.parse(jsonObj); // ...and then objectify it again. Why? Shouldn't be necessary? I should be able to just use the object straight on? I don't remeber why I did this!
-  fade(document.getElementById('submitSpan'), 'Updaterar databasen...', true);
+  if (document.getElementById('submitSpan')) {
+    fade(document.getElementById('submitSpan'), 'Updaterar databasen...', true);
+  }
   $.post(baseHref + ((pageMode == 'register') ? '/ajax/register.php' : ((pageMode == 'edit') ? '/ajax/playerEdit.php?newPhoto=' + document.getElementById('newPhoto').value : ((pageMode == 'team') ? '/ajax/regTeam.php' : 'wrongPageMode'))), newObj) // Send to server
   .done(function(data) {
     if (pageMode == 'team') {
