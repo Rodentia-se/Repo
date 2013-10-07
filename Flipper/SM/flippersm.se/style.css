@@ -1181,3 +1181,6 @@ top: -9999px;
     display: table-cell;
 }
 
+#content div.curCalc input {
+  width: 50px;
+}

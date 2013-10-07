@@ -1453,7 +1453,7 @@
         $step = 16.67;
       break;
       case 'all':
-        $content = '<h2 class="bold">Currency calculator</h2>';
+        $content = '<div class="curCalc"><h2 class="bold">Currency calculator</h2>';
         foreach (array('SEK', 'EUR', 'GBP', 'USD') as $cur) {
           $content .= getCurCalcForm($cur);
         }
@@ -1470,7 +1470,7 @@
       $content .= ($selected == $i) ? ' selected' : '';
       $content .= '>'.round($i).'</option>';
     }
-    return $content.'</select>';
+    return $content.'</select></div>';
   }  
   
   function getQualGroupSelect($alias = 'q', $extraCols = false) {
