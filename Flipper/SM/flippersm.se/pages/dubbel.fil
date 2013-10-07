@@ -3,7 +3,17 @@
   $content = '
     <h1>Dubbelregler</h1>
     '.submenu2($dbh, $ulogin, "regler", false).'
-    <p>Här finns regler som är annorlunda i dubbel jämfört med övriga klasser</p>
+
+<p>Dubbel spelas enligt samma regler som huvudtävlingen, men med vissa specifika undantag:</p>
+
+<ul>
+<li>I lagtävling (dubbel) får lagmedlemmarna coacha varandra närhelst de vill. Spelade utanför laget ska däremot följa samma regler som i singeltävlingen och är alltså inte tillåtna att coacha spelare mitt under kula.</li>
+<li>Partierna måste spelas av två spelare som användare varsin kanpp/sida. Spelarna får inte byta sida mitt under boll. Det går däermot bra att byta sida mellan bollar.</li>
+<li>Alla modes etc., inklusive video modes, måste spelas av bägge spelarna. Man kan alltså inte låta den ene av spelarna plötsligt ta over båda flipperknapparna.</li>
+<li>Alla typer av plungers (t ex knapp som på NBA Fastbreak, pistol som på Indiana Jopnes eller T2) får skötas av vilken av spelarna som helst</p>
+<li>Alla andra typer av knappar som finns på sidan av maskinen (t ex extraknapparna på Judge Dredd, på Star Wars Episode 1, på The Shadow etc.) måste skötas av spelaren som står på den sidan.</p>
+
+
   ';
 
   echo $content;

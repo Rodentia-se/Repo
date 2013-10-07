@@ -10,48 +10,72 @@ submenu2($dbh, $ulogin, "regler");
 <hr/>
 
 <p>Följande regler har använts under de senaste åren och gäller även i år. </p>
-
+<h3>The nature of Pinball</h3>
 <p>Flipper &auml;r ett fascinerande spel som bygger mycket p&aring; fysikens lagar. Detta inneb&auml;r tyv&auml;rr att konstiga h&auml;ndelser och fel kan intr&auml;ffa under spelets g&aring;ng, vilket inte kan f&ouml;rhindras. Alla fel kan inte kompenseras f&ouml;r, men SM-reglerna &auml;r utformade f&ouml;r att kunna kompensera f&ouml;r de viktigaste och vanligaste felen, samtidigt som vi accepterar spelets fysiska natur.</p>
 
 <hr/>
 
 <h2>Maskinfel</h2>
 
-<p>S&aring; snart ett fel uppt&auml;cks skall domare tillkallas. Det finns fyra olika kategorier av fel:</p>
+<p>S&aring; snart ett fel uppt&auml;cks skall domare tillkallas. Spelaren ska spela vidare, och om möjligt fånga kulan/kulorna på flipprarna. Notera att spelaren ALDRIG ska släppa ut några kulor avsiktligt. Alla sådana manövrar sker helt på egen risk, och ingen kompensation kommer att ges för de utsläppta kulorna. Försök att skaka loss kulor som har fastnat sker också helt på egen risk. Det finns fyra olika kategorier av fel:</p>
 
 <h3>Mindre fel</h3>
 
-<p>Flera saker kan intr&auml;ffa som ej &auml;r klassificerat som normalt spelf&ouml;rlopp. Detta anses som naturliga tillf&auml;lligheter i flipperspelandet och spelaren f&aring;r d&auml;rf&ouml;r i normala fall ingen kompensation f&ouml;r s&aring;dana fel. Undantaget fr&aring;n denna regel &auml;r n&auml;r felet orsakar V&Auml;SENTLIG or&auml;ttvisa mellan spelare, se <i>Or&auml;ttvisa fel</i> nedan. Exempel p&aring; <i>Mindre fel</i>:</p>
+<p>Ett mindre fel är en incident orsakad utan yttre påverkan, som uppkommer under normalt spelande och utan att spelaren förlorar sin boll eller sitt parti och inte heller ger spelaren någon markant fördel. Ett mindre fel räknas helt enkelt som en del av vanligt spelande. Domaren bestämmer vad som ska anses som ”markant fördel” i de fall där sådan åtnjutes. Se avsnittet ”Fördelaktiga fel”. </p>
+
+<p>Exempel på mindre fel kan vara:</p>
 <ul>
-<li>En tr&auml;ff registreras inte </li>
-<li>Kulan fastnar under tidsbegr&auml;nsat mode och kommer inte loss f&ouml;rr&auml;n tiden g&aring;tt ut </li>
-<li>En kula f&ouml;rloras p&aring; onaturligt s&auml;tt under multiboll (dvs ingen kompensation f&ouml;r <i>St&ouml;rre fel</i> under multiboll)</li> 
-</ul></p>
+<li>En träff som inte registreras.</li>
+<li>En boll som sitter fast under ett tidsbundet mode och som inte kommer i spel förrän tiden för modet har gått ut.</li>
+<li>En boll som på onaturligt vis rinner under multibollspel (dvs, det utgår ingen kompensation för större fel under multibollspel!)</li>
+<li>En kula som faller av en ramp och faller rakt ner i mitten eller i outlane.</li>
+<li>En kula som gör en U-sväng från inlane till outlane.</li>
+<li>En kickout som i en båge eller liknande skickar kulan rakt ner i mitten.</li>
+</ul>
 
 <h3>St&ouml;rre fel</h3>
 
-<p>Om spelaren f&ouml;rlorar en kula p&aring; ett s&auml;tt som inte &auml;r f&ouml;renligt med spelets regler och konstruktion anses det som ett <i>St&ouml;rre fel</i> och spelaren ska kompenseras. Kompensation best&auml;ms av domaren och kan vara endera en extra kula eller i vissa extrema fall en helt ny omg&aring;ng. Exempel p&aring; <i>St&ouml;rre fel:</i>
+<p>Ett större fel är ett maskinproblem som resulterar i förtida förlust av innevarande kula på ett vis som inte kan anses vara en del av normalt spelande. Efter att ha tillkallat scorekeeper eller domare blir spelaren i de flesta fall kompenserad för detta. Om domaren anser att händelsen är ett större fel så tilldelas spelaren en extra boll (boll 1 i ett nytt parti) som spelas efter att pågående parit är avslutat. Poängen från den extrabollen adderas till spelarens totalpoäng.</p>
+
+<p>Vid den händelse att två eller fler större fel inträffar under samma parti så avbryts samtliga spelares partier och de får spela om helt nya partier. Spelarnas poäng vid tidpunkten för avbrottet nedtecknas, utom i de fall då poängen på otillbörligt vis var förbättrade av felet i fråga. Den högsta poängen från antingen det ursprungliga partiet eller från det omspelade partiet är det som blir spelarens officiella slutpoäng.</p>
+
+<p>Exempel på större fel kan vara:</p>
 <ul>
-<li>Ej aktiverad kickback </li>
-<li>Kickout som g&aring;r direkt (SDTM) mot drain och avslutad kula </li>
-<li>Spelet tappar r&auml;kningen p&aring; antal kulor i spel (b&ouml;r ge en ny omg&aring;ng som kompensation) </li>
-<li>Kulan faller av habitrail/ramp och rinner</li>
-</ul></p>
+<li>En tänd kickback som inte sparkar tillbaka bollen i spel och istället orsakar förlust av kulan. Detta gäller emellertid inte andra bollräddande funktioner som tidsbundna ball saves, gates, ball traps eller ”virtuella” kickbacks.</li>
+<li>Maskinen tappar bollräkningen och påbörjar bonusräkning under spel.</li>
+</ul>
 
 <h3>Katastrofalt fel</h3>
 
-<p>Om spelet avbryts helt, mitt i spelandet, ben&auml;mns det som ett <i>Katastrofalt fel</i>. Spelarna som p&aring;verkas f&aring;r spela om hela spelomg&aring;ngen. Innan omspelet skall po&auml;ngen för spelarna skrivas upp om det &auml;r m&ouml;jligt. Po&auml;ngen kan sedan inte vara l&auml;gre &auml;n den som spelar fick i det avbrutna spelet. Om en av spelarna har spelat sina tre kulor f&aring;r han trots det spela om sin omg&aring;ng <i>om</i> det &auml;r en slutspelsmatch. Under kvalspel s&aring; spelar bara den spelare som inte fick spela klart sina kulor om omg&aring;ngen. Exempel p&aring; <i>Katastrofala fel:</i>
+<p>Ett katastrofalt fel är en händelse som inte avsiktligt eller av ouppmärksamhet orsakas av spelare, och som omedelbart avslutar partierna för alla spelare på den aktuella maskinen. När ett katastrofalt fel inträffar så nedtecknas om möjligt alla aktuella poängställningar. Spelare som inte har hunnit spela klart sitt parti innan felet inträffar måste spela ett helt nytt parti från start. Den högsta poängen för varje spelare blir deras slutgiltiga, officiella poäng.</p>
+
+<p>Exempel på katastrofala fel kan vara:</p>
 <ul>
-<li>Spelet g&ouml;r en omotiverad reset(omstart) </li>
-<li>Tillf&auml;lligt str&ouml;mavbrott </li>
-<li>Nytt spel startas pga fel i h&aring;rdvaran eller mjukvaran </li>
-</ul></p>
+<li>Spelet kraschar/resettar pga mjukvarufel eller komponentfel</li>
+<li>Strömtillförseln bryts eller störs</li>
+<li>Ett nytt parti går igång</li>
+<li>Ett större fel återkommer trots att försök att avhjälpa dessa har gjorts</li>
 
 <h3>Or&auml;ttvisa fel</h3>
 
 <p>Om flera spelare spelar p&aring; samma maskin och ett eller flera <i>Mindre fel</i> orsakar ett or&auml;ttvist och AVSEV&Auml;RT po&auml;ng&ouml;vertag f&ouml;r en eller flera spelare gentemot &ouml;vriga spelare, ben&auml;mns det felet som ett <i>Or&auml;ttvist fel</i>. Domaren avg&ouml;r n&auml;r och hur kompensation ska utf&auml;rdas. Alternativen &auml;r fr&auml;mst ny omg&aring;ng, extra kula eller omspel f&ouml;r alla ber&ouml;rda spelare. OBS! Denna regel anv&auml;nds endast i extrema specialfall. Domarna kommer att vara V&Auml;LDIGT f&ouml;rsiktiga med att anv&auml;nda denna regel. </p>
 
+<h3>Fördelaktiga fel</h3>
+<p>Varje fel som ger åtminstone en spelare en markant fördel gentemot andra spelare som tävlar på samma maskin räknas som fördelaktigt fel. Domaren avgör vad som räknas som markant fördel. Ett fördelaktigt fel som resulterar i att en spelare kan fortsätta spela en kula som under vanliga omständigheter skulle ha runnit/varit över tillåts normalt en gång per parti.</p>
+<p>Exempel på fördelaktiga fel kan vara:</p>
+<ul>
+<li>En kula som studsar upp i spel igen utan att spelaren har hjälp till (oavsiktlig bangback).</li>
+<li>En kula som lägger sig på en släckt kickback i outlane under multiboll.</li>
+<li>En kula som fastnat på ett annat onaturligt ställe under multiboll.</li>
+</ul>
+<p class="italic">Notera att en kula som vilar t ex i toppen på en loop eller på någon pinne inte räknas som att ha fastnat</p>
+
+<p>Varje situation som kan antas ge en fördel för en eller flera spelare gentemot andra spelare ska omedelbart meddelas till en scorekeeper, som i sin tur kontaktar domaren. En spelare som avsiktligen söker dra nytta av ett fördelaktigt fel kan komma att varnas och/eller få sitt aktuella parti diskvalificerat av domaren.</p>
+
+<p>Vänligen notera att en kula som under multibollspel hamnar i plunger lane räknas som normalt spel, och inte som ett fördelaktig fel och fastnad kula.</p>
+
 <hr/>
+
 
 
 <h2>Kulor som fastnar</h2>
@@ -62,27 +86,36 @@ submenu2($dbh, $ulogin, "regler");
 
 <p>Om kulan fastnar n&aring;gonstans p&aring; spelplanen ska spelaren inv&auml;nta den automatiska bolls&ouml;kningen som maskinen utf&ouml;r efter en tid av inaktivitet. Om inte kulan kommer loss efter tre bolls&ouml;kningar eller om bolls&ouml;kningen inte aktiveras ska domare tillkallas. Spelaren m&aring;ste hela tiden vara beredd ifall kulan skulle lossna.</p>
 
-<p>Efter att domaren anslutit &ouml;ppnas maskinen och kulan tas loss. Kulan placeras p&aring; h&ouml;ger flipper, spelaren &auml;r ansvarig f&ouml;r att h&aring;lla flipperknappen intryckt. Samtliga maskiner kommer ha lucksp&auml;rren (coin door switch) fr&aring;nkopplad, s&aring; detta f&ouml;rfarande skall fungera. Om maskinen kan st&auml;ngas utan f&ouml;rlust av kulan f&ouml;r spelaren, forts&auml;tter spelet som normalt. Om kulan f&ouml;rloras anses det vara ett <i>St&ouml;rre fel</i> och spelaren skall kompenseras.</p>
+<p>Efter att domaren anslutit &ouml;ppnas maskinen och kulan tas loss. Kulan placeras antingen i plunger lane (om denna är manuellt opererad och inte en autoplunger), eller annars på uppfälld högerflipper. Spelaren själv håller fingrarna på flipperknappen (om detta är möjligt). Om mer än en boll sitter fast så placeras samtliga bollar på höger flipper innan spelandet återupptas. Samtliga maskiner kommer antingen att ha home mode (ball save när luckan öppnas) eller lucksp&auml;rren (coin door switch) fr&aring;nkopplad, s&aring; detta f&ouml;rfarande skall fungera.</p>
+<p>Om maskinen kan st&auml;ngas utan f&ouml;rlust av kulan f&ouml;r spelaren, forts&auml;tter spelet som normalt. Om kulan f&ouml;rloras av funktionären anses det vara ett <i>St&ouml;rre fel</i> och spelaren skall kompenseras. Om funktionären får loss kulan men spelaren misslyckas med att fortsätta sitt spelande (efter att glaset är på och luckan är stängd) räknas detta som normalt spel. Om funktionärens försök resulterar i tilt räknas detta som ett större fel, och spelaren ska kompenseras. Eventuell förlust av tiltvarningar pga funktionärens försök att lossa kulan räknas som normal spel och kompenseras inte.</p>
 
-<p>Om kulan har lagt sig på en plats där kulan har stor risk att rinna vid skakning, t.ex. på en outlane-stolpe, så får spelaren alternativet att antingen försöka skaka lös kulan själv eller att få kulan nedlyft i outlane av en domare för att inte riskera att förlora sin slutbonus vid tilt.</p> 
+<p>Om kulan har lagt sig på en plats där kulan har stor risk att rinna vid skakning, t.ex. på en outlane-stolpe eller mitten-puck, så får spelaren alternativet att antingen försöka skaka lös kulan själv eller att få kulan nedputtat i outlane eller mitten av en domare, för att inte riskera att förlora sin slutbonus och eventuell outlane-poäng vid tilt.</p>
+
+<p>En spelare som själv väljer att skaka eller stöta maskinen  för att få loss en boll som sitter fast gör så helt på egen risk. Ingen kompensation utdelas om det då blir Tilt, detta oavsett om funktionär finns närvarande.</p>
 
 <h3>Under multiboll</h3>
 
-<p>Om en kula fastnar under multiboll skall spelaren fortast m&ouml;jligt p&aring;kalla funktion&auml;r, samt d&auml;mpa och h&aring;lla den/de kulor som inte fastnat. Att medvetet forts&auml;tta spela en multiboll trots att en eller flera kulor fastnat utg&ouml;r ett regelbrott och kan bestraffas med varning och/eller diskvalifikation. Tillkallad domare kommer att frig&ouml;ra den/de kulor som fastnat och placera den/dem p&aring; den flipper spelaren f&aring;ngat &ouml;vriga kulor (p&aring; h&ouml;ger om b&aring;da flipprarna anv&auml;nts). Skulle spelarens multiboll avbrytas under detta betraktas incidenten som <i>St&ouml;rre fel</i> och spelaren skall kompenseras. Undantag fr&aring;n denna regel &auml;r vid spel d&auml;r kulor kan &rdquo;g&ouml;mmas&rdquo; med flit, t.ex man&ouml;vern Dirty Pool p&aring; Attack from Mars.</p>
+<p>Om en kula fastnar under multiboll skall spelaren fortast m&ouml;jligt p&aring;kalla funktion&auml;r, samt d&auml;mpa och h&aring;lla den/de kulor som inte fastnat. Att medvetet forts&auml;tta spela en multiboll trots att en eller flera kulor fastnat utg&ouml;r ett regelbrott och kan bestraffas med varning och/eller diskvalifikation. Tillkallad domare kommer att frig&ouml;ra den/de kulor som fastnat och placera den/dem i plunger lane (om det är manuell plunger) eller p&aring; den flipper spelaren f&aring;ngat &ouml;vriga kulor (p&aring; h&ouml;ger om b&aring;da flipprarna anv&auml;nts). Skulle spelarens multiboll avbrytas under detta betraktas incidenten som <i>St&ouml;rre fel</i> och spelaren skall kompenseras. Undantag fr&aring;n denna regel &auml;r vid spel d&auml;r kulor kan &rdquo;g&ouml;mmas&rdquo; med flit, t.ex man&ouml;vern Dirty Pool p&aring; Attack from Mars.</p>
 
 <hr/>
 
 <h2>Spelarfel</h2>
 
-<p>Den h&auml;r sektionen behandlar vad som h&auml;nder om en spelares agerande p&aring;verkar andra spelares resultat. Det g&auml;ller tre olika typer av h&auml;ndelser: tiltningar, st&ouml;rande beteende och spel i fel turordning. F&ouml;r p&aring;f&ouml;ljder, se kapitel Spelarbeteende.</p>
+<p>Som spelarfel räknas handlingar, medvetna eller omedvetna, som påverkar det normala spelet eller utgången av ett pågående parti. Spelare som begår felet kan bli varnad av domaren. En spelare som får sin andra varning blir diskvalificerad från tävlingen.</p>
 
 <h3>Tiltat spel</h3>
 
+<p>En spelare som tiltar sin kula får inget straff utöver förlusten av den kulan.</p>
+
 <p>Om en spelare tiltar ett spel s&aring; att det kan p&aring;verka efterf&ouml;ljande spelares omg&aring;ng, f&aring;r den efterf&ouml;ljande spelaren v&auml;nta i 60 sekunder f&ouml;r att till&aring;ta tiltpendeln att sluta pendla. OBS! Det &auml;r den efterf&ouml;ljande spelarens ansvar att bed&ouml;ma om det finns en fara f&ouml;r att dennes efterf&ouml;ljande omg&aring;ng kan p&aring;verkas av tiltningen. Spelaren som tiltade kan tilld&ouml;mas en varning om det anses ha gjorts i strid med best&auml;mmelserna om Spelarbeteende och v&aring;rdsl&ouml;s hantering av maskinerna.</p>
+
+<p>Det är INTE tillåtet att öppna luckan och manuellt se till att tiltpendeln stannar</p>
+
+<p>En spelare som tiltar en annan spelares kula, antingen genom ingrepp eller genom att tilta sin egen kula så kraftigt att tilten slår över till näste spelare, tilldöms noll (0) poäng i det partiet, om inte domaren gör ett undantag baserat på den aktuella maskinens beteende. En förfördelad spelare blir kompenserad i enlighet med reglerna för större fel.</p>
 
 <h3>Slamtilt</h3>
 
-<p>Om en spelare slamtiltar ett spel, ska det anses som ett <i>Katastrofalt fel</i> f&ouml;r &ouml;vriga spelare. Spelaren som orsakade slamtiltningen f&aring;r po&auml;ngen noll f&ouml;r den aktuella omg&aring;ngen och f&aring;r dessutom en varning. Detta g&auml;ller d&auml;remot inte om slamtilt-mekanismen bed&ouml;ms som felaktig, d&aring; felet behandlas som ett <i>Katastrofalt fel</i> f&ouml;r alla spelare. Om d&auml;remot en spelare utnyttjar denna regel medvetet blir denne spelare diskvalificerad.</p>
+<p>Om en spelare slamtiltar ett spel, ska det anses som ett <i>Katastrofalt fel</i> f&ouml;r &ouml;vriga spelare. Spelaren som orsakade slamtiltningen f&aring;r po&auml;ngen noll f&ouml;r den aktuella omg&aring;ngen och f&aring;r dessutom en varning. Detta g&auml;ller d&auml;remot inte om slamtilt-mekanismen bed&ouml;ms som felaktig, d&aring; felet behandlas som ett <i>Katastrofalt fel</i> f&ouml;r alla spelare som inte redan har spelat klart. Spelare som har spelat färdigt behåller sina poäng. Spelare som spelar på nytt kan inte få lägre poäng än de hade vid slamtilten. Om en spelare utnyttjar denna regel medvetet blir denne spelare diskvalificerad.</p>
 
 <h3>St&ouml;rande beteende</h3>
 
@@ -93,19 +126,24 @@ Om en spelare omedvetet och av misstag g&ouml;r sig skyldig till St&ouml;rande b
 
 <p>St&ouml;rande beteende fr&aring;n &aring;sk&aring;dare leder till att denna person tilldelas en varning. Vid tv&aring; varningar blir personen avst&auml;ngd fr&aring;n spelomr&aring;det.</p>
 
+<p>En åskådare eller en turneringsspelare som inte är inblandad i detta parti, som avsiktligt stör ett turneringsparti, tilldöms en varning. Vid en eventuell andra varning så avhyses personen från tävlingslokalen.</p>
+
+<p>Oavsiktlig störning är olyckligt men kan förekomma. En spelare eller åskådare som oavsikligt råkar störa ett turneringsparti kan bli varnad. Om störningsmomentet är så allvarligt att en boll går förlorad så behandlas problemet som ett större fel. Om störningen avslutar partiet för samtliga spelare (t ex om man snubblar över och råkar dra ut elsladden) så behandlas problemet som ett katastrofalt fel.</p>
+
 <h3>Spel i fel turordning</h3>
 
 <p>En spelare som spelar i fel turordning, d.v.s. p&aring; en annans kula, tilld&ouml;ms po&auml;ngen noll f&ouml;r den aktuella omg&aring;ngen. Om detta anses ha genomf&ouml;rts medvetet tilld&ouml;ms &auml;ven en varning. Den drabbade spelaren har tv&aring; alternativ: Alternativ 1 &auml;r att forts&auml;tta p&aring; den kula som satts i spel genom att klart och tydligt s&auml;ga sin avsikt (&rdquo;Jag forts&auml;tter!&rdquo;), och s&aring; fort kulan tr&auml;ffats med en flipper anses &ouml;vertagandet vara fullbordat och o&aring;terkalleligt. Alternativ 2 &auml;r att l&aring;ta kulan rinna och bed&ouml;ma det som ett <i>St&ouml;rre fel</i> (kompensation: ny kula).</p>
+
+<p>En spelare som avsiktligt spelar på fel bana med avsikten att dra nytta av denna regel blir avhyst från turneringen.</p>
 
 <h3>Papperslappar och coachning</h3>
 <p>Mellan kulor i ett parti och andra tillfällen när man själv <strong>inte</strong> står vid knapparna får man fråga vänner, spelare och andra om ditt och datt. Man får dessutom läsa medhavda dokument, googla, söka på ipdb (Internet Pinball Database) och liknande.<br>
 <br>När man själv under kval eller slutspel står vid knapparna får man däremot <strong>INTE</strong> plocka fram lappar, surfa på mobiltelefonen eller liknande.
 </p>
 <p>Det är heller inte tillåtet att ha någon i närheten som säger vad man ska göra, när man spelar. Det är en jättefördel att ha någon som hela tiden kan titta på displayen, och därför är det förbjudet.<br><br>
-<a name="NEW">
-Däremot är det tillåtet för en spelare att fånga kulan, och då fråga ENDAST sin medspelare i matchen om råd eller tips. Detta gäller ENBART under matcher i slutspel då ENDAST två spelare är inblande i det aktuella partiet.
-Den tillfrågade spelaren avgör själv om den vill svara eller inte.</a>
-</p>
+<p>Däremot är det tillåtet för en spelare att fånga kulan, och då fråga ENDAST sin medspelare i matchen om råd eller tips. Detta gäller ENBART under matcher i slutspel då ENDAST två spelare är inblande i det aktuella partiet.
+Den tillfrågade spelaren avgör själv om den vill svara eller inte.</p>
+<p>Notera dubbeltävlingen har andra regler gällande coaching.</p>
 <hr/>
 
 <h2>Spelarbeteende</h2>
@@ -116,9 +154,12 @@ Den tillfrågade spelaren avgör själv om den vill svara eller inte.</a>
 <p>Standard&aring;tg&auml;rderna fr&aring;n arrang&ouml;rernas sida vid brott mot dessa regler (och de regler som n&auml;mns nedan) &auml;r att varna individen som brutit mot dem. Vid upprepad f&ouml;rseelse g&auml;ller f&ouml;ljande:
 <ul>
 <li>F&ouml;r spelare: spelaren diskvalificeras med omedelbar verkan. Sker diskvalifikationen under kvalspelet tilldelas spelaren noll po&auml;ng p&aring; samtliga av sina framlottade kvalspel. Sker den under slutspel eller f&ouml;rkval d&ouml;ms spelaren som sist i samtliga matcher som spelats, och/eller kommer att spelas, p&aring; den aktuella slutspelsniv&aring;n. Spelaren till&aring;ts vara kvar p&aring; t&auml;vlingsomr&aring;det som publik om han/hon s&aring; &ouml;nskar.</li>
-<li>F&ouml;r publik: personen ifr&aring;ga st&auml;ngs av fr&aring;n t&auml;vlingsomr&aring;det.</li>
+<li>F&ouml;r publik: personen ifr&aring;ga st&auml;ngs av fr&aring;n t&auml;vlingsomr&aring;det. Det gäller naturligtvis även en spelare som tidigare har blivit "degraderad" till publik.</li>
 </ul>
 </p>
+
+<h3>Rökning</h3>
+<p>Rökning är inte tillåten i spellokalen (dvs i spelarnas närhet). Ytterligare rökförbud kan sannolikt gälla i lokalerna. Elektroniska cigarretter är dock tillåtna.</p>
 
 <h3>V&aring;rdsl&ouml;st hanterande av maskinerna</h3>
 
@@ -127,6 +168,9 @@ Den tillfrågade spelaren avgör själv om den vill svara eller inte.</a>
 <h3>F&ouml;rdr&ouml;jande spel</h3>
 
 <p>En spelare f&aring;r inte f&ouml;rdr&ouml;ja spelet. Detta g&auml;ller b&aring;de mellan omg&aring;ngar, mellan kulor samt under spelets g&aring;ng. Under spelets g&aring;ng f&aring;r kulan inte ligga stilla p&aring; en flipper i mer &auml;n 60 sekunder. Undantag fr&aring;n denna regel g&auml;ller n&auml;r domare tillkallats f&ouml;r annan regelfr&aring;ga. Dessutom g&auml;ller 60-sekundersregeln inte under multiboll.</p>
+
+<h3>Hårdhänthet mot spelen</h3>
+<p>Tiltloden avgör vad som utgör gränserna för hårdhänt behandling av maskinen inom ramarna för normalt spel. Övergrepp mot maskin i form av sparkar, slag, lyft, vält, slag mot glas eller lockdownbar är orsak till en varning och möjligen diskvalificering av partiet i fråga eller rent av hela turneringen. Detta beslut fattas av domaren.</p>
 
 <h3>Bangbacks & Death Saves</h3>
 
@@ -140,35 +184,39 @@ Den tillfrågade spelaren avgör själv om den vill svara eller inte.</a>
 
 <h2>Maskininst&auml;llningar</h2>
 
-<p>Alla maskinerna konfigureras enligt f&ouml;ljande, d&auml;r s&aring; &auml;r m&ouml;jligt:
+<p>Alla maskinerna konfigureras enligt f&ouml;ljande, d&auml;r s&aring; &auml;r m&ouml;jligt:</p>
 <ul>
 <li>Tournament Mode (tar bort slumpm&auml;ssiga bel&ouml;ningar o.d.)</li>
-<li>Tre kulor per spel</li>
-<li>Inga extrabollar</li>
+<li>Tre kulor per spel (fem kulor på de flesta spel i Classics)</li>
+<li>Extrabollar är inställda att ge poäng eller ingenting. Om det inte är möjligt, så ska extrabollen spelas som vanligt.</li>
 <li>Free Play</li>
 <li>Tv&aring; tilt-varningar</li>
 <li>Replays &auml;r avst&auml;ngda</li>
 <li>Match Award &auml;r avst&auml;ngda</li>
 <li>Inga buy-ins</li>
 <li>Game Restart &auml;r avst&auml;ngt</li>
-<li>I &ouml;vrigt g&auml;ller Factory Settings f&ouml;r respektive maskin</li>
-</ul></p>
-
-<h3>Specialinställningar under Slutspel</h3>
-
-<p>När det återstår 32 spelare i slutspelet (d.v.s. när spelare 1-16 kommer in i slutspelet) så kommer alla maskiner att ställas om till att ha fyra kulor per spel. Varje spelare ska dock fortfarande bara spela TRE kulor, sen skrivs poängen upp och spelen stängs av. Inställningsändringen är till för att en domare ska kunna utdela en extrakula utan att det ska påverka spelet nämnvärt.</p>
+<li>Slam tilt är avstängd (förtejpad).</li>
+<li>Special är inställt att ge poäng eller ingenting</li>
+<li>Standard factory settings (med vissa undantag)</li>
+</ul>
+<p>Vissa spel har speciella inställningar - t ex plockar vi bort keramikkulan ur Twilight Zone, och ersätter den med en vanlig kula. Även mjukvaruinställningar kan i vissa fall anpassas - t ex hard settings för Two Towers Multiball på Lord of the Rings.</p>
 
 <h3>Spel som g&aring;r s&ouml;nder</h3>
 
-<p>Om ett spel g&aring;r s&ouml;nder under p&aring;g&aring;ende spelomg&aring;ng kommer alla spelare som ber&ouml;rs att f&aring; spela en ny omg&aring;ng, endera p&aring; samma spel (om det g&aring;r att laga) eller p&aring; ett annat spel. Reservspelet v&auml;ljs om m&ouml;jligt slumpm&auml;ssigt (se nedan).</p>
+<p>Om en maskin går sönder under spel så nedtecknas alla berörda spelares poäng och de får alla spela om partiet. Om tävlingsledningen tror sig kunna laga maskinen så behåller spelarna den maskinen i sitt entry.</p>
 
-<p>Om ett spel g&aring;r s&ouml;nder f&ouml;r en l&auml;ngre tid under kvalets f&ouml;rsta halva kommer alla registrerade po&auml;ng p&aring; den maskinen att strykas och maskinen tas ur t&auml;vlingen. Alla spelare som har eller skulle ha kvalat p&aring; det spelet ska ist&auml;llet kvala p&aring; ett anvisat reservspel.</p>
+<p>När maskinen är reparerad får spelarna alltså spela om ett fullt parti och sedan tillgodoräkna sig den högsta poängen av det avbrutna partiet och det nyligen omspelade.</p>
 
-<p>Om ett spel g&aring;r s&ouml;nder f&ouml;r en l&auml;ngre tid under kvalets andra halva kommer de hittills registrerade po&auml;ngen att kvarst&aring;. De som skulle ha spelat p&aring; den trasiga maskinen kommer h&auml;nvisas till n&aring;got av de andra redan befintliga kvalspelen (inget reservspel kommer inkluderas i kvalet i det h&auml;r fallet). Om det trasiga spelet kan lagas innan kvalet &auml;r &ouml;ver kommer det att &aring;terinf&ouml;ras som kvalspel.</p>
+<p>Om det bedöms att maskinen inte går att reparera så kommer spelarna att lottas på en annan maskin istället. Spelare som är schemalagda på den trasiga maskinen men ännu inte hunnit spela på den kommer också bli lottade på nya maskiner. Spelarna blir då jämnt fördelade över de övriga kvalmaskinerna. Spelare som redan har spelat på maskinen behåller sina poäng, då spelsystemet är utformat för att tåla att en maskin plockas bort ut kvalet.</p>
+
+<p>Not: maskiner som tidigare varit trasiga kan bli reparerade och återgå i spel i tävlingen även efter det att spelare har lottats på nya maskiner. Om det inträffar så behåller spelarna sina nylottade maskiner och den tidigare trasiga maskinen används endast om ytterligare maskiner går sönder.</p>
+
 
 <hr/>
 
 <h2>Regeltolkningar</h2>
 
 <p>N&auml;r en regel ska till&auml;mpas m&aring;ste en domare tillkallas. Alla regeltolkningar och domslut tas av domarna och i andra hand av domarna och arrang&ouml;rerna i samr&aring;d. Domare och arrang&ouml;rer f&aring;r inte medverka i regeltolkningar d&auml;r de sj&auml;lva p&aring;verkas som t&auml;vlande.</p>
+<h3>Friskrivning</h3>
+<p>Om det är nödvändigt av tekniska, fysiska eller andra tvingande skäl så kan undantag från ovanstående regler göras, efter beslut av domare och/eller tävlingsledningen.</p>)
 </div>

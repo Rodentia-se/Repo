@@ -34,7 +34,7 @@ function undermenu($dbh, $ulogin, $page, $m)
     case 'social':
     case 'video':
     case 'kontakt':
-      echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
+      echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
     break;
     case '2012':
     case '2011':
@@ -48,7 +48,7 @@ function undermenu($dbh, $ulogin, $page, $m)
     case '2003':
     case '90tal':
       if ($m == 'om') {
-       echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=press\">Press</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
+       echo "<a href=\"?s=om\">Om Flipper-SM</a> <a href=\"?s=2012&m=om\">Tidigare SM</a> <a href=\"?s=regler\">Regler</a> <a href=\"?s=video\">Video</a> <a href=\"?s=kontakt\">Kontakt</a>";
       } else {
         echo "<a href=\"?s=kvalresultat\">Kvalresultat</a> <a href=\"?s=slutspel&type=main\">Slutspel</a> <a href=\"?s=sidoresultat\">Sidotävlingar</a> <a href=\"?s=2012&m=resultat\">Tidigare SM</a>";
       }
