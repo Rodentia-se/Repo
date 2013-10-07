@@ -723,6 +723,7 @@
             <tr id="0_gameTr">
               <td>
                 '.createSelect($allGames, '0_game', 0, 'adminGameNew', '', 'Add game...').'
+                <span class="error errorSpan toolTip" id="0_gameSpan"></span>
               </td>
               <td id="0_acroTd"></td>
               <td id="0_manufacturerTd"></td>
