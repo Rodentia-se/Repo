@@ -53,8 +53,6 @@
 
   if ($type == 'qualGroup') {
 
-
-  <?php
     $choice = true;
 
     $id = (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? $_REQUEST['id'] : false;
