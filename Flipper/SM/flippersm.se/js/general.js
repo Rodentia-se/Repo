@@ -1961,6 +1961,8 @@ function adminGameAdd(icon) {
           }
           document.getElementById(icon.id.replace('gameAdd', itemArray[item])).id = data.id + '_' + itemArray[item];
         }
+        document.getElementById(sel.id.replace('game', 'type')).disabled = false;
+        document.getElementById(sel.id.replace('game', 'usage')).disabled = false;
       }
     })
     .fail(function(jqHXR,status,error) {
