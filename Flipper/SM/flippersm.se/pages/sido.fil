@@ -15,7 +15,7 @@
     <p>Du kommer att få specifika mål du ska uppfylla på två olika spel, och sen gäller det att göra det på så kort tid som möjligt. Flipperorientering kommer att spelas en gång om dagen under ledning av Rolph Ericson</p>
 
     <h3>Enhandsfilpper</h3>
-    <p>Här gäller det att få så hög poäng som möjligt med bara en hand. Det kommer att finnas två enhandsspel, och den som står överst på det andra spelet kommer att få möta Fredrik Malmqvist i finalen (om ni inte Fredrik på något underligt sätt misslyckas med att ta sig till final). Not: Om samma spelare är bäst på bägge spelen, så kommer plats två, tre eller fyra att ta den ena platsen. Särspel anordnas om det behövs.</p>
+    <p>Här gäller det att få så hög poäng som möjligt med bara en hand. Det kommer att finnas två enhandsspel, och den som står överst på det andra spelet kommer att få möta Fredrik Malmqvist i finalen (om ni inte Fredrik på något underligt sätt misslyckas med att ta sig till final). Not: Om samma spelare är bäst på bägge spelen, så kommer plats två, tre eller fyra att ta den ena platsen. Särspel anordnas om det behövs.</p>|
   ';
 
   echo $content;

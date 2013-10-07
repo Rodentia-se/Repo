@@ -113,7 +113,7 @@
       }
       $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1');
       $content .= '
-        <div id="tabs">
+        <div id="tabs" class="clearboth" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
           <ul>
             <li class="tabs"><a href="#mainTable"><h2>Main tournament</h2></a></li>
             <li class="tabs next"><a href="#classicsTable"><h2>Classics tournament</h2></a></li>
