@@ -24,6 +24,8 @@ function undermenu($dbh, $ulogin, $page, $m)
     case 'funktionar':
     case 'instruktioner':
     case 'betala':
+    case 'betalningok':
+    case 'betalningcancel':
     case 'funktionarsval':
       echo $registrationLink." <a href=\"?s=object&obj=player&m=anmal\">Anmälda spelare</a> <a href=\"?s=funktionar\">Funktionärer</a> <a href=\"?s=object&obj=game&m=anmal\">Spel</a>";
     break;

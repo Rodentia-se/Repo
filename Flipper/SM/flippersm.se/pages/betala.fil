@@ -114,8 +114,8 @@
           <input type="hidden" id="payPalAmount" name="amount" value="'.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'">
           <input type="hidden" name="page_style" value="StockholmOpen">
           <input type="hidden" name="no_shipping" value="1">
-          <input type="hidden" name="return" value="https://www.europinball.org/payment-successful/">
-          <input type="hidden" name="cancel_return" value="https://www.europinball.org/payment-canceled/">
+          <input type="hidden" name="return" value="'.__baseHref__.'/?s=betalningok">
+          <input type="hidden" name="cancel_return" value="'.__baseHref__.'/?s=betalningcancel">
           <input type="hidden" name="cn" value="What you are paying for">
           <input type="hidden" name="on0" value="Pay for">
           <input type="hidden" id="payPalMsg" name="os0" value="ID: '.$player->id.' Main: '.$main.' Classics: '.$classics.' Teams: '.$team.' T-shirts: '.$tShirt.'">
