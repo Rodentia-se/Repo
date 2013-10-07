@@ -12,7 +12,7 @@
         $game = getGameById($dbh, $gameId);
         if ($game) {
           if ($type) {
-            if ($game->setGameType($dbh, $type)) {
+            if ($game->setGameType($dbh, strtolower($type))) {
               echo('{"success": true, "reason": "'.$game->shortName.' is now set as type '.$type.'"}');
             } else {
               $errorMsg = 'Could not change the type of '.$game->shortName.' to '.$type;

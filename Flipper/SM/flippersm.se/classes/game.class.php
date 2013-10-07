@@ -14,6 +14,7 @@
     public $side;
     public $recreational;
     public $machineType;
+    public $gameType;
     public $type;
     public $manufacturer;
     public $manufacturer_id;
