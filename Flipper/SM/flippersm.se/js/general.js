@@ -2063,11 +2063,9 @@ function allocEdit(el, fader) {
         el.setAttribute('previous', el.value);
       } else {
         if (el.checked) {
-          $('.' + periodId + 'VolCheckbox').each(function(){
-          if (document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot')) {
-            document.getElementById('selfSlots').removeChild(document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot'));
+          if (document.getElementById(taskId + '_' + periodId + '_selfSlot')) {
+            document.getElementById('selfSlots').removeChild(document.getElementById(taskId + '_' + periodId + '_selfSlot'));
           }
-          });
           var p = document.createElement('p');
           p.id = taskId + '_' + periodId + '_selfSlot';
           p.className = 'bold';
