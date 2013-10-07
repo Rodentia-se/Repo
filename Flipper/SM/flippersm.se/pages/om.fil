@@ -91,11 +91,8 @@
     <p>Kommer du från norr (Stockholm), ta avfart 151 som heter "Skärholmen N, Kungens Kurva N". Håll höger mot "Kungens Kurva", sväng höger vid rondellen vid IKEA och sedan ser du Heron City framför dig.</p>
     <p>Kommer du från söder så tar du samma avfart (151) och efter att ha svängt höger i tre rondeller så star du på Heron Citys parkeringsplats.
 Det finns gott om parkeringsplatser, både utomhus och inomhus (på baksidan av byggnaden). Gatuadressen är som sagt Dialogvägen 2, så det bör funka att slå in på en GPS.</p>
+    <h3>Förstoringskartan</h3>
+    <p>Den (ö)kända <a href="images/magnifying_map.png">förstoringskartan</a>!</p>
 </div>
 
 
-<script type="text/javascript">
-  $(document).ready(function() {
-    $('#tabs').tabs();
-  });
-</script>
