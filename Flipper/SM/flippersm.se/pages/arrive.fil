@@ -7,7 +7,7 @@
 
       $playerId = (isset($_REQUEST['playerId']) && preg_match('/^[0-9]+$/', $_REQUEST['playerId'])) ? $_REQUEST['playerId'] : null;
 
-      $content = '<div id="arriveMenu"><h2 class="entry-title">Player arrival and confirmation checklist</h2>';
+      $content = '<h1>Checklista för nyanländ</h1><div id="arriveMenu"><h2 class="entry-title">Player arrival and confirmation checklist</h2>';
 
       if ($playerId) {
         $player = getPlayerById($dbh, $playerId);
