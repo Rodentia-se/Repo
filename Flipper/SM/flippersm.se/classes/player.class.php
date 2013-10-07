@@ -603,7 +603,7 @@
     }
 
     function getQR($link = true) {
-      $qr = '<img src="'.__baseHref__.'/images/qr.png" alt="QR" title="Click for QR code">';
+      $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon" alt="QR" title="Click for QR code">';
       return ($link) ? '<a href="'.__baseHref__.'/mobile/playerPrinter.php?playerId='.$this->id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
     }
 
