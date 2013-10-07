@@ -177,6 +177,7 @@
         where
           v.person_id = :playerId
       ';
+      $query .= ($assign) ? '' : 'and vp.task_id=:taskId';
       $update[':taskId'] = ($assign) ? $this->id : null;
       $update[':playerId'] = $player->id;
       if ($period) {
