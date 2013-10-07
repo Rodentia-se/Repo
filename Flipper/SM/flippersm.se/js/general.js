@@ -1170,6 +1170,7 @@ function submit(obj) {
 }
 
 function teamPhoto() {
+  fade(document.getElementById('submitImgSpan'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/teamPhoto.php', {newPhoto: document.getElementById('newPhoto').value}) // Send to server
   .done(function(data) {
     fade(document.getElementById('submitImgSpan'), data.reason, data.success);
@@ -1193,6 +1194,7 @@ function submitChecked(obj) {
   }
   var jsonObj = JSON.stringify(obj, props); // I stringify the object...
   var newObj = JSON.parse(jsonObj); // ...and then objectify it again. Why? Shouldn't be necessary? I should be able to just use the object straight on? I don't remeber why I did this!
+  fade(document.getElementById('submitSpan'), 'Updaterar databasen...', true);
   $.post(baseHref + ((pageMode == 'register') ? '/ajax/register.php' : ((pageMode == 'edit') ? '/ajax/playerEdit.php?newPhoto=' + document.getElementById('newPhoto').value : ((pageMode == 'team') ? '/ajax/regTeam.php' : 'wrongPageMode'))), newObj) // Send to server
   .done(function(data) {
     if (pageMode == 'team') {
@@ -1364,6 +1366,7 @@ function setCaptain() {
   $('input[name=contactPlayer_id]').each(function(index, radio) {
     if (radio.checked == true) {
       var urlParam = {playerId: radio.value};
+      fade(document.getElementById('teamPlayer' + radio.id.replace('contactPlayer_id', '') + 'Span'), 'Updaterar databasen...', true);
       $.post(baseHref + '/ajax/captain.php', urlParam) // Send to server
       .done(function(data) {
         if (data.success) {
@@ -1703,6 +1706,7 @@ function addTeamMember(playerId, errorId, adminTeamId) {
     urlParams.admin = 1;
     urlParams.teamId = adminTeamId.split('-')[0];
   } 
+  fade(document.getElementById(errorId), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/addTeamMember.php', urlParams) // Send to server
   .done(function(data) {
     setTimeout(function() {
@@ -1751,6 +1755,7 @@ function removeTeamMember(playerId, errorId, adminTeamId) {
       }
     }
   }
+  fade(document.getElementById(errorId), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/removeTeamMembers.php', urlParams) // Send to server
   .done(function(data) {
     fade(document.getElementById(errorId), data.reason, data.success);
@@ -1779,6 +1784,7 @@ function removeTeamMember(playerId, errorId, adminTeamId) {
 }
 
 function deleteTeam(errorId) {
+  fade(document.getElementById(errorId), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/delTeam.php') // Send to server
   .done(function(data) {
     fade(document.getElementById(errorId), data.reason, data.success);    
@@ -1866,6 +1872,7 @@ function adminPlace(sel) {
   var playerId = sel.id.split('_')[0];
   var division = sel.id.split('_')[1];
   var wppr = (sel.id.split('_')[2] == 'wppr') ? 1 : 0;
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/changePlace.php', {playerId: playerId, division: division, wppr: wppr, place: sel.value}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -1883,6 +1890,7 @@ function adminPlace(sel) {
 
 function adminGameDel(icon) {
   var machineId = icon.id.split('_')[0];
+  fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/gameDel.php', {machineId: machineId}) // Send to server
   .done(function(data) {
     fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);    
@@ -1903,6 +1911,7 @@ function adminGameNew(sel) {
 function adminGameUsage(sel) {
   var machineId = sel.id.split('_')[0];
   var divisionId = sel.value;
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/gameUsage.php', {machineId: machineId, divisionId: divisionId}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
@@ -1916,6 +1925,7 @@ function adminGameUsage(sel) {
 function adminGameType(sel) {
   var gameId = sel.id.split('_')[0];
   var type = sel.value;
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/gameType.php', {gameId: gameId, type: type}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -1939,6 +1949,7 @@ function tshirtDlvrAll(box) {
 
 function tshirtDlvr(box) {
   var playerTshirtId = box.id.split('_')[0];
+  fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/tshirtDlvr.php', {playerTshirtId: playerTshirtId, dlvr: box.checked}) // Send to server
   .done(function(data) {
     fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
@@ -1962,7 +1973,8 @@ function tshirtDlvr(box) {
 function adminTshirtSold(icon) {
   var tshirtId = icon.id.split('_')[0];
   var action = (icon.id.split('_')[1] == 'tshirtAdd') ? 1 : -1 ;
-   $.post(baseHref + '/ajax/tshirtSold.php', {tshirtId: tshirtId, action: action}) // Send to server
+  fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/tshirtSold.php', {tshirtId: tshirtId, action: action}) // Send to server
   .done(function(data) {
     fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);    
     if (data.success) {
@@ -2003,7 +2015,7 @@ function allocEdit(el) {
     var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
     var urlParams = {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
   }
-  fade(document.getElementById(el.id + 'Span'), 'Updating database...', true);
+  fade(document.getElementById(el.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
     fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
@@ -2060,7 +2072,8 @@ function changeNeed(sel) {
   var taskId = sel.id.split('_')[0];
   var periodId = sel.id.split('_')[1];
   var need = sel.value;
-   $.post(baseHref + '/ajax/changeNeed.php', {periodId: periodId, taskId: taskId, need: need}) // Send to server
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/changeNeed.php', {periodId: periodId, taskId: taskId, need: need}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
     if (data.success) {
@@ -2079,6 +2092,7 @@ function changeNeed(sel) {
 
 function mobileNumberChange(btn) {
   var playerId = btn.id.split('_')[0];
+  fade(document.getElementById(btn.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/changeCell.php', {playerId: playerId, cell: document.getElementById(playerId + '_mobileNumberChange').value, admin: 1, tournament: 1}) // Send to server
   .done(function(data) {
     fade(document.getElementById(btn.id + 'Span'), data.reason, data.success);    
@@ -2094,6 +2108,7 @@ function mobileNumberChange(btn) {
 
 function adminHoursChange(sel) {
   var playerId = sel.id.split('_')[0];
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/addHours.php', {playerId: playerId, h: sel.value, admin: 1, tournament: 1}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -2116,6 +2131,7 @@ function adminHoursChange(sel) {
 function adminQualGroup(sel) {
   var playerId = sel.id.split('_')[0];
   var divisionId = sel.id.split('_')[1];
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/setQualGroup.php', {playerId: playerId, divisionId: divisionId, qualGroup: sel.value}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -2179,6 +2195,7 @@ function adminQualGroup(sel) {
 
 function adminAdmin(sel) {
   var playerId = sel.id.split('_')[0];
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/setAdmin.php', {playerId: playerId, adminLevel: sel.value}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -2196,6 +2213,7 @@ function adminAdmin(sel) {
 
 function adminHere(box) {
   var playerId = box.id.split('_')[0];
+  fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/setHere.php', {playerId: playerId, here: ((box.checked) ? 1 : 0), final: ((box.id.split('_')[1] == 'hereFinal') ? 1 : 0)}) // Send to server
   .done(function(data) {
     fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
@@ -2211,6 +2229,7 @@ function adminHere(box) {
 
 function adminPaidChange(sel) {
   var playerId = sel.id.split('_')[0];
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/setPaid.php', {playerId: playerId, paid: ((sel.value) ? sel.value : sel.innerHTML)}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
@@ -2598,6 +2617,7 @@ function addTshirt() {
 }
 
 function delTshirt(num) {
+  fade(document.getElementById(num + '_tshirtSpan'), 'Updaterar databasen...', true);
   $.getJSON(baseHref + '/ajax/delTshirt.php?id=' + num) // Returns HTML with a new tshirt row
   .done(function(data) {
     if (data.success) {
@@ -2628,6 +2648,7 @@ function tshirtChanged(el) {
   if (color != 0 && size != 0 && number != 0) {
     document.getElementById(id + '_tshirtSpan').innerHTML = '';
     var post = {t: tournament, number: number, color: color, size: size, id: id}
+    fade(document.getElementById(id + '_tshirtSpan'), 'Updaterar databasen...', true);
     $.post(baseHref + '/ajax/changeTshirt.php', post) // Send to server
     .done(function(data) {
       fade(document.getElementById(id + '_tshirtSpan'), data.reason, data.success)
@@ -2676,6 +2697,7 @@ function volunteerHoursChanged(el) {
   var tournament = document.getElementById('tournamentHidden').value;
   var hours = el.value
   var post = {t: tournament, h: hours};
+  fade(document.getElementById('volunteerHoursSpan'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/addHours.php', post) // Send to server
   .done(function(data) {
     fade(document.getElementById('volunteerHoursSpan'), data.reason, data.success)
@@ -2699,6 +2721,7 @@ function timeSlotChanged(el, type, id) {
     }
   }
   var post = {t: tournament, id: id, c: change};
+  fade(document.getElementById(el.id.replace('Checkbox', 'Span')), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/change' + ucfirst(type) + '.php', post) // Send to server
   .done(function(data) {
     fade(document.getElementById(el.id.replace('Checkbox', 'Span')), data.reason, data.success, 3000, 1000);
@@ -2745,6 +2768,7 @@ function timeSlotPreferedChanged(el, id) {
   var tournament = document.getElementById('tournamentHidden').value;
   var change = (el.checked) ? 1 : 0;
   var post = {t: tournament, id: id, c: change, pr: 1};
+  fade(document.getElementById(el.id.replace('Radio', 'Span')), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/changeQualGroup.php', post) // Send to server
   .done(function(data) {
     fade(document.getElementById(el.id.replace('Radio', 'Span')), data.reason, data.success);
@@ -2830,6 +2854,7 @@ function adminTeam(el) {
       return false;
     break;
   }
+  fade(document.getElementById(el.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/' + ajaxFile + '.php', urlParams) // Send to server
   .done(function(data) {
     var reason = data.reason;
