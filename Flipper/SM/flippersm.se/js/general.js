@@ -127,7 +127,7 @@ var classes = {
       streetAddress: { label: 'Gatuadress', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
       zipCode: { label: 'Postnummer', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
       city: { label: 'Hemort', type: 'select', mandatory: false, special: 'add', bundle: false},
-      region: { label: 'Landskap', type: 'select', mandatory: false, special: 'add', bundle: false},
+      region: { label: 'Landskap', type: 'select', mandatory: false, special: false, bundle: false},
       country: { label: 'Land', type: 'select', mandatory: true, special: false, bundle: false},
       continent: { label: 'Kontinent', type: 'select', mandatory: false, special: false, bundle: false},
       telephoneNumber: { label: 'Telefon', type: 'text', mandatory: false, special: false, bundle: false, default: ''},
