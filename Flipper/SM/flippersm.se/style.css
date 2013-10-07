@@ -1190,3 +1190,9 @@ top: -9999px;
   display: inline;
   margin: 0px 0px 0px 15px
 }
+
+#content div.arriveTshirts {
+  position: relative;
+  float: left;
+  width: 200px;
+}
