@@ -24,25 +24,24 @@ Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska 
 <p>På vissa maskiner (t ex sådana med fysiska lockar) kan spelarna välja att spela en och en. De maskiner det gäller har detta noterat på backboxen. Det räcker med att en av de två spelarna vill spela en och en för att så ska ske.</p>
 <p>Spelarna spelar tv&aring; trekulorsomg&aring;ngar var och ser till att en scorekeeper noterar resultatet (alla siffrorna!) fr&aring;n b&aring;da omg&aring;ngarna p&aring; sin telefon/surfplatta. Den b&auml;sta po&auml;ngen p&aring; varje spel blir spelarens t&auml;vlingspo&auml;ng, och den s&auml;mre po&auml;ngen kommer inte att r&auml;knas.</p>
 
-<p>Om en spelare startar den andra omg&aring;ngen innan resultatet fr&aring;n den f&ouml;rsta noterats, anses den spelaren ha f&aring;tt noll po&auml;ng. Den andre ber&ouml;rde spelaren f&aring;r:
-<br/>
+<p>Om en spelare startar den andra omg&aring;ngen innan resultatet fr&aring;n den f&ouml;rsta noterats, anses den spelaren ha f&aring;tt noll po&auml;ng. Den andre ber&ouml;rde spelaren f&aring;r:</p>
 <ol>
 <li>sin registrerade po&auml;ng om den &auml;r uppskriven av scorekeepern, eller</li>
 <li>spela en ny trekulorsomg&aring;ng om po&auml;ngen inte &auml;r uppskriven eller han/hon inte spelat alla sina tre kulor, eller</li>
 <li>noll po&auml;ng om han/hon varit i samf&ouml;rst&aring;nd med den andre spelaren om att p&aring;b&ouml;rja en ny omg&aring;ng.</li>
 </ol>
-Noll spelpo&auml;ng kan aldrig ge kvalpo&auml;ng, &auml;ven om scoren skulle vara bland de 30 &rdquo;b&auml;sta&rdquo;.</p>
+<p>Noll spelpo&auml;ng kan aldrig ge kvalpo&auml;ng, &auml;ven om scoren skulle vara bland de 30 &rdquo;b&auml;sta&rdquo;.</p>
 
 <h3>Kvalpo&auml;ngber&auml;kning</h3>
 
-<p>Flipper-SM 2011 kommer att genomföras med en poängstege till viss del baserad på gyllene snittet. Bästa resultat på ett spel får 100 kvalpoäng som grund, sämsta resultat får 1 kvalpoäng som grund och exakt 50 kvalpoäng får den som hamnar precis i mitten. Efter grundpoängen så lägger vi till två extra beräkningar:
+<p>Flipper-SM 2011 kommer att genomföras med en poängstege till viss del baserad på gyllene snittet. Bästa resultat på ett spel får 100 kvalpoäng som grund, sämsta resultat får 1 kvalpoäng som grund och exakt 50 kvalpoäng får den som hamnar precis i mitten. Efter grundpoängen så lägger vi till två extra beräkningar:</p>
 <ol>
 <li>Eftersom flipperspel kan gå sönder, så riskerar vi att det blir rätt ojämnt antal spelare på vissa spel. För att det ska bli lite mer rättvisa mellan två spelare som är bäst på sina respektive spel, så får den som är bäst på ett spel med många spelare lite mer poäng en den som är bäst på ett spel med färre spelare.</li>
-<li>2. Den bäste spelare på varje spel får 10% i bonuspoäng, tvåan får 5% i bonus och trean får 2% i bonus.</li>
+<li>Den bäste spelare på varje spel får 10% i bonuspoäng, tvåan får 5% i bonus och trean får 2% i bonus.</li>
 <li>Detta system ger dels lite extra åt de som spelar riktigt bra, men ger även bra betalt (jämfört med tidigare använda system) åt de som har ganska låga scorer.</li>
-</ol></p>
+</ol>
 
-<p>Samtliga spelares fyra kvalpo&auml;ng summeras och bildar kvalranken. De 64 spelare med den h&ouml;gsta kvalranken n&auml;r samtliga spelares t&auml;vlingspo&auml;ng &auml;r inrapporterade &auml;r kvalificerade till slutspelet p&aring; s&ouml;ndagen.
+<p>Samtliga spelares fyra kvalpo&auml;ng summeras och bildar kvalranken. De 64 spelare med den h&ouml;gsta kvalranken n&auml;r samtliga spelares t&auml;vlingspo&auml;ng &auml;r inrapporterade &auml;r kvalificerade till slutspelet p&aring; s&ouml;ndagen.</p>
 
 <hr/>
 
@@ -63,7 +62,7 @@ Under kvalspelet kommer spelarna att spela tv&aring; och tv&aring; p&aring; varj
 
 <h3>Oavgjort efter kvalspelet</h3>
 
-<p>Om tv&aring; eller flera spelare hamnar p&aring; samma totala kvalpo&auml;ng rankas spelarna f&ouml;rst efter b&auml;sta enskilda placering under kvalspelet. I exemplet nedan rankas allts&aring; spelare MVH f&ouml;re OSA pga sin andraplats p&aring; ett av spelen:</p>
+<p>Om tv&aring; eller flera spelare hamnar p&aring; samma totala kvalpo&auml;ng rankas spelarna f&ouml;rst efter b&auml;sta enskilda placering under kvalspelet. Observera att det är <span class="bold">kvalpoängen</span> på spelet som gäller, inte själva placeringen. Om bägge spelarna har en fjärdeplats som bäst, så är det alltså den fjärdeplats som gav mest poäng som går före. Det gäller även om den ena spelarens femteplats till äventyrs skulle ge mer kvalpoäng än den andra spelarens fjärdeplats. I exemplet nedan rankas spelare MVH f&ouml;re OSA pga sin andraplats p&aring; ett av spelen:</p>
 
 <hr/>
 
@@ -97,18 +96,17 @@ Under kvalspelet kommer spelarna att spela tv&aring; och tv&aring; p&aring; varj
 
 <h3>Oavgjort &ndash; samma spelpo&auml;ng</h3>
 
-<p>Vid den ytterst osannolika h&auml;ndelse att tv&aring; eller flera spelare hamnar p&aring; samma spelpo&auml;ng tilld&ouml;ms de den h&ouml;gsta av de aktuella kvalpo&auml;ngen/gruppspelspo&auml;ngen. Skulle detta ske i slutspelet, f&aring;r spelarna spela en kula var i taget (p&aring; samma spel som gav det oavgjorda resultatet) tills de g&aring;r att skilja &aring;t.</p>
+<p>Vid den ytterst osannolika h&auml;ndelse att tv&aring; eller flera spelare hamnar p&aring; samma spelpo&auml;ng (t ex på NBA Fastbreak) tilld&ouml;ms de den h&ouml;gsta av de aktuella kvalpo&auml;ngen/gruppspelspo&auml;ngen. Skulle detta ske i slutspelet, f&aring;r spelarna spela en kula var i taget (p&aring; samma spel som gav det oavgjorda resultatet) tills de g&aring;r att skilja &aring;t.</p>
 
 <h3>Sen ankomst</h3>
 
-<p>Alla spelare &auml;r personligen ansvariga f&ouml;r att infinna sig p&aring; t&auml;vlingsplatsen i god tid f&ouml;re sin kvaltid resp slutspelsstart. Det &aring;ligger ocks&aring; spelaren att ta reda p&aring; om han/hon g&aring;r vidare till slutspelet. T&auml;vlingsledningen kan, om s&auml;rskilda sk&auml;l f&ouml;religger, l&auml;mna ut ett telefonnummer dit spelaren kan ringa f&ouml;r att f&aring; reda p&aring; om han/hon g&aring;tt vidare till slutspelet. Den slutliga kvalranken kommer publiceras p&aring; flippersm.se s&aring; fort den &auml;r klar (f&ouml;rhoppningsvis kontinuerlig uppdatering; annars tidigast l&ouml;rdag kl 21.00).</p>
+<p>Alla spelare &auml;r personligen ansvariga f&ouml;r att infinna sig p&aring; t&auml;vlingsplatsen i god tid f&ouml;re sin kvaltid resp slutspelsstart. När spelaren anländer, både på kvaldagen och slutspelsdagen, så ska denne se till att bli registrerad som närvarande av receptionen. Det &aring;ligger ocks&aring; spelaren att ta reda p&aring; om han/hon g&aring;r vidare till slutspelet. Kvalställningen presenteras löpande på hemsidan, men notera att vissa justeringar (rättningar och dylikt) kan ske under natten efter att kvalspelet är avslutat. Det är alltså en bra idé att kontrollera kvalställningen på söndagsmorgonen om man ligger på någon gräns.</p>
 
 <h3>F&ouml;ljd av sen ankomst &ndash; kvalspel</h3>
-<p>Spelare som missar hela eller delar av sin kvaltid f&aring;r &rdquo;spela ikapp&rdquo; de omg&aring;ngar han/hon missat <b>endast i m&aring;n av tid!</b> T&auml;vlingsledningen kommer inte erbjuda n&aring;gon extra tid ut&ouml;ver de kvaltider som annonserats, f&ouml;r eftersl&auml;ntrande kvalspelare. Om en spelare bara spelar ett, tv&aring; eller tre kvalspel av sina fyra, s&auml;tts spelpo&auml;ng noll p&aring; de &ouml;vriga. Spelpo&auml;ng noll kan inte ge kvalpo&auml;ng, &auml;ven om den skulle vara bland de 30 &rdquo;b&auml;sta&rdquo;.</p>
+<p>Spelare som missar hela eller delar av sin kvaltid f&aring;r &rdquo;spela ikapp&rdquo; de omg&aring;ngar han/hon missat <b>endast i m&aring;n av tid!</b> T&auml;vlingsledningen kommer inte erbjuda n&aring;gon extra tid, ut&ouml;ver de kvaltider som annonserats, f&ouml;r eftersl&auml;ntrande kvalspelare. Om en spelare bara spelar ett, tv&aring; eller tre kvalspel av sina fyra, s&auml;tts spelpo&auml;ng noll p&aring; de &ouml;vriga. Spelpo&auml;ng noll kan inte ge kvalpo&auml;ng, &auml;ven om den skulle vara bland de 30 &rdquo;b&auml;sta&rdquo;. För särskilt ömmande själ (t ex försenade flyg eller annat bortom spelarens makt att påverka) så finns det ett par extra timmar på lördag kväll, men dessa kan bara utnyttjas i undantagsfall och efter tävlingsledningens enväldiga och icke överklagningsbara beslut.</p>
 
 <h3>F&ouml;ljd av sen ankomst &ndash; slutspel</h3>
-<p>Innan slutspelet inleds h&aring;lls upprop bland spelarna kl 9.00 p&aring; s&ouml;ndagen. Skulle en spelare utebli fr&aring;n uppropet tas dennes plats av n&auml;ste spelare. T&auml;vlingsledningen rekommenderar d&auml;rf&ouml;r de som hamnar strax utanf&ouml;r kvalgr&auml;nsen att infinna sig &ndash; chansen finns att en plats i f&ouml;rkvalet erbjuds! (2003 gick 41-rankade JAC in bland de 32 i slutspelet bara genom att dyka upp i r&auml;tt tid.)</p>
-<p>Efter uppropets avslut har spelare som kvalat till slutspel och inte dykt upp f&ouml;rverkat sin plats.</p>
+<p>Spelare är skyldiga att se till att anlända i god tid innan slutspelet, och att registrera sig som närvarande i receptionen innan 1000 på söndagen. Skulle en spelare utebli fr&aring;n uppropet tas dennes plats av n&auml;ste spelare. T&auml;vlingsledningen rekommenderar d&auml;rf&ouml;r de som hamnar strax utanf&ouml;r kvalgr&auml;nsen att infinna sig &ndash; chansen finns att en plats i f&ouml;rkvalet erbjuds! (2003 gick 41-rankade JAC in bland de 32 i slutspelet bara genom att dyka upp i r&auml;tt tid.)</p>
 <br />
 
 </div>
