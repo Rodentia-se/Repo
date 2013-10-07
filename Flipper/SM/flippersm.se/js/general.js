@@ -949,6 +949,10 @@ function printPlayerAsList(obj,dstId) {
   btn.value = 'Skicka!';
   btn.onclick = function() { checkForm(this); return false; };
   submitDiv.appendChild(btn);
+  var span = document.createElement('span'); // Let's put the result from the field check in here
+  span.id = 'submitSpan';
+  span.className += ' errorSpan';
+  submitDiv.appendChild(span);
   div.appendChild(submitDiv);
   if (!document.getElementById('nonPlayerLogin') && (!document.getElementById('loggedIn') || document.getElementById('loggedIn').value != 'true')) {
     setTimeout(function() { // Recaptcha is faster than its shadow (or at least faster than creating a div and giving it an ID in the dom), so we need to delay it for 100ms, or it won't find its div. Strange but true.
