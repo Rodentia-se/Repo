@@ -1191,8 +1191,6 @@ top: -9999px;
   margin: 0px 0px 0px 15px
 }
 
-#content div.arriveTshirts {
-  position: relative;
-  float: left;
+#content span.arriveTshirts {
   width: 300px;
 }
