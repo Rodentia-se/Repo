@@ -107,7 +107,6 @@
             $content .= '<p>The player has not ordered any T-shirts. Ask the player if (s)he wants to buy T-shirts, and record any T-shirts sold <a href="'.__baseHref__.'/admin-tools/?tool=tshirt" target="_blank">here</a>.</p>';
           }
           $content .= 'If the player wants to buy (additional) T-shirts, it can be done <a href="'.__baseHref__.'/admin-tools/?tool=tshirt" target="_blank">here</a>.';
-          var_dump($player;
           if ($player->mainQualGroup_id || $player->classicsQualGroup_id) {
             $content .= '<br /><br /><h2 class="big">Qualification group and schedule:</h2>';
             if ($player->mainQualGroup_id) {
