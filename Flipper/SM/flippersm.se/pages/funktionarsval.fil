@@ -68,7 +68,7 @@
         }
         $volTable .= '</div></div>';
       }
-      $content .= $selfSlots ? '<div id="selfSlots"><h2>Dina funktionärspass</h2><p>Här är alla funktionärspass som du har anmält dig till:</p>'.$selfSlots.'</div>' : '';
+      $content .= '<div id="selfSlots" style="'.(($selfSlots) ? '' : 'display: none').'"><h2>Dina funktionärspass</h2><p>Här är alla funktionärspass som du har anmält dig till:</p>'.$selfSlots.'</div>';
       $content .= $volTable.'</div>';
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';

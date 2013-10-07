@@ -2055,6 +2055,7 @@ function allocEdit(el) {
           }, 3000);
           p.innerHTML = document.getElementById(taskId + '_' + periodId + '_selfSlotHidden').value
           document.getElementById('selfSlots').appendChild(p);
+          $('#selfSlots').show();
         } else {
           document.getElementById('selfSlots').removeChild(document.getElementById(taskId + '_' + periodId + '_selfSlot'));
         }
