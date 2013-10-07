@@ -4066,6 +4066,7 @@
     if($_SERVER['SCRIPT_NAME'] == '/adminTools.php') {
       switch($identifier) {
         case '.scores':
+          $sorting = "'aaSorting': [[0, 'desc' ], [2, 'asc']],";
           $sort = "
             'aoColumns': [
               {'sType': 'numeric-empty-last' },
@@ -4076,6 +4077,7 @@
           ";
         break;
         case '.standings':
+          $sorting = "'aaSorting': [[0, 'desc' ], [2, 'asc']],";
           $sort = "
             'aoColumns': [
               {'sType': 'numeric-empty-last' },
@@ -4086,6 +4088,7 @@
           ";
         break;
         case '.mainStandings':
+          $sorting = "'aaSorting': [[0, 'desc' ], [2, 'asc']],";
           $sort = "
             'aoColumns': [
               {'sType': 'numeric-empty-last' },
@@ -4097,6 +4100,7 @@
           ";
         break;
         case '.listView':
+          $sorting = "'aaSorting': [[0, 'desc' ], [2, 'asc']],";
           $sort = "
             'aoColumns': [
               {'sType': 'numeric-empty-last' },
@@ -4108,6 +4112,9 @@
             ],
           ";
         break;
+        default:
+          $sorting = null;
+          $sort = null;
       }
 
       return "
@@ -4134,6 +4141,7 @@
                 'sPaginationType': 'full_numbers',
                 'iDisplayLength': 300,
                 'aaSorting': [[0, 'desc' ], [2, 'asc']],
+                ".$sorting."
                 ".$sort."
                 'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
               });
