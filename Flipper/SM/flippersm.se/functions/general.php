@@ -2998,10 +2998,10 @@
     }
   }
 
-  function getGameById($dbh, $id) {
+  function getGameById($dbh, $id, $tournemant = 1) {
     if ($id) {
       $where = 'where g.id = '.$id;
-      if ($obj = getGames($dbh, $where)[0]) {
+      if ($obj = getGames($dbh, $where, ' order by g.name ', $tournament)[0]) {
         return $obj;
       } else {
         return false;

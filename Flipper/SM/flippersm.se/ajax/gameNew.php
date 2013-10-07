@@ -8,7 +8,7 @@
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
       if ($gameId) {
-        $game = getGameById($dbh, $gameId);
+        $game = getGameById($dbh, $gameId, false);
         if ($game) {
           $game->machine_id = $game->add($dbh);
           if ($game->machine_id) {
