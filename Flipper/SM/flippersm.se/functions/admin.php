@@ -707,7 +707,7 @@
       $allGames = getGames($dbh, false, 'order by g.name', 0);
       $gameTable .= '<br /><br /><h2 class="entry-title">Game tools</h2>';
       $gameTable .= '
-        <table>
+        <table id="adminGameTable">
           <thead>
             <tr>
               <th class="bold">Game</th>
@@ -729,23 +729,8 @@
               <td id="0_manufacturerTd"></td>
               <td id="0_ipdbTd"></td>
               <td id="0_rulesTd"></td>
-              <td id="0_typeTd">
-                <select id="0_type" onchange="adminGameType(this);" previous="0" disabled>
-                  <option value="0">Choose type...</option>
-                  <option value="modern">Modern</option>
-                  <option value="classics">Classics</option>
-                </select>
-                <span class="error errorSpan toolTip" id="0_typeSpan"></span>
-              </td>
-              <td id="0_usageTd">
-                <select id="0_usage" onchange="adminGameUsage(this);" previous="0" disabled>
-                  <option value="0">Choose usage...</option>
-                  <option value="1">Main</option>
-                  <option value="2">Classics</option>
-                  <option value="3">Team</option>
-                  <option value="13">Side</option>
-                  <option value="14">Recreational</option>
-                </select>
+              <td id="0_typeTd"></td>
+              <td id="0_usageTd" align="right">
                 <span class="error errorSpan toolTip" id="0_usageSpan"></span>
                 <img src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="adminGameAdd(this);" alt="Add game to tournament" title="Add game to tournament" id="0_gameAdd">
                 <span class="error errorSpan toolTip" id="0_gameAddSpan"></span>

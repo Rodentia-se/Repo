@@ -1954,16 +1954,16 @@ function adminGameAdd(icon) {
     .done(function(data) {
       fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
       if (data.success) {
+        $('#adminGameTable').dataTable().fnAddData( [
+          data.game,
+          data.acro,
+          data.manufacturer,
+          data.ipdb,
+          data.rules,
+          document.getElementById(icon.id.replace('gameAdd', 'type')),
+          document.getElementById(icon.id.replace('gameAdd', 'usage'))
+        ]);
         var itemArray = ['game', 'type', 'usage', 'acro', 'manufacturer', 'ipdb', 'rules'];
-        for (var item in itemArray) {
-          if (itemArray[item] != 'type' && itemArray[item] != 'usage') {
-            debugOut(icon.id.replace('gameAdd', itemArray[item] + 'Td'));
-            document.getElementById(icon.id.replace('gameAdd', itemArray[item] + 'Td')).innerHTML = data[itemArray[item]];
-          }
-          document.getElementById(icon.id.replace('gameAdd', itemArray[item])).id = data.id + '_' + itemArray[item];
-        }
-        document.getElementById(sel.id.replace('game', 'type')).disabled = false;
-        document.getElementById(sel.id.replace('game', 'usage')).disabled = false;
       }
     })
     .fail(function(jqHXR,status,error) {
@@ -1971,8 +1971,8 @@ function adminGameAdd(icon) {
       debugOut(jqHXR.responseText);
     });
   } else {
-    document.getElementById(sel.id.replace('game', 'type')).disabled = true;
-    document.getElementById(sel.id.replace('game', 'usage')).disabled = true;
+    document.getElementById(icon.id.replace('gameAdd', 'type')).disabled = true;
+    document.getElementById(icon.id.replace('gameAdd', 'usage')).disabled = true;
   }
 }
 
