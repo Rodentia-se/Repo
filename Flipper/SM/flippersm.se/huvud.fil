@@ -41,6 +41,8 @@
            echo ' onload="getObjects(\'games\');"';
          } else if ($type == 'team') {
            echo ' onload="getObjects(\'teams\');"';
+         } else if ($type == 'qualGroup') {
+           echo '';
          } else {
            echo ' onload="getObjects();"';
          }
