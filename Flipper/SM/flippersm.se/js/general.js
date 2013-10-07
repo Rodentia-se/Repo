@@ -2032,7 +2032,7 @@ function allocEdit(el) {
           p.id = taskId + '_' + periodId + '_selfSlot';
           p.className = 'bold';
           setTimeout(function() {
-            $(el).removeClass('bold');
+            $(p).removeClass('bold');
           }, 3000);
           p.innerHTML = document.getElementById(taskId + '_' + periodId + '_selfSlotHidden').value
           document.getElementById('selfSlots').appendChild(p);
