@@ -15,12 +15,12 @@
             $result = (object) array(
               'success' => true,
               'reason' => $game->shortName.' was added to the tournament',
-              'link' => $game->getLink().'&nbsp'.$game->getQR(),
+              'game' => $game->getLink().'&nbsp'.$game->getQR(),
               'id' => $game->machine_id,
               'acro' => $game->shortName,
               'manufacturer' => $game->manufacturer,
               'ipdb' => $game->getIpdbLink(),
-              'rules' => $game->getRulesLink
+              'rules' => $game->getRulesLink()
             );
             echo(json_encode($result));
           } else {

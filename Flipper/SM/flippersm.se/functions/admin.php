@@ -724,11 +724,11 @@
               <td>
                 '.createSelect($allGames, '0_game', 0, 'adminGameNew', '', 'Add game...').'
               </td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
+              <td id="0_acroTd"></td>
+              <td id="0_manufacturerTd"></td>
+              <td id="0_ipdbTd"></td>
+              <td id="0_rulesTd"></td>
+              <td id="0_typeTd">
                 <select id="0_type" onchange="adminGameType(this);" previous="0" disabled>
                   <option value="0">Choose type...</option>
                   <option value="modern">Modern</option>
@@ -736,7 +736,7 @@
                 </select>
                 <span class="error errorSpan toolTip" id="0_typeSpan"></span>
               </td>
-              <td>
+              <td id="0_usageTd">
                 <select id="0_usage" onchange="adminGameUsage(this);" previous="0" disabled>
                   <option value="0">Choose usage...</option>
                   <option value="1">Main</option>
@@ -755,19 +755,19 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td>'.$game->getLink().'&nbsp;'.$game->getQR().'</td>
-            <td>'.$game->shortName.'</td>
-            <td>'.$game->manufacturer.'</td>
-            <td>'.$game->getIpdbLink().'</td>
-            <td>'.$game->getRulesLink().'</td>
-            <td>
+            <td id="'.$game->id.'_gameTd">'.$game->getLink().'&nbsp;'.$game->getQR().'</td>
+            <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
+            <td id="'.$game->id.'_manufacturerTd">'.$game->manufacturer.'</td>
+            <td id="'.$game->id.'_ipdbTd">'.$game->getIpdbLink().'</td>
+            <td id="'.$game->id.'_rulesTd">'.$game->getRulesLink().'</td>
+            <td id="'.$game->id.'_typeTd">
               <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="'.$game->gameType.'">
                 <option value="modern"'.(($game->gameType == 'modern') ? ' selected' : '').'>Modern</option>
                 <option value="classics"'.(($game->gameType == 'classics') ? ' selected' : '').'>Classics</option>
               </select>
               <span class="error errorSpan toolTip" id="'.$game->id.'_typeSpan"></span>
             </td>
-            <td>
+            <td id="'.$game->id.'_usageTd">
               <select id="'.$game->machine_id.'_usage" onchange="adminGameUsage(this);" previous="'.$game->tournamentDivision_id.'">
                 <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
                 <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>

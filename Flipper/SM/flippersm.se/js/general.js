@@ -1914,8 +1914,7 @@ function adminGameDel(icon) {
 }
 
 function adminGameNew(sel) {
-  document.getElementById(sel.id.replace('game', 'type')).disabled = false;
-  document.getElementById(sel.id.replace('game', 'usage')).disabled = false;
+  fade(document.getElementById(sel.id + 'Span'), 'Klicka på pluset till höger för att lägga till spelet.', true);
 }
 
 function adminGameUsage(sel) {
@@ -1949,24 +1948,19 @@ function adminGameType(sel) {
 function adminGameAdd(icon) {
   var gameSel = document.getElementById(icon.id.replace('Add', ''));
   var gameId = gameSel.value;
-  var typeSel = document.getElementById(icon.id.replace('gameAdd', 'type'));
-  var type = typeSel.value;
-  var usageSel = document.getElementById(icon.id.replace('gameAdd', 'usage'));
-  var usage = usageSel.value;
-  if (gameId != 0 && type != 0 && usage != 0) {
+  if (gameId != 0) {
     fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
-    $.post(baseHref + '/ajax/gameNew.php', {gameId: gameId, type: type, usage: ueage}) // Send to server
+    $.post(baseHref + '/ajax/gameNew.php', {gameId: gameId}) // Send to server
     .done(function(data) {
       fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
       if (data.success) {
-        gameSel.parentNode.innerHTML = data.link;
-        gameSel.id = data.id + '_game';
-        typeSel.id = data.id + '_type';
-        usageSel.id = data.id + '_usage';
-        document.getElementById(icon.id.replace('gameAdd', 'acroTd')).parentNode.innerHTML = data.acro;
-        document.getElementById(icon.id.replace('gameAdd', 'manufacturerTd')).parentNode.innerHTML = data.manufacturer;
-        document.getElementById(icon.id.replace('gameAdd', 'ipdbTd')).parentNode.innerHTML = data.ipdb;
-        document.getElementById(icon.id.replace('gameAdd', 'rulesTd')).parentNode.innerHTML = data.rules;
+        var itemArray = ['game', 'type', 'usage', 'acro', 'manufacturer', 'ipdb', 'rules'];
+        for (var item in itemArray) {
+          if (itemArray[item] != 'type' && itemArray[item] != 'usage') {
+            document.getElementById(icon.id.replace('gameAdd', itemArray[item]).innerHTML = data[itemArray[item]];
+          }
+          document.getElementById(icon.id.replace('gameAdd', itemArray[item]).id = data.id + '_' + itemArray[item];
+        }
       }
     })
     .fail(function(jqHXR,status,error) {
@@ -1974,7 +1968,8 @@ function adminGameAdd(icon) {
       debugOut(jqHXR.responseText);
     });
   } else {
-    fade(document.getElementById(icon.id + 'Span'), 'Välj typ och användning först...', true);
+    document.getElementById(sel.id.replace('game', 'type')).disabled = true;
+    document.getElementById(sel.id.replace('game', 'usage')).disabled = true;
   }
 }
 
