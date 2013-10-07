@@ -1182,5 +1182,11 @@ top: -9999px;
 }
 
 #content div.curCalc select {
+  display: inline;
+  width: 50px;
+}
+
+#content div.curCalc select {
+  display: inline;
   width: 50px;
 }
