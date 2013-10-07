@@ -2003,6 +2003,7 @@ function allocEdit(el) {
     var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
     var urlParams = {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
   }
+  fade(document.getElementById(el.id + 'Span'), 'Updating database...', true);
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
     fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
