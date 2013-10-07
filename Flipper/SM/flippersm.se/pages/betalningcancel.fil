@@ -4,3 +4,6 @@
     <h1>Betalning avbruten</h1>
     '.submenu2($dbh, $ulogin, 'anmalda', false, $player).'
     <p>Av någon anledning så avbröts din betalning, antingen av dig eller av systemet. Du kan antingen <a href="'.__baseHref__.'/?s=betala">försöka igen</a>, eller <a href="'.__baseHref__.'/?s=kontakt">kontakta oss</a>.</p>
+  ';
+  echo $content;
+?>

@@ -4,3 +4,6 @@
     <h1>Betalning genomförd</h1>
     '.submenu2($dbh, $ulogin, 'anmalda', false, $player).'
     <p>Din betalning är genomförd! Alla betalningar hanteras manuellt, men så fort vi har hunnit titta på det så kommer vi att stoppa in din betalning i systemet, och det kommer att synas på <a href="'.__baseHref__.'/?s=betala">betalningssidan</a>.</p>
+  ';
+  echo $content;
+?>
