@@ -1914,8 +1914,8 @@ function adminGameDel(icon) {
 }
 
 function adminGameNew(sel) {
-  document.getElementById('sel.id.replace('game', 'type').disabled = false;
-  document.getElementById('sel.id.replace('game', 'usage').disabled = false;
+  document.getElementById(sel.id.replace('game', 'type').disabled = false;
+  document.getElementById(sel.id.replace('game', 'usage').disabled = false;
 }
 
 function adminGameUsage(sel) {
