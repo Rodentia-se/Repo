@@ -29,6 +29,10 @@ function undermenu($dbh, $ulogin, $page, $m)
     break;
     case 'om':
     case 'regler':
+    case 'system':
+    case 'finalsystem':
+    case 'dubbel':
+    case 'sido':
     case 'schema':
     case 'press':
     case 'social':
