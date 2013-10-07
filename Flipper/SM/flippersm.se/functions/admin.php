@@ -206,7 +206,7 @@
           'username' => '<td>'.$player->username.'</td>',
           'password' => '<td><input type="button" value="Reset" id="'.$player->id.'_passwordBtn" onclick="resetPassword(this)" class="passwordBtn"><span class="error errorSpan toolTip" id="'.$player->id.'_passwordBtnSpan"></span></td>'
         );
-        echo $type;
+        echo 'Type: '.$type;
         if (!$type || $type == 'qualGroups') {
           $qualGroups = $player->getQualGroups($dbh);
           unset($chosen);
