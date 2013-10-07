@@ -1960,19 +1960,28 @@ function adminGameAdd(icon) {
           data.manufacturer,
           data.ipdb,
           data.rules,
-          document.getElementById(icon.id.replace('gameAdd', 'type')),
-          document.getElementById(icon.id.replace('gameAdd', 'usage'))
+          '<select id="'.data.id.'_type" onchange="adminGameType(this);" previous="0">
+            <option value="0">Choose type...</option>
+            <option value="modern">Modern</option>
+            <option value="classics">Classics</option>
+          </select>
+          <span class="error errorSpan toolTip" id="'.data.id.'_typeSpan"></span>',
+          '<select id="'.data.id.'_usage" onchange="adminGameUsage(this);" previous="0" disabled>
+            <option value="0">Choose usage...</option>
+            <option value="1">Main</option>
+            <option value="2">Classics</option>
+            <option value="3">Team</option>
+            <option value="13">Side</option>
+            <option value="14">Recreational</option>
+          </select>
+          <span class="error errorSpan toolTip" id="'.data.id.'_usageSpan"></span>'
         ]);
-        var itemArray = ['game', 'type', 'usage', 'acro', 'manufacturer', 'ipdb', 'rules'];
       }
     })
     .fail(function(jqHXR,status,error) {
       debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
       debugOut(jqHXR.responseText);
     });
-  } else {
-    document.getElementById(icon.id.replace('gameAdd', 'type')).disabled = true;
-    document.getElementById(icon.id.replace('gameAdd', 'usage')).disabled = true;
   }
 }
 
