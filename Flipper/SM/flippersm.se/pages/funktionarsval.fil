@@ -48,7 +48,7 @@
                 if ($selfTaken) {
                   $volTable .= ' checked';
                   $selfSlot = $date.', '.$clock.' ('.$length.' timmar): som '.$task->name;
-                  $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_volSlot">'.$selfSlot.'</p>';
+                  $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_selfSlot">'.$selfSlot.'</p>';
                 }
                 if ($player->checkIfVolFree($dbh, $period)) {
                   $volTable .= '>&nbsp;Jag tar det!';
@@ -57,7 +57,7 @@
                 }
                 $volTable .= '
                   <span class="error errorSpan toolTip" id="'.$task->id.'_'.$period->id.'_volCheckboxSpan"></span></p>
-                  <input type="hidden" id="'.$task->id.'_'.$period->id.'_volSlotHidden" value="'.$selfSlot.'">
+                  <input type="hidden" id="'.$task->id.'_'.$period->id.'_selfSlotHidden" value="'.$selfSlot.'">
                 ';
               } else {
                 $volTable .= '<p>Vakant</p>';
@@ -68,7 +68,7 @@
         }
         $volTable .= '</div></div>';
       }
-      $content .= $selfSlots ? '<div><h2>Dina funktionärspass</h2><p>Här är alla funktionärspass som du har anmält dig till:</p>'.$selfSlots.'</div>' : '';
+      $content .= $selfSlots ? '<div id="selfSlots"><h2>Dina funktionärspass</h2><p>Här är alla funktionärspass som du har anmält dig till:</p>'.$selfSlots.'</div>' : '';
       $content .= $volTable.'</div>';
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';

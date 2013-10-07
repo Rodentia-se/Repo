@@ -2026,6 +2026,15 @@ function allocEdit(el) {
           $('#' + taskId + '_' + periodId + '_needsTd').removeClass('errorTd');
         }
         el.setAttribute('previous', el.value);
+      } else {
+        if (el.checked) {
+          var p = document.createElement('p');
+          p.id = taskId + '_' + periodId + '_selfSlot';
+          p.innerHTML = document.getElementById(taskId + '_' + periodId + '_selfSlotHidden').value
+          document.getElementById('selfSlots').appendChild(p);
+        } else {
+          document.getElementById('selfSlots').removeChild(document.getElementById(taskId + '_' + periodId + '_selfSlot'));
+        }
       }
     } else {
       if (!$(el).is(':checkbox')) {
