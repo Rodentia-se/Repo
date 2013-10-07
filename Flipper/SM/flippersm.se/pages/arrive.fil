@@ -55,9 +55,13 @@
             $tooMuch = 'none';
             $tooLittle = '';
           }
+/*
           $content .= '
             <h2 class="big">Payment status:</h2>
             '.getCurCalcForm().'
+*/
+          $content .= '
+            <h2 class="big">Payment status:</h2>
             <p class="paymentCorrect" style="display: '.$corrected.'">The player have paid in full: <span class="big"><span id="'.$player->id.'_costs">'.$player->paid.'</span> SEK.</span></p>
             <p class="paymentTooMuch" style="display: '.$tooMuch.'">The player have paid too much. (S)he should only pay <span class="big"><span id="'.$player->id.'_tooMuchCosts">'.$costs.'</span> SEK</span>, but have paid <span class="big">'.$player->paid.' SEK</span> so please <span class="big">give '.($player->paid - $costs).' SEK back</span> and <a href="javascript: adminPaidChange(document.getElementById(\''.$player->id.'_tooMuchCosts\'));" id="tooMuchCorrected">click here</a> when done.</p>
             <span class="error errorSpan toolTip" id="'.$player->id.'_tooMuchCostsSpan"></span>
@@ -74,25 +78,23 @@
               }
               $tshirtNo++;
               $tshirtRows .= '
-                <tr>
-                  <td>Order ID '.$tshirt->id.': <span class="big">'.$tshirt->number.'</span> pcs of <span class="big">'.$tshirt->color.' '.$tshirt->size.'</span> T-shirts</td>
-                  <td>
+                <p>
+                  Order ID '.$tshirt->id.': <span class="big">'.$tshirt->number.'</span> pcs of <span class="big">'.$tshirt->color.' '.$tshirt->size.'</span> T-shirts<
                     <input type="checkbox" class="tshirtDlvrAll" id="'.$tshirt->id.'_dlvr" onclick="tshirtDlvr(this);" '.(($tshirt->dateDelivered) ? 'checked' : '').'>
                     <span class="error errorSpan toolTip" id="'.$tshirt->id.'_dlvrSpan"></span>
-                  </td>
-                  <td id="'.$tshirt->id.'_dlvrDate">'.(($tshirt->dateDelivered) ? 'Delivered '.$tshirt->dateDelivered : 'Mark as delivered').'</td>
-                </tr>
+                  <span id="'.$tshirt->id.'_dlvrDate">'.(($tshirt->dateDelivered) ? 'Delivered '.$tshirt->dateDelivered : 'Mark as delivered').'</span>
+                </p>
               ';
             }
             $content .= '
-              <table>
-                <tr>
-                  <td>T-shirt order(s)</td>
-                  '.(($tshirtNo > 1) ? '<td><input type="checkbox" id="tshirtDlvrAll" '.(($handOut) ? '' : 'checked').' onclick="tshirtDlvrAll(this);"></td>
+              <div>
+                <p>
+                  T-shirt order(s):
+                  '.(($tshirtNo > 1) ? '<input type="checkbox" id="tshirtDlvrAll" '.(($handOut) ? '' : 'checked').' onclick="tshirtDlvrAll(this);">
                   <span class="error errorSpan toolTip" id="tshirtDlvrAllSpan"></span>
-                  <td align="right">Mark all/none of the order(s) as delivered:</td>' : '<td></td><td></td>').'
-                </tr>
-              '.$tshirtRows.'</table><br />
+                  Mark all/none of the order(s) as delivered:' : '').'
+                </p>
+              '.$tshirtRows.'</div><br />
             ';
             $content .= '
               <p>Please '.implode(', ',array_filter(array($confirm, $handOut))).'.</p>
