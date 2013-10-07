@@ -79,20 +79,24 @@
               $tshirtNo++;
               $tshirtRows .= '
                 <p>
-                  Order ID '.$tshirt->id.': <span class="big">'.$tshirt->number.'</span> pcs of <span class="big">'.$tshirt->color.' '.$tshirt->size.'</span> T-shirts
+                  <div class="arriveTshirts">Order ID '.$tshirt->id.': <span class="big">'.$tshirt->number.'</span> pcs of <span class="big">'.$tshirt->color.' '.$tshirt->size.'</span> T-shirts</div>
+                  <div>
                     <input type="checkbox" class="tshirtDlvrAll" id="'.$tshirt->id.'_dlvr" onclick="tshirtDlvr(this);" '.(($tshirt->dateDelivered) ? 'checked' : '').'>
                     <span class="error errorSpan toolTip" id="'.$tshirt->id.'_dlvrSpan"></span>
-                  <span id="'.$tshirt->id.'_dlvrDate">'.(($tshirt->dateDelivered) ? 'Delivered '.$tshirt->dateDelivered : 'Mark as delivered').'</span>
+                    <span id="'.$tshirt->id.'_dlvrDate">'.(($tshirt->dateDelivered) ? 'Delivered '.$tshirt->dateDelivered : 'Mark as delivered').'</span>
+                  </div>
                 </p>
               ';
             }
             $content .= '
               <div>
                 <p>
-                  T-shirt order(s):
-                  '.(($tshirtNo > 1) ? '<input type="checkbox" id="tshirtDlvrAll" '.(($handOut) ? '' : 'checked').' onclick="tshirtDlvrAll(this);">
-                  <span class="error errorSpan toolTip" id="tshirtDlvrAllSpan"></span>
-                  Mark all/none of the order(s) as delivered:' : '').'
+                  <div class="arriveTshirts">T-shirt order(s)</div>
+                  <div>
+                    '.(($tshirtNo > 1) ? '<input type="checkbox" id="tshirtDlvrAll" '.(($handOut) ? '' : 'checked').' onclick="tshirtDlvrAll(this);">
+                    <span class="error errorSpan toolTip" id="tshirtDlvrAllSpan"></span>
+                    Mark all/none of the order(s) as delivered:' : '').'
+                  </div>
                 </p>
               '.$tshirtRows.'</div><br />
             ';
