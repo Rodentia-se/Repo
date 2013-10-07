@@ -1457,7 +1457,7 @@
         foreach (array('SEK', 'EUR', 'GBP', 'USD') as $cur) {
           $content .= getCurCalcForm($cur);
         }
-        return $content.'<span class="errorSpan italic">Note: The calculator is approximate, and our exchange rates are bad.</span>';
+        return $content.'<span class="errorSpan italic">Note: The calculator is approximate, and our exchange rates are bad.</span></div>';
       break;
       default:
         return false;
@@ -1470,7 +1470,7 @@
       $content .= ($selected == $i) ? ' selected' : '';
       $content .= '>'.round($i).'</option>';
     }
-    return $content.'</select></div>';
+    return $content.'</select>';
   }  
   
   function getQualGroupSelect($alias = 'q', $extraCols = false) {

@@ -1181,6 +1181,6 @@ top: -9999px;
     display: table-cell;
 }
 
-#content div.curCalc input {
+#content div.curCalc select {
   width: 50px;
 }
