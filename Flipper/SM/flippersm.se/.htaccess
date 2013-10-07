@@ -1,12 +1,6 @@
 SSLOptions +StrictRequire
 SSLRequireSSL
 ErrorDocument 403 https://www.flippersm.se/
-AuthType Basic
-AuthName "Vi bygger nu den nya sidan for Flipper-SM 2013! Vanligen aterkom inom kort, eller logga in om du ar administrator."
-AuthBasicProvider external
-AuthExternal pwauth
-AuthzUnixgroup on
-require group smstaff
 
 <Files  ~ "\.fil$">
   Order allow,deny
