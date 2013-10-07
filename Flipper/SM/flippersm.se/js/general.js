@@ -1914,21 +1914,8 @@ function adminGameDel(icon) {
 }
 
 function adminGameNew(sel) {
-  var gameId = sel.value;
-  if (gameId != 0) {
-    fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
-    $.post(baseHref + '/ajax/gameNew.php', {gameId: gameId}) // Send to server
-    .done(function(data) {
-      fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
-      if (data.success) {
-        var sel.parentNode.innerHTML = data.link;
-      }
-    })
-    .fail(function(jqHXR,status,error) {
-      debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
-      debugOut(jqHXR.responseText);
-    });
-  }
+  document.getElementById('sel.id.replace('game', 'type').disabled = false;
+  document.getElementById('sel.id.replace('game', 'usage').disabled = false;
 }
 
 function adminGameUsage(sel) {
@@ -1959,8 +1946,36 @@ function adminGameType(sel) {
   });
 }
 
-function adminGameAdd(btn) {
-  debugOut(btn.id);
+function adminGameAdd(icon) {
+  var gameSel = document.getElementById(icon.id.replace('Add', ''));
+  var gameId = gameSel.value;
+  var typeSel = document.getElementById(icon.id.replace('gameAdd', 'type'));
+  var type = typeSel.value;
+  var usageSel = document.getElementById(icon.id.replace('gameAdd', 'usage'));
+  var usage = usageSel.value;
+  if (gameId != 0 && type != 0 && usage != 0) {
+    fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
+    $.post(baseHref + '/ajax/gameNew.php', {gameId: gameId, type: type, usage: ueage}) // Send to server
+    .done(function(data) {
+      fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
+      if (data.success) {
+        gameSel.parentNode.innerHTML = data.link;
+        gameSel.id = data.id + '_game';
+        typeSel.id = data.id + '_type';
+        usageSel.id = data.id + '_usage';
+        document.getElementById(icon.id.replace('gameAdd', 'acroTd')).parentNode.innerHTML = data.acro;
+        document.getElementById(icon.id.replace('gameAdd', 'manufacturerTd')).parentNode.innerHTML = data.manufacturer;
+        document.getElementById(icon.id.replace('gameAdd', 'ipdbTd')).parentNode.innerHTML = data.ipdb;
+        document.getElementById(icon.id.replace('gameAdd', 'rulesTd')).parentNode.innerHTML = data.rules;
+      }
+    })
+    .fail(function(jqHXR,status,error) {
+      debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+      debugOut(jqHXR.responseText);
+    });
+  } else {
+    fade(document.getElementById(icon.id + 'Span'), 'Välj typ och användning först...', true);
+  }
 }
 
 function tshirtDlvrAll(box) {
