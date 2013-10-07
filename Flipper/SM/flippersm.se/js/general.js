@@ -1901,7 +1901,7 @@ function adminGameDel(icon) {
   fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
   $.post(baseHref + '/ajax/gameDel.php', {machineId: machineId}) // Send to server
   .done(function(data) {
-    fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);    
+    fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
     if (data.success) {
       var tr = icon.parentNode.parentNode;
       tr.parentNode.removeChild(tr);
@@ -1914,6 +1914,21 @@ function adminGameDel(icon) {
 }
 
 function adminGameNew(sel) {
+  var gameId = sel.value;
+  if (gameId != 0) {
+    fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
+    $.post(baseHref + '/ajax/gameNew.php', {gameId: gameId}) // Send to server
+    .done(function(data) {
+      fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
+      if (data.success) {
+        var sel.parentNode.innerHTML = data.link;
+      }
+    })
+    .fail(function(jqHXR,status,error) {
+      debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+      debugOut(jqHXR.responseText);
+    });
+  }
 }
 
 function adminGameUsage(sel) {

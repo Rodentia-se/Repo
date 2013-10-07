@@ -51,9 +51,32 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
+
+    function add($dbh, $tournament = 1) {
+      $query = '
+        insert into machine set
+          game_id = :gameId,
+          tournamentEdition_id = :tournamentId,
+          manufacturer_id = :manufacturerId,
+          manufacturer = :manufacturer,
+          game = :game
+      ';
+      $insert[':gameId'] = $this->id;
+      $insert[':tournamentId'] = $tournament;
+      $insert[':manufacturerId'] = $this->manufacturer_id;
+      $insert[':manufacturer'] = $this->manufacturer;
+      $insert[':game'] = $this->game;
+      deNorm('game');
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($insert)) {
+        return $dbh->lastInsertId();
+      } else {
+        return false;
+      }
+    }
     
     function remove($dbh) {
-    $query = 'delete from machine where id = :id';
+      $query = 'delete from machine where id = :id';
       $delete[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($delete)) ? true : false;

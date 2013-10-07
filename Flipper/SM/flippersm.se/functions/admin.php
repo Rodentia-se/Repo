@@ -755,7 +755,7 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td>'.$game->getLink().' <a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$game->machine_id.'&autoPrint=true" target="_blank"> (QR)</a></td>
+            <td>'.$game->getLink().'&nbsp;<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$game->machine_id.'&autoPrint=true" target="_blank"><img src="'.__baseHref__.'/images/qr.png" alt="QR" title="Click for QR code"></a></td>
             <td>'.$game->shortName.'</td>
             <td>'.$game->manufacturer.'</td>
             <td>'.$game->getIpdbLink().'</td>
