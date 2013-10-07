@@ -2023,8 +2023,8 @@ function allocEdit(el, fader) {
             var oldP = document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot');
             oldP.style.display = 'none';
           }
+          this.checked = false;
         }
-        $(this).prop('checked', false);
       }
     });
   } else {
