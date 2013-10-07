@@ -66,7 +66,7 @@
       $insert[':manufacturerId'] = $this->manufacturer_id;
       $insert[':manufacturer'] = $this->manufacturer;
       $insert[':game'] = $this->game;
-      deNorm('game');
+      deNorm($dbh, 'game');
       $sth = $dbh->prepare($query);
       if ($sth->execute($insert)) {
         return $dbh->lastInsertId();
