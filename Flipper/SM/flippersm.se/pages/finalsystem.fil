@@ -4,6 +4,48 @@
     <h1>Slutspelssyetem</h1>
     '.submenu2($dbh, $ulogin, "regler", false).'
     <p>Här kommer slutspelssystemet att beskrivas</p>
+
+<h2>Slutspel</h2>
+
+<p>Slutspelet f&ouml;r Flipper-SM 2011 &auml;r ett enkelt slutspelstr&auml;d, fast med f&ouml;rdelar f&ouml;r spelare med kvalrank 1-32 som f&aring;r st&aring; &ouml;ver en (17-32) respektive tv&aring; (1-16) omg&aring;ngar. T&auml;vlingen kommer att avg&ouml;ras i matcher mellan två spelare. Matcherna avg&ouml;rs i b&auml;st av tre set. Skulle en spelare vinna de f&ouml;rsta tv&aring; seten spelas inte det tredje setet i den matchen. Vilka spel som skall anv&auml;ndas i respektive set best&auml;ms av t&auml;vlingsledningen (olika spel f&ouml;r varje set).</p>
+<p>F&ouml;r classicslutspelet g&auml;ller i alla omgångar förutom finalen match mellan två spelare i bäst av tre set, tre kulor. Finalen spelas mellan fyra spelare över tre spel och med poängberäkningen 3-2-1-0 (högst poäng till vinnaren). Bäst rankad i finalen väljer bana först på spel 1, därefter näst bäst rankad osv. På spel 2 börjar den som vann spel 1, den som kom tvåa spelar som tvåa osv. På spel 3 börjar den som vann spel 2, därefter den som kom tvåa på spel 2.</p>
+<p><b>Observera att slutspelssystemet fram till t&auml;vlingsstart och &auml;ven under SM-helgen kan komma att &auml;ndras, vilket i s&aring; fall meddelas h&auml;r och p&aring; plats i lokalen.</b></p>
+<p>I Split-t&auml;vlingen g&aring;r de åtta b&auml;sta lagen fr&aring;n kvalet till kvartsfinal och spelas enligt samma regler som main. Lag 1 möter lag 8, lag 2 möter lag 7 osv.</p>
+<br>
+<p>F&ouml;r spelare som tar sig till slutspel i flera olika grenar, g&auml;ller en prioriteringsordning om matcherna krockar tidsm&auml;ssigt. F&ouml;rst Main, sedan Classic.<br>
+
+
+
+<p>
+I &aring;r kommer det vara ett upprop innan slutspelet för spelarna 33-64. Om någon spelare inte är där när spelet ska börja så fyller man på med närvarande spelare som har hamnat utanför slutspelet. I de senare omgångarna när spelare 1-32 kommer in i slutspelet kommer det inte vara något upprop, utan saknas en spelare då så vinner motspelaren på w.o. Alla andra är varmt v&auml;lkomna att f&ouml;lja slutspelet och/eller delta i diverse sidot&auml;vlingar.
+För B-slutspelet i Main kommer det också att vara ett upprop för spelarna 65-96. Saknas någon så fyller vi på underifrån, vilket gör att det kan löna sig att komma på söndagen även om man skulle sluta kvalet på plats 100. <br />Under 2011 års SM kunde Sven Jansson ta den sista platsen i B-slutspelet, efter att ha blivit 143:a i kvalet.
+</p>
+
+<h3>Kommentarer p&aring; slutspelsschemat</h3>
+<p>Slutspelsschemat &auml;r upplagt f&ouml;r att st&ouml;rsta m&ouml;jliga r&auml;ttvisa skall uppn&aring;s. Utg&aring;ngspunkten i schemat &auml;r att den slutliga kvalranken speglar spelarnas inb&ouml;rdes skicklighet. F&ouml;rutsatt att detta g&auml;ller, kommer de &aring;tta h&ouml;gst rankade n&aring; kvartsfinalerna, de fyra b&auml;sta samlas i semi och ettan och tv&aring;an m&ouml;tas i finalen.</p>
+
+<p>Beroende p&aring; tids&aring;tg&aring;ng f&ouml;r slutspelet kan matchen om tredje pris antingen:
+<ul style="margin-top:0px;">
+<li>spelas i b&auml;st av tre set som en &rdquo;f&ouml;rmatch&rdquo; till finalen,</li>
+<li>spelas i ett enda set (tre kulor p&aring; ett spel) som &rdquo;f&ouml;rmatch&rdquo; till finalen,</li>
+<li>spelas i b&auml;st av tre (eller ett) set parallellt med finalen, p&aring; andra spel &auml;n de som anv&auml;nds i finalen.</li>
+</ul>
+</p>
+<p>Slutgiltigt beslut i denna fr&aring;ga fattas av t&auml;vlingsledningen i samr&aring;d med de fyra spelarna som spelat semifinal.</p>
+
+<h3>&Ouml;vningsspel under slutspelet</h3>
+
+<p>Innan varje ny spelomg&aring;ng under slutspelet till&aring;ts varje spelare &ouml;vningsspela under ca 30 sekunder. N&auml;r de 30 sekunderna g&aring;tt ropar t&auml;vlingsledningen "BYT!" (eller n&aring;t med samma mening) varvid n&auml;sta spelare f&aring;r sina 30 sekunder. Spelarna f&ouml;ruts&auml;tts kunna komma &ouml;verens om i vilken ordning de vill &ouml;vningsspela. Spelen skall <i>inte</i> st&auml;ngas av mellan spelarnas tr&auml;ningsomg&aring;ngar, utan f&ouml;rst n&auml;r sista spelaren spelat sina 30 sek. Observera att reglerna f&ouml;r &ouml;vningsspel g&auml;ller f&ouml;r alla set i en match.
+
+<hr/>
+
+<h3>Spelordning under slutspelet</h3>
+
+<p>Under slutspelet skall de tv&aring; spelarna som m&ouml;ts i respektive match v&auml;lja vilken bana (1 eller 2) de vill spela p&aring; under kommande set. I f&ouml;rsta set f&aring;r den spelare med b&auml;st kvalrank v&auml;lja bana f&ouml;rst. I andra set byter spelarna bana med varandra. Inf&ouml;r ett eventuellt tredje set f&aring;r spelaren med b&auml;st kvalrank &aring;terigen v&auml;lja bana (man beh&ouml;ver s&aring;ledes inte spela p&aring; samma bana som i f&ouml;rsta set). Spelaren har r&auml;tt att avst&aring; sitt val vid b&aring;da dessa tillf&auml;llen. I s&aring;dant fall f&aring;r spelaren med den s&auml;mre kvalranken chansen att v&auml;lja bana. Skulle &auml;ven han/hon avst&aring; att v&auml;lja placeras spelaren med b&auml;sta kvalranken p&aring; bana 1.</p>
+
+
+
+
   ';
 
   echo $content;
