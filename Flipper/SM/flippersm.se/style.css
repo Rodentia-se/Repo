@@ -617,6 +617,12 @@ top: -9999px;
       right: 0.2em;
     }
 
+    #ifpaRegResultsTable td:nth-of-type(4) {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
     #ifpaRegResultsTable td:nth-of-type(5) {
       position: absolute;
       top: 1.6em;
