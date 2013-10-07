@@ -2,7 +2,7 @@
   require_once('../contrib/recaptchalib.php');
   header('Content-Type: text/plain');
 
-  $privatekey = '6LeXJOgSAAAAABxzm_Yc1JXDZpidNER6E7aRJzu2';
+  $privatekey = '6Lc3d-gSAAAAACY7nHWMxyLNBe3SWmienod_F0vR';
   $resp = recaptcha_check_answer ($privatekey, $_SERVER['REMOTE_ADDR'], $_POST['chall'], $_POST['resp']);
   
   if (!$resp->is_valid) {
