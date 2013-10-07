@@ -112,7 +112,7 @@
           <input type="hidden" name="item_name" value="EPC Entrance Fee">
           <input type="hidden" name="item_number" value="1">
           <input type="hidden" id="payPalAmount" name="amount" value="'.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'">
-          <input type="hidden" name="page_style" value="StockholmOpen">
+          <input type="hidden" name="page_style" value="flippersm">
           <input type="hidden" name="no_shipping" value="1">
           <input type="hidden" name="return" value="'.__baseHref__.'/?s=betalningok">
           <input type="hidden" name="cancel_return" value="'.__baseHref__.'/?s=betalningcancel">
