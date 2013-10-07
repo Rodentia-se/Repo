@@ -672,8 +672,8 @@ top: -9999px;
 
     .registered td:nth-of-type(4) {
       position: absolute;
-      top: -9999px;
-      left: -9999px;
+      top: 1.6em;
+      right: 0.2em;
     }
 
     .registered td:nth-of-type(5) {
@@ -708,7 +708,7 @@ top: -9999px;
       content: "Classics: ";
     }
 
-    .registered td:nth-of-type(7):before {
+    .registered td:nth-of-type(8):before {
       content: "Betalat: ";
     }
 
