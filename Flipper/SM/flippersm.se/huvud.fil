@@ -12,6 +12,7 @@
         <script type="text/javascript" src="'.__baseHref__.'/js/general.js"></script>
         <link href="'.__baseHref__.'/css/jquery-ui.css" rel="stylesheet" type="text/css" />
         <script type="text/javascript" src="'.__baseHref__.'/js/contrib/ga.js"></script>
+        <link rel="image_src" href="'.__baseHref__.'/bilder/layout/logo.png" />
       ';
     ?>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
