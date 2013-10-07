@@ -617,13 +617,13 @@ top: -9999px;
       right: 0.2em;
     }
 
-    #ifpaRegResultsTable td:nth-of-type(4) {
+    #ifpaRegResultsTable td:nth-of-type(5) {
       position: absolute;
       top: 1.6em;
       left: 5.5em;
     }
 
-    #ifpaRegResultsTable td:nth-of-type(5) {
+    #ifpaRegResultsTable td:nth-of-type(6) {
       position: absolute;
       top: 1.6em;
       right: 0.2em;
@@ -631,7 +631,7 @@ top: -9999px;
     }
 
 
-    #ifpaRegResultsTable td:nth-of-type(4):before {
+    #ifpaRegResultsTable td:nth-of-type(7):before {
       content: "IFPA: ";
     }
 
