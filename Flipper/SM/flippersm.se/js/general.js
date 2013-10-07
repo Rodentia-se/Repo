@@ -2030,6 +2030,10 @@ function allocEdit(el) {
         if (el.checked) {
           var p = document.createElement('p');
           p.id = taskId + '_' + periodId + '_selfSlot';
+          p.className = 'bold';
+          setTimeout(function() {
+            $(el).removeClass('bold');
+          }, 3000);
           p.innerHTML = document.getElementById(taskId + '_' + periodId + '_selfSlotHidden').value
           document.getElementById('selfSlots').appendChild(p);
         } else {
