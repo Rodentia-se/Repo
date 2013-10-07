@@ -175,6 +175,7 @@ var currencies = {
   }
 }
 
+/*
 if ($.url().attr('file') == 'adminTools.php') {
   $.fn.dataTableExt.afnSortData['dom-link'] = function(oSettings, iColumn) {
 	  return $.map( oSettings.oApi._fnGetTrNodes(oSettings), function (tr, i) {
@@ -182,6 +183,7 @@ if ($.url().attr('file') == 'adminTools.php') {
 	  });
   }
 }
+*/
 
 // Classes definitions for continents, countries, regions, cities, players and genders.
 // Implemented as JS functions with protoypes.
