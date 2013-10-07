@@ -2076,7 +2076,9 @@ function allocEdit(el, fader) {
           document.getElementById('selfSlots').appendChild(p);
           $('#selfSlots').show();
         } else {
-          document.getElementById('selfSlots').removeChild(document.getElementById(taskId + '_' + periodId + '_selfSlot'));
+          if (document.getElementById(taskId + '_' + periodId + '_selfSlot')) {
+            document.getElementById('selfSlots').removeChild(document.getElementById(taskId + '_' + periodId + '_selfSlot'));
+          }
         }
       }
     } else {
