@@ -631,7 +631,7 @@ top: -9999px;
     }
 
 
-    #ifpaRegResultsTable td:nth-of-type(7):before {
+    #ifpaRegResultsTable td:nth-of-type(5):before {
       content: "IFPA: ";
     }
 
