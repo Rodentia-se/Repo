@@ -746,7 +746,7 @@
                   <option value="14">Recreational</option>
                 </select>
                 <span class="error errorSpan toolTip" id="0_usageSpan"></span>
-                <img src="'.__baseHref__.'/images/add_icon.gif" class="textIcon" onclick="adminGameAdd(this);" alt="Add game to tournament" title="Add game to tournament" id="0_gameAdd">
+                <img src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="adminGameAdd(this);" alt="Add game to tournament" title="Add game to tournament" id="0_gameAdd">
                 <span class="error errorSpan toolTip" id="0_gameAddSpan"></span>
               </td>
             </tr>
