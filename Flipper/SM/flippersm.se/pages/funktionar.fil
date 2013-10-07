@@ -7,7 +7,7 @@
     '.submenu2($dbh, $ulogin, "funktionar", false).'
     <p>Nedan ser du alla funktionärspass, och vem som gör vad när. Står det "vakant" så betyder det att ingen har tagit det passet än. Alltså är det ditt om du vill ha det!
   ';
-  $content = ($player->mainPlayerId) ? ' <a href="'.__baseHref__.'/?s=funktionarsval">Klicka här</a> för att välja pass.</p>' : 'Du måste dock <a href="'.__baseHref__.'/?s=anmal">anmäla dig</a> först.</p>';
+  $content .= ($player->mainPlayerId) ? ' <a href="'.__baseHref__.'/?s=funktionarsval">Klicka här</a> för att välja pass.</p>' : 'Du måste dock <a href="'.__baseHref__.'/?s=anmal">anmäla dig</a> först.</p>';
   $volunteers = getVolunteers($dbh);
   $tasks = getTasks($dbh);
   $periods = getPeriods($dbh);
