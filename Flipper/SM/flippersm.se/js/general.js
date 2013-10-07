@@ -2054,7 +2054,9 @@ function allocEdit(el, fader) {
           $('.' + periodId + 'VolCheckbox').each(function(){
             if (this.id != el.id) {
               $(this).prop('checked', false);
-              document.getElementById('selfSlots').removeChild(document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot'));
+              if (document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot')) {
+                document.getElementById('selfSlots').removeChild(document.getElementById(this.id.split('_')[0] + '_' + this.id.split('_')[1] + '_selfSlot'));
+              }
             }
           });
           var p = document.createElement('p');
