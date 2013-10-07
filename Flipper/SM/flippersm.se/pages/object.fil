@@ -38,6 +38,7 @@
 		case 'games':
       $type = 'game';
     break;
+		case 'qualgroup':
 		case 'qualGroup':
 		case 'qualGroups':
       $type = 'qualGroup';
