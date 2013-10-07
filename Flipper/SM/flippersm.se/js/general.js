@@ -2047,6 +2047,12 @@ function allocEdit(el) {
         el.setAttribute('previous', el.value);
       } else {
         if (el.checked) {
+          $('.' + periodId + 'VolCheckbox').each(function(){
+            if (this.id != el.id) {
+              $(this).prop('checked', false);
+              allocEdit(this);
+            }
+          });
           var p = document.createElement('p');
           p.id = taskId + '_' + periodId + '_selfSlot';
           p.className = 'bold';
