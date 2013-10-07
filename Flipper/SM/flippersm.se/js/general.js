@@ -2009,7 +2009,7 @@ function allocShowAll(box) {
   });
 } 
 
-function allocEdit(el) {
+function allocEdit(el, fade) {
   var taskId = el.id.split('_')[0];
   var periodId = el.id.split('_')[1];
   if ($(el).is(':checkbox')) {
@@ -2021,10 +2021,14 @@ function allocEdit(el) {
     var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
     var urlParams = {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
   }
-  fade(document.getElementById(el.id + 'Span'), 'Updaterar databasen...', true);
+  if (fade) {
+    fade(document.getElementById(el.id + 'Span'), 'Updaterar databasen...', true);
+  }
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
-    fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
+    if (fade) {
+      fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
+    }
     if (data.success) {
       if (!$(el).is(':checkbox')) {
         if(el.getAttribute('previous') == 0) {
@@ -2050,7 +2054,7 @@ function allocEdit(el) {
           $('.' + periodId + 'VolCheckbox').each(function(){
             if (this.id != el.id) {
               $(this).prop('checked', false);
-              allocEdit(this);
+              allocEdit(this, false);
             }
           });
           var p = document.createElement('p');
