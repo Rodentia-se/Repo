@@ -1109,7 +1109,7 @@
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
           <input type="hidden" id="playerIdHidden" value="'.$player->id.'">
           <div id="tshirtOrderTable">
-            <p id="tshirtOrderTr" class="italic">'.$shown.((__tshirtsDisabled__) ? 'Det går inte längre att beställa tröjor online, men vi kommer att sälja ett begränsat antal tröjor på plats.' : 'Alla ändringar nedan utförs direkt.').'<br />&nbsp;</p>
+          '.$shown.((__tshirtsDisabled__) ? '<p id="tshirtOrderTr" class="italic">Det går inte längre att beställa tröjor online, men vi kommer att sälja ett begränsat antal tröjor på plats.</p>' : '<p id="tshirtOrderTr" class="italic">Alla ändringar nedan utförs direkt.').'</p>
     ';
     if($tshirts && count($tshirts > 0)) {
       foreach($tshirts as $tshirt) {
