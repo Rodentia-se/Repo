@@ -1508,7 +1508,9 @@ function complete(type) { // Used to check that all objects are completely loade
 
 function getObjects(type, obj, id, all) { // Load all objects from ajax. If type is specified, only that type is loaded. The function is recursive - if no type is specified, it will call itself for each type.
   obj = (obj) ? obj : $.url().param('obj');
-  id = (id) ? id : $.url().param('id');
+  if (obj) {
+    id = (id) ? id : $.url().param('id');
+  }
   if (type == 'teams' || type == 'games') {
     classes.continent.complete = true;
     classes.country.complete = true;
