@@ -22,15 +22,15 @@
               'ipdb' => $game->getIpdbLink(),
               'rules' => $game->getRulesLink(),
               'type' => '
-                <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="0">
+                <select id="'.$game->machine_id.'_type" onchange="adminGameType(this);" previous="0">
                   <option value="0">Type...</option>
                   <option value="modern">Modern</option>
                   <option value="classics">Classics</option>
                 </select>
-                <span class="error errorSpan toolTip" id="'.$game->id.'_typeSpan"></span>
+                <span class="error errorSpan toolTip" id="'.$game->machine_id.'_typeSpan"></span>
               ',
               'usage' => '
-                <select id="'.$game->id.'_usage" onchange="adminGameUsage(this);" previous="0">
+                <select id="'.$game->machine_id.'_usage" onchange="adminGameUsage(this);" previous="0">
                   <option value="0">Usage...</option>
                   <option value="1">Main</option>
                   <option value="2">Classics</option>
@@ -38,7 +38,11 @@
                   <option value="13">Side</option>
                   <option value="14">Recreational</option>
                 </select>
-                <span class="error errorSpan toolTip" id="'.$game->id.'_usageSpan"></span>
+                <span class="error errorSpan toolTip" id="'.$game->machine_id.'_usageSpan"></span>
+              ',
+              'delete' => '
+                <img src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_delete">
+                <span class="error errorSpan toolTip" id="'.$game->machine_id.'_deleteSpan"></span>
               '
             );
             echo(json_encode($result));
