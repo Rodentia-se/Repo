@@ -26,6 +26,7 @@
           $alloc = $task->getAlloc($dbh, $period);
           $need = $task->getNeed($dbh, $period);
           $selfTaken = false;
+          $selfSlot = $date.', '.$clock.' ('.$length.' timmar): som '.$task->name;
           if ($need || $alloc) {
             $volTable .= '<h3>'.$task->name.' ('.$need.'):</h3>';
             $allocVols = $task->getAllocVols($dbh, $period);
@@ -47,7 +48,6 @@
                 $volTable .= '<p><input type="checkbox" class="volCheckbox" id="'.$task->id.'_'.$period->id.'_volCheckbox" onclick="allocEdit(this);"';
                 if ($selfTaken) {
                   $volTable .= ' checked';
-                  $selfSlot = $date.', '.$clock.' ('.$length.' timmar): som '.$task->name;
                   $selfSlots .= '<p id="'.$task->id.'_'.$period->id.'_selfSlot">'.$selfSlot.'</p>';
                 }
                 if ($player->checkIfVolFree($dbh, $period)) {
