@@ -75,6 +75,11 @@
       }
     }
     
+    function getQR($link = true) {
+      $qr = '<img src="'.__baseHref__.'/images/qr.png" alt="QR" title="Click for QR code">';
+      return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
+    }
+
     function remove($dbh) {
       $query = 'delete from machine where id = :id';
       $delete[':id'] = $this->id;

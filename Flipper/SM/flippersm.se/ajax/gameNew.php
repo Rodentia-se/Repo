@@ -15,7 +15,7 @@
             $result = (object) array(
               'success' => true,
               'reason' => $game->shortName.' was added to the tournament',
-              'link' => $game->getLink().'&nbsp;<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$game->machine_id.'&autoPrint=true" target="_blank"><img src="'.__baseHref__.'/images/qr.png" alt="QR" title="Click for QR code"></a>'
+              'link' => $game->getLink().'&nbsp'.$game->getQR();
             );
             echo(json_encode($result));
           } else {

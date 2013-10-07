@@ -565,8 +565,6 @@
       return $objs;
     }
     
-    
-    
     function checkIfVolFree($dbh, $period) {
       $query = '
         select count(*) from qualGroup q
@@ -603,6 +601,12 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
+
+    function getQR($link = true) {
+      $qr = '<img src="'.__baseHref__.'/images/qr.png" alt="QR" title="Click for QR code">';
+      return ($link) ? '<a href="'.__baseHref__.'/mobile/playerPrinter.php?playerId='.$this->id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
+    }
+
 
   }
 ?>
