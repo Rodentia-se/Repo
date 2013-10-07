@@ -1904,7 +1904,7 @@ function adminGameDel(icon) {
     fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
     if (data.success) {
       var tr = icon.parentNode.parentNode;
-      tr.parentNode.removeChild(tr);
+      $('#adminGameTable').dataTable().fnDeleteRow(tr);
     }
   })
   .fail(function(jqHXR,status,error) {
