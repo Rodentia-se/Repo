@@ -258,6 +258,8 @@
     }
     
     public function removeVolunteer($dbh, $tournament = 1) {
+      $this->removeVolunteerPeriods($dbh, 'all');
+      $this->removeVolunteerTasks($dbh, 'all');
       $query = 'delete from volunteer where person_id = :person_id and tournamentEdition_id = :tournamentId';
       $delete[':tournamentId'] = $tournament;
       $delete[':person_id'] = $this->id;
