@@ -4140,7 +4140,6 @@
                 'bJQueryUI': true,
                 'sPaginationType': 'full_numbers',
                 'iDisplayLength': 300,
-                'aaSorting': [[0, 'desc' ], [2, 'asc']],
                 ".$sorting."
                 ".$sort."
                 'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
