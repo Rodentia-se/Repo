@@ -720,7 +720,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr id="0_gameTr">
+            <tr id="0_gameTd">
               <td>
                 '.createSelect($allGames, '0_game', 0, 'adminGameNew', '', 'Add game...').'
                 <span class="error errorSpan toolTip" id="0_gameSpan"></span>
