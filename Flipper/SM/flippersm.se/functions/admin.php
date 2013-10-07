@@ -722,7 +722,7 @@
           <tbody>
             <tr id="0_gameTr">
               <td>
-                '.createSelect($allGames, '0_game', 0, 'adminGameNew', '', 'Add new game to tournament...').'
+                '.createSelect($allGames, '0_game', 0, 'adminGameNew', '', 'Add game...').'
               </td>
               <td></td>
               <td></td>
