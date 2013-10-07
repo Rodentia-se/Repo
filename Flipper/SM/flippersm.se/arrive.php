@@ -107,18 +107,19 @@
             $content .= '<p>The player has not ordered any T-shirts. Ask the player if (s)he wants to buy T-shirts, and record any T-shirts sold <a href="'.__baseHref__.'/admin-tools/?tool=tshirt" target="_blank">here</a>.</p>';
           }
           $content .= 'If the player wants to buy (additional) T-shirts, it can be done <a href="'.__baseHref__.'/admin-tools/?tool=tshirt" target="_blank">here</a>.';
-          $qualGroup = getQualGroupById($dbh, $player->mainQualGroup_id);
-          $content .= '
-            <br /><br /><h2 class="big">Qualification group and schedule:</h2>
-            <p>The player is assigned to play in <span class="big">Group '.$qualGroup->shortName.' on '.$qualGroup->date.' at '.$qualGroup->startTime.'-'.$qualGroup->endTime.'</span></p>';
-          if ($player->classics) {
-            $qualGroup = getQualGroupById($dbh, $player->classicsQualGroup_id);
-            $content .= '<p>The player is assigned to play Classics in <span class="big">Group '.$qualGroup->shortName.' on '.$qualGroup->date.' at '.$qualGroup->startTime.'-'.$qualGroup->endTime.'</span></p>';
+          if ($player->mainQualGroup_id || $player->classicsQualGroup_id) {
+            $content .= '<br /><br /><h2 class="big">Qualification group and schedule:</h2>';
+            if ($player->mainQualGroup_id) {
+              $qualGroup = getQualGroupById($dbh, $player->mainQualGroup_id);
+              $content .= '<p>The player is assigned to play in <span class="big">Group '.$qualGroup->shortName.' on '.$qualGroup->date.' at '.$qualGroup->startTime.'-'.$qualGroup->endTime.'</span></p>';
+            }
+            if ($player->classicsQualGroup_id) {
+              $qualGroup = getQualGroupById($dbh, $player->classicsQualGroup_id);
+              $content .= '<p>The player is assigned to play Classics in <span class="big">Group '.$qualGroup->shortName.' on '.$qualGroup->date.' at '.$qualGroup->startTime.'-'.$qualGroup->endTime.'</span></p>';
+            }
+            $content .= '<p>Change qualification group assignments <a href="'.__baseHref__.'/admin-tools/?tool=qualGroup" target="_blank">here</a>.</p>';
           }
-          $content .= '
-            <p>Change qualification group assignments <a href="'.__baseHref__.'/admin-tools/?tool=qualGroup" target="_blank">here</a>.</p>
-            <br /><h2 class="big">Team tournament:</h2>
-          ';
+          $content .= '<br /><h2 class="big">Team tournament:</h2>';
           if ($team) {
             $content .= getInfo($dbh, $ulogin, 'team', $team->id, false).'
               <p>Have the player confirm that the team information is correct.<br />
