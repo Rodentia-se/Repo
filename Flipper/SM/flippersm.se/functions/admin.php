@@ -748,7 +748,7 @@
             <td id="'.$game->id.'_rulesTd">'.$game->getRulesLink().'</td>
             <td id="'.$game->id.'_typeTd">
               <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="'.$game->gameType.'">
-                <option value="0">Choose type...</option>
+                <option value="0">Type...</option>
                 <option value="modern"'.(($game->gameType == 'modern') ? ' selected' : '').'>Modern</option>
                 <option value="classics"'.(($game->gameType == 'classics') ? ' selected' : '').'>Classics</option>
               </select>
@@ -756,7 +756,7 @@
             </td>
             <td id="'.$game->id.'_usageTd">
               <select id="'.$game->machine_id.'_usage" onchange="adminGameUsage(this);" previous="'.$game->tournamentDivision_id.'">
-                <option value="0">Choose usage...</option>
+                <option value="0">Usage...</option>
                 <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
                 <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
                 <option value="3"'.(($game->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>

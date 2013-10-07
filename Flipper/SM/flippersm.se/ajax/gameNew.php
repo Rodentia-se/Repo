@@ -23,7 +23,7 @@
               'rules' => $game->getRulesLink(),
               'type' => '
                 <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="0">
-                  <option value="0">Choose type...</option>
+                  <option value="0">Type...</option>
                   <option value="modern">Modern</option>
                   <option value="classics">Classics</option>
                 </select>
@@ -31,7 +31,7 @@
               ',
               'usage' => '
                 <select id="'.$game->id.'_usage" onchange="adminGameUsage(this);" previous="0">
-                  <option value="0">Choose usage...</option>
+                  <option value="0">Usage...</option>
                   <option value="1">Main</option>
                   <option value="2">Classics</option>
                   <option value="3">Team</option>
