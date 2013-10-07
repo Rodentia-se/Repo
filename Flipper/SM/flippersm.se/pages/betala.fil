@@ -9,7 +9,7 @@
     <p>Kontrollera att du har anmält dig till allting du vill vara med i, och att du har beställt de tröjor du vill ha:
       <ul>
         <li><a href="'.__baseHref__.'/?s=anmal">Player registration</a></li>
-        <li><a href="'.__baseHref__.'/?s=dubbelanmalan">Team registration</a></li>
+        <li><a href="'.__baseHref__.'/?s=editdubbel">Team registration</a></li>
         <li><a href="'.__baseHref__.'/?s=kvalval">Qualification groups</a></li>
         <li><a href="'.__baseHref__.'/?s=tshirt">T-shirts</a></li>
         <li><a href="'.__baseHref__.'/?s=funktionar">Volunteer registration</a></li>
