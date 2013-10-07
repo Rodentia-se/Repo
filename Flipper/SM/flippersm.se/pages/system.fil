@@ -8,12 +8,10 @@ submenu2($dbh, $ulogin, "regler");
 <div class="bred">
 
 <p>
-Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska m&auml;staren i flipperspel 2013. Parallellt med kvalspel och slutspel kommer sidot&auml;vlingar p&aring;g&aring;, regler och system f&ouml;r dessa redovisas p&aring; annan plats. För Classic-divisionen så gäller samma regler som huvudtävlingen när inget annat anges.
+Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska m&auml;staren i flipperspel 2013. Parallellt med kvalspel och slutspel kommer sidot&auml;vlingar p&aring;g&aring;, regler och system f&ouml;r dessa redovisas p&aring; annan plats. För Classic och dubbel så gäller samma regler som huvudtävlingen när inget annat anges.
 </p>
 
 <hr/>
-
-<h2>Kvalspel</h2>
 
 <h3>Spel</h3>
 
@@ -24,26 +22,26 @@ Regelbladet ber&ouml;r det spelsystem som g&auml;ller f&ouml;r att kora svenska 
 <h3>T&auml;vlingsformat</h3>
 <p>I kvalspelet spelar tv&aring; spelare tillsammans p&aring; varje spel. Spelarna f&ouml;ruts&auml;tts kunna komma &ouml;verens om spelordningen (se kapitel <i>Spelordning</i>). Observera att spelarna inte t&auml;vlar direkt mot varandra; det &auml;r allts&aring; ingen regelr&auml;tt match. Systemet med tv&aring;mannamatcher anv&auml;nds f&ouml;r att minska frestelserna att fuska och f&ouml;r att det &auml;r trevligt att tr&auml;ffa andra flipperintresserade.</p>
 <p>På vissa maskiner (t ex sådana med fysiska lockar) kan spelarna välja att spela en och en. De maskiner det gäller har detta noterat på backboxen. Det räcker med att en av de två spelarna vill spela en och en för att så ska ske.</p>
-<p>Spelarna spelar tv&aring; trekulorsomg&aring;ngar var och ser till att en score-keeper noterar resultatet (alla siffrorna!) fr&aring;n b&aring;da omg&aring;ngarna p&aring; sin telefon/surfplatta. Den b&auml;sta po&auml;ngen p&aring; varje spel blir spelarens t&auml;vlingspo&auml;ng, och den s&auml;mre po&auml;ngen kommer inte att r&auml;knas.</p>
+<p>Spelarna spelar tv&aring; trekulorsomg&aring;ngar var och ser till att en scorekeeper noterar resultatet (alla siffrorna!) fr&aring;n b&aring;da omg&aring;ngarna p&aring; sin telefon/surfplatta. Den b&auml;sta po&auml;ngen p&aring; varje spel blir spelarens t&auml;vlingspo&auml;ng, och den s&auml;mre po&auml;ngen kommer inte att r&auml;knas.</p>
 
 <p>Om en spelare startar den andra omg&aring;ngen innan resultatet fr&aring;n den f&ouml;rsta noterats, anses den spelaren ha f&aring;tt noll po&auml;ng. Den andre ber&ouml;rde spelaren f&aring;r:
 <br/>
-a)	sin registrerade po&auml;ng om den &auml;r uppskriven av score-keepern, eller
-<br/>
-b)	spela en ny trekulorsomg&aring;ng om po&auml;ngen inte &auml;r uppskriven eller han/hon inte spelat alla sina tre kulor, eller
-<br/>
-c)	noll po&auml;ng om han/hon varit i samf&ouml;rst&aring;nd med den andre spelaren om att p&aring;b&ouml;rja en ny omg&aring;ng.
+<ol>
+<li>sin registrerade po&auml;ng om den &auml;r uppskriven av scorekeepern, eller</li>
+<li>spela en ny trekulorsomg&aring;ng om po&auml;ngen inte &auml;r uppskriven eller han/hon inte spelat alla sina tre kulor, eller</li>
+<li>noll po&auml;ng om han/hon varit i samf&ouml;rst&aring;nd med den andre spelaren om att p&aring;b&ouml;rja en ny omg&aring;ng.</li>
+</ol>
 Noll spelpo&auml;ng kan aldrig ge kvalpo&auml;ng, &auml;ven om scoren skulle vara bland de 30 &rdquo;b&auml;sta&rdquo;.</p>
 
 <h3>Kvalpo&auml;ngber&auml;kning</h3>
 
-<p>Flipper-SM 2011 kommer att genomföras med en poängstege till viss del baserad på gyllene snittet. Bästa resultat på ett spel får 100 kvalpoäng som grund, sämsta resultat får 1 kvalpoäng som grund och exakt 50 kvalpoäng får den som hamnar precis i mitten. Efter grundpoängen så lägger vi till två extra beräkningar:</p>
-<p>1. Eftersom flipperspel kan gå sönder, så riskerar vi att det blir rätt ojämnt antal spelare på vissa spel. För att det ska bli lite mer rättvisa mellan två spelare som är bäst på sina respektive spel, så får den som är bäst på ett spel med många spelare lite mer poäng en den som är bäst på ett spel med färre spelare.</p>
-<p>2. Den bäste spelare på varje spel får 10% i bonuspoäng, tvåan får 5% i bonus och trean får 2% i bonus.</p>
-Detta system ger dels lite extra åt de som spelar riktigt bra, men ger även bra betalt (jämfört med tidigare använda system) åt de som har ganska låga scorer.</p>
+<p>Flipper-SM 2011 kommer att genomföras med en poängstege till viss del baserad på gyllene snittet. Bästa resultat på ett spel får 100 kvalpoäng som grund, sämsta resultat får 1 kvalpoäng som grund och exakt 50 kvalpoäng får den som hamnar precis i mitten. Efter grundpoängen så lägger vi till två extra beräkningar:
+<ol>
+<li>Eftersom flipperspel kan gå sönder, så riskerar vi att det blir rätt ojämnt antal spelare på vissa spel. För att det ska bli lite mer rättvisa mellan två spelare som är bäst på sina respektive spel, så får den som är bäst på ett spel med många spelare lite mer poäng en den som är bäst på ett spel med färre spelare.</li>
+<li>2. Den bäste spelare på varje spel får 10% i bonuspoäng, tvåan får 5% i bonus och trean får 2% i bonus.</li>
+<li>Detta system ger dels lite extra åt de som spelar riktigt bra, men ger även bra betalt (jämfört med tidigare använda system) åt de som har ganska låga scorer.</li>
+</ol></p>
 
-
-<div class = "bred">
 <p>Samtliga spelares fyra kvalpo&auml;ng summeras och bildar kvalranken. De 64 spelare med den h&ouml;gsta kvalranken n&auml;r samtliga spelares t&auml;vlingspo&auml;ng &auml;r inrapporterade &auml;r kvalificerade till slutspelet p&aring; s&ouml;ndagen.
 
 <hr/>
