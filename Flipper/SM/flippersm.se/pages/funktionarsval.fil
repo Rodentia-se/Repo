@@ -6,8 +6,7 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
       $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
-      $content .= '<p>Här är alla funktionärspass som du har anmält dig till.</p>';
-      $volTable = '<p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p><div class="volTable">';
+      $volTable = '<h3>Välj funktionärspas</h3><p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p><div class="volTable">';
       $volunteers = getVolunteers($dbh);
       $tasks = getTasks($dbh);
       $periods = getPeriods($dbh);
@@ -69,7 +68,8 @@
         }
         $volTable .= '</div></div>';
       }
-      $content .= '<div>'.$selfSlots.'</div>'.$volTable.'</div>';
+      $content .= $selfSlots ? '<div><h3>Dina funktionärspass</h3><p>Här är alla funktionärspass som du har anmält dig till:</p>'.$selfSlots.'</div>' : '';
+      $content .= $volTable.'</div>';
     } else {
       $content .= '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan bli funktionär.</p>';
     }
