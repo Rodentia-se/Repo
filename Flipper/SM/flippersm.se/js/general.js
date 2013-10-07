@@ -1957,7 +1957,7 @@ function adminGameAdd(icon) {
         var itemArray = ['game', 'type', 'usage', 'acro', 'manufacturer', 'ipdb', 'rules'];
         for (var item in itemArray) {
           if (itemArray[item] != 'type' && itemArray[item] != 'usage') {
-            debugOut(icon.id.replace('gameAdd', itemArray[item] + 'Td');
+            debugOut(icon.id.replace('gameAdd', itemArray[item] + 'Td'));
             document.getElementById(icon.id.replace('gameAdd', itemArray[item] + 'Td')).innerHTML = data[itemArray[item]];
           }
           document.getElementById(icon.id.replace('gameAdd', itemArray[item])).id = data.id + '_' + itemArray[item];
