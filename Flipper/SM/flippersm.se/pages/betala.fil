@@ -89,8 +89,8 @@
       </div>
       <div id="paymentMethodTable">
         <p>
-          Choose payment method:
-          <input type="radio" checked id="paymentTypePayPal" name="paymentType" value="paypal" onchange="paymentMethodChange(this);"> Electronic/credit card
+          Välj betalningsmetod:
+          <input type="radio" checked id="paymentTypePayPal" name="paymentType" value="paypal" onchange="paymentMethodChange(this);"> Elektroniskt / Kreditkort
           <input type="radio" id="paymentTypeDomestic" name="paymentType" value="domestic" onchange="paymentMethodChange(this);"> Banköverföring eller bankgiro
         </p>
       </div>
