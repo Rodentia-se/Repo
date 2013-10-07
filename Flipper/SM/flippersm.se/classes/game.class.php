@@ -42,6 +42,7 @@
       $update[':type'] = $type;
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
+      deNorm($dbh, 'machine');
       return ($sth->execute($update)) ? true : false;
     }
 
