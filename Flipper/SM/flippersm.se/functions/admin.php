@@ -227,6 +227,7 @@
             }
           }
           $qualGroups = getQualGroups($dbh);
+          echo 'hej';
           var_dump($qualGroups);
           $teamNoQualIds = array(0);
           $mainClassicsDiff = 6;
