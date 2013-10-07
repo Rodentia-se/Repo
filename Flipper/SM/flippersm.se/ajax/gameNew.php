@@ -20,7 +20,26 @@
               'acro' => $game->shortName,
               'manufacturer' => $game->manufacturer,
               'ipdb' => $game->getIpdbLink(),
-              'rules' => $game->getRulesLink()
+              'rules' => $game->getRulesLink(),
+              'type' => '
+                <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="0">
+                  <option value="0">Choose type...</option>
+                  <option value="modern">Modern</option>
+                  <option value="classics">Classics</option>
+                </select>
+                <span class="error errorSpan toolTip" id="'.$game->id.'_typeSpan"></span>
+              ',
+              'usage' => '
+                <select id="'.$game->id.'_usage" onchange="adminGameUsage(this);" previous="0">
+                  <option value="0">Choose usage...</option>
+                  <option value="1">Main</option>
+                  <option value="2">Classics</option>
+                  <option value="3">Team</option>
+                  <option value="13">Side</option>
+                  <option value="14">Recreational</option>
+                </select>
+                <span class="error errorSpan toolTip" id="'.$game->id.'_usageSpan"></span>
+              '
             );
             echo(json_encode($result));
           } else {
@@ -44,4 +63,3 @@
   }
 
 ?>
-
