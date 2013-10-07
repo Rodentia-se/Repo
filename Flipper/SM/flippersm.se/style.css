@@ -1192,5 +1192,6 @@ top: -9999px;
 }
 
 #content span.arriveTshirts {
-  width: 300px;
+  display: inline-block;
+  width: 320px;
 }
