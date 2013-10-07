@@ -198,7 +198,7 @@
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereSpan"></span>
               F:<input type="checkbox" id="'.$player->id.'_hereFinal" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereFinalSpan"></span>
-              <a href="'.__baseHref__.'/arrive/?playerId='.$player->id.'" target="_blank">-&gt;</a>
+              <a href="'.__baseHref__.'/arrive.php?playerId='.$player->id.'" target="_blank">-&gt;</a>
             </td>
             ',
           'id' => '<td>'.$player->id.'</td>',
