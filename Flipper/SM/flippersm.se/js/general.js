@@ -2009,7 +2009,7 @@ function allocShowAll(box) {
   });
 } 
 
-function allocEdit(el, fade) {
+function allocEdit(el, fader) {
   var taskId = el.id.split('_')[0];
   var periodId = el.id.split('_')[1];
   if ($(el).is(':checkbox')) {
@@ -2021,12 +2021,12 @@ function allocEdit(el, fade) {
     var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
     var urlParams = {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId};
   }
-  if (fade) {
+  if (fader) {
     fade(document.getElementById(el.id + 'Span'), 'Updaterar databasen...', true);
   }
   $.post(baseHref + '/ajax/allocEdit.php', urlParams) // Send to server
   .done(function(data) {
-    if (fade) {
+    if (fader) {
       fade(document.getElementById(el.id + 'Span'), data.reason, data.success);
     }
     if (data.success) {
