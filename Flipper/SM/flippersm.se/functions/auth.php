@@ -180,12 +180,12 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
 			  <input type="hidden" id="nonce" name="nonce" value="'.ulNonce::Create('login').'">
         <div id="usernameDiv">
           <label for="username">Användarnamn:</label>
-  		    <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);">
+  		    <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" oninput="login(this);">
           <span id="usernameLoginSpan" class="errorSpan">*</span>
         </div>
         <div id="passwordDiv">
           <label for="password">Lösenord:</label>
-          <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);">
+          <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);" oninput="login(this);">
           <span id="passwordSpan" class="errorSpan">*</span>
         </div>
         <div id="autologinDiv">
