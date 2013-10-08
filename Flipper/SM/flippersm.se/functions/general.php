@@ -13,7 +13,9 @@
   define('__tshirtsDisabled__', false);
 
   $baseHref = __baseHref__;
-  
+
+  header('Access-Control-Allow-Origin: https://flippersm.se, https://www.flippersm.se');
+
   $exts = array('png', 'jpg', 'jpeg', 'jpg');
 
   spl_autoload_register(function($class) { // Autoloading classes. To fix some day: For some reason, some of the classes require require_once:s - which they shouldn't. 
