@@ -3656,19 +3656,19 @@
         if ($qualScores) {
           foreach ($qualScores as $qualScore) {
             $content .= '
-              <tr>
-                <td>'.$qualScore->place.'</td>
-                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
-                <td>'.$qualScore->score.'</td>
-                <td>'.$qualScore->points.'</td>
-              </tr>
+                <tr>
+                  <td>'.$qualScore->place.'</td>
+                  <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                  <td>'.$qualScore->score.'</td>
+                  <td>'.$qualScore->points.'</td>
+                </tr>
             ';
           }
         }
         $content .= '
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
         ';
         if ($obj->classics) {
           $content .= '
@@ -3688,23 +3688,22 @@
           if ($qualScores) {
             foreach ($qualScores as $qualScore) {
               $content .= '
-              <tr>
-                <td>'.$qualScore->place.'</td>
-                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
-                <td>'.$qualScore->score.'</td>
-                <td>'.$qualScore->points.'</td>
-              </tr>
+                <tr>
+                  <td>'.$qualScore->place.'</td>
+                  <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                  <td>'.$qualScore->score.'</td>
+                  <td>'.$qualScore->points.'</td>
+                </tr>
               ';
             }
           }
           $content .= '
-            </tbody>
-          </table>
-        </div>
+              </tbody>
+            </table>
+          </div>
           ';
         }
         $content .= '</div>'.getDataTables('.scores');
-        $content .= '</div>';
       }
       if ($type == 'game') {
         $content .= '
