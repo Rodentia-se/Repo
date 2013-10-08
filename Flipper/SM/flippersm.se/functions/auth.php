@@ -181,12 +181,12 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
             // allow
             jquery_object.filter(":input").add(":input", jquery_object).each(function() {
               // set data cache on element to input value if not yet set
-              if ($(this).data('change_listener') == undefined) {
-                $(this).data('change_listener', $(this).val());
+              if ($(this).data(\'change_listener\') == undefined) {
+                $(this).data(\'change_listener\', $(this).val());
                 return;
               }
               // return if the value matches the cache
-              if ($(this).data('change_listener') == $(this).val()) {
+              if ($(this).data(\'change_listener\') == $(this).val()) {
                 return;
               }
               // ignore if element is in focus (since change event will fire on blur)
@@ -194,8 +194,8 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
                 return;
               }
               // if we make it here, manually fire the change event and set the new value
-              $(this).trigger('change');
-              $(this).data('change_listener', $(this).val());
+              $(this).trigger(\'change\');
+              $(this).data(\'change_listener\', $(this).val());
             });
           }, settings.interval);
           return this;
