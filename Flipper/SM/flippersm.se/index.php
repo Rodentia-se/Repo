@@ -20,6 +20,7 @@ function undermenu($dbh, $ulogin, $page, $m)
     case 'edit':
     case 'editdubbel':
     case 'tshirt':
+    case 'statistik':
     case 'kvalval':
     case 'funktionar':
     case 'instruktioner':
