@@ -207,7 +207,9 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
             document.getElementById(\'loginButton\').disable = false;
           }
         }, 500);
-      }); 
+        $("#loginForm").listenForChange();
+        $("form").listenForChange();
+      });
     </script>
     <div id="loginDiv" class="loginDiv">
      	<form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="loginForm">
@@ -219,12 +221,12 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
 			  <input type="hidden" id="nonce" name="nonce" value="'.ulNonce::Create('login').'">
         <div id="usernameDiv">
           <label for="username">Användarnamn:</label>
-  		    <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" oninput="login(this);">
+  		    <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
           <span id="usernameLoginSpan" class="errorSpan">*</span>
         </div>
         <div id="passwordDiv">
           <label for="password">Lösenord:</label>
-          <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);" oninput="login(this);">
+          <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);" onchange="login(this);">
           <span id="passwordSpan" class="errorSpan">*</span>
         </div>
         <div id="autologinDiv">
@@ -237,7 +239,7 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
         </div>
   	  </form>
     </div>
-    <script type="text/javascript">$("#loginForm").listenForChange();</script>
+    <script type="text/javascript">$("#loginForm").listenForChange();$("form").listenForChange();</script>
   ';
   return $content;
 }
