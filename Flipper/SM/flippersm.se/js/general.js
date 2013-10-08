@@ -1862,8 +1862,8 @@ function paymentChange(el) {
     document.getElementById('curPaid').innerHTML = Math.round((+ paid / currencies[currency].rate));;
   }
   document.getElementById('totalCostSpan').innerHTML = currency + ' ' + curTotalCost;
-  document.getElementById('domesticCosts').innerHTML = 'Please pay' + currency + ' ' + curTotalCost + ' to one of the below:';
-  document.getElementById('internationalCosts').innerHTML = 'Please pay' + currency + ' ' + curTotalCost + ' to the account below:';
+  document.getElementById('domesticCosts').innerHTML = 'Betala' + currency + ' ' + curTotalCost + ' till något av följande:';
+//  document.getElementById('internationalCosts').innerHTML = 'Please pay' + currency + ' ' + curTotalCost + ' to the account below:';
   document.getElementById('payPalAmount').value = curTotalCost + ' ' + currency;
   document.getElementById('payPalMsg').value = 'ID: ' + document.getElementById('idHidden').value + ' Main: ' + items['main'] + ' Classics: ' + items['classics'] + ' Teams: ' + items['team'] + ' T-shirts: ' + items['tShirt'];
 }
