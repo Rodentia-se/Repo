@@ -63,7 +63,7 @@
                 <input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span>
               </p>
               <p>
-                <input type="submit" value="Submit" id="submit" onclick="resetPassword(this);" disabled>
+                <input type="submit" value="Skicka" id="submit" onclick="resetPassword(this);" disabled>
               </p>
             </div>
           ';
@@ -128,7 +128,7 @@
     } else if (!$success) {
       $content .= '
         <p>Ange ditt användarnamn eller din mailadress:</p>
-        <form action="?" method="POST">
+        <form action="?s=losenreset" method="POST">
           <div>
             <p>
               <label>Användarnamn:</label>
