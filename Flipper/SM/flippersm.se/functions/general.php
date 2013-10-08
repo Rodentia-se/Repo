@@ -2569,6 +2569,7 @@
       from person p
       where p.nonce = :nonce
       order by p.firstName, p.lastName
+      limit 1
     ';
     $select[':nonce'] = $nonce;
     $sth = $dbh->prepare($query);

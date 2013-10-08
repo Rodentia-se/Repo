@@ -2,9 +2,8 @@
   $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
 
   function getPlayerFromNonce($dbh, $nonce) {
-    $objs = getPersonByNonce($dbh, $nonce);
-    if ($objs && count($objs) == 1) {
-      $player = $objs[0];
+    $player = getPersonByNonce($dbh, $nonce);
+    if ($player) {
       if (ulNonce::Verify('reset', $nonce)) {
         $player->valid = true;
       } else {
