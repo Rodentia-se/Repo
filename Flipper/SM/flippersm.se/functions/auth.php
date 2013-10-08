@@ -207,7 +207,6 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
             document.getElementById(\'loginButton\').disable = false;
           }
         }, 500);
-        $("#loginForm").listenForChange();
       }); 
     </script>
     <div id="loginDiv" class="loginDiv">
@@ -238,6 +237,7 @@ function showLogin($ulogin, $title = 'Du måste logga in för att komma åt den 
         </div>
   	  </form>
     </div>
+    <script type="text/javascript">$("#loginForm").listenForChange();</script>
   ';
   return $content;
 }

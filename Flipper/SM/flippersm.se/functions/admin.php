@@ -37,7 +37,7 @@
       
       $meta = array(
         'payments' => array(
-          'header' => '<br /><br /><h2 class="entry-title">Payments</h2>'.getCurCalcForm().'<br /><br />',
+          'header' => '<br /><br /><h2 class="entry-title">Payments</h2>',
           'cols' => array('player', 'id', 'main', 'classics', 'team', 'tshirts', 'total', 'paid', 'diff', 'payDate')
         ),
         'players' => array(
@@ -647,7 +647,7 @@
       }
       $totalTable .= '</tbody></table>';
       $buyersTable .= '<br /><br /><h2 class="entry-title">Reserved T-shirts</h2>';
-      $buyersTable .= getCurCalcForm();
+//      $buyersTable .= getCurCalcForm();
       $buyersTable .= '
         <table>
           <thead>
