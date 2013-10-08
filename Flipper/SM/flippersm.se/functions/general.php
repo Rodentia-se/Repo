@@ -3553,7 +3553,7 @@
   function getTable($dbh, $ulogin, $type, $national = false) {
     $content = '
                 <h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>
-                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false).'<p>För närvarande är det '.countObjects($dbh).' spelare anmälda, varav '.countObjects($dbh, 'player', ' where tournamentDivision_id = 2 ').' i Classics och '.countObjects($dbh, 'player', ' where tournamentDivision_id = 1 and paid > 0' ).' som har betalat. Antalet dubbellag uppgår till '.countObjects($dbh, 'team').' stycken. För den som är intresserad så har vi sammanställt lite <a href="'..__baseHref__'/?s=statistik">geografisk statistik</a></p>' : '').'
+                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false).'<p>För närvarande är det '.countObjects($dbh).' spelare anmälda, varav '.countObjects($dbh, 'player', ' where tournamentDivision_id = 2 ').' i Classics och '.countObjects($dbh, 'player', ' where tournamentDivision_id = 1 and paid > 0' ).' som har betalat. Antalet dubbellag uppgår till '.countObjects($dbh, 'team').' stycken. För den som är intresserad så har vi sammanställt lite <a href="'.__baseHref__.'/?s=statistik">geografisk statistik</a></p>' : '').'
                 <div id="'.$type.'Div">
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
