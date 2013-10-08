@@ -10,7 +10,7 @@
     return $x / $y;
   }
 
-  $content = '<h2 class="entry-title">Statistics</h2>';
+  $content = '<h1>Statistik</h2>';
 
   $query = '
     select
@@ -31,12 +31,12 @@
         <table>
           <thead>
             <tr>
-              <th class="numeric">Players</th>
-              <th class="numeric">Ranked</th>
-              <th class="numeric">Unranked</th>
-              <th class="numeric">Highest</th>
-              <th class="numeric">Lowest</th>
-              <th class="numeric">Average</th>
+              <th class="numeric">Spelare</th>
+              <th class="numeric">Rankade</th>
+              <th class="numeric">Orankade</th>
+              <th class="numeric">Högst</th>
+              <th class="numeric">Lägst</th>
+              <th class="numeric">Genomsnitt</th>
             </tr>
           </thead>
           <tbody>
