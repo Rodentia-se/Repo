@@ -26,7 +26,7 @@
 
         Om du vill nollställa ditt lösenord så klickar du på länken nedan, alternativet klistrar in den i din webbläsare.
 
-        '.__baseHref__.'/your-pages/password-reset/?nonce='.urlencode($nonce).'
+        '.__baseHref__.'/?s=losenreset&nonce='.urlencode($nonce).'
 
         Länken är giltig i 15 minuter, och kan endast användas en gång.
 
