@@ -14,7 +14,7 @@
 
   $baseHref = __baseHref__;
 
-  header('Access-Control-Allow-Origin: https://flippersm.se, https://www.flippersm.se');
+  header('Access-Control-Allow-Origin: https://flippersm.se,https://www.flippersm.se');
 
   $exts = array('png', 'jpg', 'jpeg', 'jpg');
 

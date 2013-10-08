@@ -1,6 +1,7 @@
 var scripts = new Array();
 var debugMode = 1;
-var baseHref = (document.getElementById('baseHref')) ? document.getElementById('baseHref').value : 'https://www.flippersm.se';
+// var baseHref = (document.getElementById('baseHref')) ? document.getElementById('baseHref').value : 'https://www.flippersm.se';
+var baseHref = '';
 var pageMode = 'register';
 var choice = true;
 
