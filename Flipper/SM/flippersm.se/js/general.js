@@ -859,7 +859,7 @@ function resetPassword(el) {
     if (data.success) {
       if (!admin) {
         setTimeout( function() {
-          window.location.href = baseHref + '/your-pages/login/';
+          window.location.href = baseHref + '/?s=loggain';
         }, 500);
       }
     }
