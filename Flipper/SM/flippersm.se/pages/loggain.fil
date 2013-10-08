@@ -1,6 +1,6 @@
 <?php
   echo('<h1>Logga in</h1>');
-  if (!checkLogin($dbh, $ulogin, true, '') {
+  if (!checkLogin($dbh, $ulogin, true, '')) {
     echo('<script type="text/javascript">document.getElementById(\'usernameLogin\').focus();</script>');
   }
 ?>
