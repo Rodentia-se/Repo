@@ -236,6 +236,9 @@ function showChangeUsername($dbh, $username) {
 
 function showEditPlayer($dbh, $ulogin) {
   $player = getCurrentPlayer($dbh, $ulogin);
+  if (!$player->mainPlayerId) {
+    header('Location: '.__baseHref__.'/?s=anmal');
+  }
   $content = submenu2($dbh, $ulogin, 'anmalda', false, $player);
   $content .= getUploadForm($dbh, $player, true, false);
   $content .= '

@@ -297,6 +297,10 @@
     if ($type == 'player' && $id == 'self') {
       if (checkLogin($dbh, $ulogin, true, '</h2><h1>Dina sidor</h1><h2 class="loginTable">Du måste logga in för att kunna titta på den här sidan')) {
         $id = getIdFromUser($dbh, $_SESSION['username']);
+        $player = getCurrentPlayer($dbh, $ulogin);
+        if (!$player->mainPlayerId) {
+          header('Location: '.__baseHref__.'/?s=anmal');
+        }
       }
       $table = false;
     }
@@ -304,6 +308,9 @@
     if ($type == 'team' && $id == 'self') {
       if (checkLogin($dbh, $ulogin, true, '</h2><h1>Din lagsida</h1><h2 class="loginTable">Du måste logga in för att kunna titta på den här sidan')) {
         $player = getCurrentPlayer($dbh, $ulogin);
+        if (!$player->mainPlayerId) {
+          header('Location: '.__baseHref__.'/?s=anmal');
+        }
         $team = $player->getTeam($dbh);
         if ($team) {
           $id = $team->id;
