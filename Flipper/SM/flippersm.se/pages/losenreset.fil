@@ -2,7 +2,7 @@
   $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
 
   function getPlayerFromNonce($dbh, $nonce) {
-    $objs = getPlayers($dbh, 'where m.nonce = "'.$nonce.'" and m.tournamentDivision_id = 1');
+    $objs = getPersonByNonce($dbh, $nonce);
     if ($objs && count($objs) == 1) {
       $player = $objs[0];
       if (ulNonce::Verify('reset', $nonce)) {

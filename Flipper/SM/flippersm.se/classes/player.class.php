@@ -452,9 +452,9 @@
     }
     
     function setNonce($dbh, $nonce) {
-      $update[':id'] = $this->mainPlayerId;
+      $update[':id'] = $this->id;
       $update[':nonce'] = $nonce;
-      $query = 'update player set nonce = :nonce where id = :id';
+      $query = 'update person set nonce = :nonce where id = :id';
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }

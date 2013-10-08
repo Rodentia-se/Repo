@@ -2530,6 +2530,56 @@
   }
   */
   
+  function getPersonByNonce($dbh, $nonce) {
+    $query = '
+      select
+        p.id as id,
+        "player" as class,
+        p.firstName as firstName,
+        p.lastName as lastName,
+        concat(ifnull(p.firstName,""), " ", ifnull(p.lastName,"")) as name,
+        p.initials as initials,
+        p.streetAddress as streetAddress,
+        p.zipCode as zipCode,
+        p.gender_id as gender_id,
+        p.gender as gender,
+        p.city_id as city_id,
+        p.city as city,
+        p.region_id as region_id,
+        p.region as region,
+        p.country_id as country_id,
+        p.country as country,
+        p.continent_id as continent_id,
+        p.continent as continent,
+        p.parentRegion_id as parentRegion_id,
+        p.parentRegion as parentRegion,
+        p.parentCountry_id as parentCountry_id,
+        p.parentCountry as parentCountry,
+        p.telephoneNumber as telephoneNumber,
+        p.mobileNumber as mobileNumber,
+        p.mailAddress as mailAddress,
+        p.birthDate as birthDate,
+        p.ifpa_id as ifpa_id,
+        p.ifpaRank as ifpaRank,
+        p.comment as comment,
+        if(p.ifpa_id is not null,1,0) as isIfpa,
+        1 as isPerson,
+        p.username as username,
+        null as password
+      from person p
+      where p.nonce = :nonce
+      order by p.firstName, p.lastName
+    ';
+    $select[':nonce'] = $nonce;
+    $sth = $dbh->prepare($query);
+    if ($sth->execute($select)) {
+      while ($obj = $sth->fetchObject('player')) {
+        return $obj;
+      }
+    }
+    return false;
+  }
+
   function getPersonById($dbh, $id) {
     $query = '
       select 
@@ -3553,7 +3603,7 @@
   function getTable($dbh, $ulogin, $type, $national = false) {
     $content = '
                 <h1>'.ucfirst(getPlural($type)).' i Flipper-SM 2013</h1>
-                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false).'<p>För närvarande är det '.countObjects($dbh).' spelare anmälda, varav '.countObjects($dbh, 'player', ' where tournamentDivision_id = 2 ').' i Classics och '.countObjects($dbh, 'player', ' where tournamentDivision_id = 1 and paid > 0' ).' som har betalat. Antalet dubbellag uppgår till '.countObjects($dbh, 'team', ' where tournamentDivision_id = 3 ').' stycken. För den som är intresserad så har vi sammanställt lite <a href="'.__baseHref__.'/?s=statistik">geografisk statistik</a></p>' : '').'
+                  '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false).'<p>För närvarande är det '.countObjects($dbh).' spelare anmälda, varav '.countObjects($dbh, 'player', ' where tournamentDivision_id = 2 ').' i Classics och '.countObjects($dbh, 'player', ' where tournamentDivision_id = 1 and paid > 0' ).' som har betalat. Antalet dubbellag uppgår till '.countObjects($dbh, 'team', ' where tournamentDivision_id = 3 ').' stycken. För den som är intresserad så har vi sammanställt lite <a href="'.__baseHref__.'/?s=statistik">geografisk statistik</a>.</p>' : '').'
                 <div id="'.$type.'Div">
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
