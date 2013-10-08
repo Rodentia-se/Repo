@@ -5,9 +5,9 @@
   } else {
     $player = getCurrentPlayer($dbh, $ulogin);
     submenu2($dbh, $ulogin, 'anmalda', true, $player);
-    echo('Välkommen till Flipper-SM 2013! Du är nu inloggad, och har därmed full tillgång till dina egna sidor.');
+    echo('<p>Välkommen till Flipper-SM 2013! Du är nu inloggad, och har därmed full tillgång till dina egna sidor.</p>');
     if ($player->adminLevel == 1) {
-      echo('Du är administratör, och kommer därmed även åt <a href="'.__baseHref__.'/adminTools.php" target="_blank">administratörssidorna</a>.');
+      echo('<p>Du är administratör, och kommer därmed även åt <a href="'.__baseHref__.'/adminTools.php" target="_blank">administratörssidorna</a>.</p>');
     }
   }
 ?>

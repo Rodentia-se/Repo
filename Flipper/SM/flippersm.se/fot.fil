@@ -4,7 +4,7 @@
         <?php
           if (checkLogin($dbh, $ulogin, false)) {
             $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
-            echo('<p class="italic">Du är inloggad som '.$player->firstName.' '.$player->lastName.'. <a href="'.__baseHref__.'/?s=utloggad"><input type="button" id="logoutButton" value="Logga ut"></a></p>');
+            echo('<p class="italic">Du är inloggad som '.$player->firstName.' '.$player->lastName.'. <a href="'.__baseHref__.'/?s=utloggad"><input type="button" id="logoutButton" value="Logga ut"></a><a href="'.__baseHref__.'/adminTools.php" target="_blank"><input type="button" id="adminButton" value="Admin"></a></p>');
           } else {
             echo('<p class="italic">Du är inte inloggad. <a href="'.__baseHref__.'/?s=loggain"><input type="button" id="loginButton" value="Logga in"></a></p>');
           }
