@@ -314,8 +314,6 @@
       $table = false;
     }
 
-https://www.flippersm.se/?s=editdubbel
-
     if (preg_match('/^[0-9]+$/', $id)) {
       $content = getInfo($dbh, $ulogin, $type, $id);
       if (!$content) {
