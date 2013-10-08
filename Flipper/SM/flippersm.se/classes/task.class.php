@@ -167,26 +167,29 @@
     }
     
     function assign($dbh, $player, $period, $assign = true) {
-      $period->addPlayer($dbh, $player, 1);
-      $query = '
-        update volunteerPeriod vp 
-          left join volunteer v
-            on vp.volunteer_id = v.id
-        set
-          task_id = :taskId
-        where
-          v.person_id = :playerId
-      ';
-      $query .= ($assign) ? '' : 'and vp.task_id=:taskId';
-      $update[':taskId'] = ($assign) ? $this->id : null;
-      $update[':playerId'] = $player->id;
-      if ($period) {
-        $query .= ' and vp.period_id = :periodId';
-        $update['periodId'] = $period->id;
+      if ($assign) {
+        $period->addPlayer($dbh, $player, 1);
+        $query = '
+          update volunteerPeriod vp
+            left join volunteer v
+              on vp.volunteer_id = v.id
+          set
+            task_id = :taskId
+          where
+            v.person_id = :playerId
+        ';
+        $update[':taskId'] = $this->id;
+        $update[':playerId'] = $player->id;
+        if ($period) {
+          $query .= ' and vp.period_id = :periodId';
+          $update['periodId'] = $period->id;
+        }
+        $sth = $dbh->prepare($query);
+        $result = ($sth->execute($update)) ? true : false;
+        deNorm($dbh, 'player');
+      } else {
+        $result = $period->removePlayer($dbh, $player, 1);
       }
-      $sth = $dbh->prepare($query);
-      $result = ($sth->execute($update)) ? true : false;
-      deNorm($dbh, 'player');
       return $result;
     }
     
