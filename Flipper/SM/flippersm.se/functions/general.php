@@ -1092,9 +1092,13 @@
   }
   
   function getCurrentPlayer($dbh, $ulogin) {
-    $id = getIdFromUser($dbh, $ulogin->Username($_SESSION['uid']));
-    $player = ($id) ? getPlayerById($dbh, $id) : false;
-    return ($player) ? $player : false;    
+    if ($ulogin) {
+      $id = getIdFromUser($dbh, $ulogin->Username($_SESSION['uid']));
+      $player = ($id) ? getPlayerById($dbh, $id) : false;
+      return ($player) ? $player : false;
+    } else {
+      return false;
+    }
   }
     
   function getTshirtForm($dbh, $ulogin, $tournament = 1) {

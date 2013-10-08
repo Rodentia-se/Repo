@@ -65,8 +65,8 @@
             <tr>
               <th>'.ucfirst($class->name).'</th>
       ';
-      $thead .= ($class->name == 'city') ? '<th>Region</th>': '';
-      $thead .= ($class->name == 'region' || $class->name == 'city') ? '<th>Country</th>': '';
+      $thead .= ($class->name == 'city') ? '<th>Landskap</th>': '';
+      $thead .= ($class->name == 'region' || $class->name == 'city') ? '<th>Land</th>': '';
       $tbody = '
           <tbody>
       ';
@@ -121,5 +121,7 @@
   }
 
   $content .= getDataTables('table');
+
+  echo $content;
 
 ?>
