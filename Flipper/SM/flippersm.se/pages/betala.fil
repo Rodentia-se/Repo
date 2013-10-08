@@ -95,7 +95,7 @@
         </p>
       </div>
       <div id="domesticTable" style="display: none;">
-        <p>Betala '.$currency.' '.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).' till något av följande:</p>
+        <p id="domesticCosts">Betala '.$currency.' '.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).' till något av följande:</p>
         <label class="infoLabel">Bankgiro:</label>
         <p>5909-5182</p>
         <label class="infoLabel">Swedbank:</label>
