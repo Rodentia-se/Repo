@@ -8,7 +8,7 @@
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
-      if ($gameId) {
+      if ($machineId) {
         $game = getMachines($dbh, ' where id = '.$machineId)[0];
         if ($game) {
           if ($game->setComment($dbh, $comment)) {
