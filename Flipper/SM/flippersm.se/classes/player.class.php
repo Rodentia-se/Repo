@@ -209,9 +209,9 @@
       if ($size) {
         $query = '
           update volunteer
-            set v.size_id = :sizeId,
-            v.size = :size
-          where v.person_id = :id
+            set size_id = :sizeId,
+            size = :size
+          where person_id = :id
         ';
         $update[':sizeId'] = $size->id;
         $update[':size'] = $size->name;
