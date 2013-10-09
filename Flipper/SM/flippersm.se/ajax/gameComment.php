@@ -2,14 +2,14 @@
   require_once('../functions/general.php');
   header('Content-Type: application/json');
 
-  $gameId = (isset($_REQUEST['gameId']) && preg_match('/^[0-9]+$/', $_REQUEST['gameId'])) ? $_REQUEST['gameId'] : null;
+  $machineId = (isset($_REQUEST['$machineId']) && preg_match('/^[0-9]+$/', $_REQUEST['$machineId'])) ? $_REQUEST['$machineId'] : null;
   $comment = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
       if ($gameId) {
-        $game = getGameById($dbh, $gameId);
+        $game = getMachines($dbh, ' where id = '.$machineId);
         if ($game) {
           if ($game->setComment($dbh, $comment)) {
             echo('{"success": true, "reason": "'.$game->shortName.' comment updated"}');
