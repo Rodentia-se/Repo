@@ -1899,7 +1899,6 @@ function adminPlace(sel) {
   });
 }
 
-
 function adminGameEdit(icon, open) {
   if(open) {
     $('#' + icon.id + 'Div').show();
