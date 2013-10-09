@@ -1903,6 +1903,9 @@ function adminPlace(sel) {
 function adminGameEdit(icon, open) {
   if(open) {
     $('#' + icon.id + 'Div').show();
+    if (document.getElementById(icon.id.replace('edit', 'comment'))) {
+      document.getElementById(icon.id.replace('edit', 'comment')).focus();
+    }
   } else {
     $('#' + icon.id.replace('Close', '')).hide();
   }
