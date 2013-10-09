@@ -4,7 +4,7 @@
   
   $playerId = (isset($_REQUEST['playerId']) && preg_match('/^[0-9]+$/', $_REQUEST['playerId'])) ? $_REQUEST['playerId'] : null;
   $here = (isset($_REQUEST['here']) && $_REQUEST['here'] == 1) ? true : false;
-  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'qual' || $_REQUEST['type'] == 'final' || $_REQUEST['type'] == 'vol') ? $_REQUEST['type'] : 'qual';
+  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'qual' || $_REQUEST['type'] == 'final' || $_REQUEST['type'] == 'vol')) ? $_REQUEST['type'] : 'qual';
   
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
