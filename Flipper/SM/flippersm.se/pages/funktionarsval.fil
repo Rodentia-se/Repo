@@ -20,7 +20,7 @@
       ';
         foreach($sizes as $sizeId => $size){
           $volTable .= '<option value="'.$sizeId.'" ';
-          $volTable .= ($sizeId == $volSize) ? 'selected' : '';
+          $volTable .= ($volSize && $sizeId == $volSize->id) ? 'selected' : '';
           $volTable .= '>'.$size.'</option>';
         }
         $volTable .= '
