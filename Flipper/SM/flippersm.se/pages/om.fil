@@ -27,29 +27,30 @@
   
   <div class="spalt">
     <h2>Kronologiskt schema</h2>
-      <p class="bold">Fredag 2013-11-08:</p>
-      <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
-      <p><span class="schedule">1800-0000</span>Kvalspel i huvudtävlingen och classics</p>
-      <p><span class="schedule">1830</span>Bäst på en minut</p>
-      <p><span class="schedule">2000</span>Flipperorientering</p>
-      <p class="bold">Lördag 2013-11-09:</p>
-      <p><span class="schedule">1000-1900</span>Kvalspel i classics</p>
-      <p><span class="schedule">1000-2200</span>Kvalspel i huvudtävlingen</p>
-      <p><span class="schedule">1500</span>Flipperorientering</p>
-      <p><span class="schedule">1900</span>Bäst på en minut</p>
-      <p><span class="schedule">1900-0000</span>Slutspel i classics</p>
-      <p><span class="schedule">2200-0000</span>Extratimmar för kvalspel</p>
-      <p class="bold">Söndag 2013-11-10:</p>
-      <p><span class="schedule">1000-1800</span>Slutspel i huvudtävlingen</p>
-      <p><span class="schedule">1100</span>Deadline för spelare 17-32</p>
-      <p><span class="schedule">1200</span>Deadline för spelare 1-16</p>
-      <p><span class="schedule">1400-1800</span>Slutspel i U18</p>
-      <p><span class="schedule">1200</span>Bäst på en minut</p>
-      <p><span class="schedule">1500</span>Flipperorientering</p>
-      <p><span class="schedule">1800-1900</span>Prisutdelning</p>
-      <p class="italic">Information om schemat för dubbeltävlingen kommer att läggas upp inom kort.</p>
-
-	<hr/>
+    <p class="bold">Fredag 2013-11-08:</p>
+    <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
+    <p><span class="schedule">1800-0000</span>Kvalspel i huvudtävlingen, Classics och dubbel</p>
+    <p><span class="schedule">1830</span>Bäst på en minut</p>
+    <p><span class="schedule">1900</span>Försäljning av ej beställda tröjor börjar</p>
+    <p><span class="schedule">2000</span>Flipperorientering</p>
+    <p class="bold">Lördag 2013-11-09:</p>
+    <p><span class="schedule">1000-1900</span>Kvalspel i classics</p>
+    <p><span class="schedule">1000-2200</span>Kvalspel i huvudtävlingen och dubbel</p>
+    <p><span class="schedule">1500</span>Flipperorientering</p>
+    <p><span class="schedule">1900</span>Bäst på en minut</p>
+    <p><span class="schedule">1900-0000</span>Slutspel i classics</p>
+    <p><span class="schedule">2200-0000</span>Extratimmar för kvalspel</p>
+    <p class="bold">Söndag 2013-11-10:</p>
+    <p><span class="schedule">1000-1800</span>Slutspel i huvudtävlingen</p>
+    <p><span class="schedule">1100</span>Deadline för spelare 17-32</p>
+    <p><span class="schedule">1200</span>Deadline för spelare 1-16</p>
+    <p><span class="schedule">1400-1600</span>Slutspel i U18</p>
+    <p><span class="schedule">1500-1700</span>Slutspel i dubbel</p>
+    <p><span class="schedule">1600</span>Final i enhandsflipper</p>
+    <p><span class="schedule">1200</span>Bäst på en minut</p>
+    <p><span class="schedule">1500</span>Flipperorientering</p>
+    <p><span class="schedule">1800-1900</span>Prisutdelning</p>
+	  <hr/>
 	
     <h2>Boende</h2>
     <img src="https://www.flippersm.se/images/partners/dialog.jpg">
