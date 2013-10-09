@@ -56,10 +56,10 @@
   $query = '
     select
       count(*) as players,
-      count(birthDate < "1995-11-07") as u18,
-      count(birthDate < "2007-11-07") as u7,
+      count(if(birthDate < "1995-11-07",1,null)) as u18,
+      count(if(birthDate < "2007-11-07",1,null)) as u7,
       max(birthDate) as max,
-      min(birthDate) as max,
+      min(birthDate) as min,
       avg(birthDate) as avg
     from player
     where
@@ -88,7 +88,7 @@
               <td>'.$res->u7.'</td>
               <td>'.$res->min.'</td>
               <td>'.$res->max.'</td>
-              <td>'.$res->avg.'</td>
+              <td>'.substr($res->avg, 0, 4).'</td>
             </tr>
           </tbody>
         </table>
