@@ -861,10 +861,10 @@
               '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game comments" title="Click to view/edit the game comments" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
+                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
                 <input type="text" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="comment">
                 <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
                 <span class="error errorSpan toolTip" id="'.$game->machine_id.'_commentSubmitSpan"></span>
-                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
               </div>
             </td>
             <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
