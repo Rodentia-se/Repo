@@ -28,19 +28,27 @@
   <div class="spalt">
     <h2>Kronologiskt schema</h2>
     <p class="bold">Fredag 2013-11-08:</p>
+    <p><span class="schedule">1000</span>Lokalen öppnar</p>
+    <p><span class="schedule">1700</span>Receptionen öppnar</p>
     <p><span class="schedule">Innan 1800</span>Anmäl dig i receptionen</p>
     <p><span class="schedule">1800-0000</span>Kvalspel i huvudtävlingen, Classics och dubbel</p>
     <p><span class="schedule">1830</span>Bäst på en minut</p>
     <p><span class="schedule">1900</span>Försäljning av ej beställda tröjor börjar</p>
     <p><span class="schedule">2000</span>Flipperorientering</p>
+    <p><span class="schedule">0000</span>Lokalen stänger</p>
     <p class="bold">Lördag 2013-11-09:</p>
+    <p><span class="schedule">0930</span>Lokalen öppnar för volontärer</p>
+    <p><span class="schedule">1000</span>Lokalen öppnar för allmänheten</p>
     <p><span class="schedule">1000-1900</span>Kvalspel i classics</p>
     <p><span class="schedule">1000-2200</span>Kvalspel i huvudtävlingen och dubbel</p>
     <p><span class="schedule">1500</span>Flipperorientering</p>
     <p><span class="schedule">1900</span>Bäst på en minut</p>
     <p><span class="schedule">1900-0000</span>Slutspel i classics</p>
     <p><span class="schedule">2200-0000</span>Extratimmar för kvalspel</p>
+    <p><span class="schedule">0000</span>Lokalen stänger</p>
     <p class="bold">Söndag 2013-11-10:</p>
+    <p><span class="schedule">0930</span>Lokalen öppnar för volontärer</p>
+    <p><span class="schedule">1000</span>Lokalen öppnar för allmänheten</p>
     <p><span class="schedule">1000-1800</span>Slutspel i huvudtävlingen</p>
     <p><span class="schedule">1100</span>Deadline för spelare 17-32</p>
     <p><span class="schedule">1200</span>Deadline för spelare 1-16</p>
@@ -50,6 +58,7 @@
     <p><span class="schedule">1200</span>Bäst på en minut</p>
     <p><span class="schedule">1500</span>Flipperorientering</p>
     <p><span class="schedule">1800-1900</span>Prisutdelning</p>
+    <p><span class="schedule">0000</span>Lokalen stänger</p>
 	  <hr/>
 	
     <h2>Boende</h2>
