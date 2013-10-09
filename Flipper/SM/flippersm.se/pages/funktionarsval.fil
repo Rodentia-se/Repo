@@ -16,6 +16,7 @@
       <p>
         <label for="volSize">Ange tröjstorlek:</label>
         <select id="volSize" name="volSize" onchange="volSize(this);" previous="'.(($volSize) ? $volSize->id : 0).'">
+          <option value="0">Välj storlek...</option>
       ';
         foreach($sizes as $sizeId => $size){
           $volTable .= '<option value="'.$sizeId.'" ';
