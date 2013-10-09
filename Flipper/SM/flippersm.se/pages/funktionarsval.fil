@@ -6,7 +6,27 @@
     $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
       $content .= submenu2($dbh, $ulogin, $m2, false, getCurrentPlayer($dbh, $ulogin));
-      $volTable = '<h2>Välj funktionärspas</h2><p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns (för vår del) ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p><div class="volTable">';
+      $volTable = '
+        <h2>Välj funktionärspas</h2>
+        <p>Nedan ser du alla funktionärspass, och i förekommande fall vem som redan har tagit respektive pass. Lediga pass har en checkbox som du kan klicka i eller ur för att ange om du tar det passet eller inte. Det finns (för vår del) ingen gräns för hur många pass som du kan ta, så klicka i så många du kan!</p>
+      ';
+      $sizes = getTshirtSizes($dbh);
+      $volSize = $player->getShirtSize($dbh);
+      $volTable .= '
+      <p>
+        <label for="volSize">Ange tröjstorlek:</label>
+        <select id="volSize" name="volSize" onchange="volSize(this);" previous="'.(($volSize) ? $volSize->id : 0).'">
+      ';
+        foreach($sizes as $sizeId => $size){
+          $volTable .= '<option value="'.$sizeId.'" ';
+          $volTable .= ($sizeId == $volSize) ? 'selected' : '';
+          $volTable .= '>'.$size.'</option>';
+        }
+        $volTable .= '
+        </select><span class="error errorSpan toolTip" id="volSizeSpan"></span>
+      </p>
+      ';
+      $volTable = '<div class="volTable">';
       $volunteers = getVolunteers($dbh);
       $tasks = getTasks($dbh);
       $periods = getPeriods($dbh);
