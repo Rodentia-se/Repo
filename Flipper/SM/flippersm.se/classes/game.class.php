@@ -89,7 +89,7 @@
       return ($sth->execute($delete)) ? true : false;
     }
     
-    function setComment($dbh, $comment)) {
+    function setComment($dbh, $comment) {
       $query = 'update machine set comment = :comment where id = :id';
       $update[':comment'] = $comment;
       $update[':id'] = $this->machine_id;
