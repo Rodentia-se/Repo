@@ -315,13 +315,13 @@ input[type=text], input[type=password] {
   @media only screen and (max-device-width: 780px), (max-width: 780px) {
 
     .dbComment {
-      width: 400px;
+      width: 350px;
     }
 
     @media only screen and (max-device-width: 460px), (max-width: 460px) {
 
       .dbComment {
-        width: 250px;
+        width: 200px;
       }
     }
   }
