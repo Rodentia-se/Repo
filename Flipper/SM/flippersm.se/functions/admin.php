@@ -46,9 +46,13 @@
               <li>Team: The ID of the player\'s team</li>
               <li>T-shirts: The number of T-shirts pre-ordered by the player</li>
               <li>Total: The amount of SEK the player is supposed to pay in total</li>
-              <li>Paid: The amount in SEK currently paid by the player.<ul><li>This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li></ul></li>
+              <li>Paid: The amount in SEK currently paid by the player.
+                <ul>
+                  <li>This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li>
+                </ul>
+              </li>
               <li>DIff: The amount still to be paid. If it\'s a negative number, the player has paid too much.</li>
-              <li>Payment time: The date and time the player med his/her first payment, and thus used for qualification group assignment order.</li>
+              <li>Payment time: The date and time the player made his/her first payment, and thus used for qualification group assignment order.</li>
             </ul>
           ',
           'cols' => array('player', 'id', 'main', 'classics', 'team', 'tshirts', 'total', 'paid', 'diff', 'payDate')
@@ -85,11 +89,31 @@
           'cols' => array('player', 'id', 'main', 'mailAddress', 'mobileNumber', 'uid', 'username', 'password', 'admin')
         ),
         'results' => array(
-          'header' => '<br /><br /><h2 class="entry-title">Player results</h2><p class="italic">Only change WPPR place if ties and thus different from ordinary place</p>',
+          'header' => '
+            <br /><br /><h2 class="entry-title">Player results</h2>
+            <ul>
+              <li>ID: Person ID</li>
+              <li>M-ID: Player ID for main tournament</li>
+              <li>C-ID: Player ID for Classics</li>
+              <li>Place: This is the final place in the tournament. Four players on a tied 5th place should all get 5 here.
+              <li>WPPR: This is the place reported to IFPA. Four players on a tied 5th place should get 6 here.
+              <ul>
+                <li class="italic">You only need to change WPPR place if it\'s a tie, and thus different from ordinary place</li>
+              </ul>
+            </ul>
+          ',
           'cols' => array('player', 'id', 'main', 'classics', 'place', 'classicsPlace')
         ),
         'qualGroups' => array(
-          'header' => '<br /><br /><h2 class="entry-title">Players</h2><p class="italic"><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.<br /><span class="errorTd">Assigned</span> = player has been assigned both main and classics at the same time slot.<br /><span class="green">Assigned</span> = player has been assigned preferred time slot.<br /><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</p>',
+          'header' => '<br /><br />
+            <h2 class="entry-title">Players</h2>
+            <ul class="italic">
+              <li><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.</li>
+              <li><span class="errorTd">Assigned</span> = player has been assigned both main and classics at the same time slot.</li>
+              <li><span class="green">Assigned</span> = player has been assigned preferred time slot.</li>
+              <li><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</li>
+            </ul>
+          ',
           'cols' => array('player', 'mailAddress', 'mobileNumber', 'team', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
         )
       );
@@ -367,13 +391,13 @@
               <th class="bold">Phone</th>
               <th class="bold">Cell</th>
               <th class="bold">Email</th>
-              <th class="bold">Hours</th>
               <th class="bold">Alloc</th>
-              <th class="bold">Diff</th>
             </tr>
           </thead>
           <tbody>
       ';
+//              <th class="bold">Hours</th>
+//              <th class="bold">Diff</th>
       foreach ($volunteers as $volunteer) {
         $volTable .= '
               <tr>
@@ -381,6 +405,10 @@
                 <td>'.$volunteer->telephoneNumber.'</td>
                 <td>'.$volunteer->mobileNumber.'</td>
                 <td class="emailTd"><a href="mailto:'.$volunteer->mailAddress.'">'.$volunteer->mailAddress.'</a></td>
+                <td id="'.$volunteer->id.'_alloc">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->alloc))).'</td>
+              </tr>
+        ';
+/*
                 <td>
                   <select id="'.$volunteer->id.'_hours" onchange="adminHoursChange(this);" previous="'.$volunteer->hours.'">
           ';
@@ -393,13 +421,11 @@
                   </select>
                   <span class="error errorSpan toolTip" id="'.$volunteer->id.'_hoursSpan"></span>
                 </td>
-                <td id="'.$volunteer->id.'_alloc">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->alloc))).'</td>
                 <td id="'.$volunteer->id.'_diff">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->hoursDiff))).'</td>
-              </tr>
-        ';
-        $total['hours'] += $volunteer->hours;
+*/
+//        $total['hours'] += $volunteer->hours;
         $total['alloc'] += $volunteer->alloc;
-        $total['diff'] += $volunteer->hoursDiff;
+//        $total['diff'] += $volunteer->hoursDiff;
       }
       $volTable .= '
             <tr>
@@ -407,15 +433,22 @@
               <td></td>
               <td></td>
               <td></td>
-              <td class="bold">'.$total['hours'].'</td>
               <td id="total_alloc" class="bold">'.$total['alloc'].'</td>
-              <td id="total_diff" class="bold">'.$total['diff'].'</td>
             </tr>
       ';
+//              <td class="bold">'.$total['hours'].'</td>
+//              <td id="total_diff" class="bold">'.$total['diff'].'</td>
       $volTable .= '</tbody></table>';
       $needTable = '
           <br /><br /><h2 class="entry-title">Volunteer requirements (Alloc / Need + Assignments)</h2>
-          <label>Show all assignments</label><input type="checkbox" onclick="allocShowAll(this);">
+          <ul>
+            <li>Hover over a header to get the full task name</li>
+            <li>Alloc: The current number of assigned volunteers for that task during that period.</li>
+            <li>The numbers dropdown is the need for that task during that period. Change as needed.</li>
+            <li>Ass:<img src="'.__baseHref__.'/images/edit.png" class="textIcon allocEditIcon" alt="Click to assign a volunteer" title="Click to assign a volunteer"> Click to get a popup where you can assign or change volunteers.</li>
+            <li>If you change the need, it will not automatically change the number of volunteer dropdowns in the popup. Reload the page to reflect the changes.</li>
+          </ul>
+          <label>Show/hide all assignments</label><input type="checkbox" onclick="allocShowAll(this);"> (This will open every "Ass" popup in the table)
           <table>
             <thead>
               <tr>
@@ -430,19 +463,23 @@
             </thead>
             <tbody>
       ';
-      $assignmentTable = '<br /><br /><h2 class="entry-title">Volunteer assignments (tasks / periods)</h2>';
-      $assignmentTable .= '
-        <table>
-          <thead>
-            <tr>
-              <th class="bold">Period</th>
-              <th class="bold">Hrs</th>
-              <th class="bold">Scorekeeper</th>
-              <th class="bold">Referee</th>
-              <th class="bold">Reception</th>
-            </tr>
-          </thead>
-          <tbody>
+      $assignmentTable = '
+          <br /><br /><h2 class="entry-title">Volunteer assignments (tasks / periods)</h2>
+          <ul>
+            <li>This table contains the same info as above, but limited to the three major tasks, giving a better overview.</li>
+            <li>If you change the need above, you need to reload the page to get the right number of dropdowns below.</li>
+          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th class="bold">Period</th>
+                <th class="bold">Hrs</th>
+                <th class="bold">Scorekeeper</th>
+                <th class="bold">Referee</th>
+                <th class="bold">Reception</th>
+              </tr>
+            </thead>
+            <tbody>
       ';
       foreach ($periods as $period) {
         $date = preg_replace('/^2013-[0-9]+-/', '', $period->date).'th';
