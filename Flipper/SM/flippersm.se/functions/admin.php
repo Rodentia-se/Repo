@@ -41,7 +41,16 @@
           'cols' => array('player', 'id', 'main', 'classics', 'team', 'tshirts', 'total', 'paid', 'diff', 'payDate')
         ),
         'players' => array(
-          'header' => '<br /><br /><h2 class="entry-title">Players</h2>',
+          'header' => '
+            <br /><br /><h2 class="entry-title">Players</h2>
+            <ul>
+              <li>'.getCurrentPlayer($dbh, $ulogin)->getQR().': Print player QR code</li>
+              <li>Q: Mark player as present for qualification play.</li>
+              <li>F: Mark player as present for finals play</li>
+              <li>V: Mark player as present for voluntary work</li>
+              <li><img src="'.__baseHref__.'/images/arrive.png" class="icon" alt="Nyanländ" title="Klicka här för checklistan för nyanlända">: Go to player arrival checklist</li>
+            </ul>
+          ',
           'cols' => array('player', 'id', 'main', 'classics', 'ifpa', 'mailAddress', 'mobileNumber', 'here')
         ),
         'users' => array(
@@ -194,10 +203,12 @@
             ',
           'here' => '
             <td class="nowrap">
-              Q:<input type="checkbox" id="'.$player->id.'_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
+              P:<input type="checkbox" id="'.$player->id.'_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereSpan"></span>
               F:<input type="checkbox" id="'.$player->id.'_hereFinal" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereFinalSpan"></span>
+              V:<input type="checkbox" id="'.$player->id.'_volFinal" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$player->id.'_hereVolSpan"></span>
               <a href="'.__baseHref__.'/?S=arrive&playerId='.$player->id.'" target="_blank"><img src="'.__baseHref__.'/images/arrive.png" class="icon" alt="Nyanländ" title="Klicka här för checklistan för nyanlända"></a>
             </td>
             ',
