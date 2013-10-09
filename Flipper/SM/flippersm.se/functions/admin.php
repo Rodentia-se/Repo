@@ -57,7 +57,17 @@
           'cols' => array('player', 'id', 'main', 'classics', 'ifpa', 'mailAddress', 'mobileNumber', 'here')
         ),
         'users' => array(
-          'header' => '<br /><br /><h2 class="entry-title">User (players)</h2>',
+          'header' => '
+            <br /><br /><h2 class="entry-title">User (players)</h2>
+              <li>ID: Person ID</li>
+              <li>M-ID: Player ID for main tournament</li>
+              <li>UID: The player\'s user ID</li>
+              <li>User: The player\'s username</li>
+              <li>Admin = "No" = adminLevel 0</li>
+              <li>Admin = "Admin" = adminLevel 1</li>
+              <li>Admin = "Scorekeeper" = adminLevel 2</li>
+            </ul>
+          ',
           'cols' => array('player', 'id', 'main', 'mailAddress', 'mobileNumber', 'uid', 'username', 'password', 'admin')
         ),
         'results' => array(
