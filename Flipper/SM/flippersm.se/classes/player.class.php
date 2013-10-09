@@ -187,7 +187,45 @@
       }
       return $noOfTshirts;
     }
+
+    public function getShirtSize($dbh) {
+      $query = '
+        select
+          v.size_id as id,
+          v.size as size,
+          v.size_id as size_id,
+          v.size as name
+        from volunteer v
+        where v.person_id = '.$this->id;
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject()) {
+        return $obj:
+      }
+      return false;
+    }
   
+    public function setShirtSize($dbh, $sizeId) {
+      $size = getSizeById($dbh, $sizeId);
+      if ($size) {
+        $query = '
+          update volunteer
+            set v.size_id = :sizeId,
+            v.size = :size
+          where v.person_id = :id
+        ';
+        $update[':sizeId'] = $size->id;
+        $update[':size'] = $size->name;
+        $update[':id'] = $this->id;
+        $sth = $dbh->prepare($query);
+        if ($sth->execute($update)) {
+          return true;
+        } else {
+          return false;
+        }
+      }
+      return false;
+    }
+
     public function getQualGroups($dbh, $tournament = 1, $prefered = false) {
       $query = getQualGroupSelect('q', 'pq.prefered as prefered').'
         left join playerQualGroups pq

@@ -2272,6 +2272,23 @@ function adminAdmin(sel) {
   });
 }
 
+function volSize(sel) {
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/volSize.php', {size: sel.value}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
 function adminHere(box) {
   var playerId = box.id.split('_')[0];
   fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);

@@ -1147,6 +1147,16 @@
     return $sizes;
   }
 
+  function getSizeById($dbh, $id) {
+    $sizes = getTshirtSizes($dbh);
+    foreach ($sizes as $sizeId => $size) {
+      if ($sizeId == $id) {
+        return (object) array('id' => $sizeId, 'name' => $size);
+      }
+    }
+    return false;
+  }
+
   function getTshirtColors($dbh, $tournament = 1) {
     $tshirts = getTshirts($dbh, $tournament);
     foreach($tshirts as $tshirt) {
