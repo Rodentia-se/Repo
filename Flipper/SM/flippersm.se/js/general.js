@@ -1899,6 +1899,31 @@ function adminPlace(sel) {
   });
 }
 
+
+function adminGameEdit(icon, open) {
+  if(open) {
+    $('#' + icon.id + 'Div').show();
+  } else {
+    $('#' + icon.id.replace('Close', '')).hide();
+  }
+}
+
+
+function adminGameComment(btn, open) {
+  var machineId = btn.id.split('_')[0];
+  var comment = document.getElementById(btn.id.replace('Submit', '')).value;
+  fade(document.getElementById(btn.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/gameComment.php', {machineId: machineId, comment: comment}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(btn.id + 'Span'), data.reason, data.success);
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+
 function adminGameDel(icon) {
   var machineId = icon.id.split('_')[0];
   fade(document.getElementById(icon.id + 'Span'), 'Updaterar databasen...', true);
@@ -2022,14 +2047,6 @@ function adminTshirtSold(icon) {
     debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
     debugOut(jqHXR.responseText);
   }); 
-}
-
-function adminGameEdit(icon, open) {
-  if(open) {
-    $('#' + icon.id + 'Div').show();
-  } else {
-    $('#' + icon.id.replace('Close', '')).hide();
-  }
 }
 
 function adminAlloc(icon, open) {

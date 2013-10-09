@@ -89,6 +89,14 @@
       return ($sth->execute($delete)) ? true : false;
     }
     
+    function setComment($dbh, $comment)) {
+      $query = 'update machine set comment = :comment where id = :id';
+      $update[':comment'] = $comment;
+      $update[':id'] = $this->machine_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
     function getAllEntries ($dbh, $groupBy = false, $tournament = 1) {
     $query = '
       select
