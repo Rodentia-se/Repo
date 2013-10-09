@@ -199,7 +199,7 @@
         where v.person_id = '.$this->id;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject()) {
-        return $obj:
+        return $obj;
       }
       return false;
     }
