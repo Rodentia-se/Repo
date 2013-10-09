@@ -249,6 +249,10 @@ li {
   float: right;
 }
 
+img.right {
+  float: right;
+}
+
 input[type=text], input[type=password] {
   color: #000000;
   padding: 0px;
