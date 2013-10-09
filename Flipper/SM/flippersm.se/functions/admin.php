@@ -859,7 +859,7 @@
           <tr>
             <td id="'.$game->id.'_gameTd">
               '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
-              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_edit">
+              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this);" alt="Click to view/edit the game comments" title="Click to view/edit the game comments" id="'.$game->machine_id.'_edit">
               <span class="error errorSpan toolTip" id="'.$game->machine_id.'_editSpan"></span>
             </td>
             <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
