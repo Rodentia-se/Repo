@@ -745,6 +745,10 @@
         <ul>
           <li>A player can be listed several times, if (s)he made several T-shirt orders</li>
           <li>Paid is the full amount of paid SEK - including not only T-shirts, but also tournament fees.</li>
+          <ul>
+            <li>If the player gives you money, the paid dropdown should be changed accordingly.</li>
+            <li>This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li>
+          </ul>
           <li>Dlvr: Click this checkbox when the T-shirt order has been handed out to the player</li>
           <ul>
             <li>If the player has made several T-shirt orders, make sure to click all his/her "Dlvr" checkboxes!</li>
