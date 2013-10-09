@@ -1139,6 +1139,7 @@
   
   function getTshirtSizes($dbh, $tournament = 1) {
     $tshirts = getTshirts($dbh, $tournament);
+    $sizes = array();
     foreach($tshirts as $tshirt) {
      if (!in_array($tshirt->size, $sizes)) {
         $sizes[$tshirt->size_id] = $tshirt->size;
