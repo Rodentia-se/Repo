@@ -2182,7 +2182,8 @@
         if(ma.tournamentDivision_id = 13, 1, 0) as side,
         if(ma.tournamentDivision_id = 14, 1, 0) as recreational,
         ma.tournamentDivision_id as tournamentDivision_id,
-        ma.tournamentEdition_id as tournamentEdition_id
+        ma.tournamentEdition_id as tournamentEdition_id,
+        ma.comment as comment
       from game g
       left join machine ma
         on g.id = ma.game_id
