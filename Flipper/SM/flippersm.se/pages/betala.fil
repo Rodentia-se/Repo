@@ -27,9 +27,9 @@
     $rate['GBP'] = 10;
     $rate['USD'] = 6;
 
-    $mainCost = 300;
-    $classicsCost = 200;
-    $teamCost = 100;
+    $mainCost = (($player->u7) ? 0 : (($player->u18) ? 100 : 300));
+    $classicsCost = (($player->u7) ? 0 : 200);
+    $teamCost = (($player->u7) ? 0 : 100);
     $tShirtCost = 100;
 
     foreach($currencies as $currency) {
