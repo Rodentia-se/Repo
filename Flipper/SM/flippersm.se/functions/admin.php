@@ -445,7 +445,7 @@
             <li>Hover over a header to get the full task name</li>
             <li>Alloc: The current number of assigned volunteers for that task during that period.</li>
             <li>The numbers dropdown is the need for that task during that period. Change as needed.</li>
-            <li>Click the <img src="'.__baseHref__.'/images/edit.png" class="textIcon allocEditIcon" alt="Click to assign a volunteer" title="Click to assign a volunteer"> icon to get a popup where you can assign or change volunteers.</li>
+            <li>Click the<img src="'.__baseHref__.'/images/edit.png" class="textIcon allocEditIcon" alt="Click to assign a volunteer" title="Click to assign a volunteer"> icon to get a popup where you can assign or change volunteers.</li>
             <li>If you change the need, it will not automatically change the number of volunteer dropdowns in the popup. Reload the page to reflect the changes.</li>
           </ul>
           <label>Show/hide all assignments</label><input type="checkbox" onclick="allocShowAll(this);"> (This will open every "Ass" popup in the table)
@@ -682,8 +682,24 @@
     }
   
     function getAdminTshirtTable($dbh, $type = 'total') {
-      $totalTable .= '<br /><br /><h2 class="entry-title">T-shirts total</h2>';
       $totalTable .= '
+        <br /><br /><h2 class="entry-title">T-shirts total</h2>
+        <ul>
+          <li>Total: The number we ordered from our supplier of that color and size.</li>
+          <li>Reservers: The number of people that reserved a T-shirt of that color and size.</li>
+          <li>Reserved: The number of pre-ordered T-shirts of that color and size.</li>
+          <li>Delivered: The number of pre-ordered T-shirts already handed out to the players.</li>
+          <li>Sold on site: The number of NOT pre-ordered T-shirts sold on site.</li>
+          <ul>
+            <li>Click the<img src="'.__baseHref__.'/images/add_icon.gif" class="textIcon" alt="Increase number of sold T-shirts" title="Increase number of sold T-shirts"> icon if you sell one of the NOT pre-ordered T-shirts.</li>
+            <li>ONLY click the<img src="'.__baseHref__.'/images/minus.png" class="textIcon" alt="Decrease number of sold T-shirts" title="Decrease number of sold T-shirts"> icon if you mistakenly click the icon once too much.</li>
+          </ul>
+          <li>In stock: The number of T-shirt still in stock. This includes both pre-ordered T-shirts not handed out yet, and T-shirts for sale on site.</li>
+          <li>For sale: The number of NOT pre-ordered T-shirts that can still be sold on site.</li>
+          <ul>
+            <li>DO NOT sell T-shirts if this number is zero or negative!</li>
+          </ul>
+        </ul>
         <table>
           <thead>
             <tr>
