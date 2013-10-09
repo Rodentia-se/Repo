@@ -16,22 +16,6 @@
     ';
     $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
-      $sizes = getTshirtSizes($dbh);
-      $volSize = $player->getShirtSize($dbh);
-      $content = '
-      <p>
-        <label for="volSize">Ange tröjstorlek:</label>
-        <select id="volSize" name="volSize" onchange="volSize(this);" previous="'.(($volSize) ? $volSize->id : 0).'">
-      ';
-        foreach($sizes as $sizeId => $size){
-          $content .= '<option value="'.$sizeId.'" ';
-          $content .= ($sizeId == $volSize) ? 'selected' : '';
-          $content .= '>'.$size.'</option>';
-        }
-        $content .= '
-        </select><span class="error errorSpan toolTip" id="volSizeSpan"></span>
-      </p>
-      ';
       $content .= getQualGroupForm($dbh, $player);
     } else if ($player) {
       $content = '<p>Du måste <a href="/?s=anmal">anmäla dig</a> innan du kan välja kvaltider.</p>';
