@@ -46,7 +46,7 @@
               <li>Team: The ID of the player\'s team</li>
               <li>T-shirts: The number of T-shirts pre-ordered by the player</li>
               <li>Total: The amount of SEK the player is supposed to pay in total</li>
-              <li>Paid: The amount in SEK currently paid by the player. This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li>
+              <li>Paid: The amount in SEK currently paid by the player.<ul><li>This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li></ul></li>
               <li>DIff: The amount still to be paid. If it\'s a negative number, the player has paid too much.</li>
               <li>Payment time: The date and time the player med his/her first payment, and thus used for qualification group assignment order.</li>
             </ul>
