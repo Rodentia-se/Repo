@@ -15,7 +15,7 @@
     <link href="'.$baseHref.'/css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <link href="'.$baseHref.'/css/epc.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/ga.js"></script>
-    <link rel="shortcut icon" href="/images/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="'.__baseHref__.'/images/favicon.ico" type="image/x-icon" />
     <title>'.$title.'</title>
   </head>
     ');
