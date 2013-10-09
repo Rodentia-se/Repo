@@ -9,7 +9,7 @@
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
       if ($gameId) {
-        $game = getMachines($dbh, ' where id = '.$machineId);
+        $game = getMachines($dbh, ' where id = '.$machineId)[0];
         if ($game) {
           if ($game->setComment($dbh, $comment)) {
             echo('{"success": true, "reason": "'.$game->shortName.' comment updated"}');
