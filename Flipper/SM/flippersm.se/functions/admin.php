@@ -410,7 +410,7 @@
                 <td id="'.$volunteer->id.'_alloc">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->alloc))).'</td>
                 <td>
                   <input type="checkbox" id="'.$volunteer->id.'_vol_here" onclick="adminHere(this);" '.(($volunteer->hereVol) ? 'checked' : '').'>
-                  <span class="error errorSpan toolTip" id="'.$volunteer->id.'_vol_hereSpan"></span>' : '').'
+                  <span class="error errorSpan toolTip" id="'.$volunteer->id.'_vol_hereSpan"></span>
                 </td>
               </tr>
         ';
