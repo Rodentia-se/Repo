@@ -505,7 +505,7 @@
         where id = :id
       ';
       $update[':here'] = ($here) ? 1 : 0;
-      $update[':id'] = $this->mainPlayerId;
+      $update[':id'] = ($type == 'vol') ? $this->volunteer_id : $this->mainPlayerId;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
