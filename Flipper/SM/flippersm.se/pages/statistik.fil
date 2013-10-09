@@ -10,7 +10,7 @@
     return $x / $y;
   }
 
-  $content = '<h1>Statistik</h2>';
+  $content = '<h1>Statistik</h1>';
 
   $query = '
     select
@@ -28,7 +28,7 @@
   $res = $sth->fetchObject();
 
   $content .= '
-        <br /><br /><h2 class="entry-title">IFPA-ranking</h2>
+        <br /><br /><h3 class="entry-title">IFPA-ranking</h3>
         <table>
           <thead>
             <tr>
@@ -69,7 +69,7 @@
   $res = $sth->fetchObject();
 
   $content .= '
-        <br /><br /><h2 class="entry-title">Ålder</h2>
+        <br /><br /><h3 class="entry-title">Ålder</h3>
         <table>
           <thead>
             <tr>
@@ -101,7 +101,7 @@
     $countrySumTd = '';
     if ($classes->{$class->name}->children) {
       $thead = '
-        <br /><br /><h2 class="entry-title">'.ucfirst($classes->{$class->name}->plural).'</h2>
+        <br /><br /><h3 class="entry-title">'.ucfirst($classes->{$class->name}->plural).'</h3>
         <table>
           <thead>
             <tr>
