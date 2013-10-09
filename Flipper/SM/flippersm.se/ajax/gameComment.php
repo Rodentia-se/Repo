@@ -3,7 +3,7 @@
   header('Content-Type: application/json');
 
   $machineId = (isset($_REQUEST['machineId']) && preg_match('/^[0-9]+$/', $_REQUEST['machineId'])) ? $_REQUEST['machineId'] : null;
-  $comment = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : null;
+  $comment = (isset($_REQUEST['comment'])) ? $_REQUEST['comment'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
