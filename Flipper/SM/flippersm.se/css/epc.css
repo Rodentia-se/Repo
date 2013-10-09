@@ -303,7 +303,26 @@ input[type=text], input[type=password] {
 }
 
 .dbComment {
-  width: 400px;
-  width: calc(device-width - 20%);
+  width: 1000px;
 }
 
+@media only screen and (max-device-width: 1200px), (max-width: 1200px) {
+
+  .dbComment {
+    width: 600px;
+  }
+
+  @media only screen and (max-device-width: 780px), (max-width: 780px) {
+
+    .dbComment {
+      width: 400px;
+    }
+
+    @media only screen and (max-device-width: 460px), (max-width: 460px) {
+
+      .dbComment {
+        width: 250px;
+      }
+    }
+  }
+}
