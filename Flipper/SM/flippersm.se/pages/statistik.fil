@@ -58,9 +58,9 @@
       count(*) as players,
       count(birthDate < "1995-11-07") as u18,
       count(birthDate < "2007-11-07") as u7,
-      max(birthDate) as max
-      min(birthDate) as max
-      avg(birthDate) as avg,
+      max(birthDate) as max,
+      min(birthDate) as max,
+      avg(birthDate) as avg
     from player
     where
       tournamentDivision_id = 1
