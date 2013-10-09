@@ -2,7 +2,7 @@
   require_once('../functions/general.php');
   header('Content-Type: application/json');
 
-  $machineId = (isset($_REQUEST['$machineId']) && preg_match('/^[0-9]+$/', $_REQUEST['$machineId'])) ? $_REQUEST['$machineId'] : null;
+  $machineId = (isset($_REQUEST['machineId']) && preg_match('/^[0-9]+$/', $_REQUEST['machineId'])) ? $_REQUEST['machineId'] : null;
   $comment = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
