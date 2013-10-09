@@ -2669,6 +2669,7 @@
         ifnull(cl.wpprPlace, cl.place) as classicsWpprPlace,
         m.here as here,
         m.hereFinal as hereFinal,
+        v.here as hereVol,
         m.ifpa_id as ifpa_id,
         m.ifpaRank as ifpaRank,
         m.adminLevel as adminLevel,
