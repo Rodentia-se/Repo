@@ -431,6 +431,7 @@
 */
 //        $total['hours'] += $volunteer->hours;
         $total['alloc'] += $volunteer->alloc;
+        $total['here'] += ($volunteer->hereVol) ? 1 : 0;
 //        $total['diff'] += $volunteer->hoursDiff;
       }
       $volTable .= '
@@ -440,6 +441,7 @@
               <td></td>
               <td></td>
               <td id="total_alloc" class="bold">'.$total['alloc'].'</td>
+              <td id="total_here" class="bold">'.$total['here'].'</td>
             </tr>
       ';
 //              <td class="bold">'.$total['hours'].'</td>
