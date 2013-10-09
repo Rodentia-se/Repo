@@ -22,12 +22,13 @@
     from player
     where
       ifnull(ifpaRank,20000) != 0
-      and tournamentDivision_id = 1';
+      and tournamentDivision_id = 1
+  ';
   $sth = $dbh->query($query);
   $res = $sth->fetchObject();
 
   $content .= '
-        <br /><br /><h2 class="entry-title">IFPA rankings</h2>
+        <br /><br /><h2 class="entry-title">IFPA-ranking</h2>
         <table>
           <thead>
             <tr>
@@ -47,6 +48,47 @@
               <td>'.$res->min.'</td>
               <td>'.$res->max.'</td>
               <td>'.round($res->avg).'</td>
+            </tr>
+          </tbody>
+        </table>
+  ';
+
+  $query = '
+    select
+      count(*) as players,
+      count(birthDate < "1995-11-07") as u18,
+      count(birthDate < "2007-11-07") as u7,
+      max(birthDate) as max
+      min(birthDate) as max
+      avg(birthDate) as avg,
+    from player
+    where
+      tournamentDivision_id = 1
+  ';
+  $sth = $dbh->query($query);
+  $res = $sth->fetchObject();
+
+  $content .= '
+        <br /><br /><h2 class="entry-title">Ålder</h2>
+        <table>
+          <thead>
+            <tr>
+              <th class="numeric">Spelare</th>
+              <th class="numeric">U18</th>
+              <th class="numeric">U7</th>
+              <th class="numeric">Yngst</th>
+              <th class="numeric">Äldst</th>
+              <th class="numeric">Genomsnitt</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>'.$res->players.'</td>
+              <td>'.$res->u18.'</td>
+              <td>'.$res->u7.'</td>
+              <td>'.$res->min.'</td>
+              <td>'.$res->max.'</td>
+              <td>'.$res->avg.'</td>
             </tr>
           </tbody>
         </table>
