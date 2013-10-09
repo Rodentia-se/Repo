@@ -258,8 +258,9 @@
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereSpan"></span>
               F:<input type="checkbox" id="'.$player->id.'_hereFinal" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereFinalSpan"></span>
-              V:<input type="checkbox" id="'.$player->id.'_volFinal" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
-              <span class="error errorSpan toolTip" id="'.$player->id.'_hereVolSpan"></span>
+              '.(($player->volunteer) ? 
+              'V:<input type="checkbox" id="'.$player->id.'_volFinal" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$player->id.'_hereVolSpan"></span>' : '').'
               <a href="'.__baseHref__.'/?S=arrive&playerId='.$player->id.'" target="_blank"><img src="'.__baseHref__.'/images/arrive.png" class="icon" alt="Nyanländ" title="Klicka här för checklistan för nyanlända"></a>
             </td>
             ',
