@@ -86,8 +86,8 @@
               <td>'.$res->players.'</td>
               <td>'.$res->u18.'</td>
               <td>'.$res->u7.'</td>
-              <td>'.$res->min.'</td>
               <td>'.$res->max.'</td>
+              <td>'.$res->min.'</td>
               <td>'.substr($res->avg, 0, 4).'</td>
             </tr>
           </tbody>
