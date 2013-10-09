@@ -44,6 +44,9 @@
           'header' => '
             <br /><br /><h2 class="entry-title">Players</h2>
             <ul>
+              <li>ID: Person ID</li>
+              <li>M-ID: Player ID for main tournament</li>
+              <li>C-ID: Player ID for Classics</li>
               <li>'.getCurrentPlayer($dbh, $ulogin)->getQR().': Print player QR code</li>
               <li>Q: Mark player as present for qualification play.</li>
               <li>F: Mark player as present for finals play</li>
@@ -203,7 +206,7 @@
             ',
           'here' => '
             <td class="nowrap">
-              P:<input type="checkbox" id="'.$player->id.'_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
+              Q:<input type="checkbox" id="'.$player->id.'_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereSpan"></span>
               F:<input type="checkbox" id="'.$player->id.'_hereFinal" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_hereFinalSpan"></span>
