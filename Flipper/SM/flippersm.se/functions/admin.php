@@ -445,7 +445,7 @@
             <li>Hover over a header to get the full task name</li>
             <li>Alloc: The current number of assigned volunteers for that task during that period.</li>
             <li>The numbers dropdown is the need for that task during that period. Change as needed.</li>
-            <li>Ass:<img src="'.__baseHref__.'/images/edit.png" class="textIcon allocEditIcon" alt="Click to assign a volunteer" title="Click to assign a volunteer"> Click to get a popup where you can assign or change volunteers.</li>
+            <li>Click the <img src="'.__baseHref__.'/images/edit.png" class="textIcon allocEditIcon" alt="Click to assign a volunteer" title="Click to assign a volunteer"> icon to get a popup where you can assign or change volunteers.</li>
             <li>If you change the need, it will not automatically change the number of volunteer dropdowns in the popup. Reload the page to reflect the changes.</li>
           </ul>
           <label>Show/hide all assignments</label><input type="checkbox" onclick="allocShowAll(this);"> (This will open every "Ass" popup in the table)
