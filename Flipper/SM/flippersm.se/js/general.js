@@ -2278,7 +2278,12 @@ function adminHere(box) {
   $.post(baseHref + '/ajax/setHere.php', {playerId: playerId, here: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
   .done(function(data) {
     fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
-    if (!data.success) {
+    if (data.success) {
+      var totalHere = document.getElementById('total_here');
+      if (totalHere) {
+        totalHere.innerHTML = (+ parseInt(totalHere.innerHTML) + ((box.checked) ? 1 : -1));
+      }
+    } else {
       box.checked = !box.checked;
     }
   })
