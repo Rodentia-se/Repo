@@ -49,7 +49,7 @@
               <li>Paid: The amount in SEK currently paid by the player. This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li>
               <li>DIff: The amount still to be paid. If it\'s a negative number, the player has paid too much.</li>
               <li>Payment time: The date and time the player med his/her first payment, and thus used for qualification group assignment order.</li>
-            </ul><br />
+            </ul>
           ',
           'cols' => array('player', 'id', 'main', 'classics', 'team', 'tshirts', 'total', 'paid', 'diff', 'payDate')
         ),
@@ -65,13 +65,14 @@
               <li>F: Mark player as present for finals play</li>
               <li>V: Mark player as present for voluntary work</li>
               <li><img src="'.__baseHref__.'/images/arrive.png" class="icon" alt="Nyanländ" title="Klicka här för checklistan för nyanlända">: Go to player arrival checklist</li>
-            </ul><br />
+            </ul>
           ',
           'cols' => array('player', 'id', 'main', 'classics', 'ifpa', 'mailAddress', 'mobileNumber', 'here')
         ),
         'users' => array(
           'header' => '
             <br /><br /><h2 class="entry-title">User (players)</h2>
+            <ul>
               <li>ID: Person ID</li>
               <li>M-ID: Player ID for main tournament</li>
               <li>UID: The player\'s user ID</li>
@@ -79,7 +80,7 @@
               <li>Admin = "No" = adminLevel 0</li>
               <li>Admin = "Admin" = adminLevel 1</li>
               <li>Admin = "Scorekeeper" = adminLevel 2</li>
-            </ul><br />
+            </ul>
           ',
           'cols' => array('player', 'id', 'main', 'mailAddress', 'mobileNumber', 'uid', 'username', 'password', 'admin')
         ),
