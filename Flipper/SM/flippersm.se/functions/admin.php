@@ -393,6 +393,7 @@
               <th class="bold">Cell</th>
               <th class="bold">Email</th>
               <th class="bold">Alloc</th>
+              <th class="bold">Here</th>
             </tr>
           </thead>
           <tbody>
@@ -407,6 +408,10 @@
                 <td>'.$volunteer->mobileNumber.'</td>
                 <td class="emailTd"><a href="mailto:'.$volunteer->mailAddress.'">'.$volunteer->mailAddress.'</a></td>
                 <td id="'.$volunteer->id.'_alloc">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->alloc))).'</td>
+                <td>
+                  <input type="checkbox" id="'.$player->id.'_vol_here" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
+                  <span class="error errorSpan toolTip" id="'.$player->id.'_vol_hereSpan"></span>' : '').'
+                </td>
               </tr>
         ';
 /*
