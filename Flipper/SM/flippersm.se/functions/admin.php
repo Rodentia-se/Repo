@@ -694,7 +694,10 @@
             <li>Click the<img src="'.__baseHref__.'/images/add_icon.gif" class="textIcon" alt="Increase number of sold T-shirts" title="Increase number of sold T-shirts"> icon if you sell one of the NOT pre-ordered T-shirts.</li>
             <li>ONLY click the<img src="'.__baseHref__.'/images/minus.png" class="textIcon" alt="Decrease number of sold T-shirts" title="Decrease number of sold T-shirts"> icon if you mistakenly click the icon once too much.</li>
           </ul>
-          <li>In stock: The number of T-shirt still in stock. This includes both pre-ordered T-shirts not handed out yet, and T-shirts for sale on site.</li>
+          <li>In stock: The number of T-shirt still in stock.
+          <ul>
+            <li>This includes both pre-ordered T-shirts not handed out yet, and T-shirts for sale on site.</li>
+          </ul>
           <li>For sale: The number of NOT pre-ordered T-shirts that can still be sold on site.</li>
           <ul>
             <li>DO NOT sell T-shirts if this number is zero or negative!</li>
@@ -737,7 +740,17 @@
         ';
       }
       $totalTable .= '</tbody></table>';
-      $buyersTable .= '<br /><br /><h2 class="entry-title">Reserved T-shirts</h2>';
+      $buyersTable .= '
+        <br /><br /><h2 class="entry-title">Reserved T-shirts</h2>
+        <ul>
+          <li>A player can be listed several times, if (s)he made several T-shirt orders</li>
+          <li>Paid is the full amount of paid SEK - including not only T-shirts, but also tournament fees.</li>
+          <li>Dlvr: Click this checkbox when the T-shirt order has been handed out to the player</li>
+          <ul>
+            <li>If the player has made several T-shirt orders, make sure to click all his/her "Dlvr" checkboxes!</li>
+          </ul>
+        </ul>
+      ';
 //      $buyersTable .= getCurCalcForm();
       $buyersTable .= '
         <table>
