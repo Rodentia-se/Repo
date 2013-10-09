@@ -254,6 +254,10 @@ img.right {
   float: right;
 }
 
+input.dbComment {
+  width: 400px;
+}
+
 input[type=text], input[type=password] {
   color: #000000;
   padding: 0px;
