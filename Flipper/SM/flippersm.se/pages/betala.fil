@@ -46,6 +46,7 @@
       <input type="hidden" id="nameHidden" value="'.$player->name.'">
       <input type="hidden" id="currency" value="'.$currency.'">
       <input type="hidden" id="paid" value="'.$player->paid.'">
+      <input type="hidden" id="birthDate" value="'.$player->birthDate.'">
       <input type="hidden" id="u18" value="'.(($player->u18) ? '1' : '0').'">
       <input type="hidden" id="u7" value="'.(($player->u7) ? '1' : '0').'">
       <p class="italic">OBS: Priset för dubbel är per person. Vill du betala för hela laget så anger du 2 i lag-fältet.<br />
