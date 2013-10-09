@@ -55,6 +55,7 @@
     public $volunteer_id;
     public $hours;
     public $u18;
+    public $u7;
     public $alloc;
     public $taskId;
     public $periodId;
