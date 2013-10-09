@@ -409,8 +409,8 @@
                 <td class="emailTd"><a href="mailto:'.$volunteer->mailAddress.'">'.$volunteer->mailAddress.'</a></td>
                 <td id="'.$volunteer->id.'_alloc">'.preg_replace('/^0+/', '', preg_replace('/:00$/', '', preg_replace('/:00$/', '', $volunteer->alloc))).'</td>
                 <td>
-                  <input type="checkbox" id="'.$player->id.'_vol_here" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
-                  <span class="error errorSpan toolTip" id="'.$player->id.'_vol_hereSpan"></span>' : '').'
+                  <input type="checkbox" id="'.$volunteer->id.'_vol_here" onclick="adminHere(this);" '.(($volunteer->hereVol) ? 'checked' : '').'>
+                  <span class="error errorSpan toolTip" id="'.$volunteer->id.'_vol_hereSpan"></span>' : '').'
                 </td>
               </tr>
         ';
