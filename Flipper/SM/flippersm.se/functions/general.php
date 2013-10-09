@@ -2661,6 +2661,8 @@
         coalesce(m.mailAddress, p.mailAddress) as mailAddress,
         coalesce(m.birthDate, p.birthDate) as birthDate,
         coalesce(m.dateRegistered, p.dateRegistered) as dateRegistered,
+        if(m.birthDate is not null,if(m.birthDate > "1995-11-07",1,0),if(p.birthDate is not null,if(p.birthDate > "1995-11-07",1,0),0)) as u18,
+        if(m.birthDate is not null,if(m.birthDate > "2006-11-07",1,0),if(p.birthDate is not null,if(p.birthDate > "2006-11-07",1,0),0)) as u7,
         m.place as place,
         ifnull(m.wpprPlace, m.place) as wpprPlace,
         cl.place as classicsPlace,

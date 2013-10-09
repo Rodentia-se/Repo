@@ -40,13 +40,14 @@
       $totalCost[$currency] = $mainCosts[$currency] + $classicsCosts[$currency] + $teamCosts[$currency] + $tShirtCosts[$currency];
       $currencyChoice .= '<input type="radio" id="currency" name="currency" value="'.$currency.'" onchange="currencyChange(this);" '.(($currency == 'SEK') ? 'checked' : '').'><label class="labelTd">'.$currency.'</label>';
     }
-
     $currency = 'SEK';
     $content .= '
       <input type="hidden" id="idHidden" value="'.$player->id.'">
       <input type="hidden" id="nameHidden" value="'.$player->name.'">
       <input type="hidden" id="currency" value="'.$currency.'">
       <input type="hidden" id="paid" value="'.$player->paid.'">
+      <input type="hidden" id="u18" value="'.(($player->u18) ? '1' : '0').'">
+      <input type="hidden" id="u7" value="'.(($player->u7) ? '1' : '0').'">
       <p class="italic">OBS: Priset för dubbel är per person. Vill du betala för hela laget så anger du 2 i lag-fältet.<br />
       Fälten är förifyllda efter hur du har registrerat dig, men du kan ändra siffrorna om du vill betala för fler än dig själv.</p>
       <div>
