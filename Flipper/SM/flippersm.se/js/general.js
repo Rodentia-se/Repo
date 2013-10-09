@@ -2024,6 +2024,14 @@ function adminTshirtSold(icon) {
   }); 
 }
 
+function adminGameEdit(icon, open) {
+  if(open) {
+    $('#' + icon.id + 'Div').show();
+  } else {
+    $('#' + icon.id.replace('Close', '')).hide();
+  }
+}
+
 function adminAlloc(icon, open) {
   if(open) {
     $('#' + icon.id + 'Edit').show();
