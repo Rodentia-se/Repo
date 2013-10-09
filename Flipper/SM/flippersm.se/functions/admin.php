@@ -64,7 +64,7 @@
               <li>ID: Person ID</li>
               <li>M-ID: Player ID for main tournament</li>
               <li>C-ID: Player ID for Classics</li>
-              <li>'.getCurrentPlayer($dbh, $ulogin)->getQR().': Print player QR code</li>
+              <li>'.getCurrentPlayer($dbh, $ulogin)->getQR(false).': Print player QR code</li>
               <li>Q: Mark player as present for qualification play.</li>
               <li>F: Mark player as present for finals play</li>
               <li>V: Mark player as present for voluntary work</li>
@@ -211,7 +211,7 @@
         }
 
         $td = array(
-          'player' => '<td>'.$player->getLink().'&nbsp;'.$player->getQR().'</td>',
+          'player' => '<td>'.$player->getLink().'&nbsp;'.$player->getQR(true, true).'</td>',
           'main' => '<td>'.$player->mainPlayerId.'</td>',
           'classics' => '<td>'.$player->classicsPlayerId.'</td>',
           'team' => '<td>'.(($team) ? '<a href="'.$team->getLink(false).'" target="_blank">'.$team->id.'</a>' : '').'</td>',
@@ -846,9 +846,9 @@
               <td id="0_ipdbTd"></td>
               <td id="0_rulesTd"></td>
               <td id="0_typeTd"></td>
-              <td id="0_usageTd" align="right">
+              <td id="0_usageTd">
                 <span class="error errorSpan toolTip" id="0_usageSpan"></span>
-                <img src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="adminGameAdd(this);" alt="Add game to tournament" title="Add game to tournament" id="0_gameAdd">
+                <img src="'.__baseHref__.'/images/add_icon.gif" class="icon right" onclick="adminGameAdd(this);" alt="Add game to tournament" title="Add game to tournament" id="0_gameAdd">
                 <span class="error errorSpan toolTip" id="0_gameAddSpan"></span>
               </td>
             </tr>
@@ -857,7 +857,11 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td id="'.$game->id.'_gameTd">'.$game->getLink().'&nbsp;'.$game->getQR().'</td>
+            <td id="'.$game->id.'_gameTd">
+              '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
+              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_edit">
+              <span class="error errorSpan toolTip" id="'.$game->machine_id.'_editSpan"></span>
+            </td>
             <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
             <td id="'.$game->id.'_manufacturerTd">'.$game->manufacturer.'</td>
             <td id="'.$game->id.'_ipdbTd">'.$game->getIpdbLink().'</td>
@@ -880,7 +884,7 @@
                 <option value="14"'.(($game->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
               </select>
               <span class="error errorSpan toolTip" id="'.$game->machine_id.'_usageSpan"></span>
-              <img src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_delete">
+              <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_delete">
               <span class="error errorSpan toolTip" id="'.$game->machine_id.'_deleteSpan"></span>
             </td>
           </tr>

@@ -77,8 +77,8 @@
       }
     }
     
-    function getQR($link = true) {
-      $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon" alt="QR" title="Click for QR code">';
+    function getQR($link = true, $right = false) {
+      $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon'.(($right) ? ' right': '').'" alt="QR" title="Click for QR code">';
       return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
     }
 
