@@ -4,7 +4,7 @@
   
   $playerId = (isset($_REQUEST['playerId']) && preg_match('/^[0-9]+$/', $_REQUEST['playerId'])) ? $_REQUEST['playerId'] : null;
   $here = (isset($_REQUEST['here']) && $_REQUEST['here'] == 1) ? true : false;
-  $final = (isset($_REQUEST['final']) && $_REQUEST['final'] == 1) ? true : false;
+  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'qual' || $_REQUEST['type'] == 'final' || $_REQUEST['type'] == 'vol') ? $_REQUEST['type'] : 'qual';
   
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
@@ -12,10 +12,10 @@
       if ($playerId) {
         $player = getPlayerById($dbh, $playerId);
         if ($player) {
-          if ($player->setHere($dbh, $here, $final)) {
-            echo('{"success": true, "reason": "'.$player->name.' is now set as being '.(($here) ? '' : 'NOT ').'present'.(($final) ? ' in the finals' : '').'"}');
+          if ($player->setHere($dbh, $here, $type)) {
+            echo('{"success": true, "reason": "'.$player->name.' is now set as being '.(($here) ? '' : 'NOT ').'present'.(($type == 'final') ? ' in the finals' : (($type == 'vol') ? ' for voluntary work': '')).'"}');
           } else {
-            $errorMsg = 'Could not change the status for '.$player->name.' as being '.(($here) ? '' : 'NOT ').'present'.(($final) ? ' in the finals' : '');
+            $errorMsg = 'Could not change the status for '.$player->name.' as being '.(($here) ? '' : 'NOT ').'present'.(($type == 'final') ? ' in the finals' : (($type == 'vol') ? ' for voluntary work': ''));
           }
         } else {
           $errorMsg = 'Could not find the player with ID '.$playerId;

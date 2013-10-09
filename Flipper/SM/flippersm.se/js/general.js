@@ -2275,7 +2275,7 @@ function adminAdmin(sel) {
 function adminHere(box) {
   var playerId = box.id.split('_')[0];
   fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
-  $.post(baseHref + '/ajax/setHere.php', {playerId: playerId, here: ((box.checked) ? 1 : 0), final: ((box.id.split('_')[1] == 'hereFinal') ? 1 : 0)}) // Send to server
+  $.post(baseHref + '/ajax/setHere.php', {playerId: playerId, here: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
   .done(function(data) {
     fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
     if (!data.success) {

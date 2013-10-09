@@ -18,6 +18,7 @@
     public $gender;
     public $here;
     public $hereFinal;
+    public $hereVol;
     public $hoursDiff;
     public $type;
     public $streetAddress;
@@ -483,10 +484,23 @@
       return ($sth->execute($update)) ? true : false;
     }
     
-    function setHere($dbh, $here = true, $final = false) {
-      $hereField = ($final) ? 'hereFinal' : 'here';
+    function setHere($dbh, $here = true, $type = 'qual') {
+      switch ($type) {
+        case 'final':
+          $hereField = 'hereFinal';
+          $table = 'player';
+        break;
+        case 'vol':
+          $hereField = 'here';
+          $table = 'volunteer';
+        break;
+        default:
+          $hereField = 'here';
+          $table = 'player';
+        break;
+      }
       $query = '
-        update player set 
+        update '.$table.' set
           '.$hereField.' = :here
         where id = :id
       ';

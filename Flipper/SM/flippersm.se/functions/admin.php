@@ -254,13 +254,13 @@
             ',
           'here' => '
             <td class="nowrap">
-              Q:<input type="checkbox" id="'.$player->id.'_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
-              <span class="error errorSpan toolTip" id="'.$player->id.'_hereSpan"></span>
-              F:<input type="checkbox" id="'.$player->id.'_hereFinal" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
-              <span class="error errorSpan toolTip" id="'.$player->id.'_hereFinalSpan"></span>
+              Q:<input type="checkbox" id="'.$player->id.'_qual_here" onclick="adminHere(this);" '.(($player->here) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$player->id.'_qual_hereSpan"></span>
+              F:<input type="checkbox" id="'.$player->id.'_final_here" onclick="adminHere(this);" '.(($player->hereFinal) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$player->id.'_final_hereSpan"></span>
               '.(($player->volunteer) ? 
-              'V:<input type="checkbox" id="'.$player->id.'_volFinal" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
-              <span class="error errorSpan toolTip" id="'.$player->id.'_hereVolSpan"></span>' : '').'
+              'V:<input type="checkbox" id="'.$player->id.'_vol_here" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$player->id.'_vol_hereSpan"></span>' : '').'
               <a href="'.__baseHref__.'/?S=arrive&playerId='.$player->id.'" target="_blank"><img src="'.__baseHref__.'/images/arrive.png" class="icon right" alt="Nyanländ" title="Klicka här för checklistan för nyanlända"></a>
             </td>
             ',
