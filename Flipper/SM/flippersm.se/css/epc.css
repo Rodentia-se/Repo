@@ -296,3 +296,8 @@ input[type=text], input[type=password] {
   padding-top: 5px;
   float: left;
 }
+
+.dbComment {
+  width: 400px;
+}
+
