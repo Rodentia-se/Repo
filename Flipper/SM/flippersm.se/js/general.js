@@ -1143,7 +1143,7 @@ function addFieldDiv(div, obj, prop) {
       propDiv.appendChild(selTxt);
       var addSpan = document.createElement('span'); // Let's put the result from the field check in here
       addSpan.id = prop + 'AddSpan';
-      addSpan.className += ' errorSpan';
+      addSpan.className += ' errorSpan invisible';
       propDiv.appendChild(addSpan);
       var cImg = document.createElement('img'); // What if the user regrets his/her choice, and wants to select an existing item anyway? No problem - just click the X icon! If they do, we will remove the value from the selTxt text input, and use the value from the dropdown.
       cImg.id = prop + 'AddCancel';
@@ -2523,18 +2523,20 @@ function geoAdd(el, add) { // Somebody wants to add (or regrets wanting to add d
     // Let's change the label using some creative (and ugly) cut'n'pasting-replacing of element IDs
     document.getElementById(el.id.replace('Add', '') + 'Label').innerHTML = 'Ny ' + document.getElementById(el.id.replace('Add', '') + 'Label').innerHTML.toLowerCase();
     $('#' + el.id.replace('Add', '') + 'Select').hide(); // Hide the dropdown
-    $('#' + el.id.replace('Add', '') + 'Span').hide(); // Hide the dropdown
+    $('#' + el.id.replace('Add', '') + 'Span').hide(); // Hide the select span
     el.style.display = 'none'; // Hide the plus sign
     $('#' + el.id + 'Text').show(); // Show the text input field
+    $('#' + el.id + 'Span').show(); // Show the input span
     $('#' + el.id + 'Cancel').show(); // Show the cancel icon
     $('#' + el.id + 'Text').focus(); // Put the focus on the text input
   } else { // We're regretting!
   // Some more creative (and ugly) cut'n'pasting-replacing of element IDs to change the label back
     document.getElementById(el.id.replace('AddCancel', '') + 'Label').innerHTML = ucfirst(document.getElementById(el.id.replace('AddCancel', '') + 'Label').innerHTML.replace('Ny ', ''));
     $('#' + el.id.replace('AddCancel', '') + 'Select').show(); // Show the dropdown again
-    $('#' + el.id.replace('AddCancel', '') + 'Span').show(); // Show the dropdown again
+    $('#' + el.id.replace('AddCancel', '') + 'Span').show(); // Show the select span again
     $('#' + el.id.replace('Cancel', '')).show(); // Show the plus sign again
     $('#' + el.id.replace('Cancel', '') + 'Text').hide(); // Hide the text input
+    $('#' + el.id.replace('Cancel', '') + 'Span').show(); // Hide the text span
     el.style.display = 'none'; // Hide the cancel icon
     document.getElementById(el.id.replace('Cancel', '') + 'Text').value = null; // We need to empty the text input, or the ajax call will think the user added something (Ajax can't see that it is hidden)
     $('#' + el.id.replace('AddCancel', '') + 'Select').focus(); // Put the focus on the dropdown
