@@ -862,7 +862,7 @@
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
-                <div id="'.$game->machine_id.'_ballsDiv" class="left block">
+                <div id="'.$game->machine_id.'_ballsDiv" class="left inlineBlock">
                   <label for="'.$game->machine_id.'_balls">Number of balls:</label>
                   <select id="'.$game->machine_id.'_balls" name="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
                     <option value="0">Balls...</option>
@@ -871,12 +871,12 @@
                   </select>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
                 </div>
-                <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="block">
+                <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
                   <label for="'.$game->machine_id.'_onePlayerAllowed">One player allowed:</label>
                   <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
                 </div>
-                <div id="'.$game->machine_id.'_commentDiv" class="clearboth block">
+                <div id="'.$game->machine_id.'_commentDiv" class="clearboth inlineBlock">
                   <label for="'.$game->machine_id.'_comment">Comment:</label>
                   <input type="text" name="'.$game->machine_id.'_comment" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
                   <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">

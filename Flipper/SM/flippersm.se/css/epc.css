@@ -266,6 +266,10 @@ li {
   display: block;
 }
 
+.inlineBlock {
+  display: inline-block;
+}
+
 .dbComment {
   width: 80%;
 }
