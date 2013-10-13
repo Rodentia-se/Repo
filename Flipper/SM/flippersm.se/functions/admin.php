@@ -303,8 +303,8 @@
           for($i = 1; $i <= 2; $i++){
             if ($selectedQualGroupId[2] == $selectedQualGroupId[1] + $mainClassicsDiff) {
               $assClass = 'errorTd';
-            } else if ($preferedId[$i] == $selectedQualGroupId[$i]) {
-              $assClass = 'green';              
+            } else if ($preferedId[$i] && $preferedId[$i] == $selectedQualGroupId[$i]) {
+              $assClass = 'green';
             } else if ($chosens[$i] && in_array($selectedQualGroupId[$i], $chosens[$i])) {
               $assClass = 'yellow';
             } else {
