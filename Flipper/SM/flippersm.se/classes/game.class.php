@@ -186,7 +186,7 @@
           return $this->manufacturer;
         break;
         case 'owner':
-          return $player->getOwnerLink();
+          return $this->getOwnerLink();
         break;
         case 'ipdb':
           return $this->getIpdbLink();
