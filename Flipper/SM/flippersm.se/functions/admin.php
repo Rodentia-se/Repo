@@ -862,7 +862,7 @@
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game comments" title="Click to view/edit the game comments" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
-                <div id="'.$game->machine_id.'_ballsDiv">
+                <div id="'.$game->machine_id.'_ballsDiv" class="right">
                   <select id="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
                     <option value="0">Balls...</option>
                     <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3</option>
