@@ -841,6 +841,7 @@
               <th class="bold">Game</th>
               <th class="bold">Acronym</th>
               <th class="bold">Manuf</th>
+              <th class="bold">Owner</th>
               <th class="bold">IPDB</th>
               <th class="bold">Rules</th>
               <th class="bold">Type</th>
@@ -855,6 +856,7 @@
               </td>
               <td id="0_acroTd"></td>
               <td id="0_manufacturerTd"></td>
+              <td id="0_ownerTd"></td>
               <td id="0_ipdbTd"></td>
               <td id="0_rulesTd"></td>
               <td id="0_typeTd"></td>
@@ -872,6 +874,7 @@
             <td id="'.$game->id.'_gameTd">'.$game->getAdminInfo('game').'</td>
             <td id="'.$game->id.'_acroTd">'.$game->getAdminInfo('shortName').'</td>
             <td id="'.$game->id.'_manufacturerTd">'.$game->getAdminInfo('manufacturer').'</td>
+            <td id="'.$game->id.'_ownerTd">'.$game->getAdminInfo('owner').'</td>
             <td id="'.$game->id.'_ipdbTd">'.$game->getAdminInfo('ipdb').'</td>
             <td id="'.$game->id.'_rulesTd">'.$game->getAdminInfo('rules').'</td>
             <td id="'.$game->id.'_typeTd">'.$game->getAdminInfo('type').'</td>

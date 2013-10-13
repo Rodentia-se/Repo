@@ -18,14 +18,25 @@
             $result = (object) array(
               'success' => true,
               'reason' => $game->shortName.' was added to the tournament',
-              'game' => $game->getAdminInfo('game'),
               'id' => $game->machine_id,
+              'game' => $game->getAdminInfo('game'),
               'acro' => $game->getAdminInfo('shortName'),
               'manufacturer' => $game->getAdminInfo('manufacturer'),
+              'owner' => $game->getAdminInfo('owner'),
               'ipdb' => $game->getAdminInfo('ipdb'),
               'rules' => $game->getAdminInfo('rules'),
               'type' => $game->getAdminInfo('type'),
-              'usage' => $game->getAdminInfo('usage')
+              'usage' => $game->getAdminInfo('usage'),
+              'tdIds' => array(
+                $game->machine_id.'_gameTd',
+                $game->machine_id.'_acroTd',
+                $game->machine_id.'_manufacturerTd',
+                $game->machine_id.'_ownerTd',
+                $game->machine_id.'_ipdbTd',
+                $game->machine_id.'_rulesTd',
+                $game->machine_id.'_typeTd',
+                $game->machine_id.'_usageTd'
+              )
             );
             echo(json_encode($result));
           } else {

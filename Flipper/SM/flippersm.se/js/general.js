@@ -2055,15 +2055,21 @@ function adminGameAdd(icon) {
     .done(function(data) {
       fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);
       if (data.success) {
-        $('#adminGameTable').dataTable().fnAddData( [
+        var newRow = $('#adminGameTable').dataTable().fnAddData( [
           data.game,
           data.acro,
           data.manufacturer,
+          data.owner,
           data.ipdb,
           data.rules,
           data.type,
           data.usage
         ]);
+        var oSettings = $('#adminGameTable').dataTable().fnSettings();
+        var nTr = oSettings.aoData[ newRow[0] ].nTr;
+        for (var i = 0; i <= 7; i++) {
+          $('td', nTr)[0].setAttribute('id', data.tdIds[0]);
+        }
         selectOption(gameSel, 0);
       }
     })
