@@ -2843,7 +2843,14 @@ function fade(el, text, success, start, duration) {
   var start = (start) ? start : 6000;
   var duration = (duration) ? duration : 2000;
   var success = (typeof success === 'undefined') ? true : success;
+  var img = document.createElement('img');
+  img.src = baseHref + '/images/cancel.png';
+  img.alt = 'Click to close';
+  img.className = 'icon right';
+  el.title = 'Click to close';
+  $(el).addClass('pointer');
   el.innerHTML = text;
+  el.appendChild(img);
   $('#' + el.id).stop(true, true).show();
   if ((+ $('#' + el.id).offset().left + $('#' + el.id).outerWidth()) > $(window).width()) {
     var left = (+ $('#' + el.id).offset().left - ($('#' + el.id).offset().left + $('#' + el.id).outerWidth() - $(window).width()) - 40);

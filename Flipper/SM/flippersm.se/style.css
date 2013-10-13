@@ -1196,3 +1196,7 @@ top: -9999px;
   display: inline-block;
   width: 320px;
 }
+
+#content div.pointer, #content span.pointer {
+  cursor: pointer;
+}

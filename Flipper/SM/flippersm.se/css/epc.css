@@ -44,6 +44,10 @@ img.icon {
   text-style: underline;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 img.textIcon {
   position: relative;
   height: 1em;
