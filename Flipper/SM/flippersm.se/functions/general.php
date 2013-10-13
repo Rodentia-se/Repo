@@ -2250,6 +2250,15 @@
     return $objs;
   }
   
+  function getOwners($dbh, $where, $order = 'order by name') {
+    $query = 'select * from owner';
+    $sth = $dbh->query($query.' '.$where.' '.$order);
+    while ($obj = $sth->fetchObject()) {
+      $objs[] = $obj;
+    }
+    return $objs;
+  }
+
   function getGenders($dbh, $where, $order = 'order by name') {
     $query = '
       select
@@ -2260,7 +2269,7 @@
         ge.name as name,
         ge.comment as comment
       from gender ge
-    '; 
+    ';
     $where = preg_replace('/ id /', ' ge.id ', $where);
     $where = preg_replace('/ gender_id /', ' ge.id ', $where);
     $sth = $dbh->query($query.' '.$where.' '.$order);

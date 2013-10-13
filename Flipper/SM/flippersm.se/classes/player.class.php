@@ -462,7 +462,12 @@
     function getCosts($dbh, $type = 'all', $currency = false) {
       $currencies = array('SEK' => 1, 'EUR' => 9, 'GBP' => 10, 'USD' => 6);
       $currencies = ($currency) ? array($currency => $currencies[$currency]) : $currencies;
-      $items = array('main' => 300, 'classics' => 200, 'team' => 100, 'tShirt' => 100);
+      $items = array(
+        'main' => (($player->u7) ? 0 : (($player->u18) ? 100 : 300)),
+        'classics' => (($player->u7) ? 0 : 200),
+        'team' => (($player->u7) ? 0 : 100),
+        'tShirt' => 100
+      );
       foreach ($items as $item => $price) {
         $cost[$item]['price'] = $price;
         switch ($item) {
