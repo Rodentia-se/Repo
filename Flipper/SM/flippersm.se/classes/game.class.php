@@ -73,7 +73,7 @@
       return ($sth->execute($update)) ? true : false;
     }
 
-    function setExtraBalls($dbh, $onePlayerAllowed = false) {
+    function setOnePlayerAllowed($dbh, $onePlayerAllowed = false) {
       $query = 'update machine set onePlayerAllowed = :onePlayerAllowed where id = :id';
       $update[':onePlayerAllowed'] = ($onePlayerAllowed) ? 1 : 0;
       $update[':id'] = $this->machine_id;
