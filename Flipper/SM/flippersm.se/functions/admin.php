@@ -871,8 +871,10 @@
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
                 </div>
                 <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
-                  <label for="'.$game->machine_id.'_onePlayerAllowed">One player allowed:</label>
-                  <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
+                  <label for="'.$game->machine_id.'_onePlayerAllowed">
+                    <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
+                    One player allowed
+                  </label>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
                 </div>
                 <div id="'.$game->machine_id.'_commentDiv" class="clearboth">
