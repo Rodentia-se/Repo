@@ -20,7 +20,7 @@
             <div>'.getInfo($dbh, $ulogin, 'player', $player->id, false).'</div>
             <h2 class="entry-title">Please have the player confirm that all info above and below is correct!</h2><br />
             <h2 class="big">Player login:</h2>
-            <p>Player username is <span class="big">'.$player->username.'</span>. Check that the player knows his/her password, or reset it here: <input type="button" value="Reset" id="'.$player->id.'_passwordBtn" onclick="resetPassword(this)" class="passwordBtn">
+            <p>Player username is <span class="big">'.$player->username.'</span>. Check that the player knows h'.(($player->gender == 'female') ? 'er' : 'is').' password, or reset it here: <input type="button" value="Reset" id="'.$player->id.'_passwordBtn" onclick="resetPassword(this)" class="passwordBtn">
             <span class="error errorSpan toolTip" id="'.$player->id.'_passwordBtnSpan"></span>
             <input type="hidden" id="resetNonce" value="'.ulNonce::Create('resetNonce').'">
             <input type="hidden" id="adminReset" value="true"></p>
