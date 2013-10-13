@@ -1198,6 +1198,12 @@ top: -9999px;
   width: 320px;
 }
 
+#content span.big {
+  font-size: 125%;
+  font-weight: bold;
+}
+
+
 #content div.pointer, #content span.pointer {
   cursor: pointer;
 }
