@@ -2068,7 +2068,7 @@ function adminGameAdd(icon) {
         var oSettings = $('#adminGameTable').dataTable().fnSettings();
         var nTr = oSettings.aoData[ newRow[0] ].nTr;
         for (var i = 0; i <= 7; i++) {
-          $('td', nTr)[0].setAttribute('id', data.tdIds[0]);
+          $('td', nTr)[i].setAttribute('id', data.tdIds[i]);
         }
         selectOption(gameSel, 0);
       }
