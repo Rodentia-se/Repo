@@ -2170,9 +2170,10 @@
   function getGameSelect($machine = false) {
     return '
       select
-        g.id as id,
+        '.(($machine) ? 'ma' : 'g').'.id as id,
         g.name as name,
         "game" as class,
+        g.id as game_id,
         ma.id as machine_id,
         mn.id as manufacturer_id,
         mn.name as manufacturer,
@@ -2198,14 +2199,17 @@
         ma.tournamentDivision_id as tournamentDivision_id,
         ma.tournamentEdition_id as tournamentEdition_id,
         ma.comment as comment
-      from game g
-      left join machine ma
-        on g.id = ma.game_id
-      left join manufacturer mn
-        on g.manufacturer_id = mn.id
+      '.(($machine) ? 'from machine ma
+        left join game g
+          on g.id = ma.game_id
+      ' : 'from game g
+        left join machine ma
+          on g.id = ma.game_id').'
+        left join manufacturer mn
+          on g.manufacturer_id = mn.id
     ';
   }
-  
+
   function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
     $query = getGameSelect();
     $where = preg_replace('/ id /', ' g.id ', $where);
@@ -2228,24 +2232,14 @@
   }
   
   function getMachines($dbh, $where, $order = 'order by g.name') {
-    $query = '
-      select
-        ma.id as id,
-        ma.id as machine_id,
-        g.name as name,
-        g.acronym as shortName,
-        "machine" as class,
-        d.id as tournamentDivision_id,
-        ma.game_id as game_id
-      from machine ma
-      left join game g
-        on g.id = ma.game_id
-      left join tournamentDivision d
-        on d.id = ma.tournamentDivision_id
-    '; 
+    $query = getGameSelect();
     $where = preg_replace('/ id /', ' ma.id ', $where);
     $where = preg_replace('/ game_id /', ' ma.game_id ', $where);
-    $where = preg_replace('/ tournamentDivision_id /', ' d.id ', $where);
+    $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
+    $where = preg_replace('/ tournamentDivision_id /', ' ma.tournamentDivision_id ', $where);
+    $where = preg_replace('/ tournamentEdition_id /', ' ma.tournamentEdition_id ', $where);
+    $where = preg_replace('/ type = main /', ' ma.tournamentDivision_id = 1 ', $where);
+    $where = preg_replace('/ type = classics /', ' ma.tournamentDivision_id = 2 ', $where);
     $sth = $dbh->query($query.' '.$where.' '.$order);
     while ($obj = $sth->fetchObject('game')) {
       $objs[] = $obj;
