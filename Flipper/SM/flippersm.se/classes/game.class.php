@@ -131,7 +131,7 @@
       return ($sth->execute($update)) ? true : false;
     }
 
-    function getAdminInfo($type = 'all') {
+    function getAdminInfo($dbh, $type = 'all') {
       switch($type) {
         case 'all':
           $typeArray = array('game', 'shortName', 'manufacturer', 'ipdb', 'rules', 'type', 'usage');
