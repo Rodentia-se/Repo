@@ -823,8 +823,9 @@
       switch($type) {
         case 'game':
           return '
-              '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
-              <a href="'.__baseHref.'/gamePrint.php" target="_blank"><img src="'.__baseHref__.'/images/print.png" class="icon right" alt="Click to print the game properties" title="Click to print the game properties" id="'.$game->machine_id.'_print"></a>
+              '.$game->getLink().
+              $game->getQR(true, true).
+              $game->getQR(true, true, true).'
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
@@ -907,9 +908,9 @@
           <li>A game can be listed several times, if there are several machines of the same model</li>
           <li>Type: Modern or Classics - has nothing to do with divisions</li>
           <li>Usage: The division that the game will be assigned to</li>
-          <li>'.$allGames[0]->getQR(false).': Get QR code for game</li>
           <li><img src="'.__baseHref__.'/images/edit.png" class="icon" alt="Click to view/edit the game properties" title="Click to view/edit the game properties">: Click to edit the game properties</li>
-          <li><img src="'.__baseHref__.'/images/print.png" class="icon" alt="Click to print the game properties" title="Click to print the game properties">: Click to print the game properties</li>
+          <li>'.$allGames[0]->getQR(false, false, true).': Click to print the game properties</li>
+          <li>'.$allGames[0]->getQR(false).': Get QR code for game</li>
           <li>To add a game: Choose the game in the dropdown, and click the<img src="'.__baseHref__.'/images/add_icon.gif" class="icon" alt="Add game to tournament" title="Add game to tournament"> icon</li>
           <li>To remove a game: Click the<img src="'.__baseHref__.'/images/cancel.png" class="icon" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament"> icon to the right</li>
         </ul>
