@@ -2250,7 +2250,7 @@
     return $objs;
   }
   
-  function getOwners($dbh, $where, $order = 'order by name') {
+  function getOwners($dbh, $where = null, $order = 'order by name') {
     $query = 'select * from owner';
     $sth = $dbh->query($query.' '.$where.' '.$order);
     while ($obj = $sth->fetchObject()) {
