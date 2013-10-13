@@ -51,7 +51,7 @@
                   <li>This is the total - if the player has already paid 200 and give you 200 more, change this to 400.</li>
                 </ul>
               </li>
-              <li>DIff: The amount still to be paid. If it\'s a negative number, the player has paid too much.</li>
+              <li>Diff: The amount still to be paid. If it\'s a negative number, the player has paid too much.</li>
               <li>Payment time: The date and time the player made his/her first payment, and thus used for qualification group assignment order.</li>
             </ul>
           ',
@@ -261,7 +261,7 @@
               '.(($player->volunteer) ? 
               'V:<input type="checkbox" id="'.$player->id.'_vol_here" onclick="adminHere(this);" '.(($player->hereVol) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$player->id.'_vol_hereSpan"></span>' : '').'
-              <a href="'.__baseHref__.'/?S=arrive&playerId='.$player->id.'" target="_blank"><img src="'.__baseHref__.'/images/arrive.png" class="icon right" alt="Nyanländ" title="Klicka här för checklistan för nyanlända"></a>
+              <a href="'.__baseHref__.'/?s=arrive&playerId='.$player->id.'" target="_blank"><img src="'.__baseHref__.'/images/arrive.png" class="icon right" alt="Nyanländ" title="Klicka här för checklistan för nyanlända"></a>
             </td>
             ',
           'id' => '<td>'.$player->id.'</td>',

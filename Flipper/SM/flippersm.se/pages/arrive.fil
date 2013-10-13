@@ -63,7 +63,7 @@
           $content .= '
             <h2 class="big">Payment status:</h2>
             <p class="paymentCorrect" style="display: '.$corrected.'">The player have paid in full: <span class="big"><span id="'.$player->id.'_costs">'.$player->paid.'</span> SEK.</span></p>
-            <p class="paymentTooMuch" style="display: '.$tooMuch.'">The player have paid too much. (S)he should only pay <span class="big"><span id="'.$player->id.'_tooMuchCosts">'.$costs.'</span> SEK</span>, but have paid <span class="big">'.$player->paid.' SEK</span> so please <span class="big">give '.($player->paid - $costs).' SEK back</span> and <a href="javascript: adminPaidChange(document.getElementById(\''.$player->id.'_tooMuchCosts\'));" id="tooMuchCorrected">click here</a> when done.</p>
+            <p class="paymentTooMuch" style="display: '.$tooMuch.'">The player have paid too much. '.(($player->gender == 'female') ? 'Sh' : 'H').'e should only pay <span class="big"><span id="'.$player->id.'_tooMuchCosts">'.$costs.'</span> SEK</span>, but have paid <span class="big">'.$player->paid.' SEK</span> so please <span class="big">give '.($player->paid - $costs).' SEK back</span> and <a href="javascript: adminPaidChange(document.getElementById(\''.$player->id.'_tooMuchCosts\'));" id="tooMuchCorrected">click here</a> when done.</p>
             <span class="error errorSpan toolTip" id="'.$player->id.'_tooMuchCostsSpan"></span>
             <p class="paymentNeeded" style="display: '.$tooLittle.'">The player have paid <span class="big">'.$player->paid.' SEK</span> and should pay <span class="big"><span id="'.$player->id.'_tooLittleCosts">'.$costs.'</span> SEK</span>, so (s)he needs to <span class="big">pay '.($costs - $player->paid).' SEK more</span>. <a href="javascript: adminPaidChange(document.getElementById(\''.$player->id.'_tooLittleCosts\'))" id="tooLittleCorrected">Click here</a> when done.</p>
             <span class="error errorSpan toolTip" id="'.$player->id.'_tooLittleCostsSpan"></span><br />
@@ -122,7 +122,7 @@
           if ($team) {
             $content .= getInfo($dbh, $ulogin, 'team', $team->id, false).'
               <p>Have the player confirm that the team information is correct.<br />
-              The team tournament qualification is scheduled for <span class="big">Saturday 2013-09-14 1300-1600</span> and finals at <span class="big">1600-1900</span>.</p>
+              The team tournament qualification is open during all qualification periods and finals on <span class="big">2013-11-10</span> at <span class="big">1500-1700</span>.</p>
             ';
           } else {
             '<p>The player is not a member of any team. The easiest way to register a team is for the player to login to the web site and create the team.</p>';
