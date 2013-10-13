@@ -1009,11 +1009,12 @@ top: -9999px;
 
 #content img.icon {
   position: relative;
-  width: 26px;
-  height: 16px;
+  height: 1em;
   top: 2px;
-  padding: 0px 0px 0px 10px;
+  padding: 0px 0px 0px 0px;
   cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 #content #countryDiv {
