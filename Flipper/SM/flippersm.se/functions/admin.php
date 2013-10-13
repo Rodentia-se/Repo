@@ -863,11 +863,10 @@
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
                 <div id="'.$game->machine_id.'_ballsDiv" class="left inlineBlock">
-                  <label for="'.$game->machine_id.'_balls">Number of balls:</label>
                   <select id="'.$game->machine_id.'_balls" name="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
                     <option value="0">Balls...</option>
-                    <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3</option>
-                    <option value="5"'.(($game->balls == '5') ? ' selected' : '').'>5</option>
+                    <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3 balls</option>
+                    <option value="5"'.(($game->balls == '5') ? ' selected' : '').'>5 balls</option>
                   </select>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
                 </div>
