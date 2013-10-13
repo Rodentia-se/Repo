@@ -870,6 +870,13 @@
                   </select>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
                 </div>
+                <div id="'.$game->machine_id.'_extraBallsDiv" class="inlineBlock">
+                  <label for="'.$game->machine_id.'_extraBalls">
+                    <input type="checkbox" id="'.$game->machine_id.'_extraBalls" name="'.$game->machine_id.'_extraBalls" onclick="adminGameExtraBalls(this);" '.(($game->extraBalls) ? 'checked' : '').'>
+                    Extraballs
+                  </label>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_extraBallsSpan"></span>
+                </div>
                 <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
                   <label for="'.$game->machine_id.'_onePlayerAllowed">
                     <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>

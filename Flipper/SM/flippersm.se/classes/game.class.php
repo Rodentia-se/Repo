@@ -15,6 +15,9 @@
     public $recreational;
     public $machineType;
     public $gameType;
+    public $extraBall;
+    public $balls;
+    public $onePlayerAllowed;
     public $type;
     public $manufacturer;
     public $manufacturer_id;

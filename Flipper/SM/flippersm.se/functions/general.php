@@ -2166,8 +2166,8 @@
     }
     return $objs;
   }
-  
-  function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
+
+  function getGameSelect($machine = false) {
     $query = '
       select
         g.id as id,
@@ -2181,6 +2181,9 @@
         ma.recreational as recreational,
         ma.side as side,
         ma.gameType as gameType,
+        ma.balls as balls,
+        ma.extraBalls as extraBalls,
+        ma.onePlayerAllowed as onePlayerAllowed,
         if(g.game_ipdb_id is not null, 1, 0) as isIpdb,
         g.game_ipdb_id as ipdb_id,
         g.game_year_released as year,
@@ -2200,7 +2203,11 @@
         on g.id = ma.game_id
       left join manufacturer mn
         on g.manufacturer_id = mn.id
-    '; 
+    ';
+  }
+  
+  function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
+    $query = getGameSelect();
     $where = preg_replace('/ id /', ' g.id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
     $where = preg_replace('/ game_id /', ' g.id ', $where);
