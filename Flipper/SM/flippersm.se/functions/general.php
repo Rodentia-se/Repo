@@ -2168,7 +2168,7 @@
   }
 
   function getGameSelect($machine = false) {
-    $query = '
+    return = '
       select
         g.id as id,
         g.name as name,
