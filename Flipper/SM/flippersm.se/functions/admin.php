@@ -108,16 +108,16 @@
           'header' => '<br /><br />
             <h2 class="entry-title">Players</h2>
             <ul class="italic">
-              <li><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.</li>
               <li><span class="errorTd">Assigned</span> = player has been assigned both main and classics at the same time slot.</li>
               <li><span class="green">Assigned</span> = player has been assigned preferred time slot.</li>
               <li><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</li>
             </ul>
           ',
-          'cols' => array('player', 'mailAddress', 'mobileNumber', 'team', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
+          'cols' => array('player', 'mailAddress', 'mobileNumber', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
         )
       );
-      
+//               <li><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.</li>
+
       $th = array (
         'player' => 'Player',
         'main' => 'M-ID',
