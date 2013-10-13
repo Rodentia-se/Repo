@@ -1993,6 +1993,7 @@ function adminGameAdd(icon) {
           data.type,
           data.usage
         ]);
+        selectOption(gameSel, 0);
       }
     })
     .fail(function(jqHXR,status,error) {
