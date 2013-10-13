@@ -13,6 +13,8 @@
         if ($game) {
           $game->machine_id = $game->add($dbh);
           if ($game->machine_id) {
+            $game = getMachineById($dbh, $game->machine_id);
+            $game->id = $game->game_id;
             $result = (object) array(
               'success' => true,
               'reason' => $game->shortName.' was added to the tournament',
