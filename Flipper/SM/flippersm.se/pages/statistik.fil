@@ -57,7 +57,7 @@
     select
       count(*) as players,
       count(if(birthDate > "1995-11-07",1,null)) as u18,
-      count(if(birthDate > "2007-11-07",1,null)) as u7,
+      count(if(birthDate > "2006-11-07",1,null)) as u7,
       max(birthDate) as max,
       min(birthDate) as min,
       avg(birthDate) as avg
