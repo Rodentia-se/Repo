@@ -862,9 +862,23 @@
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game comments" title="Click to view/edit the game comments" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
-                <input type="text" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
-                <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
-                <span class="error errorSpan toolTip" id="'.$game->machine_id.'_commentSubmitSpan"></span>
+                <div id="'.$game->machine_id.'_ballsDiv">
+                  <select id="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
+                    <option value="0">Balls...</option>
+                    <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3</option>
+                    <option value="5"'.(($game->balls == '5') ? ' selected' : '').'>5</option>
+                  </select>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
+                </div>
+                <div id="'.$game->machine_id.'_onePlayerAllowedDiv">
+                  One player allowed: <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
+                </div>
+                <div id="'.$game->machine_id.'_commentDiv">
+                  Comment: <input type="text" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
+                  <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_commentSubmitSpan"></span>
+                </div>
               </div>
             </td>
             <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
