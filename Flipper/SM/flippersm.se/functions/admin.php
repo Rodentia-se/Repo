@@ -876,7 +876,7 @@
                   <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
                   <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
                 </div>
-                <div id="'.$game->machine_id.'_commentDiv" class="clearboth inlineBlock">
+                <div id="'.$game->machine_id.'_commentDiv" class="clearboth">
                   <label for="'.$game->machine_id.'_comment">Comment:</label>
                   <input type="text" name="'.$game->machine_id.'_comment" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
                   <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
