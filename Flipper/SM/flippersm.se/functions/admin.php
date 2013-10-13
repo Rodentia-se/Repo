@@ -310,7 +310,8 @@
             } else {
               $assClass = '';  
             }
-            $td['chosen_'.$i] = '<td'.(($team && (in_array($preferedId[$i], $teamNoQualIds))) ? ' class="errorTd"' : '').'>'.$chosen[$i].'</td>';
+//            $td['chosen_'.$i] = '<td'.(($team && (in_array($preferedId[$i], $teamNoQualIds))) ? ' class="errorTd"' : '').'>'.$chosen[$i].'</td>';
+            $td['chosen_'.$i] = '<td>'.$chosen[$i].'</td>';
             $td['ass_'.$i] = '
                 <td class="'.$assClass.'" id="'.$player->id.'_'.$i.'_qualGroupTd">
                   <select id="'.$player->id.'_'.$i.'_qualGroup" onchange="adminQualGroup(this);" previous="'.$selectedQualGroupId[$i].'"'.(($i == 2 && !$player->classics) ? 'disabled' : '').'>
