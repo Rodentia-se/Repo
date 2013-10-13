@@ -262,6 +262,10 @@ li {
   clear: both;
 }
 
+.block {
+  display: block;
+}
+
 .dbComment {
   width: 80%;
 }
