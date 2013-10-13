@@ -821,7 +821,7 @@
     
     function getAdminGameTable($dbh) {
       $allGames = getGames($dbh, false, 'order by g.name', 0);
-      $buyersTable .= '
+      $gameTable = '
         <br /><br /><h2 class="entry-title">Games</h2>
         <ul>
           <li>A game can be listed several times, if there are several machines of the same model</li>
