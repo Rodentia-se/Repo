@@ -460,6 +460,9 @@
     }
 
     function getCosts($dbh, $type = 'all', $currency = false) {
+    if ($player->id == 525) {
+      var_dump($player);
+    }
       $currencies = array('SEK' => 1, 'EUR' => 9, 'GBP' => 10, 'USD' => 6);
       $currencies = ($currency) ? array($currency => $currencies[$currency]) : $currencies;
       $items = array(
