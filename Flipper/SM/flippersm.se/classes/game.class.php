@@ -40,7 +40,7 @@
       }
     }
     
-    function setGameType($dbh, $type) {
+    function setType($dbh, $type) {
       $query = 'update machine set gameType = :type where game_id = :id';
       $update[':type'] = $type;
       $update[':id'] = $this->id;
@@ -49,10 +49,34 @@
       return ($sth->execute($update)) ? true : false;
     }
 
-    function setGameUsage($dbh, $division = 1) {
+    function setUsage($dbh, $division = 1) {
       $query = 'update machine set tournamentDivision_id = :division where id = :id';
       $update[':division'] = $division;
-      $update[':id'] = $this->id;
+      $update[':id'] = $this->machine_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
+    function setBalls($dbh, $balls = 3) {
+      $query = 'update machine set balls = :balls where id = :id';
+      $update[':balls'] = $balls;
+      $update[':id'] = $this->machine_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
+    function setExtraBalls($dbh, $extraBalls = false) {
+      $query = 'update machine set extraBalls = :extraBalls where id = :id';
+      $update[':extraBalls'] = ($extraBalls) 1 : 0;
+      $update[':id'] = $this->machine_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
+    function setExtraBalls($dbh, $onePlayerAllowed = false) {
+      $query = 'update machine set onePlayerAllowed = :onePlayerAllowed where id = :id';
+      $update[':onePlayerAllowed'] = ($onePlayerAllowed) 1 : 0;
+      $update[':id'] = $this->machine_id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
@@ -80,13 +104,6 @@
       }
     }
     
-    function getQR($link = true, $right = false, $info = false) {
-      $img = ($info) ? 'print.png': 'qr.png';
-      $title = ($info) ? 'Click to print game info' : 'Click to print QR code';
-      $qr = '<img src="'.__baseHref__.'/images/'.$img.'" class="icon'.(($right) ? ' right': '').'" alt="'.$title.'" title="'.$title.'">';
-      return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.(($info) ? '&info=1': '').'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
-    }
-
     function remove($dbh) {
       $query = 'delete from machine where id = :id';
       $delete[':id'] = $this->id;
@@ -102,44 +119,140 @@
       return ($sth->execute($update)) ? true : false;
     }
 
+    function getAdminInfo($type = 'all') {
+      switch($type) {
+        case 'all':
+          $typeArray = array('game', 'shortName', 'manufacturer', 'ipdb', 'rules', 'type', 'usage');
+          foreach($typeArray as $infoType) {
+            $return .= $this->getAdminInfo($infoType);
+          }
+          return $return;
+        break;
+        case 'game':
+          return '
+              '.$this->getLink().
+              $this->getQR(true, true).
+              $this->getQR(true, true, true).'
+              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$this->machine_id.'_edit">
+              <div class="toolTip" id="'.$this->machine_id.'_editDiv">
+                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$this->machine_id.'_editDivClose">
+                <div id="'.$this->machine_id.'_ballsDiv" class="left inlineBlock">
+                  <select id="'.$this->machine_id.'_balls" name="'.$this->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$this->balls.'">
+                    <option value="0">Balls...</option>
+                    <option value="3"'.(($this->balls == '3') ? ' selected' : '').'>3 balls</option>
+                    <option value="5"'.(($this->balls == '5') ? ' selected' : '').'>5 balls</option>
+                  </select>
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ballsSpan"></span>
+                </div>
+                <div id="'.$this->machine_id.'_extraBallsDiv" class="inlineBlock">
+                  <label for="'.$this->machine_id.'_extraBalls">
+                    <input type="checkbox" id="'.$this->machine_id.'_extraBalls" name="'.$this->machine_id.'_extraBalls" onclick="adminGameExtraBalls(this);" '.(($this->extraBalls) ? 'checked' : '').'>
+                    Extraballs
+                  </label>
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_extraBallsSpan"></span>
+                </div>
+                <div id="'.$this->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
+                  <label for="'.$this->machine_id.'_onePlayerAllowed">
+                    <input type="checkbox" id="'.$this->machine_id.'_onePlayerAllowed" name="'.$this->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($this->onePlayerAllowed) ? 'checked' : '').'>
+                    One player allowed
+                  </label>
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_onePlayerAllowedSpan"></span>
+                </div>
+                <div id="'.$this->machine_id.'_commentDiv" class="clearboth">
+                  <label for="'.$this->machine_id.'_comment">Comment:</label>
+                  <input type="text" name="'.$this->machine_id.'_comment" id="'.$this->machine_id.'_comment" value="'.$this->comment.'" class="dbComment" onkeyup="enterClick(\''.$this->machine_id.'_commentSubmit\', event);">
+                  <input type="button" id="'.$this->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_commentSubmitSpan"></span>
+                </div>
+              </div>
+          ';
+        break;
+        case 'shortName':
+          return $this->shortName;
+        break;
+        case 'manufacturer':
+          return $this->manufacturer;
+        break;
+        case 'ipdb':
+          return $this->getIpdbLink();
+        break;
+        case 'rules':
+          return $this->getRulesLink();
+        break;
+        case 'type':
+          return '
+              <select id="'.$this->id.'_type" onchange="adminGameType(this);" previous="'.$this->gameType.'">
+                <option value="0">Type...</option>
+                <option value="modern"'.(($this->gameType == 'modern') ? ' selected' : '').'>Modern</option>
+                <option value="classics"'.(($this->gameType == 'classics') ? ' selected' : '').'>Classics</option>
+              </select>
+              <span class="error errorSpan toolTip" id="'.$this->id.'_typeSpan"></span>
+          ';
+        break;
+        case 'usage':
+          return '
+              <select id="'.$this->machine_id.'_usage" onchange="adminGameUsage(this);" previous="'.$this->tournamentDivision_id.'">
+                <option value="0">Usage...</option>
+                <option value="1"'.(($this->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
+                <option value="2"'.(($this->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
+                <option value="3"'.(($this->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>
+                <option value="13"'.(($this->tournamentDivision_id == 13) ? ' selected' : '').'>Side</option>
+                <option value="14"'.(($this->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
+              </select>
+              <span class="error errorSpan toolTip" id="'.$this->machine_id.'_usageSpan"></span>
+              <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$this->machine_id.'_delete">
+              <span class="error errorSpan toolTip" id="'.$this->machine_id.'_deleteSpan"></span>
+          ';
+        break;
+      }
+    }
+
     function getAllEntries ($dbh, $groupBy = false, $tournament = 1) {
-    $query = '
-      select
-        qe.person_id as id,
-        qs.id as qualScoreId,
-        qe.id as qualEntryId,
-        qs.place as place,
-        qe.place as entryPlace,
-        qs.points as points,
-        qe.points as entryPoints,
-        qs.score as score,
-        qe.realPlayer_id as playerId,
-        qe.firstName as firstName,
-        qe.lastName as lastName,
-        concat(ifnull(qe.firstName,""), " ", ifnull(qe.lastName,"")) as player,
-        qe.country_id as countryId,
-        qe.country as country,
-        qs.machine_id as machineId,
-        qs.gameAcronym as gameAcronym,
-        ';
+      $query = '
+        select
+          qe.person_id as id,
+          qs.id as qualScoreId,
+          qe.id as qualEntryId,
+          qs.place as place,
+          qe.place as entryPlace,
+          qs.points as points,
+          qe.points as entryPoints,
+          qs.score as score,
+          qe.realPlayer_id as playerId,
+          qe.firstName as firstName,
+          qe.lastName as lastName,
+          concat(ifnull(qe.firstName,""), " ", ifnull(qe.lastName,"")) as player,
+          qe.country_id as countryId,
+          qe.country as country,
+          qs.machine_id as machineId,
+          qs.gameAcronym as gameAcronym,
+      ';
       $query .= ($groupBy) ? '
         max(qs.score) as maxScore,
         max(qs.points) as maxPoints,
         min(qs.place) as bestPlace,
       ' : '';
       $query .='
-        qs.game as game
-      from qualScore qs
-        left join qualEntry qe
-          on qs.qualEntry_id = qe.id
-      where qs.machine_id = '.$this->machine_id.'
-        and qe.tournamentDivision_id = '.$tournament.' ';
+          qs.game as game
+        from qualScore qs
+          left join qualEntry qe
+            on qs.qualEntry_id = qe.id
+        where qs.machine_id = '.$this->machine_id.'
+          and qe.tournamentDivision_id = '.$tournament.'
+      ';
       $query .= ($groupBy) ? $groupBy : '';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
       }
       return $objs;
+    }
+
+    function getQR($link = true, $right = false, $info = false) {
+      $img = ($info) ? 'print.png': 'qr.png';
+      $title = ($info) ? 'Click to print game info' : 'Click to print QR code';
+      $qr = '<img src="'.__baseHref__.'/images/'.$img.'" class="icon'.(($right) ? ' right': '').'" alt="'.$title.'" title="'.$title.'">';
+      return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.(($info) ? '&info=1': '').'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
     }
 
   }

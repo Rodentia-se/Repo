@@ -1954,6 +1954,11 @@ function adminGameUsage(sel) {
   $.post(baseHref + '/ajax/gameUsage.php', {machineId: machineId, divisionId: divisionId}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
   })
   .fail(function(jqHXR,status,error) {
     debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
@@ -1968,6 +1973,64 @@ function adminGameType(sel) {
   $.post(baseHref + '/ajax/gameType.php', {gameId: gameId, type: type}) // Send to server
   .done(function(data) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameBalls(sel) {
+  var machineId = sel.id.split('_')[0];
+  var balls = sel.value;
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/gameBalls.php', {machineId: machineId, balls: balls}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameExtraBalls(box) {
+  var machineId = box.id.split('_')[0];
+  var extraBalls = box.checked;
+  fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/gameExtraBalls.php', {machineId: machineId, extraBalls: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(box.id + 'Span'), data.reason, data.success);
+    if (!data.success) {
+      box.checked = !box.checked;
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameOnePlayerAllowed(box) {
+  var machineId = box.id.split('_')[0];
+  var onePlayerAllowed = box.checked;
+  fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/gameExtraBalls.php', {machineId: machineId, onePlayerAllowed: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(box.id + 'Span'), data.reason, data.success);
+    if (!data.success) {
+      box.checked = !box.checked;
+    }
   })
   .fail(function(jqHXR,status,error) {
     debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
