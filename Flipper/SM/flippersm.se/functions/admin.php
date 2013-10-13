@@ -871,14 +871,14 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td id="'.$game->id.'_gameTd">'.$game->getAdminInfo('game').'</td>
-            <td id="'.$game->id.'_acroTd">'.$game->getAdminInfo('shortName').'</td>
-            <td id="'.$game->id.'_manufacturerTd">'.$game->getAdminInfo('manufacturer').'</td>
-            <td id="'.$game->id.'_ownerTd">'.$game->getAdminInfo('owner').'</td>
-            <td id="'.$game->id.'_ipdbTd">'.$game->getAdminInfo('ipdb').'</td>
-            <td id="'.$game->id.'_rulesTd">'.$game->getAdminInfo('rules').'</td>
-            <td id="'.$game->id.'_typeTd">'.$game->getAdminInfo('type').'</td>
-            <td id="'.$game->id.'_usageTd">'.$game->getAdminInfo('usage').'</td>
+            <td id="'.$game->machine_id.'_gameTd">'.$game->getAdminInfo('game').'</td>
+            <td id="'.$game->machine_id.'_acroTd">'.$game->getAdminInfo('shortName').'</td>
+            <td id="'.$game->machine_id.'_manufacturerTd">'.$game->getAdminInfo('manufacturer').'</td>
+            <td id="'.$game->machine_id.'_ownerTd">'.$game->getAdminInfo('owner').'</td>
+            <td id="'.$game->machine_id.'_ipdbTd">'.$game->getAdminInfo('ipdb').'</td>
+            <td id="'.$game->machine_id.'_rulesTd">'.$game->getAdminInfo('rules').'</td>
+            <td id="'.$game->machine_id.'_typeTd">'.$game->getAdminInfo('type').'</td>
+            <td id="'.$game->machine_id.'_usageTd">'.$game->getAdminInfo('usage').'</td>
           </tr>
         ';
       }
