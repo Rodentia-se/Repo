@@ -27,7 +27,7 @@
             <h2 class="big">Player handout:</h2>
             <p>Please give the player:
               <ul>
-                <li>The player QR code sticker, to put on his chest. <a href="'.__baseHref__.'/mobile/playerPrinter.php?playerId='.$player->id.'&autoPrint=true" target="_blank">Print here</a></li>
+                <li>The player QR code sticker, to put on h'.(($player->gender == 'female') ? 'er' : 'is').' chest. <a href="'.__baseHref__.'/mobile/playerPrinter.php?playerId='.$player->id.'&autoPrint=true" target="_blank">Print here</a></li>
                 <li>One 20% off discount ticket</li>
                 '.(($player->volunteer) ? '<li>One free dinner ticket</li>' : '').'
                 <li>Information that game cards for recreational play can be bought in the bar</li>
