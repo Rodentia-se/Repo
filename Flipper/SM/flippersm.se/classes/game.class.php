@@ -26,27 +26,27 @@
     public $ownerShortName;
     public $class = 'game';
    
-    function getOwnerLink($href = true) {
+    function getOwnerLink($href = true, $target = '_blank') {
       if ($this->owner_id) {
         $url = __baseHref__.'/?s=owner&id='.$this->owner_id;
-        return ($href) ? '<a href="'.$url.'" title="'.$this->ownerName.'">'.$this->ownerShortName.'</a>' : $url;
+        return ($href) ? '<a href="'.$url.'" title="'.$this->ownerName.'" '.(($target) ? 'target="'.$target.'"' : '').'>'.$this->ownerShortName.'</a>' : $url;
       } else {
         return false;
       }
     }
 
-    function getIpdbLink($href = true) {
+    function getIpdbLink($href = true, $target = '_blank') {
       if ($this->ipdb_id) {
         $url = 'http://ipdb.org/machine.cgi?id='.$this->ipdb_id;
-        return ($href) ? '<a href="'.$url.'" target="_blank">'.$this->ipdb_id.'</a>' : $url;
+        return ($href) ? '<a href="'.$url.'" title="Click to go to IPDB.org" '.(($target) ? 'target="'.$target.'"' : '').'>'.$this->ipdb_id.'</a>' : $url;
       } else {
         return false;
       }
     }
     
-    function getRulesLink($href = true) {
+    function getRulesLink($href = true, $target = '_blank') {
       if ($this->ipdb_id) {
-        return ($href) ? '<a href="'.$this->rules.'" target="_blank">Rules</a>' : $this->rules;
+        return ($href) ? '<a href="'.$this->rules.'" title="Click to view game rules and strategys on an external site" '.(($target) ? 'target="'.$target.'"' : '').'>Rules</a>' : $this->rules;
       } else {
         return false;
       }
