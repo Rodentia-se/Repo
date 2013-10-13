@@ -67,7 +67,7 @@
 
     function setExtraBalls($dbh, $extraBalls = false) {
       $query = 'update machine set extraBalls = :extraBalls where id = :id';
-      $update[':extraBalls'] = ($extraBalls) 1 : 0;
+      $update[':extraBalls'] = ($extraBalls) ? 1 : 0;
       $update[':id'] = $this->machine_id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
