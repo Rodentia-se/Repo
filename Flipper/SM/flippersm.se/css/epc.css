@@ -57,7 +57,7 @@ img.textIcon {
 }
 
 table.dataTable td {
-  padding: none;
+  padding: 0;
 }
 
 .invisible {
