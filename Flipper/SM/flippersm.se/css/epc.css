@@ -254,6 +254,10 @@ li {
   float: right;
 }
 
+.left {
+  float: left;
+}
+
 .dbComment {
   width: 80%;
 }
