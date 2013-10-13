@@ -84,7 +84,7 @@
       $img = ($info) ? 'print.png': 'qr.png';
       $title = ($info) ? 'Click to print game info' : 'Click to print QR code';
       $qr = '<img src="'.__baseHref__.'/images/'.$img.'.png" class="icon'.(($right) ? ' right': '').'" alt="'.$title.'" title="'.$title.'">';
-      return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.(($info) ? '&info=1': '')'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
+      return ($link) ? '<a href="'.__baseHref__.'/mobile/gamePrinter.php?gameId='.$this->machine_id.(($info) ? '&info=1': '').'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
     }
 
     function remove($dbh) {
