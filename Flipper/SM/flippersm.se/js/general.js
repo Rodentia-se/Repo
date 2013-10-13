@@ -1048,6 +1048,10 @@ function addFieldRow(tbody, obj, prop) {
       selTxt.id = prop + 'AddText'; // ...so both ID and name will also tell what type of input it is.
       selTxt.className += ' invisible'; // Display none until the plus sign is clicked
       td.appendChild(selTxt);
+      var addSpan = document.createElement('span'); // Let's put the result from the field check in here
+      addSpan.id = prop + 'AddSpan';
+      addSpan.className += ' errorSpan';
+      td.appendChild(addSpan);
       var cImg = document.createElement('img'); // What if the user regrets his/her choice, and wants to select an existing item anyway? No problem - just click the X icon! If they do, we will remove the value from the selTxt text input, and use the value from the dropdown.
       cImg.id = prop + 'AddCancel';
       cImg.src = baseHref + '/images/cancel.png';
