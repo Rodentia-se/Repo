@@ -869,13 +869,13 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td id="'.$game->id.'_gameTd">'.$game->getAdminGameInfo('game').'</td>
-            <td id="'.$game->id.'_acroTd">'.$game->getAdminGameInfo('shortName').'</td>
-            <td id="'.$game->id.'_manufacturerTd">'.$game->getAdminGameInfo('manufacturer').'</td>
-            <td id="'.$game->id.'_ipdbTd">'.$game->getAdminGameInfo('ipdb').'</td>
-            <td id="'.$game->id.'_rulesTd">'.$game->getAdminGameInfo('rules').'</td>
-            <td id="'.$game->id.'_typeTd">'.$game->getAdminGameInfo('type').'</td>
-            <td id="'.$game->id.'_usageTd">'.$game->getAdminGameInfo('usage').'</td>
+            <td id="'.$game->id.'_gameTd">'.$game->getAdminInfo('game').'</td>
+            <td id="'.$game->id.'_acroTd">'.$game->getAdminInfo('shortName').'</td>
+            <td id="'.$game->id.'_manufacturerTd">'.$game->getAdminInfo('manufacturer').'</td>
+            <td id="'.$game->id.'_ipdbTd">'.$game->getAdminInfo('ipdb').'</td>
+            <td id="'.$game->id.'_rulesTd">'.$game->getAdminInfo('rules').'</td>
+            <td id="'.$game->id.'_typeTd">'.$game->getAdminInfo('type').'</td>
+            <td id="'.$game->id.'_usageTd">'.$game->getAdminInfo('usage').'</td>
           </tr>
         ';
       }
