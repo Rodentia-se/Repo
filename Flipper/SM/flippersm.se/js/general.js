@@ -2025,7 +2025,7 @@ function adminGameOnePlayerAllowed(box) {
   var machineId = box.id.split('_')[0];
   var onePlayerAllowed = box.checked;
   fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
-  $.post(baseHref + '/ajax/gameExtraBalls.php', {machineId: machineId, onePlayerAllowed: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
+  $.post(baseHref + '/ajax/gameOnePlayerAllowed.php', {machineId: machineId, onePlayerAllowed: ((box.checked) ? 1 : 0), type: box.id.split('_')[1]}) // Send to server
   .done(function(data) {
     fade(document.getElementById(box.id + 'Span'), data.reason, data.success);
     if (!data.success) {
