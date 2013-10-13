@@ -129,7 +129,7 @@
         'total' => 'Total',
         'paid' => 'Paid',
         'diff' => 'Diff',
-        'payDate' => 'Payment time',
+        'payDate' => 'Payment',
         'id' => 'ID',
         'ifpa' => 'IFPA',
         'mailAddress' => 'Email',
