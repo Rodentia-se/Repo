@@ -2870,7 +2870,7 @@ function fade(el, text, success, start, duration) {
     $('#' + el.id).fadeOut(duration);
   }, start);
   $('#' + el.id).click(function() {
-    $(this).fadeOut(500);
+    $(this).fadeOut(200);
   });
 }
 
