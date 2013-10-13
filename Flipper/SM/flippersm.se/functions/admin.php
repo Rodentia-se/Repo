@@ -839,7 +839,7 @@
           <thead>
             <tr>
               <th class="bold">Game</th>
-              <th class="bold">Acronym</th>
+              <th class="bold">Acro</th>
               <th class="bold">Manuf</th>
               <th class="bold">Owner</th>
               <th class="bold">IPDB</th>
