@@ -2515,6 +2515,7 @@ function geoAdd(el, add) { // Somebody wants to add (or regrets wanting to add d
     // Let's change the label using some creative (and ugly) cut'n'pasting-replacing of element IDs
     document.getElementById(el.id.replace('Add', '') + 'Label').innerHTML = 'Ny ' + document.getElementById(el.id.replace('Add', '') + 'Label').innerHTML.toLowerCase();
     $('#' + el.id.replace('Add', '') + 'Select').hide(); // Hide the dropdown
+    $('#' + el.id.replace('Add', '') + 'Span').hide(); // Hide the dropdown
     el.style.display = 'none'; // Hide the plus sign
     $('#' + el.id + 'Text').show(); // Show the text input field
     $('#' + el.id + 'Cancel').show(); // Show the cancel icon
@@ -2523,6 +2524,7 @@ function geoAdd(el, add) { // Somebody wants to add (or regrets wanting to add d
   // Some more creative (and ugly) cut'n'pasting-replacing of element IDs to change the label back
     document.getElementById(el.id.replace('AddCancel', '') + 'Label').innerHTML = ucfirst(document.getElementById(el.id.replace('AddCancel', '') + 'Label').innerHTML.replace('Ny ', ''));
     $('#' + el.id.replace('AddCancel', '') + 'Select').show(); // Show the dropdown again
+    $('#' + el.id.replace('AddCancel', '') + 'Span').show(); // Show the dropdown again
     $('#' + el.id.replace('Cancel', '')).show(); // Show the plus sign again
     $('#' + el.id.replace('Cancel', '') + 'Text').hide(); // Hide the text input
     el.style.display = 'none'; // Hide the cancel icon
