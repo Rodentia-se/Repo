@@ -113,7 +113,7 @@
               <li><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</li>
             </ul>
           ',
-          'cols' => array('player', 'mailAddress', 'mobileNumber', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
+          'cols' => array('player', 'mailAddress', 'mobileNumber', 'payDate', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
         )
       );
 //               <li><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.</li>
