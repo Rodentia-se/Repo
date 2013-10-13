@@ -21,8 +21,20 @@
     public $type;
     public $manufacturer;
     public $manufacturer_id;
+    public $owner_id;
+    public $ownerName;
+    public $ownerShortName;
     public $class = 'game';
    
+    function getOwnerLink($href = true) {
+      if ($this->owner_id) {
+        $url = __baseHref__.'/?s=owner&id='.$this->owner_id;
+        return ($href) ? '<a href="'.$url.'" title="'.$this->ownerName.'">'.$this->ownerShortName.'</a>' : $url;
+      } else {
+        return false;
+      }
+    }
+
     function getIpdbLink($href = true) {
       if ($this->ipdb_id) {
         $url = 'http://ipdb.org/machine.cgi?id='.$this->ipdb_id;
@@ -172,6 +184,9 @@
         break;
         case 'manufacturer':
           return $this->manufacturer;
+        break;
+        case 'owner':
+          return $player->getOwnerLink();
         break;
         case 'ipdb':
           return $this->getIpdbLink();
