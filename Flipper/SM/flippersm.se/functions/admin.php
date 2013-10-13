@@ -821,7 +821,18 @@
     
     function getAdminGameTable($dbh) {
       $allGames = getGames($dbh, false, 'order by g.name', 0);
-      $gameTable .= '<br /><br /><h2 class="entry-title">Game tools</h2>';
+      $buyersTable .= '
+        <br /><br /><h2 class="entry-title">Games</h2>
+        <ul>
+          <li>A game can be listed several times, if there are several machines of the same model</li>
+          <li>Type: Modern or Classics - has nothing to do with divisions</li>
+          <li>Usage: The division that the game will be assigned to</li>
+          <li>'.$allGames[0]->getQR(false).': Get QR code for game</li>
+          <li><img src="'.__baseHref__.'/images/edit.png" class="icon" alt="Click to view/edit the game properties" title="Click to view/edit the game properties">: Click to edit the game properties</li>
+          <li><img src="'.__baseHref__.'/images/print.png" class="icon" alt="Click to print the game properties" title="Click to print the game properties">: Click to print the game properties</li>
+          <li>To add a game: Choose the game in the dropdown, and click the<img src="'.__baseHref__.'/images/add_icon.gif" class="icon" alt="Add game to tournament" title="Add game to tournament"> icon</li>
+        </ul>
+      ';
       $gameTable .= '
         <table id="adminGameTable">
           <thead>
