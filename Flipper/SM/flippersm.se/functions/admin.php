@@ -840,7 +840,7 @@
             <tr>
               <th class="bold">Game</th>
               <th class="bold">Acronym</th>
-              <th class="bold">Manufacturer</th>
+              <th class="bold">Manuf</th>
               <th class="bold">IPDB</th>
               <th class="bold">Rules</th>
               <th class="bold">Type</th>
