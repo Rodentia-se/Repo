@@ -2536,7 +2536,7 @@ function geoAdd(el, add) { // Somebody wants to add (or regrets wanting to add d
     $('#' + el.id.replace('AddCancel', '') + 'Span').show(); // Show the select span again
     $('#' + el.id.replace('Cancel', '')).show(); // Show the plus sign again
     $('#' + el.id.replace('Cancel', '') + 'Text').hide(); // Hide the text input
-    $('#' + el.id.replace('Cancel', '') + 'Span').show(); // Hide the text span
+    $('#' + el.id.replace('Cancel', '') + 'Span').hide(); // Hide the text span
     el.style.display = 'none'; // Hide the cancel icon
     document.getElementById(el.id.replace('Cancel', '') + 'Text').value = null; // We need to empty the text input, or the ajax call will think the user added something (Ajax can't see that it is hidden)
     $('#' + el.id.replace('AddCancel', '') + 'Select').focus(); // Put the focus on the dropdown
