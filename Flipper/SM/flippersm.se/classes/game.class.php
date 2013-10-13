@@ -141,7 +141,8 @@
           return $return;
         break;
         case 'game':
-          return '
+          $owners = getOwners($dbh);
+          $return = '
               '.$this->getLink().
               $this->getQR(true, true).
               $this->getQR(true, true, true).'
@@ -153,6 +154,17 @@
                     <option value="0">Balls...</option>
                     <option value="3"'.(($this->balls == '3') ? ' selected' : '').'>3 balls</option>
                     <option value="5"'.(($this->balls == '5') ? ' selected' : '').'>5 balls</option>
+                  </select>
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ballsSpan"></span>
+                </div>
+                <div id="'.$this->machine_id.'_ownerDiv" class="left inlineBlock">
+                  <select id="'.$this->machine_id.'_owner" name="'.$this->machine_id.'_owner" onchange="adminGameOwner(this);" previous="'.$this->owner_id.'">
+                    <option value="0">Owner...</option>
+          ';
+          foreach ($owners as $owner) {
+            $return .= '<option value="'.$owner->id.'"'.(($owner->id == $this->owner_id) ? ' selected' : '').'>'.$owner->shortName.'</option>';
+          }
+          $return .= '
                   </select>
                   <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ballsSpan"></span>
                 </div>
@@ -178,6 +190,7 @@
                 </div>
               </div>
           ';
+          return $return;
         break;
         case 'shortName':
           return $this->shortName;
