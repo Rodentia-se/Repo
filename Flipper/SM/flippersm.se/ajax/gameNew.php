@@ -1,5 +1,6 @@
 <?php
   require_once('../functions/general.php');
+  require_once('../functions/admin.php');
   header('Content-Type: application/json');
 
   $gameId = (isset($_REQUEST['gameId']) && preg_match('/^[0-9]+$/', $_REQUEST['gameId'])) ? $_REQUEST['gameId'] : null;

@@ -818,6 +818,85 @@
       $buyersTable .= '</tbody></table>';
       return ($type == 'buyers') ? $buyersTable : $totalTable;
     }
+
+    function getAdminGameInfo($game, $type = 'game') {
+      switch($type) {
+        case 'game':
+          return '
+              '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
+              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$game->machine_id.'_edit">
+              <div class="toolTip" id="'.$game->machine_id.'_editDiv">
+                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
+                <div id="'.$game->machine_id.'_ballsDiv" class="left inlineBlock">
+                  <select id="'.$game->machine_id.'_balls" name="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
+                    <option value="0">Balls...</option>
+                    <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3 balls</option>
+                    <option value="5"'.(($game->balls == '5') ? ' selected' : '').'>5 balls</option>
+                  </select>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
+                </div>
+                <div id="'.$game->machine_id.'_extraBallsDiv" class="inlineBlock">
+                  <label for="'.$game->machine_id.'_extraBalls">
+                    <input type="checkbox" id="'.$game->machine_id.'_extraBalls" name="'.$game->machine_id.'_extraBalls" onclick="adminGameExtraBalls(this);" '.(($game->extraBalls) ? 'checked' : '').'>
+                    Extraballs
+                  </label>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_extraBallsSpan"></span>
+                </div>
+                <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
+                  <label for="'.$game->machine_id.'_onePlayerAllowed">
+                    <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
+                    One player allowed
+                  </label>
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
+                </div>
+                <div id="'.$game->machine_id.'_commentDiv" class="clearboth">
+                  <label for="'.$game->machine_id.'_comment">Comment:</label>
+                  <input type="text" name="'.$game->machine_id.'_comment" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
+                  <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
+                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_commentSubmitSpan"></span>
+                </div>
+              </div>
+          ';
+        break;
+        case 'shortName':
+          return $game->shortName;
+        break;
+        case 'manufacturer':
+          return $game->manufacturer;
+        break;
+        case 'ipdb':
+          return $game->getIpdbLink();
+        break;
+        case 'rules':
+          return $game->getRulesLink();
+        break;
+        case 'type':
+          return '
+              <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="'.$game->gameType.'">
+                <option value="0">Type...</option>
+                <option value="modern"'.(($game->gameType == 'modern') ? ' selected' : '').'>Modern</option>
+                <option value="classics"'.(($game->gameType == 'classics') ? ' selected' : '').'>Classics</option>
+              </select>
+              <span class="error errorSpan toolTip" id="'.$game->id.'_typeSpan"></span>
+          ';
+        break;
+        case 'usage':
+          return '
+              <select id="'.$game->machine_id.'_usage" onchange="adminGameUsage(this);" previous="'.$game->tournamentDivision_id.'">
+                <option value="0">Usage...</option>
+                <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
+                <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
+                <option value="3"'.(($game->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>
+                <option value="13"'.(($game->tournamentDivision_id == 13) ? ' selected' : '').'>Side</option>
+                <option value="14"'.(($game->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
+              </select>
+              <span class="error errorSpan toolTip" id="'.$game->machine_id.'_usageSpan"></span>
+              <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_delete">
+              <span class="error errorSpan toolTip" id="'.$game->machine_id.'_deleteSpan"></span>
+          ';
+        break;
+      }
+    }
     
     function getAdminGameTable($dbh) {
       $allGames = getGames($dbh, false, 'order by g.name', 0);
@@ -869,66 +948,13 @@
       foreach($games as $game) {
         $gameTable .= '
           <tr>
-            <td id="'.$game->id.'_gameTd">
-              '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
-              <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$game->machine_id.'_edit">
-              <div class="toolTip" id="'.$game->machine_id.'_editDiv">
-                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
-                <div id="'.$game->machine_id.'_ballsDiv" class="left inlineBlock">
-                  <select id="'.$game->machine_id.'_balls" name="'.$game->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$game->balls.'">
-                    <option value="0">Balls...</option>
-                    <option value="3"'.(($game->balls == '3') ? ' selected' : '').'>3 balls</option>
-                    <option value="5"'.(($game->balls == '5') ? ' selected' : '').'>5 balls</option>
-                  </select>
-                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_ballsSpan"></span>
-                </div>
-                <div id="'.$game->machine_id.'_extraBallsDiv" class="inlineBlock">
-                  <label for="'.$game->machine_id.'_extraBalls">
-                    <input type="checkbox" id="'.$game->machine_id.'_extraBalls" name="'.$game->machine_id.'_extraBalls" onclick="adminGameExtraBalls(this);" '.(($game->extraBalls) ? 'checked' : '').'>
-                    Extraballs
-                  </label>
-                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_extraBallsSpan"></span>
-                </div>
-                <div id="'.$game->machine_id.'_onePlayerAllowedDiv" class="inlineBlock">
-                  <label for="'.$game->machine_id.'_onePlayerAllowed">
-                    <input type="checkbox" id="'.$game->machine_id.'_onePlayerAllowed" name="'.$game->machine_id.'_onePlayerAllowed" onclick="adminGameOnePlayerAllowed(this);" '.(($game->onePlayerAllowed) ? 'checked' : '').'>
-                    One player allowed
-                  </label>
-                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_onePlayerAllowedSpan"></span>
-                </div>
-                <div id="'.$game->machine_id.'_commentDiv" class="clearboth">
-                  <label for="'.$game->machine_id.'_comment">Comment:</label>
-                  <input type="text" name="'.$game->machine_id.'_comment" id="'.$game->machine_id.'_comment" value="'.$game->comment.'" class="dbComment" onkeyup="enterClick(\''.$game->machine_id.'_commentSubmit\', event);">
-                  <input type="button" id="'.$game->machine_id.'_commentSubmit" onclick="adminGameComment(this);" value="Change!">
-                  <span class="error errorSpan toolTip" id="'.$game->machine_id.'_commentSubmitSpan"></span>
-                </div>
-              </div>
-            </td>
-            <td id="'.$game->id.'_acroTd">'.$game->shortName.'</td>
-            <td id="'.$game->id.'_manufacturerTd">'.$game->manufacturer.'</td>
-            <td id="'.$game->id.'_ipdbTd">'.$game->getIpdbLink().'</td>
-            <td id="'.$game->id.'_rulesTd">'.$game->getRulesLink().'</td>
-            <td id="'.$game->id.'_typeTd">
-              <select id="'.$game->id.'_type" onchange="adminGameType(this);" previous="'.$game->gameType.'">
-                <option value="0">Type...</option>
-                <option value="modern"'.(($game->gameType == 'modern') ? ' selected' : '').'>Modern</option>
-                <option value="classics"'.(($game->gameType == 'classics') ? ' selected' : '').'>Classics</option>
-              </select>
-              <span class="error errorSpan toolTip" id="'.$game->id.'_typeSpan"></span>
-            </td>
-            <td id="'.$game->id.'_usageTd">
-              <select id="'.$game->machine_id.'_usage" onchange="adminGameUsage(this);" previous="'.$game->tournamentDivision_id.'">
-                <option value="0">Usage...</option>
-                <option value="1"'.(($game->tournamentDivision_id == 1) ? ' selected' : '').'>Main</option>
-                <option value="2"'.(($game->tournamentDivision_id == 2) ? ' selected' : '').'>Classics</option>
-                <option value="3"'.(($game->tournamentDivision_id == 3) ? ' selected' : '').'>Team</option>
-                <option value="13"'.(($game->tournamentDivision_id == 13) ? ' selected' : '').'>Side</option>
-                <option value="14"'.(($game->tournamentDivision_id == 14) ? ' selected' : '').'>Recreational</option>
-              </select>
-              <span class="error errorSpan toolTip" id="'.$game->machine_id.'_usageSpan"></span>
-              <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameDel(this);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_delete">
-              <span class="error errorSpan toolTip" id="'.$game->machine_id.'_deleteSpan"></span>
-            </td>
+            <td id="'.$game->id.'_gameTd">'.getAdminGameInfo($game, 'game').'</td>
+            <td id="'.$game->id.'_acroTd">'.getAdminGameInfo($game, 'shortName').'</td>
+            <td id="'.$game->id.'_manufacturerTd">'.getAdminGameInfo($game, 'manufacturer').'</td>
+            <td id="'.$game->id.'_ipdbTd">'.getAdminGameInfo($game, 'ipdb').'</td>
+            <td id="'.$game->id.'_rulesTd">'.getAdminGameInfo($game, 'rules').'</td>
+            <td id="'.$game->id.'_typeTd">'.getAdminGameInfo($game, 'type').'</td>
+            <td id="'.$game->id.'_usageTd">'.getAdminGameInfo($game, 'usage').'</td>
           </tr>
         ';
       }
