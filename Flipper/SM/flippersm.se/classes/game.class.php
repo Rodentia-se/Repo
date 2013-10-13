@@ -106,7 +106,7 @@
     
     function remove($dbh) {
       $query = 'delete from machine where id = :id';
-      $delete[':id'] = $this->id;
+      $delete[':id'] = $this->machine_id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($delete)) ? true : false;
     }
