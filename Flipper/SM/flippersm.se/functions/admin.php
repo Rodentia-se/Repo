@@ -824,6 +824,7 @@
         case 'game':
           return '
               '.$game->getLink().'&nbsp;'.$game->getQR(true, true).'
+              <a href="'.__baseHref.'/gamePrint.php" target="_blank"><img src="'.__baseHref__.'/images/print.png" class="icon right" alt="Click to print the game properties" title="Click to print the game properties" id="'.$game->machine_id.'_print"></a>
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$game->machine_id.'_edit">
               <div class="toolTip" id="'.$game->machine_id.'_editDiv">
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$game->machine_id.'_editDivClose">
