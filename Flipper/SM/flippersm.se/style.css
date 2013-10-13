@@ -1081,7 +1081,7 @@ top: -9999px;
   width: 100px;
 }
 
-#content img.right {
+#content img.right, #content div.right, #content p.right, #content span.right, #content iniput.right, #content label.right, #content select.right {
   float: right;
 }
 
