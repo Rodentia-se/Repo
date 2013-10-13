@@ -831,6 +831,7 @@
           <li><img src="'.__baseHref__.'/images/edit.png" class="icon" alt="Click to view/edit the game properties" title="Click to view/edit the game properties">: Click to edit the game properties</li>
           <li><img src="'.__baseHref__.'/images/print.png" class="icon" alt="Click to print the game properties" title="Click to print the game properties">: Click to print the game properties</li>
           <li>To add a game: Choose the game in the dropdown, and click the<img src="'.__baseHref__.'/images/add_icon.gif" class="icon" alt="Add game to tournament" title="Add game to tournament"> icon</li>
+          <li>To remove a game: Click the<img src="'.__baseHref__.'/images/cancel.png" class="icon" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament"> icon to the right</li>
         </ul>
       ';
       $gameTable .= '
