@@ -1923,8 +1923,10 @@ function ownerDiv(icon, open) {
   if(open) {
 alert('#' + icon.id.replace('_close', '').replace('_open', ''));
     $('#' + icon.id.replace('_close', '').replace('_open', '')).show();
+    document.getElementById(icon.id.replace('_close', '').replace('_open', '')).style.display = 'block';
   } else {
     $('#' + icon.id.replace('_close', '').replace('_open', '')).hide();
+    document.getElementById(icon.id.replace('_close', '').replace('_open', '')).style.display = 'none';
   }
 }
 
