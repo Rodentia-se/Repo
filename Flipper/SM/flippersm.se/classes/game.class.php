@@ -186,7 +186,7 @@
           }
           $return .= '
                   </select>
-                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ballsSpan"></span>
+                  <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ownerSpan"></span>
                 </div>
                 <div id="'.$this->machine_id.'_extraBallsDiv" class="inlineBlock">
                   <label for="'.$this->machine_id.'_extraBalls">
