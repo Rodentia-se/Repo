@@ -37,7 +37,7 @@
 
     function getOwnerPopup() {
       if ($this->owner_id) {
-        return '<span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerDiv_open">'.$this->ownerShortName.'</span>' : $url;
+        return '<span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerDiv_open">'.$this->ownerShortName.'</span>';
       } else {
         return false;
       }
