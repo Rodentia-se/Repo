@@ -2260,9 +2260,11 @@
   }
 
   function getOwnerById($dbh, $id) {
-    $owner = getOwners($dbh, 'where id = '.$id);
-    if ($owner[0] && $owner[0]->id == $id) {
-      return $owner[0];
+    if ($id) {
+      $owner = getOwners($dbh, 'where id = '.$id);
+      if ($owner[0] && $owner[0]->id == $id) {
+        return $owner[0];
+      }
     }
     return false;
   }
