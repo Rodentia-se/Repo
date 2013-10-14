@@ -2011,7 +2011,7 @@ function adminGameOwner(sel) {
     if (data.success) {
       sel.setAttribute('previous', sel.value);
       if (data.id) {
-        document.getElementById(data.id + 'ownerTd').innerHTML = data.owner;
+        document.getElementById(data.id + '_ownerTd').innerHTML = data.owner;
       }
     } else {
       selectOption(sel, sel.getAttribute('previous'));
