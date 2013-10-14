@@ -248,7 +248,7 @@
           return $this->manufacturer;
         break;
         case 'owner':
-          return $this->getOwnerLink().$this->getOwnerInfo($dbh);
+          return $this->getOwnerPopup().$this->getOwnerInfo($dbh);
         break;
         case 'ipdb':
           return $this->getIpdbLink();
