@@ -2259,6 +2259,14 @@
     return $objs;
   }
 
+  function getOwnerById($dbh, $id) {
+    $owner = getOwners($dbh, 'where id = '.$id);
+    if ($owner[0] && $owner[0]->id == $id) {
+      return $owner[0];
+    }
+    return false;
+  }
+
   function getGenders($dbh, $where, $order = 'order by name') {
     $query = '
       select
