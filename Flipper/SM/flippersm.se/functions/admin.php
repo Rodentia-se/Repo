@@ -893,7 +893,7 @@
         $(document).ready(function() {
           $(\'.link\').css(\'color\', $(\'a:link\').css(\'color\'));
           $(\'.link\').css(\'text-decoration\', $(\'a:link\').css(\'text-decoration\'));
-          $(\'.link\').css(\'cursor\', $(\'a:link\').css(\'cursor\'));
+          $(\'.link\').css(\'cursor\', \'pointer\');
         });
       </script>
       ';
