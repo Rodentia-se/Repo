@@ -60,12 +60,12 @@
         return '
           <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
             <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameOwnerDivClose(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDivClose">
-            <p>Owner ID: '.$owner->id.'</p>
-            <p>Owner: '.$owner->name.' ('.$owner->shortName.')</p>
-            '.(($player) ? '<p>Contact: '.$player->getLink().'</p>' : '').'
-            <p>Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'</p>
-            <p>Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'</p>
-            <p>Email: '.$iwner->mailAddress.'</p>
+            <p>Owner ID: '.$owner->id.'
+            <br />Owner: '.$owner->name.' ('.$owner->shortName.')
+            '.(($player) ? '<br />Contact: '.$player->getLink() : '').'
+            <br />Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'
+            <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'</p>
+            <br />Email: '.$iwner->mailAddress.'</p>
           </div>
         ';
       } else {
