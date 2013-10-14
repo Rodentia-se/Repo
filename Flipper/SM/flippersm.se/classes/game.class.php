@@ -35,6 +35,14 @@
       }
     }
 
+    function getOwnerPopup() {
+      if ($this->owner_id) {
+        return '<span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerDiv_open">'.$this->ownerShortName.'</span>' : $url;
+      } else {
+        return false;
+      }
+    }
+
     function getIpdbLink($href = true, $target = '_blank') {
       if ($this->ipdb_id) {
         $url = 'http://ipdb.org/machine.cgi?id='.$this->ipdb_id;
@@ -59,13 +67,13 @@
         $city = getCityById($dbh, $owner->city_id);
         return '
           <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
-            <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameOwnerDivClose(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDivClose">
+            <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="ownerDiv(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDiv_close">
             <p>Owner ID: '.$owner->id.'
             <br />Owner: '.$owner->name.' ('.$owner->shortName.')
             '.(($player) ? '<br />Contact: '.$player->getLink() : '').'
             <br />Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'
-            <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'</p>
-            <br />Email: '.$iwner->mailAddress.'</p>
+            <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'
+            <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a></p>
           </div>
         ';
       } else {
