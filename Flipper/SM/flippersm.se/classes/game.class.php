@@ -250,7 +250,7 @@
           return $this->manufacturer;
         break;
         case 'owner':
-          return $this->machine_id.' ('.$this->getOwnerPopup().')'.$this->getOwnerInfo($dbh);
+          return $this->machine_id.(($this->owner_id) ? ' ('.$this->getOwnerPopup().')' : '').$this->getOwnerInfo($dbh);
         break;
         case 'ipdb':
           return $this->getIpdbLink();
