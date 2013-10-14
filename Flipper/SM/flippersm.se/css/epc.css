@@ -41,7 +41,7 @@ img.icon {
 
 .link {
   cursor: pointer;
-  text-style: underline;
+  text-decoration: underline;
 }
 
 .pointer {
