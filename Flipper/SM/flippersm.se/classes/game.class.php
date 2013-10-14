@@ -28,7 +28,7 @@
    
     function getOwnerLink($href = true, $target = '_blank') {
       if ($this->owner_id) {
-        $url = __baseHref__.'/?s=owner&id='.$this->owner_id;
+        $url = __baseHref__.'/ajax/getOwner.php&id='.$this->owner_id;
         return ($href) ? '<a href="'.$url.'" title="'.$this->owner.'" '.(($target) ? 'target="'.$target.'"' : '').'>'.$this->ownerShortName.'</a>' : $url;
       } else {
         return false;
@@ -52,6 +52,27 @@
       }
     }
     
+    function getOwnerInfo($dbh) {
+      $owner = getOwnerById($dbh, $this->$owner_id);
+      if ($owner) {
+        $player = getPlayerById($owner->contactPerson_id);
+        $city = getCityById($owner->city_id);
+        return '
+          <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
+            <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameOwnerDivClose(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDivClose">
+            <p>Owner ID: '.$owner->id.'</p>
+            <p>Owner: '.$owner->name.' ('.$owner->shortName.')</p>
+            '.(($player) ? '<p>Contact: '.$player->getLink().'</p>' : '').'
+            <p>Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'</p>
+            <p>Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'</p>
+            <p>Email: '.$iwner->mailAddress.'</p>
+          </div>
+        ';
+      } else {
+        return false;
+      }
+    }
+
     function setType($dbh, $type) {
       $query = 'update machine set gameType = :type where game_id = :id';
       $update[':type'] = $type;
@@ -168,7 +189,7 @@
               $this->getQR(true, true, true).'
               <img src="'.__baseHref__.'/images/edit.png" class="icon right" onclick="adminGameEdit(this, true);" alt="Click to view/edit the game properties" title="Click to view/edit the game properties" id="'.$this->machine_id.'_edit">
               <div class="toolTip" id="'.$this->machine_id.'_editDiv">
-                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to remove the game from the tournament" title="Click to remove the game from the tournament" id="'.$this->machine_id.'_editDivClose">
+                <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameEdit(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_editDivClose">
                 <div id="'.$this->machine_id.'_ballsDiv" class="left inlineBlock">
                   <select id="'.$this->machine_id.'_balls" name="'.$this->machine_id.'_balls" onchange="adminGameBalls(this);" previous="'.$this->balls.'">
                     <option value="0">Balls...</option>
@@ -219,7 +240,7 @@
           return $this->manufacturer;
         break;
         case 'owner':
-          return $this->getOwnerLink();
+          return $this->getOwnerLink().$this->getOwnerInfo($dbh);
         break;
         case 'ipdb':
           return $this->getIpdbLink();
