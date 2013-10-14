@@ -1993,6 +1993,25 @@ function adminGameType(sel) {
   });
 }
 
+function adminGameOwner(sel) {
+  var machineId = sel.id.split('_')[0];
+  var ownerId = sel.value;
+  fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/gameOwner.php', {machineId: machineId, ownerId: ownerId}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
 function adminGameBalls(sel) {
   var machineId = sel.id.split('_')[0];
   var balls = sel.value;

@@ -3,7 +3,7 @@
   header('Content-Type: application/json');
 
   $machineId = (isset($_REQUEST['machineId']) && preg_match('/^[0-9]+$/', $_REQUEST['machineId'])) ? $_REQUEST['machineId'] : null;
-  $owner_id = (isset($_REQUEST['owner_id']) && preg_match('/^[0-9]+$/', $_REQUEST['owner_id'])) ? $_REQUEST['owner_id'] : null;
+  $ownerId = (isset($_REQUEST['ownerId']) && preg_match('/^[0-9]+$/', $_REQUEST['ownerId'])) ? $_REQUEST['ownerId'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
@@ -11,8 +11,8 @@
       if ($machineId) {
         $game = getMachineById($dbh, $machineId);
         if ($game) {
-          if ($owner_id) {
-            $owner = getOwnerById($dbh, $owner_id);
+          if ($ownerId) {
+            $owner = getOwnerById($dbh, $ownerId);
             if ($owner) {
               if ($game->setOwner($dbh, $owner)) {
                 echo('{"success": true, "reason": "'.$owner->name.' has been set as owner of '.$game->name.'"}');
@@ -20,7 +20,7 @@
                 $errorMsg = 'Could not set '.$owner->sname.' as owner of '.$game->name;
               }
             } else {
-              $errorMsg = 'Invalid owner ID '.$owner_id.' specified';
+              $errorMsg = 'Invalid owner ID '.$ownerId.' specified';
             }
           } else {
             if ($game->removeOwner($dbh)) {
