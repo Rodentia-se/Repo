@@ -55,8 +55,8 @@
     function getOwnerInfo($dbh) {
       $owner = getOwnerById($dbh, $this->owner_id);
       if ($owner) {
-        $player = getPlayerById($owner->contactPerson_id);
-        $city = getCityById($owner->city_id);
+        $player = getPlayerById($dbh, $owner->contactPerson_id);
+        $city = getCityById($dbh, $owner->city_id);
         return '
           <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
             <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="adminGameOwnerDivClose(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDivClose">
