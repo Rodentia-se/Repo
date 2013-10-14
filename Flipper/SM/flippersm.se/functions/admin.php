@@ -845,7 +845,7 @@
               <th class="bold">Game</th>
               <th class="bold">Acro</th>
               <th class="bold">Manuf</th>
-              <th class="bold">Owner</th>
+              <th class="bold">Mach</th>
               <th class="bold">IPDB</th>
               <th class="bold">Rules</th>
               <th class="bold">Type</th>
