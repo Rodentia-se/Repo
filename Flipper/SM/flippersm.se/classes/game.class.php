@@ -53,7 +53,7 @@
     }
     
     function getOwnerInfo($dbh) {
-      $owner = getOwnerById($dbh, $this->$owner_id);
+      $owner = getOwnerById($dbh, $this->owner_id);
       if ($owner) {
         $player = getPlayerById($owner->contactPerson_id);
         $city = getCityById($owner->city_id);
