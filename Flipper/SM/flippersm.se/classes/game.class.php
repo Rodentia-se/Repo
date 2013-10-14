@@ -39,11 +39,6 @@
       if ($this->owner_id) {
         return '
           <span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerDiv_open">'.$this->ownerShortName.'</span>
-          <script type="text/javascript">
-            $(document).ready(function() {
-              $(\'#'.$this->machine_id.'_ownerDiv_open\').css(\'color\', $(\'a:link\').css(\'color\'));
-            });
-        </script>
         ';
       } else {
         return false;

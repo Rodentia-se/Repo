@@ -886,7 +886,17 @@
           </tr>
         ';
       }
-      $gameTable .= '</tbody></table>';
+      $gameTable .= '
+        </tbody>
+      </table>
+      <script type="text/javascript">
+        $(document).ready(function() {
+          $(\'.link').css(\'color\', $(\'a:link\').css(\'color\'));
+          $(\'.link').css(\'text-decoration\', $(\'a:link\').css(\'text-decoration\'));
+          $(\'.link').css(\'cursor\', $(\'a:link\').css(\'cursor\'));
+        });
+      </script>
+      ';
       return $gameTable;
     }
     
