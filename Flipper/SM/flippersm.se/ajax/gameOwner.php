@@ -15,6 +15,9 @@
             $owner = getOwnerById($dbh, $ownerId);
             if ($owner) {
               if ($game->setOwner($dbh, $owner)) {
+                $game->owner_id = $owner->id;
+                $game->owner = $owner->name;
+                $game->ownerShortName = $owner->shortName;
                 $result = (object) array(
                   'success' => true,
                   'reason' => $owner->name.' has been set as owner of '.$game->name,
