@@ -22,14 +22,14 @@
     public $manufacturer;
     public $manufacturer_id;
     public $owner_id;
-    public $ownerName;
+    public $owner;
     public $ownerShortName;
     public $class = 'game';
    
     function getOwnerLink($href = true, $target = '_blank') {
       if ($this->owner_id) {
         $url = __baseHref__.'/?s=owner&id='.$this->owner_id;
-        return ($href) ? '<a href="'.$url.'" title="'.$this->ownerName.'" '.(($target) ? 'target="'.$target.'"' : '').'>'.$this->ownerShortName.'</a>' : $url;
+        return ($href) ? '<a href="'.$url.'" title="'.$this->owner.'" '.(($target) ? 'target="'.$target.'"' : '').'>'.$this->ownerShortName.'</a>' : $url;
       } else {
         return false;
       }

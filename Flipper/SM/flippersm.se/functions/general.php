@@ -2176,7 +2176,7 @@
         g.id as game_id,
         ma.id as machine_id,
         ma.owner_id as owner_id,
-        ma.ownerName as ownerName,
+        ma.owner as owner,
         ma.ownerShortName as ownerShortName,
         mn.id as manufacturer_id,
         mn.name as manufacturer,
