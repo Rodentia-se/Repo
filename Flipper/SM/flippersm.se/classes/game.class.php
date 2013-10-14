@@ -13,7 +13,6 @@
     public $machine_id;
     public $side;
     public $recreational;
-    public $machineType;
     public $gameType;
     public $extraBall;
     public $balls;
