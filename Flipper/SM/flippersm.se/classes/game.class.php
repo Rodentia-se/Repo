@@ -131,6 +131,26 @@
       return ($sth->execute($update)) ? true : false;
     }
 
+    function setOwner($dbh, $owner = null) {
+      $query = '
+        update machine set
+          owner_id = :ownerId,
+          owner = :owner,
+          ownerShortName = :ownerShortName
+        where id = :id
+      ';
+      $update[':ownerId'] = ($owner) ? $owner->id : null;
+      $update[':owner'] = ($owner) ? $owner->name : null;
+      $update[':ownerShortName'] = ($owner) ? $owner->shortName : null;
+      $update[':id'] = $this->machine_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
+    function removeOwner($dbh) {
+      $this->setOwner($dbh);
+    }
+
     function getAdminInfo($dbh, $type = 'all') {
       switch($type) {
         case 'all':

@@ -829,6 +829,9 @@
           <li>Type: Modern or Classics - has nothing to do with divisions</li>
           <li>Usage: The division that the game will be assigned to</li>
           <li><img src="'.__baseHref__.'/images/edit.png" class="icon" alt="Click to view/edit the game properties" title="Click to view/edit the game properties">: Click to edit the game properties</li>
+          <ul>
+            <li>This is also where you can change the owner</li>
+          </ul>
           <li>'.$allGames[0]->getQR(false, false, true).': Click to print the game properties</li>
           <li>'.$allGames[0]->getQR(false).': Get QR code for game</li>
           <li>To add a game: Choose the game in the dropdown, and click the<img src="'.__baseHref__.'/images/add_icon.gif" class="icon" alt="Add game to tournament" title="Add game to tournament"> icon</li>
