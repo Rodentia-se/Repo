@@ -1921,14 +1921,9 @@ function adminGameEdit(icon, open) {
 
 function ownerDiv(icon, open) {
   if(open) {
-alert('#' + icon.id.replace('_close', '').replace('_open', ''));
     $('#' + icon.id.replace('_close', '').replace('_open', '')).show();
-    document.getElementById(icon.id.replace('_close', '').replace('_open', '')).style.display = 'block';
-    document.getElementById('107_ownerDiv').style.display = 'block';
   } else {
     $('#' + icon.id.replace('_close', '').replace('_open', '')).hide();
-    document.getElementById(icon.id.replace('_close', '').replace('_open', '')).style.display = 'none';
-    document.getElementById('107_ownerDiv').style.display = 'none';
   }
 }
 

@@ -38,7 +38,7 @@
     function getOwnerPopup() {
       if ($this->owner_id) {
         return '
-          <span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerDiv_open">'.$this->ownerShortName.'</span>
+          <span title="'.$this->owner.'" class="link" onclick="ownerDiv(this, true);" id="'.$this->machine_id.'_ownerInfoDiv_open">'.$this->ownerShortName.'</span>
         ';
       } else {
         return false;
@@ -68,8 +68,8 @@
         $player = getPlayerById($dbh, $owner->contactPerson_id);
         $city = getCityById($dbh, $owner->city_id);
         return '
-          <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
-            <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="ownerDiv(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDiv_close">
+          <div class="toolTip" id="'.$this->machine_id.'_ownerInfoDiv">
+            <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="ownerDiv(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerInfoDiv_close">
             Owner ID: '.$owner->id.'
             <br />Owner: '.$owner->name.' ('.$owner->shortName.')
             '.(($player) ? '<br />Contact: '.$player->getLink() : '').'
