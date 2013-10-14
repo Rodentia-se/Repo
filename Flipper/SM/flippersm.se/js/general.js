@@ -1920,8 +1920,8 @@ function adminGameEdit(icon, open) {
 
 
 function ownerDiv(icon, open) {
-alert('#' + icon.id.replace('_close', '').replace('_open', ''));
   if(open) {
+alert('#' + icon.id.replace('_close', '').replace('_open', ''));
     $('#' + icon.id.replace('_close', '').replace('_open', '')).show();
   } else {
     $('#' + icon.id.replace('_close', '').replace('_open', '')).hide();

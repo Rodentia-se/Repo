@@ -70,12 +70,12 @@
         return '
           <div class="toolTip" id="'.$this->machine_id.'_ownerDiv">
             <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="ownerDiv(this, false);" alt="Click to close this popup" title="Click to close this popup" id="'.$this->machine_id.'_ownerDiv_close">
-            <p>Owner ID: '.$owner->id.'
+            Owner ID: '.$owner->id.'
             <br />Owner: '.$owner->name.' ('.$owner->shortName.')
             '.(($player) ? '<br />Contact: '.$player->getLink() : '').'
             <br />Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'
             <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'
-            <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a></p>
+            <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a>
           </div>
         ';
       } else {
