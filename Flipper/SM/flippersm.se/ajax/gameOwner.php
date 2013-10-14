@@ -15,6 +15,13 @@
             $owner = getOwnerById($dbh, $ownerId);
             if ($owner) {
               if ($game->setOwner($dbh, $owner)) {
+            $result = (object) array(
+              'success' => true,
+              'reason' => $owner->name.' has been set as owner of '.$game->name,
+              'id' => $game->machine_id,
+              'owner' => $game->getAdminInfo($dbh, 'owner')
+            );
+            echo(json_encode($result));
                 echo('{"success": true, "reason": "'.$owner->name.' has been set as owner of '.$game->name.'"}');
               } else {
                 $errorMsg = 'Could not set '.$owner->sname.' as owner of '.$game->name;

@@ -2010,6 +2010,9 @@ function adminGameOwner(sel) {
     fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
     if (data.success) {
       sel.setAttribute('previous', sel.value);
+      if (data.id) {
+        document.getElementById(data.id + 'ownerTd').innerHTML = data.owner;
+      }
     } else {
       selectOption(sel, sel.getAttribute('previous'));
     }
