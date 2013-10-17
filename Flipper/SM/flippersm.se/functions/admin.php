@@ -156,7 +156,8 @@
       }
 
       $players = getPlayers($dbh, ' where tournamentEdition_id = 1');
-      foreach($players as $player) {
+       $tables['csv'] = '<h2>Comma separated players with assigned qualification groups</h2>';
+       foreach($players as $player) {
         $team = $player->getTeam($dbh);
 //        $team = ($team) ? $team : $player->getTeam($dbh, 12);
 
@@ -301,7 +302,6 @@
               $options[$qualGroup->tournamentDivision_id] .= '>'.$qualGroup->shortName.'</option>';
             }
           }
-          $tables['csv'] = '<h2>Comma separated players with assigned qualification groups</h2>';
           for($i = 1; $i <= 2; $i++){
             if ($selectedQualGroupId[1] && $selectedQualGroupId[2] && $selectedQualGroupId[2] == $selectedQualGroupId[1] + $mainClassicsDiff) {
               $assClass = 'errorTd';
@@ -326,7 +326,7 @@
                 </td>
             ';
           }
-          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->time, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->time, 9, 5)."<br />\n";
+          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->startTime, 9, 5).'-'.substr($assQualGroup[1]->endTime, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->startTime, 9, 5).'-'.substr($assQualGroup[2]->endTime, 9, 5)."<br />\n";
         }
         foreach ($types as $type) {
           $tables[$type] .= '<tr>';
