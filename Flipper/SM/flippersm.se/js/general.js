@@ -2264,7 +2264,7 @@ function allocEdit(el, fader) {
 }
 
 function changeCsvSeparator(radio) {
-  document.getElementById('csvDiv').innerHTML =  document.getElementById('csvDiv').innerHTML.replace(',', $('input[name=separator]:checked').val()).replace(';', $('input[name=separator]:checked').val());
+  document.getElementById('csvDiv').innerHTML =  document.getElementById('csvDiv').innerHTML.replace(/,/g, $('input[name=separator]:checked').val()).replace(/;/g, $('input[name=separator]:checked').val());
 }
 
 function changeNeed(sel) {
