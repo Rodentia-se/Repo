@@ -326,7 +326,7 @@
                 </td>
             ';
           }
-          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->startTime, 9, 5).'-'.substr($assQualGroup[1]->endTime, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->startTime, 9, 5).'-'.substr($assQualGroup[2]->endTime, 9, 5)."<br />\n";
+          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->startTime, 0, 5).'-'.substr($assQualGroup[1]->endTime, 0, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->startTime, 0, 5).'-'.substr($assQualGroup[2]->endTime, 0, 5)."<br />\n";
         }
         foreach ($types as $type) {
           $tables[$type] .= '<tr>';
