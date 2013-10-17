@@ -33,7 +33,7 @@
     }
   
     function getAdminPlayerTables($dbh, $ulogin, $tableType = false) {
-      $types = ($tableType) ? array($tableType) : array('payments', 'users', 'players', 'qualGroups', 'results');
+      $types = ($tableType) ? array($tableType) : array('payments', 'users', 'players', 'qualGroups', 'results', 'csv');
       
       $meta = array(
         'payments' => array(
