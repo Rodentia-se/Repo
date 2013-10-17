@@ -159,7 +159,7 @@
        $tables['csv'] = '
          <h2>Comma separated players with assigned qualification groups</h2>
          <p>Separator: <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Semicolon <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Comma</p>
-         <div id="csv">
+         <div id="csvDiv">
        ';
        foreach($players as $player) {
         $team = $player->getTeam($dbh);

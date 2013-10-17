@@ -1330,7 +1330,7 @@ function checkField(el) {
         for (var prop in classes[obj.class].fields) {
           var meta = classes[obj.class].fields[prop];
           if (meta.type == 'radio') {
-            obj[prop] = $('input[name=' + prop + ucfirst(meta.type) + ']:checked').val();;
+            obj[prop] = $('input[name=' + prop + ucfirst(meta.type) + ']:checked').val();
           } else {
             obj[prop] = document.getElementById(prop + ucfirst(meta.type)).value;
           }
@@ -2261,7 +2261,10 @@ function allocEdit(el, fader) {
     debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
     debugOut(jqHXR.responseText);
   }); 
+}
 
+function changeSeparator(radio) {
+  document.getElementById('csvDiv').innerHTML =  document.getElementById('csvDiv').innerHTML.replace(',', $('input[name=separator]:checked').val()).replace(';', $('input[name=separator]:checked').val());
 }
 
 function changeNeed(sel) {
