@@ -2263,7 +2263,7 @@ function allocEdit(el, fader) {
   }); 
 }
 
-function changeSeparator(radio) {
+function changeCsvSeparator(radio) {
   document.getElementById('csvDiv').innerHTML =  document.getElementById('csvDiv').innerHTML.replace(',', $('input[name=separator]:checked').val()).replace(';', $('input[name=separator]:checked').val());
 }
 
