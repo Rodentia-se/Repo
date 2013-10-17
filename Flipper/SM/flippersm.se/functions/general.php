@@ -3712,6 +3712,7 @@
         }
       } 
       if ($type == 'team') {
+      echo $obj->id;
         $players = $obj->getMembers($dbh);
         $content .= '
                       <div id="membersDiv" class="infoLabel">
