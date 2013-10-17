@@ -3721,7 +3721,7 @@
           foreach ($players as $player) {
             $content .= '
                         <div class="memberDiv infoValueDiv" id="'.$player->id.'memberDiv">
-                          <p>'.getLink($player).'</p>
+                          <p>'.$player->getLink().'</p>
                         </div>
             ';
           }
