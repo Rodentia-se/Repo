@@ -158,9 +158,9 @@
       $players = getPlayers($dbh, ' where tournamentEdition_id = 1');
        $tables['csv'] = '
          <h2>Comma separated players with assigned qualification groups</h2>
-         <p>Separator: <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Semicolon <input type="radio" name="separator" id="separator" value="," onclick="changeCsvSeparator(this);">Comma</p>
+         <p>Separator: <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Semicolon <input type="radio" name="separator" id="separator" value="," onclick="changeCsvSeparator(this);" checked>Comma</p>
          <div id="csvDiv">
-         <span class="bold">Förnamn;Efternamn;Main qualifications;Classics qualifications</span><br />
+         <span class="bold">First name,Last name,Main qualifications,Classics qualifications</span><br />
        ';
        foreach($players as $player) {
         $team = $player->getTeam($dbh);
