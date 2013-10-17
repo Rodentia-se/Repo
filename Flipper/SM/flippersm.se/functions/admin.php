@@ -158,7 +158,7 @@
       $players = getPlayers($dbh, ' where tournamentEdition_id = 1');
        $tables['csv'] = '
          <h2>Comma separated players with assigned qualification groups</h2>
-         <p>Separator: <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Semicolon <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Comma</p>
+         <p>Separator: <input type="radio" name="separator" id="separator" value=";" onclick="changeCsvSeparator(this);">Semicolon <input type="radio" name="separator" id="separator" value="," onclick="changeCsvSeparator(this);">Comma</p>
          <div id="csvDiv">
        ';
        foreach($players as $player) {
@@ -341,6 +341,7 @@
           array_push($mailAddresses[$type], $player->mailAddress);
         }
       }
+      $tables['csv'] .= '</div>';
       foreach ($types as $type) {
         
         if ($type == 'payments') {
