@@ -81,7 +81,7 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
 
   if($category == "anmalda")
     {
-      if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id = $team->id)) {
+      if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id == $team->id)) {
         $volunteerHeader = ($player->volunteer) ? 'Funktionärspass' : 'Bli funktionär!';
         $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."&m2=anmalda\">".$volunteerHeader."</a> <a href=\"?s=betala".$m."\">Betala</a>";
       } else {
