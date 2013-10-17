@@ -296,6 +296,7 @@
               $selectedQualGroupId[$qualGroup->tournamentDivision_id] = ($qualGroup->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id;
               $options[$qualGroup->tournamentDivision_id] .= '<option value="'.$qualGroup->id.'" ';
               $options[$qualGroup->tournamentDivision_id] .= ($qualGroup->id == $selectedQualGroupId[$qualGroup->tournamentDivision_id]) ? 'selected' : '';
+              $assQualGroup[$qualGroup->tournamentDivision_id] = $qualGroup;
               $options[$qualGroup->tournamentDivision_id] .= ($qualGroup->id == $preferedId[$qualGroup->tournamentDivision_id]) ? ' class="yellow"' : '';
               $options[$qualGroup->tournamentDivision_id] .= '>'.$qualGroup->shortName.'</option>';
             }
@@ -323,6 +324,7 @@
                   <input type="hidden" id="'.$player->id.'_'.$i.'_qualGroupChosen" value="'.(($chosens[$i]) ? implode('_', $chosens[$i]) : '0').'">
                 </td>
             ';
+            $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->time, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->time, 9, 5)."<br />\n";
           }
         }
         foreach ($types as $type) {

@@ -48,6 +48,7 @@
         case 'qualGroup':
           $content .= getAdminQualGroupTable($dbh);
           $content .= $playerTables['qualGroups'];
+          $content .= '<p>'.$playerTables['csv'].'</p>';
         break;
       }
       $content .= getDataTables();
