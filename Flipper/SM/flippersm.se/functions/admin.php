@@ -33,7 +33,7 @@
     }
   
     function getAdminPlayerTables($dbh, $ulogin, $tableType = false) {
-      $types = ($tableType) ? array($tableType) : array('payments', 'users', 'players', 'qualGroups', 'results', 'csv');
+      $types = ($tableType) ? array($tableType) : array('payments', 'users', 'players', 'qualGroups', 'results');
       
       $meta = array(
         'payments' => array(
@@ -301,6 +301,7 @@
               $options[$qualGroup->tournamentDivision_id] .= '>'.$qualGroup->shortName.'</option>';
             }
           }
+          $tables['csv'] = '<h2>Comma separated players with assigned qualification groups</h2>';
           for($i = 1; $i <= 2; $i++){
             if ($selectedQualGroupId[1] && $selectedQualGroupId[2] && $selectedQualGroupId[2] == $selectedQualGroupId[1] + $mainClassicsDiff) {
               $assClass = 'errorTd';
@@ -324,8 +325,8 @@
                   <input type="hidden" id="'.$player->id.'_'.$i.'_qualGroupChosen" value="'.(($chosens[$i]) ? implode('_', $chosens[$i]) : '0').'">
                 </td>
             ';
-            $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->time, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->time, 9, 5)."<br />\n";
           }
+          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->time, 9, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->time, 9, 5)."<br />\n";
         }
         foreach ($types as $type) {
           $tables[$type] .= '<tr>';
