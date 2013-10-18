@@ -923,7 +923,8 @@ top: -9999px;
     }
 
     div#menu #submenu1 {
-      margin-right: 15px;
+      text-align: left;
+      margin-left: 15px;
       padding-top: 0.5em;
     }
     
