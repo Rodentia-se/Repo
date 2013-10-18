@@ -549,34 +549,34 @@ top: -9999px;
     }
 
     /* Force table to not be like tables anymore */
-    #content table.result, #content table.registered, #content table.volunteer, #content table.standings, #content #ifpaRegResultsTable {
+    #content table.result, #content table.registered, #content table.volunteer, #content table.standings, #content #ifpaRegResultsTable, #content table.tournamentGames {
       border: 0;
       padding: 0;
       margin: 0;
       width: 100%;
     }
 
-    table.result , table.registered , table.standings, #ifpaRegResultsTable, .result thead, .registered thead, .standings thead, #ifpaRegResultsTable thead, .result  tbody, .registered  tbody, .standings  tbody, #ifpaRegResultsTable  tbody, .result th, .registered th, .standings th, #ifpaRegResultsTable th, .result td, .registered td, .standings td, #ifpaRegResultsTable td, .result  tr, .registered  tr, .standings  tr, #ifpaRegResultsTable  tr {
+    table.result , table.registered , table.standings, #ifpaRegResultsTable, table.torunamentGames, .result thead, .registered thead, .standings thead, #ifpaRegResultsTable thead, .torunamentGames thead, .result  tbody, .registered  tbody, .standings  tbody, #ifpaRegResultsTable  tbody, .torunamentGames  tbody, .result th, .registered th, .standings th, #ifpaRegResultsTable th, .torunamentGames th, .result td, .registered td, .standings td, #ifpaRegResultsTable td, .torunamentGames td, .result  tr, .registered  tr, .standings  tr, #ifpaRegResultsTable  tr, .torunamentGames  tr {
       display: block;
     }
 
     /* Hide table headers (but not display: none;, for accessibility) */
-    .result th, .registered th, .standings th, #ifpaRegResultsTable th {
+    .result th, .registered th, .standings th, #ifpaRegResultsTable th, .torunamentGames th {
       position: absolute;
       top: -9999px;
       left: -9999px;
     }
     
-    .registered tr.header, .result tr.header, .standings tr.header, #ifpaRegResultsTable tr.header {position: absolute;
+    .registered tr.header, .result tr.header, .standings tr.header, #ifpaRegResultsTable tr.header, .torunamentGames tr.header {position: absolute;
     left: -9999px;
     top: -9999px;}
 
-    .result td, .registered td, .volunteer td, .standings td, #ifpaRegResultsTable td {
+    .result td, .registered td, .volunteer td, .standings td, #ifpaRegResultsTable td, .torunamentGames td {
       border: 0;
       font-size: 1.05em;
     }
 
-    .result tr, .registered tr, .volunteer tr, #ifpaRegResultsTable tr {
+    .result tr, .registered tr, .volunteer tr, #ifpaRegResultsTable tr, .torunamentGames tr {
       position: relative;
       border: 0;
       height: 3.6em;
@@ -684,7 +684,7 @@ top: -9999px;
 
     .registered td:nth-of-type(6) {
       position: absolute;
-      top: 1.5em;
+      top: 1.6em;
       left: 9.5em;
     }
 
