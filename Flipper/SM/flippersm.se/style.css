@@ -794,13 +794,13 @@ top: -9999px;
 
     .torunamentGames td:nth-of-type(4) {
       position: absolute;
-      top: -9999px;
-      left: -9999px;
+      top: 1.6em;
+      left: 8.5em;
     }
 
 
 
-    .torunamentGames td:nth-of-type(5):before {
+    .torunamentGames td:nth-of-type(4):before {
       content: "Tillv: ";
     }
 
