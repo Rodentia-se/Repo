@@ -922,10 +922,6 @@ top: -9999px;
        width: 8.5em;
     }
 
-    div#menu #submenu1 {
-      text-align: center;
-    }
-    
     
 	#content input[type="text"], #content input[type="password"] {
 	  width: calc(100% - 50px);
