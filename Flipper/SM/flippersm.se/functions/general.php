@@ -3646,11 +3646,13 @@
                 <div id="'.$type.'Div">
                   '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
-                  <table id="'.$type.'Table" class="list
+                  <table id="'.$type.'Table" class="list 
     ';
     switch ($type) {
      case 'player':
        $content .= 'registered';
+     case 'game':
+       $content .= 'torunamentGames';
      break;
     }
     $content .= '"></table>
