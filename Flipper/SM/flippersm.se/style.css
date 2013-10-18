@@ -750,7 +750,7 @@ top: -9999px;
       position: absolute;
       left: 0em;
       top: 0em;
-      width: 2.5em;
+      width: 3.5em;
       font-weight: bold;
       text-align: right;
       text-transform: uppercase;
@@ -759,7 +759,7 @@ top: -9999px;
 
     .torunamentGames td:nth-of-type(1) {
       position: absolute;
-      left: 4em;
+      left: 5em;
       top: 0em;
       width: 13em;
       font-weight: bold;
@@ -788,7 +788,7 @@ top: -9999px;
     .torunamentGames td:nth-of-type(2) {
       position: absolute;
       top: 1.6em;
-      left: 9.5em;
+      left: 5em;
     }
 
     .torunamentGames td:nth-of-type(4) {
