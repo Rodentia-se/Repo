@@ -877,14 +877,30 @@ top: -9999px;
     #menu #tagline, #menu #buttons, #menu #submenu1 {
       padding-right: 0px;
     }
+    
+    #menu #tagline {
+    position: absolute;
+    font-size: 0.9em;
+    top: 110px;
+    left: 15px;
+    width: 160px;
+    text-align: left;
+    color: #000;
+    background: none;
+    line-height: 1.2em;
+    }
 
     div#logo {
-      right: 0;
-      left: 0;
-      margin: 0px auto;
-      float: none;
-      padding-left: 20px;
+      position: absolute;
+      left: -15;
+      top: 0px;
       border: 0px;
+      height: 115px;
+      width: 145px;
+    }
+    
+    #logo img {
+    height: 115px;
     }
     
   	div#head, div#menu {
@@ -893,22 +909,19 @@ top: -9999px;
     padding: 0;
   	width: 100%;
   	}
+  	
+  	div#menu {
+  	height: 9em;
+  	}
 
     div#menu #buttons {
-      right: 0;
-      position: relative;
-      width: 100%;
-      line-height: 2.5em;
-      top: 20px;
-      margin: 0;
-      padding: 0;
-      text-align: center;
+      top: 5px;
     }
 
     div#menu #buttons a {
-      width: auto;
-      display: inline;
-      margin: 0px auto;
+       padding: 0.4em 0.4em 0.5em 0.4em;
+       letter-spacing: 0.03em;
+       width: 8.5em;
     }
 
     div#menu #submenu1 {
