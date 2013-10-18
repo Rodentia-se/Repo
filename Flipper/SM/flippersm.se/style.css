@@ -775,13 +775,14 @@ top: -9999px;
     .torunamentGames td:nth-of-type(7) {
       position: absolute;
       top: 1.6em;
-      right: 0.2em;
+      left: 0em;
+      width: 3.5em;
     }
 
     .torunamentGames td:nth-of-type(5) {
       position: absolute;
       top: 1.6em;
-      left: 7.5em;
+      width: 13em;
     }
 
     .torunamentGames td:nth-of-type(2) {
@@ -798,8 +799,8 @@ top: -9999px;
 
 
 
-    .torunamentGames td:nth-of-type(5):before {
-      content: "År: ";
+    .torunamentGames td:nth-of-type(4):before {
+      content: "Tillv: ";
     }
 
     .torunamentGames td:nth-of-type(6):before {
