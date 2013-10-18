@@ -3651,6 +3651,7 @@
     switch ($type) {
      case 'player':
        $content .= 'registered';
+     break;
      case 'game':
        $content .= 'torunamentGames';
      break;
