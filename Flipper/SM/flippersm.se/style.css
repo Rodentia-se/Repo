@@ -679,13 +679,13 @@ top: -9999px;
     .registered td:nth-of-type(5) {
       position: absolute;
       top: 1.6em;
-      left: 16em;
+      left: 15.5em;
     }
 
     .registered td:nth-of-type(6) {
       position: absolute;
-      top: 1.6em;
-      left: 10em;
+      top: 1.5em;
+      left: 9.5em;
     }
 
     .registered td:nth-of-type(7) {
