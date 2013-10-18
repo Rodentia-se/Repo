@@ -880,8 +880,7 @@ top: -9999px;
     
     #menu #tagline {
     font-size: 0.9em;
-    top: 110px;
-    left: 15px;
+    margin-left: 15px;
     width: 160px;
     text-align: left;
     color: #000;
