@@ -746,6 +746,77 @@ top: -9999px;
     }
 
 
+    .torunamentGames td:nth-of-type(1) {
+      position: absolute;
+      left: 0em;
+      top: 0em;
+      width: 2.5em;
+      font-weight: bold;
+      text-align: right;
+      text-transform: uppercase;
+      padding-right: 0.8em;
+    }
+
+    .torunamentGames td:nth-of-type(2) {
+      position: absolute;
+      left: 4em;
+      top: 0em;
+      width: 13em;
+      font-weight: bold;
+      text-align: left;
+      padding-right: 0.8em;
+    }
+
+    .torunamentGames td:nth-of-type(3) {
+      position: absolute;
+      top: 0em;
+      right: 0.2em;
+    }
+
+    .torunamentGames td:nth-of-type(4) {
+      position: absolute;
+      top: 1.6em;
+      right: 0.2em;
+    }
+
+    .torunamentGames td:nth-of-type(5) {
+      position: absolute;
+      top: 1.6em;
+      left: 15.5em;
+    }
+
+    .torunamentGames td:nth-of-type(6) {
+      position: absolute;
+      top: 1.6em;
+      left: 9.5em;
+    }
+
+    .torunamentGames td:nth-of-type(7) {
+      position: absolute;
+      top: -9999px;
+      left: -9999px;
+    }
+
+    .torunamentGames td:nth-of-type(8) {
+      position: absolute;
+      left: 4em;
+      margin-top: 1.6em;
+    }
+
+    .torunamentGames td:nth-of-type(5):before {
+      content: "IFPA: ";
+    }
+
+    .torunamentGames td:nth-of-type(6):before {
+      content: "Classics: ";
+    }
+
+    .torunamentGames td:nth-of-type(8):before {
+      content: "Betalat: ";
+    }
+
+
+
     .standings td:nth-of-type(1) {
       position: absolute;
       left: 0.2em;
