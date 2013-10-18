@@ -766,7 +766,7 @@ top: -9999px;
       padding-right: 0.8em;
     }
 
-    .torunamentGames td:nth-of-type(6) {
+    .torunamentGames td:nth-of-type(4) {
       position: absolute;
       top: 0em;
       right: 0.2em;
@@ -792,7 +792,7 @@ top: -9999px;
       left: 4.5em;
     }
 
-    .torunamentGames td:nth-of-type(4) {
+    .torunamentGames td:nth-of-type(6) {
       position: absolute;
       top: 1.6em;
       left: 8.5em;
