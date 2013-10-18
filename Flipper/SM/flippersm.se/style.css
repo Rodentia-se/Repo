@@ -881,6 +881,7 @@ top: -9999px;
     #menu #tagline {
     font-size: 0.9em;
     margin-left: 15px;
+    margin-top: 5px;
     width: 160px;
     text-align: left;
     color: #000;
