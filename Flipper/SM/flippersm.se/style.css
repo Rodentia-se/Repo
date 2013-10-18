@@ -800,10 +800,6 @@ top: -9999px;
 
 
 
-    .torunamentGames td:nth-of-type(4):before {
-      content: "Tillv: ";
-    }
-
     .torunamentGames td:nth-of-type(6):before {
       content: "IPDB: ";
     }
