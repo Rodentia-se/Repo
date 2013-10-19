@@ -46,7 +46,7 @@
             $qualScores = $qualEntry->getScores($dbh,1, 1);
             if (is_array($qualScores) && count($qualScores) > 0) {
               foreach ($qualScores as $qualScore) {
-                $game = getGameById($qualScore->game_id);
+                $game = getGameById($dbh, $qualScore->game_id);
                 $game->name = ($game->shortName) ? $game->shortName : $game->name;
                 $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.$qualScore->points.')</td>';
 //                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
