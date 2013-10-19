@@ -59,7 +59,7 @@
               $i++;
             }
             $content .= '
-                    <td>'.$qualScore->points.'</td>
+                    <td>'.round($qualEntry->points).'</td>
                     <td><input type="checkbox" '.(($player->here) ? 'checked' : '').' disabled></td>
                   </tr>
             ';
