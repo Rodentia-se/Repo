@@ -56,6 +56,7 @@
             }
             while ($i <= $noOfGames[1]) {
               $content .= '<td></td>';
+              $i++;
             }
             $content .= '
                     <td>'.$qualScore->entryPoints.'</td>
