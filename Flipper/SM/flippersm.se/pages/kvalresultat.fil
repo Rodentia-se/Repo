@@ -193,7 +193,7 @@
     $content .=  '</tbody></table></div>';
     $content .= getDataTables('.standings');
   } else {
-    $content = '
+    $content .= '
       <p>Nedan kommer du att hitta direktsända kvalresultat från samtliga divisioner.</p>
     ';
   }
