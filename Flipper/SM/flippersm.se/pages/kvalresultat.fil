@@ -196,7 +196,6 @@
         $content .= '<th>Spel #'.$i.'</th>';
       }
       $content .= '
-                    <th>Spel</th>
                     <th>Poäng</th>
                     <th>Här</th>
                   </tr>
