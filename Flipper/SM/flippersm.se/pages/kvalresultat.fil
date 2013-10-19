@@ -43,7 +43,7 @@
                     <td>'.$qualEntry->entryPlace.'</td>
                     <td>'.$player->getLink().'</td>
             ';
-            $qualScores = $qualEntries->getScores($dbh,1, 1);
+            $qualScores = $qualEntry->getScores($dbh,1, 1);
             if (is_array($qualScores) && count($qualScores) > 0) {
               foreach ($qualScores as $qualScore) {
                 $game = getGameById($qualScore->game_id);
