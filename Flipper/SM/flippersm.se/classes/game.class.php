@@ -317,7 +317,7 @@
           and qe.tournamentDivision_id = '.$tournament.'
       ';
       $query .= ($groupBy) ? $groupBy : '';
-      $query .= ' order by qe.place desc'
+      $query .= ' order by qe.place desc';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
