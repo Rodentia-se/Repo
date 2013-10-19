@@ -71,7 +71,7 @@
     $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = '.$tournament);
     if (is_array($players) && count($players) > 0) {
       $content .= '
-            <div id="classicsTable" class="section">
+            <div id="classicsTable" class="section hidden">
               <table class="standings">
                 <thead>
                   <tr>
@@ -132,7 +132,7 @@
     $players = getPlayers($dbh, ' where m.id is not null and m.tournamentEdition_id = '.$tournament.' and m.birthDate > "'.$ageLimit[$tournament].'" ');
     if (is_array($players) && count($players) > 0) {
       $content .= '
-            <div id="u18Table" class="section">
+            <div id="u18Table" class="section hidden">
               <table class="standings">
                 <thead>
                   <tr>
