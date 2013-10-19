@@ -35,7 +35,7 @@
                 <tbody>
       ';
       foreach ($players as $player) {
-        $qualEntries = $player->getEntries($dbh, 1, 1);
+        $qualEntries = $player->getEntries($dbh, $tournament, 1);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
@@ -43,7 +43,7 @@
                     <td>'.$qualEntry->place.'</td>
                     <td>'.$player->getLink().'</td>
             ';
-            $qualScores = $qualEntry->getScores($dbh,1, 1);
+            $qualScores = $qualEntry->getScores($dbh);
             $i = 0;
             if (is_array($qualScores) && count($qualScores) > 0) {
               foreach ($qualScores as $qualScore) {
@@ -69,47 +69,59 @@
     }
     $content .=  '</tbody></table></div>';
     $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = '.$tournament);
-    $content .= '
-            <div id="classicsTable" class="section hidden">
+    if (is_array($players) && count($players) > 0) {
+      $content .= '
+            <div id="classicsTable" class="section">
               <table class="standings">
                 <thead>
                   <tr>
                     <th>Plats</th>
                     <th>Namn</th>
-                    <th>Spel</th>
+      ';
+      for ($i = 1; $i <= $noOfGames[2]; $i++) {
+        $content .= '<th>Spel #'.$i.'</th>';
+      }
+      $content .= '
                     <th>Poäng</th>
                     <th>Här</th>
                   </tr>
                 </thead>
                 <tbody>
-    ';
-    if (is_array($players) && count($players) > 0) {
+      ';
       foreach ($players as $player) {
-        $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', (($tournament == 2) ? 5 : 2));
+        $qualEntries = $player->getEntries($dbh, $tournament, 2);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
                   <tr>
-                    <td>'.$qualEntry->entryPlace.'</td>
+                    <td>'.$qualEntry->place.'</td>
                     <td>'.$player->getLink().'</td>
-                    <td>
             ';
-            $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', (($tournament == 2) ? 5 : 2));
+            $qualScores = $qualEntry->getScores($dbh);
+            $i = 0;
             if (is_array($qualScores) && count($qualScores) > 0) {
               foreach ($qualScores as $qualScore) {
-                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+                $game = getGameById($dbh, $qualScore->game_id);
+                $game->name = ($game->shortName) ? $game->shortName : $game->name;
+                $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.round($qualScore->points).')</td>';
+                $i++;
+//                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
               }
             }
-            $content = preg_replace('/, $/', '', $content).'
-                    </td>
-                    <td>'.$qualScore->entryPoints.'</td>
+            while ($i < $noOfGames[2]) {
+              $content .= '<td></td>';
+              $i++;
+            }
+            $content .= '
+                    <td>'.round($qualEntry->points).'</td>
                     <td><input type="checkbox" '.(($player->here) ? 'checked' : '').' disabled></td>
-                </tr>
+                  </tr>
             ';
           }
         }
       }
     }
+    $content .=  '</tbody></table></div>';
     $ageLimit = array(
       1 => '1995-11-07',
       2 => '1994-11-17',
@@ -118,42 +130,53 @@
     );
     $content .=  '</tbody></table></div>';
     $players = getPlayers($dbh, ' where m.id is not null and m.tournamentEdition_id = '.$tournament.' and m.birthDate > "'.$ageLimit[$tournament].'" ');
-    $content .= '
-            <div id="u18Table" class="section hidden">
+    if (is_array($players) && count($players) > 0) {
+      $content .= '
+            <div id="u18Table" class="section">
               <table class="standings">
                 <thead>
                   <tr>
                     <th>Plats</th>
                     <th>Namn</th>
-                    <th>Spel</th>
+      ';
+      for ($i = 1; $i <= $noOfGames[1]; $i++) {
+        $content .= '<th>Spel #'.$i.'</th>';
+      }
+      $content .= '
                     <th>Poäng</th>
                     <th>Här</th>
                   </tr>
                 </thead>
                 <tbody>
-    ';
-    if (is_array($players) && count($players) > 0) {
+      ';
       foreach ($players as $player) {
-        $qualEntries = $player->getAllEntries($dbh, ' group by qe.id', (($tournament == 2) ? 4 : 1));
+        $qualEntries = $player->getEntries($dbh, $tournament, 2);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
                   <tr>
-                    <td>'.$qualEntry->entryPlace.'</td>
+                    <td>'.$qualEntry->place.'</td>
                     <td>'.$player->getLink().'</td>
-                    <td>
             ';
-            $qualScores = $player->getAllEntries($dbh,  ' group by qs.machine_id', (($tournament == 2) ? 4 : 1));
+            $qualScores = $qualEntry->getScores($dbh);
+            $i = 0;
             if (is_array($qualScores) && count($qualScores) > 0) {
               foreach ($qualScores as $qualScore) {
-                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+                $game = getGameById($dbh, $qualScore->game_id);
+                $game->name = ($game->shortName) ? $game->shortName : $game->name;
+                $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.round($qualScore->points).')</td>';
+                $i++;
+//                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
               }
             }
-            $content = preg_replace('/, $/', '', $content).'
-                    </td>
-                    <td>'.$qualScore->entryPoints.'</td>
+            while ($i < $noOfGames[1]) {
+              $content .= '<td></td>';
+              $i++;
+            }
+            $content .= '
+                    <td>'.round($qualEntry->points).'</td>
                     <td><input type="checkbox" '.(($player->here) ? 'checked' : '').' disabled></td>
-                </tr>
+                  </tr>
             ';
           }
         }
@@ -161,44 +184,56 @@
     }
     $content .=  '</tbody></table></div>';
     $teams = getTeams($dbh, ' where tm.tournamentDivision_id = '.(($tournament == 2) ? 6 : 3).' ');
-    $content .= '
+    if (is_array($teams) && count($teams) > 0) {
+      $content .= '
             <div id="teamTable" class="section hidden">
               <table class="standings">
                 <thead>
                   <tr>
                     <th>Plats</th>
                     <th>Namn</th>
+      ';
+      for ($i = 1; $i <= $noOfGames[3]; $i++) {
+        $content .= '<th>Spel #'.$i.'</th>';
+      }
+      $content .= '
                     <th>Spel</th>
                     <th>Poäng</th>
                     <th>Här</th>
                   </tr>
                 </thead>
                 <tbody>
-    ';
-    if (is_array($teams) && count($teams) > 0) {
+      ';
       foreach ($teams as $team) {
-        $qualEntries = $team->getAllEntries($dbh, ' group by qe.id', (($tournament == 2) ? 6 : 3));
+        $qualEntries = $team->getEntries($dbh, $tournament, 3);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
                   <tr>
-                    <td>'.$qualEntry->entryPlace.'</td>
+                    <td>'.$qualEntry->place.'</td>
                     <td>'.$team->getLink().'</td>
-                    <td>
+            ';
+            $qualScores = $qualEntry->getScores($dbh);
+            $i = 0;
+            if (is_array($qualScores) && count($qualScores) > 0) {
+              foreach ($qualScores as $qualScore) {
+                $game = getGameById($dbh, $qualScore->game_id);
+                $game->name = ($game->shortName) ? $game->shortName : $game->name;
+                $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.round($qualScore->points).')</td>';
+                $i++;
+//                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
+              }
+            }
+            while ($i < $noOfGames[3]) {
+              $content .= '<td></td>';
+              $i++;
+            }
+            $content .= '
+                    <td>'.round($qualEntry->points).'</td>
+                    <td><input type="checkbox" '.(($team->here) ? 'checked' : '').' disabled></td>
+                  </tr>
             ';
           }
-          $qualScores = $team->getAllEntries($dbh,  ' group by qs.machine_id', (($tournament == 2) ? 6 : 3));
-          if (is_array($qualScores) && count($qualScores) > 0) {
-            foreach ($qualScores as $qualScore) {
-              $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
-            }
-          }
-          $content = preg_replace('/, $/', '', $content).'
-                    </td>
-                    <td>'.$qualScore->entryPoints.'</td>
-                    <td><input type="checkbox" '.(($player->here) ? 'checked' : '').' disabled></td>
-                </tr>
-          ';
         }
       }
     }

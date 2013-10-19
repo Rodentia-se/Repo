@@ -4,9 +4,11 @@
     
     public $person_id;
     public $player_id;
+    public $team_id;
     public $tournamentDivision_id;
     public $tournamentEdition_id;
     public $player;
+    public $team;
     public $firstName;
     public $lastName;
     public $initials;
@@ -46,7 +48,7 @@
       return getScores($dbh, $tournament, $division);
     }
 
-    function getScores($dbh, $tournament = 1, $division = 1) {
+    function getScores($dbh) {
       $query = '
         select
           qs.id as id,
