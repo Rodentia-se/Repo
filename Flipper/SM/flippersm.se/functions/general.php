@@ -3653,7 +3653,7 @@
        $content .= 'registered';
      break;
      case 'game':
-       $content .= 'torunamentGames';
+       $content .= 'tournamentGames';
      break;
     }
     $content .= '"></table>
@@ -3674,7 +3674,6 @@
                     <div class="leftInfoDiv" id="leftInfoDiv">
                       '.(($select) ? '<h3 id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': </h3> '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'' : '').'
       ';
-      echo $obj->id;
       foreach($classes->{$type}->info as $field) {
         $label = '';
         if ($obj->{$field} && $obj->{$field} != '') {
