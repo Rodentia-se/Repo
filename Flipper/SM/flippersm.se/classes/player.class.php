@@ -621,10 +621,10 @@
           on qe.id = qs.qualEntry_id
         left join tournamentDivision td
           on td.id = qe.tournamentDivision_id
-        group by qe.id
         where qe.person_id = '.$this->id;
       $query .= ($tournament) ? ' and tournamentEdition = '.$tournament : '';
-      $query .= ($tournament) ? ' and tournamentDivision = '.$division : '';
+      $query .= ($division) ? ' and tournamentDivision = '.$division : '';
+      $query .= 'group by qe.id';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
