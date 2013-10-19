@@ -600,7 +600,7 @@
           qe.id as id,
           qe.name as name,
           qe.person_id as person_id,
-          qe.realPlayer_id as player_id,
+          qe.player_id as player_id,
           qe.tournamentDivision_id as tournamentDivision_id,
           qe.tournamentEdition_id as tournamentEdition_id,
           qe.place as place,
