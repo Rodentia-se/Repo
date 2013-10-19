@@ -2870,7 +2870,7 @@
 
   function getEntry($dbh, $idPlayer, $idDivision)
   {
-    $where = 'where player_id = '.$idPlayer.' and tournamentDivision_id = '.$idDivision;
+    $where = 'where person_id = '.$idPlayer.' and tournamentDivision_id = '.$idDivision;
     if ($obj = getEntries($dbh, $where)[0]) {
       return $obj;
     } else {
