@@ -40,7 +40,7 @@
           foreach ($qualEntries as $qualEntry) {
             $content .= '
                   <tr>
-                    <td>'.$qualEntry->entryPlace.'</td>
+                    <td>'.$qualEntry->place.'</td>
                     <td>'.$player->getLink().'</td>
             ';
             $qualScores = $qualEntry->getScores($dbh,1, 1);
