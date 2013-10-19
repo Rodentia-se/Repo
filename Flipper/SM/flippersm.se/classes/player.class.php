@@ -601,8 +601,8 @@
           qe.name as name,
           qe.person_id as person_id,
           qe.realPlayer_id as player_id,
-          td.id as tournamentDivision_id,
-          td.tournamentEdition_id as tournamentEdition_id,
+          qe.tournamentDivision_id as tournamentDivision_id,
+          qe.tournamentEdition_id as tournamentEdition_id,
           qe.place as place,
           qe.points as points,
           qe.firstName as firstName,
@@ -619,12 +619,10 @@
         from qualEntry qe
         left join qualScore qs
           on qe.id = qs.qualEntry_id
-        left join tournamentDivision td
-          on td.id = qe.tournamentDivision_id
         where qe.person_id = '.$this->id;
-      $query .= ($tournament) ? ' and tournamentEdition = '.$tournament : '';
-      $query .= ($division) ? ' and tournamentDivision = '.$division : '';
-      $query .= 'group by qe.id';
+      $query .= ($tournament) ? ' and qe.tournamentEdition = '.$tournament : '';
+      $query .= ($division) ? ' and qe.tournamentDivision = '.$division : '';
+      $query .= ' group by qe.id';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
