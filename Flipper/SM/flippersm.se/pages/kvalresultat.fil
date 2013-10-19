@@ -16,7 +16,7 @@
     ';
     $players = getPlayers($dbh, ' where m.tournamentEdition_id = '.$tournament);
     if (is_array($players) && count($players) > 0) {
-      $header .= '
+      $content .= '
             <div id="mainTable" class="section">
               <table class="standings">
                 <thead>
@@ -25,9 +25,9 @@
                     <th>Namn</th>
       ';
       for ($i = 1; $i <= $noOfGames[1]; $i++) {
-        $header .= '<th>Spel #'.$i.'</th>';
+        $content .= '<th>Spel #'.$i.'</th>';
       }
-      $header .= '
+      $content .= '
                     <th>Poäng</th>
                     <th>Här</th>
                   </tr>
