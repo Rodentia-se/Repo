@@ -48,7 +48,7 @@
               foreach ($qualScores as $qualScore) {
                 $game = getGameById($dbh, $qualScore->game_id);
                 $game->name = ($game->shortName) ? $game->shortName : $game->name;
-                $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.$qualScore->points.')</td>';
+                $content .= '<td>'.$qualScore->place.' on '.$game->getLink().' ('.round($qualScore->points).')</td>';
 //                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
               }
             }
