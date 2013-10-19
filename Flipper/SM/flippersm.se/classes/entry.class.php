@@ -75,16 +75,9 @@
           qs.registerPerson_id as registerPerson_id
         from qualScore qs
         group by g.machine_id
-        where
-          qs.person_id = :personId
+        where qs.qualEntry_id = '.$this->id.'
         order by max(qs.points) desc
       ';
-      $query .= ($tournament) ? ' and tournamentEdition = :tournament' : '';
-      $query .= ($tournament) ? ' and tournamentDivision = :division' : '';
-      $query .= 'group by qe.id';
-      $select[':personId'] = $this->id;
-      $select[':tournament'] = $tournament;
-      $select[':division'] = $division;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
         $objs[] = $obj;

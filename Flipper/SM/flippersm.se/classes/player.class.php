@@ -622,14 +622,10 @@
         left join tournamentDivision td
           on td.id = qe.tournamentDivision_id
         where
-          qe.person_id = :personId
-      ';
-      $query .= ($tournament) ? ' and tournamentEdition = :tournament' : '';
-      $query .= ($tournament) ? ' and tournamentDivision = :division' : '';
+          qe.person_id = '.$this->id;
+      $query .= ($tournament) ? ' and tournamentEdition = '.$tournament : '';
+      $query .= ($tournament) ? ' and tournamentDivision = '.$division : '';
       $query .= 'group by qe.id';
-      $select[':personId'] = $this->id;
-      $select[':tournament'] = $tournament;
-      $select[':division'] = $division;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
