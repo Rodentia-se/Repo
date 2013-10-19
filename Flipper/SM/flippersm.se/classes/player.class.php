@@ -620,8 +620,8 @@
         left join qualScore qs
           on qe.id = qs.qualEntry_id
         where qe.person_id = '.$this->id;
-      $query .= ($tournament) ? ' and qe.tournamentEdition = '.$tournament : '';
-      $query .= ($division) ? ' and qe.tournamentDivision = '.$division : '';
+      $query .= ($tournament) ? ' and qe.tournamentEdition_id = '.$tournament : '';
+      $query .= ($division) ? ' and qe.tournamentDivision_id = '.$division : '';
       $query .= ' group by qe.id';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
