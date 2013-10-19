@@ -581,39 +581,86 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
+
+    function getEntry($dbh, $tournament = 1, $division = 1) {
+      return getEntries($dbh, $tournament, $division);
+    }
+
+    function getEntries($dbh, $tournament = 1, $division = 1) {
+      $query = '
+        select
+          qe.id as id,
+          qe.name as name,
+          qe.person_id as person_id,
+          qe.realPlayer_id as player_id,
+          td.id as tournamentDivision_id,
+          td.tournamentEdition_id as tournamentEdition_id,
+          qe.place as place,
+          qe.points as points,
+          qe.firstName as firstName,
+          qe.lastName as lastName,
+          qe.initials as initials,
+          concat(ifnull(qe.firstName, ""), " ", ifnull(qe.lastName, "")) as player,
+          qe.country_id as country_id,
+          qe.country as country,
+          qe.city_id as city_id,
+          qe.city as city,
+          max(qs.score) as maxScore,
+          max(qs.points) as maxPoints,
+          min(qs.place) as bestPlace
+        from qualEntry qe
+        left join qualScore qs
+          on qe.id = qs.qualEntry_id
+        left join tournamentDivision td
+          on td.id = qe.tournamentDivision_id
+        where
+          qe.person_id = :personId
+      ';
+      $query .= ($tournament) ? ' and tournamentEdition = :tournament' : '';
+      $query .= ($tournament) ? ' and tournamentDivision = :division' : '';
+      $query .= 'group by qe.id';
+      $select[':personId'] = $this->id;
+      $select[':tournament'] = $tournament;
+      $select[':division'] = $division;
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject('entry')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
     
-  function getAllEntries ($dbh, $groupBy = false, $tournament = 1) {
-    $query = '
-      select
-        qe.person_id as id,
-        qs.id as qualScoreId,
-        qe.id as qualEntryId,
-        qs.place as place,
-        qe.place as entryPlace,
-        qs.points as points,
-        qe.points as entryPoints,
-        qs.score as score,
-        qe.realPlayer_id as playerId,
-        qe.firstName as firstName,
-        qe.lastName as lastName,
-        qe.country_id as countryId,
-        qe.country as country,
-        qs.machine_id as machineId,
-        qs.game_id as gameId,
-        qs.gameAcronym as gameAcronym,
-        ';
+    function getAllEntries($dbh, $groupBy = false, $tournament = 1) {
+      $query = '
+        select
+          qe.person_id as id,
+          qs.id as qualScoreId,
+          qe.id as qualEntryId,
+          qs.place as place,
+          qe.place as entryPlace,
+          qs.points as points,
+          qe.points as entryPoints,
+          qs.score as score,
+          qe.realPlayer_id as playerId,
+          qe.firstName as firstName,
+          qe.lastName as lastName,
+          qe.country_id as countryId,
+          qe.country as country,
+          qs.machine_id as machineId,
+          qs.game_id as gameId,
+          qs.gameAcronym as gameAcronym,
+          ';
       $query .= ($groupBy) ? '
-        max(qs.score) as maxScore,
-        max(qs.points) as maxPoints,
-        min(qs.place) as bestPlace,
+          max(qs.score) as maxScore,
+          max(qs.points) as maxPoints,
+          min(qs.place) as bestPlace,
       ' : '';
       $query .='
-        qs.game as game
-      from qualScore qs
-        left join qualEntry qe
-          on qs.qualEntry_id = qe.id
-      where qe.person_id = '.$this->id.'
-        and qe.tournamentDivision_id = '.$tournament.' ';
+          qs.game as game
+        from qualScore qs
+          left join qualEntry qe
+            on qs.qualEntry_id = qe.id
+        where qe.person_id = '.$this->id.'
+          and qe.tournamentDivision_id = '.$tournament.' ';
       $query .= ($groupBy) ? $groupBy : '';
       $query .= ($groupBy) ? ' order by bestPlace asc' : ' order by qs.place asc';
       $sth = $dbh->query($query);
