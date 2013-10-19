@@ -75,7 +75,7 @@
           qs.registerPerson_id as registerPerson_id
         from qualScore qs
         where qs.qualEntry_id = '.$this->id.'
-        group by g.machine_id
+        group by qs.machine_id
         order by max(qs.points) desc
       ';
       $sth = $dbh->query($query);
