@@ -228,7 +228,14 @@
             }
             $content .= '
                     <td>'.round($qualEntry->points).'</td>
-                    <td><input type="checkbox" '.(($team->here) ? 'checked' : '').' disabled></td>
+                    <td>
+            ';
+            $players = $team->getMembers($dbh);
+            foreach ($players as $player) {
+              $content .= '<input type="checkbox" '.(($team->here) ? 'checked' : '').' disabled>';
+            }
+            $content .= '
+                    </td>
                   </tr>
             ';
           }
