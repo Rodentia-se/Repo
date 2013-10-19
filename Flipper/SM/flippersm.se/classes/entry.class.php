@@ -5,12 +5,20 @@
     public $person_id;
     public $player_id;
     public $tournamentDivision_id;
+    public $tournamentEdition_id;
+    public $player;
     public $firstName;
     public $lastName;
+    public $initials;
+    public $city_id;
+    public $city;
     public $country_id;
     public $country;
     public $place;
     public $points;
+    public $maxScore;
+    public $maxPoints;
+    public $bestPlace;
     public $class = 'entry';
     
     public function __construct($data = null, $type = 'array') {
@@ -34,6 +42,10 @@
       }
     }
 
+    function getQualScores($dbh, $tournament = 1, $division = 1) {
+      return getScores($dbh, $tournament, $division);
+    }
+
     function getScores($dbh, $tournament = 1, $division = 1) {
       $query = '
         select
@@ -43,11 +55,11 @@
           qs.player_id as player_id,
           qs.qualEntry_id as qualEntry_id,
           qs.qualEntry_id as entry_id,
-          td.id as tournamentDivision_id,
-          td.tournamentEdition_id as tournamentEdition_id,
-          qs.place as place,
-          qs.points as points,
-          qs.score as score,
+          qs.tournamentDivision_id as tournamentDivision_id,
+          qs.tournamentEdition_id as tournamentEdition_id,
+          min(qs.place) as place,
+          max(qs.points) as points,
+          max(qs.score) as score,
           qs.firstName as firstName,
           qs.lastName as lastName,
           qs.initials as initials,
@@ -62,10 +74,10 @@
           qs.gameAcronym as gameShortName,
           qs.registerPerson_id as registerPerson_id
         from qualScore qs
-        left join tournamentDivision td
-          on td.id = qs.tournamentDivision_id
+        group by g.machine_id
         where
           qs.person_id = :personId
+        order by max(qs.points) desc
       ';
       $query .= ($tournament) ? ' and tournamentEdition = :tournament' : '';
       $query .= ($tournament) ? ' and tournamentDivision = :division' : '';

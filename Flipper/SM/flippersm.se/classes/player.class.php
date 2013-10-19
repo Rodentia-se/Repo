@@ -586,6 +586,14 @@
       return getEntries($dbh, $tournament, $division);
     }
 
+    function getQualEntry($dbh, $tournament = 1, $division = 1) {
+      return getEntries($dbh, $tournament, $division);
+    }
+
+    function getQualEntries($dbh, $tournament = 1, $division = 1) {
+      return getEntries($dbh, $tournament, $division);
+    }
+
     function getEntries($dbh, $tournament = 1, $division = 1) {
       $query = '
         select
