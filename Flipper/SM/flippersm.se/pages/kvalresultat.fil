@@ -3,6 +3,7 @@
   $tournament = (isset($_REQUEST['t']) && preg_match('/^[0-9]+$/', $_REQUEST['t'])) ? $_REQUEST['t'] : 1;
   $active = (isset($_REQUEST['active']) && $_REQUEST['active'] == 1) ? true : false;
   $noOfGames = array(1 => 4, 2 => 4, 3 => 4);
+  $noTeamPlayers = 2;
 
   $content = '
     <h1>Kvalresultat</h1>
@@ -231,8 +232,10 @@
                     <td>
             ';
             $players = $team->getMembers($dbh);
-            foreach ($players as $player) {
-              $content .= '<input type="checkbox" '.(($team->here) ? 'checked' : '').' disabled>';
+            $i = 0;
+            while ($i < $noTeamPlayers) {
+              $content .= '<input type="checkbox" '.(($players[$i]->here) ? 'checked' : '').' disabled>';
+              $i++;
             }
             $content .= '
                     </td>
