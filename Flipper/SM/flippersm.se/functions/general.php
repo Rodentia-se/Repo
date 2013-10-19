@@ -2841,7 +2841,8 @@
         e.name as name,
         e.person_id as person_id,
         e.player_id as player_id,
-        e.tournamentDivision_id as tournamentDivision_id, 
+        e.tournamentDivision_id as tournamentDivision_id,
+        e.tournamentEdition_id as tournamentEdition_id,
         e.firstName as firstName,
         e.lastName as lastName,
         e.country_id as country_id,
@@ -3764,7 +3765,7 @@
                   <td>'.$qualScore->place.'</td>
                   <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                   <td>'.$qualScore->score.'</td>
-                  <td>'.$qualScore->points.'</td>
+                  <td>'.round($qualScore->points).'</td>
                 </tr>
             ';
           }
@@ -3796,7 +3797,7 @@
                   <td>'.$qualScore->place.'</td>
                   <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                   <td>'.$qualScore->score.'</td>
-                  <td>'.$qualScore->points.'</td>
+                  <td>'.round($qualScore->points).'</td>
                 </tr>
               ';
             }
@@ -3830,7 +3831,7 @@
               <td>'.$qualScore->place.'</td>
               <td><a href="'.__baseHref__.'/?s=object&obj=player&id='.$qualScore->id.'">'.$qualScore->player.'</a></td>
               <td>'.$qualScore->score.'</td>
-              <td>'.$qualScore->points.'</td>
+              <td>'.round($qualScore->points).'</td>
             </tr>
             ';
           }
@@ -3862,7 +3863,7 @@
                 <td>'.$qualScore->place.'</td>
                 <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
                 <td>'.$qualScore->score.'</td>
-                <td>'.$qualScore->points.'</td>
+                <td>'.round($qualScore->points).'</td>
               </tr>
             ';
           }
