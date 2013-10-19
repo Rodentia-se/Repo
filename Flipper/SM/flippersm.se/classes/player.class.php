@@ -623,6 +623,7 @@
       $query .= ($tournament) ? ' and qe.tournamentEdition_id = '.$tournament : '';
       $query .= ($division) ? ' and qe.tournamentDivision_id = '.$division : '';
       $query .= ' group by qe.id';
+      $query .= ' order by qe.points desc, qe.place asc';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;

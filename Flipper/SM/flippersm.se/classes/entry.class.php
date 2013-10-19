@@ -76,7 +76,7 @@
         from qualScore qs
         where qs.qualEntry_id = '.$this->id.'
         group by qs.machine_id
-        order by max(qs.points) desc
+        order by max(qs.points) desc, min(qs.place) asc
       ';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
