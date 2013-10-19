@@ -54,7 +54,7 @@
 //                $content .= (($qualScore->bestPlace) ? $qualScore->bestPlace.' on ' : '').'<a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a>'.(($qualScore->maxPoints) ? ' ('.$qualScore->maxPoints.')' : '').', ';
               }
             }
-            while ($i <= $noOfGames[1]) {
+            while ($i < $noOfGames[1]) {
               $content .= '<td></td>';
               $i++;
             }
