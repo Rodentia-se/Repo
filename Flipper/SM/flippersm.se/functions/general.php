@@ -2831,46 +2831,30 @@
     $sth->execute($update);
   }
 
-  function getEntries($dbh, $where = null, $order = 'order by id')
-  {
-    $query = '
-      select
-        e.id as id,
-        "entry" as class,
-        "entry" as type,
-        e.name as name,
-        e.person_id as person_id,
-        e.player_id as player_id,
-        e.tournamentDivision_id as tournamentDivision_id,
-        e.tournamentEdition_id as tournamentEdition_id,
-        e.firstName as firstName,
-        e.lastName as lastName,
-        e.country_id as country_id,
-        e.country as country,
-        e.place as place,
-        e.points as points
-      from qualEntry e
+  function getEntries($dbh, $where = null, $order = 'order by qe.points desc, qe.place asc', $gruopBy = 'group by qe.id') {
+    $query = getEntrySelect().'
+      left join qualScore qs
+        on qe.id = qs.qualEntry_id
     ';
-    $where = preg_replace('/ id /', ' e.id ', $where);
-    $where = preg_replace('/ name /', ' e.name ', $where);
-    $where = preg_replace('/ person_id /', ' e.person_id ', $where);
-    $where = preg_replace('/ player_id /', ' e.player_id ', $where);
-    $where = preg_replace('/ tournamentDivision_id /', ' e.tournamentDivision_id ', $where);
-    $where = preg_replace('/ firstName /', ' e.firstName ', $where);
-    $where = preg_replace('/ lastName /', ' e.lastName ', $where);
-    $where = preg_replace('/ country_id /', ' e.countryId ', $where);
-    $where = preg_replace('/ country /', ' e.country ', $where);
-    //print $query.' '.$where.' '.$order;
-    $sth = $dbh->query($query.' '.$where.' '.$order);
+    $where = preg_replace('/ id /', ' qe.id ', $where);
+    $where = preg_replace('/ name /', ' qe.name ', $where);
+    $where = preg_replace('/ person_id /', ' qe.person_id ', $where);
+    $where = preg_replace('/ player_id /', ' qe.player_id ', $where);
+    $where = preg_replace('/ tournamentDivision_id /', ' qe.tournamentDivision_id ', $where);
+    $where = preg_replace('/ tournamentEdition_id /', ' qe.tournamentEdition_id ', $where);
+    $where = preg_replace('/ firstName /', ' qe.firstName ', $where);
+    $where = preg_replace('/ lastName /', ' qe.lastName ', $where);
+    $where = preg_replace('/ country_id /', ' qe.countryId ', $where);
+    $where = preg_replace('/ country /', ' qe.country ', $where);
+    $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('entry')) {
       $objs[] = $obj;
     }
     return $objs;
   }
 
-  function getEntry($dbh, $idPlayer, $idDivision)
-  {
-    $where = 'where person_id = '.$idPlayer.' and tournamentDivision_id = '.$idDivision;
+  function getEntry($dbh, $idPlayer, $idDivision) {
+    $where = 'where qe.person_id = '.$idPlayer.' and qe.tournamentDivision_id = '.$idDivision;
     if ($obj = getEntries($dbh, $where)[0]) {
       return $obj;
     } else {
@@ -2878,34 +2862,19 @@
     }
   }
 
-  function getScores($dbh, $where = null, $order = "order by id")
-  {
-    $query = '
-      select
-        s.id as id,
-        "score" as class,
-        "score" as type,
-        s.name as name,
-        s.qualEntry_id as qualEntry_id,
-        s.machine_id as machine_id,
-        s.gameAcronym as gameAcronym,
-        s.firstName as firstName,
-        s.lastName as lastName,
-        s.country as country,
-        s.score as score
-      from qualScore s
-    ';
-    $where = preg_replace('/ id /', ' s.id ', $where);
-    $where = preg_replace('/ name /', ' s.name ', $where);
-    $where = preg_replace('/ qualEntry_id /', ' s.qualEntry_id ', $where);
-    $where = preg_replace('/ machine_id /', ' s.machine_id ', $where);
-    $where = preg_replace('/ gameAcronym /', ' s.gameAcronym ', $where);
-    $where = preg_replace('/ firstName /', ' s.firstName ', $where);
-    $where = preg_replace('/ lastName /', ' s.lastName ', $where);
-    $where = preg_replace('/ country /', ' s.country ', $where);
-    $where = preg_replace('/ score /', ' s.score ', $where);
-    //print $query.' '.$where.' '.$order;
-    $sth = $dbh->query($query.' '.$where.' '.$order);
+  function getScorees($dbh, $where = null, $order = 'order by max(qs.points) desc, min(qs.place) asc', $gruopBy = 'group by qs.machine_id') {
+    $query = getScoreSelect();
+    $where = preg_replace('/ id /', ' qs.id ', $where);
+    $where = preg_replace('/ name /', ' qs.name ', $where);
+    $where = preg_replace('/ person_id /', ' qs.person_id ', $where);
+    $where = preg_replace('/ player_id /', ' qs.player_id ', $where);
+    $where = preg_replace('/ tournamentDivision_id /', ' qs.tournamentDivision_id ', $where);
+    $where = preg_replace('/ tournamentEdition_id /', ' qs.tournamentEdition_id ', $where);
+    $where = preg_replace('/ firstName /', ' qs.firstName ', $where);
+    $where = preg_replace('/ lastName /', ' qs.lastName ', $where);
+    $where = preg_replace('/ country_id /', ' qs.countryId ', $where);
+    $where = preg_replace('/ country /', ' qs.country ', $where);
+    $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('score')) {
       $objs[] = $obj;
     }
@@ -3179,7 +3148,7 @@
 
   function getEntryById($dbh, $id) {
     if ($id) {
-      $where = 'where id = '. $id;
+      $where = 'where qe.id = '.$id;
       if ($obj = getEntries($dbh, $where)[0]) {
         return $obj;
       } else {
@@ -3189,7 +3158,83 @@
       return false;
     }
   }
-  
+
+  function getScoreById($dbh, $id) {
+    if ($id) {
+      $where = 'where qs.id = '.$id;
+      if ($obj = getScores($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  function getEntrySelect() {
+    return '
+      select
+        qe.id as id,
+        qe.name as name,
+        qe.person_id as person_id,
+        if(qe.tournamentDivision_id < 3, qe.player_id, null) as player_id,
+        if(qe.tournamentDivision_id = 3, qe.player_id, null) as team_id,
+        qe.tournamentDivision_id as tournamentDivision_id,
+        qe.tournamentEdition_id as tournamentEdition_id,
+        qe.place as place,
+        qe.points as points,
+        if(qe.tournamentDivision_id < 3, qe.firstName, null) as firstName,
+        if(qe.tournamentDivision_id < 3, qe.lastName, null) as lastName,
+        qe.initials as initials,
+        if(qe.tournamentDivision_id = 3, qe.firstName, null) as team,
+        if(qe.tournamentDivision_id < 3, concat(ifnull(qe.firstName, ""), " ", ifnull(qe.lastName, "")), null) as player,
+        qe.country_id as country_id,
+        qe.country as country,
+        qe.city_id as city_id,
+        qe.city as city,
+        max(qs.score) as maxScore,
+        max(qs.points) as maxPoints,
+        min(qs.place) as bestPlace,
+        "entry" as class
+      from qualEntry qe
+    ';
+  }
+
+  function getScoreSelect() {
+    return '
+      select
+        qs.id as id,
+        qs.name as name,
+        qs.person_id as person_id,
+        if(qs.tournamentDivision_id < 3, qs.player_id, null) as player_id,
+        if(qs.tournamentDivision_id = 3, qs.player_id, null) as team_id,
+        qs.qualEntry_id as qualEntry_id,
+        qs.qualEntry_id as entry_id,
+        qs.tournamentDivision_id as tournamentDivision_id,
+        qs.tournamentEdition_id as tournamentEdition_id,
+        min(qs.place) as place,
+        max(qs.points) as points,
+        max(qs.score) as score,
+        if(qs.points is not null, 1, 0) as valid,
+        if(qs.tournamentDivision_id < 3, qs.firstName, null) as firstName,
+        if(qs.tournamentDivision_id < 3, qs.lastName, null) as lastName,
+        qs.initials as initials,
+        if(qs.tournamentDivision_id = 3, qe.firstName, null) as team,
+        if(qs.tournamentDivision_id < 3, concat(ifnull(qs.firstName, ""), " ", ifnull(qs.lastName, "")), null) as player,
+        qs.country_id as country_id,
+        qs.country as country,
+        qs.city_id as city_id,
+        qs.city as city,
+        qs.machine_id as machine_id,
+        qs.game_id as game_id,
+        qs.game as game,
+        qs.gameAcronym as gameShortName,
+        qs.registerPerson_id as registerPerson_id
+      from qualScore qs
+    ';
+  }
+
   function getCityById($dbh, $id) {
     if ($id) {
       $where = 'where c.id = '.$id;

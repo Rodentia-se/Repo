@@ -49,33 +49,7 @@
     }
 
     function getScores($dbh) {
-      $query = '
-        select
-          qs.id as id,
-          qs.name as name,
-          qs.person_id as person_id,
-          qs.player_id as player_id,
-          qs.qualEntry_id as qualEntry_id,
-          qs.qualEntry_id as entry_id,
-          qs.tournamentDivision_id as tournamentDivision_id,
-          qs.tournamentEdition_id as tournamentEdition_id,
-          min(qs.place) as place,
-          max(qs.points) as points,
-          max(qs.score) as score,
-          qs.firstName as firstName,
-          qs.lastName as lastName,
-          qs.initials as initials,
-          concat(ifnull(qs.firstName, ""), " ", ifnull(qs.lastName, "")) as player,
-          qs.country_id as country_id,
-          qs.country as country,
-          qs.city_id as city_id,
-          qs.city as city,
-          qs.machine_id as machine_id,
-          qs.game_id as game_id,
-          qs.game as game,
-          qs.gameAcronym as gameShortName,
-          qs.registerPerson_id as registerPerson_id
-        from qualScore qs
+      $query = getScoreSelect().'
         where qs.qualEntry_id = '.$this->id.'
         group by qs.machine_id
         order by max(qs.points) desc, min(qs.place) asc

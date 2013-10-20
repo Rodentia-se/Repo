@@ -8,9 +8,10 @@
     public $game_id;
     public $game;
     public $gameAcronym;
+    public $score;
     public $place;
     public $points;
-    public $score;
+    public $valid;
     public $person_id;
     public $player_id;
     public $tournamentDivision_id;

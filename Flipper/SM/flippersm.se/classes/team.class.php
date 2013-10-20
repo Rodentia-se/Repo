@@ -213,25 +213,7 @@
     }
 
     function getEntries($dbh, $tournament = 1, $division = 3) {
-      $query = '
-        select
-          qe.id as id,
-          qe.name as name,
-          qe.player_id as team_id,
-          qe.firstName as team,
-          qe.tournamentDivision_id as tournamentDivision_id,
-          qe.tournamentEdition_id as tournamentEdition_id,
-          qe.place as place,
-          qe.points as points,
-          qe.initials as initials,
-          qe.country_id as country_id,
-          qe.country as country,
-          qe.city_id as city_id,
-          qe.city as city,
-          max(qs.score) as maxScore,
-          max(qs.points) as maxPoints,
-          min(qs.place) as bestPlace
-        from qualEntry qe
+      $query = getEntrySelect().'
         left join qualScore qs
           on qe.id = qs.qualEntry_id
         where qe.player_id = '.$this->id;
@@ -241,6 +223,26 @@
       $query .= ' order by qe.points desc, qe.place asc';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
+
+    function getQualScores($dbh, $tournament = 1, $division = 1) {
+      return getScores($dbh, $tournament, $division);
+    }
+
+    function getScores($dbh, $tournament = 1, $division = 1) {
+      $query = getScoreSelect().'
+        where qs.player_id = '.$this->id;
+      $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
+      $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';
+      $query .= '
+        group by qs.machine_id
+        order by max(qs.points) desc, min(qs.place) asc
+      ';
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject('score')) {
         $objs[] = $obj;
       }
       return $objs;
