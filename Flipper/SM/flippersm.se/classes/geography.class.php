@@ -78,6 +78,6 @@
       $stats['player'] = $this->getNoOfPlayers($dbh, $tournament);
       return $stats;
     }
-    
+
   }
 ?>

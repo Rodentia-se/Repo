@@ -539,7 +539,7 @@
             $needTable .= '
               <div id="'.$task->id.'_'.$period->id.'_allocVolsEdit" class="allocEdit">
                 '.$date.' '.$clock.' '.$task->shortName.'
-                <img src="'.__baseHref__.'/images/cancel.png" style="float: right" class="textIcon" onclick="adminAlloc(this, false);" alt="Click to close the box" title="Click to close the box" id="'.$task->id.'_'.$period->id.'_allocVolsClose">
+                <img src="'.__baseHref__.'/images/cancel.png" class="right textIcon" onclick="adminAlloc(this, false);" alt="Click to close the box" title="Click to close the box" id="'.$task->id.'_'.$period->id.'_allocVolsClose">
                 <span class="error errorSpan toolTip" id="'.$task->id.'_'.$period->id.'_allocVolsCloseSpan"></span><br />
               
             ';

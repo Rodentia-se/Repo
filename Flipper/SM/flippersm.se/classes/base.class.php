@@ -113,5 +113,13 @@
 
     public function populate($dbh) {
     }
+
+    public deNorm($dbh, $propagate = true) {
+      global $classes;
+      if ($propagate) {
+        deNormClass($dbh, $classes->{$this->class});
+      }
+    }
+
   }
 ?>

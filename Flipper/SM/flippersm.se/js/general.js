@@ -1927,6 +1927,14 @@ function ownerDiv(icon, open) {
   }
 }
 
+function tshirtBigDiv(icon, open) {
+  if(open) {
+    $('#' + icon.id.replace('_close', '').replace('_open', '')).show();
+  } else {
+    $('#' + icon.id.replace('_close', '').replace('_open', '')).hide();
+  }
+}
+
 function adminGameComment(btn, open) {
   var machineId = btn.id.split('_')[0];
   var comment = document.getElementById(btn.id.replace('Submit', '')).value;
