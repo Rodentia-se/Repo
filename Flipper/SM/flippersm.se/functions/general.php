@@ -3220,7 +3220,7 @@
         if(qs.tournamentDivision_id < 3, qs.firstName, null) as firstName,
         if(qs.tournamentDivision_id < 3, qs.lastName, null) as lastName,
         qs.initials as initials,
-        if(qs.tournamentDivision_id = 3, qe.firstName, null) as team,
+        if(qs.tournamentDivision_id = 3, qs.firstName, null) as team,
         if(qs.tournamentDivision_id < 3, concat(ifnull(qs.firstName, ""), " ", ifnull(qs.lastName, "")), null) as player,
         qs.country_id as country_id,
         qs.country as country,
