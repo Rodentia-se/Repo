@@ -1929,9 +1929,9 @@ function ownerDiv(icon, open) {
 
 function tshirtBigDiv(icon, open) {
   if(open) {
-    $('#' + icon.id.replace('_close', '').replace('_open', '')).show();
+    $('#tshirtBigDiv').show();
   } else {
-    $('#' + icon.id.replace('_close', '').replace('_open', '')).hide();
+    $('#tshirtBigDiv').hide();
   }
 }
 

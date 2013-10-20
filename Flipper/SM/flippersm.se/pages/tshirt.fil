@@ -10,7 +10,7 @@
     ';
     $content .= '
       <div id="tshirtPhoto" onclick="tshirtBigDiv(this, true);"><p><img src="'.getPhoto($dbh, 'tshirt', 4).'" alt="SM 2013 T-shirt" /></p></div>
-      <div id="tshirtBigPhotos" class="toolTip">
+      <div id="tshirtBigDiv" class="toolTip">
         <img src="'.__baseHref__.'/images/cancel.png" class="icon right" onclick="tshirtBigDiv(this, false);" alt="Click to delete the team" title="Click to delete the team" style="display: '.(($team->id) ? '' : 'none').';" id="'.$idPrefix.'delete">
         <img src="'.getPhoto($dbh, 'tshirt', 5).'" alt="SM 2013 T-shirt" />
         <img src="'.getPhoto($dbh, 'tshirt', 6).'" alt="SM 2013 T-shirt" />
