@@ -18,13 +18,14 @@
         $available = $tShirt->inStock($dbh);
         if ($available == 0) {
           $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
+        } else if ($available == $tshirt->getNumber($dbh)) {
+          $errorMsg = 'There\'s only '.$tshirt->getNumber($dbh).' '.$tShirt->color.' '.$tShirt->size.' in stock!';
         } else {
           if ($available < $tShirt->number) {
             $tShirt->number = $available;
             $reason = 'There was only '.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
           }
-          $update = $tShirt->updateOrder($dbh);
-          if ($available < $tShirt->number || ($available >= $tShirt->number && $update > 0)) {
+          if ($tShirt->updateOrder($dbh) > 0) {
             $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
             echo(json_encode($response));
           } else {
