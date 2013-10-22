@@ -912,7 +912,7 @@
 
     function getAdminScoreTable($dbh) {
       $content .= '<br /><br /><h2 class="entry-title">Score administration</h2>';
-      $players = getPlayers($dbh);
+      $players = getPlayers($dbh, 'where tournamentEdition_id = 1');
       $content .= createSelect($players, 'playerSelect', 0, 'playerScores');
       $games = getGames($dbh);
       $content .= createSelect($games, 'gameSelect', 0, 'gameScores');
