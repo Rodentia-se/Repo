@@ -16,6 +16,8 @@
       if ($tShirt) {
         $available = $tShirt->inStock($dbh);
         if ($available == 0) {
+          $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
+        } else {
           if ($available < $number) {
             $number = $available;
             $reason = 'There was only '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
@@ -27,8 +29,6 @@
           } else {
             $errorMsg = 'Could not update the T-shirt';
           }
-        } else {
-          $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
         }
       } else {
         $errorMsg = 'Could not find the T-shirt';
