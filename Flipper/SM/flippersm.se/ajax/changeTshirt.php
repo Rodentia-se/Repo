@@ -15,9 +15,9 @@
       $tShirt->number = $number;
       if ($tShirt) {
         $available = $tShirt->inStock($dbh);
-        if ($available->number == 0) {
-          if ($available->number < $number) {
-            $number = $available->number;
+        if ($available == 0) {
+          if ($available < $number) {
+            $number = $available;
             $reason = 'There was only '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
           }
           $tShirt->playerTshirt_id = $id;
