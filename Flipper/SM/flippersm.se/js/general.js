@@ -2890,6 +2890,8 @@ function tshirtChanged(el) {
       } else {
         selectOption(el, el.getAttribute('previous'));
       }
+      selectOption(numberSel, data.number);
+      el.setAttribute('previous', data.number);
       calcTshirtCost();
     })
     .fail(function(jqHXR,status,error) {
