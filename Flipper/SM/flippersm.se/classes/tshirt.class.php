@@ -54,10 +54,21 @@
         return false;
       }
     }
+
+    function getNumber($dbh) {
+      if ($this->playerTshirt_id) {
+        $query = 'select number from personTShirt where id = '.$this->playerTshirt_id;
+        $sth = $dbh->query($query);
+        $result = $sth->fetchColumn();
+        return ($result > 0) ? $result : 0;
+      } else {
+        return 0;
+      }
+    }
     
     function inStock($dbh) {
-      $tShirt = getNoOfTshirts($dbh, $this->tournamentTshirt_id);
-      return ($tShirt->total - $tShirt->reserved - $tShirt->soldOnSite);
+      $numbers = getNoOfTshirts($dbh, $this->tournamentTshirt_id);
+      return ($numbers->total - $numbers->reserved - $numbers->soldOnSite + $this->getNumber($dbh));
     }
 
     function updateOrder($dbh) {
