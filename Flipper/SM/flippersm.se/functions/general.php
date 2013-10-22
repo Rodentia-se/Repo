@@ -1186,7 +1186,7 @@
     foreach(array('number' => 'antal', 'color' => 'färg', 'size' => 'storlek') as $param => $label) {
       $json[$param]['label'] = ucfirst($label).': ';
       $content .= $json[$param]['label'];
-      $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.' tshirtSelect" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
+      $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.' tshirtSelect" previous="0" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
       foreach($options[$param] as $option_id => $option) {
         $json[$param]['select'] .= '<option value="'.$option_id.'"';
         if ($playerTshirt && count($playerTshirt) > 0 && $playerTshirt->{$param.'_id'} == $option_id) {
@@ -2032,83 +2032,89 @@
       $sets = implode($set, ',');
       $updates[] = $update.$join.' set '.$sets;
     }
-    if ($class->name == 'team') {
-      $updates[] = '
-        update team t 
-          left join player pl 
-            on t.contactPlayer_id = pl.id 
-          set 
-            t.contactPlayer_name = concat(ifnull(pl.firstName,""), " ", ifnull(pl.lastName,""))
-      ';
-    } else if ($class->name == 'player') {
-      $updates[] = '
-        update player pl 
-          left join person p 
-            on pl.person_id = p.id
-          set 
-            pl.firstName = coalesce(pl.firstName, p.firstName),
-            pl.lastName = coalesce(pl.lastName, p.lastName),
-            pl.initials = coalesce(pl.initials, p.initials),
-            pl.streetAddress = coalesce(pl.streetAddress, p.streetAddress),
-            pl.zipCode = coalesce(pl.zipCode, p.zipCode),
-            pl.telephoneNumber = coalesce(pl.telephoneNumber, p.telephoneNumber),
-            pl.mobileNumber = coalesce(pl.mobileNumber, p.mobileNumber),
-            pl.mailAddress = coalesce(pl.mailAddress, p.mailAddress),
-            pl.birthDate = coalesce(pl.birthDate, p.birthDate),
-            pl.ifpa_id = p.ifpa_id,
-            pl.ifpaRank = p.ifpaRank
-      ';
-      $updates[] = '
-        update person p 
-          left join player pl
-            on pl.person_id = p.id
-          set 
-            p.firstName = coalesce(p.firstName, pl.firstName),
-            p.lastName = coalesce(p.lastName, pl.lastName),
-            p.initials = coalesce(p.initials, pl.initials),
-            p.streetAddress = coalesce(p.streetAddress, pl.streetAddress),
-            p.zipCode = coalesce(p.zipCode, pl.zipCode),
-            p.telephoneNumber = coalesce(p.telephoneNumber, pl.telephoneNumber),
-            p.mobileNumber = coalesce(p.mobileNumber, pl.mobileNumber),
-            p.mailAddress = coalesce(p.mailAddress, pl.mailAddress),
-            p.birthDate = coalesce(p.birthDate, pl.birthDate),
-            p.gender_id = coalesce(p.gender_id, pl.gender_id),
-            p.gender = coalesce(p.gender, pl.gender),
-            p.city_id = coalesce(p.city_id, pl.city_id),
-            p.city = coalesce(p.city, pl.city),
-            p.region_id = coalesce(p.region_id, pl.region_id),
-            p.region = coalesce(p.region, pl.region),
-            p.parentRegion_id = coalesce(p.parentRegion_id, pl.parentRegion_id),
-            p.parentRegion = coalesce(p.parentRegion, pl.parentRegion),
-            p.country_id = coalesce(p.country_id, pl.country_id),
-            p.country = coalesce(p.country, pl.country),
-            p.parentCountry_id = coalesce(p.parentCountry_id, pl.parentCountry_id),
-            p.parentCountry = coalesce(p.parentCountry, pl.parentCountry),
-            p.continent_id = coalesce(p.continent_id, pl.continent_id),
-            p.continent = coalesce(p.continent, pl.continent)
-      ';
-      $updates[] = '
-        update volunteerPeriod vp
-          left join period p
-            on vp.period_id = p.id
-          set 
-            vp.length = TIMEDIFF(p.endTime,p.startTime)
-      ';
-      $updates[] = 'update volunteer set alloc = null';
-      $updates[] = '
-        update volunteer v
-          left join (
-            select
-              volunteer_id,
-              sec_to_time(sum(time_to_sec(length))) as alloc
-            from volunteerPeriod
-            where task_id is not null
-            group by volunteer_id
-          ) as vp
-            on vp.volunteer_id = v.id
-          set 
-            v.alloc = vp.alloc
-      ';
+    switch ($class->name) {
+      case 'team':
+        $updates[] = '
+          update team t
+            left join player pl
+              on t.contactPlayer_id = pl.id
+            set
+              t.contactPlayer_name = concat(ifnull(pl.firstName,""), " ", ifnull(pl.lastName,""))
+        ';
+      break;
+      case 'player':
+        $updates[] = '
+          update player pl
+            left join person p
+              on pl.person_id = p.id
+            set
+              pl.firstName = coalesce(pl.firstName, p.firstName),
+              pl.lastName = coalesce(pl.lastName, p.lastName),
+              pl.initials = coalesce(pl.initials, p.initials),
+              pl.streetAddress = coalesce(pl.streetAddress, p.streetAddress),
+              pl.zipCode = coalesce(pl.zipCode, p.zipCode),
+              pl.telephoneNumber = coalesce(pl.telephoneNumber, p.telephoneNumber),
+              pl.mobileNumber = coalesce(pl.mobileNumber, p.mobileNumber),
+              pl.mailAddress = coalesce(pl.mailAddress, p.mailAddress),
+              pl.birthDate = coalesce(pl.birthDate, p.birthDate),
+              pl.ifpa_id = p.ifpa_id,
+              pl.ifpaRank = p.ifpaRank
+        ';
+        $updates[] = '
+          update person p
+            left join player pl
+              on pl.person_id = p.id
+            set
+              p.firstName = coalesce(p.firstName, pl.firstName),
+              p.lastName = coalesce(p.lastName, pl.lastName),
+              p.initials = coalesce(p.initials, pl.initials),
+              p.streetAddress = coalesce(p.streetAddress, pl.streetAddress),
+              p.zipCode = coalesce(p.zipCode, pl.zipCode),
+              p.telephoneNumber = coalesce(p.telephoneNumber, pl.telephoneNumber),
+              p.mobileNumber = coalesce(p.mobileNumber, pl.mobileNumber),
+              p.mailAddress = coalesce(p.mailAddress, pl.mailAddress),
+              p.birthDate = coalesce(p.birthDate, pl.birthDate),
+              p.gender_id = coalesce(p.gender_id, pl.gender_id),
+              p.gender = coalesce(p.gender, pl.gender),
+              p.city_id = coalesce(p.city_id, pl.city_id),
+              p.city = coalesce(p.city, pl.city),
+              p.region_id = coalesce(p.region_id, pl.region_id),
+              p.region = coalesce(p.region, pl.region),
+              p.parentRegion_id = coalesce(p.parentRegion_id, pl.parentRegion_id),
+              p.parentRegion = coalesce(p.parentRegion, pl.parentRegion),
+              p.country_id = coalesce(p.country_id, pl.country_id),
+              p.country = coalesce(p.country, pl.country),
+              p.parentCountry_id = coalesce(p.parentCountry_id, pl.parentCountry_id),
+              p.parentCountry = coalesce(p.parentCountry, pl.parentCountry),
+              p.continent_id = coalesce(p.continent_id, pl.continent_id),
+              p.continent = coalesce(p.continent, pl.continent)
+        ';
+        $updates[] = '
+          update volunteerPeriod vp
+            left join period p
+              on vp.period_id = p.id
+            set
+              vp.length = TIMEDIFF(p.endTime,p.startTime)
+        ';
+        $updates[] = 'update volunteer set alloc = null';
+        $updates[] = '
+          update volunteer v
+            left join (
+              select
+                volunteer_id,
+                sec_to_time(sum(time_to_sec(length))) as alloc
+              from volunteerPeriod
+              where task_id is not null
+              group by volunteer_id
+            ) as vp
+              on vp.volunteer_id = v.id
+            set
+              v.alloc = vp.alloc
+        ';
+      break;
+      case 'country':
+        $updates[] = 'update country set id_country = id where id_country is null';
+      break;
     }
     if ($updates and is_array($updates)) {
       foreach ($updates as $update) {
