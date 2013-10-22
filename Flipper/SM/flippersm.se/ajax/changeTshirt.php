@@ -18,8 +18,8 @@
         $available = $tShirt->inStock($dbh);
         if ($available == 0) {
           $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
-        } else if ($available == $tshirt->getNumber($dbh)) {
-          $errorMsg = 'There\'s only '.$tshirt->getNumber($dbh).' '.$tShirt->color.' '.$tShirt->size.' in stock!';
+        } else if ($available == $tShirt->getNumber($dbh)) {
+          $errorMsg = 'There\'s only '.$tShirt->getNumber($dbh).' '.$tShirt->color.' '.$tShirt->size.' in stock!';
         } else {
           if ($available < $tShirt->number) {
             $tShirt->number = $available;
