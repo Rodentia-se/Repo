@@ -2886,7 +2886,7 @@ function tshirtChanged(el) {
     .done(function(data) {
       fade(document.getElementById(id + '_tshirtSpan'), data.reason, data.success);
       if (data.success) {
-        sel.setAttribute('previous', el.value);
+        el.setAttribute('previous', el.value);
       } else {
         selectOption(el, el.getAttribute('previous'));
       }
@@ -2898,6 +2898,7 @@ function tshirtChanged(el) {
     });
   } else {
     fade(document.getElementById(id + '_tshirtSpan'), 'You have not chosen all options for these T-shirts!', false, 3000, 1000);
+    el.setAttribute('previous', el.value);
     calcTshirtCost();
   }
 }
