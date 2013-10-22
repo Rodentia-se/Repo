@@ -13,13 +13,17 @@
     If ($tournament && $id && $color && $size && $number) {
       $tShirt = getTshirtByParams($dbh, $color, $size, $tournament);
       $tShirt->number = $number;
-      $tShirt->playerTshirt_id = $id;
-      if ($tShirt) {
-        if ($tShirt->updateOrder($dbh) > 0) {
-          $response = (object) array('success' => true, 'reason' => $number.' of '.$tShirt->color.' T-shirts size '.$tShirt->size.' ordered!');
-          echo(json_encode($response));
+      if ($number > $tShirt->inStock($dbh)) {
+        $tShirt->playerTshirt_id = $id;
+        if ($tShirt) {
+          if ($tShirt->updateOrder($dbh) > 0) {
+            $response = (object) array('success' => true, 'reason' => $number.' of '.$tShirt->color.' T-shirts size '.$tShirt->size.' ordered!');
+            echo(json_encode($response));
+          } else {
+            $errorMsg = 'Could not update the T-shirt';
+          }
         } else {
-          $errorMsg = 'Could not update the T-shirt';
+          $errorMsg = 'There\'s not '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! Please'.(($number > 1) ? ' try less than '.$number.'or' : '').' choose another color/size.';
         }
       } else {
         $errorMsg = 'Could not find the T-shirt';

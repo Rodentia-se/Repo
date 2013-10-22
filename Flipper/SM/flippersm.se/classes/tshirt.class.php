@@ -55,8 +55,13 @@
       }
     }
     
+    function inStock($dbh) {
+      $tShirt = getNoOfTshirts($dbh, $this->tournamentTshirt_id);
+      return ($tShirt->total - $tShirt->reserved - $tShirt->soldOnSite);
+    }
+
     function updateOrder($dbh) {
-      $query = ' 
+      $query = '
         update personTShirt ps
         left join tshirt ts
           on ts.id = :tournamentTShirt_id
