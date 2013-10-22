@@ -2887,11 +2887,11 @@ function tshirtChanged(el) {
       fade(document.getElementById(id + '_tshirtSpan'), data.reason, data.success);
       if (data.success) {
         el.setAttribute('previous', el.value);
+        selectOption(numberSel, data.number);
+        el.setAttribute('previous', data.number);
       } else {
         selectOption(el, el.getAttribute('previous'));
       }
-      selectOption(numberSel, data.number);
-      el.setAttribute('previous', data.number);
       calcTshirtCost();
     })
     .fail(function(jqHXR,status,error) {

@@ -14,6 +14,7 @@
       $tShirt = getTshirtByParams($dbh, $color, $size, $tournament);
       $tShirt->number = $number;
       if ($tShirt) {
+        $tShirt->playerTshirt_id = $id;
         $available = $tShirt->inStock($dbh);
         if ($available == 0) {
           $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
@@ -22,7 +23,6 @@
             $tShirt->number = $available;
             $reason = 'There was only '.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
           }
-          $tShirt->playerTshirt_id = $id;
           if ($tShirt->updateOrder($dbh) > 0) {
             $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
             echo(json_encode($response));
