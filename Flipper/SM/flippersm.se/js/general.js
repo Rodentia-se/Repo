@@ -2902,29 +2902,6 @@ function tshirtChanged(el) {
   }
 }
 
-      if (sel.getAttribute('previous')) {
-        sel.setAttribute('previous', sel.value);
-        $('.' + sel.id.split('_')[0] + '_' + sel.id.split('_')[2]).each(function () {
-          selectOption(document.getElementById($(this).attr('id')), sel.value);
-        });
-      }
-      if (document.getElementById(playerId + '_diff')) {
-        document.getElementById(playerId + '_diff').innerHTML = (+ parseInt(document.getElementById(playerId + '_costs').innerHTML) - sel.value);
-      }
-      if (document.getElementById(playerId + '_tooMuchCosts')) {
-        document.getElementById(playerId + '_costs').innerHTML = sel.innerHTML;
-        $('.paymentCorrect').show();
-        $('.paymentTooMuch').hide();
-        $('.paymentNeeded').hide();
-      }
-    } else {
-      if (sel.getAttribute('previous')) {
-        selectOption(sel, sel.getAttribute('previous'));
-      }
-    }
-  })
-
-
 function fade(el, text, success, start, duration) {
   var text = (text) ? text : el.innerHTML;
   var start = (start) ? start : 6000;
