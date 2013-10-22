@@ -23,7 +23,7 @@
             $errorMsg = 'Could not update the T-shirt';
           }
         } else {
-          $errorMsg = 'There\'s not '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! Please'.(($number > 1) ? ' try less than '.$number.'or' : '').' choose another color/size.';
+          $errorMsg = 'There\'s not '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! Please'.(($number > 1) ? ' try less than '.$number.' or' : '').' choose another color/size.';
         }
       } else {
         $errorMsg = 'Could not find the T-shirt';
