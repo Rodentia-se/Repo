@@ -15,6 +15,7 @@
           <li><a href="'.__baseHref__.'/adminTools.php?tool=volunteer">Volunteer tools</a></li>
           <li><a href="'.__baseHref__.'/adminTools.php?tool=tshirt">T-shirt tools</a></li>
           <li><a href="'.__baseHref__.'/adminTools.php?tool=game">Game tools</a></li>
+          <li><a href="'.__baseHref__.'/adminTools.php?tool=score">Score tools</a></li>
           <li><a href="#" onclick="deNorm(this);" id="deNorm">Denormalization</a><span class="error errorSpan toolTip" id="deNormSpan"></span></li>
         </ul>
       ';
