@@ -18,13 +18,13 @@
         if ($available == 0) {
           $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
         } else {
-          if ($available < $number) {
-            $number = $available;
-            $reason = 'There was only '.$number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
+          if ($available < $tShirt->number) {
+            $tShirt->number = $available;
+            $reason = 'There was only '.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
           }
           $tShirt->playerTshirt_id = $id;
           if ($tShirt->updateOrder($dbh) > 0) {
-            $response = (object) array('success' => true, 'reason' => $reason.$number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $number);
+            $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
             echo(json_encode($response));
           } else {
             $errorMsg = 'Could not update the T-shirt';
