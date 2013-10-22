@@ -22,15 +22,17 @@
           if ($available < $tShirt->number) {
             $tShirt->number = $available;
             $reason = 'There was only '.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
-            if ($available == $tShirt->getNumber($dbh)) {
+            if ($tShirt->number == $tShirt->getNumber($dbh)) {
               $errorMsg = 'There\'s only '.$tShirt->getNumber($dbh).' '.$tShirt->color.' '.$tShirt->size.' in stock!';
             }
           }
-          if (!$errorMsg && $tShirt->updateOrder($dbh) > 0) {
-            $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
-            echo(json_encode($response));
-          } else {
-            $errorMsg = 'Could not update the T-shirt';
+          if (!$errorMsg) {
+            if ($tShirt->updateOrder($dbh) > 0) {
+              $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
+              echo(json_encode($response));
+            } else {
+              $errorMsg = 'Could not update the T-shirt';
+            }
           }
         }
       } else {
