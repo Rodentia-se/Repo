@@ -13,7 +13,7 @@
     If ($tournament && $id && $color && $size && $number) {
       $tShirt = getTshirtByParams($dbh, $color, $size, $tournament);
       $tShirt->number = $number;
-      if ($number > $tShirt->inStock($dbh)) {
+      if ($tShirt->inStock($dbh) >= $number) {
         $tShirt->playerTshirt_id = $id;
         if ($tShirt) {
           if ($tShirt->updateOrder($dbh) > 0) {
