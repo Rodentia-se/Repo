@@ -57,6 +57,7 @@
     
     function inStock($dbh) {
       $tShirt = getNoOfTshirts($dbh, $this->tournamentTshirt_id);
+      var_dump($tShirt);
       return ($tShirt->total - $tShirt->reserved - $tShirt->soldOnSite);
     }
 
