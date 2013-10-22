@@ -13,9 +13,9 @@
     If ($tournament && $id && $color && $size && $number) {
       $tShirt = getTshirtByParams($dbh, $color, $size, $tournament);
       $tShirt->number = $number;
-      if ($tShirt->inStock($dbh) >= $number) {
-        $tShirt->playerTshirt_id = $id;
-        if ($tShirt) {
+      if ($tShirt) {
+        if ($tShirt->inStock($dbh) >= $number) {
+          $tShirt->playerTshirt_id = $id;
           if ($tShirt->updateOrder($dbh) > 0) {
             $response = (object) array('success' => true, 'reason' => $number.' of '.$tShirt->color.' T-shirts size '.$tShirt->size.' ordered!');
             echo(json_encode($response));
