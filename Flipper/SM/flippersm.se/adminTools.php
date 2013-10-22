@@ -50,6 +50,9 @@
           $content .= $playerTables['qualGroups'];
           $content .= '<p>'.$playerTables['csv'].'</p>';
         break;
+        case 'score':
+          $content .= getAdminScoreTable($dbh);
+        break;
       }
       $content .= getDataTables();
     } else {

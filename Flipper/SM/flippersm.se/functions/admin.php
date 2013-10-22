@@ -908,7 +908,16 @@
       ';
       return $gameTable;
     }
-    
+
+    function getAdminScoreTable($dbh) {
+      $content .= '<br /><br /><h2 class="entry-title">Score administration</h2>';
+      $players = getPlayers($dbh);
+      $content .= createSelect($players, 'playerSelect', 0, 'playerScores');
+      $games = getGames($dbh);
+      $content .= createSelect($games, 'gameSelect', 0, 'gameScores');
+      return $content;
+    }
+
     function getAdminQualGroupTable($dbh) {
       $content .= '<br /><br /><h2 class="entry-title">Qualification groups</h2>';
       $qualGroups = getQualGroups($dbh);
