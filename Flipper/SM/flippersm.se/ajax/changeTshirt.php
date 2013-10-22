@@ -23,7 +23,8 @@
             $tShirt->number = $available;
             $reason = 'There was only '.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' in stock! ';
           }
-          if ($tShirt->updateOrder($dbh) > 0) {
+          $update = $tShirt->updateOrder($dbh);
+          if ($available < $tShirt->number || ($available >= $tShirt->number && $update > 0)) {
             $response = (object) array('success' => true, 'reason' => $reason.$tShirt->number.' of '.$tShirt->color.' '.$tShirt->size.' ordered!', 'number' => $tShirt->number);
             echo(json_encode($response));
           } else {
