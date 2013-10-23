@@ -922,6 +922,7 @@
             <thead>
               <tr>
                 <th>Entry ID</th>
+                <th>Div</th>
                 <th>Player</th>
                 <th>Person ID</th>
                 <th>Player ID</th>
@@ -942,6 +943,7 @@
             <thead>
               <tr>
                 <th>Entry ID</th>
+                <th>Div</th>
                 <th>Player</th>
                 <th>Person ID</th>
                 <th>Player ID</th>
