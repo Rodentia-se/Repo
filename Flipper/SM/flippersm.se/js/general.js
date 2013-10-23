@@ -1921,30 +1921,53 @@ function getScores(sel) {
     $('#' + sel.name + 'Table').dataTable().makeEditable({
       'aoColumns': [
         null,
-        null,
         {
-          tooltip: 'Click to select ' + sel.name,
+          tooltip: 'Double click to select player',
           loadtext: 'Loading...',
-          loadurl: baseHref + '/ajax/getSelectData.php?type=' + sel.name + '&t=1',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           type: 'select',
           onblur: 'cancel',
           loadtype: 'GET',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=' + sel.name
+          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=player'
         },
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null,
-        null
+        {
+          tooltip: 'Double click to select game',
+          loadtext: 'Loading...',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
+          type: 'select',
+          onblur: 'cancel',
+          loadtype: 'GET',
+          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=game'
+        },
+        {
+          tooltip: 'Double click to change score',
+          onblur: 'cancel',
+          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+        },
+        {
+          tooltip: 'Double click to change score',
+          onblur: 'cancel',
+          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+        },
+        {
+          tooltip: 'Double click to change score',
+          onblur: 'cancel',
+          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+        }
       ]
     });
     $('#' + sel.name + 'Table').css('width', '');
     $('#' + sel.name + 'Div').show();
   }
 }
+
+>Entry ID</th>
+                <th>Div</th>
+                <th>Player</th>
+                <th>Game</th>
+                <th>Score</th>
+                <th>Points</th>
+                <th>Place</th>
 
 function adminGameEdit(icon, open) {
   if(open) {

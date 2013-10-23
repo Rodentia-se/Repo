@@ -924,11 +924,7 @@
                 <th>Entry ID</th>
                 <th>Div</th>
                 <th>Player</th>
-                <th>Person ID</th>
-                <th>Player ID</th>
                 <th>Game</th>
-                <th>Game ID</th>
-                <th>Machine ID</th>
                 <th>Score</th>
                 <th>Points</th>
                 <th>Place</th>
@@ -945,11 +941,7 @@
                 <th>Entry ID</th>
                 <th>Div</th>
                 <th>Player</th>
-                <th>Person ID</th>
-                <th>Player ID</th>
                 <th>Game</th>
-                <th>Game ID</th>
-                <th>Machine ID</th>
                 <th>Score</th>
                 <th>Points</th>
                 <th>Place</th>
