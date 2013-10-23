@@ -316,6 +316,7 @@
         group by qs.machine_id
         order by max(qs.points) desc, min(qs.place) asc
       ';
+      echo $query;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
         $objs[] = $obj;
