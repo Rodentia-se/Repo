@@ -17,9 +17,9 @@
               foreach ($scores as $score) {
                 $json[] = array(
                   $score->qualEntry_id,
-                  $score->player,
+                  (($tournamentDivision_id == 3) ? $score->team : $score->player),
                   $score->person_id,
-                  $score->player_id,
+                  (($tournamentDivision_id == 3) ? $score->team_id : $score->player_id),
                   $score->gameShortName,
                   $score->game_id,
                   $score->machine_id,
