@@ -28,7 +28,7 @@
                   $score->place
                 );
               }
-              echo json_encode($json);
+              echo '{"aaData": '.json_encode($json).'}';
             } else {
               $errorMsg = 'Could not find any scores for '.$obj->name;
             }
