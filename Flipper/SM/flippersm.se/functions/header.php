@@ -9,6 +9,7 @@
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/jquery-ui.js"></script>
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/jquery.jeditable.mini.js"></script>
+    <script type="text/javascript" src="'.$baseHref.'/js/contrib/jquery.dataTables.editable.js"></script>
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/purl.js"></script>
     <script type="text/javascript" src="'.$baseHref.'/js/contrib/recaptcha_ajax.js"></script>
     <script type="text/javascript" src="'.$baseHref.'/js/general.js"></script>
