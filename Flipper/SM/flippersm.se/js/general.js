@@ -1917,7 +1917,8 @@ function getScores(sel) {
       'bDestroy': true,
       'bJQueryUI': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
-    }).makeEditable({
+    });
+    $('#' + sel.name + 'Table').dataTable().makeEditable({
       'aoColumns': [
         null,
         null,
