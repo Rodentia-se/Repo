@@ -1912,7 +1912,7 @@ function getScores(sel) {
   $('#playerDiv').hide();
   if (sel.value != 0) {
     selectOption(document.getElementById(((sel.name == 'game') ? 'player' : 'game')), 0);
-    $('#' + sel.name + 'Table').dataTable({
+    var tbl = $('#' + sel.name + 'Table').dataTable({
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
@@ -1920,6 +1920,29 @@ function getScores(sel) {
     });
     $('#' + sel.name + 'Table').css('width', '');
     $('#' + sel.name + 'Div').show();
+    tbl.makeEditable({
+      'aoColumns': [
+        null,
+        null,
+        {
+          tooltip: 'Click to select ' + sel.name,
+          loadtext: 'Loading...',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=' + sel.name + '&t=1',
+          type: 'select',
+          onblur: 'cancel',
+          loadtype: 'GET',
+          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=' + sel.name
+        },
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    });
   }
 }
 
