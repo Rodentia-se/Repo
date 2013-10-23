@@ -118,9 +118,9 @@ else {
   echo '<h2>Följ oss på sociala media!</h2>';
   echo '<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="logo-facebook" class="social" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="twitter" class="social" /></a><a href="https://profiles.google.com/113331404073472052354" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Print" class="social" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" class="social" /></a><a href="https://www.youtube.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" class="social" /></a>';
   echo '<h2>Ladda hem affischen!</h2>';
-  echo '<p>Ladda hem affischen, skriv ut och sätt upp den på dina lokala flipperhak.</p>';
+  echo '<p>Ladda hem affischen, skriv ut och sätt upp den på dina lokala flipperhak. Den finns även i flyer-storlek.</p>';
   echo '<p><a href="'.__baseHref__.'/images/affisch.pdf"><img src="'.__baseHref__.'/images/flyer.jpg" width="430"></a></p>';
-  echo '<p><a href="'.__baseHref__.'/images/flyer.pdf">Samma affisch i flyer-storlek</a>.</p>';
+  echo '<p><a href="'.__baseHref__.'/images/flyer.pdf"><img src="'.__baseHref__.'/images/flyer.jpg" width="150"></a></p>';
 ?>
 
 
