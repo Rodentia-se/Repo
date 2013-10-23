@@ -1910,6 +1910,8 @@ function adminPlace(sel) {
 function getScores(sel) {
   $('#' + sel.name + 'Table').dataTable({
     'bProcessing': true,
+    'bDestroy': true,
+    'bJQueryUI': true,
     'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
   });
   $('#gameDiv').hide();
