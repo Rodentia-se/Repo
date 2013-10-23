@@ -15,6 +15,19 @@
             $scores = $obj->getScores($dbh, 1, false);
             if (is_array($scores) && count($scores > 1) {
               foreach ($scores as $score) {
+                $json = array(
+                  $score->qualEntry_id,
+                  $score->player,
+                  $score->person_id,
+                  $score->player_id,
+                  $score->gameShortName,
+                  $score->game_id,
+                  $score->machine_id,
+                  $score->score,
+                  $score->points,
+                  $score->place
+                );
+                echo json_encode($json);
               }
             } else {
               $errorMsg = 'Could not find any scores for '.$obj->name;

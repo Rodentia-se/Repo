@@ -919,18 +919,30 @@
       $content .= '
         <table id="playerTable" style="display: none;">
           <tr>
-            <th>Game ID</th>
+            <th>Entry ID</th>
+            <th>Player</th>
+            <th>Person ID</th>
+            <th>Player ID</th>
             <th>Game</th>
+            <th>Game ID</th>
             <th>Machine ID</th>
             <th>Score</th>
+            <th>Points</th>
+            <th>Place</th>
           </tr>
         </table>
         <table id="gameTable" style="display: none;">
           <tr>
-            <th>Game ID</th>
+            <th>Entry ID</th>
+            <th>Player</th>
+            <th>Person ID</th>
+            <th>Player ID</th>
             <th>Game</th>
+            <th>Game ID</th>
             <th>Machine ID</th>
             <th>Score</th>
+            <th>Points</th>
+            <th>Place</th>
           </tr>
         </table>
       ';
