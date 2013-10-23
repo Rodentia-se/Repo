@@ -938,7 +938,7 @@
           </table>
         </div>
         <div id="gameDiv" style="display: none;">
-          <table id="gameTable" style="display: none;">
+          <table id="gameTable">
             <thead>
               <tr>
                 <th>Entry ID</th>
