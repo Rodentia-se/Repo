@@ -1961,14 +1961,6 @@ function getScores(sel) {
   }
 }
 
->Entry ID</th>
-                <th>Div</th>
-                <th>Player</th>
-                <th>Game</th>
-                <th>Score</th>
-                <th>Points</th>
-                <th>Place</th>
-
 function adminGameEdit(icon, open) {
   if(open) {
     $('#' + icon.id + 'Div').show();
