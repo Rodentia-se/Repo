@@ -1927,7 +1927,6 @@ function getScores(sel) {
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           type: 'select',
-          onblur: 'cancel',
           loadtype: 'GET',
           sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=player'
         },
@@ -1936,23 +1935,19 @@ function getScores(sel) {
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
           type: 'select',
-          onblur: 'cancel',
           loadtype: 'GET',
           sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=game'
         },
         {
           tooltip: 'Double click to change score',
-          onblur: 'cancel',
           sUpdateURL: baseHref + '/ajax/scoreChange.php'
         },
         {
           tooltip: 'Double click to change score',
-          onblur: 'cancel',
           sUpdateURL: baseHref + '/ajax/scoreChange.php'
         },
         {
           tooltip: 'Double click to change score',
-          onblur: 'cancel',
           sUpdateURL: baseHref + '/ajax/scoreChange.php'
         }
       ]
