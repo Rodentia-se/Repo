@@ -17,6 +17,7 @@
               foreach ($scores as $score) {
                 $json[] = array(
                   $score->qualEntry_id,
+                  (($score->tournamentDivision_id == 3) ? 'Team' : (($score->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
                   (($score->tournamentDivision_id == 3) ? $score->team : $score->player),
                   $score->person_id,
                   (($score->tournamentDivision_id == 3) ? $score->team_id : $score->player_id),
@@ -24,7 +25,7 @@
                   $score->game_id,
                   $score->machine_id,
                   $score->score,
-                  $score->points,
+                  round($score->points),
                   $score->place
                 );
               }
