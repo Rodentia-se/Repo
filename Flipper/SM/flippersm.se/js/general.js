@@ -1921,6 +1921,7 @@ function getScores(sel) {
     $('#' + sel.name + 'Table').dataTable().makeEditable({
       'aoColumns': [
         null,
+        null,
         {
           tooltip: 'Double click to select player',
           loadtext: 'Loading...',
