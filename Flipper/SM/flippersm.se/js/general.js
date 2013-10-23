@@ -1908,17 +1908,20 @@ function adminPlace(sel) {
 }
 
 function getScores(sel) {
-  $('#' + sel.name + 'Table').dataTable.fnClearTable();
-  $('#' + sel.name + 'Table').dataTable({
-    'bProcessing': true,
-    'bDestroy': true,
-    'bJQueryUI': true,
-    'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
-  });
-  $('#' + sel.name + 'Table').css('width', '');
   $('#gameDiv').hide();
   $('#playerDiv').hide();
-  $('#' + sel.name + 'Div').show();
+  if (sel.value != 0) {
+    selectOption(document.getElementById(((sel.name == 'game') ? 'player' : 'game')), 0);
+    $('#' + sel.name + 'Table').dataTable.fnClearTable();
+    $('#' + sel.name + 'Table').dataTable({
+      'bProcessing': true,
+      'bDestroy': true,
+      'bJQueryUI': true,
+      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
+    });
+    $('#' + sel.name + 'Table').css('width', '');
+    $('#' + sel.name + 'Div').show();
+  }
 }
 
 function adminGameEdit(icon, open) {
