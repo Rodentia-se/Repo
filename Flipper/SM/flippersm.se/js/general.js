@@ -1907,6 +1907,13 @@ function adminPlace(sel) {
   });
 }
 
+function getScores(sel) {
+  $('#' + sel.name + 'Table').dataTable({
+    'bProcessing': true,
+    'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
+  });
+}
+
 function adminGameEdit(icon, open) {
   if(open) {
     $('#' + icon.id + 'Div').show();

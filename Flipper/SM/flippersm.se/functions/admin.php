@@ -913,9 +913,27 @@
     function getAdminScoreTable($dbh) {
       $content .= '<br /><br /><h2 class="entry-title">Score administration</h2>';
       $players = getPlayers($dbh, 'where tournamentEdition_id = 1');
-      $content .= '<p><label for="playerSelect">Player:</label>'.createSelect($players, 'playerSelect', 0, 'playerScores').'</p>';
+      $content .= '<p><label for="playerSelect">Player:</label>'.createSelect($players, 'player', 0, 'getScores').'</p>';
       $games = getGames($dbh);
-      $content .= '<p><label for="gameSelect">Game:</label>'.createSelect($games, 'gameSelect', 0, 'gameScores').'</p>';
+      $content .= '<p><label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
+      $content .= '
+        <table id="playerTable" style="display: none;">
+          <tr>
+            <th>Game ID</th>
+            <th>Game</th>
+            <th>Machine ID</th>
+            <th>Score</th>
+          </tr>
+        </table>
+        <table id="gameTable" style="display: none;">
+          <tr>
+            <th>Game ID</th>
+            <th>Game</th>
+            <th>Machine ID</th>
+            <th>Score</th>
+          </tr>
+        </table>
+      ';
       return $content;
     }
 
