@@ -1912,7 +1912,6 @@ function getScores(sel) {
   $('#playerDiv').hide();
   if (sel.value != 0) {
     selectOption(document.getElementById(((sel.name == 'game') ? 'player' : 'game')), 0);
-    $('#' + sel.name + 'Table').dataTable.fnClearTable();
     $('#' + sel.name + 'Table').dataTable({
       'bProcessing': true,
       'bDestroy': true,
