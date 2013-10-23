@@ -917,7 +917,7 @@
       $games = getGames($dbh);
       $content .= '<label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
       $content .= '
-        <div id="playerTable" style="display: none;">
+        <div id="playerDiv" style="display: none;">
           <table id="playerTable">
             <thead>
               <tr>
@@ -937,7 +937,7 @@
             </tbody>
           </table>
         </div>
-        <div id="gameTable" style="display: none;">
+        <div id="gameDiv" style="display: none;">
           <table id="gameTable" style="display: none;">
             <thead>
               <tr>
