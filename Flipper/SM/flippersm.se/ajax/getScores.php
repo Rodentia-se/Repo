@@ -13,7 +13,7 @@
           $obj = ($type == 'game') ? getGameById($dbh, $id) : getPlayerById($dbh, $id);
           if ($obj) {
             $scores = $obj->getScores($dbh, 1, false);
-            if (is_array($scores) && count($scores > 1) {
+            if (is_array($scores) && count($scores > 1)) {
               foreach ($scores as $score) {
                 $json = array(
                   $score->qualEntry_id,
