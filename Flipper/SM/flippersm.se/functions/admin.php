@@ -917,42 +917,46 @@
       $games = getGames($dbh);
       $content .= '<label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
       $content .= '
-        <table id="playerTable" style="display: none;">
-          <thead>
-            <tr>
-              <th>Entry ID</th>
-              <th>Player</th>
-              <th>Person ID</th>
-              <th>Player ID</th>
-              <th>Game</th>
-              <th>Game ID</th>
-              <th>Machine ID</th>
-              <th>Score</th>
-              <th>Points</th>
-              <th>Place</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
-        <table id="gameTable" style="display: none;">
-          <thead>
-            <tr>
-              <th>Entry ID</th>
-              <th>Player</th>
-              <th>Person ID</th>
-              <th>Player ID</th>
-              <th>Game</th>
-              <th>Game ID</th>
-              <th>Machine ID</th>
-              <th>Score</th>
-              <th>Points</th>
-              <th>Place</th>
-            </tr>
-          </thead>
-          <tbody>
-          </tbody>
-        </table>
+        <div id="playerTable" style="display: none;">
+          <table id="playerTable">
+            <thead>
+              <tr>
+                <th>Entry ID</th>
+                <th>Player</th>
+                <th>Person ID</th>
+                <th>Player ID</th>
+                <th>Game</th>
+                <th>Game ID</th>
+                <th>Machine ID</th>
+                <th>Score</th>
+                <th>Points</th>
+                <th>Place</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+        <div id="gameTable" style="display: none;">
+          <table id="gameTable" style="display: none;">
+            <thead>
+              <tr>
+                <th>Entry ID</th>
+                <th>Player</th>
+                <th>Person ID</th>
+                <th>Player ID</th>
+                <th>Game</th>
+                <th>Game ID</th>
+                <th>Machine ID</th>
+                <th>Score</th>
+                <th>Points</th>
+                <th>Place</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
       ';
       return $content;
     }

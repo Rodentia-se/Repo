@@ -1912,9 +1912,9 @@ function getScores(sel) {
     'bProcessing': true,
     'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
   });
-  $('#gameTable').hide();
-  $('#playerTable').hide();
-  $('#' + sel.name + 'Table').show();
+  $('#gameDiv').hide();
+  $('#playerDiv').hide();
+  $('#' + sel.name + 'Div').show();
 }
 
 function adminGameEdit(icon, open) {
