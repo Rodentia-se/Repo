@@ -1964,10 +1964,7 @@ function getScores(sel) {
         }
       ]
     });
-    $('select[name="player"]').on('change', function () {
-      $(this).parent().submit();
-    });
-    $('select[name="game"]').on('change', function () {
+    $('select[name="value"]').on('change', function () {
       $(this).parent().submit();
     });
     $('#' + sel.name + 'Table').css('width', '');
