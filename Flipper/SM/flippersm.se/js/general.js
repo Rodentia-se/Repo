@@ -1927,28 +1927,37 @@ function getScores(sel) {
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           type: 'select',
-          loadtype: 'GET',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=player'
+          onblur: 'ignore',
+          event: 'click',
+          style: 'display: inline;',
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/changeEntryPlayer.php'
         },
         {
           tooltip: 'Double click to select game',
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
           type: 'select',
-          loadtype: 'GET',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php?obj=game'
+          onblur: 'ignore',
+          event: 'click',
+          style: 'display: inline;',
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/changeEntryGame.php'
         },
         {
           tooltip: 'Double click to change score',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/changeEntryScore.php'
         },
         {
           tooltip: 'Double click to change score',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/scoreEntryPoints.php'
         },
         {
           tooltip: 'Double click to change score',
-          sUpdateURL: baseHref + '/ajax/scoreChange.php'
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/scoreEntryPlace.php'
         }
       ]
     });
