@@ -19,7 +19,7 @@
                   $score->qualEntry_id,
                   (($score->tournamentDivision_id == 3) ? 'Team' : (($score->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
                   (($score->tournamentDivision_id == 3) ? $score->team : $score->player),
-                  $score->gameShortName,
+                  $score->game,
                   $score->score,
                   round($score->points),
                   $score->place
