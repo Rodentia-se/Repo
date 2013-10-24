@@ -921,8 +921,8 @@
           <table id="playerTable">
             <thead>
               <tr>
-                <th>Score ID</th>
-                <th>Entry ID</th>
+                <th>ID</th>
+                <th>Entry</th>
                 <th>Div</th>
                 <th>Player</th>
                 <th>Game</th>
@@ -939,8 +939,8 @@
           <table id="gameTable">
             <thead>
               <tr>
-                <th>Score ID</th>
-                <th>Entry ID</th>
+                <th>ID</th>
+                <th>Entry</th>
                 <th>Div</th>
                 <th>Player</th>
                 <th>Game</th>
