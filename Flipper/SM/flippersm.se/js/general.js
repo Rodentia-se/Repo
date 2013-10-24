@@ -1954,13 +1954,13 @@ function getScores(sel) {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
-          sUpdateURL: baseHref + '/ajax/scoreEntryPoints.php'
+          sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
-          sUpdateURL: baseHref + '/ajax/scoreEntryPlace.php'
+          sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
         }
       ]
     });

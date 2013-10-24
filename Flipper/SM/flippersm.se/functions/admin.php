@@ -921,6 +921,7 @@
           <table id="playerTable">
             <thead>
               <tr>
+                <th>Score ID</th>
                 <th>Entry ID</th>
                 <th>Div</th>
                 <th>Player</th>
@@ -938,6 +939,7 @@
           <table id="gameTable">
             <thead>
               <tr>
+                <th>Score ID</th>
                 <th>Entry ID</th>
                 <th>Div</th>
                 <th>Player</th>
