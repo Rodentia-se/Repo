@@ -2868,7 +2868,7 @@
     }
   }
 
-  function getScorees($dbh, $where = null, $order = 'order by max(qs.points) desc, min(qs.place) asc', $gruopBy = 'group by qs.machine_id') {
+  function getScores($dbh, $where = null, $order = 'order by max(qs.points) desc, min(qs.place) asc', $gruopBy = 'group by qs.machine_id') {
     $query = getScoreSelect();
     $where = preg_replace('/ id /', ' qs.id ', $where);
     $where = preg_replace('/ name /', ' qs.name ', $where);
