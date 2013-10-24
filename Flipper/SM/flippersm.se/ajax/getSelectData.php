@@ -9,14 +9,16 @@
   if ($entryId) {
     $qualEntry = getEntryById($dbh, $entryId);
     $division = $qualEntry->tournamentDivision_id;
-    $type = ($division == 3) ? 'team' : 'player';
+    $playerType = ($division == 3) ? 'team' : 'player';
   }
 
   if ($scoreId) {
     $qualScore = getScoreById($dbh, $scoreId);
     $division = $qualScore->tournamentDivision_id;
-    $type = ($division == 3) ? 'team' : 'player';
+    $playerType = ($division == 3) ? 'team' : 'player';
   }
+
+  $type = ($type != 'game' && $playerType) ? $playerType : $type;
 
   if ($type) {
     $options['tournament'] = 1;
