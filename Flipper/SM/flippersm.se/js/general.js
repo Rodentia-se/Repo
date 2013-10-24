@@ -1964,7 +1964,7 @@ function getScores(sel) {
         }
       ]
     });
-    $('select[name="value"]').on('change', function () {
+    $(document).on('change', 'select[name="value"]', function () {
       $(this).parent().submit();
     });
     $('#' + sel.name + 'Table').css('width', '');
