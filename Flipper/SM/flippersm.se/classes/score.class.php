@@ -217,8 +217,6 @@
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
-      }
     }
-
   }
 ?>
