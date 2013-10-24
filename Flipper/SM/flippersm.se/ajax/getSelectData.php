@@ -9,7 +9,7 @@
 
     $json = array('zero' => 'Välj...');
     foreach ($objs as $obj) {
-      $json[$obj->id] = $obj->name;
+      $json['_'.$obj->id] = $obj->name;
     }
 
     echo json_encode($json);

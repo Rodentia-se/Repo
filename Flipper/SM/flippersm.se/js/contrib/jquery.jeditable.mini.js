@@ -1,3 +1,4 @@
+
 (function($){$.fn.editable=function(target,options){if('disable'==target){$(this).data('disabled.editable',true);return;}
 if('enable'==target){$(this).data('disabled.editable',false);return;}
 if('destroy'==target){$(this).unbind($(this).data('event.editable')).removeData('disabled.editable').removeData('event.editable');return;}
@@ -30,8 +31,8 @@ reset.apply(form,[settings,original]);return false;});}}},text:{element:function
 if(settings.height!='none'){input.height(settings.height);}
 input.attr('autocomplete','off');$(this).append(input);return(input);}},textarea:{element:function(settings,original){var textarea=$('<textarea />');if(settings.rows){textarea.attr('rows',settings.rows);}else if(settings.height!="none"){textarea.height(settings.height);}
 if(settings.cols){textarea.attr('cols',settings.cols);}else if(settings.width!="none"){textarea.width(settings.width);}
-$(this).append(textarea);return(textarea);}},select:{element:function(settings,original){var select=$('<select />');$(this).append(select);return(select);},content:function(data,settings,original){if(String==data.constructor){eval('var data = '+data);}
-for(var key in data){if(!data.hasOwnProperty(key)){continue;}
+$(this).append(textarea);return(textarea);}},select:{element:function(settings,original){var select=$('<select />');$(this).append(select);return(select);},content:function(data,settings,original){if(String==data.constructor){eval('var json = '+data);}else{var json=data;}
+for(var key in json){if(!json.hasOwnProperty(key)){continue;}
 if('selected'==key){continue;}
-var option=$('<option />').val(key).append(data[key]);$('select',this).append(option);}
-$('select',this).children().each(function(){if($(this).val()==data['selected']||$(this).text()==$.trim(original.revert)){$(this).attr('selected','selected');}});}}},addInputType:function(name,input){$.editable.types[name]=input;}};$.fn.editable.defaults={name:'value',id:'id',type:'text',width:'auto',height:'auto',event:'click.editable',onblur:'cancel',loadtype:'GET',loadtext:'Loading...',placeholder:'Click to edit',loaddata:{},submitdata:{},ajaxoptions:{}};})(jQuery);
+var option=$('<option />').val(key).append(json[key]);$('select',this).append(option);}
+$('select',this).children().each(function(){if($(this).val()==json['selected']||$(this).text()==$.trim(original.revert)){$(this).attr('selected','selected');}});}}},addInputType:function(name,input){$.editable.types[name]=input;}};$.fn.editable.defaults={name:'value',id:'id',type:'text',width:'auto',height:'auto',event:'click.editable',onblur:'cancel',loadtype:'GET',loadtext:'Loading...',placeholder:'Click to edit',loaddata:{},submitdata:{},ajaxoptions:{}};})(jQuery);
