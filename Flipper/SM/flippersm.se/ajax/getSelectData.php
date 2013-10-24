@@ -7,7 +7,7 @@
   if ($type) {
     $objs = (array) getObjectList($dbh, $type, array('tournament' => '1'));
 
-    $json = array(0 => 'Välj...');
+    $json = array('zero' => 'Välj...');
     foreach ($objs as $obj) {
       $json[$obj->id] = $obj->name;
     }
