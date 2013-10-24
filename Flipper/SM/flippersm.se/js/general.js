@@ -1926,24 +1926,13 @@ function getScores(sel) {
         {
           tooltip: 'Double click to select player',
           loadtext: 'Loading...',
-          loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=player&entryId='.$(this).parent().attr('id').'&t=1',
           type: 'select',
           onblur: 'ignore',
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
-          sUpdateURL: baseHref + '/ajax/changeEntryPlayer.php'
-        },
-        {
-          tooltip: 'Double click to select team',
-          loadtext: 'Loading...',
-          loadurl: baseHref + '/ajax/getSelectData.php?type=team&t=1',
-          type: 'select',
-          onblur: 'ignore',
-          event: 'click',
-          style: 'display: inline;',
-          indicator: 'Saving...',
-          sUpdateURL: baseHref + '/ajax/changeEntryPlayer.php'
+          sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
         },
         {
           tooltip: 'Double click to select game',
@@ -1954,25 +1943,25 @@ function getScores(sel) {
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
-          sUpdateURL: baseHref + '/ajax/changeEntryGame.php'
+          sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
-          sUpdateURL: baseHref + '/ajax/changeEntryScore.php'
+          sUpdateURL: baseHref + '/ajax/changeScore.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
-          sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
+          sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
-          sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
+          sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
         }
       ]
     });

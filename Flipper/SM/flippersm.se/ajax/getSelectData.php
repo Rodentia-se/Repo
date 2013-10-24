@@ -3,7 +3,13 @@
   header('Content-Type: application/json');
   
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'player' || $_REQUEST['type'] == 'game')) ? $_REQUEST['type'] : null;
-  
+  $entryId = (isset($_REQUEST['entryId']) && preg_match('/^[0-9]+$/', $_REQUEST['entryId'])) ? $_REQUEST['entryId'] : null;
+
+  if ($entryId) {
+    $qualEntry = getEntryById($dbh, $entryId);
+    $type = ($qualEntry->tournamentDivision_id == 3) ? 'team' : 'player';
+  }
+
   if ($type) {
     $objs = (array) getObjectList($dbh, $type, array('tournament' => '1'));
 
