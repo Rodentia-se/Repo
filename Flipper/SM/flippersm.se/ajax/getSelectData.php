@@ -8,16 +8,18 @@
 
   if ($entryId) {
     $qualEntry = getEntryById($dbh, $entryId);
-    $type = ($qualEntry->tournamentDivision_id == 3) ? 'team' : 'player';
+    $division = $qualEntry->tournamentDivision_id;
+    $type = ($division == 3) ? 'team' : 'player';
   }
 
   if ($scoreId) {
     $qualScore = getScoreById($dbh, $scoreId);
-    $type = ($qualScore->tournamentDivision_id == 3) ? 'team' : 'player';
+    $division = $qualScore->tournamentDivision_id;
+    $type = ($division == 3) ? 'team' : 'player';
   }
 
   if ($type) {
-    $objs = (array) getObjectList($dbh, $type, array('tournament' => '1'));
+    $objs = (array) getObjectList($dbh, $type, array('tournament' => '1', (($division) ? 'division' => $division : null)));
 
     $json = array('zero' => 'Välj...');
     foreach ($objs as $obj) {

@@ -1939,6 +1939,7 @@ function getScores(sel) {
           tooltip: 'Double click to select game',
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
+          loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
           onblur: 'ignore',
           event: 'click',
