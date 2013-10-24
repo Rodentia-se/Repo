@@ -1935,6 +1935,17 @@ function getScores(sel) {
           sUpdateURL: baseHref + '/ajax/changeEntryPlayer.php'
         },
         {
+          tooltip: 'Double click to select team',
+          loadtext: 'Loading...',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=team&t=1',
+          type: 'select',
+          onblur: 'ignore',
+          event: 'click',
+          style: 'display: inline;',
+          indicator: 'Saving...',
+          sUpdateURL: baseHref + '/ajax/changeEntryPlayer.php'
+        },
+        {
           tooltip: 'Double click to select game',
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',

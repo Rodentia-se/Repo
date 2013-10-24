@@ -925,6 +925,7 @@
                 <th>Entry</th>
                 <th>Div</th>
                 <th>Player</th>
+                <th>Team</th>
                 <th>Game</th>
                 <th>Score</th>
                 <th>Points</th>
@@ -943,6 +944,7 @@
                 <th>Entry</th>
                 <th>Div</th>
                 <th>Player</th>
+                <th>Team</th>
                 <th>Game</th>
                 <th>Score</th>
                 <th>Points</th>
