@@ -1947,19 +1947,28 @@ function getScores(sel) {
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
+          onblur: 'submit',
           sUpdateURL: baseHref + '/ajax/changeEntryScore.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
+          onblur: 'submit',
           sUpdateURL: baseHref + '/ajax/scoreEntryPoints.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
+          onblur: 'submit',
           sUpdateURL: baseHref + '/ajax/scoreEntryPlace.php'
         }
       ]
+    });
+    $('select[name="player"]').on('change', function () {
+      $(this).parent().submit();
+    });
+    $('select[name="game"]').on('change', function () {
+      $(this).parent().submit();
     });
     $('#' + sel.name + 'Table').css('width', '');
     $('#' + sel.name + 'Div').show();
