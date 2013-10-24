@@ -99,7 +99,6 @@
     }
 
     function setPlayer($dbh, $player = null) {
-      var_dump($player);
       if ($this->tournamentDivision_id == 3) {
         return $this->setTeam($dbh, $player);
       } else {
