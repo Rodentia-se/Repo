@@ -1911,14 +1911,23 @@ function getScores(sel) {
   $('#gameDiv').hide();
   $('#playerDiv').hide();
   if (sel.value != 0) {
-    selectOption(document.getElementById(((sel.name == 'game') ? 'player' : 'game')), 0);
-    $('#' + sel.name + 'Table').dataTable({
+    if (sal.name != 'player') {
+      selectOption(document.getElementById('player'), 0);
+    }
+    if (sal.name != 'game') {
+      selectOption(document.getElementById('game'), 0);
+    }
+    if (sal.name != 'team') {
+      selectOption(document.getElementById('team'), 0);
+    }
+    type = (sel.name == 'game') ? 'game' : 'player';
+    $('#' + type + 'Table').dataTable({
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
-      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
+      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + type + '&id=' + sel.value
     });
-    $('#' + sel.name + 'Table').dataTable().makeEditable({
+    $('#' + type + 'Table').dataTable().makeEditable({
       'aoColumns': [
         null,
         null,
@@ -1970,8 +1979,8 @@ function getScores(sel) {
     $(document).on('change', 'select[name="value"]', function () {
       $(this).parent().submit();
     });
-    $('#' + sel.name + 'Table').css('width', '');
-    $('#' + sel.name + 'Div').show();
+    $('#' + type + 'Table').css('width', '');
+    $('#' + type + 'Div').show();
   }
 }
 

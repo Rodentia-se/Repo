@@ -914,6 +914,8 @@
       $content .= '<br /><br /><h2 class="entry-title">Score administration</h2>';
       $players = getPlayers($dbh, 'where tournamentEdition_id = 1');
       $content .= '<p><label for="playerSelect">Player:</label>'.createSelect($players, 'player', 0, 'getScores');
+      $teams = getTeams($dbh, 'where tournamentEdition_id = 1');
+      $content .= '<p><label for="playerSelect">Team:</label>'.createSelect($teams, 'team', 0, 'getScores');
       $games = getGames($dbh);
       $content .= '<label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
       $content .= '
