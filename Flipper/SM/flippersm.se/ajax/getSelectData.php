@@ -19,7 +19,11 @@
   }
 
   if ($type) {
-    $objs = (array) getObjectList($dbh, $type, array('tournament' => '1', (($division) ? 'division' => $division : null)));
+    $options['tournament'] = 1;
+    if ($division) {
+      $options['division'] = $division;
+    }
+    $objs = (array) getObjectList($dbh, $type, $options);
 
     $json = array('zero' => 'Välj...');
     foreach ($objs as $obj) {
