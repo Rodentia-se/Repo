@@ -1911,13 +1911,13 @@ function getScores(sel) {
   $('#gameDiv').hide();
   $('#playerDiv').hide();
   if (sel.value != 0) {
-    if (sal.name != 'player') {
+    if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
     }
-    if (sal.name != 'game') {
+    if (sel.name != 'game') {
       selectOption(document.getElementById('game'), 0);
     }
-    if (sal.name != 'team') {
+    if (sel.name != 'team') {
       selectOption(document.getElementById('team'), 0);
     }
     type = (sel.name == 'game') ? 'game' : 'player';
@@ -1925,7 +1925,7 @@ function getScores(sel) {
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
-      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + type + '&id=' + sel.value
+      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
     });
     $('#' + type + 'Table').dataTable().makeEditable({
       'aoColumns': [
