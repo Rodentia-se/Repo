@@ -2,7 +2,7 @@
   require_once('../functions/general.php');
   header('Content-Type: application/json');
   
-  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'player' || $_REQUEST['type'] == 'game') || $_REQUEST['type'] == 'team')) ? $_REQUEST['type'] : null;
+  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'player' || $_REQUEST['type'] == 'game' || $_REQUEST['type'] == 'team')) ? $_REQUEST['type'] : null;
   $id = (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? $_REQUEST['id'] : null;
 
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
