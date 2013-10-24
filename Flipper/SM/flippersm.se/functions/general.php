@@ -3006,7 +3006,7 @@
     if ($division || $tournament) {
       $join = ' left join teamPlayer tp on tp.team_id = o.id left join player pl on tp.player_id = pl.id';
       $where = ' where pl.id is not null ';
-      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($division) ? ' and o.tournamentDivision_id = '.$division : '';
       $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
       $and = ' and ';
     } else {
