@@ -1926,7 +1926,8 @@ function getScores(sel) {
         {
           tooltip: 'Double click to select player',
           loadtext: 'Loading...',
-          loadurl: baseHref + '/ajax/getSelectData.php?type=player&entryId=' + $(this).parent().attr('id') + '&t=1',
+          loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
+          $loaddata: function() {return {entryId: $(this).parent().attr('id')}},
           type: 'select',
           onblur: 'ignore',
           event: 'click',
