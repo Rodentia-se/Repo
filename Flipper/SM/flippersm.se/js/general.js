@@ -1922,6 +1922,7 @@ function getScores(sel) {
       'aoColumns': [
         null,
         null,
+        null,
         {
           tooltip: 'Double click to select player',
           loadtext: 'Loading...',
