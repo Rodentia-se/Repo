@@ -8,32 +8,32 @@
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
-      if ($playerId == 0 || $playerId) {
-        $player = getPlayerById($dbh, $playerId);
-        if ($playerId == 0 || $player) {
-          if ($scoreId) {
-            $qualScore = getScoreById($dbh, $scoreId);
-            if ($qualScore) {
+      if ($scoreId) {
+        $qualScore = getScoreById($dbh, $scoreId);
+        if ($qualScore) {
+          if ($playerId == 0 || $playerId) {
+            $player = ($qualScore->tournamentDivision_id == 3) ? getTeamById($dbh, $playerId) : getPlayerById($dbh, $playerId);
+            if ($playerId == 0 || $player) {
               if ($qualScore->setPlayer($dbh, $player)) {
                 if ($player) {
                   echo('{"success": true, "reason": "'.$player->name.' has been assigned to score ID '.$qualScore->id.'"}');
                 } else {
-                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' player assignment was cleared"}');
+                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' assignment was cleared"}');
                 }
               } else {
-                $errorMsg = ($player) ? 'Could not change player to '.$player->name.' for score ID '.$qualScore->id : 'Could not remove player from score ID '.$qualScore->id;
+                $errorMsg = ($player) ? 'Could not change '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' to '.$player->name.' for score ID '.$qualScore->id : 'Could not remove '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' from score ID '.$qualScore->id;
               }
             } else {
-              $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
+              $errorMsg = 'Could not find any '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' with ID '.$playerId;
             }
           } else {
-            $errorMsg = 'No or invalid qualification score ID specified';
+            $errorMsg = 'No or invalid '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' ID specified';
           }
         } else {
-          $errorMsg = 'Could not find any player with ID '.$playerId;
+          $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
         }
       } else {
-        $errorMsg = 'No or invalid player ID specified';
+        $errorMsg = 'No or invalid qualification score ID specified';
       }
     } else {
       $errorMsg = 'Admin mode used, but you are not admin. Are you correctly logged in?';
