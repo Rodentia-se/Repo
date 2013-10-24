@@ -12,6 +12,6 @@
       $json[$obj->id] = $obj->name;
     }
 
-    echo json_encode($json);
+    echo json_encode((array) $json);
   }
 ?>
