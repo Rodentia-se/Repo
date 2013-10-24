@@ -366,6 +366,10 @@
       return $objs;
     }
 
+    function getMachine($dbh, $division = 1) {
+      return getMachines($dbh, ' where game_id = '.$this->id.' and tournamentDivision_id = '.$division);
+    }
+
     function getQR($link = true, $right = false, $info = false) {
       $img = ($info) ? 'print.png': 'qr.png';
       $title = ($info) ? 'Click to print game info' : 'Click to print QR code';
