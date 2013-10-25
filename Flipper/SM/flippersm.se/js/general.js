@@ -1942,7 +1942,7 @@ function getScores(sel) {
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
-          callback: function(value, setting) {
+          callback: function(value, settings) {
             console.log(this);
             console.log(value);
             console.log(settings);
