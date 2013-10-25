@@ -1935,7 +1935,6 @@ function getScores(sel) {
         {
           tooltip: 'Click to select player',
           loadtext: 'Loading...',
-          data: function () { $(this).find('div').remove();},
           loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
@@ -3016,7 +3015,9 @@ function divFade(parent, msg) {
   console.log(div);
   fade(div, msg.reason, msg.success, 4000);
   setTimeout(function() {
-    parent.removeChild(div);
+    if(div) {
+      div.parentNode.removeChild(div);
+    }
   }, 6000);
 }
 

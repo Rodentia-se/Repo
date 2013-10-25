@@ -10,12 +10,14 @@
     $qualEntry = getEntryById($dbh, $entryId);
     $division = $qualEntry->tournamentDivision_id;
     $playerType = ($division == 3) ? 'team' : 'player';
+    $selected = ($division == 3) ? $qualEntry->team_id : $qualEntry->player_id;
   }
 
   if ($scoreId) {
     $qualScore = getScoreById($dbh, $scoreId);
     $division = $qualScore->tournamentDivision_id;
     $playerType = ($division == 3) ? 'team' : 'player';
+    $selected = ($division == 3) ? $qualScore->team_id : $qualScore->player_id;
   }
 
   $type = ($type != 'game' && $playerType) ? $playerType : $type;
@@ -27,10 +29,12 @@
     }
     $objs = (array) getObjectList($dbh, $type, $options);
 
-    $json = array('zero' => 'Välj...');
+    $json = array('_0' => 'Välj...');
     foreach ($objs as $obj) {
       $json['_'.$obj->id] = $obj->name;
     }
+
+    $json['selected'] = ($selected) ? '_'.$selected : '_0';
 
     echo json_encode($json);
   }
