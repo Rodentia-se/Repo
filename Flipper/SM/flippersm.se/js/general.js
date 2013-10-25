@@ -1935,10 +1935,8 @@ function getScores(sel) {
         {
           tooltip: 'Click to select player',
           loadtext: 'Loading...',
-          loadurl: function () {
-            $(this).find('div').remove();
-            return baseHref + '/ajax/getSelectData.php?type=player&t=1';
-          },
+          data: function () { $(this).find('div').remove();},
+          loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
           onblur: 'cancel',
