@@ -1943,7 +1943,8 @@ function getScores(sel) {
           style: 'display: inline;',
           indicator: 'Saving...',
           callback: function(value, settings) {
-            this.innerHTML = value.value;
+            var json = JSON.parse(value);
+            this.innerHTML = json.value;
             console.log(this);
             console.log(value);
             console.log(settings);
