@@ -1933,7 +1933,7 @@ function getScores(sel) {
         null,
         null,
         {
-          tooltip: 'Double click to select player',
+          tooltip: 'Click to select player',
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
@@ -1950,7 +1950,7 @@ function getScores(sel) {
           sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
         },
         {
-          tooltip: 'Double click to select game',
+          tooltip: 'Click to select game',
           loadtext: 'Loading...',
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
@@ -3013,8 +3013,8 @@ function divFade(parent, msg) {
   parent.appendChild(div);
   $(div).show();
   console.log(div);
-  fade(div, msg.reason, msg.success);
-  parent.removeChild(div);
+  fade(div, msg.reason, msg.success, 4000);
+  parent.onclick = function() {parent.removeChild(div);};
 }
 
 function fade(el, text, success, start, duration) {
