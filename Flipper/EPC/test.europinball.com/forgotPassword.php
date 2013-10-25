@@ -7,86 +7,158 @@
   printTopper();
   
   $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
-  $playerId = (isset($_REQUEST['player'])) ? $_REQUEST['player'] : false;
 
   function getPlayerFromNonce($dbh, $nonce) {
-    $objs = getPlayers($dbh, 'where m.nonce = '.$nonce.' and m.tournamentDivision_id = 1');
+    $objs = getPlayers($dbh, 'where m.nonce = "'.$nonce.'" and m.tournamentDivision_id = 1');
     if ($objs && count($objs) == 1) {
+      $player = $objs[0];
       if (ulNonce::Verify('reset', $nonce)) {
-        return $objs[0];
+        $player->valid = true;
       } else {
-        return false;
+        $player->valid = false;
       }
+      return $player;
     } else {
       return false;
     }
   }
   
-  function sendResetEmail($dbh, $email) {
-    if (validEmail($email)) {
+  function sendResetEmail($dbh, $player) {
+    if (validEmail($player->mailAddress)) {
       $nonce = ulNonce::Create('reset');
       $player->setNonce($dbh, $nonce);
-      // send email with nonce link
+      $msg = 'Hello!
+        
+        You (or someone) has requested your password at Europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
+      
+        If you want to reset your password, please click on this link or paste the address into your browser.
+        
+        '.__baseHref__.'/your-pages/password-reset/?nonce='.urlencode($nonce).'
+        
+        The link will expire in 15 minutes, and can only be used once.
+        
+        If you encounter any problems, email us at support@europinball.org for assistance.
+        
+        Regards
+        /EPC 2013 organizers
+      ';
+      mail($player->mailAddress, 'Europinball.org password reset', $msg, 'From: support@europinball.org');
       return true;
     } else {
       return false;
     }
   }
   
-  $content = '<h2 class="entry-title">Password reset</h2>';
+  $content = '<h2 class="entry-title">Password reset '.$nonce.'</h2>';
 
-  if ($nonce) {
-    $player = getPlayerFromNonce($dbh, $nonce);
-    if ($player) {
-      $content .= '<input type="hidden" name="person_id" id="personId" value="'.$player->id.'">'
-      $content .= '<p>Your identity as username '.$player->username.' has been confirmed. Please set a new password: <input name="password" id="passwordPassword" type="password" onchange="checkResetPassword();"><span id="passwordSpan" class="errorSpan"></span></p>';
-      // set password with ajax
-      // Redirect to login in javascript
-    } else {
-      $content .= '<p>Your nonce has expired or is invalid.';
-      if (validEmail($player->mailAddress)) {
-        if (sendResetEmail($dbh, $player)) {
-          $content .= 'We have sent a new email to the registered address for user '.$player->username.' - please click the link in that email.</p>';
+  $player = getCurrentPlayer($dbh, $ulogin);
+  if ($player) {
+    $content .= 'You are already logged in as '.$player->firstName.' '.$player->lastName.'! If you intended to reset the password for another user, please <a href="'.__baseHref__.'/your-pages/logout/">logout</a> and then go to this page again.';
+  } else {
+    if ($nonce) {
+      $player = getPlayerFromNonce($dbh, $nonce);
+      if ($player) {
+        if ($player->valid) {
+          $resetNonce = ulNonce::Create('resetNonce');
+          $content .= '
+            <input type="hidden" name="person_id" id="personId" value="'.$player->id.'">
+            <input type="hidden" name="resetNonce" id="resetNonce" value="'.$resetNonce.'">
+            <p>Your identity as '.$player->firstName.' '.$player->lastName.' has been confirmed. Your username is '.$player->username.'.</p>
+            <table>
+              <tr>
+                <td class="labelTd"><label>Please set a new password:</label><td><input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" id="submit" onclick="resetPassword(this);" disabled></td>
+              </tr>
+            </table>
+          ';
+          $success = true;
+          $player->setNonce($dbh, null);
+          // set password with ajax
+          // Redirect to login when successful
         } else {
-          $content .= 'Something went wrong trying to send you a password reset email. Please <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+          $content .= '<p>Your identity code has expired or is invalid.</p>';
+          $playerId = $player->id;
         }
       } else {
-        $content .= 'There\'s something wrong with the email address registered to you. Please <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+        $content .= 'We could not not identify you, or you have already used this identity code. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+      }
+    } else {
+      $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
+      if ($username) {
+        $id = getIdFromUser($dbh, $username);
+        if ($id) {
+          $player = getPlayerById($dbh, $id);
+          if ($player) {
+            $playerId = $player->id;
+          } else {
+            // No player
+          }
+        } else {
+          // No ID
+        }
+      }
+      if (!$playerId) {
+        $email = (isset($_REQUEST['email'])) ? $_REQUEST['email'] : false;
+        if ($email) {
+          $player = getPlayerByEmail($dbh, $email);
+          if ($player) {
+            $playerId = $player->id;
+          } else {
+            // No player
+          }
+        } else {
+          // No email
+        }    
       }
     }
-  } else {
-    if (validEmail($player->mailAddress)) {
-      if (sendResetEmail($dbh, $player->mailAddress)) {
-  }
   
-
-  /*
-  if (checkLogin($dbh, $ulogin)) {
-    echo 'Changing password...';
-    echo $ulogin->SetPassword(161, 'chang3m3');
-    echo $ulogin->SetPassword(167, 'chang3m3');
-    echo "<br />\n";
-  }
-  */
-  
-//  deNorm($dbh);
-  /*
-  if ($nonce) {
-    $player = getPlayerFromNonce($nonce);
-    if ($player) {
-      $expire = getExpire($player);
-      
-    } else {
-      echo 
+    if ($playerId) {
+      $player = getPlayerById($dbh, $playerId);
+      if ($player) {
+        if ($player->mailAddress) {
+          if (validEmail($player->mailAddress)) {
+            if (sendResetEmail($dbh, $player)) {
+              $content .= '<p>We have sent a new email to the registered address for user '.$player->username.' - please click the link in that email.</p>';
+            } else {
+              $content .= '<p>Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+            }
+          } else {
+            $content .= 'There\'s something wrong with the email address registered for you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+          }
+        } else {
+          $content .= 'You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+        }
+      } else {
+        $content .= 'We could not not identify you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+      }
+    } else if (!$success) {
+      $content .= '
+        <p>Please specify either username or email address used for your registration:</p>
+        <form action="?" method="POST">
+          <table>
+            <tr>
+              <td class="labelTd"><label>Username:</label></td>
+              <td><input type="text" name="username" id="username" onchange="resetPass(this);"><span id="usernameSpan" class="errorSpan"></span></td>
+            </tr>
+            <tr>
+              <td class="labelTd"><label>Email address:</label></td>
+              <td><input type="test" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span></td>
+            </tr>
+            <tr>
+              <td></td>
+              <td><input type="submit" value="Submit" id="submit" disabled></td>
+            </tr>
+          </table>
+        </form>
+        <script type="text/javascript">document.getElementById(\'username\').focus();</script>
+      ';
     }
-  
-  SELECT count(paid), sum(paid), sum(paid) / count(paid) FROM `player` WHERE 1
-  
-  
   }
   
-  var_dump($_SESSION);
-  echo $ulogin->SetPassword(83, 'chang3m3');
+  echo($content);
+  printFooter($dbh, $ulogin);
   
-  */
 ?>

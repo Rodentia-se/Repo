@@ -10,28 +10,7 @@
     public $class = 'qualGroup';
     public $players = [];
     public $potentialPlayers = [];
-    
-    public function __construct($data = null, $type = 'array') {
-      switch ($type) {
-        case 'json':
-          if ($data) {
-            $this->set(json_decode($json, true));
-          }
-        break;
-        case 'array':
-          if ($data) {
-            $this->set($data);
-          }
-        break;
-      }
-    }
-    
-    public function set($data) {
-      foreach ($data as $key => $value) {
-        $this->{$key} = $value;
-      }
-    }
-    
+        
     function addPlayers($dbh, $players) {
       if ($players) {
         foreach ($players as $player) {
@@ -142,6 +121,13 @@
     function getNoOfPlayers($dbh, $prefered = false) {
       $query = 'select count(id) from playerQualGroups pq where pq.qualGroup_id = '.$this->id;
       $query .= ($prefered) ? ' and pq.prefered = 1 ' : '';
+      $sth = $dbh->prepare($query);
+      $sth->execute();
+      return $sth->fetchColumn();      
+    }
+    
+    function getNoOfAssignedPlayers($dbh) {
+      $query = 'select count(id) from player p where p.qualGroup_id = '.$this->id;
       $sth = $dbh->prepare($query);
       $sth->execute();
       return $sth->fetchColumn();      

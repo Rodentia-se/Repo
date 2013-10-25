@@ -1,12 +1,13 @@
 SSLOptions +StrictRequire
 SSLRequireSSL
-# ErrorDocument 403 https://test.europinball.org/
-# AuthType Basic
-# AuthName "If not authorized - keep out!"
-# AuthBasicProvider external
-# AuthExternal pwauth
-# AuthzUnixgroup on
-# require group epcstaff
+ErrorDocument 403 https://test.europinball.org/
+## AuthType Basic
+## AuthName "If not authorized - keep out!"
+## AuthBasicProvider external
+## AuthExternal pwauth
+## AuthzUnixgroup on
+## require group epcstaff
+##
 
 <IfModule mod_rewrite.c>
 RewriteEngine On

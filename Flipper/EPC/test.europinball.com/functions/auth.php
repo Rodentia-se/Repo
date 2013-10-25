@@ -160,7 +160,6 @@ function checkLogin($dbh, $ulogin, $req = true, $title = 'You need to login to a
 }
 
 function showLogin($ulogin, $title = 'You need to login to access this page') {
-  global $baseHref;
   $content = '
   	<h3>'.$title.'</h3>
     <script type="text/javascript">
@@ -177,7 +176,7 @@ function showLogin($ulogin, $title = 'You need to login to access this page') {
       <input type="hidden" name="loggedIn" id="loggedIn" value="false">
       '.(($_REQUEST['obj']) ? '<input type="hidden" name="obj" id="obj" value="'.$_REQUEST['obj'].'">' : '').'
       '.(($_REQUEST['id']) ? '<input type="hidden" name="id" id="id" value="'.$_REQUEST['id'].'">' : '').'
-      <input type="hidden" name="baseHref" id="baseHref" value="'.$baseHref.'">
+      <input type="hidden" name="baseHref" id="baseHref" value="'.__baseHref__.'">
 			<input type="hidden" id="nonce" name="nonce" value="'.ulNonce::Create('login').'">
       <table>
         <tr>
@@ -195,7 +194,8 @@ function showLogin($ulogin, $title = 'You need to login to access this page') {
           <td><input type="checkbox" name="autologin" value="1" id="autologinCheckbox"></td>
         </tr>
         <tr>
-  		    <td colspan="2"><input type="submit" value="Login" id="loginButton" onclick="login(this);" disabled></td>
+  		    <td><input type="submit" value="Login" id="loginButton" onclick="login(this);" disabled></td>
+          <td><a href="'.__baseHref__.'/your-pages/password-reset/" class="italic">Forgot  password?</a></td>
         </tr>
       </table>
   	</form>
@@ -246,30 +246,18 @@ function showChangeUsername($dbh, $username) {
   return $content;
 }
 
-function showEditPlayer($dbh) {
-  $username = $_SESSION['username'];
-  $id = ($_REQUEST['id']) ? $_REQUEST['id'] : getIdFromUser($dbh, $username);
-  $obj = ($_REQUEST['obj']) ? $_REQUEST['obj'] : 'player';
-  $content = '
-    <script src="'.__baseHref__.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
-    <h2 class="entry-title">Edit player profile</h2>
-    <form id="imageForm" method="post" enctype="multipart/form-data" action="'.__baseHref__.'/ajax/imageUpload.php?obj=player&id='.$id.'">
-	    <div id="preview">
-		    <img src="'.getPhoto($dbh, $obj, $id, true).'" id="thumb" class="preview" alt="Preview of '.$username.'">
-        <div id="imageLoader"></div>
-	    </div>
-	    <div id="uploadForm">
-        <label id="imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
-        <input type="file" name="imageUpload" id="imageUpload">
-      </div>
-    </form>
+function showEditPlayer($dbh, $ulogin) {
+  $player = getCurrentPlayer($dbh, $ulogin);
+  $content = '    <h2 class="entry-title">Edit player profile</h2>';
+  $content .=  getUploadForm($dbh, $player, true, false);
+  $content .= '
     <form id="newData" name="newData">
       <input type="hidden" name="newPhoto" id="newPhoto" value="false">
       <input type="hidden" name="loggedIn" id="loggedIn" value="true">
       <input type="hidden" name="baseHref" id="baseHref" value="'.__baseHref__.'">
-      '.(($obj) ? '<input type="hidden" name="obj" id="obj" value="'.$obj.'">' : '').'
-      '.(($id) ? '<input type="hidden" name="id" id="id" value="'.$id.'">' : '').'
-      <input type="hidden" name="user" id="user" value="'.$username.'">
+      <input type="hidden" name="obj" id="obj" value="player">
+      <input type="hidden" name="id" id="id" value="'.$player->id.'">
+      <input type="hidden" name="user" id="user" value="'.$player->username.'">
       <div id="ifpaRegResults">
         <span id="playerLoading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
         <div id="ifpaRegResultsTableDiv" style="display: none">
@@ -280,21 +268,6 @@ function showEditPlayer($dbh) {
       </div>
     </form>
     <div id="changeUser"><a href="'.__baseHref__.'/your-pages/change-credentials/">Change username or password</a></div>
-    <script type="text/javascript">
-      $(document).ready(function() { 
-        $(\'#imageUpload\').on(\'change\', function() {
-          $(\'#preview\').html(\'\');
-          $(\'#imageLoader\').html(\'<img src="'.__baseHref__.'/images/loader.gif" alt="Uploading...."/>\');
-          $(\'#imageForm\').ajaxForm({
-            target: \'#preview\'
-          }).submit();
-          $(\'#imageLoader\').html(\'\');
-        });
-        $(\'#thumb\').on(\'click\', function() {
-          $(\'#imageUpload\').trigger(\'click\');
-        });
-      }); 
-    </script>
     <form action="'.$_SERVER['REQUEST_URI'].'" method="POST">
       <input type="hidden" name="action" value="logout">
       <input type="submit" value="Logout">

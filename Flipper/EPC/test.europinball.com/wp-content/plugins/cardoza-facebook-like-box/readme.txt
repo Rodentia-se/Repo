@@ -3,7 +3,7 @@ Contributors: vinoj.cardoza
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=vinoj%2ecardoza%40gmail%2ecom&currency_code=GBP&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8
 Tags: facebook, like, likebox, fb, facebook like, like button, facebook like box, fb like box, button
 Requires at least: 3.0
-Tested up to: 3.5
+Tested up to: 3.6.1
 Stable tag: trunk
 License: GPLv2 or later
 
@@ -23,16 +23,16 @@ Facebook Like Box is a social plugin that enables Facebook Page owners to attrac
 
 Note: Best plugin output width is 292px.
 
-= Donations =
+= Support =
 
 Thanks for downloading and installing my plugin. You can show your appreciation and support future development by donating.
+
+Support Page: http://www.vinojcardoza.com/blog/cardoza-facebook-like-box/
 
 If you have any suggestions or feedback, please post it in the following link.
 
 = Translation =
 Translation is enabled for this plugin. If someone interested in translating this plugin please visit the following link and post in the comments section with your contact email. Thanks.
-
-For more visit: http://www.vinojcardoza.com/cardoza-facebook-like-box/
 
 = Translated languages =
 
@@ -82,6 +82,10 @@ Just copy and paste the code below on the page or post you want to display the f
 if you have any queries post it at http://www.vinojcardoza.com/cardoza-facebook-like-box/
 
 == Change Log ==
+
+= Version 2.8.1 =
+* Support URL updated.
+* Tested with Wordpress Version 3.6.1.
 
 = Version 2.8 =
 * Border colour issue was sorted out.

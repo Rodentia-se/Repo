@@ -6,7 +6,7 @@
   
   $player = getCurrentPlayer($dbh, $ulogin);
   if ($player) {
-    $newTshirt = addTshirt($dbh, $player);
+    $newTshirt = $player->addTshirt($dbh);
     if ($newTshirt && count($newTshirt > 0)) {
       echo(json_encode(getTshirtRow($dbh, $tournament, $newTshirt, null, true, true)));
     } else {

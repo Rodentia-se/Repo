@@ -13,9 +13,8 @@
         $task = getTaskById($dbh, $taskId);
         if ($task) {
           if ($change == 0) {
-            $volunteer = $player->getVolunteer($dbh);
-            if ($volunteer) {
-              if (delVolunteerTask($dbh, $volunteer, $task, $tournament)) {
+            if ($player->volunteer) {
+              if ($task->removePlayer($dbh, $player, $tournament)) {
                 echo '{"success": true, "reason": "Task removed"}';
               } else {
                 $errorMsg = 'Could not remove the task from the player';                          
@@ -24,12 +23,12 @@
               $errorMsg = 'Could not find the volunteer in the database. Are you registered as a volunteer?'; 
             }
           } else if ($change == 1) {
-            if (!checkPlayer($dbh, $player, 'volunteer')) {
+            if (!$player->volunteer) {
               $player->addVolunteer($dbh, $tournament);
             }
             $volunteer = $player->getVolunteer($dbh);
             if ($volunteer) {
-              if (addVolunteerTask($dbh, $volunteer, $task, $tournament)) {
+              if ($task->addPlayer($dbh, $volunteer, $tournament)) {
                 echo '{"success": true, "reason": "Task added"}';
               } else {
                 $errorMsg = 'Could not add the task to the player';                          

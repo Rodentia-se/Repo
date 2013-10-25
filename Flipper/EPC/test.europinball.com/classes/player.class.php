@@ -16,7 +16,9 @@
     public $player_ids = [];
     public $gender_id;
     public $gender;
-    public $hours;
+    public $here;
+    public $hereFinal;
+    public $hoursDiff;
     public $type;
     public $streetAddress;
     public $zipCode;
@@ -39,50 +41,46 @@
     public $birthDate;
     public $classics;
     public $main;
+    public $adminLevel;
     public $classicsPlayerId;
     public $mainPlayerId;
+    public $place;
+    public $wpprPlace;
+    public $wpprPoints;
+    public $classicsPlace;
+    public $classicsWpprPlace;
+    public $classicsWpprPoints;
+    public $qualGroup_id;
+    public $mainQualGroup_id;
+    public $classicsQualGroup_id;
     public $volunteer;
     public $volunteer_id;
+    public $hours;
+    public $alloc;
+    public $taskId;
+    public $periodId;
     public $qualGroups = [];
     public $qualGroup;
     public $class = 'player';
     public $paid;
+    public $payDate;
+    public $costs = [];
     
     public function __construct($data = null, $type = 'array') {
-      switch ($type) {
-        case 'json':
-          if ($data) {
-            $this->set(json_decode($json, true));
-          }
-        break;
-        case 'array':
-          if ($data) {
-            $this->set($data);
-          }
-        break;
-      }
-      $this->name = $this->firstName.' '.$this->lastName;
+      parent::__construct($data, $type);
+      $this->name = ($this->name) ? $this->name : $this->firstName.' '.$this->lastName;
     }
     
-    public function set($data) {
-      foreach ($data as $key => $value) {
-        $this->{$key} = $value;
-      }
-    }
-
-    public function populate($dbh) {
-      locate($dbh, $this, 'city');
-    }
-    
-    function isMemberOfTeam($dbh, $tournament = 3) {    
-      if (getTeamByPlayerId($dbh, $this->id, $tournament)) {
-        return true;
+    public function isMemberOfTeam($dbh, $tournament = 3) { 
+      $team = $this->getTeam($dbh, $this->id, $tournament);
+      if ($team) {
+        return $team->id;
       } else {
         return false;
       }
     }
   
-    function getTeam($dbh, $tournament = 3) {
+    public function getTeam($dbh, $tournament = 3) {
       $query = '
         select 
           tm.id as id,
@@ -110,7 +108,43 @@
       return false;
     }
     
-    function getTshirts($dbh, $tournament = 1) {
+    public function addTshirt($dbh, $tShirt = false, $number = null) {
+      $query = '
+        insert into personTShirt set 
+          tournamentTShirt_id = :tShirtId,
+          number = :number,
+          person_id = :playerId,
+          firstName = :firstName,
+          lastName = :lastName,
+          initials = :initials,
+          streetAddress = :streetAddress,
+          zipCode = :zipCode,
+          telephoneNumber = :telephoneNumber,
+          mobileNumber = :mobileNumber,
+          mailAddress = :mailAddress,
+          dateRegistered = :dateRegistered
+      ';
+      $insert[':tShirtId'] = ($tShirt) ? $tShirt->id : null;
+      $insert[':number'] = $number;
+      $insert[':playerId'] = $this->id;
+      $insert[':firstName'] = $this->firstName;
+      $insert[':lastName'] = $this->lastName;
+      $insert[':initials'] = $this->initials;
+      $insert[':streetAddress'] = $this->streetAddress;
+      $insert[':zipCode'] = $this->zipCode;
+      $insert[':telephoneNumber'] = $this->telephoneNumber;
+      $insert[':mobileNumber'] = $this->mobileNumber;
+      $insert[':mailAddress'] = $this->mailAddress;
+      $insert[':dateRegistered'] = date('Y-m-d');
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($insert)) {
+        return $dbh->lastInsertId();
+      } else {
+        return false;
+      }
+    }
+
+    public function getTshirts($dbh, $tournament = 1) {
       $query = '
         select 
           pt.id as id,
@@ -118,6 +152,7 @@
           "tshirt" as class,
           pt.number as number,
           pt.number as number_id,
+          pt.dateDelivered as dateDelivered,
           pt.person_id as player_id,
           pt.id as playerTshirt_id,
           tc.name as color,
@@ -141,7 +176,7 @@
       return $objs;
     }
     
-    function getNoOfTshirts($dbh, $tournament = 1) {
+    public function getNoOfTshirts($dbh, $tournament = 1) {
       $tShirts = $this->getTshirts($dbh, $tournament);
       $noOfTshirts = 0;
       if ($tShirts) {
@@ -152,8 +187,8 @@
       return $noOfTshirts;
     }
   
-    function getQualGroups($dbh, $tournament = 1, $prefered = false) {
-      $query = getQualGroupSelect().'
+    public function getQualGroups($dbh, $tournament = 1, $prefered = false) {
+      $query = getQualGroupSelect('q', 'pq.prefered as prefered').'
         left join playerQualGroups pq
           on pq.qualGroup_id=q.id
         left join player pl
@@ -162,7 +197,7 @@
           on q.tournamentDivision_id = td.id
         where (td.tournamentEdition_id = '.$tournament.' or td.tournamentEdition_id is null)
           and pl.person_id='.$this->id.(($prefered) ? ' and pq.prefered = 1' : '').'
-        order by q.date
+        order by q.name
       ';
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('qualGroup')) {
@@ -171,11 +206,25 @@
       return $objs;
     }
     
-    function getPreferedQualGroup($dbh, $tournament) {
+    public function getPreferedQualGroup($dbh, $tournament) {
       return $this->getQualGroups($dbh, $tournament, true);
     }
+    
+    public function assignQualGroup($dbh, $qualGroup) {
+      $query = '
+        update player set 
+          qualGroup_id = :qualGroupId
+        where person_id = :id
+          and tournamentDivision_id = :divisionId
+      ';
+      $update[':qualGroupId'] = $qualGroup->id;
+      $update[':id'] = $this->id;
+      $update[':divisionId'] = $qualGroup->tournamentDivision_id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
   
-    function addVolunteer($dbh, $tournament, $method = 'insert into') {
+    public function addVolunteer($dbh, $tournament = 1, $method = 'insert into') {
       $query = addPlayerQuery($dbh, $this, 'volunteer', $tournament, $method);
       if ($method == 'update') {
         $query[0] .= ' where person_id = :pId';
@@ -183,19 +232,22 @@
       }
       $sth = $dbh->prepare($query[0]);
       if ($sth->execute($query[1])) {
-        return $dbh->lastInsertId();
+        $this->volunteer_id = $dbh->lastInsertId();
+        $this->volunteer = true;
+        return $this->volunteer_id;
       } else {
         return false;
       }
     }
   
-    function getVolunteer($dbh) {
+    public function getVolunteer($dbh, $tournament = 1) {
       $query = '
         select 
           id as volunteer_id,
           coalesce(v.hours, 0) as hours
         from volunteer v
-        where v.person_id = '.$this->id;  
+        where v.person_id = '.$this->id.'
+          and v.tournamentEdition_id = '.$tournament;  
       $sth = $dbh->query($query);
       if ($obj = $sth->fetchObject()) {
         $this->hours = $obj->hours;
@@ -206,12 +258,173 @@
       }
     }
     
-    function getCosts($dbh, $type = 'all', $currency = 'SEK') {      
+    public function removeVolunteer($dbh, $tournament = 1) {
+      $query = 'delete from volunteer where person_id = :person_id and tournamentEdition_id = :tournamentId';
+      $delete[':tournamentId'] = $tournament;
+      $delete[':person_id'] = $this->id;
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($delete)) {
+        return true;
+      } else {
+        return false;
+      }    
+    }
+    
+    function addVolunteerPeriods($dbh, $periods, $tournament = 1) {
+      foreach ($periods as $period) {
+        return $this->addVolunteerPeriod($dbh, $period, $tournament);
+      }
+    }
+
+    function addVolunteerPeriod($dbh, $period, $tournament = 1) {
+      return $this->addVolunteerItem($dbh, $period, $tournament);
+    }
+
+    public function removeVolunteerPeriods($dbh, $periods = 'all', $tournament = 1) {
+      if ($this->volunteer) {
+        if ($periods = 'all') {
+          $query = 'delete from volunteerPeriod where volunteer_id = :volunteer_id';
+          $delete[':volunteer_id'] = $this->volunteer_id;
+          $sth = $dbh->prepare($query);
+          if ($sth->execute($delete)) {
+            return true;
+          } else {
+            return false;
+          }    
+        } else {
+          foreach ($periods as $period) {
+            $this->removeVolunteerPeriod($dbh, $period, $tournament);
+          }
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    function removeVolunteerPeriod($dbh, $period, $tournament = 1) {
+      return $this->removeVolunteerItem($dbh, $period, $tournament);
+    }
+
+    function addVolunteerTasks($dbh, $tasks, $tournament = 1) {
+      foreach ($tasks as $task) {
+        return $this->addVolunteerTask($dbh, $task, $tournament);
+      }
+    }
+
+    function addVolunteerTask($dbh, $task, $tournament = 1) {
+      return $this->addVolunteerItem($dbh, $task, $tournament);
+    }
+
+    function removeVolunteerTasks($dbh, $tasks = 'all', $tournament = 1) {
+      if ($this->volunteer) {
+        if ($tasks = 'all') {
+          $query = 'delete from volunteerTask where volunteer_id = :volunteer_id';
+          $delete[':volunteer_id'] = $this->volunteer_id;
+          $sth = $dbh->prepare($query);
+          if ($sth->execute($delete)) {
+            return true;
+          } else {
+            return false;
+          }    
+        } else {
+          foreach ($tasks as $task) {
+            $this->removeVolunteerTask($dbh, $task, $tournament);
+          }
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    function removeVolunteerTask($dbh, $task, $tournament = 1) {
+      return $this->removeVolunteerItem($dbh, $task, $tournament);
+    }
+
+    function addVolunteerItem($dbh, $item, $tournament = 1) {
+      if (!$this->volunteer) {
+        $this->addVolunteer($dbh, $tournament);
+      } 
+      $query = '
+        insert into 
+          volunteer'.ucfirst($item->class).'
+        set 
+          volunteer_id = :volunteerId,
+          '.$item->class.'_id = :'.$item->class.'Id,
+          tournamentEdition_id = :tournamentId,
+          name = :name
+        on duplicate key update
+          volunteer_id = :volunteerId,
+          '.$item->class.'_id = :'.$item->class.'Id,
+          tournamentEdition_id = :tournamentId,
+          name = :name
+      ';
+      $update = array(
+        ':volunteerId' => $this->volunteer_id,
+        ':'.$item->class.'Id' => $item->id,
+        ':tournamentId' => $tournament,
+        ':name' => $this->lastName.': '.(($item->class == 'period') ? $item->fullName : $item->name)
+      );
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($update)) {
+        $lastInsertId = $dbh->lastInsertId();
+        return ($lastInsertId == 0) ? true : $lastInsertId;
+      } else {
+        return false;
+      }    
+    }
+
+    public function removeVolunteerItems($dbh, $items = 'all', $tournament = 1) {
+      if ($this->volunteer) {
+        if ($items = 'all') {
+          $query = 'delete from volunteerTask where volunteer_id = :volunteer_id';
+          $delete[':volunteer_id'] = $this->volunteer_id;
+          $sth = $dbh->prepare($query);
+          $sth->execute($delete);
+          $query = 'delete from volunteerPeriod where volunteer_id = :volunteer_id';
+          $delete[':volunteer_id'] = $this->volunteer_id;
+          $sth = $dbh->prepare($query);
+          $sth->execute($delete);
+          return true;
+        } else {
+          foreach ($items as $item) {
+            $this->removeVolunteerItem($dbh, $item, $tournament);
+          }
+          return true;
+        }
+      }
+      return false;
+    }
+    
+    public function removeVolunteerItem($dbh, $item, $tournament = 1) {
+      if ($this->volunteer) {
+        $query = '
+          delete 
+            from volunteer'.ucfirst($item->class).'
+          where
+            volunteer_id = :volunteerId and
+            '.$item->class.'_id = :'.$item->class.'Id and
+            tournamentEdition_id = :tournamentId
+        ';
+        $delete = array (
+          ':volunteerId' => $this->volunteer_id,
+          ':'.$item->class.'Id' => $item->id,
+          ':tournamentId' => $tournament
+        );
+        $sth = $dbh->prepare($query);
+        if ($sth->execute($delete)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+    function getCosts($dbh, $type = 'all', $currency = false) {
       $currencies = array('SEK' => 1, 'EUR' => 9, 'GBP' => 10, 'USD' => 6);
+      $currencies = ($currency) ? array($currency => $currencies[$currency]) : $currencies;
       $items = array('main' => 300, 'classics' => 200, 'team' => 100, 'tShirt' => 100);
       foreach ($items as $item => $price) {
         $cost[$item]['price'] = $price;
-        switch ($type) {
+        switch ($item) {
           case 'main':
             $output[$item]['num'] = ($this->mainPlayerId > 0) ? 1 : 0;
           break;
@@ -221,6 +434,8 @@
           case 'team':
             $team = $this->getTeam($dbh);
             $output[$item]['num'] = ($team) ? count($team) : 0;
+            $team = $this->getTeam($dbh, 12);
+            $output[$item]['num'] += ($team) ? count($team) : 0;
           break;
           case 'tShirt':
             $output[$item]['num'] = $this->getNoOfTshirts($dbh);
@@ -228,8 +443,11 @@
         }
         foreach($currencies as $cur => $rate) {
           $output[$item][$cur] = round($output[$item]['num'] * $price / $rate);
+          $output['all'][$cur] += round($output[$item]['num'] * $price / $rate);
         }
       }
+      $this->costs = $output;
+      return $output;
     }
     
     function setNonce($dbh, $nonce) {
@@ -240,5 +458,150 @@
       return ($sth->execute($update)) ? true : false;
     }
   
+    function getIfpaLink() {
+      if ($this->ifpa_id) {
+        return '<a href="http://www.ifpapinball.com/player.php?player_id='.$this->ifpa_id.'" target="_new">'.(($this->ifpaRank && $this->ifpaRank != 0) ? $this->ifpaRank : 'Unranked').'</a>';
+      } else {
+        return 'Unranked';
+      }
+    }
+    
+    function setPaid($dbh, $paid = false) {
+      $paid = (preg_match('/^[0-9]+$/',$paid)) ? $paid : $this->paid;
+      $paid = ($paid) ? $paid : 0;
+      $query = '
+        update player set 
+          paid = :paid,
+          payDate = coalesce(payDate, now()) 
+        where id = :id
+      ';
+      $update[':paid'] = $paid;
+      $update[':id'] = $this->mainPlayerId;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+    
+    function setHere($dbh, $here = true, $final = false) {
+      $hereField = ($final) ? 'hereFinal' : 'here';
+      $query = '
+        update player set 
+          '.$hereField.' = :here
+        where id = :id
+      ';
+      $update[':here'] = ($here) ? 1 : 0;
+      $update[':id'] = $this->mainPlayerId;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+    
+    function setHereFinal($dbh, $here = true) {
+      return $this->getHere($dbh, $here, true);
+    }
+    
+    function setPhone($dbh, $number = null, $cell = false) {
+      $phoneField = ($cell) ? 'mobileNumber' : 'telephoneNumber';
+      $query = '
+        update player set 
+          '.$phoneField.' = :number
+        where person_id = :id
+      ';
+      $update[':number'] = $number;
+      $update[':id'] = $this->id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
+    function setAdmin($dbh, $adminLevel = 1) {
+      $query = '
+        update player set 
+          adminLevel = :adminLevel
+        where id = :id
+      ';
+      $update[':adminLevel'] = $adminLevel;
+      $update[':id'] = $this->mainPlayerId;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+    
+  function getAllEntries ($dbh, $groupBy = false, $tournament = 1) {
+    $query = '
+      select
+        qe.person_id as id,
+        qs.id as qualScoreId,
+        qe.id as qualEntryId,
+        qs.place as place,
+        qe.place as entryPlace,
+        qs.points as points,
+        qe.points as entryPoints,
+        qs.score as score,
+        qe.realPlayer_id as playerId,
+        qe.firstName as firstName,
+        qe.lastName as lastName,
+        qe.country_id as countryId,
+        qe.country as country,
+        qs.machine_id as machineId,
+        qs.game_id as gameId,
+        qs.gameAcronym as gameAcronym,
+        ';
+      $query .= ($groupBy) ? '
+        max(qs.score) as maxScore,
+        max(qs.points) as maxPoints,
+        min(qs.place) as bestPlace,
+      ' : '';
+      $query .='
+        qs.game as game
+      from qualScore qs
+        left join qualEntry qe
+          on qs.qualEntry_id = qe.id
+      where qe.person_id = '.$this->id.'
+        and qe.tournamentDivision_id = '.$tournament.' ';
+      $query .= ($groupBy) ? $groupBy : '';
+      $query .= ($groupBy) ? ' order by bestPlace asc' : ' order by qs.place asc';
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject('entry')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
+    
+    
+    
+    function checkIfVolFree($dbh, $period) {
+      $query = '
+        select count(*) from qualGroup q
+          left join player pl
+            on pl.qualGroup_id = q.id
+          left join period p
+            on p.id = '.$period->id.'
+          where 
+            q.date = "'.$period->date.'"
+            and (
+              replace(replace(q.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") between replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") and replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
+              or replace(replace(q.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") between replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") and replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
+            )
+            and pl.person_id = '.$this->id;
+      $sth = $dbh->query($query);
+      if ($sth->fetchColumn() > 0) {
+        return false;
+      } else {
+        return true;
+      }
+    }
+    
+    function setPlace($dbh, $place = 0, $division = 1, $wppr = false) {
+      $query = '
+        update player set
+          '.(($wppr) ? 'wpprP' : 'p').'lace = :place
+        where
+          person_id = :id
+          and tournamentDivision_Id = :division
+      ';
+      $update[':place'] = $place;
+      $update[':division'] = $division;
+      $update[':id'] = $this->id;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+
   }
 ?>

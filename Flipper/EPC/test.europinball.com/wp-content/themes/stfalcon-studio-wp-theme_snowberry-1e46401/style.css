@@ -41,7 +41,9 @@ body {
 	background: #fff;
 	line-height: 1;
 }
-
+.dataTable {
+  font-size: 80%;
+}
 ol, ul {
 	list-style: none;
 }
@@ -385,7 +387,7 @@ body, input, textarea {
 	color: #000;
 	font: 15px "Helvetica Neue", Helvetica, Arial, sans-serif;
 	font-weight: 300;
-	line-height: 1.625;
+	line-height: 1;
 }
 body {
 	background: #e5e5e5 url(images/main_bg.png) 0 0 repeat-x;
@@ -1174,7 +1176,10 @@ dl.gallery-item {
 	vertical-align:top;
 	position:relative;
 	top:-2px;
-	}
+}
+.epcOld {
+  vertical-align: bottom !important;
+}
 .entry-content img,
 .comment-content img,
 .widget img {
@@ -3260,66 +3265,80 @@ p.comment-form-comment {
 .comment-form-header{
 	font-size:13px;
 	margin:0 0 10px 0;
-	color:#000;
-	}
-	.comment-form-header h2{
-		display:inline;
-		font-size:27px;
-		vertical-align:middle;
-		font-weight:bold;
-		margin-right:35px;
-		}
-	.comment-form-header a{
-		vertical-align:middle;
-		display:inline-block;
-		margin-right:30px;
-		color:#000;
-		text-decoration:none;
-		margin-top:5px;
-		}
-	.comment-form-header a.twitter-link{
-		padding:0 0 0 20px;
-		background:url(images/twitter-ico.gif) 0 49% no-repeat;
-		}
-	.comment-form-header a.twitter-link:hover{text-decoration:underline;}
-	.comment-form-header a.facebook-link{
-		padding:0 0 0 20px;
-		background:url(images/facebook-ico.gif) 0 49% no-repeat;
-		}
-	.comment-form-header a.facebook-link:hover{text-decoration:underline;}
-	.comment-form-header a.cloud{
-		height:18px;
-		line-height:18px;
-		background:url(images/cloud-sprite.png) 100% 0 no-repeat;
-		padding:0;
-		position:relative;
-		}
-		.comment-form-header a.cloud span{
-			padding:0 0 0 5px;
-			display:block;
-			height:18px;
-			line-height:18px;
-			position:relative;
-			left:-5px;
-			background:url(images/cloud-sprite.png) 0 0 no-repeat;
-			}
-		.comment-form-header a.cloud .tail{
-			position:absolute;
-			width:9px;
-			height:5px;
-			left:50%;
-			margin-left:-6px;
-			bottom:-5px;
-			background:url(images/cloud-sprite.png) -18px -18px no-repeat;
-			}
-	.comment-form-header a.cloud:hover{
-		background-position:100% -23px;
-		color:#fff;
-		}
-		.comment-form-header a.cloud:hover span{
-			background:url(images/cloud-sprite.png) 0 -23px no-repeat;
-			}
-		.comment-form-header a.cloud:hover .tail{
-			background:url(images/cloud-sprite.png) -18px -41px no-repeat;
-			}
-	*+ html .comment-form-header a{display:inline; zoom:1;}
+  color:#000;
+}
+
+.comment-form-header h2{
+  display:inline;
+  font-size:27px;
+  vertical-align:middle;
+  font-weight:bold;
+  margin-right:35px;
+}
+
+.comment-form-header a{
+  vertical-align:middle;
+  display:inline-block;
+  margin-right:30px;
+  color:#000;
+  text-decoration:none;
+  margin-top:5px;
+}
+  
+.comment-form-header a.twitter-link{
+  padding:0 0 0 20px;
+  background:url(images/twitter-ico.gif) 0 49% no-repeat;
+}
+	
+.comment-form-header a.twitter-link:hover{text-decoration:underline;}
+	
+.comment-form-header a.facebook-link{
+  padding:0 0 0 20px;
+  background:url(images/facebook-ico.gif) 0 49% no-repeat;
+}
+	
+.comment-form-header a.facebook-link:hover{text-decoration:underline;}
+	
+.comment-form-header a.cloud{
+  height:18px;
+  line-height:18px;
+  background:url(images/cloud-sprite.png) 100% 0 no-repeat;
+  padding:0;
+  position:relative;
+}
+	
+.comment-form-header a.cloud span{
+  padding:0 0 0 5px;
+  display:block;
+  height:18px;
+  line-height:18px;
+  position:relative;
+  left:-5px;
+  background:url(images/cloud-sprite.png) 0 0 no-repeat;
+}
+	
+.comment-form-header a.cloud .tail{
+  position:absolute;
+  width:9px;
+  height:5px;
+  left:50%;
+  margin-left:-6px;
+  bottom:-5px;
+  background:url(images/cloud-sprite.png) -18px -18px no-repeat;
+}
+	
+.comment-form-header a.cloud:hover{
+  background-position:100% -23px;
+  color:#fff;
+}
+	
+.comment-form-header a.cloud:hover span{
+  background:url(images/cloud-sprite.png) 0 -23px no-repeat;
+}
+	
+.comment-form-header a.cloud:hover .tail{
+  background:url(images/cloud-sprite.png) -18px -41px no-repeat;
+}
+
+*+ html .comment-form-header a{display:inline; zoom:1;}
+

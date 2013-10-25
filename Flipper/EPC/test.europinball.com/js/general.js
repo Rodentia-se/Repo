@@ -2,6 +2,7 @@ var scripts = new Array();
 var debugMode = 1;
 var baseHref = (document.getElementById('baseHref')) ? document.getElementById('baseHref').value : 'https://test.europinball.org';
 var pageMode = 'register';
+var choice = false;
 
 // The classes variable contains meta-information about the classes.
 var classes = {
@@ -176,7 +177,7 @@ var currencies = {
     shortName: 'EUR',
     symbol: '€ ',
     symbolPlace: -1,
-    rate: 9
+    rate: 8
   },
   GBP: {
     name: 'pounds',
@@ -193,24 +194,6 @@ var currencies = {
     rate: 6
   }
 }
-
-// } else if (!x || x == 0 || x == '0' || x == '' || x == '&nbsp;') {
-//   var return = 1;
-/*
-$.fn.dataTableExt.oSort['link-asc'] = function(x, y) { // We want empty fields last!
-  var output = 1;
-  x = x.replace(/<\/?a(|\s+[^>]+)>/, '');
-  y = y.replace(/<\/?a(|\s+[^>]+)>/, '');
-  x = (parseInt(x) != NaN) ? parseInt(x) : x;
-  y = (parseInt(y) != NaN) ? parseInt(y) : y;
-  if (x == y) {
-    var output = 0;
-  } else if (!y || y == 0 || y == '0' || y == '' || y == '&nbsp;' || x < y) {
-    var output = -1;
-  }
-return output;
-}
-*/
 
 $.fn.dataTableExt.afnSortData['dom-link'] = function  ( oSettings, iColumn )
 {
@@ -513,7 +496,7 @@ function PLAYER(data) {
     this.continent_id = data.continent_id;
     this.continent = data.continent;
     this.telephoneNumber = data.telephoneNumber;
-    this.mobileNumber = data.mobileNumber;
+    this.mobileNumber = (data.mobileNumber && data.mobileNumber != '') ? data.mobileNumber : data.telephoneNumber;
     this.mailAddress = data.mailAddress;
     this.dateRegistered = data.dateRegistered;
     this.birthDate = data.birthDate;
@@ -616,7 +599,7 @@ function GAME(data) {
     this.comment = data.comment;
     this.link = addLink(this);
     if (this.id !=0) {
-      games.push(this); // Add to the global players array
+      games.push(this); // Add to the global games array
     }
   } else {
     this.remove();
@@ -789,18 +772,18 @@ function printPlayers(objs, dstId, meBtns, sels) {
     'bDestroy': true, 
     'bJQueryUI': true,
 		'sPaginationType': 'full_numbers', 
-    'iDisplayLength': 100,
+    'iDisplayLength': 200,
 		'aoColumns': [
-	    { "sSortDataType": "dom-link" },
+	    {'sSortDataType': 'dom-link' },
 			null,
-	    { "sSortDataType": "dom-link" },
-	    { "sSortDataType": "dom-link" },
-	    { "sSortDataType": "dom-link" },
-	    { "sSortDataType": "dom-link" },
-	    { "sSortDataType": "dom-link" },
+	    {'sSortDataType': 'dom-link' },
+	    {'sSortDataType': 'dom-link' },
+	    {'sSortDataType': 'dom-link' },
+	    {'sSortDataType': 'dom-link' },
+	    {'sSortDataType': 'dom-link' },
       null
 		],
-    'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+    'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
   }); // Rebuild the datatable  
   $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
   $('#newData').css('width', ''); // This is needed, or the table is butt ugly!
@@ -811,7 +794,7 @@ function thisIsMe(btnId) {
   var obj = player(btnId.id.replace('meBtn_', '')); // Let's find out who "me" is and make him a player
   if ((!obj.passwordRequired || obj.passwordRequired == 0) && obj.id != 0) { // This user has already registered! He can log in to do his stuff.
     return false;
-    window.location.href = baseHref + '/../editplayer/?obj=player&id=' + btnId.id.replace('meBtn_', '');
+    window.location.href = baseHref + '/editplayer/?obj=player&id=' + btnId.id.replace('meBtn_', '');
   } else {
     printPlayerAsList(obj,'ifpaRegResults'); // Show the details form to the player, with info pre-filled in.
     window.scrollTo(0,680);
@@ -866,6 +849,70 @@ function checkIfpaBtn(el, event) {
       document.getElementById('ifpaButton').disabled = true;
     }
   }, 100);
+}
+
+function resetPassword(el) {
+  var admin = (document.getElementById('adminReset') && document.getElementById('adminReset').value == 'true') ? 1 : 0 ;
+  if (admin) {
+    var playerId = el.id.split('_')[0];
+    var pw = prompt('You are about to change password for the user ID ' + playerId + '! Type the new password and press OK, or press cancel to bail out.', '!chAng3m3');
+  } else {
+    var playerId = document.getElementById('personId').value;
+    var pw = document.getElementById('password').value;
+  }
+  $.post(baseHref + '/ajax/resetPass.php', {playerId: playerId, pw: pw, nonce: document.getElementById('resetNonce').value, admin: admin})
+  .done(function(data) {
+    fade(document.getElementById(((admin) ? el.id + 'Span' : 'passwordSpan')), data.reason, data.success);
+    if (admin) {
+      $('.' + el.id.split('_')[1]).attr('disabled', true);
+    }
+    if (data.success) {
+      if (!admin) {
+        setTimeout( function() {
+          window.location.href = baseHref + '/your-pages/login/';
+        }, 500);
+      }
+    }
+    return false;
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+  return false;
+}
+
+function resetPass(el) {
+  if (el.id == 'username') {
+    document.getElementById('email').value = '';
+  } else {
+    document.getElementById('username').value = '';    
+  }
+  $.post(baseHref + '/ajax/checkReset.php', {f: el.id, v: el.value})
+  .done(function(data) {
+    if (data.success) {
+      document.getElementById('submit').disabled = false;
+    } else {
+      document.getElementById('submit').disabled = true;
+    }
+    fade(document.getElementById(el.id + 'Span'), data.reason, data.success);     
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function checkResetPassword(el) {
+  $.post(baseHref + '/ajax/checkField.php', {f: 'password', v: el.value}) // Let's check the fields
+  .done(function(data) {
+    document.getElementById('submit').disabled = !data.valid;
+    fade(document.getElementById(el.id + 'Span'), data.reason, data.valid);     
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
 }
 
 // This prints out the details form. Now done with meta arrays.
@@ -969,6 +1016,9 @@ function addFieldRow(tbody, obj, prop) {
     if (prop == 'main') {
       input.disabled = true;
       input.checked = true;
+    }
+    if ((prop == 'classics' || prop == 'volunteer') && !choice) {
+      input.disabled = true;
     }
 //    input[(type == 'checkbox') ? 'checked' : 'value'] = (obj[prop]) ? obj[prop] : classes[obj.class].fields[prop].default; // Add existing value, or the default value
     input.onchange = function() { checkField(this); }; // Let's check that the field is correct. Only done when leaving the field (changed), and not at every keypress.
@@ -1075,12 +1125,9 @@ function submitChecked(obj) {
   $.post(baseHref + ((pageMode == 'register') ? '/ajax/register.php' : ((pageMode == 'edit') ? '/ajax/playerEdit.php?newPhoto=' + document.getElementById('newPhoto').value : ((pageMode == 'team') ? '/ajax/regTeam.php' : 'wrongPageMode'))), newObj) // Send to server
   .done(function(data) {
     if (pageMode == 'team') {
-      if (data.match(/^[0-9]+$/)) {
-        $('#submitSpan').show();
-        $('#submitSpan').removeClass('error');
-        document.getElementById('submitSpan').innerHTML = 'Team updated';
-        $('#submitSpan').fadeOut(8000);
-        document.getElementById('idHidden').value = data;
+      if (data.success && data.reason.match(/^[0-9]+$/)) {
+        fade(document.getElementById('submitSpan'), 'Team updated!', true);
+        document.getElementById('idHidden').value = data.reason;
         for (var num = 4; num > 0; num--) {
           var sel = document.getElementById('teamPlayer' + num + 'Select');
           if (sel.value == newObj.registerPerson_id) {
@@ -1108,18 +1155,16 @@ function submitChecked(obj) {
         }
         showMemberSelects();
       } else {
-        $('#submitSpan').show();
-        $('#submitSpan').addClass('error');
-        document.getElementById('submitSpan').innerHTML = 'Something went wrong - team not updated!';
-        $('#submitSpan').fadeOut(8000);
+        var reason = (data.success) ? 'Something went wrong - team not updated!' : data.reason ;
+        fade(document.getElementById('submitSpan'), reason, false);
       }
     } else { 
       if (document.getElementById('loggedIn') || document.getElementById('loggedIn').value == 'true') {
-        window.location.href = baseHref + '/../registration/players/?obj=player&id=self';
+        window.location.href = baseHref + '/registration/players/?obj=player&id=self';
       } else {
         $.post(baseHref + '/ajax/login.php', {u: document.getElementById('usernameText').value, p: document.getElementById('passwordPassword').value}) // Let's login
         .done(function(data) {
-          window.location.href = baseHref + '/../registration/players/?obj=player&id=self';
+          window.location.href = baseHref + '/registration/players/?obj=player&id=self';
         })
         .fail(function(jqHXR,status,error) {
           debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
@@ -1552,17 +1597,29 @@ function memberSelected(sel) {
   }
 }
 
-function addTeamMember(playerId, errorId) {
-  if (playerId > 0) {
-    $.post(baseHref + '/ajax/addTeamMember.php', {playerId: playerId}) // Send to server
-    .done(function(data) {
-      setTimeout(function() {
-        fade(document.getElementById(errorId), data.reason, data.success);
-      }, 500);
-      var sel = document.getElementById(errorId.replace('Span', 'Select'));
-      if (data.success) {
+function addTeamMember(playerId, errorId, adminTeamId) {
+  adminTeamId = (adminTeamId) ? adminTeamId : false;
+  if (playerId && playerId> 0) {
+    var urlParams = {playerId: playerId};
+  } else {
+    return false;
+  }
+  if (adminTeamId) {
+    urlParams.admin = 1;
+    urlParams.teamId = adminTeamId.split('-')[0];
+  } 
+  $.post(baseHref + '/ajax/addTeamMember.php', urlParams) // Send to server
+  .done(function(data) {
+    setTimeout(function() {
+      fade(document.getElementById(errorId), data.reason, data.success);
+    }, 500);
+    var sel = document.getElementById(errorId.replace('Span', ((adminTeamId) ? '' : 'Select')));
+    if (data.success) {
+      sel.setAttribute('previous', playerId);
+      if (adminTeamId) {
+        addOption({id: sel.id, name: sel.options[sel.selectedIndex].text}, document.getElementById(errorId.split('_')[0] + '_' + errorId.split('_')[1] + '_contactSelect'));
+      } else {
         $('#' + errorId.replace('Player', 'Incomplete')).hide();
-        sel.setAttribute('previous', playerId);
         var captain = document.getElementById(errorId.replace('teamPlayer', 'contactPlayer_id').replace('Span', ''));
         captain.value = sel.value;
         if (captain.value > 0 && captain.checked == true) {
@@ -1570,42 +1627,60 @@ function addTeamMember(playerId, errorId) {
             setCaptain();
           }, 1000);
         }
-      } else {
-        selectOption(sel, sel.getAttribute('previous'));
       }
-    })
-    .fail(function(jqHXR,status,error) {
-      debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
-      debugOut(jqHXR.responseText);
-    });
-  } else {
-    return false;
-  }
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
 }
 
-function removeTeamMember(playerId, errorId) {
-  if (playerId == document.getElementById('registerPerson_idHidden').value) {
-    if(!confirm('Are you sure you want to leave the team? This can only be undone by another team member! If you are the last team member, the team will be deleted! The page will reload if you confirm.')) {
-      return false;
-    }
-  }
-  if (playerId > 0) {
-    $.post(baseHref + '/ajax/removeTeamMembers.php', {playerId: playerId}) // Send to server
-    .done(function(data) {
-      fade(document.getElementById(errorId), data.reason, data.success);
-      if (data.success && playerId == document.getElementById('registerPerson_idHidden').value) {
-        setTimeout(function() {
-          location.reload();
-        }, 700);
-      }
-    })
-    .fail(function(jqHXR,status,error) {
-      debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
-      debugOut(jqHXR.responseText);
-    });
+function removeTeamMember(playerId, errorId, adminTeamId) {
+  adminTeamId = (adminTeamId) ? adminTeamId : false;
+  if (playerId && playerId> 0) {
+    var urlParams = {playerId: playerId};
   } else {
     return false;
   }
+  if (adminTeamId) {
+    urlParams.admin = 1;
+    urlParams.teamId = adminTeamId.split('-')[0];
+    var idPrefix = adminTeamId + '_' + ((adminTeamId.split('-')[1] > 0) ? 'natTeam' : 'team');
+  } else {
+    if (playerId == document.getElementById('registerPerson_idHidden').value) {
+      if(!confirm('Are you sure you want to leave the team? This can only be undone by another team member! If you are the last team member, the team will be deleted! The page will reload if you confirm.')) {
+        return false;
+      }
+    }
+  }
+  $.post(baseHref + '/ajax/removeTeamMembers.php', urlParams) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(errorId), data.reason, data.success);
+    if (data.success) {
+      if (adminTeamId) {
+        var sel = document.getElementById(idPrefix + '_contactSelect');
+        if (sel.value == playerId) {
+          sel.removeChild(sel.options[sel.selectedIndex]);
+          sel.selectedIndex = 0;
+        } else {
+          sel.removeChild(sel.options[sel.selectedIndex]);
+        }
+      } else {
+        if (playerId == document.getElementById('registerPerson_idHidden').value) {
+          setTimeout(function() {
+            location.reload();
+          }, 700);
+        }
+      }
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
 }
 
 function deleteTeam(errorId) {
@@ -1624,9 +1699,10 @@ function deleteTeam(errorId) {
   });
 }
 
-function checkMember(sel) {
+function checkMember(sel, adminPrefix) {
+  adminPrefix = (adminPrefix) ? adminPrefix : false;
   for (var num = 4; num > 0; num--) {
-    sel2 = document.getElementById('teamPlayer' + num + 'Select');
+    sel2 = document.getElementById(((adminPrefix) ? adminPrefix + 'memberSelect_' + num : 'teamPlayer' + num + 'Select'));
     if (sel != sel2 && sel.value != 0 && sel.value == sel2.value) {
       return false;
     }
@@ -1691,43 +1767,373 @@ function currencyChange(el) {
   paymentChange(document.getElementById('mainCosts'));
 }
 
+function adminPlace(sel) {
+  var playerId = sel.id.split('_')[0];
+  var division = sel.id.split('_')[1];
+  var wppr = (sel.id.split('_')[2] == 'wppr') ? 1 : 0;
+  $.post(baseHref + '/ajax/changePlace.php', {playerId: playerId, division: division, wppr: wppr, place: sel.value}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
 
-var currencies = {
-  SEK: {
-    name: 'kronor',
-    shortName: 'SEK',
-    symbol: ' kr',
-    symbolPlace: 1,
-    rate: 1
-  },
-  EUR: {
-    name: 'euro',
-    shortName: 'EUR',
-    symbol: '€ ',
-    symbolPlace: -1,
-    rate: 9
-  },
-  GBP: {
-    name: 'pounds',
-    shortName: 'GBP',
-    symbol: '£ ',
-    symbolPlace: -1,
-    rate: 10
-  },
-  USD: {
-    name: 'dollar',
-    shortName: 'USD',
-    symbol: '$ ',
-    symbolPlace: -1,
-    rate: 6
+function adminGameDel(icon) {
+  var machineId = icon.id.split('_')[0];
+  $.post(baseHref + '/ajax/gameDel.php', {machineId: machineId}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      var tr = icon.parentNode.parentNode;
+      tr.parentNode.removeChild(tr);
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameNew(sel) {
+}
+
+function adminGameUsage(sel) {
+  var machineId = sel.id.split('_')[0];
+  var divisionId = sel.value;
+  $.post(baseHref + '/ajax/gameUsage.php', {machineId: machineId, divisionId: divisionId}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameType(sel) {
+  var gameId = sel.id.split('_')[0];
+  var type = sel.value;
+  $.post(baseHref + '/ajax/gameType.php', {gameId: gameId, type: type}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminGameAdd(btn) {
+  debugOut(btn.id);
+}
+
+function tshirtDlvrAll(box) {
+  $('.' + box.id).prop('checked', box.checked);
+  $('.' + box.id).each(function(){
+    tshirtDlvr(this);
+  });
+}
+
+function tshirtDlvr(box) {
+  var playerTshirtId = box.id.split('_')[0];
+  $.post(baseHref + '/ajax/tshirtDlvr.php', {playerTshirtId: playerTshirtId, dlvr: box.checked}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
+    if (!data.success) {
+      box.checked = !box.checked;
+    } else {
+      if (document.getElementById(box.id + 'Date')) {
+        document.getElementById(box.id + 'Date').innerHTML = (box.checked) ? 'Delivered ' + $.datepicker.formatDate('yy-mm-dd', new Date())  : 'Mark as delivered';
+      }
+      if (document.getElementById(box.id + 'Date')) {
+        document.getElementById(box.id + 'Date').innerHTML = (box.checked) ? 'Delivered ' + $.datepicker.formatDate('yy-mm-dd', new Date())  : 'Mark as delivered';
+      }
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminTshirtSold(icon) {
+  var tshirtId = icon.id.split('_')[0];
+  var action = (icon.id.split('_')[1] == 'tshirtAdd') ? 1 : -1 ;
+   $.post(baseHref + '/ajax/tshirtSold.php', {tshirtId: tshirtId, action: action}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(icon.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      document.getElementById(tshirtId + '_tshirtSold').innerHTML = (+ parseInt(document.getElementById(tshirtId + '_tshirtSold').innerHTML) + action);
+      document.getElementById(tshirtId + '_tshirtStock').innerHTML = (+ parseInt(document.getElementById(tshirtId + '_tshirtStock').innerHTML) - action);
+      document.getElementById(tshirtId + '_tshirtForSale').innerHTML = (+ parseInt(document.getElementById(tshirtId + '_tshirtForSale').innerHTML) - action);
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  }); 
+}
+
+function adminAlloc(icon, open) {
+  if(open) {
+    $('#' + icon.id + 'Edit').show();
+  } else {
+    $('#' + icon.id.replace('Close', 'Edit')).hide();
   }
 }
 
+function allocShowAll(box) {
+  $('.allocEditIcon').each(function(){
+    adminAlloc(this, box.checked);
+  });
+} 
 
+function allocEdit(sel) {
+  var taskId = sel.id.split('_')[0];
+  var periodId = sel.id.split('_')[1];
+  var playerId = sel.value;
+  var otherPlayerId = sel.getAttribute('previous');
+  var length = parseInt(document.getElementById(periodId + '_length').innerHTML.split(':')[0]);
+  $.post(baseHref + '/ajax/allocEdit.php', {taskId: taskId, periodId: periodId, playerId: playerId, otherPlayerId: otherPlayerId}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      if(sel.getAttribute('previous') == 0) {
+        document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML = (+ parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) + 1);
+      } else {
+        var alloc = (parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(otherPlayerId + '_alloc').innerHTML) : 0;
+        document.getElementById(otherPlayerId + '_alloc').innerHTML = alloc - length;
+        document.getElementById(otherPlayerId + '_diff').innerHTML =  (+  parseInt(document.getElementById(otherPlayerId + '_hours').value) - alloc - length);
+      }
+      if (playerId != 0) {
+        var alloc = (parseInt(document.getElementById(playerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(playerId + '_alloc').innerHTML) : 0;
+        document.getElementById(playerId + '_alloc').innerHTML = alloc + length;
+        document.getElementById(playerId + '_diff').innerHTML = (+  parseInt(document.getElementById(playerId + '_hours').value) - alloc - length); 
+      }
+      if(parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) < parseInt(document.getElementById(taskId + '_' + periodId + '_needs').innerHTML)) {
+        $('#' + taskId + '_' + periodId + '_needsTd').addClass('errorTd');
+      } else {
+        $('#' + taskId + '_' + periodId + '_needsTd').removeClass('errorTd');
+      }
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  }); 
+
+}
+
+function changeNeed(sel) {
+  var taskId = sel.id.split('_')[0];
+  var periodId = sel.id.split('_')[1];
+  var need = sel.value;
+   $.post(baseHref + '/ajax/changeNeed.php', {periodId: periodId, taskId: taskId, need: need}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      if(parseInt(document.getElementById(taskId + '_' + periodId + '_alloc').innerHTML) < need) {
+        $('#' + sel.id + 'Td').addClass('errorTd');
+      } else {
+        $('#' + sel.id + 'Td').removeClass('errorTd');
+      }
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function mobileNumberChange(btn) {
+  var playerId = btn.id.split('_')[0];
+  $.post(baseHref + '/ajax/changeCell.php', {playerId: playerId, cell: document.getElementById(playerId + '_mobileNumberChange').value, admin: 1, tournament: 1}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(btn.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      document.getElementById(playerId + '_mobileNumber').value = document.getElementById(playerId + '_mobileNumberChange').value;
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminHoursChange(sel) {
+  var playerId = sel.id.split('_')[0];
+  $.post(baseHref + '/ajax/addHours.php', {playerId: playerId, h: sel.value, admin: 1, tournament: 1}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+      if (document.getElementById(playerId + '_diff')) {
+        var alloc = (parseInt(document.getElementById(playerId + '_alloc').innerHTML) > 0) ? parseInt(document.getElementById(playerId + '_alloc').innerHTML) : 0;
+        document.getElementById(playerId + '_diff').innerHTML = (+ sel.value - alloc);
+      }
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminQualGroup(sel) {
+  var playerId = sel.id.split('_')[0];
+  var divisionId = sel.id.split('_')[1];
+  $.post(baseHref + '/ajax/setQualGroup.php', {playerId: playerId, divisionId: divisionId, qualGroup: sel.value}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      if (sel.getAttribute('previous') > 0) {
+        document.getElementById(sel.getAttribute('previous') + '_assigned').innerHTML = (+ document.getElementById(sel.getAttribute('previous') + '_assigned').innerHTML - 1);
+      }
+      if (sel.value > 0) {
+        document.getElementById(sel.value + '_assigned').innerHTML = (+ document.getElementById(sel.value + '_assigned').innerHTML + 1);
+      }
+      var otherSel = document.getElementById(sel.id.replace('_' + sel.id.split('_')[1] + '_', '_' + ((divisionId == 1) ? 2 : 1) + '_'));
+      if (document.getElementById(sel.id + 'Chosen').value.split('_').indexOf(sel.value) != -1) {
+        $('#' + sel.id + 'Td').addClass('yellow');
+        $('#' + sel.id + 'Td').removeClass('errorTd');
+        $('#' + sel.id + 'Td').removeClass('green');
+      } else {
+        $('#' + sel.id + 'Td').removeClass('yellow');
+      }
+      if (document.getElementById(otherSel.id + 'Chosen').value.split('_').indexOf(otherSel.value) != -1) {
+        $('#' + otherSel.id + 'Td').addClass('yellow');
+        $('#' + otherSel.id + 'Td').removeClass('errorTd');
+        $('#' + otherSel.id + 'Td').removeClass('green');
+      } else {
+        $('#' + otherSel.id + 'Td').removeClass('yellow');
+      }
+      if (sel.value == document.getElementById(sel.id + 'Pref').value) {
+        $('#' + sel.id + 'Td').addClass('green');
+        $('#' + sel.id + 'Td').removeClass('errorTd');
+        $('#' + sel.id + 'Td').removeClass('yellow');
+      } else {
+        $('#' + sel.id + 'Td').removeClass('green');
+      }
+      if (otherSel.value == document.getElementById(otherSel.id + 'Pref').value) {
+        $('#' + otherSel.id + 'Td').addClass('green');
+        $('#' + otherSel.id + 'Td').removeClass('errorTd');
+        $('#' + otherSel.id + 'Td').removeClass('yellow');
+      } else {
+        $('#' + otherSel.id + 'Td').removeClass('green');
+      }
+      if (Math.abs(sel.value - otherSel.value) == 6) {
+        $('#' + sel.id + 'Td').addClass('errorTd');
+        $('#' + otherSel.id + 'Td').addClass('errorTd');
+        $('#' + sel.id + 'Td').removeClass('green');
+        $('#' + otherSel.id + 'Td').removeClass('green');
+        $('#' + sel.id + 'Td').removeClass('yellow');
+        $('#' + otherSel.id + 'Td').removeClass('yellow');
+      } else {
+        $('#' + sel.id + 'Td').removeClass('errorTd');
+        $('#' + otherSel.id + 'Td').removeClass('errorTd');
+      }
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminAdmin(sel) {
+  var playerId = sel.id.split('_')[0];
+  $.post(baseHref + '/ajax/setAdmin.php', {playerId: playerId, adminLevel: sel.value}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      sel.setAttribute('previous', sel.value);
+    } else {
+      selectOption(sel, sel.getAttribute('previous'));
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminHere(box) {
+  var playerId = box.id.split('_')[0];
+  $.post(baseHref + '/ajax/setHere.php', {playerId: playerId, here: ((box.checked) ? 1 : 0), final: ((box.id.split('_')[1] == 'hereFinal') ? 1 : 0)}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
+    if (!data.success) {
+      box.checked = !box.checked;
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminPaidChange(sel) {
+  var playerId = sel.id.split('_')[0];
+  $.post(baseHref + '/ajax/setPaid.php', {playerId: playerId, paid: ((sel.value) ? sel.value : sel.innerHTML)}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(sel.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      if (sel.getAttribute('previous')) {
+        sel.setAttribute('previous', sel.value);
+        $('.' + sel.id.split('_')[0] + '_' + sel.id.split('_')[2]).each(function () {
+          selectOption(document.getElementById($(this).attr('id')), sel.value);        
+        });
+      }
+      if (document.getElementById(playerId + '_diff')) {
+        document.getElementById(playerId + '_diff').innerHTML = (+ parseInt(document.getElementById(playerId + '_costs').innerHTML) - sel.value);
+      }
+      if (document.getElementById(playerId + '_tooMuchCosts')) {
+        document.getElementById(playerId + '_costs').innerHTML = sel.innerHTML;
+        $('.paymentCorrect').show();
+        $('.paymentTooMuch').hide();
+        $('.paymentNeeded').hide();
+      }
+    } else {
+      if (sel.getAttribute('previous')) {
+        selectOption(sel, sel.getAttribute('previous'));
+      }
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function curCalc(sel) {
+  for (var currency in currencies) {
+    document.getElementById(currency).selectedIndex = sel.selectedIndex;
+  }
+}
 
 function infoSelected(sel) {
   var type = sel.name.replace('all', '').replace('Select', '').toLowerCase();
   var id = sel.options[sel.selectedIndex].value;
+  window.location.href = baseHref + '/' + type + '/?obj=' + type + '&id=' + id;
+}
+
+/*
   document.getElementById('infoTable').innerHTML = '<img src="' + baseHref + '/images/ajax-loader.gif" alt="Loading data...">';
   $.ajax(baseHref + '/ajax/getInfo.php?obj=' + type + '&id=' + id) // Returns a JSON with a new infoDiv
   .done(function(data) {
@@ -1745,6 +2151,7 @@ function infoSelected(sel) {
     debugOut(jqHXR.responseText);
   });
 }    
+*/
 
 function geoSelected(sel) { // Someone chose something in a geo-select! The "sel" is the select that was changed, and targetSel below is the select that might be affected.
   var start = false; // What? We're just starting!
@@ -1866,13 +2273,13 @@ function popTbl(tbl, type) { // Let's populate a table
     addRows(tbody, type, true); // ...and rows
     if (type.name == 'player') {
   		aoColumns = [
-  	    { "sSortDataType": "dom-link" },
+  	    {'sSortDataType': 'dom-link' },
   			null,
-  	    { "sSortDataType": "dom-link" },
-  	    { "sSortDataType": "dom-link" },
-  	    { "sSortDataType": "dom-link" },
-  	    { "sSortDataType": "dom-link" },
-  	    { "sSortDataType": "dom-link", 'sType': 'numeric'},
+  	    {'sSortDataType': 'dom-link' },
+  	    {'sSortDataType': 'dom-link' },
+  	    {'sSortDataType': 'dom-link' },
+  	    {'sSortDataType': 'dom-link' },
+  	    {'sSortDataType': 'dom-link', 'sType': 'numeric'},
         null
       ];
     } else {
@@ -1883,9 +2290,9 @@ function popTbl(tbl, type) { // Let's populate a table
       'bDestroy': true, 
       'bJQueryUI': true,
 		  'sPaginationType': 'full_numbers', 
-      'iDisplayLength': 100, 
+      'iDisplayLength': 200, 
   		'aoColumns': aoColumns,
-      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
     }); // Rebuild the datatable
     $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
     hideLoading(type);
@@ -2018,7 +2425,7 @@ function calcTshirtCost() {
   });
   var cost = parseInt(document.getElementById('tshirtCostHidden').value);
   var totalCost = 'Total cost: ';
-  for (cur in currencies) {
+  for (var cur in currencies) {
     totalCost += (currencies[cur].symbolPlace == -1) ? currencies[cur].symbol : '';
     totalCost += Math.round((+ cost / currencies[cur].rate));
     totalCost += (currencies[cur].symbolPlace == 1) ? currencies[cur].symbol + ' / ' : ' / ';
@@ -2103,8 +2510,17 @@ function fade(el, text, success, start, duration) {
   var start = (start) ? start : 6000;
   var duration = (duration) ? duration : 2000;
   var success = (typeof success === 'undefined') ? true : success;
-  $('#' + el.id).stop(true, true).show();
   el.innerHTML = text;
+  $('#' + el.id).stop(true, true).show();
+  if ((+ $('#' + el.id).offset().left + $('#' + el.id).outerWidth()) > $(window).width()) {
+    var left = (+ $('#' + el.id).offset().left - ($('#' + el.id).offset().left + $('#' + el.id).outerWidth() - $(window).width()) - 40);
+  } else {
+    var left = $('#' + el.id).offset().left;
+  }
+  $('#' + el.id).offset({
+    'left': left,
+    'top': $('#' + el.id).offset().top
+  });
   if (success) {
     $('#' + el.id).removeClass('error');
   } else {
@@ -2113,6 +2529,9 @@ function fade(el, text, success, start, duration) {
   setTimeout(function() { 
     $('#' + el.id).fadeOut(duration);
   }, start);
+  $('#' + el.id).click(function() {
+    $(this).fadeOut(500);
+  });
 }
 
 function volunteerHoursChanged(el) {
@@ -2196,6 +2615,149 @@ function timeSlotPreferedChanged(el, id) {
     debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
     debugOut(jqHXR.responseText);
   }); 
+}
+
+function deNorm(el) {
+  fade(document.getElementById(el.id + 'Span'), 'Denormalizing...', true);
+  $.post(baseHref + '/ajax/deNorm.php') // Send to server
+  .done(function(data) {
+    fade(document.getElementById(el.id + 'Span'), data, true);
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
+function adminTeam(el) {
+  var urlParams = {teamId: el.id.split('_')[0], admin: 1};
+  urlParams.national = (el.id.split('_')[1] == 'natTeam') ? 1 : 0;
+  var idPrefix = urlParams.teamId + '_' + el.id.split('_')[1] + '_';
+  var action = el.id.split('_')[2];
+  urlParams.name = document.getElementById(idPrefix + 'name').value;
+  urlParams.initials = document.getElementById(idPrefix + 'initials').value;
+  urlParams.national = (el.id.split('_')[1] == 'natTeam') ? 1 : 0;
+  if (urlParams.national) {
+    urlParams.country_id = urlParams.teamId.split('-')[1];
+    urlParams.teamId = urlParams.teamId.split('-')[0];
+    var adminTeamId = el.id.split('_')[0];
+  } else {
+    var adminTeamId = el.id.split('_')[0] + '-0';
+  }
+  if (urlParams.teamId == 0 && action != 'add') {
+    fade(document.getElementById(el.id + 'Span'), 'Please create the team first!', false);
+    return false;
+  }
+  if (!urlParams.name || urlParams.name == '') {
+    if ($(el).is("select")) {
+      selectOption(el, el.getAttribute('previous'));
+    }
+    fade(document.getElementById(el.id + 'Span'), 'Please give the team a name!', false);
+    return false;
+  }
+  switch (action) {
+    case 'nameChange':
+    case 'add':
+      var ajaxFile = 'regTeam';
+    break;
+    case 'delete':
+      var ajaxFile = 'delTeam';
+    break;
+    case 'regSelect':
+      urlParams.registerPerson_id = el.value;
+      var ajaxFile = 'regTeam';
+    break;
+    case 'contactSelect':
+      urlParams.contactPlayer_id = el.value;
+      var ajaxFile = 'regTeam';
+    break;
+    case 'memberSelect':
+      if (checkMember(el, idPrefix)) {
+        if (el.getAttribute('previous') > 0) {
+          removeTeamMember(el.getAttribute('previous'), el.id + 'Span', adminTeamId);
+        }
+        var playerId = el.value;
+        if (playerId > 0) {
+          addTeamMember(playerId, el.id + 'Span', adminTeamId);
+        } else {
+          el.setAttribute('previous', 0);
+        }
+      } else {
+        selectOption(el, el.getAttribute('previous'));
+        fade(document.getElementById(el.id + 'Span'), 'Member is already on the team! Choose another player.', false);
+      }
+      return true;
+    break;
+    default:
+      return false;
+    break;
+  }
+  $.post(baseHref + '/ajax/' + ajaxFile + '.php', urlParams) // Send to server
+  .done(function(data) {
+    var reason = data.reason;
+    if (data.success) {
+      if (action == 'add') {
+        if (data.reason.match(/^[0-9]+$/)) {
+          teamId = data.reason;
+          if (urlParams.national) {
+            var newIdPrefix = data.reason + '-' + urlParams.country_id + '_' + el.id.split('_')[1] + '_';
+          } else {
+            var newIdPrefix = data.reason + '_' + el.id.split('_')[1] + '_';
+          }
+          reason = 'Team created!';
+          $('#' + idPrefix + 'add').hide();
+          $('#' + idPrefix + 'delete').show();
+          $('#' + idPrefix + 'nameChange').show();
+          var disabled = false;
+        }
+      } else if (action == 'delete') {
+        if (urlParams.national) {
+          var newIdPrefix = '0-' + urlParams.country_id + '_' + el.id.split('_')[1] + '_';
+          $('#' + idPrefix + 'add').show();
+          $('#' + idPrefix + 'delete').hide();
+          $('#' + idPrefix + 'nameChange').hide();
+          var disabled = true;
+          document.getElementById(idPrefix + 'name').value = '';
+          document.getElementById(idPrefix + 'initials').value = '';
+          document.getElementById(idPrefix + 'regSelect').selectedIndex = 0;
+          document.getElementById(idPrefix + 'contactSelect').selectedIndex = 0;
+          for (var num = 1; num < 5; num++) {
+            document.getElementById(idPrefix + 'memberSelect_' + num).selectedIndex = 0;
+          }
+        } else {
+          el.parentNode.parentNode.parentNode.removeChild(el.parentNode.parentNode);
+          return false;
+        }
+      } else if (action == 'contactSelect') {
+        reason = el.options[el.selectedIndex].text + ' is now captain for ' + urlParams.name
+      } else if (action == 'regSelect') {
+        reason = el.options[el.selectedIndex].text + ' is now the registrator for ' + urlParams.name
+      } else {
+        return false;
+      }
+      if (action == 'add' || action == 'delete') {
+        document.getElementById(idPrefix + 'regSelect').disabled = disabled;
+        document.getElementById(idPrefix + 'contactSelect').disabled = disabled;
+        var elements = ['name', 'initials', 'nameChange', 'delete', 'add', 'regSelect', 'contactSelect'];
+        for (var element in elements) {
+          document.getElementById(idPrefix + elements[element]).id = newIdPrefix + elements[element];
+          if (document.getElementById(idPrefix + elements[element] + 'Span')) {
+            document.getElementById(idPrefix + elements[element] + 'Span').id = newIdPrefix + elements[element] + 'Span';
+          }
+        }
+        for (var num = 1; num < 5; num++) {
+          document.getElementById(idPrefix + 'memberSelect_' + num).disabled = disabled;
+          document.getElementById(idPrefix + 'memberSelect_' + num).id = newIdPrefix + 'memberSelect_' + num;
+          document.getElementById(idPrefix + 'memberSelect_' + num + 'Span').id = newIdPrefix + 'memberSelect_' + num + 'Span';
+        }
+      }
+    }
+    fade(document.getElementById(el.id + 'Span'), reason, data.success);
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
 }
 
 function addIfpaLink(ifpa_id, ifpaRank) {
@@ -2432,10 +2994,10 @@ function popGeo(type) { // What is this doing?? It's recursive, it creates a var
 
 function loadScript(url) { // Generic function for javascript loading. Don't think we ever use this.
   if (scripts.indexOf(url) == -1) {
-    var js = document.createElement("script");
+    var js = document.createElement('script');
     js.src = url;
-    js.type="text/javascript";
-    document.getElementsByTagName("head")[0].appendChild(js);
+    js.type='text/javascript';
+    document.getElementsByTagName('head')[0].appendChild(js);
     scripts.push(url)
   }
 }
@@ -2445,15 +3007,15 @@ function getType(obj) { // Get a nicer variable type notation than the native Ja
 }
 
 function htmlEntitiesEncode(str) { // Generic function for html entities. Don't think we ever use this.
-  var div = document.createElement("div");
+  var div = document.createElement('div');
   var text = document.createTextNode(str);
   div.appendChild(text);
   return div.innerHTML;
 }
 
 function htmlEntitiesDecode(str) { // Generic function for html entities. Don't think we ever use this.
-  var ta = document.createElement("textarea");
-  ta.innerHTML = str.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  var ta = document.createElement('textarea');
+  ta.innerHTML = str.replace(/</g,'&lt;').replace(/>/g,'&gt;');
   return ta.value;
 }
 

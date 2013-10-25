@@ -2,6 +2,13 @@
   require_once('../functions/general.php');
   require_once("phpqrcode/phpqrcode.php");
 
+  define('MOB_SAVE_URL_PLAYER', __baseHref__ . "/images/objects/mobile/playerimg.png");
+  define('MOB_LOAD_URL_PLAYER', __ROOT__."/images/objects/mobile/playerimg.png");
+  define('MOB_SAVE_URL_TEAM', __baseHref__ . "/images/objects/mobile/teamimg.png");
+  define('MOB_LOAD_URL_TEAM', __ROOT__."/images/objects/mobile/teamimg.png");
+  define('MOB_SAVE_URL_GAME', __baseHref__ . "/images/objects/mobile/gameimg.png");
+  define('MOB_LOAD_URL_GAME', __ROOT__."/images/objects/mobile/gameimg.png");
+
   class DataMapper 
   {
     public static $db;
@@ -53,6 +60,14 @@
     }
   }
 
+  class Team
+  {
+    public function getTeam($id)
+    {
+      return getTeamById(DataMapper::$db, $id);
+    }
+  }
+
   class User
   {
     public function logIn($userName, $passWord)
@@ -74,7 +89,8 @@
 
     public function fromPlayerAndDivision($idPlayer, $idDivision)
     {
-      return getEntry(DataMapper::$db, $idPlayer, $idDivision);
+      $e = getEntry(DataMapper::$db, $idPlayer, $idDivision);
+      return $e;
     }
 
     public function getScores($idEntry, $idMachine)
@@ -111,7 +127,61 @@
     {
       updateScore(DataMapper::$db, $idScore, $iScore);
     }
+
+    public function getStandings($division)
+    {
+      $query = '
+        select 
+          qualEntry.id, 
+          qualEntry.firstName, 
+          qualEntry.lastName, 
+          qualEntry.points, 
+          qualEntry.place 
+        from qualEntry 
+          where qualEntry.tournamentDivision_id = ' . $division . '
+        and 
+          qualEntry.place != "NULL" 
+        order by 
+          qualEntry.place
+      ';
+      $sth = DataMapper::$db->query($query);
+      while ($obj = $sth->fetchObject('entry')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
+    /*
+    public function getStandingsScores($division)
+    {
+      $query = '
+        select 
+          qualScore.id, 
+          qualScore.firstName, 
+          qualScore.lastName, 
+          qualScore.points, 
+          qualScore.place, 
+          qualScore.game, 
+          qualScore.score 
+        from qualScore 
+        inner join machine on 
+          qualScore.machine_id=machine.id 
+        where 
+          machine.tournamentDivision_id=1 
+        and 
+          qualScore.place != "NULL" 
+        order by 
+          qualScore.game, qualScore.place
+        ';
+      $sth = DataMapper::$db->query($query);
+      while ($obj = $sth->fetchObject('score')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
+    }
+    */
   }
+
 
   class Game
   {
@@ -145,8 +215,8 @@
     private $fname;
     private $lname;
     private $country;
-    private $publicImg = "https://test.europinball.org/images/objects/mobile/playerimg.png";
-    private $playerImg = "/www/test.europinball.com/images/objects/mobile/playerimg.png";
+    private $publicImg = MOB_SAVE_URL_PLAYER;
+    private $playerImg = MOB_LOAD_URL_PLAYER;
     public function FromPlayer($playerId)
     {
       $oPlayer = new Player();
@@ -154,7 +224,7 @@
       $aPlayer = $oPlayer->getPlayer($playerId);
       if ($aPlayer != false)
       {
-        $this->tag  = $aPlayer->initials;
+        $this->tag  = ($aPlayer->initials) ? ($aPlayer->initials) : 'N/A';
         $this->fname = $aPlayer->firstName;
         $this->lname = $aPlayer->lastName;
         $this->country = $aPlayer->country;
@@ -184,11 +254,57 @@
     }
   }
 
+  class TeamLabel
+  {
+    private $tag;
+    private $fname;
+    private $lname;
+    private $country;
+    private $publicImg = MOB_SAVE_URL_TEAM;
+    private $teamImg = MOB_LOAD_URL_TEAM;
+    public function FromTeam($teamId)
+    {
+      $oTeam = new Team();
+
+      $aTeam = $oTeam->getTeam($teamId);
+
+      if ($aTeam != false)
+      {
+        $this->tag  = ($aTeam->initials) ? ($aTeam->initials) : 'N/A';
+        $this->fname = $aTeam->firstName;
+        $this->lname = $aTeam->lastName;
+        $this->country = $aTeam->country;
+      }
+      $qrText = "tid=" . $teamId . "&tag=" .  $this->tag;
+      QRcode::png($qrText, $this->teamImg, 0, 6, 0);
+    }
+    public function initials()
+    {
+      return $this->tag;
+    }
+    public function firstName()
+    {
+      return $this->fname;
+    }
+    public function lastName()
+    {
+      return $this->lname;
+    }
+    public function country()
+    {
+      return $this->country;
+    }
+    public function image()
+    {
+      return $this->publicImg;
+    }
+  }
+
   class GameLabel
   {
     private $name;
-    private $publicImg = "https://test.europinball.org/images/objects/mobile/gameimg.png";
-    private $gameImg = "/www/test.europinball.com/images/objects/mobile/gameimg.png";
+    private $publicImg = MOB_SAVE_URL_GAME;
+    private $gameImg = MOB_LOAD_URL_GAME;
     public function FromGame($gameId)
     {
       $aGame = getMachineById(DataMapper::$db, $gameId);

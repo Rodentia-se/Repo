@@ -28,6 +28,6 @@
     }
   }
   
-  getIfpaPlayers($dbh, false);
+  getIfpaPlayers($dbh, true);
   
 ?>

@@ -2,14 +2,37 @@
   require_once('../functions/general.php');
   header('Content-Type: application/json');
   
+  $playerId = (isset($_REQUEST['playerId']) && preg_match('/^[0-9]+$/', $_REQUEST['playerId'])) ? $_REQUEST['playerId'] : null;
+  $admin = (isset($_REQUEST['admin']) && preg_match('/^[01]$/', $_REQUEST['admin'])) ? $_REQUEST['admin'] : false;
   $tournament = (isset($_REQUEST['t']) && preg_match('/^[0-9]+$/', $_REQUEST['t'])) ? $_REQUEST['t'] : 1;
   $hours = (isset($_REQUEST['h']) && preg_match('/^[0-9]+$/', $_REQUEST['h'])) ? $_REQUEST['h'] : null;
 
   if ($hours) {
-    $player = getCurrentPlayer($dbh, $ulogin);
+    if ($admin) {
+      $currentPlayer = getCurrentPlayer($dbh, $ulogin);
+      if ($currentPlayer) {
+        if ($currentPlayer->adminLevel == 1) {
+          if ($playerId) {
+            $player = getPlayerById($dbh, $playerId);
+            if (!$player) {
+              $errorMsg = 'Could not find the player ID '.$playerId.'! Does it exist?';          
+            }
+          } else {
+            $errorMsg = 'Admin mode and no player ID specified! How did you do that?';
+          }
+        } else {
+          $errorMsg = 'Admin mode used, but you are not admin. Are you currectly logged in?';
+        }
+      } else {
+        $errorMsg = 'Could not find you! Are you logged in?';
+      }
+    } else {
+      $player = getCurrentPlayer($dbh, $ulogin);;
+    }
+    
     if ($player) {
       $player->hours = $hours;
-      if (checkPlayer($dbh, $player, 'volunteer')) {
+      if ($player->volunteer) {
         $player->addVolunteer($dbh, $tournament, 'update');
       } else {
         $player->addVolunteer($dbh, $tournament);
@@ -17,21 +40,22 @@
       $volunteer = $player->getVolunteer($dbh);
       if ($volunteer) {
         if ($volunteer->hours == $hours) {
-          echo '{"success": true, "reason": "Hours added"}';
+          echo '{"success": true, "reason": "Hours added to '.$player->name.'"}';
         } else {
           $errorMsg = 'Could not add the hours into the database';        
         }
       } else {
-        $errorMsg = 'Could not find the volunteer. Are you registered as a vounteer?';
+        $errorMsg = 'Could not find the volunteer. Is the volunteer registration correct?';
       }
     } else {
-      $errorMsg = 'Could not find the player! Are you logged in?';
+      $errorMsg = 'Could not find the player!';
     }
   } else {
-    $errorMsg = 'Required parameter (hours) missing';    
+    $errorMsg = 'Required parameter (hours) missing';
   }
   
   if ($errorMsg) {
     echo(getError($errorMsg, false));
   }
+
 ?>

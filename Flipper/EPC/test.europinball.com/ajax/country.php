@@ -8,13 +8,6 @@
   if ($filter = getGeoFilterWheres('country')) {
     $where .= $filter;
   }
-  
-  /*
-  $where = ' where';
-  $where .= (isset($_REQUEST['obj']) && $_REQUEST['obj'] == 'continent' && isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? ' id = '.$_REQUEST['id'] : ' 1';
-  $where .= (isset($_REQUEST['country_id']) && preg_match('/^[0-9]+$/', $_REQUEST['country_id'])) ? ' and country_id = '.$_REQUEST['country_id'].' or parentCountry_id = '.$_REQUEST['country_id'] : ' and 1';
-  $where .= (isset($_REQUEST['continent_id']) && preg_match('/^[0-9]+$/', $_REQUEST['continent_id'])) ? ' and continent_id = '.$_REQUEST['continent_id'] : ' and 1';
-  */
         
   $objs = (array) getCountries($dbh, $where);
     

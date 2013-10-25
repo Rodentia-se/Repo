@@ -6,9 +6,9 @@
   
   $player = getCurrentPlayer($dbh, $ulogin);
   if ($player) {
-    if ($id) {    
-      $delTshirt = delTshirt($dbh, $id);
-      if ($delTshirt) {
+    if ($id) {
+      $tShirt = new tshirt(array('playerTshirt_id' => $id));
+      if ($tShirt->deleteOrder($dbh)) {
         echo('{"success": true, "reason": "T-shirt removed"}');
       } else {
         $errorMsg = 'Could not delete the T-shirt';

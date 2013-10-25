@@ -16,6 +16,11 @@
     $oUser = new User();
     if($oUser->logIn($sUserName, $sPassword)){
       $iIDPlayer = $oHTTPContext->getInt("playerId");
+      $iIDTeam = $oHTTPContext->getInt("teamId");
+      if (($iIDTeam != null) && ($iIDPlayer == null))
+      {
+        $iIDPlayer = $iIDTeam;
+      }
       $iIDGame = $oHTTPContext->getInt("gameId");
       $sScore = $oHTTPContext->getString("score");
 
@@ -34,12 +39,12 @@
         $scores = $oEntry->getScores($iIDEntry, $iIDGame);
         $idScore = null;
         foreach($scores as $score){
-          if ($score->score == null){
+          if (($score->score == null) || ($score->score == 0) || ($score->score == '0')){
             $idScore = $score->id;
             break;
           }
-        }
-          
+        } 
+
         if($idScore == null){
           echo "statusCode=4";            // already has score
         } else {
@@ -54,7 +59,6 @@
         echo "statusCode=2";
       }
     } else {
-      echo "Not loggin in :-(";
       echo "statusCode=1";
     }
   } else {

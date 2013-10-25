@@ -6,7 +6,7 @@
 
   if (checkLogin($dbh, $ulogin, true, 'Please use your login details to access the page.')) {
     printTopper("getObjects('geo');");
-    $content = showEditPlayer($dbh, __baseHref__);
+    $content = showEditPlayer($dbh, $ulogin);
     echo($content);
   }
 

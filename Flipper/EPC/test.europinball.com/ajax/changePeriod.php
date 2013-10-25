@@ -13,9 +13,8 @@
         $period = getPeriodById($dbh, $periodId);
         if ($period) {
           if ($change == 0) {
-            $volunteer = $player->getVolunteer($dbh);
-            if ($volunteer) {
-              if (delVolunteerPeriod($dbh, $volunteer, $period, $tournament)) {
+            if ($player->volunteer) {
+              if ($period->removePlayer($dbh, $player, $tournament)) {
                 echo '{"success": true, "reason": "Period removed"}';
               } else {
                 $errorMsg = 'Could not remove the period from the player';                          
@@ -24,12 +23,12 @@
               $errorMsg = 'Could not find the volunteer in the database'; 
             }
           } else if ($change == 1) {
-            if (!checkPlayer($dbh, $player, 'volunteer')) {
+            if (!$player->volunteer) {
               $player->addVolunteer($dbh, $tournament);
             }
             $volunteer = $player->getVolunteer($dbh);
             if ($volunteer) {
-              if (addVolunteerPeriod($dbh, $volunteer, $period, $tournament)) {
+              if ($period->addPlayer($dbh, $volunteer, $tournament)) {
                 echo '{"success": true, "reason": "Period added"}';
               } else {
                 $errorMsg = 'Could not add the period to the player';                          

@@ -97,6 +97,7 @@
     printTopper();    
   }
 
+  
   echo($content);
   printFooter($dbh, $ulogin);
 

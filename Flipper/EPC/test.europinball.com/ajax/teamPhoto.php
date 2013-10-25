@@ -10,7 +10,7 @@
     if ($team) {
       if ($newPhoto) {
         $team->newPhoto = $newPhoto;
-        if (setPhoto($team)) {
+        if ($team->setPhoto()) {
           echo('{"success": true, "reason": "Team image updated"}');
         } else {
           $errorMsg = 'Could not add image for team '.$team->id;

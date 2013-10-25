@@ -107,6 +107,15 @@
       if (count($this->getMembers($dbh)) < 1) {
         $this->delete($dbh);
       }
+      $query = '
+        update team
+          set contactPlayer_id = null
+        where id = :teamId and contactPlayer_id = :contactPlayer_id
+      ';
+      $update[':teamId'] = $this->id;
+      $update[':contactPlayer_id'] = $player->mainPlayerId;
+      $sth = $dbh->prepare($query);
+      $sth->execute($update);
       return $rowCount;
     }
 
@@ -149,8 +158,48 @@
       $delete[':teamId'] = $this->id;
       $sth = $dbh->prepare($query);
       return $sth->execute($delete);
-      
     }
+    
+      function getAllEntries ($dbh, $groupBy = false, $tournament = 3) {
+    $query = '
+      select
+        qe.person_id as id,
+        qs.id as qualScoreId,
+        qe.id as qualEntryId,
+        qs.place as place,
+        qe.place as entryPlace,
+        qs.points as points,
+        qe.points as entryPoints,
+        qs.score as score,
+        qe.realPlayer_id as playerId,
+        qe.firstName as firstName,
+        qe.lastName as lastName,
+        qe.country_id as countryId,
+        qe.country as country,
+        qs.machine_id as machineId,
+        qs.game_id as gameId,
+        qs.gameAcronym as gameAcronym,
+        ';
+      $query .= ($groupBy) ? '
+        max(qs.score) as maxScore,
+        max(qs.points) as maxPoints,
+        min(qs.place) as bestPlace,
+      ' : '';
+      $query .='
+        qs.game as game
+      from qualScore qs
+        left join qualEntry qe
+          on qs.qualEntry_id = qe.id
+      where qe.player_id = '.$this->id.'
+        and qe.tournamentDivision_id = '.$tournament.' ';
+      $query .= ($groupBy) ? $groupBy : '';
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject('entry')) {
+        $objs[] = $obj;
+      }
+      return $objs;
+    }
+
     
   }
 ?>

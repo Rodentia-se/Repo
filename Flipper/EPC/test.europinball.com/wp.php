@@ -22,6 +22,21 @@ function customTemplate($page) {
 		case 'qualgroups':
 	    include($_SERVER['DOCUMENT_ROOT'].'/qualGroups.php');
     break;
+		case 'standings':
+	    include($_SERVER['DOCUMENT_ROOT'].'/standings.php');
+    break;
+		case 'classics-finals':
+	    include($_SERVER['DOCUMENT_ROOT'].'/classicsFinals.php');
+    break;
+		case 'main-finals':
+	    include($_SERVER['DOCUMENT_ROOT'].'/mainFinals.php');
+    break;
+		case 'b-finals':
+	    include($_SERVER['DOCUMENT_ROOT'].'/bFinals.php');
+    break;
+		case 'bracket':
+	    include($_SERVER['DOCUMENT_ROOT'].'/bracket.php');
+    break;
 		case 'your-team':
       header('Location: /registration/teams/?obj=team&id=self');
       die();
@@ -41,6 +56,12 @@ function customTemplate($page) {
     break;
 		case 'volunteer-schedule':
 	    include($_SERVER['DOCUMENT_ROOT'].'/volunteerSchedule.php');
+    break;
+		case 'admin-tools':
+	    include($_SERVER['DOCUMENT_ROOT'].'/adminTools.php');
+    break;
+		case 'password-reset':
+	    include($_SERVER['DOCUMENT_ROOT'].'/forgotPassword.php');
     break;
 		case 'payment-options':
 	    include($_SERVER['DOCUMENT_ROOT'].'/payment.php');
@@ -84,8 +105,14 @@ function customTemplate($page) {
 		case 'tshirt':
 			include($_SERVER['DOCUMENT_ROOT'].'/tshirts.php');
 	  break;
+		case 'arrive':
+	    include($_SERVER['DOCUMENT_ROOT'].'/arrive.php');
+    break;
 		case 'editplayer':
 			include($_SERVER['DOCUMENT_ROOT'].'/edit.php');
+	  break;
+		case 'statistics':
+			include($_SERVER['DOCUMENT_ROOT'].'/statistics.php');
 	  break;
 		case 'registration':
 			include($_SERVER['DOCUMENT_ROOT'].'/reg.php');

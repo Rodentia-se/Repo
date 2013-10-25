@@ -1,5 +1,8 @@
 <?php
+
   define('__ROOT__', dirname(dirname(__FILE__))); 
+  define('__mainQualLimit__', '60'); 
+  define('__classicsQualLimit__', '30'); 
   define('__baseHref__', 'https://test.europinball.org'); 
   require_once(__ROOT__.'/functions/db.php');
   require_once(__ROOT__.'/contrib/ulogin/config/all.inc.php');
@@ -7,7 +10,9 @@
   require_once(__ROOT__.'/functions/auth.php');
   require_once(__ROOT__.'/functions/header.php');
 
-  $baseHref = 'https://test.europinball.org';
+  define('__tshirtDisabled__', true); 
+
+  $baseHref = __baseHref__;
   
   $exts = array('png', 'jpg', 'jpeg', 'jpg');
 
@@ -22,7 +27,8 @@
       'name' => 'game', 'geo' => false, 'plural' => 'games', 'label' => 'Game', 'table' => 'game', 'column' => 'game_id',
       'headers' => array('name', 'acronym', 'manufacturer', 'year', 'isIpdb', 'rules'), // Headers normally used in tables and lists
       'info' => array('name', 'type', 'acronym', 'manufacturer', 'year', 'isIpdb', 'rules'), // Headers normally used in info divs
-      'parents' => array('manufacturer'), 'selfParent' => false, 'acronym' => 'Ga',
+      'parents' => array('manufacturer'), 'selfParent' => false, 'id2name' => false, 'acronym' => 'Ga',
+      'children' => false,
       'fields' => (object) array(
         'name' => (object) array(
           'label' => 'Name',
@@ -92,21 +98,82 @@
     ),
     'machine' => (object) array(
       'name' => 'machine', 'plural' => 'machines', 'table' => 'machine', 'column' => 'machine_id',
-      'parents' => array('game', 'tournamentDivision'),
+      'parents' => array('game', 'manufacturer', 'tournamentDivision'), 'id2name' => array('game', 'manufacturer'),
+      'children' => false,
       'selfParent' => false, 'acronym' => 'Ma'
+    ),
+    'qualGroup' => (object) array(
+      'name' => 'qualGroup', 'plural' => 'qualGroups', 'table' => 'qualGroup', 'column' => 'qualGroup_id',
+      'info' => array('shortName', 'date', 'startTime', 'endTime', 'noOfPlayers'), // Headers normally used in info divs
+      'parents' => false,
+      'children' => false,
+      'selfParent' => false, 'acronym' => 'qg',
+      'fields' => (object) array(
+        'shortName' => (object) array(
+          'label' => 'Name',
+          'type' => 'text',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,
+          'insert' => true,
+          'default' => ''
+        ),
+        'date' => (object) array(
+          'label' => 'Date',
+          'type' => 'date',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,
+          'insert' => true,
+          'default' => ''
+        ),
+        'startTime' => (object) array(
+          'label' => 'Start',
+          'type' => 'time',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,
+          'insert' => true,
+          'default' => ''
+        ),
+        'endTime' => (object) array(
+          'label' => 'End',
+          'type' => 'time',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,
+          'insert' => true,
+          'default' => ''
+        ),
+        'noOfPlayers' => (object) array(
+          'label' => 'Players',
+          'type' => 'text',
+          'mandatory' => true,
+          'special' => false,
+          'bundle' => false,
+          'insert' => true,
+          'default' => ''
+        )
+      )
     ),
     'tournamentDivision' => (object) array(
       'name' => 'tournamentDivision', 'table' => 'tournamentDivision', 'column' => 'tournamentDivision_id',
-      'parents' => array('tournamentEdition'), 
+      'parents' => array('tournamentEdition'), 'id2name' => false,
+      'children' => false,
       'selfParent' => false, 'acronym' => 'Td'
     ),
     'tournamentEdition' => (object) array(
-      'name' => 'tournamentEdition', 'table' => 'tournamentEdition', 'column' => 'tournamentEdition_id', 'acronym' => 'Te'
+      'name' => 'tournamentEdition', 'table' => 'tournamentEdition', 'column' => 'tournamentEdition_id', 'acronym' => 'Te',
+      'parents' => false, 'id2name' => false,
+      'children' => false,
     ),
     'manufacturer' => (object) array(
       'name' => 'manufacturer', 'geo' => false, 'plural' => 'manufacturers', 'table' => 'manufacturer', 'column' => 'manufacturer_id', 'acronym' => 'Mn',
       'headers' => array('name', 'link'), // Headers normally used in tables and lists
       'info' => array('name', 'link'), // Headers normally used in info divs
+      'parents' => false, 
+      'children' => array('game'),
+      'id2name' => false,
       'fields' => (object) array(
         'name' => (object) array(
           'label' => 'Name',
@@ -133,6 +200,9 @@
       'name' => 'continent', 'geo' => true, 'plural' => 'continents', 'table' => 'continent', 'column' => 'continent_id', 'acronym' => 'Cn', 
       'headers' => array('name', 'latitude', 'longitude'), // Headers normally used in tables and lists
       'info' => array('name', 'latitude', 'longitude'), // Headers normally used in info divs
+      'parents' => false,
+      'children' => array('country', 'region', 'city', 'player', 'team'),
+      'id2name' => false,
       'fields' => (object) array(
         'name' => (object) array(
           'label' => 'Name',
@@ -167,12 +237,23 @@
     'country' => (object) array(
       'name' => 'country', 'geo' => true, 'plural' => 'countries', 'table' => 'country', 'column' => 'country_id',
       'headers' => array('name', 'continent', 'latitude', 'longitude'), // Headers normally used in tables and lists
-      'info' => array('name', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
+      'info' => array('name', 'altName', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
       'parents' => array('continent'),
+      'children' => array('region', 'city', 'player', 'team'),
+      'id2name' => array('continent'),
       'selfParent' => true,
       'acronym' => 'Co',
       'fields' => (object) array(
         'name' => (object) array( 
+          'label' => 'Name',  
+          'type' => 'text',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,  
+          'insert' => true,
+          'default' => ''  
+        ),
+        'altName' => (object) array( 
           'label' => 'Name',  
           'type' => 'text',  
           'mandatory' => true,  
@@ -222,11 +303,22 @@
     'region' => (object) array(
       'name' => 'region', 'geo' => true, 'plural' => 'regions', 'table' => 'region', 'column' => 'region_id',
       'headers' => array('name', 'country', 'continent', 'latitude', 'longitude'),  // Headers normally used in tables nd lists
-      'info' => array('name', 'parentRegion', 'country', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
+      'info' => array('name', 'altName', 'parentRegion', 'country', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
       'parents' => array('country', 'continent'),
+      'children' => array('city', 'player'),
+      'id2name' => array('country', 'continent'),
       'selfParent' => true, 'acronym' => 'Re',
       'fields' => (object) array(
         'name' => (object) array(  
+          'label' => 'Name',  
+          'type' => 'text',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,  
+          'insert' => true,
+          'default' => ''  
+        ),
+        'altName' => (object) array( 
           'label' => 'Name',  
           'type' => 'text',  
           'mandatory' => true,  
@@ -291,12 +383,23 @@
     'city' => (object) array(
       'name' => 'city', 'table' => 'city', 'column' => 'city_id', 'geo' => true, 'plural' => 'cities',
       'headers' => array('name', 'region', 'country', 'continent', 'latitude', 'longitude'), // Headers normally used in tables and lists
-      'info' => array('name', 'region', 'parentRegion', 'country', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
+      'info' => array('name', 'altName', 'region', 'parentRegion', 'country', 'parentCountry', 'continent', 'latitude', 'longitude'), // Headers normally used in info divs
       'parents' => array('region', 'country', 'continent'),
+      'children' => array('player'),
+      'id2name' => array('region', 'country', 'continent'),
       'selfParent' => false,
       'acronym' => 'Ci',
       'fields' => (object) array(
         'name' => (object) array(  
+          'label' => 'Name',  
+          'type' => 'text',  
+          'mandatory' => true,  
+          'special' => false,  
+          'bundle' => false,  
+          'insert' => true,
+          'default' => ''  
+        ),
+        'altName' => (object) array( 
           'label' => 'Name',  
           'type' => 'text',  
           'mandatory' => true,  
@@ -367,7 +470,9 @@
     ),
     'person' => (object) array(
       'name' => 'person', 'table' => 'person', 'column' => 'person_id',
-      'parents' => array('city', 'region', 'country', 'continent', 'tournamentDivision', 'tournamentEdition', 'gender'),
+      'parents' => array('city', 'region', 'country', 'continent', 'gender'),
+      'children' => false,
+      'id2name' => array('gender', 'city', 'region', 'country', 'continent'),
       'selfParent' => false, 'acronym' => 'Pe'
     ), 
     'player' => (object) array(
@@ -375,6 +480,8 @@
       'headers' => array('name', 'initials', 'city', 'region', 'country', 'continent'), // Headers normally used in tables and lists
       'info' => array('name', 'initials', 'qualGroup', 'birthDate', 'gender', 'city', 'region', 'parentRegion', 'country', 'parentCountry', 'continent', 'isIfpa', 'main', 'classics', 'volunteer'), // Headers normally used in info divs
       'parents' => array('person', 'city', 'region', 'country', 'continent', 'tournamentDivision', 'tournamentEdition', 'gender'),
+      'children' => false,
+      'id2name' => array('gender', 'city', 'region', 'country', 'continent'),
       'selfParent' => false, 'acronym' => 'Pl',
       'fields' => (object) array(
         'id' => (object) array(  
@@ -662,6 +769,7 @@
     'gender' => (object) array(
       'name' => 'gender', 'geo' => false, 'plural' => 'genders', 'table' => 'gender', 'column' => 'gender_id', 'acronym' => 'Ge',
       'headers' => array('name'),
+      'parents' => false, 'id2name' => false,
       'mandatory' => array('name'),
       'fields' => (object) array(
         'name' => (object) array(  
@@ -681,6 +789,9 @@
       'headers' => array('name', 'initials'),
       'info' => array('name', 'initials'), // Headers normally used in info divs
       'mandatory' => array('name'),
+      'parents' => array('city', 'region', 'country', 'continent', 'tournamentDivision', 'tournamentEdition'),
+      'children' => false,
+      'id2name' => array('city', 'region', 'country', 'continent'),
       'fields' => (object) array(
         'name' => (object) array(  
           'label' => 'Name',  
@@ -711,261 +822,6 @@
   $playerLabels = array('First name', 'Last name', 'Username', 'Password', 'Initials (tag)', 'IFPA ID', 'Rank position',  'Gender', 'Address', 'ZIP', 'City', 'Region', 'Country', 'Continent', 'Phone', 'Cell phone', 'E-mail', 'Date registered', 'Birth date', 'Main division', 'Classics division', 'Volunteer', 'ID', 'Comment');
   $playerTypes = array('text', 'text', 'text', 'text', 'text', 'text', 'text', 'select', 'text', 'text', 'select', 'select', 'select', 'select', 'text', 'text', 'text', 'text', 'text', 'checkbox', 'checkbox', 'checkbox', 'text', 'text');
   //  $debug = $_GET['debug'];
-  
-  
-  function whereBuilder($type = 'player', $objs = null, $where = null, $comp = ' = ', $quot = '"', $logic = 'and', $frontPar = false, $endPar = false) {
-    $coalesce = [];
-    $defaultArray = array(
-      'where' => array($comp, $quot, $logic, $frontPar, $endPar),
-      'nowhere' => array(null, null, null, false, false)
-    );
-    if (is_array($objs)) {
-      foreach($objs as $obj => $value) {
-        if (is_array($value)) {
-          array_push($coalesce, preg_replace('/_id$/', '', $obj));
-          if (isAssoc($value)) {
-            if (is_array($value['column'])) {
-              if (isAssoc($value['column'])) {
-                $columns[$obj][$value['column']['column']] = $value['column']['column'];
-                $values[$obj][$value['column']['column']] = (isset($value['column']['value'])) ? 
-                  $value['column']['value'] : null;
-                $wheres[$obj][$value['column']['column']] = (isset($value['column']['where'])) ? 
-                  $value['column']['where'] : $where;
-                $defaults = ($wheres[$obj][$value['column']['column']]) ? 
-                  $defaultArray['where'] : $defaultArray['nowhere'];
-                $comps[$obj][$value['column']['column']] = (isset($value['column']['comp'])) ? 
-                  $value['column']['comp'] : $defaults[0];
-                $quots[$obj][$value['column']['column']] = (isset($value['column']['quot'])) ? 
-                  $value['column']['quot'] : $defaults[1];
-                $logics[$obj][$value['column']['column']] = (isset($value['column']['logic'])) ? 
-                  $value['column']['logic'] : $defaults[2];
-                $frontPars[$obj][$value['column']['column']] = 
-                  (isset($value['column']['frontPar']) && $value['column']['frontPar']) ? '(' : $defaults[3];
-                $endPars[$obj][$value['column']['column']] = 
-                  (isset($value['column']['endPar']) && $value['column']['endPar']) ? ')' : $defaults[4];
-                $multi[$obj] = true;
-              }
-            } else {
-              $columns[$obj] = $value['column'];
-              $values[$obj] = (isset($value['value'])) ? $value['value'] : null;
-              $wheres[$obj] = (isset($value['where'])) ? $value['where'] : $where;
-              $defaults = ($wheres[$obj]) ? $defaultArray['where'] : $defaultArray['nowhere'];
-              $comps[$obj] = (isset($value['comp'])) ? $value['comp'] : $defaults[0];
-              $quots[$obj] = (isset($value['quot'])) ? $value['quot'] : $defaults[1];
-              $logics[$obj] = (isset($value['logic'])) ? $value['logic'] : $defaults[2];
-              $frontPars[$obj] = (isset($value['frontPar']) && $value['frontPar']) ? '(' : $defaults[3];
-              $endPars[$obj] = (isset($value['endPar']) && $value['endPar']) ? ')' : $defaults[4];
-            }
-          } else {
-            $columns[$obj] = $value[0];
-            $values[$obj] = (isset($value[1])) ? $value[1] : null;
-            $wheres[$obj] = (isset($value[2])) ? $value[2] : $where;
-            $defaults = ($wheres[$obj]) ? $defaultArray['where'] : $defaultArray['nowhere'];
-            $comps[$obj] = (isset($value[3])) ? $value[3] : $defaults[0];
-            $quots[$obj] = (isset($value[4])) ? $value[4] : $defaults[1];
-            $logics[$obj] = (isset($value[5])) ? $value[5] : $defaults[2];
-            $frontPars[$obj] = (isset($value[6]) && $value[5]) ? '(' : $defaults[3];
-            $endPars[$obj] = (isset($value[7]) && $value[6]) ? ')' : $defaults[4];
-          }
-        } else {
-          array_push($coalesce, preg_replace('/_id$/', '', $value));
-          $columns[$value] = 'id';
-          $names[$value] = 'name';
-          $values[$value] = null;
-          $wheres[$value] = $where;
-          $defaults = ($wheres[$value]) ? $defaultArray['where'] : $defaultArray['nowhere'];
-          $comps[$value] = $defaults[0];
-          $quots[$value] = $defaults[1];
-          $logics[$value] = $defaults[2];
-          $frontPars[$value] = $defaults[3];
-          $endPars[$value] = $defaults[4];
-        }
-      }
-    } else {
-      array_push($coalesce, preg_replace('/_id$/', '', $objs));     
-      $columns[$objs] = 'id';
-      $names[$objs] = 'name';
-      $values[$objs] = null;
-      $wheres[$objs] = $where;
-      $defaults = ($wheres[$obj]) ? $defaultArray['where'] : $defaultArray['nowhere'];
-      $comps[$objs] = $defaults[0];
-      $quots[$objs] = $defaults[1];
-      $logics[$objs] = $defaults[2];
-      $frontPars[$objs] = $defaults[3];
-      $endPars[$objs] = $defaults[4];
-    }
-    $joinBuild = joinBuilder($type, $coalesce);
-    $output['join'] = $joinBuild['join'];
-    foreach($coalesce as $coal) {
-      if ($multi[$coal]) {
-        foreach($columns[$coal] as $col => $val) {
-          echo ' '.$col.'='.$val.' ';
-          $output['coal'][$coal][$col] .= ' coalesce('.implode($joinBuild['coalesce'][$coal], '.'.$columns[$coal][$col].', ').'.'.$columns[$coal][$col].') ';
-          if ($wheres[$coal][$col]) {
-            $start = ($start) ? $start : $logics[$coal][$col];
-            $output['where'][$coal][$col] .= ' '.$logics[$coal][$col].' '.$frontPars[$coal][$col].$output['coal'][$coal][$col].$comps[$coal][$col].' '.$quots[$coal][$col].$values[$coal][$col].$quots[$coal][$col].$endPars[$coal][$col];
-            $whereOutput[$coal] = true;
-            $whereOutput['global'] = true;
-          }
-        }
-        if ($whereOutput[$coal]) {
-          $output['where'][$coal] = implode($output['where'][$coal]);
-        }
-      } else {
-        $output['coal'][$coal][$columns[$coal]] .= ' coalesce('.implode($joinBuild['coalesce'][$coal], '.'.$columns[$coal].', ').'.'.$columns[$coal].') ';
-        if ($names[$coal]) {
-          $output['coal'][$coal][$names[$coal]] .= ' coalesce('.implode($joinBuild['coalesce'][$coal], '.'.$names[$coal].', ').'.'.$names[$coal].') ';
-        }
-        if ($wheres[$coal]) {
-          $start = ($start) ? $start : $logics[$coal];
-          $output['where'][$coal] .= ' '.$logics[$coal].' '.$frontPars[$coal].$output['coal'][$coal][$columns[$coal]].$comps[$coal].' '.$quots[$coal].$values[$coal].$quots[$coal].$endPars[$coal];
-          $whereOutput['global'] = true;
-        }
-      }
-    }
-    if ($whereOutput) {
-      $output['where'] = preg_replace('/^ '.$start.'/', 'where', implode($output['where']).' ');
-    }
-    return $output;
-  }
-  
-  function joinBuilder($type = 'player', $coalesce = null) {
-    if (isset($coalesce) && !is_array($coalesce)) {
-      $coalesce = array($coalesce);
-    }
-    if (isset($value) && !is_array($value)) {
-      $value = array($value);
-    }
-    $data = joinBuilderHelper($type, $coalesce);
-    $output['join'] = implode($data['join']);
-    if ($coalesce && is_array($data['coalesce'])) {
-      ksort($data['coalesce']);
-      foreach($data['coalesce'] as $key => $level) {
-        foreach ($level as $table => $cols) {
-          $output['coalesce'][$table] .= $cols;
-        }
-      } 
-      foreach ($output['coalesce'] as $table => $cols) {
-        $output['coalesce'][$table] = explode(',', trim($cols,', '));
-      }
-    }
-    return $output;
-  }
-  
-  function joinBuilderHelper($child = 'player', $coalesce = null, $prefix = null, $level = 0, $self = true) {
-    global $classes;
-    $prefix .= $classes->{$child}->acronym;
-    if ($coalesce) {
-      foreach($coalesce as $table) {
-        if ($table == $classes->{$child}->table) {
-          $output['coalesce'][$level][$table] .= ','.$prefix;
-        }
-      }
-    }
-    if ($classes->{$child}->parents) {
-      foreach($classes->{$child}->parents as $parent) {
-        $output['join'][$level] .= ' left join '.$classes->{$parent}->table.' '.$prefix.'X'.$classes->{$parent}->acronym.' on '.$prefix.'.'.$classes->{$parent}->column.' = '.$prefix.'X'.$classes->{$parent}->acronym.".id\n";
-        $newData = joinBuilderHelper($classes->{$parent}->name, $coalesce, $prefix.'X', $level + 1);
-        if ($newData) {
-          if ($newData['join']) {
-            foreach($newData['join'] as $lvl => $joins) {
-              $output['join'][$lvl] .= $joins;
-            }
-          }
-          if ($coalesce && $newData['coalesce']) {
-            foreach($newData['coalesce'] as $lvl => $tbl) {
-              foreach($tbl as $table => $cols) {
-                $output['coalesce'][$lvl][$table] .= $cols;
-              }
-            }
-          }
-        }
-      }
-      if ($classes->{$child}->selfParent && $self) {
-        $output['join'][$level] .= ' left join '.$classes->{$child}->table.' '.$prefix.'X'.$classes->{$child}->acronym.' on '.$prefix.'.parent'.ucfirst($classes->{$child}->column).' = '.$prefix.'X'.$classes->{$child}->acronym.".id\n";
-        if ($coalesce) {
-          foreach($coalesce as $table) {
-            if ($table == $classes->{$child}->$table) {
-              $output['coalesce'][$level][$table] .= ' ,'.$prefix.'.id';
-            }
-          }
-        }
-        $newData = joinBuilderHelper($classes->{$child}->name, $coalesce, $prefix.'X', $level + 1, false);
-        if ($newData) {
-          if ($newData['join']) {
-            foreach($newData['join'] as $lvl => $joins) {
-              $output['join'][$lvl] .= $joins;
-            }
-          }
-          if ($coalesce && $newData['coalesce']) {
-            foreach($newData['coalesce'] as $lvl => $tbl) {
-              foreach($tbl as $table => $cols) {
-                $output['coalesce'][$lvl][$table] .= $cols;
-              }
-            }
-          }
-        }
-      }
-    }
-    return $output;    
-  }
-  
-  function getParents($dbh, $obj) {
-    global $classes;
-    if ($classes->{$obj->class}->parents) {
-      foreach ($classes->{$obj->class}->parents as $parentClass) {
-        if ($obj->{$classes->{$parentClass}->column} > 0) {
-          $obj->{$parentClass} = getObjectById($dbh, $parentClass, $obj->{$classes->{$parentClass}->column})->name;
-        } else {
-          $newObj = getObject($dbh, $obj->class, $obj->id);
-          if ($newObj->{$classes->{$parentClass}->column} > 0) {
-            $obj->{$classes->{$parentClass}->column} = $newObj->{$classes->{$parentClass}->column};
-            $obj->{$parentClass} = getObjectById($dbh, $parentClass, $obj->{$classes->{$parentClass}->column})->name;
-          } else {
-            $parentId = getParent($dbh, $obj, $parentClass);
-            if ($parentId > 0) {
-              $obj->{$classes->{$parentClass}->column} = $parentId;
-              $obj->{$parentClass} = getObjectById($dbh, $parentClass, $parentId)->name;
-            }
-          }
-        }
-      }
-    }
-    return $obj;
-  }
-  
-  function getParent($dbh, $obj, $type) {
-    global $classes;
-    while (!($obj->{$classes->{$type}->column} > 0)) {
-      echo 'c:'.$obj->class;
-      echo 'p:'.$classes->{$obj->class}->parents;
-      echo "<br>\n";
-      if ($classes->{$obj->class}->parents) {
-        foreach ($classes->{$obj->class}->parents as $parentClass) {
-          if ($obj->{$classes->{$parentClass}->column} > 0) {
-            $parentObj = getObject($dbh, $parentClass, $obj->{$classes->{$parentClass}->column});
-            if ($parentObj->{$classes->{$type}->column} > 0) {
-              $obj->{$classes->{$type}->column} = $parentObj->{$classes->{$type}->column};
-              return $parentObj->{$classes->{$type}->column};
-            } else {
-              $parentId = getParent($dbh, $parentObj, $type);
-              if ($parentId > 0) {
-                $obj->{$classes->{$type}->column} = $parentObj->{$classes->{$type}->column};
-                return $parentId;
-              }
-            }
-          } else {
-            $parentId = getParent($dbh, $parentObj, $type);
-            if ($parentId > 0) {
-              $obj->{$classes->{$type}->column} = $parentObj->{$classes->{$type}->column};
-            }
-            return $parentId;            
-          }
-        }
-      }
-      return $obj->{$classes->{$type}->column};
-    }
-  }
   
   function getObject($dbh, $class, $id) {
     $query = 'select * from '.$class.' where id = '.$id;
@@ -1007,7 +863,6 @@
   function getObjects($dbh, $class, $query) {
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject($class)) {
-      $obj->populate($dbh);
       $objs[] = $obj;
     }
     return $objs;
@@ -1018,7 +873,7 @@
     if ($tr) {
       $errorMsg = '<tr><td colspan="'.$colspan.'">'.$errorMsg.'</td></tr>';
     }
-    $error = (object) array('success' => false, 'reason' => $errorMsg);    
+    $error = (object) array('success' => false, 'reason' => $msg, 'longReason' => $errorMsg);    
     return json_encode($error);
   }
     
@@ -1048,7 +903,7 @@
     ';
   }  
     
-  function getTshirts($dbh, $tournament) {
+  function getTshirts($dbh, $tournament = 1) {
     $query = getTshirtSelect().' where te.id = '.$tournament;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('tshirt')) {
@@ -1056,6 +911,95 @@
     }
     return $objs;
   }
+  
+  function getTshirtBuyers($dbh, $tournament = 1) {
+    $query = getPlayerSelect();
+    $query .= '
+      left join personTShirt pt 
+        on pt.person_id = p.id 
+      where pt.id is not null
+        and m.tournamentEdition_id = '.$tournament.'
+      order by p.firstName, p.lastName
+    ';
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('player')) {
+      $objs[] = $obj;
+    }
+    return $objs;
+  }
+  
+  function getTshirtOrders($dbh, $tournament = 1) {
+    $query = '
+      select 
+        ts.id as id,
+        pt.name as name,
+        "tshirt" as class,
+        pt.number as number,
+        pt.number as number_id,
+        pt.person_id as player_id,
+        concat(ifnull(pt.firstName, ""), " ", ifnull(pt.lastName, "")) as player,
+        pt.telephoneNumber as telephoneNumber,
+        pt.mobileNumber as mobileNumber,
+        pt.mailAddress as mailAddress,
+        pt.dateDelivered as dateDelivered,
+        pt.id as playerTshirt_id,
+        tc.name as color,
+        tc.id as color_id,
+        tz.name as size,
+        tz.id as size_id,
+        tt.id as tournamentTshirt_id,
+        te.name as tournamentEdition,
+        te.id as tournamentEdition_id
+      from personTShirt pt
+        left join tournamentTShirt tt on pt.tournamentTShirt_id = tt.id
+        left join tshirt ts on tt.tshirt_id = ts.id
+        left join tournamentEdition te on tt.tournamentEdition_id = te.id
+        left join color tc on ts.color_id = tc.id
+        left join size tz on ts.size_id = tz.id
+    ';
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('tshirt')) {
+      $objs[] = $obj;
+    }
+    return $objs;
+  }
+  
+  function getTshirtOrderById($dbh, $id) {
+    $query = '
+      select 
+        ts.id as id,
+        pt.name as name,
+        "tshirt" as class,
+        pt.number as number,
+        pt.number as number_id,
+        pt.person_id as player_id,
+        concat(ifnull(pt.firstName, ""), " ", ifnull(pt.lastName, "")) as player,
+        pt.telephoneNumber as telephoneNumber,
+        pt.mobileNumber as mobileNumber,
+        pt.mailAddress as mailAddress,
+        pt.dateDelivered as dateDelivered,
+        pt.id as playerTshirt_id,
+        tc.name as color,
+        tc.id as color_id,
+        tz.name as size,
+        tz.id as size_id,
+        tt.id as tournamentTshirt_id,
+        te.name as tournamentEdition,
+        te.id as tournamentEdition_id
+      from personTShirt pt
+        left join tournamentTShirt tt on pt.tournamentTShirt_id = tt.id
+        left join tshirt ts on tt.tshirt_id = ts.id
+        left join tournamentEdition te on tt.tournamentEdition_id = te.id
+        left join color tc on ts.color_id = tc.id
+        left join size tz on ts.size_id = tz.id
+      where pt.id = '.$id;
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('tshirt')) {
+      return $obj;
+    }
+    return false;
+  }
+  
   
   function getTshirtById($dbh, $tshirtId) {
     $query = getTshirtSelect().' where pt.id = '.$tshirtId;
@@ -1107,43 +1051,57 @@
     }
     return $objs;
   }
-  
-  function addTshirt($dbh, $personId) {
-    $update[':personId'] = $personId;
-    $query = 'insert into personTShirt set person_id = :personId';
-    $sth = $dbh->prepare($query);
-    if ($sth->execute($update)) {
-      return $dbh->lastInsertId();
-    } else {
-      return false;
+    
+  function getNoOfTshirts($dbh, $id = false) {
+    $query = '
+      SELECT 
+        tt.id as tournamentTshirt_id,
+        tt.name as name, 
+        ifnull(count(pt.id),0) as buyers, 
+        ifnull(sum(pt.number),0) as reserved,
+        ifnull(count(pt.dateDelivered),0) as delivered, 
+        ifnull(tt.number, 0) as total,
+        ifnull(tt.soldOnSite, 0) as soldOnSite
+      FROM `tournamentTShirt` tt 
+        left join personTShirt pt on pt.tournamentTShirt_id = tt.id
+    ';
+    $query .= ($id) ? ' where tt.id = '.$id : '';
+    $query .= ' group by tt.id';
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('tshirt')) {
+      $objs[] = $obj;
     }
+    return (count($objs) == 1) ? $objs[0] : $objs;
+  }
+  
+  function addTshirt($dbh, $player) {
+    return $player->addTshirt($dbh);
   }
   
   function delTshirt($dbh, $id) {
-    $update[':id'] = $id;
-    $query = 'delete from personTShirt where id = :id';
-    $sth = $dbh->prepare($query);
-    if ($sth->execute($update)) {
-      return true;
-    } else {
-      return false;
-    }
+    $tShirt = new tshirt(array('playerTshirt_id' => $id));
+    return $tShirt->deleteOrder($dbh);
   }
   
   function updateTshirt($dbh, $id, $tshirt, $number = 1) {
-    $query = ' update personTShirt ps ';
-    $query .= ' set ps.tournamentTShirt_id = '.$tshirt->tournamentTshirt_id.', ps.number = '.$number.', ps.name = concat("'.$tshirt->tournamentEdition.' for Person ID ", ps.person_id, ": '.$tshirt->name.'"), ps.dateRegistered = "'.date('Y-m-d').'" where ps.id = '.$id;
-    $sth = $dbh->query($query);
-    return $sth->rowCount();
+    $tshirt->number = $number;
+    $tshirt->playerTshirt_id = $id;
+    $tshirt->updateOrder($dbh);
+  }
+  
+  function getCurrentPlayer($dbh, $ulogin) {
+    $id = getIdFromUser($dbh, $ulogin->Username($_SESSION['uid']));
+    $player = ($id) ? getPlayerById($dbh, $id) : false;
+    return ($player) ? $player : false;    
   }
     
   function getTshirtForm($dbh, $ulogin, $tournament = 1) {
-    $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
-    $tshirts = getTshirtsByPlayerId($dbh, $player->id, $tournament);
+    $player = getCurrentPlayer($dbh, $ulogin);
+    $tshirts = $player->getTshirts($dbh, $tournament);
     if($tshirts && count($tshirts > 0)) {
       $shown = 'Any info already shown is what you have already ordered.<br />';
     } else {
-      $shown = '<span id="tshirtNoneSpan" class="italic">You have no previsously ordered T-shirts. Order one now by clicking the icon below!<br /></span>';
+      $shown = '<span id="tshirtNoneSpan" class="italic">You have no previsously ordered T-shirts. '.((__tshirtsDisabled__) ? 'You can no longer order T-shirts online, but we will sell a limited number of T-shirts on site.' : 'Order one now by clicking the icon below!').'<br /></span>';
     }
     $content = '
         <div id="tshirtOrderDiv">
@@ -1151,7 +1109,7 @@
           <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
           <input type="hidden" id="playerIdHidden" value="'.$player->id.'">
           <table id="tshirtOrderTable">
-            <tr id="tshirtOrderTr"><td colspan="7"><span class="italic">'.$shown.'Changes will take effect immediately.</span><td><tr>
+            <tr id="tshirtOrderTr"><td colspan="7"><span class="italic">'.$shown.((__tshirtsDisabled__) ? 'You can no longer add or change any orders online,<br />but we will sell a limited number of T-shirts on site.' : 'Changes will take effect immediately.').'<br />&nbsp;</span><td><tr>
     ';
     if($tshirts && count($tshirts > 0)) {
       foreach($tshirts as $tshirt) {
@@ -1162,8 +1120,9 @@
     } 
     $content .= '
           </table>
-          <p>Add more T-shirts:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Click to add a new T-shirt" title="Click to add a new T-shirt"></p>
-          <p><span id="tshirtCostSpan">Total cost: '.($total * 100).' SEK</span></p>
+          <p style="display: '.((__tshirtsDisabled__) ? 'none' : '').';">Add more T-shirts:<img id="tshirtAdd" src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="addTshirt(this);" alt="Click to add a new T-shirt" title="Click to add a new T-shirt"><span id="tshirtAddSpan" class="errorSpan toolTip"></span></p>
+          <br />
+          <p><span id="tshirtCostSpan">Total cost: SEK '.($total * 100).' kr / EUR € '.(ceil($total * 100 / 8)).' / GBP £ '.(ceil($total * 100 / 10)).' / USD $ '.(ceil($total * 100 / 6)).'</span></p>
           <input type="hidden" id="tshirtCostHidden" value="'.($total * 100).'" />
           <input type="hidden" id="tshirtTotalHidden" value="'.$total.'" />
           <input type="hidden" id="tshirtHighestHidden" value="'.$highest.'" />
@@ -1172,9 +1131,30 @@
     return $content;
   }
   
-  function getTshirtRow($dbh, $tournament, $num, $playerTshirt = null, $warning = true) {
+  function getTshirtSizes($dbh, $tournament = 1) {
     $tshirts = getTshirts($dbh, $tournament);
-    $content = '            <tr id="'.$num.'_tshirtTr">';
+    foreach($tshirts as $tshirt) {
+     if (!in_array($tshirt->size, $sizes)) {
+        $sizes[$tshirt->size_id] = $tshirt->size;
+      }
+    }
+    return $sizes;
+  }
+
+  function getTshirtColors($dbh, $tournament = 1) {
+    $tshirts = getTshirts($dbh, $tournament);
+    foreach($tshirts as $tshirt) {
+     if (!in_array($tshirt->color, $colors)) {
+        $colors[$tshirt->color_id] = $tshirt->color;
+      }
+    }
+    return $colors;
+  }
+  
+  function getTshirtRow($dbh, $tournament, $num, $playerTshirt = null, $warning = true, $asJson = false) {
+    $tshirts = getTshirts($dbh, $tournament);
+    $content = '<tr id="'.$num.'_tshirtTr">';
+    $json['trId'] = $num.'_tshirtTr';
     $options['size'] = array('0' => 'Choose...');
     $options['color'] = array('0' => 'Choose...');
     foreach($tshirts as $tshirt) {
@@ -1187,40 +1167,37 @@
     }
     $options['number'] = array(0=>0,1=>1,2=>2,3=>3,4=>4,5=>5,6=>6,7=>7,8=>8,9=>9,10=>10);
     foreach(array('number', 'color', 'size') as $param) {
-      $content .= '
-              <td class="labelTd"><label>'.ucfirst($param).':</label></td>
-              <td class="selectTd"><select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.'" onchange="tshirtChanged(this);">';
+      $json[$param]['label'] = '<label>'.ucfirst($param).':</label>';
+      $content .= '<td class="labelTd">'.$json[$param]['label'].'</td>';
+      $json[$param]['select'] = '<select id="'.$num.'_tshirt'.ucfirst($param).'Select" class="select '.$param.'" onchange="tshirtChanged(this);"'.((__tshirtsDisabled__) ? ' disabled' : '').'>';
       foreach($options[$param] as $option_id => $option) {
-        $content .= '                  <option value="'.$option_id.'"';
+        $json[$param]['select'] .= '<option value="'.$option_id.'"';
         if ($playerTshirt && count($playerTshirt) > 0 && $playerTshirt->{$param.'_id'} == $option_id) {
-          $content .= ' selected ';
+          $json[$param]['select'] .= ' selected ';
         }
-        $content .= '>'.$option."</option>\n";
+        $json[$param]['select'] .= '>'.$option."</option>\n";
       }
-      $content .= '</select></td>';
+      $json[$param]['select'] .= '</select>';
+      $content .= '<td class="selectTd">'.$json[$param]['select'].'</td>';
     }
-    $content .= '
-              <td><img id="'.$num.'_tshirtDel" src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="delTshirt('.$num.');" alt="Click to delete this T-shirt" title="Click to delete this T-shirt"/><span class="error errorSpan" id="'.$num.'_tshirtSpan">';
+    $json[$param]['img'] = (!__tshirtsDisabled__) ? '<img id="'.$num.'_tshirtDel" src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="delTshirt('.$num.');" alt="Click to delete this T-shirt" title="Click to delete this T-shirt"/><span class="error errorSpan" id="'.$num.'_tshirtSpan">' : '';
     if ($warning && $playerTshirt && count($playerTshirt) > 0 && (!($playerTshirt->number_id > 0) || !($playerTshirt->color_id > 0) || !($playerTshirt->size_id > 0))) {
-      $content .= 'You have not chosen all options for these T-shirts!';
+      $json[$param]['img'] .= 'You have not chosen all options for these T-shirts!';
     }
-    $content .= '</span></td>
-            </tr>';
-    return $content;
+    $json[$param]['img'] .= '</span>';
+    $content .= '<td>'.$json[$param]['img'].'</td></tr>';
+    $json['success'] = true;
+    return ($asJson) ? $json : $content;
   }
   
   function addTeam($dbh, $team, $player = null, $method = 'insert into') {
     $query = $method.' team set
         team.name=:name,
         team.initials=:initials,
-        team.national=0,
+        team.national=:national,
+        team.country_id=:country_id,
         team.contactPlayer_id=(
           select pl.id from player pl
-          where pl.person_id=:contactPlayer_id
-          and pl.tournamentDivision_id = 1
-        ),
-        team.contactPlayer_name=(
-          select concat(ifnull(pl.firstName, ""), " ", ifnull(pl.lastName, "")) from player pl
           where pl.person_id=:contactPlayer_id
           and pl.tournamentDivision_id = 1
         ),
@@ -1228,20 +1205,27 @@
         team.dateRegistered=:dateRegistered,
         team.registerPerson_id=:registerPerson_id
     ';
+    if ($method == 'update') {
+      $query .= ' where id = :teamId';
+      $insert[':teamId'] = $team->id;
+    }
     $insert[':name'] = $team->name;
     $insert[':initials'] = $team->initials;
+    $insert[':national'] = $team->national;
+    $insert[':country_id'] = $team->country_id;
     $insert[':contactPlayer_id'] = $team->contactPlayer_id;
-    $insert[':tournamentDivision_id'] = $team->tournamentDivision_id;
-    $insert[':dateRegistered'] = $team->dateRegistered;
+    $insert[':tournamentDivision_id'] = ($team->tournamentDivision_id) ? $team->tournamentDivision_id : 3;
+    $insert[':dateRegistered'] = ($team->dateRegistered) ? $team->dateRegistered : date('Y-m-d');
     $insert[':registerPerson_id'] = $team->registerPerson_id;
     $sth = $dbh->prepare($query);
     $result = $sth->execute($insert);
     if ($method == 'insert into') {
+      $team->id = $dbh->lastInsertId();
       if ($player) {
-        $team->id = $dbh->lastInsertId();
         $team->addPlayer($dbh, $player);
       }
     }
+    deNorm($dbh, 'team');
     return $team->id;
   }
   
@@ -1260,6 +1244,8 @@
         tm.name as name,
         "team" as class,
         tm.initials as initials,
+        tm.national as national,
+        tm.registerPerson_id as registerPerson_id,
         tm.contactPlayer_id as contactPlayer_id,
         tm.contactPlayer_name as contactPlayer_name,
         tm.country as country,
@@ -1274,8 +1260,9 @@
     ';
   }  
     
-  function getTeams($dbh, $where) {
+  function getTeams($dbh, $where = ' where tm.tournamentDivision_id = 3 ', $national = false) {
     $query = getTeamSelect().' '.$where;
+    $query .= ($national) ? (($where) ? ' and ' : ' where ').' tm.national = 1 ' : (($where) ? ' and ' : ' where ').' (tm.national is null or tm.national != 1) ';
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('team')) {
       $objs[] = $obj;
@@ -1293,11 +1280,22 @@
     }
   }
       
+  function getTeamByCountry($dbh, $countryId, $national = true) {
+    $query = getTeamSelect().' where tm.country_id = '.$countryId;
+    $query .= ($national) ? ' and tm.national = 1' : ' and (tm.national is null or tm.national != 1)';
+    $sth = $dbh->query($query);
+    if ($obj = $sth->fetchObject('team')) {
+      return $obj;
+    } else {
+      return false;
+    }
+  }
+  
   function getFreeTeamMembers($dbh, $tournament = 1) {
     $query = getPlayerSelect();
     $query .= '
       left join teamPlayer tp on tp.player_id = m.id
-      where tp.id is null and md.tournamentEdition_id = '.$tournament.'
+      where tp.id is null and m.tournamentEdition_id = '.$tournament.'
       order by p.firstName, p.lastName';
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('player')) {
@@ -1307,36 +1305,34 @@
   }
   
   function getTeamForm($dbh, $ulogin, $tournament = 1) {
-    $player = getPlayerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
-    $players = getFreeTeamMembers($dbh, $tournament);
+    $player = getCurrentPlayer($dbh, $ulogin);
+    $players = (array) getFreeTeamMembers($dbh, $tournament);
     $team = $player->getTeam($dbh);
     if ($team) {
       $regTeamDisplay = 'none';
       $editTeamDisplay = '';
       $teamMembers = $team->getMembers($dbh);
       $players = array_merge($teamMembers, $players);
-      $teamId = $team->id;
-      $teamName = $team->name;
-      $teamTag = $team->initials;
     } else {
+      $team = new team(array('id' => 0, 'name' => '', 'initials' => ''));
       $regTeamDisplay = '';
       $editTeamDisplay = 'none';
-      $teamId = 0;
-      $teamName = '';
-      $teamTag = '';
     }
     $content = '
-      <script src="'.__baseHref__.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
+      <p class="regTeam"><b>National teams do NOT register here! Please have your IFPA country director send an email to <a href="mailto:support@europinball.org">support@europinball.org</a></b></p>
       <p id="regTeamHeader" class="regTeam" style="display: '.$regTeamDisplay.';"><b>You are not a member of a team.</b> If you are supposed to be a member of an already registered team, please ask one of the existing members to add you to that team. If you want to register a new team, please fill in the details below.</p>
       <p id="editTeamHeader" class="editTeam" style="display: '.$editTeamDisplay.';">You are a member of the following team, and may change any parameters. <span class="italic">Use the button to change name or tag. Member changes are instant.</span></p>
       <p class="italic" class="editTeam" style="display: '.$editTeamDisplay.';">Note: You can not add players to this team if they are already members of another team, they need to leave their existing team before they can join your team.</p>
+    ';
+    $content .= getUploadForm($dbh, $team, (($editTeamDisplay == 'none') ? false : true ));
+    $content .= '
       <form id="newData" name="newData" action="'.$_SERVER['REQUEST_URI'].'">
         <input type="hidden" name="loggedIn" id="loggedIn" value="true">
         <input type="hidden" name="newPhoto" id="newPhoto" value="false">
         <input type="hidden" name="baseHref" id="baseHref" value="'.__baseHref__.'">
-        <input type="hidden" name="user" id="user" value="'.$ulogin->Username($_SESSION['uid']).'">
+        <input type="hidden" name="user" id="user" value="'.$player->username.'">
         <input name="class" id="classHidden" type="hidden" value="team">
-        <input name="id" id="idHidden" type="hidden" value="'.$teamId.'">
+        <input name="id" id="idHidden" type="hidden" value="'.$team->id.'">
         <input name="action" id="action" type="hidden" value="regTeam">
         <input name="dateRegistered" id="dateRegisteredHidden" type="hidden" value="'.date('Y-m-d').'">
         <input name="registerPerson_id" id="registerPerson_idHidden" type="hidden" value="'.$player->id.'">
@@ -1347,15 +1343,15 @@
           </tr>
           <tr id="nameTr">
             <td id="nameLabelTd" class="labelTd"><label id="nameLabel" for="nameText">Name</label></td>
-            <td id="nameTd"><input name="name" id="nameText" type="text" class=" mandatory" onkeyup="checkField(this);" value="'.$teamName.'"><span id="nameSpan" class=" errorSpan">*</span></td>
+            <td id="nameTd"><input name="name" id="nameText" type="text" class=" mandatory" onkeyup="checkField(this);" value="'.$team->name.'"><span id="nameSpan" class=" errorSpan">*</span></td>
           </tr>    
           <tr id="initialsTr">
             <td id="initialsLabelTd" class="labelTd"><label id="initialsLabel" for="initialsText">Team tag</label></td>
-            <td id="initialsTd"><input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$teamTag.'"><span id="initialsSpan" class=" errorSpan"></span></td>
+            <td id="initialsTd"><input name="initials" id="initialsText" type="text" onkeyup="checkField(this);" value="'.$team->initials.'"><span id="initialsSpan" class=" errorSpan toolTip"></span></td>
           </tr>
           <tr>
             <td class="labelTd"></td>
-            <td><button id="submit" type="button" value="Submit!" class="formInput" onclick="regTeam()" disabled>Submit!</button><button id="delete" type="button" value="Delete team!" class="formInput editTeam" onclick="deleteTeam()" style="display: '.$editTeamDisplay.'">Delete team!</button><span id="submitSpan" class=" errorSpan" style="display: none;"></span>
+            <td><button id="submit" type="button" value="Submit!" class="formInput" onclick="regTeam()" disabled>Submit!</button><button id="delete" type="button" value="Delete team!" class="formInput editTeam" onclick="deleteTeam(\'submitSpan\')" style="display: '.$editTeamDisplay.'">Delete team!</button><span id="submitSpan" class=" errorSpan toolTip" style="display: none;"></span>
           </tr>
     ';
     $playerNum = array(1,2,3,4);
@@ -1366,7 +1362,7 @@
       $captain = ' disabled';
       $captainDisplay = 'none';
       $selected = 0;
-      if ($teamId == 0 && $num == 1) {
+      if ($team->id == 0 && $num == 1) {
         $checked = ' checked';
         $captain = '';
         $captainDisplay = '';
@@ -1390,7 +1386,7 @@
       $content .= '
           <tr id="teamPlayer'.$num.'Tr" style="display: '.$editTeamDisplay.';" class="editTeam">
             <td id="teamPlayer'.$num.'LabelTd" class="labelTd"><label id="teamPlayer'.$num.'Label" for="teamPlayer'.$num.'">Player #'.$num.'</label></td>
-            <td id="teamPlayer'.$num.'Td" class="labelTd">'.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Captain</span><span id="teamPlayer'.$num.'Span" class=" errorSpan" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan" style="display: '.$incomplete.';">Team is incomplete</span>
+            <td id="teamPlayer'.$num.'Td" class="labelTd">'.createSelect($players, 'teamPlayer'.$num.'Select', $selected, 'memberSelected', $disabled).'<input type="radio" name="contactPlayer_id" id="contactPlayer_id'.$num.'" value="'.$selected.'" onchange="setCaptain();"'.$checked.$captain.'><span id="contactPlayer_id'.$num.'Captain" style="display: '.$captainDisplay.';">Captain</span><span id="teamPlayer'.$num.'Span" class=" errorSpan toolTip" style="display: none;"></span><span id="teamIncomplete'.$num.'Span" class="teamIncomplete errorSpan toolTip" style="display: '.$incomplete.';">Team is incomplete</span>
           </tr>
       ';
     }
@@ -1398,22 +1394,28 @@
     $content .= '
           <tr class="editTeam" style="display: '.$editTeamDisplay.'">
             <td></td>
-            <td><button id="leaveTeam" type="button" value="Leave team!" class="editTeam formInput" onclick="removeTeamMember('.$team->id.', '.$player->id.');">Leave team!</button><span class="editTeam italic errorSpan">Note: This can only be undone by another member of the team.</span></td></td>
+            <td><button id="leaveTeam" type="button" value="Leave team!" class="editTeam formInput" onclick="removeTeamMember('.$player->id.', \'leaveSpan\');">Leave team!</button><br /><span id="leaveSpan" class="editTeam italic errorSpan">Note: This can only be undone by another member of the team.</span></td></td>
           </tr>
         </table>
       </form>
-      <form id="imageForm" method="post" enctype="multipart/form-data" action="'.__baseHref__.'/ajax/imageUpload.php?obj=team&id='.$team->id.'" style="display: '.$editTeamDisplay.';" class="editTeam">
-        <br />
-        <th colspan="2" id="regTeamImgTh">Team logo or picture</th>
+    ';
+    return $content;
+  }
+  
+  function getUploadForm($dbh, $obj, $display = true, $button = true) {
+    $content = '
+      <script src="'.__baseHref__.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
+      <form id="imageForm" method="post" enctype="multipart/form-data" action="'.__baseHref__.'/ajax/imageUpload.php?obj='.$obj->class.'&id='.$obj->id.'" style="display: '.(($display) ? '' : 'none').';" class="edit'.ucfirst($obj->class).'">
+        <h2 colspan="2" id="reg'.ucfirst($obj->class).'ImgH2">'.ucfirst($obj->class).' logo or picture</h2>
   	    <div id="preview">
-  		    <img src="'.getPhoto($dbh, 'team', $team->id, true).'" id="thumb" class="preview" alt="Preview of '.$team->name.'">
+  		    <img src="'.$obj->getPhoto(true).'" id="thumb" class="preview" alt="Preview of '.$obj->name.'">
           <div id="imageLoader"></div>
   	    </div>
   	    <div id="uploadForm">
-          <label id="imageUploadLabel" class="italic">Click picture to change preview (save with button below)</label>
+          <label id="imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
           <input type="file" name="imageUpload" id="imageUpload">
         </div>
-        <button id="submitImg" type="button" value="Submit image!" class="formInput" onclick="teamPhoto();" disabled>Submit image!</button><span id="submitImgSpan" class=" errorSpan" style="display: none;"> 
+        <button id="submitImg" type="button" value="Submit image!" class="formInput" onclick="'.$obj->class.'Photo();" style="display: '.(($button) ? '' : 'none').'" disabled>Submit image!</button><span id="submitImgSpan" class=" errorSpan" style="display: none;"></span>
         <script type="text/javascript">
           $(document).ready(function() { 
             $(\'#imageUpload\').on(\'change\', function() {
@@ -1435,48 +1437,169 @@
     return $content;
   }
   
-  function getQualGroupById($dbh, $id) {
+  function getCurCalcForm($cur = 'all', $id = false, $action = 'curCalc', $selected = 0) {
+    $id = ($id) ? $id : $cur;
+    switch ($cur) {
+      case 'SEK':
+        $max = 1500;
+        $step = 100;
+      break;
+      case 'EUR':
+        $max = 190;
+        $step = 12.5;
+      break;
+      case 'GBP':
+        $max = 150;
+        $step = 10;
+      break;
+      case 'USD':
+        $max = 255;
+        $step = 16.67;
+      break;
+      case 'all':
+        $content = '<h2 class="bold">Currency calculator</h2>';
+        foreach (array('SEK', 'EUR', 'GBP', 'USD') as $cur) {
+          $content .= getCurCalcForm($cur);
+        }
+        return $content.'<span class="errorSpan italic">Note: The calculator is approximate, and our exchange rates are bad.</span>';
+      break;
+      default:
+        return false;
+      break;
+    }
+    $content = '<label>'.$cur.':</label>';
+    $content .= '<select id="'.$id.'" onchange="'.$action.'(this);" class="curCalc">';
+    for ($i = 0; $i <= $max; $i = $i + $step) {
+      $content .= '<option value="'.round($i).'"';
+      $content .= ($selected == $i) ? ' selected' : '';
+      $content .= '>'.round($i).'</option>';
+    }
+    return $content.'</select>';
+  }  
+  
+  function getQualGroupSelect($alias = 'q', $extraCols = false) {
     $query = '
       select 
-        q.id as id,
-        concat(q.date, " ", left(q.startTime, 5), "-", left(q.endTime, 5)) as fullName,
-        concat(left(q.startTime, 5), "-", left(q.endTime, 5)) as name,
-        q.name as shortName,
-        q.date as date,
-        left(q.startTime, 5) as startTime,
-        left(q.endTime, 5) as endTime,
+        '.$alias.'.id as id,
+        concat(q.date, " ", left('.$alias.'.startTime, 5), "-", left('.$alias.'.endTime, 5)) as fullName,
+        concat('.$alias.'.name, " (", left('.$alias.'.startTime, 5), "-", left('.$alias.'.endTime, 5), ")") as name,
+        '.$alias.'.name as shortName,
+        '.$alias.'.date as date,
+        left('.$alias.'.startTime, 5) as startTime,
+        left('.$alias.'.endTime, 5) as endTime,
         "qualGroup" as class,
-        q.comment as comment,
-        q.tournamentDivision_id as tournamentDivision_id
-      from qualGroup q
-      where q.id = '.$id;
+        '.$alias.'.comment as comment,
+        '.$alias.'.tournamentDivision_id as tournamentDivision_id
+    ';
+    $query .= ($extraCols) ? ', '.$extraCols : '';
+    $query .= '
+      from qualGroup '.$alias.'
+    ';
+    return $query;
+  }
+
+  function getQualGroupById($dbh, $id) {
+    $query = getQualGroupSelect().' where q.id = '.$id;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('qualGroup')) {
       return $obj;
     }
   }
-
+  
   function getQualGroups($dbh, $tournament = 1) {
-    $query = '
-      select 
-        q.id as id,
-        concat(q.date, " ", left(q.startTime, 5), "-", left(q.endTime, 5)) as fullName,
-        concat(left(q.startTime, 5), "-", left(q.endTime, 5)) as name,
-        q.name as shortName,
-        q.date as date,
-        left(q.startTime, 5) as startTime,
-        left(q.endTime, 5) as endTime,
-        "qualGroup" as class,
-        q.comment as comment,
-        q.tournamentDivision_id as tournamentDivision_id
-      from qualGroup q
-    ';
+    $query = getQualGroupSelect().'
+      left join tournamentDivision td
+        on q.tournamentDivision_id = td.id
+      where (td.tournamentEdition_id = '.$tournament.' or td.tournamentEdition_id is null) order by q.date
+      ';
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('qualGroup')) {
       $objs[] = $obj;
     }
     return $objs;
   }
+    
+  function getQualGroupForm($dbh, $player, $tournament = 1) {
+    $qualGroups = getQualGroups($dbh, $tournament);
+    if ($player) {
+      $playerQualGroups = $player->getQualGroups($dbh, $tournament);
+      $playerPreferedQualGroups = $player->getPreferedQualGroup($dbh, $tournament);
+      $playerQualGroupIds = [];
+      if($playerQualGroups) {
+        foreach($playerQualGroups as $playerQualGroup) {
+          $playerQualGroupIds[] = $playerQualGroup->id;
+        }
+      }
+      if($playerPreferedQualGroups) {
+        foreach($playerPreferedQualGroups as $playerPreferedQualGroup) {
+          $playerPreferedQualGroupIds[] = $playerPreferedQualGroup->id;
+        }
+      }
+      if($qualGroups) {
+        $tournamentDivisionIds = [];
+        foreach($qualGroups as $qualGroup) {
+          if (!in_array($qualGroup->tournamentDivision_id, $tournamentDivisionIds)) {
+            $tournamentDivisionIds[] = $qualGroup->tournamentDivision_id;
+            $qualGroupsByDiv[$qualGroup->tournamentDivision_id] = [];
+          }
+          array_push($qualGroupsByDiv[$qualGroup->tournamentDivision_id], $qualGroup);    
+        }
+      }
+    }
+    $prefered = ($playerPreferedQualGroup) ? 'checked' : '';
+    $checked = ($playerQualGroups) ? 'checked' : '';
+    $content = '
+          <div id="qualGroupDiv">
+            <h2 class="entry-title">Indicate your preference</h3>
+            <p class="italic"><input type="radio" '.$prefered.'>Use radio button to indicate your most wanted time slot.<br/>
+            <input type="checkbox" '.$checked.'>Use checkboxes to indicate optional time slots. All changes are instant.</p>
+            <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
+            <input type="hidden" id="idHidden" value="'.$player->id.'">
+    ';
+    $content .= '
+          </div>
+          <div id="qualGroupTableDiv" class="periodTable">
+            <h2><label>Check/uncheck all: </label><input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);" disabled';
+    if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
+      $content .= ' checked';
+    }            
+    $content .= '></h2>
+    ';
+    if($qualGroups && count($qualGroups > 0)) {
+      foreach($tournamentDivisionIds as $tournamentDivisionId) {
+        $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
+        foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
+          $disabled = ($player->{$type}) ? false : true;
+          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
+          if (!($date) || $date != $qualGroup->date) {
+            if ($date) {
+              $content .= '</table>';
+            }
+            $date = $qualGroup->date;
+            $content .= '
+              <table id="qualGroupMain'.$date.'Table" class="qualGroupTable">
+                <tr>
+                  <td><input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'> </td>
+                  <td><h2><b>'.$date.' ('.ucfirst($type).')</b></h2></td>
+                </tr>
+            ';
+          }
+          $checked = (in_array($qualGroup->id, $playerQualGroupIds)) ? true : false;
+          $prefered = ($playerPreferedQualGroups && in_array($qualGroup->id, $playerPreferedQualGroupIds)) ? true : false;
+          $content .= getQualGroupRow($dbh, $qualGroup, $checked, $prefered, $disabled);
+        }
+      } 
+      $content .= '
+              </table>
+            </div>
+      ';
+    }
+    return $content;
+  }
+    
+  function getQualGroupRow($dbh, $qualGroup = null, $checked = false, $prefered = false, $disabled = false) {
+    return getTimeSlotRow($dbh, 'qualGroup', $qualGroup, $checked, $prefered, $disabled);
+  }  
   
   function addVolunteerTask($dbh, $volunteer, $task, $tournamentId = 1) {
     return addVolunteerItem($dbh, $volunteer, $task, 'task', $tournamentId);    
@@ -1509,7 +1632,7 @@
     );
     $sth = $dbh->prepare($query);
     if ($sth->execute($update)) {
-      return true;
+      return $dbh->lastInsertId();
     } else {
       return false;
     }    
@@ -1550,6 +1673,7 @@
       select 
         t.id as id,
         t.name as name,
+        t.acronym as shortName,
         "task" as class,
         v.person_id as player_id,
         v.id as volunteer_id,
@@ -1561,7 +1685,7 @@
         left join volunteer v on vt.volunteer_id = v.id
       where (t.tournamentEdition_id = '.$tournament.' or t.tournamentEdition_id is null) and v.person_id = '.$playerId;
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('task')) {
       $objs[] = $obj;
     }
     return $objs;
@@ -1588,7 +1712,7 @@
       where (p.tournamentEdition_id = '.$tournament.' or p.tournamentEdition_id is null) and v.person_id = '.$playerId.'
       order by p.date, p.startTime';
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('period')) {
       $objs[] = $obj;
     }
     return $objs;
@@ -1599,13 +1723,14 @@
       select 
         t.id as id,
         t.name as name,
+        t.acronym as shortName,
         "task" as class,
         t.comment as comment,
         t.tournamentEdition_id as tournamentEdition_id
       from task t
       where t.id = '.$id;
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('task')) {
       return $obj;
     }
   }
@@ -1625,7 +1750,7 @@
       from period p
       where p.id = '.$id;
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('period')) {
       return $obj;
     }
   }
@@ -1635,13 +1760,14 @@
       select 
         t.id as id,
         t.name as name,
+        t.acronym as shortName,
         "task" as class,
         t.comment as comment,
         t.tournamentEdition_id as tournamentEdition_id
       from task t
       where (t.tournamentEdition_id = '.$tournament.' or t.tournamentEdition_id is null)';
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('task')) {
       $objs[] = $obj;
     }
     return $objs;
@@ -1656,6 +1782,7 @@
         p.date as date,
         left(p.startTime, 5) as startTime,
         left(p.endTime, 5) as endTime,
+        TIMEDIFF(p.endTime,p.startTime) as length,
         "period" as class,
         p.comment as comment,
         p.tournamentEdition_id as tournamentEdition_id
@@ -1663,7 +1790,7 @@
       where (p.tournamentEdition_id = '.$tournament.' or p.tournamentEdition_id is null)
       order by p.date, p.startTime';
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('period')) {
       $objs[] = $obj;
     }
     if (count($objs) > 0) {
@@ -1672,7 +1799,7 @@
       return false;
     }
   }
-  
+    
   function getVolunteerById($dbh, $id) {
     $player = getPlayerById($dbh, $id);
     $query = '
@@ -1692,10 +1819,12 @@
   }
   
   function getVolunteerForm($dbh, $ulogin, $tournament = 1) {
-    $volunteer = getVolunteerById($dbh, getIdFromUser($dbh, $ulogin->Username($_SESSION['uid'])));
+    $volunteer = getCurrentPlayer($dbh, $ulogin);
     $tasks = getTasks($dbh, $tournament);
     $periods = getPeriods($dbh, $tournament);
+    $hours = 0;
     if ($volunteer) {
+      $hours = $volunteer->hours;
       $volunteerTasks = getTasksByPlayerId($dbh, $volunteer->id, $tournament);
       $volunteerPeriods = getPeriodsByPlayerId($dbh, $volunteer->id, $tournament);
       $volunteerTaskIds = [];
@@ -1727,12 +1856,12 @@
     ';
     for($i = 0; $i <= 100; $i++) {
       $content .= '<option value="'.$i.'"';
-      if ((!($volunteer) && $i = 0) || $i == $volunteer->hours) {
+      if ($i == $hours) {
         $content .= ' selected';
       }
       $content .= '>'.$i.'</option>'."\n";
     }
-    $content .= '</select><span class="error errorSpan" id="volunteerHoursSpan"></span></p>
+    $content .= '</select><span class="error errorSpan toolTip" id="volunteerHoursSpan"></span></p>
           </div>
           <div id="periodTableDiv" class="periodTable">
             <h2>Periods: <label>Check/uncheck all: </label><input type="checkbox" id="periodChackAll" onclick="periodCheckAll(this);" ';
@@ -1756,7 +1885,7 @@
               </tr>
           ';
         }
-        $content .= getVolunteerRow($dbh, 'period', $period, ((in_array($period->id, $volunteerPeriodIds)) ? true : false));
+        $content .= getVolunteerRow($dbh, 'period', $period, (($volunteerPeriodIds && in_array($period->id, $volunteerPeriodIds)) ? true : false));
       }
     } 
     $content .= '
@@ -1768,7 +1897,7 @@
     ';
     if($tasks && count($tasks > 0)) {
       foreach($tasks as $task) {
-        $content .= getVolunteerRow($dbh, 'task', $task, ((in_array($task->id, $volunteerTaskIds)) ? true : false));
+        $content .= getVolunteerRow($dbh, 'task', $task, (($volunteerTaskIds && in_array($task->id, $volunteerTaskIds)) ? true : false));
       }
     }
     $content .= '
@@ -1777,25 +1906,24 @@
     ';
     return $content;
   }
-  
+
   function getVolunteerRow($dbh, $type, $item = null, $checked = false) {
-    $content = '            <tr id="'.$item->id.'_'.$type.'Tr">';
-    if ($type == 'task') {
-      $content .= '              <td class="labelTd"><label>'.ucfirst($item->name).'</label></td>';
-    }
-    $content .= '              <td class="boxTd"><input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="volunteerChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.$item->date.'" ';
-    if ($checked) {
-      $content .= 'checked';
-    }
-    $content .= '><span class="error errorSpan toolTip" id="'.$item->id.'_'.$type.'Span"></span>';
-    if ($item->comment) {
-      $content .= '<span class="italic">'.$item->comment.'</span>';
-    }  
-    $content .= ' </td>';
-    if ($type == 'period') {
-      $content .= '              <td class="labelTd"><label>'.ucfirst($item->name).'</label></td>';
-    }
-    $content .= '            </tr>';
+    return getTimeSlotRow($dbh, $type, $item, $checked);
+  }
+  
+  function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false) {
+    $content = '<tr id="'.$item->id.'_'.$type.'Tr">';
+    $content .= ($type == 'task') ? '<td class="labelTd"><label>'.ucfirst($item->name).'</label></td>' : '';
+    $content .= '<td class="checkboxTd"><input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ';
+    $content .= ($checked) ? ' checked ' : '';
+    $content .= ($disabled) ? ' disabled ' : '';
+    $content .= '>';
+    $content .= ($type == 'qualGroup') ? '<input type="radio" id="'.$item->id.'_'.$type.'Radio" name="'.$type.'Div'.$item->tournamentDivision_id.'Radio" onchange="timeSlotPreferedChanged(this, '.$item->id.')" class="'.$type.'Radio '.$item->date.'" '.(($prefered) ? ' checked ' : '').(($disabled) ? ' disabled ' : '').'>' : '';
+    $content .= '<span class="error errorSpan toolTip" id="'.$item->id.'_'.$type.'Span"></span>';
+    $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
+    $content .= '</td>';
+    $content .= ($type == 'period' || $type == 'qualGroup') ? '<td class="labelTd"><label>'.ucfirst($item->name).'</label></td>' : '';
+    $content .= '</tr>';
     return $content;
   }
       
@@ -1834,7 +1962,166 @@
     return $isValid;
   }
   
-  function getManufacturers($dbh, $where, $order = 'order by mn.name') {
+  function deNorm($dbh, $class = false) {
+    global $classes;
+    if ($class) {
+      $updates[] = deNormClass($dbh, $classes->{$class});
+    } else {
+      $updates = [];
+      foreach ($classes as $class) {
+        array_push($updates, deNormClass($dbh, $class));
+      }
+    }
+    return true;
+  }
+  
+  function deNormClass($dbh, $class) {
+    global $classes;
+    if ($classes->{$class->name}->parents) {
+      if ($classes->{$class->name}->selfParent) {
+        $updates[] = deNormHelper($class->name, $class->name, true);
+      }
+      foreach($classes->{$class->name}->parents as $parent) {
+        if ($classes->{$parent}->parents) {
+          $updates[] = deNormHelper($class->name, $parent);
+        }
+        if ($classes->{$parent}->selfParent) {
+          $updates[] = deNormHelper($class->name, $parent, true);        
+        }
+      }
+    }
+    if ($classes->{$class->name}->id2name) {
+      $num = 1;
+      $update = 'update '.$class->name." t1 \n";
+      $join = '';
+      unset($set);
+      foreach($classes->{$class->name}->id2name as $parent) {
+        $num++;
+        $join .= ' left join '.$parent.' t'.$num." \n";
+        $join .= ' on t1.'.$parent.'_id = t'.$num.".id\n";
+        $set[] = ' t1.'.$parent.' = t'.$num.".name\n";
+        if ($classes->{$parent}->selfParent) {
+          $num++;
+          $join .= ' left join '.$parent.' t'.$num." \n";
+          $join .= ' on t1.parent'.ucfirst($parent).'_id = t'.$num.".id\n";
+          $set[] = ' t1.parent'.ucfirst($parent).' = t'.$num.".name\n";
+        }
+      }
+      if ($classes->{$class->name}->selfParent) {
+        $num++;
+        $join .= ' left join '.$class->name.' t'.$num." \n";
+        $join .= ' on t1.parent'.ucfirst($class->name).'_id = t'.$num.".id\n";
+        $set[] = ' t1.parent'.ucfirst($class->name).' = t'.$num.".name\n";
+      }
+      $sets = implode($set, ',');
+      $updates[] = $update.$join.' set '.$sets;
+    }
+    if ($class->name == 'team') {
+      $updates[] = '
+        update team t 
+          left join player pl 
+            on t.contactPlayer_id = pl.id 
+          set 
+            t.contactPlayer_name = concat(ifnull(pl.firstName,""), " ", ifnull(pl.lastName,""))
+      ';
+    } else if ($class->name == 'player') {
+      $updates[] = '
+        update player pl 
+          left join person p 
+            on pl.person_id = p.id
+          set 
+            pl.firstName = coalesce(pl.firstName, p.firstName),
+            pl.lastName = coalesce(pl.lastName, p.lastName),
+            pl.initials = coalesce(pl.initials, p.initials),
+            pl.streetAddress = coalesce(pl.streetAddress, p.streetAddress),
+            pl.zipCode = coalesce(pl.zipCode, p.zipCode),
+            pl.telephoneNumber = coalesce(pl.telephoneNumber, p.telephoneNumber),
+            pl.mobileNumber = coalesce(pl.mobileNumber, p.mobileNumber),
+            pl.mailAddress = coalesce(pl.mailAddress, p.mailAddress),
+            pl.birthDate = coalesce(pl.birthDate, p.birthDate),
+            pl.ifpa_id = p.ifpa_id,
+            pl.ifpaRank = p.ifpaRank
+      ';
+      $updates[] = '
+        update person p 
+          left join player pl
+            on pl.person_id = p.id
+          set 
+            p.firstName = coalesce(p.firstName, pl.firstName),
+            p.lastName = coalesce(p.lastName, pl.lastName),
+            p.initials = coalesce(p.initials, pl.initials),
+            p.streetAddress = coalesce(p.streetAddress, pl.streetAddress),
+            p.zipCode = coalesce(p.zipCode, pl.zipCode),
+            p.telephoneNumber = coalesce(p.telephoneNumber, pl.telephoneNumber),
+            p.mobileNumber = coalesce(p.mobileNumber, pl.mobileNumber),
+            p.mailAddress = coalesce(p.mailAddress, pl.mailAddress),
+            p.birthDate = coalesce(p.birthDate, pl.birthDate),
+            p.gender_id = coalesce(p.gender_id, pl.gender_id),
+            p.gender = coalesce(p.gender, pl.gender),
+            p.city_id = coalesce(p.city_id, pl.city_id),
+            p.city = coalesce(p.city, pl.city),
+            p.region_id = coalesce(p.region_id, pl.region_id),
+            p.region = coalesce(p.region, pl.region),
+            p.parentRegion_id = coalesce(p.parentRegion_id, pl.parentRegion_id),
+            p.parentRegion = coalesce(p.parentRegion, pl.parentRegion),
+            p.country_id = coalesce(p.country_id, pl.country_id),
+            p.country = coalesce(p.country, pl.country),
+            p.parentCountry_id = coalesce(p.parentCountry_id, pl.parentCountry_id),
+            p.parentCountry = coalesce(p.parentCountry, pl.parentCountry),
+            p.continent_id = coalesce(p.continent_id, pl.continent_id),
+            p.continent = coalesce(p.continent, pl.continent)
+      ';
+      $updates[] = '
+        update volunteerPeriod vp
+          left join period p
+            on vp.period_id = p.id
+          set 
+            vp.length = TIMEDIFF(p.endTime,p.startTime)
+      ';
+      $updates[] = 'update volunteer set alloc = null';
+      $updates[] = '
+        update volunteer v
+          left join (
+            select
+              volunteer_id,
+              sec_to_time(sum(time_to_sec(length))) as alloc
+            from volunteerPeriod
+            where task_id is not null
+            group by volunteer_id
+          ) as vp
+            on vp.volunteer_id = v.id
+          set 
+            v.alloc = vp.alloc
+      ';
+    }
+    if ($updates and is_array($updates)) {
+      foreach ($updates as $update) {
+        $dbh->query($update);
+      }
+    }
+  }
+  
+  function deNormHelper($class, $parent, $selfParent = false) {
+    global $classes;
+    unset($set);
+    $join = 'update '.$class." t1 \n";
+    $join .= ' left join '.$parent." t2 \n";
+    $join .= ' on t1.'.(($selfParent) ? 'parent'.ucfirst($parent) : $parent)."_id = t2.id \n";
+    if ($classes->{$parent}->selfParent && !$selfParent) {
+      $set[] = ' t1.parent'.ucfirst($parent).'_id = coalesce(t1.parent'.ucfirst($parent).'_id, t2.parent'.ucfirst($parent)."_id)\n";
+    }
+    foreach ($classes->{$parent}->parents as $parents) {
+      $set[] = ' t1.'.$parents.'_id = coalesce(t1.'.$parents.'_id, t2.'.$parents."_id)\n";
+      if ($classes->{$parents}->selfParent) {
+        $set[] = ' t1.parent'.ucfirst($parents).'_id = coalesce(t1.parent'.ucfirst($parents).'_id, t2.parent'.ucfirst($parents)."_id)\n";
+      }
+    }
+    $sets = implode($set, ',');
+    $where = " where t2.id is not null\n";
+    return $join.' set '.$sets.$where;
+  }
+  
+  function getManufacturers($dbh, $where = false, $order = 'order by mn.name') {
     $query = '
       select
         mn.id as id,
@@ -1858,50 +2145,58 @@
     $where = preg_replace('/ type = main /', ' d.id = 1 ', $where);
     $where = preg_replace('/ type = classics /', ' d.id = 2 ', $where);
     $sth = $dbh->query($query.' '.$where.' group by mn.id '.$order);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject('manufacturer')) {
       $objs[] = $obj;
     }
     return $objs;
   }
-    
-  function getGames($dbh, $where, $order = 'order by g.name') {
+  
+  function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
     $query = '
       select
         g.id as id,
         g.name as name,
         "game" as class,
+        ma.id as machine_id,
         mn.id as manufacturer_id,
         mn.name as manufacturer,
         g.acronym as acronym,
+        g.acronym as shortName,
+        ma.recreational as recreational,
+        ma.side as side,
+        ma.gameType as gameType,
         if(g.game_ipdb_id is not null, 1, 0) as isIpdb,
         g.game_ipdb_id as ipdb_id,
         g.game_year_released as year,
         g.game_link_rulesheet as rules,
-        if(d.id = 1, "main", if(d.id = 2, "classics", null)) as type,
-        if(d.id = 1, 1, 0) as main,
-        if(d.id = 2, 1, 0) as classics,
-        d.id as tournamentDivision_id,
-        e.id as tournamentEdition_id
-      from machine ma
-      left join game g
+        if(ma.tournamentDivision_id = 1, "main", if(ma.tournamentDivision_id = 2, "classics", if(ma.tournamentDivision_id = 3, "team", if(ma.tournamentDivision_id = 12, "natTeam", if(ma.tournamentDivision_id = 13, "side", if(ma.tournamentDivision_id = 14, "recreational", null)))))) as type,
+        if(ma.tournamentDivision_id = 1, 1, 0) as main,
+        if(ma.tournamentDivision_id = 2, 1, 0) as classics,
+        if(ma.tournamentDivision_id = 3, 1, 0) as team,
+        if(ma.tournamentDivision_id = 12, 1, 0) as natTeam,
+        if(ma.tournamentDivision_id = 13, 1, 0) as side,
+        if(ma.tournamentDivision_id = 14, 1, 0) as recreational,
+        ma.tournamentDivision_id as tournamentDivision_id,
+        ma.tournamentEdition_id as tournamentEdition_id
+      from game g
+      left join machine ma
         on g.id = ma.game_id
       left join manufacturer mn
-        on mn.id = g.manufacturer_id
-      left join tournamentDivision d
-        on d.id = ma.tournamentDivision_id
-      left join tournamentEdition e
-        on e.id = d.tournamentEdition_id
+        on g.manufacturer_id = mn.id
     '; 
     $where = preg_replace('/ id /', ' g.id ', $where);
-    $where = preg_replace('/ manufacturer_id /', ' mn.id ', $where);
+    $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
     $where = preg_replace('/ game_id /', ' g.id ', $where);
     $where = preg_replace('/ ipdb_id /', ' g.game_ipdb_id ', $where);
-    $where = preg_replace('/ tournamentDivision_id /', ' d.id ', $where);
-    $where = preg_replace('/ tournamentEdition_id /', ' e.id ', $where);
-    $where = preg_replace('/ type = main /', ' d.id = 1 ', $where);
-    $where = preg_replace('/ type = classics /', ' d.id = 2 ', $where);
+    $where = preg_replace('/ tournamentDivision_id /', ' ma.tournamentDivision_id ', $where);
+    $where = preg_replace('/ tournamentEdition_id /', ' ma.tournamentEdition_id ', $where);
+    $where = preg_replace('/ type = main /', ' ma.tournamentDivision_id = 1 ', $where);
+    $where = preg_replace('/ type = classics /', ' ma.tournamentDivision_id = 2 ', $where);
     // echo $query.' '.$where.' and e.id = 1 group by g.id '.$order;
-    $sth = $dbh->query($query.' '.$where.' and e.id = 1 group by g.id '.$order);
+    if ($tournament) {
+      $where = (($where) ? $where.' and' : ' where').' ma.tournamentEdition_id = '.$tournament;
+    }    
+    $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('game')) {
       $objs[] = $obj;
     }
@@ -1912,7 +2207,9 @@
     $query = '
       select
         ma.id as id,
-        ma.game as name,
+        ma.id as machine_id,
+        g.name as name,
+        g.acronym as shortName,
         "machine" as class,
         d.id as tournamentDivision_id,
         ma.game_id as game_id
@@ -2065,7 +2362,7 @@
     $where = preg_replace('/ city_id /', ' c.id ', $where);
     $where = preg_replace('/ region_id /', ' coalesce(c.region_id, c.parentRegion_id) ', $where);
     $where = preg_replace('/ parentRegion_id /', ' c.parentRegion_id ', $where);
-    $where = preg_replace('/ country_id /', ' coalese(c.country_id, c.parentCountry_id) ', $where);
+    $where = preg_replace('/ country_id /', ' coalesce(c.country_id, c.parentCountry_id) ', $where);
     $where = preg_replace('/ parentCountry_id /', ' c.parentCountry_id ', $where);
     $where = preg_replace('/ continent_id /', ' c.continent_id ', $where);
     $sth = $dbh->query($query.' '.$where.' '.$order);
@@ -2228,77 +2525,140 @@
   }
   */
   
-  function getPlayerSelect(){
+  function getPersonById($dbh, $id) {
     $query = '
       select 
         p.id as id,
         "player" as class,
-        "player" as type,
-        coalesce(m.firstName, cl.firstName, p.firstName) as firstName,
-        coalesce(m.lastName, cl.lastName, p.lastName) as lastName,
-        coalesce(m.initials, cl.initials, p.initials) as initials,
-        coalesce(m.streetAddress, cl.streetAddress, p.streetAddress) as streetAddress,
-        coalesce(m.zipCode, cl.zipCode, p.zipCode) as zipCode,
-        coalesce(m.gender_id, cl.gender_id, p.gender_id) as gender_id,
-        coalesce(m.gender, cl.gender, p.gender) as gender,
-        coalesce(m.city_id, cl.city_id, p.city_id) as city_id,
-        coalesce(m.city, cl.city, p.city) as city,
-        coalesce(m.region_id, cl.region_id, p.region_id) as region_id,
-        coalesce(m.region, cl.region, p.region) as region,
-        coalesce(m.country_id, cl.country_id, p.country_id) as country_id,
-        coalesce(m.country, cl.country, p.country) as country,
-        coalesce(m.continent_id, cl.continent_id, p.continent_id) as continent_id,
-        coalesce(m.continent, cl.continent, p.continent) as continent,
-        coalesce(m.parentRegion_id, cl.parentRegion_id, p.parentRegion_id) as parentRegion_id,
-        coalesce(m.parentRegion, cl.parentRegion, p.parentRegion) as parentRegion,
-        coalesce(m.parentCountry_id, cl.parentCountry_id, p.parentCountry_id) as parentCountry_id,
-        coalesce(m.parentCountry, cl.parentCountry, p.parentCountry) as parentCountry,
-        coalesce(m.telephoneNumber, cl.telephoneNumber, p.telephoneNumber) as telephoneNumber,
-        coalesce(m.mobileNumber, cl.mobileNumber, p.mobileNumber) as mobileNumber,
-        coalesce(m.mailAddress, cl.mailAddress, p.mailAddress) as mailAddress,
-        coalesce(m.birthDate, cl.birthDate, p.birthDate) as birthDate,
+        p.firstName as firstName,
+        p.lastName as lastName,
+        concat(ifnull(p.firstName,""), " ", ifnull(p.lastName,"")) as name,
+        p.initials as initials,
+        p.streetAddress as streetAddress,
+        p.zipCode as zipCode,
+        p.gender_id as gender_id,
+        p.gender as gender,
+        p.city_id as city_id,
+        p.city as city,
+        p.region_id as region_id,
+        p.region as region,
+        p.country_id as country_id,
+        p.country as country,
+        p.continent_id as continent_id,
+        p.continent as continent,
+        p.parentRegion_id as parentRegion_id,
+        p.parentRegion as parentRegion,
+        p.parentCountry_id as parentCountry_id,
+        p.parentCountry as parentCountry,
+        p.telephoneNumber as telephoneNumber,
+        p.mobileNumber as mobileNumber,
+        p.mailAddress as mailAddress,
+        p.birthDate as birthDate,
         p.ifpa_id as ifpa_id,
         p.ifpaRank as ifpaRank,
-        coalesce(m.comment, cl.comment, p.comment) as comment,
+        p.comment as comment,
         if(p.ifpa_id is not null,1,0) as isIfpa,
+        1 as isPerson,
+        p.username as username,
+        null as password
+      from person p
+      where p.id = :id
+      order by p.firstName, p.lastName
+    ';
+    $select[':id'] = $id;
+    $sth = $dbh->prepare($query);
+    if ($sth->execute($select)) {
+      while ($obj = $sth->fetchObject('player')) {
+        return $obj;
+      }
+    }
+    return false;
+  }
+  
+  function getPlayerSelect(){
+    $query = '
+      select 
+        m.person_id as id,
+        "player" as class,
+        "player" as type,
+        m.firstName as firstName,
+        m.lastName as lastName,
+        m.initials as initials,
+        m.streetAddress as streetAddress,
+        m.zipCode as zipCode,
+        m.gender_id as gender_id,
+        m.gender as gender,
+        m.city_id as city_id,
+        m.city as city,
+        m.region_id as region_id,
+        m.region as region,
+        m.country_id as country_id,
+        m.country as country,
+        m.continent_id as continent_id,
+        m.continent as continent,
+        m.parentRegion_id as parentRegion_id,
+        m.parentRegion as parentRegion,
+        m.parentCountry_id as parentCountry_id,
+        m.parentCountry as parentCountry,
+        m.telephoneNumber as telephoneNumber,
+        m.mobileNumber as mobileNumber,
+        m.mailAddress as mailAddress,
+        m.birthDate as birthDate,
+        m.place as place,
+        ifnull(m.wpprPlace, m.place) as wpprPlace,
+        m.wpprPoints as wpprPoints,
+        cl.place as classicsPlace,
+        ifnull(cl.wpprPlace, cl.place) as classicsWpprPlace,
+        cl.wpprPoints as classicsWpprPoints,
+        m.here as here,
+        m.hereFinal as hereFinal,
+        m.ifpa_id as ifpa_id,
+        m.ifpaRank as ifpaRank,
+        m.adminLevel as adminLevel,
+        m.comment as comment,
+        if(m.ifpa_id is not null,1,0) as isIfpa,
         null as password,
-        if(p.id is not null,1,0) as isPerson,
+        if(m.person_id is not null,1,0) as isPerson,
         if(m.id is not null or cl.id is not null,1,0) as isPlayer,
         if(m.id is not null,1,0) as main,
         if(cl.id is not null,1,0) as classics,
         if(m.id is not null,m.id,null) as mainPlayerId,
         if(cl.id is not null,cl.id,null) as classicsPlayerId,
+        m.qualGroup_id as qualGroup_id,
+        m.qualGroup_id as mainQualGroup_id,
+        cl.qualGroup_id as classicsQualGroup_id,
         if(v.id is not null,1,0) as volunteer,
-        1 as tournamentEdition_id,
+        v.id as volunteer_id,
+        ifnull(v.hours, 0) as hours,
+        ifnull(v.alloc, 0) as alloc,
+        timediff(time(concat(ifnull(v.hours, "00"), ":00:00")), ifnull(v.alloc, time("00:00:00"))) as hoursDiff,
+        if(m.paid is not null, m.paid, 0) as paid,
+        m.payDate as payDate,
+        m.tournamentEdition_id as tournamentEdition_id,
         p.username as username,
         if(p.password is null,1,0) as passwordRequired
       from person p
       left join player m
         on m.person_id = p.id and m.tournamentDivision_id = 1
       left join player cl
-        on cl.person_id = p.id and m.tournamentDivision_id = 2
+        on cl.person_id = p.id and cl.tournamentDivision_id = 2
       left join volunteer v
         on v.person_id = p.id and v.tournamentEdition_id = 1
-        
-      left join tournamentDivision md on
-        m.tournamentDivision_id = md.id
-      left join tournamentDivision cld on
-        cl.tournamentDivision_id = cld.id
     ';
     return $query;
   }
   
   function getPlayers($dbh, $where = null, $order = 'order by p.firstName, p.lastName') {
     $query = getPlayerSelect();
-    $where = preg_replace('/ tournamentEdition_id /', ' coalesce(md.tournamentEdition_id, cld.tournamentEdition_id, v.tournamentEdition_id) ', $where);
+    $where = preg_replace('/ tournamentEdition_id /', ' m.tournamentEdition_id ', $where);
     $where = preg_replace('/ id /', ' p.id ', $where);
     $where = preg_replace('/ player_id /', ' p.id ', $where);
-    $where = preg_replace('/ city_id /', ' coalesce(m.city_id, cl.city_id, p.city_id) ', $where);
-    $where = preg_replace('/ region_id /', ' coalesce(m.region_id, cl.region_id, p.region_id) ', $where);
-    $where = preg_replace('/ parentRegion_id /', ' coalesce(m.parentRegion_id, cl.parentRegion_id, p.parentRegion_id) ', $where);
-    $where = preg_replace('/ country_id /', ' coalesce(m.country_id, cl.country_id, p.country_id) ', $where);
-    $where = preg_replace('/ parentCountry_id /', ' coalesce(m.parentCountry_id, cl.parentCountry_id, p.parentCountry_id) ', $where);
-    $where = preg_replace('/ continent_id /', ' coalesce(m.continent_id, cl.continent_id, p.continent_id) ', $where);
+    $where = preg_replace('/ city_id /', ' m.city_id ', $where);
+    $where = preg_replace('/ region_id /', ' m.region_id ', $where);
+    $where = preg_replace('/ parentRegion_id /', ' m.parentRegion_id ', $where);
+    $where = preg_replace('/ country_id /', ' m.country_id ', $where);
+    $where = preg_replace('/ parentCountry_id /', ' m.parentCountry_id ', $where);
+    $where = preg_replace('/ continent_id /', ' m.continent_id ', $where);
     //echo($query.' '.$where.' '.$order);
     $sth = $dbh->query($query.' '.$where.' '.$order);
     while ($obj = $sth->fetchObject('player')) {
@@ -2306,79 +2666,72 @@
     }
     return $objs;
   }
-  
-  function getPerson($dbh, $objs, $order = 'order by p.firstName, p.lastName') {
-    $select =  '
+    
+  function getPlayerByIfpaId($dbh, $ifpaId, $type = null) {
+    if(preg_match('/@/',$ifpaId)) {
+      $where = ' and p.mailAddress = "'.$ifpaId.'"';
+    } else if (preg_match('/^[0-9]{1,5}$/', $ifpaId)) {
+      $where = ' and p.ifpa_id = '.$ifpaId;
+    } else if (preg_match('/^[0-9 \-\+\(\)]{6,}$/',$ifpaId)) {
+      $where = ' and replace(replace(replace(replace(replace(p.telephoneNumber," ",""),")",""),")",""),"-",""),"+","") like "%'.preg_replace('/[^0-9]/','',$ifpaId).'%" or replace(replace(replace(replace(replace(p.mobileNumber," ",""),")",""),")",""),"-",""),"+","") like "%'.preg_replace('/[^0-9]/','',$ifpaId).'%"';
+    } else if (preg_match('/^[a-zA-Z0-9 \-]{3}$/',$ifpaId)) {
+      $where = ' and p.initials like "'.preg_replace('/ $/','',$ifpaId).'"';
+    } else {
+      $where = ' and concat(ifnull(p.firstName,""), " ", ifnull(p.lastName,"")) like "%'.$ifpaId.'%"';
+    }
+    $query = '
       select 
-        plXpe.id as id,
+        p.id as id,
         "player" as class,
         "player" as type,
-        coalesce(pl.firstName, plXpe.firstName) as firstName,
-        coalesce(pl.lastName, plXpe.lastName) as lastName,
-        trim(concat(ifnull(coalesce(pl.firstName, plXpe.firstName), "")," ",ifnull(coalesce(pl.lastName, plXpe.lastName), ""))) as name,
-        coalesce(pl.initials, plXpe.initials) as initials,
-        coalesce(pl.streetAddress, plXpe.streetAddress) as streetAddress,
-        coalesce(pl.zipCode, plXpe.zipCode) as zipCode,
-        coalesce(pl.telephoneNumber, plXpe.telephoneNumber) as telephoneNumber,
-        coalesce(pl.mobileNumber, plXpe.mobileNumber) as mobileNumber,
-        coalesce(pl.mailAddress, plXpe.mailAddress) as mailAddress,
-        coalesce(pl.birthDate, plXpe.birthDate) as birthDate,
-        plXpe.ifpa_id as ifpa_id,
-        plXpe.ifpaRank as ifpaRank,
-        coalesce(pl.comment, plXpe.comment) as comment,
-        if(plXpe.ifpa_id is not null,1,0) as isIfpa,
-        null as password,
-        if(plXpe.id is not null,1,0) as isPerson,
-        plXpe.username as username,
-        if(plXpe.password is null,1,0) as passwordRequired,
+        p.firstName as firstName,
+        p.lastName as lastName,
+        p.initials as initials,
+        p.streetAddress as streetAddress,
+        p.zipCode as zipCode,
+        p.gender_id as gender_id,
+        p.gender as gender,
+        p.city_id as city_id,
+        p.city as city,
+        p.region_id as region_id,
+        p.region as region,
+        p.country_id as country_id,
+        p.country as country,
+        p.continent_id as continent_id,
+        p.continent as continent,
+        p.parentRegion_id as parentRegion_id,
+        p.parentRegion as parentRegion,
+        p.parentCountry_id as parentCountry_id,
+        p.parentCountry as parentCountry,
+        p.telephoneNumber as telephoneNumber,
+        p.mobileNumber as mobileNumber,
+        p.mailAddress as mailAddress,
+        p.birthDate as birthDate,
+        p.ifpa_id as ifpa_id,
+        p.ifpaRank as ifpaRank,
+        p.comment as comment,
+        1 as passwordRequired,
+        if(p.ifpa_id is not null,1,0) as isIfpa,
+        if(p.id is not null,1,0) as isPerson
+      from person p
+      left join player m
+        on m.person_id = p.id and m.tournamentDivision_id = 1
+      left join player cl
+        on cl.person_id = p.id and cl.tournamentDivision_id = 2
+      where m.id is null and cl.id is null
     ';
-    $joinBuild = whereBuilder('player', $objs);
-    if ($joinBuild['coal']) {
-      foreach($joinBuild['coal'] as $name => $col) {
-        foreach($col as $column => $coal) {
-          $select .= $coal.' as '.$name.(($column != 'name') ? '_'.$column : '').",\n";
-        }
-      }
-      $select .= '
-        if('.$joinBuild['coal']['tournamentDivision']['id'].' = 1 or pl2.tournamentDivsion_id = 1, 1, 0) as main,
-        if('.$joinBuild['coal']['tournamentDivision']['id'].' = 2 or pl2.tournamentDivsion_id = 2, 1, 0) as classics,
-        if(vl.tournamentEdition_id = 1, 1, 0) as volunteer
-      ';
-    }
-    $select = trim($select, ',').'
-      from player pl 
-      '.$joinBuild['join'].'
-      left join player pl2 on pl2.person_id = plXpe.id and pl2.tournamentDivision_id != pl.tournamentDivision_id
-      left join volunteer vl on vl.person_id = plXpe.id
-      where '.$joinBuild['coal']['tournamentEdition']['id'].' = 1
-    ';
-    // echo $select;
-    $sth = $dbh->query($select.' '.$order);
+    $sth = $dbh->query($query.' '.$where.' order by p.firstName, p.lastName');
     while ($obj = $sth->fetchObject('player')) {
       $objs[] = $obj;
     }
-  }
-  
-  
-  function getPlayerByIfpaId($dbh, $ifpaId, $type = null) {
-    if(preg_match('/@/',$ifpaId)) {
-      $where = 'where p.mailAddress = "'.$ifpaId.'"';
-    } else if (preg_match('/^[0-9]{1,5}$/', $ifpaId)) {
-      $where = 'where p.ifpa_id = '.$ifpaId;
-    } else if (preg_match('/^[0-9 \-\+\(\)]{6,}$/',$ifpaId)) {
-      $where = 'where replace(replace(replace(replace(replace(p.telephoneNumber," ",""),")",""),")",""),"-",""),"+","") like "%'.preg_replace('/[^0-9]/','',$ifpaId).'%" or replace(replace(replace(replace(replace(p.mobileNumber," ",""),")",""),")",""),"-",""),"+","") like "%'.preg_replace('/[^0-9]/','',$ifpaId).'%"';
-    } else if (preg_match('/^[a-zA-Z0-9 \-]{3}$/',$ifpaId)) {
-      $where = 'where p.initials like "'.preg_replace('/ $/','',$ifpaId).'"';
-    } else {
-      $where = 'where concat(ifnull(p.firstName,""), " ", ifnull(p.lastName,"")) like "%'.$ifpaId.'%"';
-    }
-    return getPlayers($dbh, $where);
+    return $objs;
   } 
 
   function updateScore($dbh, $idScore, $iScore)
   {
     $query = 'update qualScore s set s.score = ' . $iScore;
     $query .= ' where s.id = ' . $idScore;
+    //print 'Query: ' . $query;
     $sth = $dbh->prepare($query);
     $sth->execute($update);
   }
@@ -2465,7 +2818,15 @@
 
   function getPlayerAdminLevel($dbh, $userName)
   {
-    return 1;
+    $id = getIdFromUser($dbh, $userName);
+    $player = ($id) ? getPlayerById($dbh, $id) : false;
+
+    $adminLevel = 0;
+    if ($player && ($player->adminLevel != null))
+    {
+      $adminLevel = $player->adminLevel;
+    }
+    return $adminLevel;
   }
 
   function getPlayerList($dbh, $division = null, $tournament = '1') {
@@ -2474,10 +2835,21 @@
       $join = 'left join player l on l.person_id = o.id';
       $where = 'where l.tournamentDivision_id = '.$division;
     } else if ($tournament) {
-      $join = 'left join player l on l.person_id = o.id left join tournamentDivision d on l.tournamentDivision_id = d.id';
-      $where = 'where d.tournamentEdition_id = '.$tournament;
+      $join = 'left join player l on l.person_id = o.id';
+      $where = 'where l.tournamentEdition_id = '.$tournament;
     }
     return getObjectListHelper($dbh, 'person', $where, $name, $join);
+  }
+
+  function getQualGroupList($dbh, $division = null, $tournament = '1') {
+    $name = 'o.name';
+    if ($division) {
+      $where = 'where o.tournamentDivision_id = '.$division;
+    } else if ($tournament) {
+      $join = ' left join tournamentDivision td on o.tournamentDivision_id = td.id';
+      $where = 'where td.tournamentEdition_id = '.$tournament;
+    }
+    return getObjectListHelper($dbh, 'qualGroup', $where, $name, $join);
   }
 
   function getGameList($dbh, $division = null, $tournament = '1') {
@@ -2486,8 +2858,8 @@
       $join = ' left join machine ma on ma.game_id = o.id';
       $where = 'where ma.tournamentDivision_id = '.$division;
     } else if ($tournament) {
-      $join = ' left join machine ma on ma.game_id = o.id left join tournamentDivision d on ma.tournamentDivision_id = d.id';
-      $where = 'where d.tournamentEdition_id = '.$tournament;
+      $join = ' left join machine ma on ma.game_id = o.id';
+      $where = 'where ma.tournamentEdition_id = '.$tournament;
     }
     return getObjectListHelper($dbh, 'game', $where, $name, $join);
   }
@@ -2495,43 +2867,83 @@
   function getManufacturerList($dbh, $division = null, $tournament = '1') {
     $name = 'o.name';
     if ($division) {
-      $join = ' left join game g on g.manufacturer_id = o.id left join machine ma on ma.game_id = g.id left join tournamentDivision d on ma.tournamentDivision_id = d';;
+      $join = ' left join game g on g.manufacturer_id = o.id left join machine ma on ma.game_id = g.id';;
       $where = 'where ma.tournamentDivision_id = '.$division;
     } else if ($tournament) {
-      $join = ' left join game g on g.manufacturer_id = o.id left join machine ma on ma.game_id = g.id left join tournamentDivision d on ma.tournamentDivision_id = d.id left join tournamentEdition e on d.tournamentEdition_id = e.id';
-      $where = 'where d.tournamentEdition_id = '.$tournament;
+      $join = ' left join game g on g.manufacturer_id = o.id left join machine ma on ma.game_id = g.id';
+      $where = 'where ma.tournamentEdition_id = '.$tournament;
     }
     return getObjectListHelper($dbh, 'manufacturer', $where, $name, $join);
   }
   
-  function getCityList($dbh) {
+  function getCityList($dbh, $division = false, $tournament = false) {
+    if ($division || $tournament) {
+      $join = ' left join player pl on pl.city_id = o.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+    }
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'city', null, $name, $join);
+    return getObjectListHelper($dbh, 'city', $where, $name, $join);
   }
   
-  function getRegionList($dbh) {
+  function getRegionList($dbh, $division = false, $tournament = false) {
+    if ($division || $tournament) {
+      $join = ' left join player pl on pl.region_id = o.id or pl.parentRegion_id = o.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+    }
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'region', null, $name, $join);
+    return getObjectListHelper($dbh, 'region', $where, $name, $join);
   }
 
-  function getCountryList($dbh) {
+  function getCountryList($dbh, $division = false, $tournament = false) {
+    if ($division || $tournament) {
+      $join = ' left join player pl on pl.country_id = o.id or pl.parentCountry_id = o.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+    }
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'country', null, $name, $join);
+    return getObjectListHelper($dbh, 'country', $where, $name, $join);
   }
 
-  function getContinentList($dbh) {
+  function getContinentList($dbh, $division = false, $tournament = false) {
+    if ($division || $tournament) {
+      $join = ' left join player pl on pl.continent_id = o.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+    }
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'continent', null, $name, $join);
+    return getObjectListHelper($dbh, 'continent', $where, $name, $join);
   }
 
-  function getGenderList($dbh) {
+  function getGenderList($dbh, $division = false, $tournament = false) {
+    if ($division || $tournament) {
+      $join = ' left join player pl on pl.gender_id = o.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+    }
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'gender', null, $name, $join);
+    return getObjectListHelper($dbh, 'gender', $where, $name, $join);
   }
 
-  function getTeamList($dbh) {
+  function getTeamList($dbh, $division = false, $tournament = false, $national = false) {
+    if ($division || $tournament) {
+      $join = ' left join teamPlayer tp on tp.team_id = o.id left join player pl on tp.player_id = pl.id';
+      $where = ' where pl.id is not null ';
+      $where .= ($division) ? ' and pl.tournamentDivision_id = '.$division : '';
+      $where .= ($tournament) ? ' and pl.tournamentEdition_id = '.$tournament : '';
+      $and = ' and ';
+    } else {
+      $and = ' where ';
+    }
+    $where .= ($national) ? $and.' o.national = 1' : ' and (o.national is null or o.national !=1)';
     $name = 'o.name';
-    return getObjectListHelper($dbh, 'team', null, $name, $join);
+    return getObjectListHelper($dbh, 'team', $where, $name, $join);
   }
 
   function getObjectListHelper($dbh, $type, $where = null, $name = 'o.name', $join = null) {
@@ -2540,7 +2952,7 @@
     $where .= ($where) ? ' and '.$name.' is not null and '.$name.' != ""' : 'where '.$name.' is not null and '.$name.' != ""';
     $query = 'select o.id as id, '.$name.' as name from '.$type.' o '.$join.' '.$where.' '.$groupBy.' '.$order;
     $sth = $dbh->query($query);
-    while ($obj = $sth->fetchObject()) {
+    while ($obj = $sth->fetchObject(($type == 'person') ? 'player' : $type)) {
       $objs[] = $obj;
     }
     if (count($objs) > 0) {
@@ -2550,146 +2962,251 @@
     }
   }
   
-  function createSelect($objs, $name = 'select', $selectedId = 0, $onchange = 'infoSelected', $disabled = '') {
-    $content = '<select name="'.$name.'" id="'.$name.'" onchange="'.$onchange.'(this);" previous="'.$selectedId.'" '.$disabled.">\n";
-    $content .= '<option value="0">Choose...</options>';
+  function getObjs($dbh, $class, $tournament = 1) {
+    $objs = getObjectList($dbh, $class, array('tournament' => $tournament));
     foreach($objs as $obj) {
-      $content .= '<option value="'.$obj->id.'"';
-      if ($obj->id == $selectedId) {
-        $content .= ' selected';
+      $output[] = getObjectById($dbh, $class, $obj->id);
+    }
+    return $output;
+  }
+
+  function createSelect($objs, $name = 'select', $selectedId = 0, $onchange = 'infoSelected', $disabled = '', $header = 'Choose...') {
+    $content = '<select name="'.$name.'" id="'.$name.'" onchange="'.$onchange.'(this);" previous="'.$selectedId.'" '.$disabled.">\n";
+    $content .= '<option value="0">'.$header.'</options>';
+    if ($objs && count($objs) > 0) {
+      foreach($objs as $obj) {
+        $content .= '<option value="'.$obj->id.'"';
+        if ($obj->id == $selectedId) {
+          $content .= ' selected';
+        }
+        $content .= '>'.$obj->name.'</option>'."\n";
       }
-      $content .= '>'.$obj->name.'</option>'."\n";
     }
     return $content.'</select>'."\n";
   }
   
   function getManufacturerById($dbh, $id) {
-    $where = 'where mn.id = '.$id;
-    if ($obj = getManufacturers($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where mn.id = '.$id;
+      if ($obj = getManufacturers($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
 
   function getGameById($dbh, $id) {
-    $where = 'where g.id = '.$id;
-    if ($obj = getGames($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where g.id = '.$id;
+      if ($obj = getGames($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getMachineById($dbh, $id) {
-    $where = 'where ma.id = '.$id;
-    if ($obj = getMachines($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where ma.id = '.$id;
+      if ($obj = getMachines($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getPlayerById($dbh, $id) {
-    $where = 'where p.id = '.$id;
-    if ($obj = getPlayers($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where p.id = '.$id;
+      if ($obj = getPlayers($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  
+  function getPlayerByMainId($dbh, $id) {
+    if ($id) {
+      $where = 'where m.id = '.$id;
+      if ($obj = getPlayers($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
+  function getPlayerByClassicsId($dbh, $id) {
+    if ($id) {
+      $where = 'where cl.id = '.$id;
+      if ($obj = getPlayers($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+  
+  function getPlayersByCountry($dbh, $country, $tournament = 1) {
+    if ($country->id) {
+      return getPlayersByCountryId($dbh, $country->id, $tournament);
+    } else {
+      return false;
+    }
+  }
+
+  function getPlayersByCountryId($dbh, $countryId, $tournament = 1) {
+    if ($countryId) {
+      $where = 'where (p.country_id = '.$countryId.' or p.parentCountry_id = '.$countryId.') and m.tournamentEdition_id = '.$tournament;
+      return getPlayers($dbh, $where);
+    } else {
+      return false;
+    }
+  }
+
   function getEntryById($dbh, $id) {
-    $where = 'where id = '. $id . ' and tournamentDivision_id = 1';
-    if ($obj = getEntries($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where id = '. $id;
+      if ($obj = getEntries($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getCityById($dbh, $id) {
-    $where = 'where c.id = '.$id;
-    if ($obj = getCities($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where c.id = '.$id;
+      if ($obj = getCities($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getRegionById($dbh, $id) {
-    $where = 'where r.id = '.$id;
-    if ($obj = getRegions($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where r.id = '.$id;
+      if ($obj = getRegions($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getCountryById($dbh, $id) {
-    $where = 'where co.id = '.$id;
-    if ($obj = getCountries($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where co.id = '.$id;
+      if ($obj = getCountries($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }
   
   function getContinentById($dbh, $id) {
-    $where = 'where cn.id = '.$id;
-    if ($obj = getContinents($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where cn.id = '.$id;
+      if ($obj = getContinents($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }  
 
   function getGenderById($dbh, $id) {
-    $where = 'where ge.id = '.$id;
-    if ($obj = getGenders($dbh, $where)[0]) {
-      return $obj;
+    if ($id) {
+      $where = 'where ge.id = '.$id;
+      if ($obj = getGenders($dbh, $where)[0]) {
+        return $obj;
+      } else {
+        return false;
+      }
     } else {
       return false;
     }
   }  
   
   function getObjectById($dbh, $type, $id) {
-    switch ($type) {
-      case 'game':
+    if ($id) {
+      switch ($type) {
+        case 'qualGroup':
+        case 'qualgroup':
+        return getQualGroupById($dbh, $id);
+        break;
+        case 'game':
         return getGameById($dbh, $id);
-      break;
-      case 'manufacturer':
+        break;
+        case 'manufacturer':
         return getManufacturerById($dbh, $id);
-      break;
-      case 'player':
+        break;
+        case 'player':
         return getPlayerById($dbh, $id);
-      break;
-      case 'city':
+        break;
+        case 'city':
         return getCityById($dbh, $id);
-      break;
-      case 'region':
+        break;
+        case 'region':
         return getRegionById($dbh, $id);
-      break;
-      case 'country':
+        break;
+        case 'country':
         return getCountryById($dbh, $id);
-      break;
-      case 'continent':
+        break;
+        case 'continent':
         return getContinentById($dbh, $id);
-      break;
-      case 'gender':
+        break;
+        case 'gender':
         return getGenderById($dbh, $id);
-      break;
-      case 'team':
+        break;
+        case 'team':
         return getTeamById($dbh, $id);
-      break;
-      default:
+        break;
+        default:
         return false;
-      break;
+        break;
+      }
+    } else {
+      return false;
     }
   }
     
   function getObjectList($dbh, $type, $options) {
     switch ($type) {
+      case 'qualGroup':
+        return getQualGroupList($dbh, $options['division'], $options['tournament']);
+      break;
       case 'game':
         return getGameList($dbh, $options['division'], $options['tournament']);
       break;
@@ -2700,22 +3217,22 @@
         return getPlayerList($dbh, $options['division'], $options['tournament']);
       break;
       case 'city':
-        return getCityList($dbh);
+        return getCityList($dbh, $options['division'], $options['tournament']);
       break;
       case 'region':
-        return getRegionList($dbh);
+        return getRegionList($dbh, $options['division'], $options['tournament']);
       break;
       case 'country':
-        return getCountryList($dbh);
+        return getCountryList($dbh, $options['division'], $options['tournament']);
       break;
       case 'continent':
-        return getContinentList($dbh);
+        return getContinentList($dbh, $options['division'], $options['tournament']);
       break;
       case 'gender':
-        return getGenderList($dbh);
+        return getGenderList($dbh, $options['division'], $options['tournament']);
       break;
       case 'team':
-        return getTeamList($dbh);
+        return getTeamList($dbh, $options['division'], $options['tournament'], $options['national']);
       break;
       default:
         return false;
@@ -2723,6 +3240,27 @@
     }
   }
 
+  function getPlayerByEmail($dbh, $email) {
+    $where = 'where (p.mailAddress = "'.$email.'" or m.mailAddress = "'.$email.'" or cl.mailAddress = "'.$email.'")';
+    if ($obj = getPlayers($dbh, $where)[0]) {
+      return $obj;
+    } else {
+      return false;
+    }
+  }
+  
+  function getVolunteers($dbh, $tournament = 1) {
+    $query = getPlayerSelect();
+    $query .= '
+      where v.id is not null and m.tournamentEdition_id = '.$tournament.'
+      order by p.firstName, p.lastName';
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('player')) {
+      $objs[] = $obj;
+    }
+    return $objs;
+  }
+  
   function addGeo($dbh, $geoType, $name, $parentType = null, $parentId = null) {
     $update[':name'] = $name;
     $query = 'insert into '.$geoType.' set name = :name';
@@ -2747,23 +3285,26 @@
     global $geoTypes;
     $update = false;
     foreach ($geoTypes as $geoType) {
-      if (preg_match('/^[0-9]+$/', $player->{$geoType})) {
-        $geoId = $player->{$geoType};
-        if ($update) {
-          updateGeo($dbh, $geoType, $geoId, $update);
-          $update = false;
-        }
-      } else if (preg_match('/.+/', $player->{$geoType})){
-        $geoId = addGeo($dbh, $geoType, $player->{$geoType}, $parentType, $parentId);
-        if ($update) {
-          updateGeo($dbh, $geoType, $geoId, $update);
-        }
-        $update = array($geoType, $geoId);
+      if (!preg_match('/^[0-9]+$/', $player->{$geoType}) && preg_match('/.+/', $player->{$geoType})){
+//      if (!preg_match('/^[0-9]+$/', $player->{$geoType})){
+//        $geoId = $player->{$geoType};
+//        if ($update) {
+//          updateGeo($dbh, $geoType, $geoId, $update);
+//          $update = false;
+//        }
+//      } else if (preg_match('/.+/', $player->{$geoType})){
+        $player->{$geoType.'_id'} = addGeo($dbh, $geoType, $player->{$geoType}, $parentType, $parentId);
+//        if ($update) {
+//          updateGeo($dbh, $geoType, $geoId, $update);
+//        }
+//        $update = array($geoType, $geoId);
+      } else if (preg_match('/^[0-9]+$/', $player->{$geoType})) {
+        $player->{$geoType.'_id'} = $player->{$geoType};
       }
-      $player->{$geoType.'_id'} = $geoId;
       $parentType = $geoType;
-      $parentId = $geoId;
+      $parentId = $player->{$geoType.'_id'};
     }
+    deNorm($dbh, $geoType);
     return $player;
   }
   
@@ -2835,12 +3376,13 @@
     if ($player->volunteer == 'true') {
       if (!getVolunteerById($dbh, $player->id)) {
         if (checkPlayer($dbh, $player, 'volunteer')) {
-          addVolunteer($dbh, $player, 1, 'update');        
+          $player->addVolunteer($dbh, 1, 'update');        
         } else {
-          addVolunteer($dbh, $player, 1);
+          $player->addVolunteer($dbh, 1);
         }
       }
     }
+    deNorm($dbh, 'player');
   }
   
   function editPlayer($dbh, $player, $ulogin = null) {
@@ -2866,18 +3408,20 @@
     if ($player->username && $player->password) {
       updateUser($dbh, $player, $ulogin);
     }
-    if ($player->volunteer == 'true') {
+    if ($player->volunteer && $player->volunteer != 'false') {
       if (checkPlayer($dbh, $player, 'volunteer')) {
-        addVolunteer($dbh, $player, 1, 'update');        
+        $player->addVolunteer($dbh, 1, 'update');        
       } else {
-        addVolunteer($dbh, $player, 1);
+        $player->addVolunteer($dbh);
       }
     } else {
-      deletePlayer($dbh, $player, 'volunteer');
+      $player->removeVolunteer($dbh);
     }
-    if ($player->newPhoto != 'false') {
-      setPhoto($player);
+    if ($player->newPhoto) {
+      $player->setPhoto();
     }
+    deNorm($dbh, 'player');
+    return true;
   }
   
   function checkPlayer($dbh, $player, $division) {
@@ -2893,7 +3437,7 @@
     }
   }
   
-  function deletePlayer($dbh, $player, $division) {
+  function deletePlayer($dbh, $player, $division = 1) {
     $table = ($division == 'volunteer') ? 'volunteer' : 'player';
     $field = ($division == 'volunteer') ? 'tournamentEdition_id' : 'tournamentDivision_id';
     $delete[':divisionId'] = ($division == 'classics') ? 2 : 1;
@@ -2907,15 +3451,16 @@
     $query = addPlayerQuery($dbh, $player, 'person');
     $sth = $dbh->prepare($query[0]);
     $sth->execute($query[1]);
-    return $dbh->lastInsertId();
+    $lastIndexId = $dbh->lastInsertId();
+    deNorm($dbh, 'person');
+    return $lastIndexId;
   }
   
   function addVolunteer($dbh, $player, $tournament, $method = 'insert into') {
-    $pId = $player->id;
     $query = addPlayerQuery($dbh, $player, 'volunteer', $tournament, $method);
     if ($method == 'update') {
       $query[0] .= ' where person_id = :pId';
-      $query[1][':pId'] = $pId;
+      $query[1][':pId'] = $player->id;
     }
     $sth = $dbh->prepare($query[0]);
     $sth->execute($query[1]);
@@ -2923,12 +3468,16 @@
   }
   
   function getIdFromUser($dbh, $username) {
-    $query = "select id from person where username = :username";
+    $query = "select id from person where username LIKE :username";
     $select[':username'] = $username;
     $sth = $dbh->prepare($query);
     $sth->execute($select);
     $player = $sth->fetchObject('player');
-    return $player->id;
+    if ($player) {
+      return $player->id;
+    } else {
+      return false;
+    }
   }
   
   function updateUser($dbh, $player, $ulogin = null){
@@ -2989,9 +3538,10 @@
     $sth->execute($update);
   }
   
-  function getTable($type) {
+  function getTable($type, $national = false) {
     $content = '<div id="'.$type.'Div">
                   <h3 id="'.$type.'H3" class="entry-title">'.ucfirst(getPlural($type)).'</h3>
+                  '.(($national) ? '<input type="hidden" id="national" value="1">' : '').'
                   <span id="'.$type.'Loading"><img src="'.__baseHref__.'/images/ajax-loader.gif" alt="Loading data..."></span>
                   <table id="'.$type.'Table" class="list"></table>
                   <span id="'.$type.'All" class="getAll"></span>
@@ -3001,15 +3551,15 @@
     return $content;
   }
   
-  function getInfo($dbh, $type, $id) {
+  function getInfo($dbh, $type, $id, $select = true) {
     global $classes;
     if ($obj = getObjectById($dbh, $type, $id)) {
       $content = '
                   <div id="infoDiv" class="infoDiv">
-                    <div class="leftInfoDiv">
-                      <span id="all'.ucfirst($type).'Span">Other '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1')), 'all'.ucfirst($type).'Select', $id).'</span>
+                    <div class="leftInfoDiv" id="leftInfoDiv">
+                      '.(($select) ? '<span id="all'.ucfirst($type).'Span">Other '.getPlural($type).': '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'</span>' : '').'
                       <h2 class="entry-title">'.$obj->name.'</h2>
-                      <table>
+                      <table id="infoTable">
       ';
       foreach($classes->{$type}->info as $field) {
         $label = '';
@@ -3017,9 +3567,15 @@
           if ($classes->{$type}->fields->{$field}->type == 'select') {
             $value = getLink(getObjectById($dbh, strtolower(str_replace('parent', '', $field)), $obj->{$field.'_id'}));
           } else if ($field == 'isIfpa') {
-            $value = '<a href="http://www.ifpapinball.com/player.php?player_id='.$obj->ifpa_id.'" target="_new">'.(($obj->ifpaRank && $obj->ifpaRank != 0) ? $obj->ifpaRank : 'Unranked').'</a>';
-          } else if (in_array($field, array('main', 'classics', 'volunteer'))) {
+            $value = $obj->getIfpaLink();
+          } else if ($field == 'volunteer') {
             $value = ($obj->{$field}) ? 'Yes' : 'No';
+          } else if ($field == 'main') {
+              $qualGroup = ($obj->mainQualGroup_id) ? getQualGroupById($dbh, $obj->mainQualGroup_id) : false;
+              $value = ($qualGroup) ? 'Group '.$qualGroup->getLink() : (($obj->{$field}) ? 'Yes' : 'No');
+          } else if ($field == 'classics') {
+            $qualGroup = ($obj->classicsQualGroup_id) ? getQualGroupById($dbh, $obj->classicsQualGroup_id) : false;
+              $value = ($qualGroup) ? 'Group '.$qualGroup->getLink() : (($obj->{$field}) ? 'Yes' : 'No');
           } else if ($field == 'isIpdb') {
             $value = '<a href="http://ipdb.org/machine.cgi?id='.$obj->ipdb_id.'" target="_new">'.$obj->ipdb_id.'</a>';
           } else if ($field == 'type') {
@@ -3031,6 +3587,8 @@
             }
           } else if ($field == 'rules') {
             $value = '<a href="'.$obj->{$field}.'" target="_new">Rules sheet</a>';
+          } else if ($field == 'noOfPlayers') {
+            $value = $obj->getNoOfAssignedPlayers($dbh);
           } else {
             $value = ucfirst(str_replace('-00', '', $obj->{$field}));
           }
@@ -3067,12 +3625,149 @@
                   <div class="rightInfoDiv">
                     <table>
                       <tr>
-                        <td><img class="objectPhoto" src="'.getPhoto($dbh, $type, $id).'" alt="'.$obj->name.'"></td>
+                        <td><img class="objectPhoto" src="'.$obj->getPhoto().'" alt="'.$obj->name.'"></td>
                       </tr>
                     </table>
                   </div>
-                </div>
       ';
+      if ($type == 'player') {
+        $content .= '
+        <div id="tabs">
+          <ul>
+            <li class="tabs"><a href="#mainTable"><h2>Main tournament</h2></a></li>
+            '.(($obj->classics) ? '<li class="tabs"><a href="#classicsTable"><h2>Classics tournament</h2></a></li>' : '').'
+          </ul>
+          <div id="mainTable">
+            <table class="scores">
+              <thead>
+                <tr>
+                  <th>Place</th>
+                  <th>Game</th>
+                  <th>Score</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+        ';
+        $qualScores = $obj->getAllEntries($dbh, false, 1);
+        if ($qualScores) {
+          foreach ($qualScores as $qualScore) {
+            $content .= '
+              <tr>
+                <td>'.$qualScore->place.'</td>
+                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td>'.$qualScore->score.'</td>
+                <td>'.$qualScore->points.'</td>
+              </tr>
+            ';
+          }
+        }
+        $content .= '
+            </tbody>
+          </table>
+        </div>
+        ';
+        if ($obj->classics) {
+          $content .= '
+          <div id="classicsTable">
+            <table class="scores">
+              <thead>
+                <tr>
+                  <th>Place</th>
+                  <th>Game</th>
+                  <th>Score</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+          ';
+          $qualScores = $obj->getAllEntries($dbh, ' group by qs.id', 2);
+          if ($qualScores) {
+            foreach ($qualScores as $qualScore) {
+              $content .= '
+              <tr>
+                <td>'.$qualScore->place.'</td>
+                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td>'.$qualScore->score.'</td>
+                <td>'.$qualScore->points.'</td>
+              </tr>
+              ';
+            }
+          }
+          $content .= '
+            </tbody>
+          </table>
+        </div>
+          ';
+        }
+        $content .= '</div>'.getDataTables('.scores');
+      }
+      if ($type == 'game') {
+        $content .= '
+          <table class="scores">
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+        ';
+        $qualScores = $obj->getAllEntries($dbh, false, $obj->tournamentDivision_id);
+        if ($qualScores) {
+          foreach ($qualScores as $qualScore) {
+            $content .= '
+            <tr>
+              <td>'.$qualScore->place.'</td>
+              <td><a href="'.__baseHref__.'/player/?obj=player&id='.$qualScore->id.'">'.$qualScore->player.'</a></td>
+              <td>'.$qualScore->score.'</td>
+              <td>'.$qualScore->points.'</td>
+            </tr>
+            ';
+          }
+        }
+        $content .= '
+          </tbody>
+        </table>
+        ';
+        $content .= getDataTables('.scores');
+      }
+      if ($type == 'team') {
+        $content .= '
+            <table class="scores">
+              <thead>
+                <tr>
+                  <th>Place</th>
+                  <th>Game</th>
+                  <th>Score</th>
+                  <th>Points</th>
+                </tr>
+              </thead>
+              <tbody>
+        ';
+        $qualScores = $obj->getAllEntries($dbh, false, $obj->tournamentDivision_id);
+        if ($qualScores) {
+          foreach ($qualScores as $qualScore) {
+            $content .= '
+              <tr>
+                <td>'.$qualScore->place.'</td>
+                <td><a href="'.__baseHref__.'/game/?obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                <td>'.$qualScore->score.'</td>
+                <td>'.$qualScore->points.'</td>
+              </tr>
+            ';
+          }
+        }
+        $content .= '
+            </tbody>
+          </table>
+        ';
+        $content .= getDataTables('.scores');
+      }
+      $content .= '</div>';
+      
       return $content;
     } else {
       return false;
@@ -3085,7 +3780,7 @@
     foreach(array_reverse($geoTypes) as $geoType) {
       if ($start || !$type || $type == $geoType) {
         $start = true;
-        if ($filter = getGeoFilterWhere($geoType)) {
+        if ($filter = getGeoFilterWhere($geoType, $type)) {
           return $filter;
         }
       }
@@ -3096,13 +3791,17 @@
     return false;
   }
     
-  function getGeoFilterWhere($type) {
+  function getGeoFilterWhere($type, $origType = false) {
     if (isset($_REQUEST['obj']) && $_REQUEST['obj'] == $type) {
       if (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) {
+        $return = $type.'_id = '.$_REQUEST['id'];
         if ($type == 'region' || $type == 'country') {
-          return $type.'_id = '.$_REQUEST['id'].' or parent'.ucfirst($type).'_id = '.$_REQUEST['id'];
+          $parentReturn = ' or parent'.ucfirst($type).'_id = '.$_REQUEST['id'];
+        }
+        if ($type == $origType) {
+          return $parentReturn;
         } else {
-          return $type.'_id = '.$_REQUEST['id'];
+          return ' and ( '.$return.$parentReturn.' )';
         }
       } else {
         return false;
@@ -3113,70 +3812,20 @@
   }  
 
   function getPhotoExts() {
-    return array('png', 'jpg', 'jpeg', 'gif');
+    return array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
   }
     
   function getPhoto($dbh, $type, $id, $thumbnail = false) {
-    if ($thumbnail) {
-      foreach (getPhotoExts() as $ext) {
-        if (file_exists(__ROOT__.'/images/objects/'.$type.'/'.$id.'.thumb.'.$ext)) {
-          return __baseHref__.'/images/objects/'.$type.'/'.$id.'.thumb.'.$ext;
-        }
-      }
-    } 
-    foreach (getPhotoExts() as $ext) {
-      if (file_exists(__ROOT__.'/images/objects/'.$type.'/'.$id.'.'.$ext)) {
-        return __baseHref__.'/images/objects/'.$type.'/'.$id.'.'.$ext;
-      }
-    }
-    if ($type == 'player') {
-      $ifpa_id = getIfpaIds($dbh, 'where p.id = '.$id)[0]->ifpa_id;
-      foreach (getPhotoExts() as $ext) {
-        if (file_exists(__ROOT__.'/images/objects/'.$type.'/ifpa/'.$ifpa_id.'.'.$ext)) {
-          return __baseHref__.'/images/objects/'.$type.'/ifpa/'.$ifpa_id.'.'.$ext;
-        }
-      }
-    }
-    if ($thumbnail) {
-      foreach (getPhotoExts() as $ext) {
-        if (file_exists(__ROOT__.'/images/objects/'.$type.'/0.thumb.'.$ext)) {
-          return __baseHref__.'/images/objects/'.$type.'/0.thumb.'.$ext;
-        }
-      }
-    }
-    foreach (getPhotoExts() as $ext) {
-      if (file_exists(__ROOT__.'/images/objects/'.$type.'/0.'.$ext)) {
-        return __baseHref__.'/images/objects/'.$type.'/0.'.$ext;
-      }
-    }
-    foreach (getPhotoExts() as $ext) {
-      if (file_exists(__ROOT__.'/images/objects/0.'.$ext)) {
-        return __baseHref__.'/images/objects/0.'.$ext;
-      }
-    }
-    return false;
+    $obj = new $type(array('id' => $id, 'class' => $type));
+    return $obj->getPhoto($thumbnail);
   }
 
   function setPhoto($obj) {
-    if ($obj->id && $obj->id != 0) {
-      foreach (getPhotoExts() as $ext) {
-        if (file_exists(__ROOT__.'/images/objects/'.$obj->class.'/'.$obj->id.'.'.$ext)) {
-          unlink(__ROOT__.'/images/objects/'.$obj->class.'/'.$obj->id.'.'.$ext);
-        }
-      }
-      if (rename(__ROOT__.'/images/objects/'.$obj->newPhoto, __ROOT__.'/images/objects/'.preg_replace('/\/preview\//', '/', $obj->newPhoto))) {
-        return true;
-      }
-    }
-    return false;
+    return $obj->setPhoto();
   }
   
   function getLink($obj) {
-    switch ($obj->class) {
-      default:
-        return '<a href="'.__baseHref__.'/'.$obj->class.'/?obj='.$obj->class.'&id='.$obj->id.'">'.$obj->name.'</a>';
-      break;
-    }
+    return $obj->getLink();
   }
     
   function checkField($dbh, $field, $value, $id = 0) {
@@ -3199,8 +3848,8 @@
         }
       break;
       case 'name':
-        if (!preg_match('/^[a-zA-Z0-9 \-_#\$]{3,32}$/', $value)) {
-          $return = array(false, '{"valid":false,"reason":"The name must be at least three character and can only include a-Z, A-Z, 0-9, spaces, #, $, dashes and underscores!","field":"'.$field.'", "value":"'.$value.'"}');
+        if (!preg_match('/^[a-zA-ZåäöÅÄÖüÛïÎëÊÿŸçßéÉæøÆØáÁóÓàÀČčŁłĳŠšŮ0-9 \-_#\$]{3,32}$/', $value)) {
+          $return = array(false, '{"valid":false,"reason":"The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores!","field":"'.$field.'", "value":"'.$value.'"}');
         } else {
           $where = ' where tournamentDivision_id = 3 and name = "'.$value.'"';
           if ($id && $id != 0) {
@@ -3378,6 +4027,7 @@
   
   function getPlural($text) {
     $plurals = array(
+      'qualGroup' => 'groups',
       'game' => 'games',
       'machine' => 'machines',
       'manufacturer' => 'manufacturers',
@@ -3388,8 +4038,91 @@
       'region' => 'regions',
       'country' => 'countries',
       'continent' => 'continents',      
+      'team' => 'teams'
     );
     return $plurals[$text];    
+  }
+  
+  function getDataTables($identifier = 'table') {
+  switch($identifier) {
+    case '.scores':
+      $sort = "
+        'aoColumns': [
+          {'sType': 'numeric-empty-last' },
+          null,
+          {'sType': 'numeric-empty-last' },
+          {'sType': 'numeric-empty-last' }
+        ],
+      ";
+    break;
+    case '.standings':
+      $sort = "
+        'aoColumns': [
+          {'sType': 'numeric-empty-last' },
+          null,
+          null,
+          {'sType': 'numeric-empty-last' }              
+        ],
+      ";
+    break;
+    case '.mainStandings':
+      $sort = "
+        'aoColumns': [
+          {'sType': 'numeric-empty-last' },
+          null,
+          null,
+          {'sType': 'numeric-empty-last' },
+          null
+        ],
+      ";
+    break;
+    case '.listView':
+      $sort = "
+        'aoColumns': [
+          {'sType': 'numeric-empty-last' },
+          {'sType': 'numeric-empty-last' },
+          null,
+          null,
+          null,
+          null
+        ],
+      ";
+    break;
+  }
+
+  return "
+      <script type=\"text/javascript\">
+        $(document).ready(function() { 
+         $.fn.dataTableExt.oSort['numeric-empty-last-asc'] = function(a,b) {
+            var x = a.replace( /^$/, 200000);
+            var y = b.replace( /^$/, 200000);
+            x = parseFloat( x );
+            y = parseFloat( y );
+            return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+          };
+         $.fn.dataTableExt.oSort['numeric-empty-last-desc'] = function(a,b) {
+            var y = a.replace( /^$/, 200000);
+            var x = b.replace( /^$/, 200000);
+            x = parseFloat( x );
+            y = parseFloat( y );
+            return ((x < y) ?  1 : ((x > y) ? -1 : 0));
+          };
+          $('".$identifier."').dataTable({
+            'bProcessing': true, 
+            'bDestroy': true, 
+            'bJQueryUI': true,
+            'sPaginationType': 'full_numbers', 
+            'iDisplayLength': 300,
+            'aaSorting': [[0, 'desc' ], [2, 'asc']],
+            ".$sort."
+            'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+          });
+        });
+        $(function() {
+          $('#tabs').tabs();
+        });
+      </script>
+    ";      
   }
   
 ?>

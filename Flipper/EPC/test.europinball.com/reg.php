@@ -5,7 +5,7 @@
   if (checkLogin($dbh, $ulogin, false)) {
     printHeader('EPC 2013', __baseHref__);
     printTopper("getObjects('geo');");
-    $content = showEditPlayer($dbh, __baseHref__);
+    $content = showEditPlayer($dbh, $ulogin);
     echo($content);
     echo'<span class="italic">If you intend to register another player, you need to logout first.</span>';
   } else {

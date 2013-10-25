@@ -29,7 +29,7 @@
   
     $currencies = array('SEK', 'EUR', 'GBP', 'USD');
     $rate['SEK'] = 1;
-    $rate['EUR'] = 9;
+    $rate['EUR'] = 8;
     $rate['GBP'] = 10;
     $rate['USD'] = 6;
   
@@ -155,8 +155,8 @@
           <input type="hidden" id="payPalAmount" name="amount" value="'.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'">
           <input type="hidden" name="page_style" value="StockholmOpen">
           <input type="hidden" name="no_shipping" value="1">
-          <input type="hidden" name="return" value="https://test.europinball.org/payment-successful/">
-          <input type="hidden" name="cancel_return" value="https://test.europinball.org/payment-canceled/">
+          <input type="hidden" name="return" value="'.__baseHref__.'/payment-successful/">
+          <input type="hidden" name="cancel_return" value="'.__baseHref__.'/payment-canceled/">
           <input type="hidden" name="cn" value="What you are paying for">
           <input type="hidden" name="on0" value="Pay for">
           <input type="hidden" id="payPalMsg" name="os0" value="ID: '.$player->id.' Main: '.$main.' Classics: '.$classics.' Teams: '.$team.' T-shirts: '.$tShirt.'">
