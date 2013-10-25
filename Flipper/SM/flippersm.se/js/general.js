@@ -3012,6 +3012,7 @@ function divFade(parent, msg) {
   div.className = 'errorSpan toolTip';
   parent.appendChild(div);
   $(div).show();
+  console.log(div);
   fade(div, msg.reason, msg.success);
   parent.removeChild(div);
 }
