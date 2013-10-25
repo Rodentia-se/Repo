@@ -1943,10 +1943,10 @@ function getScores(sel) {
           style: 'display: inline;',
           indicator: 'Saving...',
           callback: function(value, settings) {
+            this.innerHTML = value.value;
             console.log(this);
             console.log(value);
             console.log(settings);
-            return value.value;
           },
           sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
         },
