@@ -10,14 +10,14 @@
     $qualEntry = getEntryById($dbh, $entryId);
     $division = $qualEntry->tournamentDivision_id;
     $playerType = ($division == 3) ? 'team' : 'player';
-    $selected = ($type == 'game') ? $qualEntry->game : (($division == 3) ? $qualEntry->team_id : $qualEntry->person_id);
+    $selected = ($type == 'game') ? $qualEntry->game_id : (($division == 3) ? $qualEntry->team_id : $qualEntry->person_id);
   }
 
   if ($scoreId) {
     $qualScore = getScoreById($dbh, $scoreId);
     $division = $qualScore->tournamentDivision_id;
     $playerType = ($division == 3) ? 'team' : 'player';
-    $selected = ($type == 'game') ? $qualScore->game : (($division == 3) ? $qualScore->team_id : $qualScore->person_id);
+    $selected = ($type == 'game') ? $qualScore->game_id : (($division == 3) ? $qualScore->team_id : $qualScore->person_id);
   }
 
   $type = ($type != 'game' && $playerType) ? $playerType : $type;
