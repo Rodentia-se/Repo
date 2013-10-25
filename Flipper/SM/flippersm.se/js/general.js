@@ -1942,6 +1942,12 @@ function getScores(sel) {
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
+          callback: function(value, setting) {
+            console.log(this);
+            console.log(value);
+            console.log(settings);
+            return value.value;
+          },
           sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
         },
         {

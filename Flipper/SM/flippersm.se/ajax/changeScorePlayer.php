@@ -16,7 +16,7 @@
             if ($playerId == 0 || $player) {
               if ($qualScore->setPlayer($dbh, $player)) {
                 if ($player) {
-                  echo('{"success": true, "reason": "'.$player->name.' has been assigned to score ID '.$qualScore->id.'"}');
+                  echo('{"success": true, "reason": "'.$player->name.' has been assigned to score ID '.$qualScore->id.'", "value": "'.$player->name.'"}');
                 } else {
                   echo('{"success": true, "reason": "Score ID '.$qualScore->id.' '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' assignment was cleared"}');
                 }
