@@ -211,9 +211,6 @@
       $update[':game'] = $this->game;
       $update[':gameAcronym'] = $this->gameAcronym;
       $update[':machineId'] = $this->machine_id;
-      $update[':country'] = $this->country;
-      $update[':cityId'] = $this->city_id;
-      $update[':city'] = $this->city;
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
