@@ -32,7 +32,7 @@
               echo '{"aaData": '.json_encode($json).'}';
             } else {
               $json[] = array('No data', null, null, null, null, null, null, null, null, null);
-              echo '{"aaData": '.json_encode($json).'}';
+              echo '{"aaData": null}';
             }
           } else {
             $errorMsg = 'Could not find the '.$type.' with ID '.$id;

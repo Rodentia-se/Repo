@@ -1927,120 +1927,120 @@ function getScores(sel) {
       'bJQueryUI': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value,
       'fnInitComplete': function() {
-        if ($('#' + type + 'Table').find('td').html() != 'No data') {
-          console.log($('#' + type + 'Table').find('td').html());
-          console.log($('#' + type + 'Table').find('td').eq(0));
-          $('#' + type + 'Table').dataTable().makeEditable({
-            'aoColumns': [
-              null,
-              null,
-              {
-                tooltip: 'Double click to change points',
-                placeholder: 'Double click to add points',
-                indicator: 'Saving...',
-                onblur: 'submit',
-                submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
-              },
-              {
-                tooltip: 'Double click to change place',
-                placeholder: 'Double click to add place',
-                indicator: 'Saving...',
-                onblur: 'submit',
-                submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
-              },
-              null,
-              {
-                tooltip: 'Click to select player',
-                placeholder: 'Click to add player',
-                loadtext: 'Loading...',
-                loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
-                loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
-                type: 'select',
-                onblur: 'cancel',
-                event: 'click',
-                style: 'display: inline;',
-                indicator: 'Saving...',
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
-              },
-              {
-                tooltip: 'Click to select game',
-                placeholder: 'Click to add game',
-                loadtext: 'Loading...',
-                loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
-                loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
-                type: 'select',
-                onblur: 'cancel',
-                event: 'click',
-                style: 'display: inline;',
-                indicator: 'Saving...',
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
-              },
-              {
-                tooltip: 'Double click to change score',
-                placeholder: 'Double click to add score',
-                indicator: 'Saving...',
-                onblur: 'submit',
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeScore.php'
-              },
-              {
-                tooltip: 'Double click to change points',
-                placeholder: 'Double click to add points',
-                indicator: 'Saving...',
-                onblur: 'submit',
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
-              },
-              {
-                tooltip: 'Double click to change place',
-                placeholder: 'Double click to add place',
-                indicator: 'Saving...',
-                onblur: 'submit',
-                callback: function(value, settings) {
-                  var json = JSON.parse(value);
-                  this.innerHTML = json.value;
-                  divFade(this, json);
-                },
-                sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
-              }
-            ]
-          });
-          $(document).on('change', 'select[name="value"]', function () {
-            $(this).parent().submit();
-          });
-        }
       }
     });
+    console.log($('#' + type + 'Table').find('td').html());
+    console.log($('#' + type + 'Table').find('td').eq(0));
+    if ($('#' + type + 'Table').find('td').html() != 'No data') {
+      $('#' + type + 'Table').dataTable().makeEditable({
+        'aoColumns': [
+          null,
+          null,
+          {
+            tooltip: 'Double click to change points',
+            placeholder: 'Double click to add points',
+            indicator: 'Saving...',
+            onblur: 'submit',
+            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
+          },
+          {
+            tooltip: 'Double click to change place',
+            placeholder: 'Double click to add place',
+            indicator: 'Saving...',
+            onblur: 'submit',
+            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
+          },
+          null,
+          {
+            tooltip: 'Click to select player',
+            placeholder: 'Click to add player',
+            loadtext: 'Loading...',
+            loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
+            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
+            type: 'select',
+            onblur: 'cancel',
+            event: 'click',
+            style: 'display: inline;',
+            indicator: 'Saving...',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
+          },
+          {
+            tooltip: 'Click to select game',
+            placeholder: 'Click to add game',
+            loadtext: 'Loading...',
+            loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
+            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
+            type: 'select',
+            onblur: 'cancel',
+            event: 'click',
+            style: 'display: inline;',
+            indicator: 'Saving...',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
+          },
+          {
+            tooltip: 'Double click to change score',
+            placeholder: 'Double click to add score',
+            indicator: 'Saving...',
+            onblur: 'submit',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScore.php'
+          },
+          {
+            tooltip: 'Double click to change points',
+            placeholder: 'Double click to add points',
+            indicator: 'Saving...',
+            onblur: 'submit',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
+          },
+          {
+            tooltip: 'Double click to change place',
+            placeholder: 'Double click to add place',
+            indicator: 'Saving...',
+            onblur: 'submit',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
+          }
+        ]
+      });
+      $(document).on('change', 'select[name="value"]', function () {
+        $(this).parent().submit();
+      });
+    }
     $('#' + type + 'Table').css('width', '');
     $('#' + type + 'Div').show();
   }
