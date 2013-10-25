@@ -19,10 +19,10 @@
                 $json[] = array(
                   $qualScore->id,
                   $qualEntry->id,
-                  (($qualScore->tournamentDivision_id == 3) ? 'Team' : (($qualScore->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
+                  (($qualScore->tournamentDivision_id == 3) ? $qualScore->team : $qualScore->player),
                   round($qualEntry->points),
                   $qualEntry->place,
-                  (($qualScore->tournamentDivision_id == 3) ? $qualScore->team : $qualScore->player),
+                  (($qualScore->tournamentDivision_id == 3) ? 'Team' : (($qualScore->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
                   $qualScore->game,
                   $qualScore->score,
                   round($qualScore->points),
