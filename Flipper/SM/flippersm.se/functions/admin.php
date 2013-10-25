@@ -914,18 +914,19 @@
       $content .= '
         <br /><br /><h2 class="entry-title">Score administration</h2>
         <ul>
-          <li>Choose player, team or game to show the scores</li>
+          <li>Choose a player, team or game to show the scores</li>
           <li>Each line is a score, but it can also be used to edit the entire entry</li>
           <li>The first points and place fields and the player field are for the entire entry</li>
           <ul>
-            <li>Note that changing an entry points/place/player will be visible in all lines for that entry until you reload the page</li>
+            <li>Note that changing an entry points/place/player will not be visible in all the lines for that entry until you reload the page</li>
           </ul>
-          <li>Click the player or game field to get a dropdown with possible values</li>
+          <li>Click the player or game fields to get a dropdown with possible values</li>
           <li>Doubleclick the points, place and score fields to change the values</li>
           <li>All changes are instant!</li>
           <ul>
-            <li>Dropdown values are saved when choosing them. Choosing "Choose..." will remove the player / game from that entry / score.</li>
+            <li>Dropdown values are saved when choosing them. Choosing "<span class="italic">Choose...</span>" will remove the player / game from that entry / score.</li>
             <li>Points/place/game values are saved with the enter key or by clicking somewhere else on the page.</li>
+            <li>Setting place to 0 will remove the place, setting points or score to 0 will set it to an actual 0.</li>
           </ul>
         </ul>
       ';
