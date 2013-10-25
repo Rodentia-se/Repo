@@ -1938,7 +1938,7 @@ function getScores(sel) {
           loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
-          onblur: 'ignore',
+          onblur: 'cancel',
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
@@ -1955,7 +1955,7 @@ function getScores(sel) {
           loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
-          onblur: 'ignore',
+          onblur: 'cancel',
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
@@ -3050,8 +3050,9 @@ function fade(el, text, success, start, duration) {
   setTimeout(function() { 
     $(el).fadeOut(duration);
   }, start);
-  $(el).click(function() {
+  $(el).click(function(event) {
     $(this).fadeOut(200);
+    event.stopPropagation();
   });
 }
 
