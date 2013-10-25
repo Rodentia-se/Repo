@@ -13,7 +13,11 @@
           $qualEntry = getEntryById($dbh, $entryId);
           if ($qualEntry) {
             if ($qualEntry->setPlace($dbh, $place)) {
-              echo('{"success": true, "reason": "Place set to '.$place.' for entry ID '.$qualEntry->id.'"}');
+              if ($place) {
+                echo('{"success": true, "reason": "Place set to '.$place.' for entry ID '.$qualEntry->id.'", "value": "'.$place.'"}');
+              } else {
+                echo('{"success": true, "reason": "Place removed for entry ID '.$qualEntry->id.'", "value": null}');
+              }
             } else {
               $errorMsg = 'Could not set place to '.$place.' for entry ID '.$qualEntry->id;
             }

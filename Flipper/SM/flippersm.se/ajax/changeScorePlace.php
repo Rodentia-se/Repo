@@ -13,7 +13,11 @@
           $qualScore = getScoreById($dbh, $scoreId);
           if ($qualScore) {
             if ($qualScore->setPlace($dbh, $place)) {
-              echo('{"success": true, "reason": "Place set to '.$place.' for score ID '.$qualScore->id.'"}');
+              if ($place) {
+                echo('{"success": true, "reason": "Place set to '.$place.' for score ID '.$qualScore->id.'", "value": "'.$place.'"}');
+              } else {
+                echo('{"success": true, "reason": "Place removed for score ID '.$qualScore->id.'", "value": null}');
+              }
             } else {
               $errorMsg = 'Could not set place to '.$place.' for score ID '.$qualScore->id;
             }

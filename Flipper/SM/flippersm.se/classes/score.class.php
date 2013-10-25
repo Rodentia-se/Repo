@@ -60,7 +60,7 @@
     }
 
     function setScore($dbh, $score = null) {
-      $this->points = ($score) ? $score : null;
+      $this->points = ($score == 0 || $score) ? $score : null;
       $query = '
         update qualScore set
           score = :score
@@ -73,7 +73,7 @@
     }
 
     function setPoints($dbh, $points = null) {
-      $this->points = ($points) ? $points : null;
+      $this->points = ($points == 0 || $points) ? $points : null;
       $query = '
         update qualScore set
           points = :points

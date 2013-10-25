@@ -13,7 +13,7 @@
           $qualScore = getScoreById($dbh, $scoreId);
           if ($qualScore) {
             if ($qualScore->setScore($dbh, $score)) {
-              echo('{"success": true, "reason": "Score set to '.$score.' for score ID '.$qualScore->id.'"}');
+              echo('{"success": true, "reason": "Score set to '.$score.' for score ID '.$qualScore->id.'", "value": "'.$score.'"}');
             } else {
               $errorMsg = 'Could not set score to '.$score.' for score ID '.$qualScore->id;
             }

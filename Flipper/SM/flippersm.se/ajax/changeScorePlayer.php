@@ -18,7 +18,7 @@
                 if ($player) {
                   echo('{"success": true, "reason": "'.$player->name.' has been assigned to score ID '.$qualScore->id.'", "value": "'.$player->name.'"}');
                 } else {
-                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' assignment was cleared"}');
+                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' assignment was cleared", "value": null}');
                 }
               } else {
                 $errorMsg = ($player) ? 'Could not change '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' to '.$player->name.' for score ID '.$qualScore->id : 'Could not remove '.(($qualScore->tournamentDivision_id == 3) ? 'team' : 'player').' from score ID '.$qualScore->id;

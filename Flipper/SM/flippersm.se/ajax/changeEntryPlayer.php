@@ -16,9 +16,9 @@
             if ($qualEntry) {
               if ($qualEntry->setPlayer($dbh, $player)) {
                 if ($player) {
-                  echo('{"success": true, "reason": "'.$player->name.' has been assigned to entry ID '.$qualEntry->id.'"}');
+                  echo('{"success": true, "reason": "'.$player->name.' has been assigned to entry ID '.$qualEntry->id.'", "value": "'.$player->name.'"}');
                 } else {
-                  echo('{"success": true, "reason": "Score ID '.$qualEntry->id.' player assignment was cleared"}');
+                  echo('{"success": true, "reason": "Score ID '.$qualEntry->id.' player assignment was cleared", "value": null}');
                 }
               } else {
                 $errorMsg = ($player) ? 'Could not change player to '.$player->name.' for entry ID '.$qualEntry->id : 'Could not remove player from entry ID '.$qualScore->id;

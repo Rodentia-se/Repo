@@ -16,9 +16,9 @@
             if ($qualScore) {
               if ($qualScore->setGame($dbh, $game)) {
                 if ($game) {
-                  echo('{"success": true, "reason": "'.$game->shortName.' has been assigned to score ID '.$qualScore->id.'"}');
+                  echo('{"success": true, "reason": "'.$game->shortName.' has been assigned to score ID '.$qualScore->id.'", "value": "'.$game->name.'"}');
                 } else {
-                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' game assignment was cleared"}');
+                  echo('{"success": true, "reason": "Score ID '.$qualScore->id.' game assignment was cleared", "value": null}');
                 }
               } else {
                 $errorMsg = ($game) ? 'Could not change game to '.$game->shortName.' for score ID '.$qualScore->id : 'Could not remove game from score ID '.$qualScore->id;

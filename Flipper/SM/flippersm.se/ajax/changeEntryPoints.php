@@ -13,7 +13,7 @@
           $qualEntry = getEntryById($dbh, $entryId);
           if ($qualEntry) {
             if ($qualEntry->setPoints($dbh, $points)) {
-              echo('{"success": true, "reason": "Points set to '.$points.' for entry ID '.$qualEntry->id.'"}');
+              echo('{"success": true, "reason": "Points set to '.$points.' for entry ID '.$qualEntry->id.'", "value": "'.$points.'"}');
             } else {
               $errorMsg = 'Could not set points to '.$points.' for entry ID '.$qualEntry->id;
             }
