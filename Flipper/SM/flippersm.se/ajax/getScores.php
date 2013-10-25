@@ -28,7 +28,8 @@
               }
               echo '{"aaData": '.json_encode($json).'}';
             } else {
-              $errorMsg = 'Could not find any scores for '.$obj->name;
+              $json[] = array('No data', null, null, null, null, null, null, null);
+              echo '{"aaData": '.json_encode($json).'}';
             }
           } else {
             $errorMsg = 'Could not find the '.$type.' with ID '.$id;
