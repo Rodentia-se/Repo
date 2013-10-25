@@ -1927,6 +1927,8 @@ function getScores(sel) {
       'bJQueryUI': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value,
       'fnInitComplete': function() {
+        console.log($('#' + type + 'Table').find('td').html());
+        console.log($('#' + type + 'Table').find('td').eq(0));
         if ($('#' + type + 'Table').find('td').html() != 'No data') {
           $('#' + type + 'Table').dataTable().makeEditable({
             'aoColumns': [
@@ -2039,8 +2041,6 @@ function getScores(sel) {
         }
       }
     });
-    console.log($('#' + type + 'Table').find('td').html());
-    console.log($('#' + type + 'Table').find('td').eq(0));
     $('#' + type + 'Table').css('width', '');
     $('#' + type + 'Div').show();
   }
