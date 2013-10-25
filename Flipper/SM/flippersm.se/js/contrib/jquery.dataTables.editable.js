@@ -298,7 +298,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                             (     properties.aoColumns != null
                                 && properties.aoColumns[aPos[2]] != null 
                                 && properties.aoColumns[aPos[2]].sSuccessResponse == "IGNORE") || 
-                            (sNewCellValue == null) || (sNewCellValue == sValue) || 
+                            (sNewCellValue == null) || (sNewCellValue.trim() == sValue.trim() ||
                             properties.sSuccessResponse == sValue) {
                             if(sNewCellDisplayValue == null)
                             {
