@@ -911,7 +911,24 @@
     }
 
     function getAdminScoreTable($dbh) {
-      $content .= '<br /><br /><h2 class="entry-title">Score administration</h2>';
+      $content .= '
+        <br /><br /><h2 class="entry-title">Score administration</h2>
+        <ul>
+          <li>Choose player, team or game to show the scores</li>
+          <li>Each line is a score, but it can also be used to edit the entire entry</li>
+          <li>The first points and place fields and the player field are for the entire entry</li>
+          <ul>
+            <li>Note that changing an entry points/place/player will be visible in all lines for that entry until you reload the page</li>
+          </ul>
+          <li>Click the player or game field to get a dropdown with possible values</li>
+          <li>Doubleclick the points, place and score fields to change the values</li>
+          <li>All changes are instant!</li>
+          <ul>
+            <li>Dropdown values are saved when choosing them. Choosing "Choose..." will remove the player / game from that entry / score.</li>
+            <li>Points/place/game values are saved with the enter key or by clicking somewhere else on the page.</li>
+          </ul>
+        </ul>
+      ';
       $players = getPlayers($dbh, 'where tournamentEdition_id = 1');
       $content .= '<p><label for="playerSelect">Player:</label>'.createSelect($players, 'player', 0, 'getScores');
       $teams = getTeams($dbh, 'where tm.tournamentEdition_id = 1');
@@ -925,10 +942,10 @@
               <tr>
                 <th>ID</th>
                 <th>Entry</th>
+                <th>Player</th>
                 <th>Points</th>
                 <th>Place</th>
                 <th>Div</th>
-                <th>Player</th>
                 <th>Game</th>
                 <th>Score</th>
                 <th>Points</th>
@@ -945,10 +962,10 @@
               <tr>
                 <th>ID</th>
                 <th>Entry</th>
+                <th>Player</th>
                 <th>Points</th>
                 <th>Place</th>
                 <th>Div</th>
-                <th>Player</th>
                 <th>Game</th>
                 <th>Score</th>
                 <th>Points</th>
