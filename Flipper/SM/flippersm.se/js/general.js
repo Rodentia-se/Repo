@@ -1937,6 +1937,24 @@ function getScores(sel) {
           null,
           null,
           {
+            tooltip: 'Click to select player',
+            placeholder: 'Click to add player',
+            loadtext: 'Loading...',
+            loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
+            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
+            type: 'select',
+            onblur: 'cancel',
+            event: 'click',
+            style: 'display: inline;',
+            indicator: 'Saving...',
+            callback: function(value, settings) {
+              var json = JSON.parse(value);
+              this.innerHTML = json.value;
+              divFade(this, json);
+            },
+            sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
+          },
+          {
             tooltip: 'Double click to change points',
             placeholder: 'Double click to add points',
             indicator: 'Saving...',
@@ -1963,24 +1981,6 @@ function getScores(sel) {
             sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
           },
           null,
-          {
-            tooltip: 'Click to select player',
-            placeholder: 'Click to add player',
-            loadtext: 'Loading...',
-            loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
-            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
-            type: 'select',
-            onblur: 'cancel',
-            event: 'click',
-            style: 'display: inline;',
-            indicator: 'Saving...',
-            callback: function(value, settings) {
-              var json = JSON.parse(value);
-              this.innerHTML = json.value;
-              divFade(this, json);
-            },
-            sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
-          },
           {
             tooltip: 'Click to select game',
             placeholder: 'Click to add game',
