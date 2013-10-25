@@ -1945,9 +1945,7 @@ function getScores(sel) {
           callback: function(value, settings) {
             var json = JSON.parse(value);
             this.innerHTML = json.value;
-            console.log(this);
-            console.log(value);
-            console.log(settings);
+            divFade(this, json);
           },
           sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
         },
@@ -1961,24 +1959,44 @@ function getScores(sel) {
           event: 'click',
           style: 'display: inline;',
           indicator: 'Saving...',
+          callback: function(value, settings) {
+            var json = JSON.parse(value);
+            this.innerHTML = json.value;
+            divFade(this, json);
+          },
           sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
+          callback: function(value, settings) {
+            var json = JSON.parse(value);
+            this.innerHTML = json.value;
+            divFade(this, json);
+          },
           sUpdateURL: baseHref + '/ajax/changeScore.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
+          callback: function(value, settings) {
+            var json = JSON.parse(value);
+            this.innerHTML = json.value;
+            divFade(this, json);
+          },
           sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
         },
         {
           tooltip: 'Double click to change score',
           indicator: 'Saving...',
           onblur: 'submit',
+          callback: function(value, settings) {
+            var json = JSON.parse(value);
+            this.innerHTML = json.value;
+            divFade(this, json);
+          },
           sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
         }
       ]
@@ -2987,6 +3005,15 @@ function tshirtChanged(el) {
     el.setAttribute('previous', el.value);
     calcTshirtCost();
   }
+}
+
+function divFade(parent, msg) {
+  var div = document.createElement('div');
+  div.className = 'errorSpan toolTip';
+  parent.appendChild(div);
+  $(div).show();
+  fade(this, msg.reason, msg.success);
+  parent.removeChild(div);
 }
 
 function fade(el, text, success, start, duration) {
