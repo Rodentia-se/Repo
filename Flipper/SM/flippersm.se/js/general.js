@@ -1929,8 +1929,6 @@ function getScores(sel) {
       'fnInitComplete': function() {
       }
     });
-    console.log($('#' + type + 'Table').find('td').html());
-    console.log($('#' + type + 'Table').find('td').eq(0));
     if ($('#' + type + 'Table').find('td').html() != 'No data') {
       $('#' + type + 'Table').dataTable().makeEditable({
         'aoColumns': [
@@ -3049,7 +3047,6 @@ function divFade(parent, msg) {
   div.className = 'errorSpan toolTip';
   parent.appendChild(div);
   $(div).show();
-  console.log(div);
   fade(div, msg.reason, msg.success, 4000);
   setTimeout(function() {
     if(div) {
