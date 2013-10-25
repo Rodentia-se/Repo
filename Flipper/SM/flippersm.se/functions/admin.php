@@ -925,6 +925,8 @@
               <tr>
                 <th>ID</th>
                 <th>Entry</th>
+                <th>Points</th>
+                <th>Place</th>
                 <th>Div</th>
                 <th>Player</th>
                 <th>Game</th>
@@ -943,6 +945,8 @@
               <tr>
                 <th>ID</th>
                 <th>Entry</th>
+                <th>Points</th>
+                <th>Place</th>
                 <th>Div</th>
                 <th>Player</th>
                 <th>Game</th>

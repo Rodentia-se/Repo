@@ -12,18 +12,21 @@
         if ($id) {
           $obj = ($type == 'game') ? getGameById($dbh, $id) : (($type == 'team') ? getTeamById($dbh, $id) : getPlayerById($dbh, $id));
           if ($obj) {
-            $scores = $obj->getScores($dbh, 1, false);
-            if (is_array($scores) && count($scores > 1)) {
-              foreach ($scores as $score) {
+            $qualScores = $obj->getScores($dbh, 1, false);
+            if (is_array($qualScores) && count($qualScores > 1)) {
+              foreach ($qualScores as $qualScore) {
+                $qualEntry = $qualScore->getEntry($dbh);
                 $json[] = array(
-                  $score->id,
-                  $score->qualEntry_id,
-                  (($score->tournamentDivision_id == 3) ? 'Team' : (($score->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
-                  (($score->tournamentDivision_id == 3) ? $score->team : $score->player),
-                  $score->game,
-                  $score->score,
-                  round($score->points),
-                  $score->place
+                  $qualScore->id,
+                  $qualEntry->id,
+                  $qualEntry->points,
+                  $qualEntry->place,
+                  (($qualScore->tournamentDivision_id == 3) ? 'Team' : (($qualScore->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
+                  (($qualScore->tournamentDivision_id == 3) ? $qualScore->team : $qualScore->player),
+                  $qualScore->game,
+                  $qualScore->score,
+                  round($qualScore->points),
+                  $qualScore->place
                 );
               }
               echo '{"aaData": '.json_encode($json).'}';
