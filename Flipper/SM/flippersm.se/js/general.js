@@ -1935,7 +1935,10 @@ function getScores(sel) {
         {
           tooltip: 'Click to select player',
           loadtext: 'Loading...',
-          loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
+          loadurl: function () {
+            $(this).find('div').remove();
+            return baseHref + '/ajax/getSelectData.php?type=player&t=1';
+          },
           loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
           type: 'select',
           onblur: 'cancel',
@@ -3014,7 +3017,9 @@ function divFade(parent, msg) {
   $(div).show();
   console.log(div);
   fade(div, msg.reason, msg.success, 4000);
-  parent.onclick = function() {parent.removeChild(div);};
+  setTimeout(function() {
+    parent.removeChild(div);
+  }, 6000);
 }
 
 function fade(el, text, success, start, duration) {
