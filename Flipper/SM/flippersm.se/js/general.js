@@ -709,7 +709,7 @@ function ifpaReg(id, dstId) {
   $('#ifpaRegResultsTableDiv').hide();
   showLoading(classes['player']);
   try {
-    $('#' + tbl.id).dataTable.fnClearTable(); // Clear the datatable layout (and the table) if the datatable object exists...
+    $(tbl).dataTable.fnClearTable(); // Clear the datatable layout (and the table) if the datatable object exists...
   } catch(err) {
     tbl.innerHTML = ''; // ...otherwise empty the whole table. (Nulling the table with datatable object attached will make datatable freak out.)
   }
@@ -743,7 +743,7 @@ function printPlayers(objs, dstId, meBtns, sels) {
   meBtns = (typeof meBtns === 'undefined') ? true : meBtns; // Default is true
   var tbl = document.getElementById(dstId + 'Table');
   try {
-    $('#' + tbl.id).dataTable.fnClearTable(); // Clear the datatable layout (and the table) if the datatable object exists...
+    $(tbl).dataTable.fnClearTable(); // Clear the datatable layout (and the table) if the datatable object exists...
   } catch(err) {
     tbl.innerHTML = ''; // ...otherwise empty the whole table. (Nulling the table with datatable object attached will make datatable freak out.)
   }
@@ -752,7 +752,7 @@ function printPlayers(objs, dstId, meBtns, sels) {
   addRows(tbody, classes['player'], false, meBtns, sels, objs); // Add the rows, and include info about meBtn and sels.
   $('#' + dstId).show(); // Allright, table done, let's show it
   if ($.url().attr('file') == 'adminTools.php') {
-    $('#' + tbl.id).dataTable({
+    $(tbl).dataTable({
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
@@ -770,7 +770,7 @@ function printPlayers(objs, dstId, meBtns, sels) {
   		],
       'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
     }); // Rebuild the datatable
-    $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
+    $(tbl).css('width', ''); // This is needed, or the table is butt ugly!
     $('#newData').css('width', ''); // This is needed, or the table is butt ugly!
   }
 }
@@ -1012,7 +1012,7 @@ function addFieldRow(tbody, obj, prop) {
 //    input[(type == 'checkbox') ? 'checked' : 'value'] = (obj[prop]) ? obj[prop] : classes[obj.class].fields[prop].default; // Add existing value, or the default value
     input.onchange = function() { checkField(this); }; // Let's check that the field is correct. Only done when leaving the field (changed), and not at every keypress.
     if (classes[obj.class].fields[prop].special == 'date') {
-      setTimeout(function() { $('#' + input.id).datepicker({ dateFormat: 'yy-mm-dd', changeYear: true, yearRange: '-100:-0', changeMonth: true }); }, 100); // Fancy date picker added!
+      setTimeout(function() { $(input).datepicker({ dateFormat: 'yy-mm-dd', changeYear: true, yearRange: '-100:-0', changeMonth: true }); }, 100); // Fancy date picker added!
     }
   }
   if (type != 'hidden') { // No label, td or span needed for hidden stuff
@@ -1104,7 +1104,7 @@ function addFieldDiv(div, obj, prop) {
 //    input[(type == 'checkbox') ? 'checked' : 'value'] = (obj[prop]) ? obj[prop] : classes[obj.class].fields[prop].default; // Add existing value, or the default value
     input.onchange = function() { checkField(this); }; // Let's check that the field is correct. Only done when leaving the field (changed), and not at every keypress.
     if (classes[obj.class].fields[prop].special == 'date') {
-      setTimeout(function() { $('#' + input.id).datepicker({ dateFormat: 'yy-mm-dd', changeYear: true, yearRange: '-100:-0', changeMonth: true }); }, 100); // Fancy date picker added!
+      setTimeout(function() { $(input).datepicker({ dateFormat: 'yy-mm-dd', changeYear: true, yearRange: '-100:-0', changeMonth: true }); }, 100); // Fancy date picker added!
     }
   }
   if (type == 'hidden') { // No label, td or span needed for hidden stuff
@@ -2739,7 +2739,7 @@ function popTbl(tbl, type) { // Let's populate a table
   if (tbl && type) { // Both were provided (or we figured them out)
     showLoading(type);
     try {
-      $('#' + tbl.id).dataTable.fnClearTable();// Clear the datatable layout (and the table) if the datatable object exists...
+      $(tbl).dataTable.fnClearTable();// Clear the datatable layout (and the table) if the datatable object exists...
     } catch(err) {
       if (tbl.getElementsByTagName('tbody')[0]) {
         tbl.removeChild(tbl.getElementsByTagName('tbody')[0]); // ...otherwise empty the whole table. (Nulling the table with datatable object attached will make datatable freak out.)
@@ -2763,7 +2763,7 @@ function popTbl(tbl, type) { // Let's populate a table
       } else {
         aoColumns = null;
       }
-      $('#' + tbl.id).dataTable({
+      $(tbl).dataTable({
         'bProcessing': true,
         'bDestroy': true,
         'bJQueryUI': true,
@@ -2772,9 +2772,9 @@ function popTbl(tbl, type) { // Let's populate a table
     		'aoColumns': aoColumns,
         'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
       }); // Rebuild the datatable
-      $('#' + tbl.id).css('width', ''); // This is needed, or the table is butt ugly!
+      $(tbl).css('width', ''); // This is needed, or the table is butt ugly!
     } else {
-      $('#' + tbl.id).tablesorter();
+      $(tbl).tablesorter();
     }
     hideLoading(type);
   }
@@ -3032,25 +3032,25 @@ function fade(el, text, success, start, duration) {
     $(el).addClass('pointer');
     el.appendChild(img);
   }
-  $('#' + el.id).stop(true, true).show();
-  if ((+ $('#' + el.id).offset().left + $('#' + el.id).outerWidth()) > $(window).width()) {
-    var left = (+ $('#' + el.id).offset().left - ($('#' + el.id).offset().left + $('#' + el.id).outerWidth() - $(window).width()) - 40);
+  $(el).stop(true, true).show();
+  if ((+ $(el).offset().left + $(el).outerWidth()) > $(window).width()) {
+    var left = (+ $(el).offset().left - ($(el).offset().left + $(el).outerWidth() - $(window).width()) - 40);
   } else {
-    var left = $('#' + el.id).offset().left;
+    var left = $(el).offset().left;
   }
-  $('#' + el.id).offset({
+  $(el).offset({
     'left': left,
-    'top': $('#' + el.id).offset().top
+    'top': $(el).offset().top
   });
   if (success) {
-    $('#' + el.id).removeClass('error');
+    $(el).removeClass('error');
   } else {
-    $('#' + el.id).addClass('error');
+    $(el).addClass('error');
   }
   setTimeout(function() { 
-    $('#' + el.id).fadeOut(duration);
+    $(el).fadeOut(duration);
   }, start);
-  $('#' + el.id).click(function() {
+  $(el).click(function() {
     $(this).fadeOut(200);
   });
 }
