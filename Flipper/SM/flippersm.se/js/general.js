@@ -1927,7 +1927,7 @@ function getScores(sel) {
       'bJQueryUI': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
     });
-    if ($('#' + type + 'Table').find('td').eq(0).innerHTML != 'No data') {
+    if ($('#' + type + 'Table').find('td').html() != 'No data') {
       $('#' + type + 'Table').dataTable().makeEditable({
         'aoColumns': [
           null,
@@ -1937,7 +1937,7 @@ function getScores(sel) {
             placeholder: 'Double click to add points',
             indicator: 'Saving...',
             onblur: 'submit',
-            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).innerHTML}},
+            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
             callback: function(value, settings) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
@@ -1950,7 +1950,7 @@ function getScores(sel) {
             placeholder: 'Double click to add place',
             indicator: 'Saving...',
             onblur: 'submit',
-            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).innerHTML}},
+            submitdata : function() {return {entryId: $(this).parent().children('td').eq(1).html()};},
             callback: function(value, settings) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
@@ -1964,7 +1964,7 @@ function getScores(sel) {
             placeholder: 'Click to add player',
             loadtext: 'Loading...',
             loadurl: baseHref + '/ajax/getSelectData.php?type=player&t=1',
-            loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
+            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
             type: 'select',
             onblur: 'cancel',
             event: 'click',
@@ -1982,7 +1982,7 @@ function getScores(sel) {
             placeholder: 'Click to add game',
             loadtext: 'Loading...',
             loadurl: baseHref + '/ajax/getSelectData.php?type=game&t=1',
-            loaddata: function() {return {scoreId: $(this).parent().attr('id')}},
+            loaddata: function() {return {scoreId: $(this).parent().attr('id')};},
             type: 'select',
             onblur: 'cancel',
             event: 'click',
