@@ -3055,9 +3055,9 @@ function divFade(parent, msg, moveOut) {
   parent.appendChild(div);
   if (moveOut) {
     var offset = $(div).offset();
-    $(div).appendTo('body');
+    $(div).prependTo('body');
     $(div).css('position', 'absolute');
-    $(div).offset(offset);
+    $(div).css(offset);
   }
   $(div).show();
   fade(div, msg.reason, msg.success, 60000);
