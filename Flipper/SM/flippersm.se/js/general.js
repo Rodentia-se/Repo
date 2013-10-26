@@ -3068,7 +3068,7 @@ function divFade(parent, msg, moveOut) {
     if(div && div.parentNode) {
       div.parentNode.removeChild(div);
     }
-  }, 6000);
+  }, 60000);
 }
 
 function fade(el, text, success, start, duration) {
