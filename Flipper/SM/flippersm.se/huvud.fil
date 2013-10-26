@@ -29,7 +29,6 @@
     <![endif]-->
   </head>
   <body
-    <a href="https://plus.google.com/113331404073472052354" rel="publisher" style="display: none;">Google+</a>
     <?php
      switch ($s) {
        case 'anmal':
@@ -53,6 +52,7 @@
      }
    ?>
   >
+  <a href="https://plus.google.com/113331404073472052354" rel="publisher" style="display: none;">Google+</a>
 	<div id="head">
 		<div id="menu">
 			<p id="tagline">Stockholm, Heron&nbsp;City 8&#8209;10&nbsp;november</p>
