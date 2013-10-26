@@ -1917,8 +1917,8 @@ function getScores(sel) {
     if ($('#gameTable').dataTable()) {
       $('#gameTable').dataTable().fnDestroy();
     }
-    $('#playerTable').empty();
-    $('#gameTable').empty();
+    $('#playerTable > tbody').html('');
+    $('#gameTable' > tbody').html('');
     if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
     }
