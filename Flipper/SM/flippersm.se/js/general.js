@@ -1958,7 +1958,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              editor.fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
           },
