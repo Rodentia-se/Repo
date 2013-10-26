@@ -1918,7 +1918,7 @@ function getScores(sel) {
       $('#gameTable').dataTable().fnDestroy();
     }
     $('#playerTable > tbody').html('');
-    $('#gameTable' > tbody').html('');
+    $('#gameTable > tbody').html('');
     if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
     }
