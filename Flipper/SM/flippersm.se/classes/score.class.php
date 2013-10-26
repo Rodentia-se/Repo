@@ -98,7 +98,7 @@
       return ($sth->execute($update)) ? true : false;
     }
 
-    function setPlayer($dbh, $player = null) {
+    function setPlayer($dbh, $player = null, $entry = true) {
       if ($this->tournamentDivision_id == 3) {
         return $this->setTeam($dbh, $player);
       } else {
@@ -138,16 +138,16 @@
         $update[':cityId'] = $this->city_id;
         $update[':city'] = $this->city;
         $update[':id'] = $this->id;
-        $sth = $dbh->prepare($query);
-        if ($sth->execute($update)) {
+        if ($entry) {
           $qualEntry = $this->getEntry($dbh);
-          return $qualEntry->setPlayer($dbh, $player);
+          $qualEntry->setPlayer($dbh, $player);
         }
-        return false;
+        $sth = $dbh->prepare($query);
+        return ($sth->execute($update)) ? true : false;
       }
     }
 
-    function setTeam($dbh, $team = null) {
+    function setTeam($dbh, $team = null, $entry = true) {
       if ($this->tournamentDivision_id != 3) {
         return $this->setPlayer($dbh, $team);
       } else {
@@ -180,12 +180,12 @@
         $update[':cityId'] = $this->city_id;
         $update[':city'] = $this->city;
         $update[':id'] = $this->id;
-        $sth = $dbh->prepare($query);
-        if ($sth->execute($update)) {
+        if ($entry) {
           $qualEntry = $this->getEntry($dbh);
-          return $qualEntry->setTeam($dbh, $team);
+          $qualEntry->setTeam($dbh, $team);
         }
-        return false;
+        $sth = $dbh->prepare($query);
+        return ($sth->execute($update)) ? true : false;
       }
     }
 
