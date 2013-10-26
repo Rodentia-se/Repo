@@ -1911,28 +1911,24 @@ function getScores(sel) {
   $('#gameDiv').hide();
   $('#playerDiv').hide();
   if (sel.value != 0) {
+    if ($('#playerTable').dataTable()) {
+      $('#playerTable').dataTable().fnDestroy();
+    }
+    if ($('#gameTable').dataTable()) {
+      $('#gameTable').dataTable().fnDestroy();
+    }
+    $('#playerTable').empty();
+    $('#gameTable').empty();
     if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
-      if ($('#playerTable').dataTable()) {
-        $('#playerTable').dataTable().fnDestroy();
-      }
     }
     if (sel.name != 'game') {
       selectOption(document.getElementById('game'), 0);
-      if ($('#gameTable').dataTable()) {
-        $('#gameTable').dataTable().fnDestroy();
-      }
     }
     if (sel.name != 'team') {
       selectOption(document.getElementById('team'), 0);
-      if ($('#playerTable').dataTable()) {
-        $('#playerTable').dataTable().fnDestroy();
-      }
     }
     type = (sel.name == 'game') ? 'game' : 'player';
-    if ($('#' + type + 'Table').dataTable()) {
-      $('#' + type + 'Table').dataTable().fnDestroy();
-    }
     $('#' + type + 'Table').dataTable({
       'bProcessing': true,
       'bDestroy': true,
