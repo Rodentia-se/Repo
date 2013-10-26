@@ -938,8 +938,8 @@
       $games = getGames($dbh);
       $content .= '<label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
       $content .= '
-        <div id="playerDiv" style="display: none;">
-          <table id="playerTable">
+        <div id="scoreDiv">
+          <table id="scoreTable">
             <thead>
               <tr>
                 <th>ID</th>
@@ -955,26 +955,9 @@
               </tr>
             </thead>
             <tbody>
-            </tbody>
-          </table>
-        </div>
-        <div id="gameDiv" style="display: none;">
-          <table id="gameTable">
-            <thead>
               <tr>
-                <th>ID</th>
-                <th>Entry</th>
-                <th>Player</th>
-                <th>Points</th>
-                <th>Place</th>
-                <th>Div</th>
-                <th>Game</th>
-                <th>Score</th>
-                <th>Points</th>
-                <th>Place</th>
+                <td valign="top" colspan="10" class="dataTables_empty">No matching records found</td>
               </tr>
-            </thead>
-            <tbody>
             </tbody>
           </table>
         </div>

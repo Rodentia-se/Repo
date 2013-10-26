@@ -1908,17 +1908,7 @@ function adminPlace(sel) {
 }
 
 function getScores(sel) {
-  $('#gameDiv').hide();
-  $('#playerDiv').hide();
   if (sel.value != 0) {
-    if ($('#playerTable').dataTable()) {
-      $('#playerTable').dataTable().fnDestroy();
-    }
-    if ($('#gameTable').dataTable()) {
-      $('#gameTable').dataTable().fnDestroy();
-    }
-    $('#playerTable > tbody').html('');
-    $('#gameTable > tbody').html('');
     if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
     }
@@ -1929,7 +1919,7 @@ function getScores(sel) {
       selectOption(document.getElementById('team'), 0);
     }
     type = (sel.name == 'game') ? 'game' : 'player';
-    $('#' + type + 'Table').dataTable({
+    var tbl = $('#scoreDiv').dataTable({
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
@@ -1938,8 +1928,8 @@ function getScores(sel) {
       'fnInitComplete': function() {
       }
     });
-    if ($('#' + type + 'Table').find('td').html() != 'No data') {
-      $('#' + type + 'Table').dataTable().makeEditable({
+    if ($('#scoreTable').find('td').html() != 'No data') {
+      tbl.makeEditable({
         'aoColumns': [
           null,
           null,
@@ -1958,7 +1948,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnDraw();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
           },
@@ -1972,7 +1962,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
           },
@@ -1986,7 +1976,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
           },
@@ -2006,7 +1996,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
           },
@@ -2019,7 +2009,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScore.php'
           },
@@ -2032,7 +2022,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
           },
@@ -2045,7 +2035,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              $('#' + type + 'Table').dataTable().fnReloadAjax();
+              tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
           }
@@ -2055,8 +2045,7 @@ function getScores(sel) {
         $(this).parent().submit();
       });
     }
-    $('#' + type + 'Table').css('width', '');
-    $('#' + type + 'Div').show();
+    $('#scoreTable').css('width', '');
   }
 }
 
