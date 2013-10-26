@@ -48,12 +48,12 @@
       return getScores($dbh);
     }
 
-    function getScores($dbh) {
+    function getScores($dbh, $groupBy = 'group by qs.machine_id', $orderBy = 'order by max(qs.points) desc, min(qs.place) asc') {
       $query = getScoreSelect().'
-        where qs.qualEntry_id = '.$this->id.'
-        group by qs.machine_id
-        order by max(qs.points) desc, min(qs.place) asc
-      ';
+        where qs.qualEntry_id = '.$this->id;
+      $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
+      $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';
+      $query .= ' '.$groupBy.' '.$orderBy;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
         $objs[] = $obj;
