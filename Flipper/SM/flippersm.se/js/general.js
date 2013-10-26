@@ -1958,7 +1958,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
-              editor.fnReloadAjax();
+              $('#' + type + 'Table').dataTable().fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
           },
@@ -3065,7 +3065,7 @@ function divFade(parent, msg) {
   $(div).show();
   fade(div, msg.reason, msg.success, 4000);
   setTimeout(function() {
-    if(div) {
+    if(div && div.parentNode) {
       div.parentNode.removeChild(div);
     }
   }, 6000);
