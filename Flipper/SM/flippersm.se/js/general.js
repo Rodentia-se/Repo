@@ -1926,7 +1926,7 @@ function getScores(sel) {
       'bJQueryUI': true,
   	  'sPaginationType': 'full_numbers',
       'iDisplayLength': -1,
-      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']]
+      'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
       'bServerSide': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
     });
