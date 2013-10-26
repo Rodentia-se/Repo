@@ -1949,7 +1949,7 @@ function getScores(sel) {
             callback: function(value, settings) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
-              divFade(this, json);
+              divFade(this, json, true);
               tbl.fnDraw();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
@@ -3049,10 +3049,17 @@ function tshirtChanged(el) {
   }
 }
 
-function divFade(parent, msg) {
+function divFade(parent, msg, moveOut) {
   var div = document.createElement('div');
   div.className = 'errorSpan toolTip';
   parent.appendChild(div);
+  if (moveOut) {
+    var top = $(div).offset().top;
+    var left = $(div).offset().left;
+    $('div').prependTo('body');
+//    $(div).offset().left = left;
+//    $(div).offset().top = top;
+  }
   $(div).show();
   fade(div, msg.reason, msg.success, 4000);
   setTimeout(function() {
