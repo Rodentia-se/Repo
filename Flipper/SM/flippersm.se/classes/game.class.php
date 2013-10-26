@@ -313,7 +313,7 @@
       $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
       $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';
       $query .= ' '.$groupBy.' '.$orderBy;
-//      echo $query;
+      echo $query;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
         $objs[] = $obj;
