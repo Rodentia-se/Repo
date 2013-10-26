@@ -3054,13 +3054,10 @@ function divFade(parent, msg, moveOut) {
   div.className = 'errorSpan toolTip';
   parent.appendChild(div);
   if (moveOut) {
-    var top = $(div).offset().top;
-    var left = $(div).offset().left;
+    var offset = $(div).offset();
     $(div).prependTo('body');
-    $(div).offset({
-      'left': left,
-      'top': top
-    });
+    $(div).css('position', 'absolute');
+    $(div).offset(offset);
   }
   $(div).show();
   fade(div, msg.reason, msg.success, 60000);
