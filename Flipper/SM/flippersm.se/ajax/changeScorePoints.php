@@ -8,23 +8,23 @@
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
-      if ($points == 0 || $points) {
-        if ($scoreId) {
-          $qualScore = getScoreById($dbh, $scoreId);
-          if ($qualScore) {
-            if ($qualScore->setPoints($dbh, $points)) {
+      if ($scoreId) {
+        $qualScore = getScoreById($dbh, $scoreId);
+        if ($qualScore) {
+          if ($qualScore->setPoints($dbh, $points)) {
+            if ($points == 0 || $points) {
               echo('{"success": true, "reason": "Points set to '.$points.' for score ID '.$qualScore->id.'", "value": "'.$points.'"}');
             } else {
-              $errorMsg = 'Could not set points to '.$points.' for score ID '.$qualScore->id;
+              echo('{"success": true, "reason": "Points removed from score ID '.$qualScore->id.'", "value": null}');
             }
           } else {
-            $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
+            $errorMsg = 'Could not set points to '.$points.' for score ID '.$qualScore->id;
           }
         } else {
-          $errorMsg = 'No or invalid qualification score ID specified';
+          $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
         }
       } else {
-        $errorMsg = 'No or invalid points specified';
+        $errorMsg = 'No or invalid qualification score ID specified';
       }
     } else {
       $errorMsg = 'Admin mode used, but you are not admin. Are you correctly logged in?';

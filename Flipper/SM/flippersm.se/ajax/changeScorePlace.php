@@ -8,27 +8,23 @@
   $currentPlayer = getCurrentPlayer($dbh, $ulogin);
   if ($currentPlayer) {
     if ($currentPlayer->adminLevel == 1) {
-      if ($place == 0 || $place) {
-        if ($scoreId) {
-          $qualScore = getScoreById($dbh, $scoreId);
-          if ($qualScore) {
-            if ($qualScore->setPlace($dbh, $place)) {
-              if ($place) {
-                echo('{"success": true, "reason": "Place set to '.$place.' for score ID '.$qualScore->id.'", "value": "'.$place.'"}');
-              } else {
-                echo('{"success": true, "reason": "Place removed for score ID '.$qualScore->id.'", "value": null}');
-              }
+      if ($scoreId) {
+        $qualScore = getScoreById($dbh, $scoreId);
+        if ($qualScore) {
+          if ($qualScore->setPlace($dbh, $place)) {
+            if ($place) {
+              echo('{"success": true, "reason": "Place set to '.$place.' for score ID '.$qualScore->id.'", "value": "'.$place.'"}');
             } else {
-              $errorMsg = 'Could not set place to '.$place.' for score ID '.$qualScore->id;
+              echo('{"success": true, "reason": "Place removed for score ID '.$qualScore->id.'", "value": null}');
             }
           } else {
-            $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
+            $errorMsg = 'Could not set place to '.$place.' for score ID '.$qualScore->id;
           }
         } else {
-          $errorMsg = 'No or invalid qualification score ID specified';
+          $errorMsg = 'Could not find the qualification score with ID '.$scoreId;
         }
       } else {
-        $errorMsg = 'No or invalid place specified';
+        $errorMsg = 'No or invalid qualification score ID specified';
       }
     } else {
       $errorMsg = 'Admin mode used, but you are not admin. Are you correctly logged in?';
