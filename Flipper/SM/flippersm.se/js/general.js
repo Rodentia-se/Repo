@@ -1919,7 +1919,7 @@ function getScores(sel) {
       selectOption(document.getElementById('team'), 0);
     }
     type = (sel.name == 'game') ? 'game' : 'player';
-    var tbl = $('#scoreDiv').dataTable({
+    var tbl = $('#scoreTable').dataTable({
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
