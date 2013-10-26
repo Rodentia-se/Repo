@@ -308,7 +308,7 @@
     }
 
     function getScores($dbh, $tournament = 1, $division = 1, $groupBy = 'group by qs.machine_id', $orderBy = 'order by max(qs.points) desc, min(qs.place) asc') {
-      $query = getScoreSelect().'
+      $query = getScoreSelect(false).'
         where qs.game_id = '.$this->id;
       $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
       $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';

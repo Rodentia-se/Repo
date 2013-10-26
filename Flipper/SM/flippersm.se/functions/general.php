@@ -3179,7 +3179,7 @@
     }
   }
 
-  function getEntrySelect() {
+  function getEntrySelect($groupBy = true) {
     return '
       select
         qe.id as id,
@@ -3200,15 +3200,15 @@
         qe.country as country,
         qe.city_id as city_id,
         qe.city as city,
-        max(qs.score) as maxScore,
+        '.(($groupBy) ? 'max(qs.score) as maxScore,
         max(qs.points) as maxPoints,
-        min(qs.place) as bestPlace,
+        min(qs.place) as bestPlace,' : '').'
         "entry" as class
       from qualEntry qe
     ';
   }
 
-  function getScoreSelect() {
+  function getScoreSelect($groupBy = true) {
     return '
       select
         qs.id as id,
@@ -3220,9 +3220,9 @@
         qs.qualEntry_id as entry_id,
         qs.tournamentDivision_id as tournamentDivision_id,
         qs.tournamentEdition_id as tournamentEdition_id,
-        min(qs.place) as place,
+        '.(($groupBy) ? 'min(qs.place) as place,
         max(qs.points) as points,
-        max(qs.score) as score,
+        max(qs.score) as score,' : '').'
         if(qs.points is not null, 1, 0) as valid,
         if(qs.tournamentDivision_id < 3, qs.firstName, null) as firstName,
         if(qs.tournamentDivision_id < 3, qs.lastName, null) as lastName,
