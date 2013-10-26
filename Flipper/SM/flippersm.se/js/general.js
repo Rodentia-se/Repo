@@ -1924,9 +1924,7 @@ function getScores(sel) {
       'bDestroy': true,
       'bJQueryUI': true,
       'bServerSide': true,
-      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value,
-      'fnInitComplete': function() {
-      }
+      'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value
     });
     if ($('#scoreTable').find('td').html() != 'No data') {
       tbl.makeEditable({

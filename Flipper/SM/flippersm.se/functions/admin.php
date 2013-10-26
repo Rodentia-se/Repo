@@ -918,7 +918,7 @@
           <li>Each line is a score, but it can also be used to edit the entire entry.</li>
           <li>The first points and place fields and the player field are for the entire entry.</li>
           <ul>
-            <li>Note that changing an entry points/place/player will not be visible in all the lines for that entry until the table is redrawn or page reloaded.</li>
+            <li>Note that if you change player while viewing that players scores, the scores will disappear since they no longer belong to that player. Switch to the new player\'s score to see them again.</li>
           </ul>
           <li>Click the player or game fields to get a dropdown with possible values.</li>
           <li>Doubleclick the points, place and score fields to change the values.</li>
