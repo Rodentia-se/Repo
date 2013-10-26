@@ -14,6 +14,7 @@
       require_once(__ROOT__.'/functions/admin.php');
       $content .= getAdminMenu();
       $playerTables = getAdminPlayerTables($dbh, $ulogin);
+      $datatables = getDataTables();
       switch ($_REQUEST['tool']) {
         case 'player':
           // $content .= '<br /><br />'.getAdminPasswordResetForm($dbh);
@@ -49,12 +50,13 @@
           $content .= getAdminQualGroupTable($dbh);
           $content .= $playerTables['qualGroups'];
           $content .= '<p>'.$playerTables['csv'].'</p>';
+          $datatables = null;
         break;
         case 'score':
           $content .= getAdminScoreTable($dbh);
         break;
       }
-      $content .= getDataTables();
+      $content .= $datatables;
     } else {
       $content .= 'You do not have access to this page';
     }
