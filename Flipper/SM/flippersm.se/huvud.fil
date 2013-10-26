@@ -29,6 +29,7 @@
     <![endif]-->
   </head>
   <body
+    <a href="https://plus.google.com/113331404073472052354" rel="publisher" style="display: none;">Google+</a>
     <?php
      switch ($s) {
        case 'anmal':

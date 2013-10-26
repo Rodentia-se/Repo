@@ -3060,12 +3060,12 @@ function divFade(parent, msg, moveOut) {
     parent.appendChild(div);
   }
   $(div).show();
-  fade(div, msg.reason, msg.success, 60000);
+  fade(div, msg.reason, msg.success, 4000);
   setTimeout(function() {
     if(div && div.parentNode) {
       div.parentNode.removeChild(div);
     }
-  }, 60000);
+  }, 6000);
 }
 
 function fade(el, text, success, start, duration) {
