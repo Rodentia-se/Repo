@@ -1933,6 +1933,7 @@ function getScores(sel) {
       'bProcessing': true,
       'bDestroy': true,
       'bJQueryUI': true,
+      'bServerSide': true,
       'sAjaxSource': baseHref + '/ajax/getScores.php?type=' + sel.name + '&id=' + sel.value,
       'fnInitComplete': function() {
       }
@@ -1957,6 +1958,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlayer.php'
           },
@@ -1970,6 +1972,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeEntryPoints.php'
           },
@@ -1983,6 +1986,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeEntryPlace.php'
           },
@@ -2002,6 +2006,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScoreGame.php'
           },
@@ -2014,6 +2019,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScore.php'
           },
@@ -2026,6 +2032,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePoints.php'
           },
@@ -2038,6 +2045,7 @@ function getScores(sel) {
               var json = JSON.parse(value);
               this.innerHTML = json.value;
               divFade(this, json);
+              $('#' + type + 'Table').dataTable().fnReloadAjax();
             },
             sUpdateURL: baseHref + '/ajax/changeScorePlace.php'
           }
