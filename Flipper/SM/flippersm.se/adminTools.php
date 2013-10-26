@@ -50,10 +50,10 @@
           $content .= getAdminQualGroupTable($dbh);
           $content .= $playerTables['qualGroups'];
           $content .= '<p>'.$playerTables['csv'].'</p>';
-          $datatables = null;
         break;
         case 'score':
           $content .= getAdminScoreTable($dbh);
+          $datatables = null;
         break;
       }
       $content .= $datatables;
