@@ -25,7 +25,7 @@
                   (($qualScore->tournamentDivision_id == 3) ? 'Team' : (($qualScore->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
                   $qualScore->game,
                   $qualScore->score,
-                  (($qualScore->points) ? round($qualScore->points) : null,
+                  (($qualScore->points) ? round($qualScore->points) : null),
                   $qualScore->place
                 );
               }
