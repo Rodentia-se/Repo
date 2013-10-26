@@ -13,7 +13,12 @@
           $obj = ($type == 'game') ? getGameById($dbh, $id) : (($type == 'team') ? getTeamById($dbh, $id) : getPlayerById($dbh, $id));
           if ($obj) {
             $qualScores = $obj->getScores($dbh, 1, false);
-            if (is_array($qualScores) && count($qualScores > 1)) {
+            if (is_array($qualScores) && count($qualScores) > 1) {
+              $json = array(
+                'sEcho' => $_REQUEST['sEcho'],
+                'iTotalRecords' => count($qualScores),
+                'iTotalDisplayRecords' => count($qualScores),
+              );
               foreach ($qualScores as $qualScore) {
                 $qualEntry = $qualScore->getEntry($dbh);
                 $json[] = array(
@@ -29,6 +34,8 @@
                   $qualScore->place
                 );
               }
+              $json['sEcho'] = $_REQUEST['sEcho'];
+              $json['iTotalRecords'] = count($qualScores);
               echo '{"aaData": '.json_encode($json).'}';
             } else {
               echo '{"aaData": []}';
