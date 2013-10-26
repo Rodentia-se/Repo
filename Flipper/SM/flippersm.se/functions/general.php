@@ -2241,7 +2241,7 @@
   }
   
   function getMachines($dbh, $where, $order = 'order by g.name') {
-    $query = getGameSelect();
+    $query = getGameSelect(true);
     $where = preg_replace('/ id /', ' ma.id ', $where);
     $where = preg_replace('/ game_id /', ' ma.game_id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
