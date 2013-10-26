@@ -21,7 +21,7 @@
               );
               foreach ($qualScores as $qualScore) {
                 $qualEntry = $qualScore->getEntry($dbh);
-                $json['aaData'][] = array(
+                $json->aaData[] = array(
                   $qualScore->id,
                   $qualEntry->id,
                   (($qualScore->tournamentDivision_id == 3) ? $qualScore->team : $qualScore->player),
