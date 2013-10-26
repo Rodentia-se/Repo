@@ -3222,7 +3222,10 @@
         qs.tournamentEdition_id as tournamentEdition_id,
         '.(($groupBy) ? 'min(qs.place) as place,
         max(qs.points) as points,
-        max(qs.score) as score,' : '').'
+        max(qs.score) as score,' : '
+        qs.place as place,
+        qs.points as points,
+        qs.score as score,').'
         if(qs.points is not null, 1, 0) as valid,
         if(qs.tournamentDivision_id < 3, qs.firstName, null) as firstName,
         if(qs.tournamentDivision_id < 3, qs.lastName, null) as lastName,
