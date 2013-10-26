@@ -3052,12 +3052,12 @@ function tshirtChanged(el) {
 function divFade(parent, msg, moveOut) {
   var div = document.createElement('div');
   div.className = 'errorSpan toolTip';
-  parent.appendChild(div);
   if (moveOut) {
-    var offset = $(div).offset();
+    var offset = $(parent).offset();
     $(div).prependTo('body');
-    $(div).css('position', 'absolute');
-    $(div).css(offset);
+    $(div).offset(offset);
+  } else {
+    parent.appendChild(div);
   }
   $(div).show();
   fade(div, msg.reason, msg.success, 60000);
