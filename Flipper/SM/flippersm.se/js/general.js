@@ -1909,6 +1909,7 @@ function adminPlace(sel) {
 
 function getScores(sel) {
   if (sel.value != 0) {
+    $('#scoreDiv').show();
     if (sel.name != 'player') {
       selectOption(document.getElementById('player'), 0);
     }

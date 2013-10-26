@@ -925,8 +925,8 @@
           <li>All changes are instant!</li>
           <ul>
             <li>Dropdown values are saved when choosing them. Choosing "<span class="italic">Choose...</span>" will remove the player / game from that entry / score.</li>
-            <li>Points/place/game values are saved with the enter key or by clicking somewhere else on the page.</li>
-            <li>Setting place to 0 will remove the place, but setting points or score to 0 will set them to an actual 0.</li>
+            <li>Numeric values are saved with the enter key or by clicking somewhere else on the page.</li>
+            <li>Setting place to 0 will remove the place, but setting points or score to 0 will set them to an actual 0. Submit an empty enter to remove them.</li>
           </ul>
           <li>ID, entry and division are not editable.</li>
         </ul>
@@ -938,7 +938,7 @@
       $games = getGames($dbh);
       $content .= '<label for="gameSelect">Game:</label>'.createSelect($games, 'game', 0, 'getScores').'</p>';
       $content .= '
-        <div id="scoreDiv">
+        <div id="scoreDiv" style="display: none;">
           <table id="scoreTable">
             <thead>
               <tr>
@@ -955,9 +955,6 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td valign="top" colspan="10" class="dataTables_empty">No matching records found</td>
-              </tr>
             </tbody>
           </table>
         </div>
