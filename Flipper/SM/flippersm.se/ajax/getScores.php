@@ -20,7 +20,7 @@
                   $qualScore->id,
                   $qualEntry->id,
                   (($qualScore->tournamentDivision_id == 3) ? $qualScore->team : $qualScore->player),
-                  (($qualEntry->points) ? round($qualEntry->points) : null,
+                  (($qualEntry->points) ? round($qualEntry->points) : null),
                   $qualEntry->place,
                   (($qualScore->tournamentDivision_id == 3) ? 'Team' : (($qualScore->tournamentDivision_id == 2) ? 'Classics' : 'Main')),
                   $qualScore->game,
