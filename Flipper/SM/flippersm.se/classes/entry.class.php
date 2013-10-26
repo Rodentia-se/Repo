@@ -49,7 +49,7 @@
     }
 
     function getScores($dbh, $groupBy = 'group by qs.machine_id', $orderBy = 'order by max(qs.points) desc, min(qs.place) asc') {
-      $query = getScoreSelect().'
+      $query = getScoreSelect(($groupBy) ? true : false).'
         where qs.qualEntry_id = '.$this->id;
       $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
       $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';
@@ -128,7 +128,7 @@
         $update[':city'] = $this->city;
         $update[':id'] = $this->id;
         if ($scores) {
-          $qualScores = $this->getScores($dbh);
+          $qualScores = $this->getScores($dbh, false, false);
           foreach ($qualScores as $qualScore) {
             $qualScore->setPlayer($dbh, $player, false);
           }
@@ -172,7 +172,7 @@
         $update[':city'] = $this->city;
         $update[':id'] = $this->id;
         if ($scores) {
-          $qualScores = $this->getScores($dbh);
+          $qualScores = $this->getScores($dbh, false, false);
           foreach ($qualScores as $qualScore) {
             $qualScore->setTeam($dbh, $team, false);
           }
