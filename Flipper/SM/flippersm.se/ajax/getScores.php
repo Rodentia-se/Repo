@@ -13,7 +13,7 @@
           $obj = ($type == 'game') ? getGameById($dbh, $id) : (($type == 'team') ? getTeamById($dbh, $id) : getPlayerById($dbh, $id));
           if ($obj) {
             $qualScores = $obj->getScores($dbh, 1, false, false, false);
-            if (is_array($qualScores) && count($qualScores) > 1) {
+            if (is_array($qualScores) && count($qualScores) > 0) {
               $json = (object) array(
                 'sEcho' => $_REQUEST['sEcho'],
                 'iTotalRecords' => count($qualScores),
