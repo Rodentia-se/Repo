@@ -3057,8 +3057,10 @@ function divFade(parent, msg, moveOut) {
     var top = $(div).offset().top;
     var left = $(div).offset().left;
     $(div).prependTo('body');
-    $(div).offset().left = left;
-    $(div).offset().top = top;
+    $(div).offset({
+      'left': left,
+      'top': top
+    });
   }
   $(div).show();
   fade(div, msg.reason, msg.success, 4000);
