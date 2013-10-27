@@ -2676,7 +2676,7 @@
     return false;
   }
   
-  function getPlayerSelect(){
+  function getPlayerSelect($extra = null){
     $query = '
       select 
         p.id as id,
@@ -2742,6 +2742,7 @@
         m.tournamentEdition_id as tournamentEdition_id,
         p.username as username,
         if(p.password is null,1,0) as passwordRequired
+        '.(($extra) ? ', '.$extra : '').'
       from person p
       left join player m
         on m.person_id = p.id and m.tournamentDivision_id = 1

@@ -76,7 +76,10 @@
             <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'
             <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a>
             <br />Account: '.$owner->account.'</a>
-            <br />The owner has '.(($this->ownerPaid) ? '' : 'NOT ').'been paid for this game
+            <br />
+              <input type="checkbox" id="'.$this->machine_id.'_ownerPaid" onclick="ownerPaid(this);" '.(($this->ownerPaid) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ownerPaidSpan"></span>
+              The owner ha been paid for this game
           </div>
         ';
       } else {
