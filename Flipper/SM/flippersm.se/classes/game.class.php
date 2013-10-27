@@ -75,8 +75,8 @@
             <br />Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'
             <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'
             <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a>
-            <br />Account: <a href="mailto:'.$owner->account.'">'.$owner->account.'</a>
-            <br />The owner has '.(($this->ownerPaid) ? '': 'NOT ').'been paid for this game';
+            <br />Account: '.$owner->account.'</a>
+            <br />The owner has '.(($this->ownerPaid) ? '' : 'NOT ').'been paid for this game
           </div>
         ';
       } else {
