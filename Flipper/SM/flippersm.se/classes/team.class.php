@@ -5,6 +5,8 @@
     public $initials;
     public $player_ids = [];
     public $players = [];
+    public $qualPlace;
+    public $place;
     public $contactPlayer_id;
     public $registerPerson_id;
     public $contactPlayer_name;

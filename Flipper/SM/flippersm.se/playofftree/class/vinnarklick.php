@@ -21,7 +21,6 @@ class vinnarklick {
 	protected $avancemang = 0;
 	protected $noc;
 	protected $setsInMatch;
-	private $creamfiles;
 
 	public function __construct() {
 
@@ -33,7 +32,6 @@ class vinnarklick {
 
 		$this->noc = $_SESSION['noc'];
 		$this->setsInMatch = $_SESSION['sim'];
-		$this->creamfiles = $_SESSION['creamfiles'];
 
 		$this->setVinnare();
 
@@ -110,30 +108,19 @@ class vinnarklick {
 	protected function newMatch() {
 
 		// Calculate the next matchid in the tree
-		if (($this->creamfiles == 2) && ($this->matchid <= $this->noc-($this->noc/2))) {
+		$theNewMatchID = ((($this->noc - $this->matchid)/2) + $this->matchid);
+		$theNewMatchID = round($theNewMatchID);
 
-			$theNewMatchID = $this->matchid + ($this->noc / (2 + $this->creamfiles));
-			echo "BULTTUUTAN";
+		echo "<p>Nya matchid:t " . $theNewMatchID;
+		echo "<p>NOC: " . $this->noc;
+		echo "<p>Avanc: " . $this->avancemang;
+
+
+		// If this player should be on top... (previous matchid was odd)
+		if ($this->matchid&1)
 			$whichplayer = "playerA";
-		}
-		else {
-
-			$theNewMatchID = ((($this->noc - $this->matchid)/2) + $this->matchid);
-			$theNewMatchID = round($theNewMatchID);
-
-			echo "<p>Nya matchid:t " . $theNewMatchID;
-			echo "<p>NOC: " . $this->noc;
-			echo "<p>Avanc: " . $this->avancemang;
-	
-			echo "creamfiles: " . tournament::$creamfiles;
-
-			// If this player should be on top... (previous matchid was odd)
-			if ($this->matchid&1)
-				$whichplayer = "playerA";
-			else 
-				$whichplayer = "playerB";
-
-		}
+		else 
+			$whichplayer = "playerB";
 
 		// Check if it exists.
 		$connect = new uppkoppling();
@@ -172,11 +159,4 @@ class vinnarklick {
 }
 
 $klicket = new vinnarklick();
-
-// send user back to the full tree.
-   echo "<script type='text/javascript'>
-   			document.location.href = '../treeclient.php';
-		</script>";
-   exit;     
- 
 ?>

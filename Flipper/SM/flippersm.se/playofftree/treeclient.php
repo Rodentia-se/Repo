@@ -3,11 +3,11 @@
 
 session_start();
 
-
 include_once "class/tournament.php";
 include "class/uppkoppling.php";
 include "class/setupTree.php";
 include "class/drawTree.php";
+include "statictest.php";
 
 // Sätt all felrapportering PÅ.
    ini_set('display_errors',1);
@@ -21,24 +21,22 @@ include "class/drawTree.php";
 <head>
 	<title>Tree-testing</title>
 	<meta charset = "UTF-8">
-	<link rel = 'stylesheet' type = 'text/css' href = 'css/treestyle.css'>
-	<link rel = 'stylesheet' type = 'text/css' href = 'css/treestyle_creamfile.css'>
-	<link rel = 'stylesheet' type = 'text/css' href = 'css/mi.css'>
+	<link rel = 'stylesheet' type = 'text/css' href = 'treestyle.css'>
 </head>
 
 <body>
+
 <?php
 
 
 	// Setup tree with initial eight players
 
 	$tree = new tournament();
-	$tree->setNoc(64);
+	$tree->setNoc(16);
 	$tree->setCreamfiles(2);
 
 	$_SESSION['noc'] = $tree->getNoc();
 	$_SESSION['sim'] = tournament::$numberOfSets;
-	$_SESSION['creamfiles'] = tournament::$creamfiles; 
 
 	#$setupTree = new setupTree();
 	#$setupTree->insertSets();
@@ -51,7 +49,6 @@ include "class/drawTree.php";
 	// var_dump($drawer->getSets(2));
 
 	# $tree8 = new drawTree($comp, $filer, $rankarray, $tagarray);
-
 
 ?>
 

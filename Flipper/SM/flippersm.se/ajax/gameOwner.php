@@ -18,6 +18,7 @@
                 $game->owner_id = $owner->id;
                 $game->owner = $owner->name;
                 $game->ownerShortName = $owner->shortName;
+                $game->ownerAccount = $owner->account;
                 $result = (object) array(
                   'success' => true,
                   'reason' => $owner->name.' has been set as owner of '.$game->name,

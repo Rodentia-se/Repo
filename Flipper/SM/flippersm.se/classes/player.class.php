@@ -45,8 +45,10 @@
     public $adminLevel;
     public $classicsPlayerId;
     public $mainPlayerId;
+    public $qualPlace;
     public $place;
     public $wpprPlace;
+    public $classicsQualPlace;
     public $classicsPlace;
     public $classicsWpprPlace;
     public $qualGroup_id;
@@ -65,6 +67,7 @@
     public $class = 'player';
     public $paid;
     public $payDate;
+    public $ownerPaid;
     public $costs = [];
     
     public function __construct($data = null, $type = 'array') {

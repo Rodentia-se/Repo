@@ -4,7 +4,7 @@
 class tournament {
 
 	public static $competitionid = 1;
-	public static $numberOfCompetitors = 2;
+	public static $numberOfCompetitors = 55;
 	public static $numberOfSets = 3;
 	public static $creamfiles = 0;
 
