@@ -610,7 +610,7 @@ GAME.prototype = {
       year: false,
       manufacturer: addLink(manufacturer(this.manufacturer_id)),
       ipdb: addIpdbLink(this.ipdb_id),
-      rules: ((this.rules.length > 5) ? addRulesLink(this.rules) : '')
+      rules: ((this.rules && this.rules.length > 5) ? addRulesLink(this.rules) : '')
     }
   }
 }
