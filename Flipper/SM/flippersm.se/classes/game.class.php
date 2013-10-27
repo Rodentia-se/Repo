@@ -81,7 +81,7 @@
               <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ownerPaidSpan"></span>
               The owner has been paid for this game
             <br />
-              <input type="checkbox" id="'.$owner->id.'_ownerAllPaid" onclick="ownerAllPaid(this);" '.(($owner->Paid) ? 'checked' : '').'>
+              <input type="checkbox" id="'.$owner->id.'_ownerAllPaid" onclick="ownerAllPaid(this);" '.(($owner->paid) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$owner->id.'_ownerAllPaidSpan"></span>
               The owner has been paid for all his/her games
           </div>
