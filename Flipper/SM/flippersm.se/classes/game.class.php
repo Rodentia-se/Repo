@@ -75,11 +75,15 @@
             <br />Address: '.$owner->streetAddress.', '.$owner->zipCode.(($city) ? ', '.$city->getLink() : '').'
             <br />Phone: '.$owner->telephoneNumber.' '.$owner->mobileNumber.'
             <br />Email: <a href="mailto:'.$owner->mailAddress.'">'.$owner->mailAddress.'</a>
-            <br />Account: '.$owner->account.'</a>
+            '.(($owner->account) ? '<br />Account: '.$owner->account.'</a>' : '').'
             <br />
               <input type="checkbox" id="'.$this->machine_id.'_ownerPaid" onclick="ownerPaid(this);" '.(($this->ownerPaid) ? 'checked' : '').'>
               <span class="error errorSpan toolTip" id="'.$this->machine_id.'_ownerPaidSpan"></span>
-              The owner ha been paid for this game
+              The owner has been paid for this game
+            <br />
+              <input type="checkbox" id="'.$owner->id.'_ownerAllPaid" onclick="ownerAllPaid(this);" '.(($owner->Paid) ? 'checked' : '').'>
+              <span class="error errorSpan toolTip" id="'.$owner->id.'_ownerAllPaidSpan"></span>
+              The owner has been paid for all his/her games
           </div>
         ';
       } else {
