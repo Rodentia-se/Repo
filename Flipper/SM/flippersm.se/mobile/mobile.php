@@ -254,7 +254,7 @@
         $this->country = $aPlayer->country;
       }
       $qrText = "pid=" . $playerId . "&tag=" .  $this->tag;
-      QRcode::png($qrText, $this->playerImg, 0, 6, 0);
+      QRcode::png($qrText, $this->playerImg, 0, 12, 0);
     }
     public function initials()
     {
