@@ -35,10 +35,11 @@
 		$gameComment = "SOL always gives 50.000.000";
 
 		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"></head>\n';
-		echo '<div id="gameNumber">' . $gameNumber . '</div>\n';
-		echo '<div id="gameAcronum">' . $gameAcronym . '</div>\n';
-		echo '<div id="gameDivision">' . $gameDivision . '</div>\n';
-		echo '<div id="gameComment">' . $gameComment . '</div>\n';
+		echo '<div id="gameNumber">' . $gameNumber . "</div>\n";
+		echo '<div id="gameAcronum">' . $gameAcronym . "</div>\n";
+		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
+		echo '<div id="gameComment">' . $gameComment . "</div>\n";
+		echo '<div id="gameScan"><img src="' . $oLabel->image() . "\" /></div>\n";
 	}
 
 	if($bAutoPrint != null && $bAutoPrint == "true"){
