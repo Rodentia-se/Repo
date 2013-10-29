@@ -20,7 +20,6 @@
 
 	if (!$bigLabel)	
 	{
-		echo "small label";
 		echo "<div>";
 		echo "<table  width=\"288pt\" style=\"table-layout: fixed;word-wrap:break-word;\" ><tr><td width=\"50%\">";
 			echo "<center><b>" . $oLabel->name() . "</b><br/>(ID:" . $iIDGame . ")</center></td><td>";
@@ -30,7 +29,14 @@
 	}
 	else
 	{
-		echo "big label";
+		$gameNumber = 10;
+		$gameAcronym = "AFM";
+		$gameDivision = "Main";
+		$gameComment = "SOL always gives 50.000.000";
+		echo '<div id="gameNumber">' . $gameNumber . '</div>';
+		echo '<div id="gameAcronum">' . $gameAcronym . '</div>';
+		echo '<div id="gameDivision">' . $gameDivision . '</div>';
+		echo '<div id="gameComment">' . $gameComment . '</div>';
 	}
 
 	if($bAutoPrint != null && $bAutoPrint == "true"){
