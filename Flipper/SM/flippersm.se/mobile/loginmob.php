@@ -13,7 +13,8 @@
     if(!$oUser->logIn($sUsername, $sPassword)){
       echo "statusCode=1";
     } else {
-      echo "statusCode=0";
+      $adminLevel = $oUser->getAdminLevel();
+      echo "statusCode=0"."&adminLevel=".$adminLevel;
     }
   } else {
     echo "statusCode=1";

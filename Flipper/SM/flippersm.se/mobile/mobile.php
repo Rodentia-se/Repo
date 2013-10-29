@@ -88,16 +88,22 @@
 
   class User
   {
+    private $adminLevel;
+
     public function logIn($userName, $passWord)
     {
       $result = false;
-      $adminLevel = getPlayerAdminLevel(DataMapper::$db, $userName);
-      if ($adminLevel > 0)
+      $this->adminLevel = getPlayerAdminLevel(DataMapper::$db, $userName);
+      if ($this->admLevel > 0)
       {
         LoginMapper::$ulogin->Authenticate($userName, $passWord);
         $result = LoginMapper::$ulogin->IsAuthSuccess();
       }
       return $result;
+    }
+    public function getAdminLevel()
+    {
+      return $this->adminLevel;
     }
   }
 
