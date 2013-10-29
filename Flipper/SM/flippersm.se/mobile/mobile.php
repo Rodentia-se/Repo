@@ -94,7 +94,7 @@
     {
       $result = false;
       $this->adminLevel = getPlayerAdminLevel(DataMapper::$db, $userName);
-      if ($this->admLevel > 0)
+      if ($this->adminLevel > 0)
       {
         LoginMapper::$ulogin->Authenticate($userName, $passWord);
         $result = LoginMapper::$ulogin->IsAuthSuccess();
