@@ -11,8 +11,8 @@
     public $player_id;
     public $volunteer_id;
     public $class = 'timeSlot';
-    public $players = [];
-    public $potentialPlayers = [];
+    public $players = array();
+    public $potentialPlayers = array();
     
     public function __construct($data = null, $type = 'array') {
       switch ($type) {

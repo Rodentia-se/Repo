@@ -3,8 +3,8 @@
   class team extends base {
     
     public $initials;
-    public $player_ids = [];
-    public $players = [];
+    public $player_ids = array();
+    public $players = array();
     public $qualPlace;
     public $place;
     public $contactPlayer_id;

@@ -19,7 +19,7 @@
     public $addAction;
     public $addName;
     public $cancelAction;
-    public $options = [];
+    public $options = array();
     public $type = 'text';
     public $selectedValue;
     public $class = 'formInput';

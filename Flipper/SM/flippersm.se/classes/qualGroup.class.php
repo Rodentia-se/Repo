@@ -8,8 +8,8 @@
     public $startTime;
     public $endTime;
     public $class = 'qualGroup';
-    public $players = [];
-    public $potentialPlayers = [];
+    public $players = array();
+    public $potentialPlayers = array();
         
     function addPlayers($dbh, $players) {
       if ($players) {

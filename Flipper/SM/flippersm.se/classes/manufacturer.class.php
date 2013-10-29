@@ -3,7 +3,7 @@
   class manufacturer extends base {
     
     public $link;
-    public $games = [];
+    public $games = array();
     
     public $class = 'manufacturer';
     

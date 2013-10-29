@@ -13,7 +13,7 @@
     public $ifpaRank;
     public $isPerson;
     public $isPlayer;
-    public $player_ids = [];
+    public $player_ids = array();
     public $gender_id;
     public $gender;
     public $here;
@@ -62,13 +62,13 @@
     public $alloc;
     public $taskId;
     public $periodId;
-    public $qualGroups = [];
+    public $qualGroups = array();
     public $qualGroup;
     public $class = 'player';
     public $paid;
     public $payDate;
     public $ownerPaid;
-    public $costs = [];
+    public $costs = array();
     
     public function __construct($data = null, $type = 'array') {
       parent::__construct($data, $type);
