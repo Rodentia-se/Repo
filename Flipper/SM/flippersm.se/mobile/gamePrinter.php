@@ -39,7 +39,7 @@
 		echo '<div id="gameAcronum">' . $gameAcronym . "</div>\n";
 		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
-		echo '<div id="gameScan"><img src="' . $oLabel->image() . "\" /></div>\n";
+		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>\n";
 	}
 
 	if($bAutoPrint != null && $bAutoPrint == "true"){
