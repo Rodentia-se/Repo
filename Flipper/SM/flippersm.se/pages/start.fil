@@ -32,12 +32,12 @@ require_once 'php/Mobile_Detect.php';
 $detect = new Mobile_Detect;
  
 if ( $detect->isMobile() ) {
-	echo "<img src=\"bilder/foton/slide/slide1.jpg\" alt=\"\" />";
-	echo "<img src=\"bilder/foton/slide/slide2.jpg\" alt=\"\" />";
-	echo "<img src=\"bilder/foton/slide/slide3.jpg\" alt=\"\" />";
-	echo "<img src=\"bilder/foton/slide/slide4.jpg\" alt=\"\" />";
-	echo "<img src=\"bilder/foton/slide/slide5.jpg\" alt=\"\" />";
-	echo "<img src=\"bilder/foton/slide/slide6.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide1_lores.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide2_lores.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide3_lores.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide4_lores.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide5_lores.jpg\" alt=\"\" />";
+	echo "<img src=\"bilder/foton/slide/slide6_lores.jpg\" alt=\"\" />";
 }
 else {
 	echo "<img src=\"bilder/foton/slide/slide1.jpg\" alt=\"\" />";
