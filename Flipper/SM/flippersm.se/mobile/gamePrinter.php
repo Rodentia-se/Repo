@@ -2,7 +2,7 @@
 	require_once('../functions/general.php');
 	require_once('mobile.php');
 
-	echo "<html><body>";
+	echo "<html><body>\n";
 
 	$oHTTPContext = new HTTPContext();
 	$bAutoPrint = $oHTTPContext->getString("autoPrint");
@@ -33,15 +33,17 @@
 		$gameAcronym = "AFM";
 		$gameDivision = "Main";
 		$gameComment = "SOL always gives 50.000.000";
-		echo '<div id="gameNumber">' . $gameNumber . '</div>';
-		echo '<div id="gameAcronum">' . $gameAcronym . '</div>';
-		echo '<div id="gameDivision">' . $gameDivision . '</div>';
-		echo '<div id="gameComment">' . $gameComment . '</div>';
+
+		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"></head>\n';
+		echo '<div id="gameNumber">' . $gameNumber . '</div>\n';
+		echo '<div id="gameAcronum">' . $gameAcronym . '</div>\n';
+		echo '<div id="gameDivision">' . $gameDivision . '</div>\n';
+		echo '<div id="gameComment">' . $gameComment . '</div>\n';
 	}
 
 	if($bAutoPrint != null && $bAutoPrint == "true"){
 		echo "<script>window.print()</script>";
 	}
-	echo "</body></html>";
+	echo "</body></html>\n";
 
 ?>
