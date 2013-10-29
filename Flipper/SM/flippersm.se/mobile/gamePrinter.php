@@ -8,6 +8,15 @@
 	$bAutoPrint = $oHTTPContext->getString("autoPrint");
 
 	$iIDGame = $oHTTPContext->getInt("gameId");
+	$info = $oHTTPContext->getInt("info");
+	if ($info == 1)
+	{
+		echo "big label";
+	}
+	else
+	{
+		echo "small label";
+	}
 
 	$oLabel = new GameLabel();
 	$oLabel->FromGame($iIDGame);
