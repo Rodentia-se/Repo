@@ -47,14 +47,16 @@
 		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
 		*/
-		echo '<div class="allComments"></div>\n';
+		echo '<div class="allComments"></div>';
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 		echo '<script>
+		$( document ).ready(function() {
 		$("#gameInfoBalls").appendTo("#allComments");
 		$("#gameInfoExtraBalls").appendTo("#allComments");
 		$("#gameInfoOnePlayerAllowed").appendTo("#allComments");
 		$("#gameInfoComment").appendTo("#allComments");
+		}
 		</script>';
 
 	}
