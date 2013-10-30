@@ -190,7 +190,7 @@
       $this->setOwner($dbh);
     }
     
-    function getInfo($dbh, $type = 'array', $idPrefix = 'gameInfo') {
+    function getPrintInfo($dbh, $type = 'array', $idPrefix = 'gameInfo') {
       $info = array(
         'machine_id' => 'ID: '.$this->machine_id,
         'shortName' => $this->shortName,
