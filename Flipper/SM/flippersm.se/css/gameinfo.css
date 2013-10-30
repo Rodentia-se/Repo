@@ -1,31 +1,71 @@
-#gameInfoMachine_id
-{
-	color:red;
+@font-face {
+  font-family: 'YukarimobileRegular';
+  src: url('../fonts/yukarimobil-webfont.eot');
+  src: url('../fonts/yukarimobil-webfont.eot?#iefix') format('embedded-opentype'),
+       url('../fonts/yukarimobil-webfont.woff') format('woff'),
+       url('../fonts/yukarimobil-webfont.ttf') format('truetype'),
+       url('../fonts/yukarimobil-webfont.svg#YukarimobileRegular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-#gameInfoShortName
-{
-	color:black;
+
+#gameInfoMachine_id {
+	position: absolute;
+	left: 45px;
+	top: 980px;
+	font: bold 1.4em arial;
 }
-#gameInfoBalls
-{
-	color:blue;
+
+#gameInfoShortName {
+	position: absolute;
+	width: 260px;
+	left: 420px;
+	top: 0px;
+	font: bold 3.5em arial;
+	margin-left: 0.03em;
+	text-align: right;
 }
-#gameInfoDivision
-{
-	color:blue;
+
+#allComments {
+	position: absolute;
+	left: 420;
+	top: 60px;
+	font: 1.3em arial;
+	line-height: 1.5em;
+	width: 260px;
+	text-align: right;
 }
-#gameInfoExtraBalls
-{
-	color:blue;
+
+#gameInfoBalls {
 }
-#gameInfoOnePlayerAllowed
-{
-	color:blue;
+
+#gameInfoDivision {
+	position: absolute;
+	left: 30px;
+	top: -50px;
+	font: 35em YukarimobileRegular;
+	margin-left: 0.03em;
 }
-#gameInfoComment
-{
-	color:blue;
+
+#gameInfoExtraBalls {
 }
-#gameScan
-{
+
+#gameInfoOnePlayerAllowed {
+}
+
+#gameInfoComment {
+}
+
+#logo {
+	position: absolute;
+	left: 490px;
+	top: 830;
+	width: 200px;
+}
+
+#gameScan {
+	position: absolute;
+	left: 30px;
+	top: 550px;
+
 }
