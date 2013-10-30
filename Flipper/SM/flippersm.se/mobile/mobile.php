@@ -243,7 +243,7 @@
     private $playerImg = MOB_LOAD_URL_PLAYER;
     public function FromPlayer($playerId)
     {
-      $oPlayer = new Player();
+      $oPlayer = new MPlayer();
 
       $aPlayer = $oPlayer->getPlayer($playerId);
       if ($aPlayer != false)
