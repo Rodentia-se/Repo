@@ -4,12 +4,12 @@
 
 	echo "<html><body>";
 
-	$oHTTPContext = new HTTPContext();
+	$oHTTPContext = new MHTTPContext();
 	$bAutoPrint = $oHTTPContext->getString("autoPrint"); //adminPlayersEdit
 
 	$iIDPlayer = $oHTTPContext->getInt("playerId");
 
-	$oLabel = new PlayerLabel();
+	$oLabel = new MPlayerLabel();
 	$oLabel->FromPlayer($iIDPlayer);
 
 	echo "<div>";
