@@ -1,24 +1,31 @@
-#gameNumber
+#gameInfoMachine_id
 {
 	color:red;
 }
-#gameAcronym
+#gameInfoShortName
 {
 	color:black;
 }
-#gameDivision
+#gameInfoBalls
 {
 	color:blue;
 }
-#gameComment
+#gameInfoDivision
 {
-	color:pink;
+	color:blue;
+}
+#gameInfoExtraBalls
+{
+	color:blue;
+}
+#gameInfoOnePlayerAllowed
+{
+	color:blue;
+}
+#gameInfoComment
+{
+	color:blue;
 }
 #gameScan
 {
-}
-#scanImage
-{
-	height: 400;
-	width: 400;
 }
