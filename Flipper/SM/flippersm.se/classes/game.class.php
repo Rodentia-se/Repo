@@ -14,7 +14,7 @@
     public $side;
     public $recreational;
     public $gameType;
-    public $extraBall;
+    public $extraBalls;
     public $balls;
     public $onePlayerAllowed;
     public $type;
@@ -188,6 +188,25 @@
 
     function removeOwner($dbh) {
       $this->setOwner($dbh);
+    }
+    
+    function getInfo($dbh) {
+      $info = array(
+        'machine_id' => 'ID: '.$this->machine_id,
+        'shortName' => $this->shortName,
+        'balls' => ($this->balls) ? $this->balls.' kulor' : (($this->classics) ? '3 kulor' : '5 kulor'),
+        'division' => ($this->tournamentDivision_id == 1) ? 'A' : (($this->tournamentDivision_id == 2) ? 'D' : 'C')
+      );
+      if ($this->extraBalls) {
+        $info['extraBalls'] = 'Extrabollar är på';
+      }
+      if ($this->onePlayerAllowed) {
+        $info['onePlayerAllowed'] = 'Kan spelas ensam';
+      }
+      if ($this->comment) {
+        $info['comment'] = $this->comment;
+      }
+      return $info;
     }
 
     function getAdminInfo($dbh, $type = 'all') {
