@@ -32,6 +32,7 @@
         $div = $oGame->getDivision($iIDGame);
         if ($div != false){
           $entry = $oEntry->fromPlayerAndDivision($iIDPlayer, $div);
+          var_dump($entry);
           $iIDEntry = (string)$entry->id;
         }
       }
