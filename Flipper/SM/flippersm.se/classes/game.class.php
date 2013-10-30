@@ -190,7 +190,7 @@
       $this->setOwner($dbh);
     }
     
-    function getInfo($dbh, $type = 'array') {
+    function getInfo($dbh, $type = 'array', $idPrefix = 'gameInfo') {
       $info = array(
         'machine_id' => 'ID: '.$this->machine_id,
         'shortName' => $this->shortName,
@@ -209,7 +209,7 @@
       switch ($type) {
         case 'div':
           foreach($info as $key => $value) {
-            $return .= '<div id="gameInfo'.ucfirst($key).'">'.$value.'</div>';
+            $return .= '<div id="'.$idPrefix.(($idPrefix) ? ucfirst($key) : $key).'">'.$value.'</div>';
           }
         break;
         default:
