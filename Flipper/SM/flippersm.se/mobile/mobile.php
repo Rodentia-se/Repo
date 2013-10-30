@@ -356,6 +356,7 @@
       {
         return "<div>Game not found.</div>";
       }
+      var_dump($game);
       return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
