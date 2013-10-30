@@ -47,7 +47,7 @@
 		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
 		*/
-		echo '<div class="allComments"></div>';
+		echo '<div id="allComments"></div>';
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 		echo '<script type="text/javascript" src="../js/contrib/jquery.js">
