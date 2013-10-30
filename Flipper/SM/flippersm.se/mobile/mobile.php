@@ -349,12 +349,11 @@
     {
       return $this->publicImg;
     }
-  }
-
-  public function getInfo($gameId)
-  {
-    $game = getMachineById(DataMapper::$db, $gameId);
-    return $game->getInfo(DataMapper::$db, 'div', 'gameInfo');
+    public function getInfo($gameId)
+    {
+      $game = getMachineById(DataMapper::$db, $gameId);
+      return $game->getInfo(DataMapper::$db, 'div', 'gameInfo');
+    }
   }
 
   class Validator
