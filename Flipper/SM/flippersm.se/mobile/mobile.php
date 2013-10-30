@@ -329,7 +329,7 @@
     private $name;
     private $publicImg = MOB_SAVE_URL_GAME;
     private $gameImg = MOB_LOAD_URL_GAME;
-    public function FromGame($gameId)
+    public function FromGame($gameId, $size = 4)
     {
       $aGame = getMachineById(DataMapper::$db, $gameId);
 
@@ -339,7 +339,7 @@
       }
 
       $qrText = "gid=" . $gameId . "&game=" .  $this->name;
-      QRcode::png($qrText, $this->gameImg, 0, 4, 1);
+      QRcode::png($qrText, $this->gameImg, 0, $size, 1);
     }
     public function name()
     {
