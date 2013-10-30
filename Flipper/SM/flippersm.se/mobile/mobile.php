@@ -357,11 +357,7 @@
         return "<div>Game not found.</div>";
       }
       var_dump($game);
-      if (is_file(__ROOT__.'/classes/'.'game'.'.class.php')) {
-        echo 'Ja';
-      } else {
-        echo 'Nej';
-      }
+      echo get_class($game);
       return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
