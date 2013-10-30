@@ -6,7 +6,7 @@
 
   $here = $oHTTPContext->getString("here");
 
-  if ($here == 1)
+  if ($here == 1) {
     echo "statusCode=0";
   } else {
     echo "statusCode=1";
