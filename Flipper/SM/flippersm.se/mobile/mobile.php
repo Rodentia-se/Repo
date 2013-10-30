@@ -288,7 +288,7 @@
     private $teamImg = MOB_LOAD_URL_TEAM;
     public function FromTeam($teamId)
     {
-      $oTeam = new Team();
+      $oTeam = new MTeam();
 
       $aTeam = $oTeam->getTeam($teamId);
 
