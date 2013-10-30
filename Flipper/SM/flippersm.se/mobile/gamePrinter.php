@@ -50,15 +50,17 @@
 		echo '<div class="allComments"></div>\n';
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
-
-	}
-
-	if($bAutoPrint != null && $bAutoPrint == "true"){
 		echo '<script>
 		$("#gameInfoBalls").appendTo("#allComments");
 		$("#gameInfoExtraBalls").appendTo("#allComments");
 		$("#gameInfoOnePlayerAllowed").appendTo("#allComments");
 		$("#gameInfoComment").appendTo("#allComments");
+		</script>'
+
+	}
+
+	if($bAutoPrint != null && $bAutoPrint == "true"){
+		echo '<script>
 		window.print()</script>';
 	}
 	echo "</body></html>";
