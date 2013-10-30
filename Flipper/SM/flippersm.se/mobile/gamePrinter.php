@@ -48,16 +48,32 @@
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
 		*/
 		echo '<div id="allComments"></div>';
+		echo '<div id="gameInfoBallsNew"></div>
+<div id="gameInfoExtraBallsNew"></div>
+<div id="gameInfoOnePlayerAllowedNew"></div>
+<div id="gameInfoCommentNew"></div>
+'
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 		echo '<script type="text/javascript" src="../js/contrib/jquery.js">
 		<script>
-		$( document ).ready(function() {
-		$("#gameInfoBalls").appendTo("#allComments");
-		$("#gameInfoExtraBalls").appendTo("#allComments");
-		$("#gameInfoOnePlayerAllowed").appendTo("#allComments");
-		$("#gameInfoComment").appendTo("#allComments");
-		}
+$(document).ready(function() {
+    $("#allComments").append($("#gameInfoBallsNew"));
+    $("#gameInfoBallsNew").append($("#gameInfoBalls").html());
+    $("#allComments").append($("#gameInfoExtraBallsNew"));
+    $("#gameInfoExtraBallsNew").append($("#gameInfoExtraBalls").html());
+    $("#allComments").append($("#gameInfoOnePlayerAllowedNew"));
+    $("#gameInfoOnePlayerAllowedNew").append($("#gameInfoOnePlayerAllowed").html());
+    $("#allComments").append($("#gameInfoCommentNew"));
+    $("#gameInfoCommentNew").append($("#gameInfoComment").html());
+
+    $("#gameInfoBalls").hide();
+    $("#gameInfoExtraBalls").hide();
+    $("#gameInfoOnePlayerAllowed").hide();
+    $("#gameInfoComment").hide();
+
+
+});
 		</script>';
 
 	}
