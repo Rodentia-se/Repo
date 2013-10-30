@@ -78,7 +78,7 @@
     }
     public function setHere($id, $type)
     {
-      $player = getPlayerById(DataMapper::$db, $id))
+      $player = getPlayerById(DataMapper::$db, $id);
       if (!$player)
       {
         return false;
