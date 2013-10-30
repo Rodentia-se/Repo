@@ -256,11 +256,6 @@
       $qrText = "pid=" . $playerId . "&tag=" .  $this->tag;
       QRcode::png($qrText, $this->playerImg, 0, 6, 0);
     }
-    public function getInfo($gameId)
-    {
-      $game = getMachineById(DataMapper::$db, $gameId);
-      return $game->getInfo(DataMapper::$db, 'div', 'gameInfo');
-    }
     public function initials()
     {
       return $this->tag;
@@ -354,6 +349,12 @@
     {
       return $this->publicImg;
     }
+  }
+
+  public function getInfo($gameId)
+  {
+    $game = getMachineById(DataMapper::$db, $gameId);
+    return $game->getInfo(DataMapper::$db, 'div', 'gameInfo');
   }
 
   class Validator
