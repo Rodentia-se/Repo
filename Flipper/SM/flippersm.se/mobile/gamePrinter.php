@@ -16,10 +16,10 @@
 	}
 
 	$oLabel = new GameLabel();
-	$size = 20;
+	$size = 4;
 	if ($bigLabel)
 	{
-		$size = 12;
+		$size = 16;
 	}
 	$oLabel->FromGame($iIDGame, $size);
 
