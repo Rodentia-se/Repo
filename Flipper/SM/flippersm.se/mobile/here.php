@@ -2,7 +2,7 @@
   require_once('../functions/general.php');
   require_once('mobile.php');
 
-  $oHTTPContext = new HTTPContext();
+  $oHTTPContext = new MHTTPContext();
 
   $playerId = $oHTTPContext->getString("playerId");
   $here = $oHTTPContext->getString("here");
