@@ -357,6 +357,7 @@
         return "<div>Game not found.</div>";
       }
       var_dump($game);
+      echo $game->getIpdbLink();
       return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
