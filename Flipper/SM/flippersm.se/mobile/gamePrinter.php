@@ -16,7 +16,7 @@
 	}
 
 	$oLabel = new GameLabel();
-	$size = 12;
+	$size = 20;
 	if ($bigLabel)
 	{
 		$size = 12;
