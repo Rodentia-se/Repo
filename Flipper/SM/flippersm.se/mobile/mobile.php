@@ -207,7 +207,7 @@
   }
 
 
-  class Game
+  class mobGame
   {
     public function getDivision($idGame)
     {
