@@ -352,7 +352,7 @@
     public function getInfo($gameId)
     {
       $game = getMachineById(DataMapper::$db, $gameId);
-      return $game->getInfo(DataMapper::$db, 'div', 'gameInfo');
+      return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
 
