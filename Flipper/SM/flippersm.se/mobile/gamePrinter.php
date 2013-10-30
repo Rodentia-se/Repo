@@ -39,7 +39,7 @@
 		$gameDivision = "Main";
 		$gameComment = "SOL always gives 50.000.000";
 
-		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"><script type="text/javascript" src="https://www.flippersm.se/js/contrib/jquery.js"></script></head>\n';
+		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"><script type="text/javascript" src="https://www.flippersm.se/js/contrib/jquery.js"></script></head>';
 		echo $oLabel->getInfo($iIDGame);
 		/*
 		echo '<div id="gameNumber">' . $gameNumber . "</div>\n";
@@ -48,8 +48,8 @@
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
 		*/
 		echo '<div class="allComments"></div>\n';
-		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>\n";
-		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />\n';
+		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
+		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 
 	}
 
@@ -61,7 +61,6 @@
 		$("#gameInfoComment").appendTo("#allComments");
 		window.print()</script>';
 	}
-	echo "</body>\n
-	</html>\n";
+	echo "</body></html>";
 
 ?>
