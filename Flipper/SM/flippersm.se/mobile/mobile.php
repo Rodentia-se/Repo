@@ -352,6 +352,10 @@
     public function getInfo($gameId)
     {
       $game = getMachineById(DataMapper::$db, $gameId);
+      if (!$game)
+      {
+        return "<div>Game not found.</div>";
+      }
       return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
