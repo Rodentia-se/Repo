@@ -33,7 +33,7 @@
 
   LoginMapper::Init($ulogin);
 
-  class HTTPContext
+  class MHTTPContext
   {
     public function getString($name) 
     {
@@ -70,7 +70,7 @@
     }
   }
 
-  class Player
+  class MPlayer
   {
     public function getPlayer($id)
     {
@@ -78,7 +78,7 @@
     }
   }
 
-  class Team
+  class MTeam
   {
     public function getTeam($id)
     {
@@ -86,7 +86,7 @@
     }
   }
 
-  class User
+  class MUser
   {
     private $adminLevel;
 
@@ -107,7 +107,7 @@
     }
   }
 
-  class Entry
+  class MEntry
   {
     private $entry = null;
 
@@ -207,7 +207,7 @@
   }
 
 
-  class mobGame
+  class MGame
   {
     public function getDivision($idGame)
     {
@@ -216,7 +216,7 @@
     }
   }
 
-  class String
+  class MString
   {
     public function stripNonNumericChars($str)
     {
@@ -233,7 +233,7 @@
     }
   }
 
-  class PlayerLabel
+  class MPlayerLabel
   {
     private $tag;
     private $fname;
@@ -278,7 +278,7 @@
     }
   }
 
-  class TeamLabel
+  class MTeamLabel
   {
     private $tag;
     private $fname;
@@ -324,7 +324,7 @@
     }
   }
 
-  class GameLabel
+  class MGameLabel
   {
     private $name;
     private $publicImg = MOB_SAVE_URL_GAME;
@@ -360,7 +360,7 @@
     }
   }
 
-  class Validator
+  class MValidator
   {
       function positiveInt($inData)
       {

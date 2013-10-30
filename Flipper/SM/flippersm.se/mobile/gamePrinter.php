@@ -4,7 +4,7 @@
 
 	echo "<html><body>\n";
 
-	$oHTTPContext = new HTTPContext();
+	$oHTTPContext = new MHTTPContext();
 	$bAutoPrint = $oHTTPContext->getString("autoPrint");
 
 	$iIDGame = $oHTTPContext->getInt("gameId");
@@ -15,7 +15,7 @@
 		$bigLabel = true;
 	}
 
-	$oLabel = new GameLabel();
+	$oLabel = new MGameLabel();
 	$size = 4;
 	if ($bigLabel)
 	{
