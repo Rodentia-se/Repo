@@ -54,10 +54,12 @@
             $oEntry->updateScore($idScore, $iScore);
             $statusCode = "statusCode=0";          // entry score registred
           } else {
+            echo "problem with score";
             $statusCode = "statusCode=2";          // score invalid
           }
         }
       } else {
+        echo "Problem with entry";
         $statusCode = "statusCode=2";
       }
     } else {
