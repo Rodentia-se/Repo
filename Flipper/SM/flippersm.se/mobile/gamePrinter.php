@@ -34,11 +34,14 @@
 		$gameDivision = "Main";
 		$gameComment = "SOL always gives 50.000.000";
 
+		echo $oLabel->getInfo($iIDGame);
+		/*
 		echo "<head><link rel=\"stylesheet\" type=\"text/css\" href=\"../css/gameinfo.css\"></head>\n";
 		echo '<div id="gameNumber">' . $gameNumber . "</div>\n";
 		echo '<div id="gameAcronum">' . $gameAcronym . "</div>\n";
 		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
+		*/
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>\n";
 	}
 
