@@ -357,7 +357,11 @@
         return "<div>Game not found.</div>";
       }
       var_dump($game);
-      echo $game->getIpdbLink();
+      if (is_file(__ROOT__.'/classes/'.'game'.'.class.php')) {
+        echo 'Ja';
+      } else {
+        echo 'Nej';
+      }
       return $game->getPrintInfo(DataMapper::$db, 'div', 'gameInfo');
     }
   }
