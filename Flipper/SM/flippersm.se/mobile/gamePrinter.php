@@ -52,7 +52,7 @@
 <div id="gameInfoExtraBallsNew"></div>
 <div id="gameInfoOnePlayerAllowedNew"></div>
 <div id="gameInfoCommentNew"></div>
-'
+';
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 		echo '<script type="text/javascript" src="../js/contrib/jquery.js">
