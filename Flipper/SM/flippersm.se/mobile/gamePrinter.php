@@ -55,7 +55,7 @@
 		$("#gameInfoExtraBalls").appendTo("#allComments");
 		$("#gameInfoOnePlayerAllowed").appendTo("#allComments");
 		$("#gameInfoComment").appendTo("#allComments");
-		</script>'
+		</script>';
 
 	}
 
