@@ -557,9 +557,13 @@
     }
     
     function setHereFinal($dbh, $here = true) {
-      return $this->getHere($dbh, $here, true);
+      return $this->setHere($dbh, $here, 'final');
     }
     
+    function setHereVol($dbh, $here = true) {
+      return $this->setHere($dbh, $here, 'vol');
+    }
+
     function setPhone($dbh, $number = null, $cell = false) {
       $phoneField = ($cell) ? 'mobileNumber' : 'telephoneNumber';
       $query = '
