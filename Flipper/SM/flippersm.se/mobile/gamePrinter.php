@@ -39,7 +39,7 @@
 		$gameDivision = "Main";
 		$gameComment = "SOL always gives 50.000.000";
 
-		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"></script></head>';
+		echo '<head><link rel="stylesheet" type="text/css" href="../css/gameinfo.css"><script type="text/javascript" src="../js/contrib/jquery.js"></script></head>';
 		echo $oLabel->getInfo($iIDGame);
 		/*
 		echo '<div id="gameNumber">' . $gameNumber . "</div>\n";
@@ -55,7 +55,7 @@
 ';
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
-		echo '<script type="text/javascript" src="../js/contrib/jquery.js">
+		echo '
 		<script>
 $(document).ready(function() {
     $("#allComments").append($("#gameInfoBallsNew"));
