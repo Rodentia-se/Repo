@@ -190,7 +190,7 @@
       $this->setOwner($dbh);
     }
     
-    function getInfo($dbh) {
+    function getInfo($dbh, $type = 'array') {
       $info = array(
         'machine_id' => 'ID: '.$this->machine_id,
         'shortName' => $this->shortName,
@@ -206,7 +206,17 @@
       if ($this->comment) {
         $info['comment'] = $this->comment;
       }
-      return $info;
+      switch ($type) {
+        case 'div':
+          foreach($info as $key => $value) {
+            $return .= '<div id="gameInfo'.ucfirst($key).'">'.$value.'</div>';
+          }
+        break;
+        default:
+          $return = $info;
+        break;
+      }
+      return $return;
     }
 
     function getAdminInfo($dbh, $type = 'all') {
