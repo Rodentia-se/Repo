@@ -76,6 +76,15 @@
     {
       return getPlayerById(DataMapper::$db, $id);
     }
+    public function setHere($id, $type)
+    {
+      $player = getPlayerById(DataMapper::$db, $id))
+      if (!$player)
+      {
+        return false;
+      }
+      return $player->setHere(DataMapper::$db, $type);
+    }
   }
 
   class MTeam
