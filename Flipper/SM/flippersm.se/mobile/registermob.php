@@ -2,11 +2,11 @@
   require_once('../functions/general.php');
   require_once('mobile.php');
 
-  $oHTTPContext = new HTTPContext();
-  $oGame = new Game();
-  $oValidator = new Validator();
-  $oEntry = new Entry();
-  $oString = new String();
+  $oHTTPContext = new MHTTPContext();
+  $oGame = new MGame();
+  $oValidator = new MValidator();
+  $oEntry = new MEntry();
+  $oString = new MString();
 
   $sUserName = $oHTTPContext->getString("user");
   $sPassword = $oHTTPContext->getString("password");
@@ -15,7 +15,7 @@
 
   if($sUserName != null && $sPassword != null)
   {
-    $oUser = new User();
+    $oUser = new MUser();
     if($oUser->logIn($sUserName, $sPassword)){
       $iIDPlayer = $oHTTPContext->getInt("playerId");
       $iIDTeam = $oHTTPContext->getInt("teamId");
