@@ -127,7 +127,12 @@
       {
         return false;
       }
-      return $e->createScore(DataMapper::$db, $idGame);
+      $g = getMachineById(DataMapper::$db, $idGame);
+      if (!$g)
+      {
+        return false;
+      }
+      return $e->createScore(DataMapper::$db, $g);
     }
 
     public function fromPlayerAndDivision($idPlayer, $idDivision)
