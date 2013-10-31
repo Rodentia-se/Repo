@@ -23,24 +23,24 @@
 			$this->assertEqual(true, $oEntry->isValidEntryID('418'));
 			//$this->assertNotEqual(true, $oEntry->isValidEntryID('9999'));
 
-			$scores = $e->getScores('724', '192');
+			$scores = $oEntry->getScores('418', '55');
 			$this->assertEqual(false, $scores);
 
-			$scores = $e->getScores('723', '192');
+			$scores = $oEntry->getScores('418', '55');
 			$this->assertEqual('FT', $scores[0]->gameAcronym);
 			$this->assertEqual('FT', $scores[1]->gameAcronym);
 
-			$scores = $e->getScores('723', '193');
-			$this->assertEqual('SS', $scores[0]->gameAcronym);
-			$this->assertEqual('SS', $scores[1]->gameAcronym);
+			$scores = $oEntry->getScores('418', '57');
+			$this->assertEqual('DH', $scores[0]->gameAcronym);
+			$this->assertEqual('DH', $scores[1]->gameAcronym);
 
-			$scores = $e->getScores('723', '194');
-			$this->assertEqual('HS2', $scores[0]->gameAcronym);
-			$this->assertEqual('HS2', $scores[1]->gameAcronym);
+			$scores = $oEntry->getScores('418', '61');
+			$this->assertEqual('XM', $scores[0]->gameAcronym);
+			$this->assertEqual('XM', $scores[1]->gameAcronym);
 
-			$scores = $e->getScores('723', '195');
-			$this->assertEqual('MM', $scores[0]->gameAcronym);
-			$this->assertEqual('MM', $scores[1]->gameAcronym);
+			$scores = $oEntry->getScores('418', '66');
+			$this->assertEqual('CON', $scores[0]->gameAcronym);
+			$this->assertEqual('CON', $scores[1]->gameAcronym);
 		}
 
 		function testGame() {
