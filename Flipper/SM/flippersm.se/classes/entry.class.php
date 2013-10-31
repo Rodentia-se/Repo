@@ -186,7 +186,7 @@
       $query = '
         insert into qualScore set
           name = :name,
-          qualEntry_id = :qualEntryId
+          qualEntry_id = :qualEntryId,
           machine_id = :machineId,
           game_id = :gameId,
           game = :game,
