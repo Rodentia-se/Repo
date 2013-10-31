@@ -9,18 +9,18 @@
 
 		function testPlayer() {
 			$oPlayer = new MPlayer();
-			$player = $oPlayer->getPlayer("111");
-			$this->assertEqual("Helena", $player->firstName);
-			$this->assertEqual("Walter", $player->lastName);
-			$this->assertEqual("YOO", $player->initials);
+			$player = $oPlayer->getPlayer("28");
+			$this->assertEqual("Andreas", $player->firstName);
+			$this->assertEqual("Thorsen", $player->lastName);
+			$this->assertEqual("BWK", $player->initials);
 			$this->assertNotEqual("KUK", $player->initials);
 		}
 
 		function testEntry() {
 			$oEntry = new MEntry();
-			$e = $oEntry->fromPlayerAndDivision("111", "1");
-			$this->assertEqual('723', $e->id);
-			$this->assertEqual(true, $e->isValidEntryID('723'));
+			$e = $oEntry->fromPlayerAndDivision("28", "1");
+			$this->assertEqual('418', $e->id);
+			$this->assertEqual(true, $e->isValidEntryID('418'));
 			$this->assertNotEqual(true, $e->isValidEntryID('9999'));
 
 			$scores = $e->getScores('724', '192');
