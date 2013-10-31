@@ -137,7 +137,7 @@
         return ($sth->execute($update)) ? true : false;
       }
     }
-
+    
     function setTeam($dbh, $team = null, $scores = true) {
       if ($this->tournamentDivision_id != 3) {
         return $this->setPlayer($dbh, $team);
@@ -181,5 +181,55 @@
         return ($sth->execute($update)) ? true : false;
       }
     }
+    
+    function createScore($dbh, $game = null, $score = null) {
+      $query = '
+        insert into qualScore set
+          name = :name,
+          qualEntry_id = :qualEntryId
+          machine_id = :machineId,
+          game_id = :gameId,
+          game = :game,
+          gameAcronym = :gameAcronym,
+          score = :score,
+          player_id = :playerId,
+          person_id = :personId,
+          firstName = :firstName,
+          lastName = :lastName,
+          initials = :initials,
+          tournamentDivision_id = :division,
+          tournamentEdition_id = :tournament,
+          country_id = :countryId,
+          country = :country,
+          city_id = :cityId,
+          city = :city
+      ';
+      $insert[':name'] = ($this->tournamentDivision_id == 1) ? 'Main' : (($this->tournamentDivision_id == 2) ? 'Team' : 'Classics').' 2013: '.$this->firstName.' '.$this->lastName.(($game) ? ' on '.$game->name : '');
+      $insert[':qualEntryId'] = $this->id;
+      $insert[':machineId'] = ($game) ? $game->machine_id : null;
+      $insert[':gameId'] = ($game) ? (($game->id == $game->machine_id) ? $game->game_id : $game->id) : null;
+      $insert[':game'] = ($game) ? $game->name : null;
+      $insert[':gameAcronym'] = ($game) ? $game->acronym : null;
+      $insert[':score'] = $score;
+      $insert[':playerId'] = $this->player_id;
+      $insert[':personId'] = $this->person_id;
+      $insert[':firstName'] = $this->firstName;
+      $insert[':lastName'] = $this->lastName;
+      $insert[':initials'] = $this->initials;
+      $insert[':countryId'] = $this->country_id;
+      $insert[':country'] = $this->country;
+      $insert[':cityId'] = $this->city_id;
+      $insert[':city'] = $this->city;
+      $insert[':division'] = $this->tournamentDivision_id;
+      $insert[':tournament'] = $this->tournamentEdition_id;
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($insert)) {
+        return $dbh->lastInsertId();
+      } else {
+        return false;
+      }
+    }
+
+
   }
 ?>

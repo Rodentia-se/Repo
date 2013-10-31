@@ -247,5 +247,46 @@
       return $objs;
     }
 
+    function createEntry($dbh, $games = null) {
+      $query = '
+        insert into qualEntry set
+          name = :name,
+          player_id = :teamId,
+          firstName = :team,
+          initials = :initials,
+          tournamentDivision_id = :division,
+          tournamentEdition_id = :tournament,
+          country_id = :countryId,
+          country = :country,
+          city_id = :cityId,
+          city = :city
+      ';
+      $insert[':name'] = $this->firstName.' '.$this->lastName.', Team, 2013';
+      $insert[':teamId'] = $this->id;
+      $insert[':team'] = $this->name;
+      $insert[':initials'] = $this->initials;
+      $insert[':countryId'] = $this->country_id;
+      $insert[':country'] = $this->country;
+      $insert[':cityId'] = $this->city_id;
+      $insert[':city'] = $this->city;
+      $insert[':division'] = $this->tournamentDivision_id;
+      $insert[':tournament'] = $this->tournamentEdition_id;
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($insert)) {
+        $lastInsertId = $dbh->lastInsertId();
+      } else {
+        return false;
+      }
+      if ($games && is_array($games)) {
+        $qualEntry = getEntryById($dbh, $lastInsertId);
+        foreach ($games as $game) {
+          if (!$qualEntry->createScore($dbh, $game)) {
+            return false;
+          }
+        }
+      }
+      return $lastInsertId;
+    }
+
   }
 ?>

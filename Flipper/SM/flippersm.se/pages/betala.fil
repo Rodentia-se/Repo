@@ -111,7 +111,7 @@
           <input type="hidden" name="cmd" value="_xclick">
           <input type="hidden" name="business" value="the@pal.pp.se">
           <input type="hidden" name="undefined_quantity" value="1">
-          <input type="hidden" name="item_name" value="EPC Entrance Fee">
+          <input type="hidden" name="item_name" value="SM Entrance Fee">
           <input type="hidden" name="item_number" value="1">
           <input type="hidden" id="payPalAmount" name="amount" value="'.((($totalCost[$currency] - $player->paid) > 0) ? ($totalCost[$currency] - $player->paid) : 0).'">
           <input type="hidden" name="page_style" value="flippersm">

@@ -675,6 +675,51 @@
       return $objs;
     }
     
+    function createEntry($dbh, $games = null) {
+      $query = '
+        insert into qualEntry set
+          name = :name,
+          player_id = :playerId,
+          person_id = :personId,
+          firstName = :firstName,
+          lastName = :lastName,
+          initials = :initials,
+          tournamentDivision_id = :division,
+          tournamentEdition_id = :tournament,
+          country_id = :countryId,
+          country = :country,
+          city_id = :cityId,
+          city = :city
+      ';
+      $insert[':name'] = $this->firstName.' '.$this->lastName.', '.(($this->tournamentDivision_id == 1) ? 'Main' : 'Classics').', 2013';
+      $insert[':playerId'] = ($this->tournamentDivision_id == 1) ? $this->mainPlayerId : $this->classicsPlayerId;
+      $insert[':personId'] = $this->id;
+      $insert[':firstName'] = $this->firstName;
+      $insert[':lastName'] = $this->lastName;
+      $insert[':initials'] = $this->initials;
+      $insert[':countryId'] = $this->country_id;
+      $insert[':country'] = $this->country;
+      $insert[':cityId'] = $this->city_id;
+      $insert[':city'] = $this->city;
+      $insert[':division'] = $this->tournamentDivision_id;
+      $insert[':tournament'] = $this->tournamentEdition_id;
+      $sth = $dbh->prepare($query);
+      if ($sth->execute($insert)) {
+        $lastInsertId = $dbh->lastInsertId();
+      } else {
+        return false;
+      }
+      if ($games && is_array($games)) {
+        $qualEntry = getEntryById($dbh, $lastInsertId);
+        foreach ($games as $game) {
+          if (!$qualEntry->createScore($dbh, $game)) {
+            return false;
+          }
+        }
+      }
+      return $lastInsertId;
+    }
+
     function checkIfVolFree($dbh, $period) {
       $query = '
         select count(*) from qualGroup q
