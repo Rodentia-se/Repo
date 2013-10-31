@@ -4,22 +4,36 @@
 
   $oHTTPContext = new MHTTPContext();
 
-  $playerId = $oHTTPContext->getString("playerId");
-  $here = $oHTTPContext->getString("here");
+  $sUserName = $oHTTPContext->getString("user");
+  $sPassword = $oHTTPContext->getString("password");
 
-  $player = new MPlayer();
-
-  $type = 'qual';
-  if ($here)
+  if($sUserName != null && $sPassword != null)
   {
-    $type = $here;
-  }
+    $oUser = new MUser();
+    if($oUser->logIn($sUserName, $sPassword))
+    {
 
-  $result = $player->setHere($playerId, $type);
-  if ($result) {
-    echo "statusCode=0";
-  } else {
-    echo "statusCode=1";
-  }
+      $playerId = $oHTTPContext->getString("playerId");
+      $here = $oHTTPContext->getString("here");
 
+      $player = new MPlayer();
+
+      $type = 'qual';
+      if ($here)
+      {
+        $type = $here;
+      }
+
+      $result = $player->setHere($playerId, $type);
+      if ($result) {
+        echo "statusCode=0";
+      } else {
+        echo "statusCode=1";
+      }
+    }
+  }
+  else
+  {
+    echo "statusCode=1"
+  }
 ?>
