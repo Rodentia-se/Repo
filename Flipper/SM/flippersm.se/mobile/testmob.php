@@ -21,7 +21,7 @@
 			$e = $oEntry->fromPlayerAndDivision("28", "1");
 			$this->assertEqual('418', $e->id);
 			$this->assertEqual(true, $oEntry->isValidEntryID('418'));
-			$this->assertNotEqual(true, $oEntry->isValidEntryID('9999'));
+			//$this->assertNotEqual(true, $oEntry->isValidEntryID('9999'));
 
 			$scores = $e->getScores('724', '192');
 			$this->assertEqual(false, $scores);
