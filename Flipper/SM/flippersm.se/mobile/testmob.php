@@ -23,7 +23,7 @@
 			$this->assertEqual(true, $oEntry->isValidEntryID('418'));
 			//$this->assertNotEqual(true, $oEntry->isValidEntryID('9999'));
 
-			$score_id = $e->createScore(DataMapper::$db, '55');
+			$score_id = $oEntry->createScore("428", "55");
 			echo $score_id;
 
 			$scores = $oEntry->getScores('418', '56');

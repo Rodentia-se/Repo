@@ -120,6 +120,16 @@
   {
     private $entry = null;
 
+    public function createScore($idEntry, $idGame)
+    {
+      $e = getEntryById(DataMapper::$db, $idEntry);
+      if (!$e)
+      {
+        return false;
+      }
+      return $e->createScore(DataMapper::$db, $idGame);
+    }
+
     public function fromPlayerAndDivision($idPlayer, $idDivision)
     {
       $e = getEntry(DataMapper::$db, $idPlayer, $idDivision);
