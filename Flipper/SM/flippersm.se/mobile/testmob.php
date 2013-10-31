@@ -47,19 +47,20 @@
 			$oGame = new MGame();
 
 			# Main
-			$div = $oGame->getDivision('192');
+			$div = $oGame->getDivision('55');
 			$this->assertEqual('1', $div);
 
-			$div = $oGame->getDivision('193');
+			$div = $oGame->getDivision('57');
 			$this->assertEqual('1', $div);
 
-			$div = $oGame->getDivision('194');
+			$div = $oGame->getDivision('61');
 			$this->assertEqual('1', $div);
 
-			$div = $oGame->getDivision('195');
+			$div = $oGame->getDivision('66');
 			$this->assertEqual('1', $div);
 
 			# Classics
+			/*
 			$div = $oGame->getDivision('158');
 			$this->assertEqual('2', $div);
 
@@ -71,6 +72,7 @@
 
 			$div = $oGame->getDivision('161');
 			$this->assertEqual('2', $div);
+			*/
 		}
 
 		function testString() {
@@ -83,11 +85,11 @@
 
 		function testPlayerLabel() {
 			$oPlayerLabel = new MPlayerLabel();
-			$oPlayerLabel->FromPlayer('111');
+			$oPlayerLabel->FromPlayer('28');
 
-			$this->assertEqual("Helena", $oPlayerLabel->firstName());
-			$this->assertEqual("Walter", $oPlayerLabel->lastName());
-			$this->assertEqual("YOO", $oPlayerLabel->initials());
+			$this->assertEqual("Andreas", $oPlayerLabel->firstName());
+			$this->assertEqual("Thorsen", $oPlayerLabel->lastName());
+			$this->assertEqual("BWK", $oPlayerLabel->initials());
 			$this->assertEqual("Sweden", $oPlayerLabel->country());
 
 			$this->assertEqual("Sweden", $oPlayerLabel->country());
@@ -97,7 +99,7 @@
 
 		function testGameLabel() {
 			$oGameLabel = new MGameLabel();
-			$oGameLabel->FromGame('192');
+			$oGameLabel->FromGame('55');
 
 			$this->assertEqual("Fish Tales", $oGameLabel->name());
 			
