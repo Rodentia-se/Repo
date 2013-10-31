@@ -8,7 +8,7 @@
 		}
 
 		function testPlayer() {
-			$oPlayer = new Player();
+			$oPlayer = new MPlayer();
 			$player = $oPlayer->getPlayer("111");
 			$this->assertEqual("Helena", $player->firstName);
 			$this->assertEqual("Walter", $player->lastName);
@@ -17,7 +17,7 @@
 		}
 
 		function testEntry() {
-			$oEntry = new Entry();
+			$oEntry = new MEntry();
 			$e = $oEntry->fromPlayerAndDivision("111", "1");
 			$this->assertEqual('723', $e->id);
 			$this->assertEqual(true, $e->isValidEntryID('723'));
@@ -44,7 +44,7 @@
 		}
 
 		function testGame() {
-			$oGame = new Game();
+			$oGame = new MGame();
 
 			# Main
 			$div = $oGame->getDivision('192');
@@ -74,7 +74,7 @@
 		}
 
 		function testString() {
-			$oString = new String();
+			$oString = new MString();
 
 			$this->assertEqual("123", $oString->stripNonNumericChars("abc123"));
 			$this->assertEqual("123", $oString->stripNonNumericChars("abc123xyz"));
@@ -82,7 +82,7 @@
 		}
 
 		function testPlayerLabel() {
-			$oPlayerLabel = new PlayerLabel();
+			$oPlayerLabel = new MPlayerLabel();
 			$oPlayerLabel->FromPlayer('111');
 
 			$this->assertEqual("Helena", $oPlayerLabel->firstName());
@@ -96,7 +96,7 @@
 		}
 
 		function testGameLabel() {
-			$oGameLabel = new GameLabel();
+			$oGameLabel = new MGameLabel();
 			$oGameLabel->FromGame('192');
 
 			$this->assertEqual("Fish Tales", $oGameLabel->name());
@@ -105,7 +105,7 @@
 		}
 
 		function testValidator() {
-			$oValidator = new Validator();
+			$oValidator = new MValidator();
 
 			$this->assertEqual(true, $oValidator->positiveInt(1));
 			$this->assertEqual(false, $oValidator->positiveInt(-1));
