@@ -132,7 +132,7 @@
       $scores = array();
       $where = 'where qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
       $s = getScores(DataMapper::$db, $where);
-      var_dump($s)
+      var_dump($s);
       if ($s != false)
       {
         foreach ($s as $score)
