@@ -810,7 +810,6 @@ top: -9999px;
       top: 0em;
       font-size: 2em;
       font-weight: bold;
-      text-align: right;
       width: 1.4em;
       padding-right: 0.8em;
     }
@@ -879,6 +878,8 @@ top: -9999px;
       top: 0em;
       width: 2.5em;
       font-weight: bold;
+      text-align: right;
+      padding-right: 0.8em;
     }
 
     .result td:nth-of-type(2) {
