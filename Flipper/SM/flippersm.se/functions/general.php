@@ -3803,9 +3803,9 @@
       if ($type == 'player') {
         $content .= '
         <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
-          <a href="#mainTable"><h2>Main</h2></a></li>
-            '.(($obj->classics) ? '
-        </p>
+          <a href="#mainTable">Main</a>
+            '.(($obj->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
+          
           <div id="mainTable" class="section">
             <table class="scores">
               <thead>
@@ -3834,11 +3834,11 @@
         $content .= '
               </tbody>
             </table>
-          
+          </div>
         ';
         if ($obj->classics) {
           $content .= '
-          <div id="classicsTable">
+          <div id="classicsTable" class="section hidden">
             <table class="scores">
               <thead>
                 <tr>
