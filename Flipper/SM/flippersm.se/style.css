@@ -608,18 +608,14 @@ top: -9999px;
     .registered tr,
     .volunteer tr,
     #ifpaRegResultsTable tr,
-    .tournamentGames tr
+    .tournamentGames tr,
+    .standings tr
     {
       position: relative;
       border: 0;
       height: 3.6em;
     }
-    
-    .standings tr {
-      position: relative;
-      border: 0;
-      height: 3.6em;
-    }
+
     
     
     
@@ -984,13 +980,29 @@ top: -9999px;
       right: -9999px;
     }
 
-    .result td:nth-of-type(2):after {
-      content: " p";
+    
+    .standings tr {
+      position: relative;
+      border: 0;
+      height: 7.2em;
     }
     
-    .standings td:nth-of-type(4):after {
-      content: " p";
-    }
+
+    .standings td:nth-of-type(4) {
+      position: absolute;
+      left: 15em;
+      top: 3.2em;
+      width: 6em;
+      padding-right: 0.8em;
+      }
+
+    .standings td:nth-of-type(6) {
+      position: absolute;
+      left: 15em;
+      top: 4.8em;
+      width: 6em;
+      padding-right: 0.8em;
+      }
     
     #menu #tagline, #menu #buttons, #menu #submenu1 {
       padding-right: 0px;
