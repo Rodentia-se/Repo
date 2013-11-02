@@ -867,10 +867,12 @@ top: -9999px;
       left: 3.5em;
     }
     
-    .standings td:nth-of-type(7) {
+    .standings td:nth-of-type(8) {
       position: absolute;
       top: 1.6em;
       right: 0.2em;
+      text-align: right;
+      width: 2em;
     }
     .standings td:nth-of-type(7):after {
       content: " kvalpoäng";
