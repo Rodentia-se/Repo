@@ -562,12 +562,12 @@ top: -9999px;
       width: 100%;
     }
 
-    table.result,		table.registered, 		table.standings, 		#ifpaRegResultsTable, 		table.tournamentGames,
-    .result thead, 		.registered thead, 		.standings thead, 		#ifpaRegResultsTable thead,	.tournamentGames thead,
-    .result tbody, 		.registered tbody, 		.standings tbody, 		#ifpaRegResultsTable tbody, .tournamentGames tbody,
-    .result th, 		.registered th, 		.standings th, 			#ifpaRegResultsTable th, 	.tournamentGames th,
-    .result td, 		.registered td, 		.standings td, 			#ifpaRegResultsTable td, 	.tournamentGames td,
-    .result tr, 		.registered tr, 		.standings tr, 			#ifpaRegResultsTable tr, 	.tournamentGames tr
+    table.result,		table.registered, 		table.standings, 		#ifpaRegResultsTable, 		table.tournamentGames,		table.scores,
+    .result thead, 		.registered thead, 		.standings thead, 		#ifpaRegResultsTable thead,	.tournamentGames thead,		.scores thead,
+    .result tbody, 		.registered tbody, 		.standings tbody, 		#ifpaRegResultsTable tbody, .tournamentGames tbody,		.scores tbody,
+    .result th, 		.registered th, 		.standings th, 			#ifpaRegResultsTable th, 	.tournamentGames th,		.scores th,
+    .result td, 		.registered td, 		.standings td, 			#ifpaRegResultsTable td, 	.tournamentGames td,		.scores td,
+    .result tr, 		.registered tr, 		.standings tr, 			#ifpaRegResultsTable tr, 	.tournamentGames tr,		.scores tr
     {
       display: block;
     }
@@ -577,7 +577,8 @@ top: -9999px;
     .registered th,
     .standings th,
     #ifpaRegResultsTable th,
-    .tournamentGames th
+    .tournamentGames th,
+    .scores th
     {
       position: absolute;
       top: -9999px;
@@ -589,7 +590,8 @@ top: -9999px;
     .standings tr.header,
     #ifpaRegResultsTable tr.header,
     .tournamentGames tr.header,
-    .standings thead
+    .standings thead,
+    .scores thead
     {position: absolute;
     left: -9999px;
     top: -9999px;}
@@ -599,7 +601,8 @@ top: -9999px;
     .volunteer td,
     .standings td,
     #ifpaRegResultsTable td,
-    .tournamentGames td
+    .tournamentGames td,
+    .scores td
     {
       border: 0;
       font-size: 1.05em;
@@ -610,7 +613,8 @@ top: -9999px;
     .volunteer tr,
     #ifpaRegResultsTable tr,
     .tournamentGames tr,
-    .standings tr
+    .standings tr,
+    .scores tr
     {
       position: relative;
       border: 0;
