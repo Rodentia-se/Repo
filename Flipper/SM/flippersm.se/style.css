@@ -818,7 +818,7 @@ top: -9999px;
     .standings td:nth-of-type(2) {
       position: absolute;
       top: 0em;
-      left: 3.5em;
+      left: 3.7em;
     }
 
     .standings td:nth-of-type(3) {
@@ -852,7 +852,7 @@ top: -9999px;
     .standings td:nth-of-type(7) {
       position: absolute;
       top: 1.6em;
-      left: 3.5em;
+      left: 3.7em;
     }
     
     .standings td:nth-of-type(8) {
