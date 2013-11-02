@@ -1269,6 +1269,7 @@ top: -9999px;
 }
 
 #content img.objectPhoto {
+  max-width: 100%;
 }
 
 #content div.qualGroupTable {
