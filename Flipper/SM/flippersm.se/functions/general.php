@@ -3802,12 +3802,11 @@
       ';
       if ($type == 'player') {
         $content .= '
-        <div id="tabs" class="clearboth" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
-          <ul>
-            <li class="tabs"><a href="#mainTable"><h2>Main</h2></a></li>
-            '.(($obj->classics) ? '<li class="tabs"><a href="#classicsTable"><h2>Classics</h2></a></li>' : '').'
-          </ul>
-          <div id="mainTable">
+        <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
+          <a href="#mainTable"><h2>Main</h2></a></li>
+            '.(($obj->classics) ? '
+        </p>
+          <div id="mainTable" class="section">
             <table class="scores">
               <thead>
                 <tr>
@@ -3835,7 +3834,7 @@
         $content .= '
               </tbody>
             </table>
-          </div>
+          
         ';
         if ($obj->classics) {
           $content .= '
