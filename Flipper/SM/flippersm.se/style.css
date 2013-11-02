@@ -866,12 +866,17 @@ top: -9999px;
       top: 1.6em;
       left: 3.5em;
     }
-
+    
+    .standings td:nth-of-type(7) {
+      position: absolute;
+      top: 1.6em;
+      right: 0.2em;
+    }
     .standings td:nth-of-type(7):after {
       content: " kvalpoäng";
     }
     
-    .standings td:nth-of-type(5):before {
+    .standings td:nth-of-type(8):before {
       content: "Här: ";
     }
 
