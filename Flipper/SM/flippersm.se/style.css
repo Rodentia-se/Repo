@@ -589,7 +589,7 @@ top: -9999px;
     .standings tr.header,
     #ifpaRegResultsTable tr.header,
     .tournamentGames tr.header,
-    .standings tr.header
+    .standings thead
     {position: absolute;
     left: -9999px;
     top: -9999px;}
