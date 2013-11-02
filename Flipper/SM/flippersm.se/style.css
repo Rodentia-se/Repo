@@ -823,7 +823,6 @@ top: -9999px;
     .scores td:nth-of-type(2) {
       position: absolute;
       top: 0em;
-      font-weight: bold;
       left: 3.7em;
     }
 
