@@ -815,7 +815,7 @@ top: -9999px;
       font-size: 2em;
       font-weight: bold;
       text-align: right;
-      width: 1.5em;
+      width: 1.4em;
       padding-right: 0.8em;
     }
 
@@ -829,22 +829,37 @@ top: -9999px;
       position: absolute;
       left: 18em;
       top: 0em;
-      width: 2.5em;
+      width: 4em;
       text-align: right;
       padding-right: 0.8em;
     }
 
     .standings td:nth-of-type(4) {
       position: absolute;
+      left: 22em;
       top: 0em;
-      right: 0.2em;
+      width: 4em;
+      text-align: right;
+      padding-right: 0.8em;
       }
       
     .standings td:nth-of-type(5) {
       position: absolute;
+      left: 18em;
       top: 1.6em;
-      right: 0.2em;
+      width: 4em;
+      text-align: right;
+      padding-right: 0.8em;
     }
+
+    .standings td:nth-of-type(6) {
+      position: absolute;
+      left: 22em;
+      top: 1.6em;
+      width: 4em;
+      text-align: right;
+      padding-right: 0.8em;
+      }
     
     .standings td:nth-of-type(7) {
       position: absolute;
