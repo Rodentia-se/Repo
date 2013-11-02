@@ -3734,7 +3734,7 @@
                   <h1>'.$obj->name.'</h1>
                   '.(($type == 'player' || $type == 'team' || $type == 'qualGroup') ? submenu2($dbh, $ulogin, 'anmalda', false, $obj) : '').'
                   <div id="infoDiv" class="infoDiv">
-                    <div class="leftInfoDiv" id="leftInfoDiv">
+                    <div class="spalt" id="leftInfoDiv">
                       '.(($select) ? '<h3 id="all'.ucfirst($type).'Span">Andra '.getPlural($type).': </h3> '.createSelect(getObjectList($dbh, $type, array ('tournament' => '1', 'national' => $obj->national)), 'all'.ucfirst($type).'Select', $id).'' : '').'
       ';
       foreach($classes->{$type}->info as $field) {
@@ -3796,7 +3796,7 @@
       }
       $content .= '
                   </div>
-                  <div class="rightInfoDiv" id="objectPhotoDiv">
+                  <div class="spalt" id="objectPhotoDiv">
                     <img class="objectPhoto" src="'.$obj->getPhoto().'" alt="'.$obj->name.'">
                   </div>
       ';
