@@ -986,28 +986,28 @@ top: -9999px;
 
     .standings td:nth-of-type(3) {
       position: absolute;
-      left: 3.5em;
+      left: 3.7em;
       top: 1.6em;
       padding-right: 0.8em;
     }
 
     .standings td:nth-of-type(4) {
       position: absolute;
-      left: 12em;
+      left: 12.5em;
       top: 1.6em;
       padding-right: 0.8em;
       }
       
     .standings td:nth-of-type(5) {
       position: absolute;
-      left: 3.5em;
+      left: 3.7em;
       top: 3.2em;
       padding-right: 0.8em;
     }
 
     .standings td:nth-of-type(6) {
       position: absolute;
-      left: 12em;
+      left: 12.5em;
       top: 3.2em;
       padding-right: 0.8em;
       }
