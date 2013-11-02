@@ -841,7 +841,9 @@ top: -9999px;
       text-align: right;
       }
       
-
+    .scores td:nth-of-type(4):after {
+      content: " kvalpoäng";
+    }
 
 
 
@@ -1073,6 +1075,10 @@ top: -9999px;
     }
     
     .standings td:nth-of-type(7):after {
+      content: "p";
+    }
+          
+    .scores td:nth-of-type(4):after {
       content: "p";
     }
     
