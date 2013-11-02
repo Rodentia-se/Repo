@@ -3866,7 +3866,7 @@
           $content .= '
               </tbody>
             </table>
-          </div>
+          
           ';
         }
         $content .= '</div>'.getDataTables('.scores');
