@@ -554,7 +554,8 @@ top: -9999px;
     #content table.volunteer,
     #content table.standings,
     #content #ifpaRegResultsTable,
-    #content #gameTable
+    #content #gameTable,
+    #content table.scores
     {
       border: 0;
       padding: 0;
