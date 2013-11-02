@@ -829,17 +829,15 @@ top: -9999px;
       position: absolute;
       left: 18em;
       top: 0em;
-      width: 4em;
-      text-align: right;
+      width: 6em;
       padding-right: 0.8em;
     }
 
     .standings td:nth-of-type(4) {
       position: absolute;
-      left: 22em;
+      left: 26em;
       top: 0em;
-      width: 4em;
-      text-align: right;
+      width: 6em;
       padding-right: 0.8em;
       }
       
@@ -847,17 +845,15 @@ top: -9999px;
       position: absolute;
       left: 18em;
       top: 1.6em;
-      width: 4em;
-      text-align: right;
+      width: 6em;
       padding-right: 0.8em;
     }
 
     .standings td:nth-of-type(6) {
       position: absolute;
-      left: 22em;
+      left: 26em;
       top: 1.6em;
-      width: 4em;
-      text-align: right;
+      width: 6em;
       padding-right: 0.8em;
       }
     
