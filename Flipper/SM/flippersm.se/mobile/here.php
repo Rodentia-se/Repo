@@ -12,7 +12,6 @@
     $oUser = new MUser();
     if($oUser->logIn($sUserName, $sPassword))
     {
-
       $playerId = $oHTTPContext->getString("playerId");
       $here = $oHTTPContext->getString("here");
 
@@ -34,6 +33,6 @@
   }
   else
   {
-    echo "statusCode=1"
+    echo "statusCode=1";
   }
 ?>
