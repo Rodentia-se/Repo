@@ -11,8 +11,8 @@
 
 #gameInfoMachine_id {
 	position: absolute;
-	left: 465px;
-	top: 530px;
+	left: 475px;
+	top: 560px;
 	font: bold 2em arial;
 }
 
@@ -20,8 +20,8 @@
 	position: absolute;
 	width: 260px;
 	left: 50px;
-	top: 410px;
-	font: bold 4em arial;
+	top: 430px;
+	font: bold 4.5em arial;
 }
 
 #allComments {
@@ -57,13 +57,13 @@
 #logo {
 	position: absolute;
 	left: 490px;
-	top: 795;
+	top: 815;
 	width: 200px;
 }
 
 #gameScan {
 	position: absolute;
 	left: 30px;
-	top: 520px;
+	top: 540px;
 
 }
