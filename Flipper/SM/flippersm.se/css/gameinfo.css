@@ -19,11 +19,9 @@
 #gameInfoShortName {
 	position: absolute;
 	width: 260px;
-	left: 420px;
-	top: 0px;
+	left: 50px;
+	top: 800px;
 	font: bold 3.5em arial;
-	margin-left: 0.03em;
-	text-align: right;
 }
 
 #allComments {
@@ -42,7 +40,7 @@
 #gameInfoDivision {
 	position: absolute;
 	left: 30px;
-	top: -150px;
+	top: -170px;
 	font: 40em YukarimobileRegular;
 	margin-left: 0.03em;
 }
