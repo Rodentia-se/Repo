@@ -34,6 +34,10 @@
 	text-align: right;
 }
 
+#allComments div {
+	margin-top: 0.5em;
+}
+
 #gameInfoBalls {
 }
 
