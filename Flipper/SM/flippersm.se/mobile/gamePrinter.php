@@ -47,24 +47,20 @@
 		echo '<div id="gameDivision">' . $gameDivision . "</div>\n";
 		echo '<div id="gameComment">' . $gameComment . "</div>\n";
 		*/
-		echo '<div id="allComments"></div>';
-		echo '<div id="gameInfoBallsNew"></div>
-<div id="gameInfoExtraBallsNew"></div>
-<div id="gameInfoOnePlayerAllowedNew"></div>
-<div id="gameInfoCommentNew"></div>
-';
+		echo '<div id="allComments"><div id="gameInfoBallsNew"></div>
+		<div id="gameInfoExtraBallsNew"></div>
+		<div id="gameInfoOnePlayerAllowedNew"></div>
+		<div id="gameInfoCommentNew"></div>
+		</div>';
+
 		echo '<div id="gameScan"><img id="scanImage" src="' . $oLabel->image() . "\" /></div>";
 		echo '<img src="../bilder/loggor/svartvit.png" id="logo" />';
 		echo '
 		<script>
-$(document).ready(function() {
-    $("#allComments").append($("#gameInfoBallsNew"));
+	$(document).ready(function() {
     $("#gameInfoBallsNew").append($("#gameInfoBalls").html());
-    $("#allComments").append($("#gameInfoExtraBallsNew"));
     $("#gameInfoExtraBallsNew").append($("#gameInfoExtraBalls").html());
-    $("#allComments").append($("#gameInfoOnePlayerAllowedNew"));
     $("#gameInfoOnePlayerAllowedNew").append($("#gameInfoOnePlayerAllowed").html());
-    $("#allComments").append($("#gameInfoCommentNew"));
     $("#gameInfoCommentNew").append($("#gameInfoComment").html());
 
     $("#gameInfoBalls").hide();
