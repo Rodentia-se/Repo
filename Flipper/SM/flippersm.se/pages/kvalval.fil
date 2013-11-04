@@ -28,7 +28,7 @@
     if ($id) {
       header('Location: '.__baseHref__.'/?s=object?obj=qualGroup&id='.$id);
     } else {
-      header('Location: '.__baseHref__.'/?s=object?obj=qualGroup');
+      header('Location: '.__baseHref__.'/?s=object&obj=qualGroup');
     }
   }
 
