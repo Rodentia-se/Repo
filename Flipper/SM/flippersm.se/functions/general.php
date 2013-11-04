@@ -2174,6 +2174,37 @@
     }
     return $objs;
   }
+  
+  function getSetSelect() {
+    return getMatchSelect(true);
+  }
+  
+  function getMatchSelect($set = false) {
+    $return = '
+      '.(($set) ? 's' : 'm').'.id as id,
+      '.(($set) ? 'm.id as match_id,
+      s.machine_id as machine_id,
+      s.game_id as game_id,
+      s.game as game,
+      s.gameAcronym as gameShortName,' : ''),'
+      p1.id as player1_id,
+      concat(ifnull(p1.firstName,""), " ", ifnull(p1.lastName,"")) as player1,
+      p1.initials as player1_initials,
+      p2.id as player2_id,
+      concat(ifnull(p2.firstName,""), " ", ifnull(p2.lastName,"")) as player2,
+      p2.initials as player2_initials,
+      if(ifnull(p1.place,0) = 1, p1.id, if(ifnull(p2.place,0) = 1, p2.id)) as winner_id,
+      if(ifnull(p1.place,0) = 1, concat(ifnull(p1.firstName,""), " ", ifnull(p1.lastName,"")), if(ifnull(p2.place,0) = 1, concat(ifnull(p2.firstName,""), " ", ifnull(p2.lastName,"")))) as winner,
+      if(ifnull(p1.place,0) = 1, p1.initials, if(ifnull(p2.place,0) = 1, p2.initials)) as winner_initials
+    FROM match'.(($set) ? 'Set s' : ' m').'
+      '.(($set) ? 'LEFT JOIN match m
+        ON s.match_id = m.id' : '').'
+      LEFT JOIN matchPlayer p1 
+        ON p1.match_id = m.id
+      LEFT JOIN matchPlayer p2
+        ON p2.match_id = m.id
+    ORDER BY m.id'.(($set) ? ', s.id' : '');
+  }
 
   function getGameSelect($machine = false) {
     return '

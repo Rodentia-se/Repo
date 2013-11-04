@@ -45,7 +45,6 @@
         break;
         case 'game':
           $content .= getAdminGameTable($dbh);
-          $content .= getMachineById($dbh, 162)->getPrintInfo($dbh, 'div');
           $content .= 'Class: '.get_class(getMachineById($dbh, 162));
         break;
         case 'qualGroup':
