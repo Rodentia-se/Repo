@@ -54,7 +54,7 @@
 
   if ($type == 'qualGroup') {
 
-    $choice = true;
+    $choice = false;
 
     $id = (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? $_REQUEST['id'] : false;
 
@@ -158,7 +158,7 @@
         }
         $content .= '
           </div>
-          <br /><p style="clear: left;">Lagtävlingens kvalgrupper kommer att beslutas senare, när vi vet mer om hur många lag som kommer att deltaga.</p>
+          <br /><p style="clear: left;">Lagtävlingens kvalspel är fritt, och spelas när bägge spelarna har tid, lust och möjlighet.</p>
         ';
         if ($player) {
           $team = $player->getTeam($dbh);
