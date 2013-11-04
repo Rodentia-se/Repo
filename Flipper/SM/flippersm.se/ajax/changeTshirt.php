@@ -16,7 +16,7 @@
       if ($tShirt) {
         $tShirt->playerTshirt_id = $id;
         $available = $tShirt->inStock($dbh);
-        if ($available == 0) {
+        if ($available <= 0) {
           $errorMsg = 'There\'s no '.$tShirt->color.' '.$tShirt->size.' in stock! Please choose another color/size.';
         } else {
           if ($available < $tShirt->number) {
