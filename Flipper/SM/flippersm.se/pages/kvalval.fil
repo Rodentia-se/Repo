@@ -26,9 +26,9 @@
   } else {
     $id = (isset($_REQUEST['id']) && preg_match('/^[0-9]+$/', $_REQUEST['id'])) ? $_REQUEST['id'] : false;
     if ($id) {
-      header('Location: '.__baseHref__.'/s=object?obj=qualGroup&id='.$id);
+      header('Location: '.__baseHref__.'/?s=object?obj=qualGroup&id='.$id);
     } else {
-      header('Location: '.__baseHref__.'/s=object?obj=qualGroup');
+      header('Location: '.__baseHref__.'/?s=object?obj=qualGroup');
     }
   }
 
