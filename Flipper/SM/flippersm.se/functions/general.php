@@ -2186,7 +2186,7 @@
       s.machine_id as machine_id,
       s.game_id as game_id,
       s.game as game,
-      s.gameAcronym as gameShortName,' : ''),'
+      s.gameAcronym as gameShortName,' : '').'
       p1.id as player1_id,
       concat(ifnull(p1.firstName,""), " ", ifnull(p1.lastName,"")) as player1,
       p1.initials as player1_initials,
