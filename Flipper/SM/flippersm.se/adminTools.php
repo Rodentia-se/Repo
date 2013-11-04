@@ -45,7 +45,6 @@
         break;
         case 'game':
           $content .= getAdminGameTable($dbh);
-          $content .= 'Class: '.get_class(getMachineById($dbh, 162));
         break;
         case 'qualGroup':
           $content .= getAdminQualGroupTable($dbh);
