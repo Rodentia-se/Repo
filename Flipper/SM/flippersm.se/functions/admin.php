@@ -969,8 +969,8 @@
       $qualGroups = getQualGroups($dbh);
       $qualLimit['Main'] = __mainQualLimit__;
       $qualLimit['Classics'] = __classicsQualLimit__;
-      $qualLimit['main'] = 60;
-      $qualLimit['classics'] = 30;
+      $qualLimit['main'] = 50;
+      $qualLimit['classics'] = 32;
       if($qualGroups && count($qualGroups > 0)) {
     
         $tournamentDivisionIds = [];
