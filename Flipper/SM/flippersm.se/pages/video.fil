@@ -2,7 +2,18 @@
 
 <p>Du kan följa våra livesändningar här:</p>
 
+<p>Vår tävlingskamera sänder på <a href="http://www.twitch.tv/flippersm" target="_new">Twitch</a>:</p>
+
 <p>
+
+<object type="application/x-shockwave-flash" height="378" width="620" id="live_embed_player_flash" data="http://www.twitch.tv/widgets/live_embed_player.swf?channel=flippersm" bgcolor="#000000"><param name="allowFullScreen" value="true" /><param name="allowScriptAccess" value="always" /><param name="allowNetworking" value="all" /><param name="movie" value="http://www.twitch.tv/widgets/live_embed_player.swf" /><param name="flashvars" value="hostname=www.twitch.tv&channel=flippersm&auto_play=true&start_volume=25" /></object><a href="http://www.twitch.tv//flippersm" class="trk" style="padding:2px 0px 4px; display:block; width:345px; font-weight:normal; font-size:10px; text-decoration:underline; text-align:center;">Watch live video from FlipperSM on www.twitch.tv</a>
+
+</p>
+
+<p>Vår mingelkamera sänder på <a href="http://bambuser.com/channel/Flipper-SM" target="_new">Bambuser</a>:</p>
+
+<p>
+
 <iframe src="https://embed.bambuser.com/channel/Flipper-SM" width="500" height="431" frameborder="0">Your browser does not support iframes.</iframe>
 
 </p>
