@@ -1582,12 +1582,12 @@
     }            
     $content .= '></p>
     ';
+    $choice = ($_REQUEST['active']) ? true : false;
     if($qualGroups && count($qualGroups > 0)) {
       foreach($tournamentDivisionIds as $tournamentDivisionId) {
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
-          $disabled = ($player->{$type}) ? false : true;
-          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
+          $disabled = ($player->{$type} && $choice) ? false : true;
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';

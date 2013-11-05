@@ -1,5 +1,5 @@
 <?php
-  $choice = false;
+  $choice = ($_REQUEST['active']) ? true : false;
 
   if ($choice) {
     $content = '<h1>Val av kvaltider</h1>';
