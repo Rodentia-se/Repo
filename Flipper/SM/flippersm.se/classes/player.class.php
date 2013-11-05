@@ -731,11 +731,11 @@
             q.date = "'.$period->date.'"
             and (
               (
-                replace(replace(q.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") > replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") 
-                and replace(replace(q.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") < replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
+                replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") > replace(replace(q.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") 
+                and replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") < replace(replace(q.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
               ) or (
-                replace(replace(q.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") > replace(replace(p.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") 
-                and replace(replace(q.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") < replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
+                replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") > replace(replace(q.startTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") 
+                and replace(replace(p.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00") < replace(replace(q.endTime, "24:00:00", "23:59:00"), "00:00:00", "23:59:00")
               )
             )
             and pl.person_id = '.$this->id;
