@@ -1,8 +1,8 @@
 <?php
 
   define('__ROOT__', dirname(dirname(__FILE__))); 
-  define('__mainQualLimit__', '60'); 
-  define('__classicsQualLimit__', '30'); 
+  define('__mainQualLimit__', '50'); 
+  define('__classicsQualLimit__', '32'); 
   define('__baseHref__', 'https://www.flippersm.se');
   require_once(__ROOT__.'/functions/db.php');
   require_once(__ROOT__.'/contrib/ulogin/config/all.inc.php');

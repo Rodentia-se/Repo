@@ -78,8 +78,6 @@
 
       $qualLimit['main'] = __mainQualLimit__;
       $qualLimit['classics'] = __classicsQualLimit__;
-      $qualLimit['main'] = 40;
-      $qualLimit['classics'] = 40;
 
       $content = '<h1>Kvalgrupper</h2>';
       $content .= submenu2($dbh, $ulogin, 'anmalda', false);
