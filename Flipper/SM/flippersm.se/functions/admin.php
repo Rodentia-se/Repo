@@ -114,7 +114,7 @@
               <li><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</li>
             </ul>
           ',
-          'cols' => array('player', 'mailAddress', 'mobileNumber', 'payDate', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2')
+          'cols' => array('player', 'mailAddress', 'mobileNumber', 'payDate', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2', 'vol')
         )
       );
 //               <li><span class="errorTd">Chosen</span> = player is in team, and prefered qualification group is during the team tournament.</li>
@@ -140,10 +140,11 @@
         'uid' => 'UID',
         'admin' => 'Admin',
         'here' => 'Here',
-        'chosen_1' => 'Chosen M',
-        'ass_1' => 'Assigned M',
-        'chosen_2' => 'Chosen C',
-        'ass_2' => 'Assigned C'
+        'chosen_1' => 'Chosen',
+        'ass_1' => 'Assigned',
+        'chosen_2' => 'Chosen',
+        'ass_2' => 'Assigned',
+        'vol' => 'Vol',
       );
       
       foreach ($types as $type) {
@@ -223,6 +224,7 @@
           'classics' => '<td>'.$player->classicsPlayerId.'</td>',
           'team' => '<td>'.(($team) ? '<a href="'.$team->getLink(false).'" target="_blank">'.$team->id.'</a>' : '').'</td>',
           'tshirts' => '<td>'.(($tShirts) ? count($tShirts) : 0).'</td>',
+          'vol' => '<td>'.(($player->volunteer) ? 'Ja' : '').'</td>',
           'paid' => '
             <td>
               <select id="'.$player->id.'_paid" onchange="adminPaidChange(this);" previous="'.$player->paid.'">'.$paidOptions[$player->id].'</select>
@@ -231,7 +233,7 @@
             ',
           'diff' => '<td id="'.$player->id.'_diff">'.$diff.'</td>',
           'total' => '<td id="'.$player->id.'_costs">'.$costs.'</td>',
-          'payDate' => '<td id="'.$player->id.'_payDate">'.(($player->payDate) ? $player->payDate : 'N/A').(($tableType == 'qualGroups' && $player->volunteer) ? ' (V)' : '').'</td>',
+          'payDate' => '<td id="'.$player->id.'_payDate">'.(($player->payDate) ? $player->payDate : 'N/A').'</td>',
           'ifpa' => '<td>'.str_replace('Unranked', 'Unr', $player->getIfpaLink()).'</td>',
           'mailAddress' => '<td class="emailTd"><a href="mailto:'.$player->mailAddress.'">'.$player->mailAddress.'</a></td>',
           'uid' => '<td>'.$ulogin->Uid($player->username).'</td>',
