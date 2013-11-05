@@ -231,7 +231,7 @@
             ',
           'diff' => '<td id="'.$player->id.'_diff">'.$diff.'</td>',
           'total' => '<td id="'.$player->id.'_costs">'.$costs.'</td>',
-          'payDate' => '<td id="'.$player->id.'_payDate">'.(($player->payDate) ? $player->payDate : 'N/A').'</td>',
+          'payDate' => '<td id="'.$player->id.'_payDate">'.(($player->payDate) ? $player->payDate : 'N/A').(($tableType == 'qualGroups' && $player->volunteer) ? ' (V)' : '').'</td>',
           'ifpa' => '<td>'.str_replace('Unranked', 'Unr', $player->getIfpaLink()).'</td>',
           'mailAddress' => '<td class="emailTd"><a href="mailto:'.$player->mailAddress.'">'.$player->mailAddress.'</a></td>',
           'uid' => '<td>'.$ulogin->Uid($player->username).'</td>',
