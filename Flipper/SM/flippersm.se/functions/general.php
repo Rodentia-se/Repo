@@ -1587,7 +1587,7 @@
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
           $disabled = ($player->{$type}) ? false : true;
-//          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
+          $disabled = true; // QUALGROUP CHOICE PERIOD IS NOW OVER!
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
