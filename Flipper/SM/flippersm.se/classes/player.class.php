@@ -579,7 +579,19 @@
       $update[':tournament'] = $this->tournamentEdition_id;
       $update[':id'] = ($type == 'vol') ? $this->person_id : $this->id;
       $sth = $dbh->prepare($query);
-      return ($sth->execute($update)) ? true : false;
+      $sth->execute($update);
+      $player = getPlayerById($dbh, $id);
+      switch ($type) {
+        case 'final':
+          return $player->hereFinal;
+        break;
+        case 'vol':
+          return $player->hereVol;
+        break;
+        default:
+          return $player->here;
+        break;
+      }
     }
 
     function setPhone($dbh, $number = null, $cell = false) {
