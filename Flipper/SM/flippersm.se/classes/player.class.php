@@ -54,6 +54,8 @@
     public $qualGroup_id;
     public $mainQualGroup_id;
     public $classicsQualGroup_id;
+    public $qualChangeReq;
+    public $classicsQualChangeReq;
     public $volunteer;
     public $volunteer_id;
     public $hours;
@@ -530,6 +532,28 @@
       return ($sth->execute($update)) ? true : false;
     }
     
+    function setQualChangeReq($dbh, $tournament = 1, $req = true) {
+      $query = '
+        update player set
+          qualChangeReq = :req
+        where id = :id
+          and tournamentDivision_id = :tournament
+      ';
+      $update[':req'] = ($req) ? 1 : 0;
+      $update[':id'] = $this->id;
+      $update[':tournament'] = $tournament;
+      $sth = $dbh->prepare($query);
+      return ($sth->execute($update)) ? true : false;
+    }
+    
+    function setHereFinal($dbh, $here = true) {
+      return $this->setHere($dbh, $here, 'final');
+    }
+    
+    function setHereVol($dbh, $here = true) {
+      return $this->setHere($dbh, $here, 'vol');
+    }
+
     function setHere($dbh, $here = true, $type = 'qual') {
       switch ($type) {
         case 'final':

@@ -17,12 +17,14 @@
         if ($qualGroup) {
           if ($change == 0) {
             if ($qualGroup->removePlayer($dbh, $player, $prefered)) {
+              $player->setQualChangeReq($dbh, $qualGroup->tournamenDivision_id);
               echo '{"success": true, "reason": "'.ucfirst($qualMsg).' removed"}';
             } else {
               $errorMsg = 'Could not remove the '.$qualMsg.' from '.$player->name;                          
             }
           } else if ($change == 1) {
             if ($qualGroup->addPlayer($dbh, $player, $prefered)) {
+              $player->setQualChangeReq($dbh, $qualGroup->tournamenDivision_id);
               echo '{"success": true, "reason": "'.ucfirst($qualMsg).' added"}';
             } else {
               $errorMsg = 'Could not add the '.$qualMsg.' to the player';                          

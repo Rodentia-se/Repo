@@ -2767,6 +2767,8 @@
         m.qualGroup_id as qualGroup_id,
         m.qualGroup_id as mainQualGroup_id,
         cl.qualGroup_id as classicsQualGroup_id,
+        m.qualChangeReq as qualChangeReq,
+        cl.qualChangeReq as classicsQualChangeReq,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
         ifnull(v.hours, 0) as hours,
