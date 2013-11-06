@@ -38,7 +38,7 @@
 
       if($oEntry->isValidEntryID($iIDEntry)){
         $iScore = $oString->stripNonNumericChars($sScore);
-        $scores = $oEntry->getScores($iIDEntry, $iIDGame);
+        $scores = $oEntry->getScores2($iIDEntry, $iIDGame);
         $idScore = null;
         var_dump($scores);
         foreach($scores as $score){

@@ -158,6 +158,22 @@
       return false;
     }
 
+    public function getScores2($idEntry, $idMachine)
+    {
+      $scores = array();
+      $where = 'where qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
+      $s = getObjects(DataMapper::$db, 'score', $where);
+      if ($s != false)
+      {
+        foreach ($s as $score)
+        {
+          $scores[] = $score;
+        }
+        return $scores;
+      }
+      return false;
+    }
+
     public function isValidEntryID($idEntry)
     {
       $result = true;
