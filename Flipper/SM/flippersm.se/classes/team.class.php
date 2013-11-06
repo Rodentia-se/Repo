@@ -288,5 +288,10 @@
       return $lastInsertId;
     }
 
+    function getQR($link = true, $right = false) {
+      $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon'.(($right) ? ' right' : '').'" alt="QR" title="Click for QR code">';
+      return ($link) ? '<a href="'.__baseHref__.'/mobile/teamPrinter.php?teamId='.$this->id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
+    }
+
   }
 ?>
