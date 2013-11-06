@@ -112,6 +112,7 @@
               <li><span class="errorTd">Assigned</span> = player has been assigned both main and classics at the same time slot.</li>
               <li><span class="green">Assigned</span> = player has been assigned preferred time slot.</li>
               <li><span class="yellow">Assigned</span> = player has been assigned one of the chosen time slots.</li>
+              <li>A star * after the assigned dropdown means that the player has requested a change to his/her assigned time slot!</li>
             </ul>
           ',
           'cols' => array('player', 'mailAddress', 'mobileNumber', 'payDate', 'chosen_1', 'ass_1', 'chosen_2', 'ass_2', 'vol')
