@@ -1568,7 +1568,7 @@
     $choice = ($_REQUEST['active']) ? true : false;
     $content = '
           <div id="qualGroupDiv">
-            <h2 class="entry-title">Välj dina kvaltider här</h2>
+            <h2 class="entry-title">'.(($choice) ? 'Välj dina' : 'Ansök om att byta').' kvaltider här</h2>
             <p class="italic">'.(($choice) ? '<input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
             <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.<br />' : '').'
             Numret efter respektive kvaltid visar antal spelare '.(($choice) ? 'med kvaltiden som förstahandsval' : 'som har blivit tilldelade den kvaltiden').'.<br />
