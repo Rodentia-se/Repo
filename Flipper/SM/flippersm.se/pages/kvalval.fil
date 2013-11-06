@@ -8,7 +8,7 @@
     $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
     $content .= '
       <p>Nedan väljer du vilka kvatider du vill spela. Är du här för att ändra redan gjorda val, så ser du dina nuvarande val nedan.</p>
-      '.(($choice) ? '<p class="bold">OBS: Att du ändrar dina val nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först.</p>' : '').'
+      '.(($choice) ? '' : '<p class="bold">OBS: Att du ändrar dina val nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först.</p>').'
       <p>Regler för kvaltider:</p>
         <ul>
           <li>Du kommer att tilldelas en kvaltid per division, då du spelar dina kvalspel i den divisionen.</li>

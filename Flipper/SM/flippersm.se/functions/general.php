@@ -1598,7 +1598,7 @@
             $content .= '
             <div id="qualGroupMain'.$date.'Table" class="qualGroupTable">
               <div>
-                <input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>
+                '.(($choice) ? '<input type="checkbox" id="'.$date.'_'.$type.'Checkbox" onchange="qualGroupCheckAll(this, \''.$tournamentDivisionId.'_'.$date.'\');" class="qualGroupCheckbox qualGroupDate '.$qualGroup->date.'"'.(($disabled) ? ' disabled ' : '').'>' : '').'
                 <b>'.$date.' ('.ucfirst($type).')</b>
               </div>
             ';
@@ -1932,12 +1932,13 @@
   }
   
   function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false) {
+    $choice = ($_REQUEST['active']) ? true : false;
     $content = '<div id="'.$item->id.'_'.$type.'Div">';
     $content .= ($type == 'task') ? ucfirst($item->name) : '';
-    $content .= '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ';
-    $content .= ($checked) ? ' checked ' : '';
-    $content .= ($disabled) ? ' disabled ' : '';
-    $content .= '>';
+    $content .= ($type != 'qualGroup' || $choice) ? '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ' : '';
+    $content .= ($checked && ($type != 'qualGroup' || $choice)) ? ' checked ' : '';
+    $content .= ($disabled && ($type != 'qualGroup' || $choice)) ? ' disabled ' : '';
+    $content .= ($type != 'qualGroup' || $choice) ? '>' : '';
     $content .= ($type == 'qualGroup') ? '<input type="radio" id="'.$item->id.'_'.$type.'Radio" name="'.$type.'Div'.$item->tournamentDivision_id.'Radio" onchange="timeSlotPreferedChanged(this, '.$item->id.')" class="'.$type.'Radio '.$item->date.'" '.(($prefered) ? ' checked ' : '').(($disabled) ? ' disabled ' : '').'>' : '';
     $content .= '<span class="error errorSpan toolTip qualGroupSpan" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
