@@ -1590,7 +1590,7 @@
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
           $disabled = ($player->{$type} && ($choice || (!$choice && $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId]))) ? false : true;
-          echo 'T:'.$player->{$type}.' C:'.$choice.' A:'.$qualGroup->getNoOfAssignedPlayers($dbh).' L:'.$qualLimit[$tournamentDivisionId];
+          echo 'T:'.$player->{$type}.' C:'.$choice.' A:'.$qualGroup->getNoOfAssignedPlayers($dbh).' L:'.$qualLimit[$tournamentDivisionId].' M:'.__mainQualLimit__;
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
