@@ -40,9 +40,7 @@
         $iScore = $oString->stripNonNumericChars($sScore);
         $scores = $oEntry->getScores2($iIDEntry, $iIDGame);
         $idScore = null;
-        var_dump($scores);
         foreach($scores as $score){
-          echo 'score: ' . $score->score;
           if (($score->score == null) || ($score->score == 0) || ($score->score == '0')){
             $idScore = $score->id;
             break;
