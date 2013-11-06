@@ -3177,7 +3177,9 @@ function qualGroupCheckAll(el, date) {
 function timeSlotPreferedChanged(el, id) {
   if (el.checked) {
     var checkbox = document.getElementById(el.id.replace('Radio', 'Checkbox'));
-    checkbox.checked = true;
+    if (checkbox) {
+      checkbox.checked = true;
+    }
   }
   var tournament = document.getElementById('tournamentHidden').value;
   var change = (el.checked) ? 1 : 0;
