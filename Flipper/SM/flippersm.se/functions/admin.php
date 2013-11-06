@@ -674,6 +674,7 @@
               <td>
                 <input type="text" id="'.$idPrefix.'name" value="'.(($team) ? $team->name : '').'">
                 <span class="error errorSpan toolTip" id="'.$idPrefix.'nameSpan"></span>
+                '.$team->getQR().'
                 <img src="'.__baseHref__.'/images/cancel.png" class="icon" onclick="adminTeam(this);" alt="Click to delete the team" title="Click to delete the team" style="display: '.(($team->id) ? '' : 'none').';" id="'.$idPrefix.'delete">
                 <span class="error errorSpan toolTip" id="'.$idPrefix.'deleteSpan"></span>
                 <img src="'.__baseHref__.'/images/add_icon.gif" class="icon" onclick="adminTeam(this);" alt="Click to add a new team" title="Click to add a new team" style="display: '.(($team->id) ? 'none' : '').';" id="'.$idPrefix.'add">
