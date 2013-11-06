@@ -17,7 +17,7 @@
         if ($qualGroup) {
           if ($change == 0) {
             if ($qualGroup->removePlayer($dbh, $player, $prefered)) {
-              if ($player->setQualChangeReq($dbh, $qualGroup->tournamenDivision_id)) {
+              if ($player->setQualChangeReq($dbh, $qualGroup->tournamentDivision_id)) {
                 echo '{"success": true, "reason": "'.ucfirst($qualMsg).' removed"}';
               } else {
                 $errorMsg = 'You request was received, but notification failed. Please notify an admin!';                
@@ -27,7 +27,7 @@
             }
           } else if ($change == 1) {
             if ($qualGroup->addPlayer($dbh, $player, $prefered)) {
-              if ($player->setQualChangeReq($dbh, $qualGroup->tournamenDivision_id)) {
+              if ($player->setQualChangeReq($dbh, $qualGroup->tournamentDivision_id)) {
                 echo '{"success": true, "reason": "'.ucfirst($qualMsg).' added"}';
               } else {
                 $errorMsg = 'You request was received, but notification failed. Please notify an admin!';                

@@ -533,7 +533,6 @@
     }
     
     function setQualChangeReq($dbh, $tournament = 1, $req = true) {
-      echo ' T:'.$tournament.' R'.(($req) ? '1' : '0');
       $query = '
         update player set
           qualChangeReq = :req
