@@ -16,9 +16,9 @@
         </ul>
       </p>
       ' : '<p>Nedan ser du vilka kvaltider du är tilldelad för närvarande.</p>
-      <p class="bold">OBS: Att du ändrar kvaltid nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först, och du kommer att få besked via email.</p>
       <p class="italic">Radioknapparna indikerar vilka kvaltider du har valt som önskemål.</p>
-      <p class="italic">Kvaltid i <span class="bold">fet stil</span> visar vilken kvaltid du har blivit tilldelad</p>');
+      <p class="italic">Kvaltid i <span class="bold">fet stil</span> visar vilken kvaltid du har blivit tilldelad</p>
+      <p class="bold">OBS: Att du ändrar kvaltid nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först, och du kommer att få besked via email.</p>');
     if ($player->mainPlayerId) {
       $content .= getQualGroupForm($dbh, $player);
     } else if ($player) {
