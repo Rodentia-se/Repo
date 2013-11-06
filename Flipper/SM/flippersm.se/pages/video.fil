@@ -21,7 +21,7 @@
 <p>Då och då laddar vi även upp videos på <a href="http://www.youtube.com/user/FlipperSMse" target="_new">Youtube</a>:</p>
 
 <p>
-<div width="390">
+<div style="width: 390px; overflow: hidden;">
 <script src="http://www.gmodules.com/ig/ifr?url=http://www.google.com/ig/modules/youtube.xml&amp;up_channel=FlipperSMse&amp;synd=open&amp;w=320&amp;h=390&amp;title=Flipper-SM%20på%20Youtube&amp;border=%23ffffff%7C3px%2C1px+solid+%23999999&amp;output=js"></script>
 </div>
 </p>
