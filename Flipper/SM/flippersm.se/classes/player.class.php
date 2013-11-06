@@ -559,23 +559,26 @@
         case 'final':
           $hereField = 'hereFinal';
           $table = 'player';
+          $idField = 'person_id';
         break;
         case 'vol':
           $hereField = 'here';
           $table = 'volunteer';
+          $idField = 'id';
         break;
         default:
           $hereField = 'here';
           $table = 'player';
+          $idField = 'person_id';
         break;
       }
       $query = '
         update '.$table.' set
           '.$hereField.' = :here
-        where id = :id
+        where '.$idField.' = :id
       ';
       $update[':here'] = ($here) ? 1 : 0;
-      $update[':id'] = ($type == 'vol') ? $this->volunteer_id : $this->mainPlayerId;
+      $update[':id'] = ($type == 'vol') ? $this->volunteer_id : $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
