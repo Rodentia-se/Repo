@@ -1,7 +1,9 @@
 <?php
   $choice = ($_REQUEST['active']) ? true : false;
 
-  if ($choice) {
+  $player = getCurrentPlayer($dbh, $ulogin);
+
+  if ($choice || $player->id == 1) {
     $content = '<h1>Val av kvaltider</h1>';
     $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
     $content .= '
@@ -15,7 +17,6 @@
         </ul>
       </p>
     ';
-    $player = getCurrentPlayer($dbh, $ulogin);
     if ($player->mainPlayerId) {
       $content .= getQualGroupForm($dbh, $player);
     } else if ($player) {
