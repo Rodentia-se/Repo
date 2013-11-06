@@ -1589,7 +1589,7 @@
       foreach($tournamentDivisionIds as $tournamentDivisionId) {
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
-          $disabled = ($player->{$type} && ($choice || $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId]))) ? false : true;
+          $disabled = ($player->{$type} && ($choice || $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId])) ? false : true;
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
