@@ -7,15 +7,18 @@
     $content = '<h1>Val av kvaltider</h1>';
     $content .= submenu2($dbh, $ulogin, 'anmalda', false, getCurrentPlayer($dbh, $ulogin));
     $content .= '
-      <p>Nedan väljer du vilka kvatider du vill spela. Är du här för att ändra redan gjorda val, så ser du dina nuvarande val nedan.</p>
-      '.(($choice) ? '<p>Regler för kvaltider:</p>
+      '.(($choice) ? '<p>Nedan väljer du vilka kvatider du vill spela. Är du här för att ändra redan gjorda val, så ser du dina nuvarande val nedan.</p>
+      <p>Regler för kvaltider:</p>
         <ul>
           <li>Du kommer att tilldelas en kvaltid per division, då du spelar dina kvalspel i den divisionen.</li>
           <li>Vi kommer att försöka att stoppa in dig på den kvaltid som du har valt i första hand, men tidsschemat är tajt, så vi kan inte lova något.</li>
           <li>Du kan öka dina chanser att få ditt förstahandsval avsevärt genom att betala deltagaravgiften. Vi kommer att dela ut kvaltider i samma ordning som spelarna har betalat avgiften.</li>
         </ul>
       </p>
-      ' : '<p class="bold">OBS: Att du ändrar dina val nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först.</p>');
+      ' : '<p>Nedan ser du vilka kvaltider du är tilldelad för närvarande.</p>
+      <p class="bold">OBS: Att du ändrar kvaltid nedan innebär inte att du automatiskt blir tilldelad kvalgruppen du har valt! En administratör kommer att kontrollera vad som är möjligt först.</p>
+      <p class="italic">Radioknapparna indikerar vilka kvaltider du har valt som önskemål.</p>
+      <p class="italic">Kvaltid i <span class="bold">fet stil</span> visar vilken kvaltid du har blivit tilldelad</p>');
     if ($player->mainPlayerId) {
       $content .= getQualGroupForm($dbh, $player);
     } else if ($player) {
