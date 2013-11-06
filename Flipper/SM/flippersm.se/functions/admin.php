@@ -327,7 +327,7 @@
                   '.(($i == 1 || $player->classics) ? '<select id="'.$player->id.'_'.$i.'_qualGroup" onchange="adminQualGroup(this);" previous="'.$selectedQualGroupId[$i].'"'.(($i == 2 && !$player->classics) ? 'disabled' : '').'>
                   <option value="0">...</option>
                   '.$options[$i].'
-                  </select>
+                  </select> '.((($i == 1 && $player->qualChangeReq) || ($i == 2 && $player->classicsQualChangeReq)) ? '*' : '').'
                   <span class="error errorSpan toolTip" id="'.$player->id.'_'.$i.'_qualGroupSpan"></span>
                   <input type="hidden" id="'.$player->id.'_'.$i.'_qualGroupPref" value="'.$preferedId[$i].'">
                   <input type="hidden" id="'.$player->id.'_'.$i.'_qualGroupChosen" value="'.(($chosens[$i]) ? implode('_', $chosens[$i]) : '0').'">' : '').'
