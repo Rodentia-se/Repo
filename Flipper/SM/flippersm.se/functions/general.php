@@ -1590,7 +1590,6 @@
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
           $disabled = ($player->{$type} && ($choice || (!$choice && $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId]))) ? false : true;
-          echo 'T:'.$type.' C:'.$choice.' A:'.$qualGroup->getNoOfAssignedPlayers($dbh).' T:'.$tournamentDivisionId.' L:'.$qualLimit[$tournamentDivisionId].' M:'.__mainQualLimit__.'<br>';
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
@@ -1945,7 +1944,7 @@
     $content .= '<span class="error errorSpan toolTip qualGroupSpan" id="'.$item->id.'_'.$type.'Span"></span>';
     $content .= ($item->comment) ? '<span class="italic">'.$item->comment.'</span>' : '';
     $content .= ($type == 'period' || $type == 'qualGroup') ? ucfirst($item->name) : '';
-    $content .= ($type == 'qualGroup') ? ': '.$item->getNoOfPlayers($dbh, true) : '';
+    $content .= ($type == 'qualGroup') ? ': '.(($choice) ? $item->getNoOfPlayers($dbh, true) : $item->getNoOfAssignedPlayers($dbh)) : '';
     $content .= '</div>';
     return $content;
   }
