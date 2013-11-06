@@ -162,6 +162,7 @@
     {
       $scores = array();
       $query = 'select
+                  qs.id as id,
                   qs.qualEntry_id as qualEntry_id,
                   qs.machine_id as machine_id,
                   qs.score as score
