@@ -1606,7 +1606,7 @@
           }
           $checked = (in_array($qualGroup->id, $playerQualGroupIds)) ? true : false;
           $prefered = ($playerPreferedQualGroups && in_array($qualGroup->id, $playerPreferedQualGroupIds)) ? true : false;
-          $bold = (($tournamentDivisionId = 1 && $player->mainQualGroup_id == $qualGroup->id) || ($tournamentDivisionId = 2 && $player->classicsQualGroup_id == $qualGroup->id)) ? true : false;
+          $bold = (($tournamentDivisionId == 1 && $player->mainQualGroup_id == $qualGroup->id) || ($tournamentDivisionId == 2 && $player->classicsQualGroup_id == $qualGroup->id)) ? true : false;
           $content .= getQualGroupRow($dbh, $qualGroup, $checked, $prefered, $disabled, $bold);
         }
       } 
