@@ -161,8 +161,11 @@
     public function getScores2($idEntry, $idMachine)
     {
       $scores = array();
-      $where = 'where qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
-      $s = getObjects(DataMapper::$db, 'score', $where);
+      $query = 'select
+        qs.qualEntry_id as qualEntry_id,
+        qs.machine_id as machine_id,
+      where qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
+      $s = getObjects(DataMapper::$db, 'score', $query);
       if ($s != false)
       {
         foreach ($s as $score)
