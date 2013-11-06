@@ -579,14 +579,6 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
-    
-    function setHereFinal($dbh, $here = true) {
-      return $this->setHere($dbh, $here, 'final');
-    }
-    
-    function setHereVol($dbh, $here = true) {
-      return $this->setHere($dbh, $here, 'vol');
-    }
 
     function setPhone($dbh, $number = null, $cell = false) {
       $phoneField = ($cell) ? 'mobileNumber' : 'telephoneNumber';
