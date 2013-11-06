@@ -536,7 +536,7 @@
       $query = '
         update player set
           qualChangeReq = :req
-        where id = :id
+        where person_id = :id
           and tournamentDivision_id = :tournament
       ';
       $update[':req'] = ($req) ? 1 : 0;
