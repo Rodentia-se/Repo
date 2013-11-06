@@ -162,10 +162,11 @@
     {
       $scores = array();
       $query = 'select
-        qs.qualEntry_id as qualEntry_id,
-        qs.machine_id as machine_id,
-        from qualScore qs
-      where qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
+                  qs.qualEntry_id as qualEntry_id,
+                  qs.machine_id as machine_id
+                from qualScore qs
+                where 
+                  qualEntry_id = ' . $idEntry . ' and machine_id = ' . $idMachine;
       $s = getObjects(DataMapper::$db, 'score', $query);
       if ($s != false)
       {
