@@ -1563,6 +1563,9 @@
     }
     $prefered = ($playerPreferedQualGroup) ? 'checked' : '';
     $checked = ($playerQualGroups) ? 'checked' : '';
+    $qualLimit[1] = __mainQualLimit__;
+    $qualLimit[2] = __classicsQualLimit__;
+    $choice = ($_REQUEST['active']) ? true : false;
     $content = '
           <div id="qualGroupDiv">
             <h2 class="entry-title">Välj dina kvaltider här</h2>
@@ -1572,24 +1575,21 @@
             Om kvaltiderna för Classics är utgråade, så beror det på att du inte har anmält dig i Classics. Gör det <a href="'.__baseHref__.'/?s=edit">här</a>.</P>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
+            <input type="hidden" id="choiceHidden" value="'.(($choice) ? '1' : '0').'">
     ';
     $content .= '
           </div>
           <div id="qualGroupTableDiv" class="periodTable">
-            <p>Klicka i/ur alla tillgängliga kvaltider: <input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);"';
-    if ($playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
+            '.(($choice) ? '<p>Klicka i/ur alla tillgängliga kvaltider: <input type="checkbox" id="qualGroupChackAll" onclick="qualGroupCheckAll(this);"' : '');
+    if ($choice && $playerQualGroups && count($playerQualGroups) == count($qualGroups)) {
       $content .= ' checked';
     }            
-    $content .= '></p>
-    ';
-    $qualLimit[1] = __mainQualLimit__;
-    $qualLimit[2] = __classicsQualLimit__;
-    $choice = ($_REQUEST['active']) ? true : false;
+    $content .= ($choice) ? '></p>' : '';
     if($qualGroups && count($qualGroups > 0)) {
       foreach($tournamentDivisionIds as $tournamentDivisionId) {
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
-          $disabled = ($player->{$type} && ($choice || $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId])) ? false : true;
+          $disabled = ($player->{$type} && ($choice || (!$choice && $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId]))) ? false : true;
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
