@@ -1572,7 +1572,7 @@
             <p class="italic">'.(($choice) ? '<input type="radio" '.$prefered.' id="qualGroupRadioExample">&nbsp;&nbsp;Använd radioknapparna för att göra dina förstahandsval - en per division.<br/>
             <input type="checkbox" '.$checked.' id="qualGroupCheckboxExample">&nbsp;&nbsp;Använd checkboxarna för att välja övriga kvaltider som passar dig.<br />' : '').'
             Numret efter respektive kvaltid visar antal spelare '.(($choice) ? 'med kvaltiden som förstahandsval' : 'som har blivit tilldelade den kvaltiden').'.<br />
-            Om kvaltiderna för Classics är utgråade, så beror det på att du inte har anmält dig i Classics. Gör det <a href="'.__baseHref__.'/?s=edit">här</a>.</p>
+            Om kvaltiderna för Classics är utgråade, så beror det på att du inte har anmält dig i Classics. Gör det genom att klicka i Classics <a href="'.__baseHref__.'/?s=edit">här</a>.</p>
             <input type="hidden" id="tournamentHidden" value="'.$tournament.'">
             <input type="hidden" id="idHidden" value="'.$player->id.'">
             <input type="hidden" id="choiceHidden" value="'.(($choice) ? '1' : '0').'">
@@ -1605,7 +1605,8 @@
           }
           $checked = (in_array($qualGroup->id, $playerQualGroupIds)) ? true : false;
           $prefered = ($playerPreferedQualGroups && in_array($qualGroup->id, $playerPreferedQualGroupIds)) ? true : false;
-          $content .= getQualGroupRow($dbh, $qualGroup, $checked, $prefered, $disabled);
+          $bold = (($tournamentDivisionId = 1 && $player->mainQualGroup_id == $qualGroup->id) || ($tournamentDivisionId = 2 && $player->classicsQualGroup_id == $qualGroup->id)) ? true : false;
+          $content .= getQualGroupRow($dbh, $qualGroup, $checked, $prefered, $disabled, $bold);
         }
       } 
       $content .= '
@@ -1617,8 +1618,8 @@
     return $content;
   }
     
-  function getQualGroupRow($dbh, $qualGroup = null, $checked = false, $prefered = false, $disabled = false) {
-    return getTimeSlotRow($dbh, 'qualGroup', $qualGroup, $checked, $prefered, $disabled);
+  function getQualGroupRow($dbh, $qualGroup = null, $checked = false, $prefered = false, $disabled = false, $bold=false) {
+    return getTimeSlotRow($dbh, 'qualGroup', $qualGroup, $checked, $prefered, $disabled, $bold);
   }  
   
   function addVolunteerTask($dbh, $volunteer, $task, $tournamentId = 1) {
@@ -1931,9 +1932,9 @@
     return getTimeSlotRow($dbh, $type, $item, $checked);
   }
   
-  function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false) {
+  function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false, $bold = false) {
     $choice = ($_REQUEST['active']) ? true : false;
-    $content = '<div id="'.$item->id.'_'.$type.'Div">';
+    $content = '<div id="'.$item->id.'_'.$type.'Div"'.(($bold) ? ' class="bold"' : '').'>';
     $content .= ($type == 'task') ? ucfirst($item->name) : '';
     $content .= ($type != 'qualGroup' || $choice) ? '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ' : '';
     $content .= ($checked && ($type != 'qualGroup' || $choice)) ? ' checked ' : '';
