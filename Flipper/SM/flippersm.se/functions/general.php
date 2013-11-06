@@ -1582,12 +1582,14 @@
     }            
     $content .= '></p>
     ';
+    $qualLimit[1] = __mainQualLimit__;
+    $qualLimit[2] = __classicsQualLimit__;
     $choice = ($_REQUEST['active']) ? true : false;
     if($qualGroups && count($qualGroups > 0)) {
       foreach($tournamentDivisionIds as $tournamentDivisionId) {
         $type = ($tournamentDivisionId == 1) ? 'main' : 'classics';
         foreach($qualGroupsByDiv[$tournamentDivisionId] as $qualGroup) {
-          $disabled = ($player->{$type} && $choice) ? false : true;
+          $disabled = ($player->{$type} && ($choice || $qualGroup->getNoOfAssignedPlayers($dbh) < $qualLimit[$tournamentDivisionId]))) ? false : true;
           if (!($date) || $date != $qualGroup->date) {
             if ($date) {
               $content .= '</div>';
