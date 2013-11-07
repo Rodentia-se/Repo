@@ -581,6 +581,7 @@
       $sth = $dbh->prepare($query);
       $sth->execute($update);
       $player = getPlayerById($dbh, $this->id);
+      var_dump($player);
       switch ($type) {
         case 'final':
           return ($player->hereFinal == $here) ? true : false;
