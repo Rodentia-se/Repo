@@ -1261,6 +1261,8 @@
         tm.name as name,
         "team" as class,
         tm.place as place,
+        tm.here as here,
+        tm.hereFinal as hereFinal,
         tm.qualPlace as qualPlace,
         tm.initials as initials,
         tm.national as national,

@@ -247,6 +247,20 @@
       return $objs;
     }
 
+    function setHere($dbh, $here = true, $type = 'qual') {
+      $query = '
+        update team set
+          here'.(($type == 'final') ? 'Final' : '').' = :here
+        where id = :id
+      ';
+      $update[':here'] = ($here) ? 1 : 0;
+      $update[':id'] = $this->id;
+      $sth = $dbh->prepare($query);
+      $sth->execute($update);
+      $team = getTeamById($dbh, $this->id);
+      return ($type == 'final') ? $team->hereFinal : $team->here;
+    }
+
     function createEntry($dbh, $games = null) {
       $query = '
         insert into qualEntry set
