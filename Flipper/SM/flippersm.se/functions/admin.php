@@ -1031,7 +1031,7 @@
       $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
       switch ($division) {
         case 2:
-          $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = 1');
+          $players = getPlayers($dbh, ' where cl.id is not null and cl.tournamentDivision_id = '.$division);
         break;
         case 3:
           $players = getTeams($sbh);
