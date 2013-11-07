@@ -581,16 +581,15 @@
       $sth = $dbh->prepare($query);
       $sth->execute($update);
       $player = getPlayerById($dbh, $this->id);
-      var_dump($player);
       switch ($type) {
         case 'final':
-          return ($player->hereFinal == $here) ? true : false;
+          return (($player->hereFinal) == ($here)) ? true : false;
         break;
         case 'vol':
-          return ($player->hereVol == $here) ? true : false;
+          return (($player->hereVol) == ($here)) ? true : false;
         break;
         default:
-          return ($player->here == $here) ? true : false;
+          return (($player->here) == ($here)) ? true : false;
         break;
       }
     }
