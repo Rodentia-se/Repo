@@ -213,8 +213,8 @@
       $insert[':game'] = ($game) ? $game->name : null;
       $insert[':gameAcronym'] = ($game) ? $game->acronym : null;
       $insert[':score'] = $score;
-      $insert[':score'] = $round;
-      $insert[':score'] = $order;
+      $insert[':round'] = $round;
+      $insert[':order'] = $order;
       $insert[':playerId'] = ($this->tournamentDivision_id == 3) ? $this->team_id : $this->player_id;
       $insert[':personId'] = ($this->tournamentDivision_id == 3) ? null : $this->person_id;
       $insert[':firstName'] = ($this->tournamentDivision_id == 3) ? $this->team : $this->firstName;
