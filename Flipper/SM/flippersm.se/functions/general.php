@@ -1525,12 +1525,11 @@
   }
   
   function getQualGroupsByDivision($dbh, $division = 1) {
-    $query = getQualGroupSelect('q', 'td.tournamentEdition_id as tournamentEdition_id').',
+    $query = getQualGroupSelect('q', 'td.tournamentEdition_id as tournamentEdition_id').'
       left join tournamentDivision td
         on q.tournamentDivision_id = td.id
       where td.id = '.$division.' order by q.date, q.startTime
       ';
-      echo $query;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('qualGroup')) {
       $objs[] = $obj;
