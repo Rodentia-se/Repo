@@ -33,6 +33,7 @@
         if ($div != false){
           $entry = $oEntry->fromPlayerAndDivision($iIDPlayer, $div);
           $iIDEntry = (string)$entry->id;
+          echo $iIDEntry;
         }
       }
 
