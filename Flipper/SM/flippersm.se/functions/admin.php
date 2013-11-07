@@ -1075,7 +1075,7 @@
       }
       foreach($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
-//        $entry->delete($dbh);
+        $entry->delete($dbh);
       }
       return $content;
     }
