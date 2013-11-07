@@ -1041,8 +1041,9 @@
         break;
       }
       $content .= count($players);
-    }
     return $content;
+    }
+
   }
   
 ?>
