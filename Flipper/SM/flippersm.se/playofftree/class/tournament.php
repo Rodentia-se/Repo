@@ -4,7 +4,7 @@
 class tournament {
 
 	public static $competitionid = 1;
-	public static $numberOfCompetitors = 55;
+	public static $numberOfCompetitors = 2;
 	public static $numberOfSets = 3;
 	public static $creamfiles = 0;
 
@@ -13,9 +13,13 @@ class tournament {
 	public $matchArray;
 
 	// Set appropriate tablenames to use in this class.
-	const SPELTABELL = 'Pinballentry_game';
-	const SPELARTABELL = 'spelare';
-	const SETTABELL = 'sets';
+	const SPELTABELL = 'game';
+	const SPELARTABELL = 'player';
+	const SETTABELL = 'matchSet';
+	const MATCHTABELL = 'match';
+	const MATCHPLAYERTABELL = 'matchPlayer';
+	const MATCHSCORETABELL = 'matchScore';
+
 
 
 
@@ -52,31 +56,60 @@ class tournament {
 	}
 
 
-
-	protected function getSets() {
+	protected function getSets($compID = 1) {
 
 		// Skapa en kontakt med databasen
 		$connect = new uppkoppling();
 		$pdo = $connect->conn();
 
-		$STH = $pdo->prepare("SELECT matchID, setID, playerA, playerB, spel, vinnare, SpA.Tag AS TagA, SpB.Tag AS TagB, Game.Abbreviation AS Abbr 
-						  FROM " . self::SETTABELL . "
-						  LEFT JOIN " . self::SPELARTABELL . " AS SpA ON sets.playerA = SpA.SpelarID
-						  LEFT JOIN " . self::SPELARTABELL . " AS SpB ON sets.playerB = SpB.SpelarID
-						  LEFT JOIN " . self::SPELTABELL . " AS Game ON sets.spel = Game.Gameid
-						  ORDER BY matchID, setID");
+		$STH = $pdo->prepare("SELECT Match.id AS Matchid, 
+									sets.id AS setid, 
+									sets.machine_id, 
+									sets.gameAcronym,
+									mp1.initials AS TagA, 
+									mp2.initials AS TagB,
+									mp1.player_id AS pidA,
+									mp2.player_id AS pidB,
+									ms1.Score AS scoreA,
+									ms2.Score AS scoreB 
+								FROM " . self::MATCHTABELL . " AS Match 
+								LEFT JOIN " . self::SETTABELL . " AS sets ON sets.match_id = Match.id
+								LEFT JOIN (
+    									SELECT * 
+    									FROM " . self::MATCHPLAYERTABELL . " 
+    									WHERE mp1.order = 1) mp1
+											ON Match.id = mp1.match_id
+								LEFT JOIN (
+    									SELECT * 
+    									FROM " . self::MATCHPLAYERTABELL . " 
+    									WHERE mp2.order = 2) mp2
+											ON Match.id = mp2.match_id
+								LEFT JOIN (
+										SELECT Score
+										FROM " . self::MATCHSCORETABELL . "
+										WHERE ms1.player_id = pidA) ms1
+											ON ms1.matchSet_id = sets.id
+								LEFT JOIN (
+										SELECT Score
+										FROM " . self::MATCHSCORETABELL . "
+										WHERE ms2.player_id = pidB) ms2
+											ON ms2.matchSet_id = sets.id
+								WHERE tour_id = $compID");
 		$STH->execute();
 
 		while ($row = $STH->fetch(PDO::FETCH_ASSOC)) {
-			$this->setArray['matchID'][] = $row['matchID']; 
-			$this->setArray['setID'][] = $row['setID']; 
-			$this->setArray['playerA'][] = $row['playerA']; 
-			$this->setArray['playerB'][] = $row['playerB']; 
-			$this->setArray['spel'][] = $row['spel']; 
+			$this->setArray['matchID'][] = $row['matchid']; 
+			$this->setArray['setID'][] = $row['setid']; 
+			$this->setArray['playerA'][] = $row['pidA']; 
+			$this->setArray['playerB'][] = $row['pidB']; 
+			$this->setArray['spel'][] = $row['machine_id']; 
 			$this->setArray['tagA'][] = $row['TagA']; 
 			$this->setArray['tagB'][] = $row['TagB']; 
-			$this->setArray['vinnare'][] = $row['vinnare']; 
-			$this->setArray['abbr'][] = $row['Abbr'];
+			if ($row['scoreA'] > $row['scoreB'])
+				$this->setArray['vinnare'][] = $row['pidA'];
+			else 
+				$this->setArray['vinnare'][] = $row['pidB'];
+			$this->setArray['abbr'][] = $row['gameAcronym'];
 		
 		}
 

@@ -4,7 +4,7 @@
 $host = 'localhost';
 $dbname = 'pinball';
 $dbuser = 'hans';
-$dbpass = 'gilgamesh71';
+$dbpass = 'sloTToch7lp';
 
 
 
