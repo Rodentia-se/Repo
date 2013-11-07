@@ -305,8 +305,10 @@
             if (!($team && (in_array($qualGroup->id, $teamNoQualIds)))) {
               $selectedQualGroupId[$qualGroup->tournamentDivision_id] = ($qualGroup->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id;
               $options[$qualGroup->tournamentDivision_id] .= '<option value="'.$qualGroup->id.'" ';
-              $options[$qualGroup->tournamentDivision_id] .= ($qualGroup->id == $selectedQualGroupId[$qualGroup->tournamentDivision_id]) ? 'selected' : '';
-              $assQualGroup[$qualGroup->tournamentDivision_id] = $qualGroup;
+              if ($qualGroup->id == $selectedQualGroupId[$qualGroup->tournamentDivision_id]) {
+                $options[$qualGroup->tournamentDivision_id] .=  'selected';
+                $assQualGroup[$qualGroup->tournamentDivision_id] = $qualGroup;
+              }
               $options[$qualGroup->tournamentDivision_id] .= ($qualGroup->id == $preferedId[$qualGroup->tournamentDivision_id]) ? ' class="yellow"' : '';
               $options[$qualGroup->tournamentDivision_id] .= '>'.$qualGroup->shortName.'</option>';
             }
@@ -335,7 +337,7 @@
                 </td>
             ';
           }
-          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$selectedQualGroupId[1]->date.' '.substr($selectedQualGroupId[1]->startTime, 0, 5).'-'.substr($selectedQualGroupId[1]->endTime, 0, 5).','.$selectedQualGroupId[2]->date.' '.substr($selectedQualGroupId[2]->startTime, 0, 5).'-'.substr($selectedQualGroupId[2]->endTime, 0, 5)."<br />\n";
+          $tables['csv'] .= $player->firstName.','.$player->lastName.','.$assQualGroup[1]->date.' '.substr($assQualGroup[1]->startTime, 0, 5).'-'.substr($assQualGroup[1]->endTime, 0, 5).','.$assQualGroup[2]->date.' '.substr($assQualGroup[2]->startTime, 0, 5).'-'.substr($assQualGroup[2]->endTime, 0, 5)."<br />\n";
         }
         foreach ($types as $type) {
           $tables[$type] .= '<tr>';
