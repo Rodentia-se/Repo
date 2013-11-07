@@ -1068,7 +1068,7 @@
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$start.', start ID: '.$roundGames[$round][0]->id.'<br />';
           foreach($players as $player) {
           }
-          $start = ($end >= count($games)) ? 0 : $end + 1;
+          $start = ($end >= count($games)) ? abs(count($games) - $end) : $end;
           $number = ceil(count($players)/2);
         }
       }
