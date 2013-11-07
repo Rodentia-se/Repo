@@ -301,6 +301,8 @@
           $qualGroups = getQualGroups($dbh);
           $teamNoQualIds = array(0);
           $mainClassicsDiff = 6;
+          $selectedQualGroupId[1] = null;
+          $selectedQualGroupId[2] = null;
           foreach ($qualGroups as $qualGroup) {
             if (!($team && (in_array($qualGroup->id, $teamNoQualIds)))) {
               $selectedQualGroupId[$qualGroup->tournamentDivision_id] = ($qualGroup->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id;
