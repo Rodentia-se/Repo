@@ -1064,7 +1064,7 @@
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).'<br />';
           foreach($players as $player) {
           }
-          $start = ($end == count($games) ? 0 : $end + 1;
+          $start = ($end == count($games)) ? 0 : $end + 1;
         }
       }
       foreach($qualEntryIds as $qualEntryId) {

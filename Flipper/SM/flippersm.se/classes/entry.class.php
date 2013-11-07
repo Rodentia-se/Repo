@@ -51,8 +51,6 @@
     function getScores($dbh, $groupBy = 'group by qs.machine_id', $orderBy = 'order by max(qs.points) desc, min(qs.place) asc') {
       $query = getScoreSelect(($groupBy) ? true : false).'
         where qs.qualEntry_id = '.$this->id;
-      $query .= ($tournament) ? ' and qs.tournamentEdition_id = '.$tournament : '';
-      $query .= ($division) ? ' and qs.tournamentDivision_id = '.$division : '';
       $query .= ' '.$groupBy.' '.$orderBy;
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('score')) {
@@ -234,6 +232,10 @@
       $delete[':id'] = $this->id;
       $query = 'delete from qualEntry where id = :id';
       $sth = $dbh->prepare($query);
+      $scores = $this->getScores($dbh, false, false);
+      foreach($scores as $score) {
+        $score->delete($dbh);
+      }
       return $sth->execute($delete);
     }
 
