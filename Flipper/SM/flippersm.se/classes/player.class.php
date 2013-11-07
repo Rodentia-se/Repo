@@ -17,7 +17,11 @@
     public $gender_id;
     public $gender;
     public $here;
+    public $hereMain;
+    public $hereClassics;
     public $hereFinal;
+    public $hereFinalMain;
+    public $hereFinalClassics;
     public $hereVol;
     public $hoursDiff;
     public $type;
@@ -577,7 +581,7 @@
       ';
       $update[':here'] = ($here) ? 1 : 0;
       $update[':tournament'] = $this->tournamentEdition_id;
-      $update[':id'] = ($type == 'vol') ? $this->person_id : $this->id;
+      $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       $sth->execute($update);
       $player = getPlayerById($dbh, $this->id);
