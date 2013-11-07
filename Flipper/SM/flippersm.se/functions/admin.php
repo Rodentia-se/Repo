@@ -1067,7 +1067,11 @@
           $start = ($end == count($games) ? 0 : $end + 1;
         }
       }
-    return $content;
+      foreach($qualEntryIds as $qualEntryId) {
+        $entry = getEntryById($dbh, $qualEntryId);
+//        $entry->delete($dbh);
+      }
+      return $content;
     }
 
   }
