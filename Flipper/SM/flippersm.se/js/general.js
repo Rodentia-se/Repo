@@ -2600,6 +2600,27 @@ function adminHere(box) {
   });
 }
 
+function adminTeamHere(box) {
+  var teamId = box.id.split('_')[0];
+  fade(document.getElementById(box.id + 'Span'), 'Updaterar databasen...', true);
+  $.post(baseHref + '/ajax/setTeamHere.php', {teamId: teamId, here: ((box.checked) ? 1 : 0), type: box.id.split('_')[2]}) // Send to server
+  .done(function(data) {
+    fade(document.getElementById(box.id + 'Span'), data.reason, data.success);    
+    if (data.success) {
+      var totalHere = document.getElementById('total_here');
+      if (totalHere) {
+        totalHere.innerHTML = (+ parseInt(totalHere.innerHTML) + ((box.checked) ? 1 : -1));
+      }
+    } else {
+      box.checked = !box.checked;
+    }
+  })
+  .fail(function(jqHXR,status,error) {
+    debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+    debugOut(jqHXR.responseText);
+  });
+}
+
 function adminPaidChange(sel) {
   var playerId = sel.id.split('_')[0];
   fade(document.getElementById(sel.id + 'Span'), 'Updaterar databasen...', true);

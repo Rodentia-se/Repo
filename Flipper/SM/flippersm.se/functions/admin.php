@@ -684,6 +684,10 @@
                 <span class="error errorSpan toolTip" id="'.$idPrefix.'initialsSpan"></span>
                 <input type="button" value="Change name" id="'.$idPrefix.'nameChange" style="display: '.(($team->id) ? '' : 'none').';" title="Click to change name and initials" onclick="adminTeam(this);">
                 <span class="error errorSpan toolTip" id="'.$idPrefix.'nameChangeSpan"></span>
+                Q:<input type="checkbox" id="'.$team->id.'_team_qual_here" onclick="adminTeamHere(this);" '.(($team->here) ? 'checked' : '').'>
+                <span class="error errorSpan toolTip" id="'.$team->id.'_team_qual_hereSpan"></span>
+                F:<input type="checkbox" id="'.$team->id.'_team_final_here" onclick="adminTeamHere(this);" '.(($team->hereFinal) ? 'checked' : '').'>
+                <span class="error errorSpan toolTip" id="'.$team->id.'_team_final_hereSpan"></span>
               </td>
               <td>
               R: '.createSelect($potentialRegistrators, $idPrefix.'regSelect', (($registrator) ? $registrator->id : 0), 'adminTeam', (($team->id) ? '' : 'disabled')).'
