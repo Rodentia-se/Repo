@@ -276,7 +276,7 @@
           city_id = :cityId,
           city = :city
       ';
-      $insert[':name'] = $this->firstName.' '.$this->lastName.', Team, 2013';
+      $insert[':name'] = $this->name.', Team, 2013';
       $insert[':teamId'] = $this->id;
       $insert[':team'] = $this->name;
       $insert[':initials'] = $this->initials;

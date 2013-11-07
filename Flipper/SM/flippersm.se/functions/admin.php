@@ -1050,6 +1050,7 @@
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
         foreach($players as $player) {
+          $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
         }
         $content .= 'Players: '.count($players).'<br />';
@@ -1065,6 +1066,7 @@
           foreach($players as $player) {
           }
           $start = ($end == count($games)) ? 0 : $end + 1;
+          $end = ceil(count($players)/2);
         }
       }
       foreach($qualEntryIds as $qualEntryId) {
