@@ -1068,17 +1068,17 @@
             $number = ceil(count($players)/2) - count($roundGames[$round]);
           }
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
-          $start = 0;
+          $gameSeq = 0;
           foreach($players as $player) {
-            if ($start == floor(count($players)/2) + 1) {
-              $start = count($players) - 1;
-            } else if ($start == count($players)) {
-              $start = floor(count($players)/2) + 1;
+            if ($gameSeq == floor(count($players)/2) + 1) {
+              $gameSeq = count($players) - 1;
+            } else if ($gameSeq == count($players)) {
+              $gameSeq = floor(count($players)/2) + 1;
             }
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
-            $entry->createScore($dbh, $game[$start]);
-            $content = 'R: '.$round.', PID: '.$player->id.', GID: '.$game->id.'<br /><br />';
-            $start++;
+            $entry->createScore($dbh, $roundGames[$round][$gameSeq]);
+            $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round]->id.'<br /><br />';
+            $gameSeq++;
           }
           $number = ceil(count($players)/2);
         }
