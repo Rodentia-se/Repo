@@ -1055,7 +1055,7 @@
           $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
         }
-        $content .= 'Players: '.count($players).'<br />';
+        $content .= 'Players: '.count($players).', Games: '.count($games).'<br />';
         $start = 0;
         $number = ceil(count($players)/2);
         for ($round = 1; $round <= 4; $round++) {
