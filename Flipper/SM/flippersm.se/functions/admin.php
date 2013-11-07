@@ -1055,14 +1055,12 @@
         for ($round = 1; $round <= 4; $round++) {
           $roundGames[$round] = array();
           while ($end > 0) {
-            echo '1 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
             $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $end));
-            echo '2 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
             $end = ceil(count($players)/2) - count($roundGames[$round]);
-            echo '3 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
           }
         }
-        $content .= 'Games: '.count($roundGames[1]).'<br /><br />';
+        $content .= 'Games: '.count($roundGames[1]).', '.count($roundGames[2]).', '.count($roundGames[3]).', '.count($roundGames[4]).'<br /><br />';
+        
       }
     return $content;
     }
