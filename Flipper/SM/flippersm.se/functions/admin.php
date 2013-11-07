@@ -1057,18 +1057,18 @@
         }
         $content .= 'Players: '.count($players).'<br />';
         $start = 0;
-        $end = ceil(count($players)/2);
+        $number = ceil(count($players)/2);
         for ($round = 1; $round <= 4; $round++) {
           $roundGames[$round] = array();
-          while ($end > 0) {
-            $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $end));
-            $end = ceil(count($players)/2) - count($roundGames[$round]);
+          while ($number > 0) {
+            $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $number));
+            $number = ceil(count($players)/2) - count($roundGames[$round]);
           }
-          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start ID: '.$roundGames[$round][0]->id.'<br />';
+          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$start.', start ID: '.$roundGames[$round][0]->id.'<br />';
           foreach($players as $player) {
           }
-          $start = ($end == count($games)) ? 0 : $end + 1;
-          $end = ceil(count($players)/2);
+          $start = ($number >= count($games)) ? 0 : $number + 1;
+          $number = ceil(count($players)/2);
         }
       }
       foreach($qualEntryIds as $qualEntryId) {
