@@ -580,16 +580,16 @@
       $update[':id'] = ($type == 'vol') ? $this->person_id : $this->id;
       $sth = $dbh->prepare($query);
       $sth->execute($update);
-      $player = getPlayerById($dbh, $id);
+      $player = getPlayerById($dbh, $this->id);
       switch ($type) {
         case 'final':
-          return $player->hereFinal;
+          return ($player->hereFinal == $here) ? true : false;
         break;
         case 'vol':
-          return $player->hereVol;
+          return ($player->hereVol == $here) ? true : false;
         break;
         default:
-          return $player->here;
+          return ($player->here == $here) ? true : false;
         break;
       }
     }
