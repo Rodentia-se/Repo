@@ -589,7 +589,7 @@
           return ((bool) $player->hereVol == $here) ? true : false;
         break;
         default:
-          return ((bool) ($player->here == $here) ? true : false;
+          return ((bool) $player->here == $here) ? true : false;
         break;
       }
     }
