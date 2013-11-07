@@ -5,6 +5,7 @@
     public $initials;
     public $player_ids = array();
     public $players = array();
+    public $qualGroup_id;
     public $qualPlace;
     public $place;
     public $contactPlayer_id;

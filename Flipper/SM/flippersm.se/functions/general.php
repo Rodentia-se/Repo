@@ -1260,6 +1260,7 @@
         tm.id as id,
         tm.name as name,
         "team" as class,
+        tm.qualGroup_id as qualGroup_id,
         tm.place as place,
         tm.here as here,
         tm.hereFinal as hereFinal,
@@ -1521,6 +1522,19 @@
     while ($obj = $sth->fetchObject('qualGroup')) {
       return $obj;
     }
+  }
+  
+  function getQualGroupsByDivision($dbh, $division = 1) {
+    $query = getQualGroupSelect('q', 'td.tournamentEdition_id as tournamentEdition_id').',
+      left join tournamentDivision td
+        on q.tournamentDivision_id = td.id
+      where td.id = '.$division.' order by q.date, q.startTime
+      ';
+    $sth = $dbh->query($query);
+    while ($obj = $sth->fetchObject('qualGroup')) {
+      $objs[] = $obj;
+    }
+    return $objs;    
   }
   
   function getQualGroups($dbh, $tournament = 1) {

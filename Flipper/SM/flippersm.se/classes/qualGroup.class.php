@@ -102,9 +102,9 @@
       }
     }
 
-    function getPlayers($dbh) {
+    function getPotentialPlayers($dbh) {
       $playerAlias = ($this->tournamentDivision_id == 1) ? 'm' : 'cl';
-      $query = getPlayerSelect().' left join playerQualGroups pq on pq.player_id = '.$playerAlias.'.id where pq.team_id = '.$this->id;  
+      $query = getPlayerSelect().' left join playerQualGroups pq on pq.player_id = '.$playerAlias.'.id where pq.qualGroup_id = '.$this->id;  
       if ($sth = $dbh->query($query)) {
         unset($this->potentialPlayers);
         while ($obj = $sth->fetchObject('player')) {
@@ -118,6 +118,28 @@
       return false;
     }
     
+    function getPlayers($dbh) {
+      if ($this->tournamenDivision_id == 3) {
+        $query = getTeamSelect().' where tm.qualGroup_id = '.$this->id;
+      } else {
+        $playerAlias = ($this->tournamentDivision_id == 1) ? 'm' : 'cl';
+        $query = getPlayerSelect().' where '.$playerAlias.'.qualGroup_id = '.$this->id;
+      }
+      if ($sth = $dbh->query($query)) {
+        while ($obj = $sth->fetchObject((($this->tournamenDivision_id == 3) ? 'team' : 'player'))) {
+          $objs[] = $obj;
+        }
+        if ($objs) {
+          return $objs;
+        }
+      } 
+      return false;
+    }
+    
+    function getTeams($dbh) {
+      return $this->getPlayers($dbh);
+    }
+
     function getNoOfPlayers($dbh, $prefered = false) {
       $query = 'select count(id) from playerQualGroups pq where pq.qualGroup_id = '.$this->id;
       $query .= ($prefered) ? ' and pq.prefered = 1 ' : '';

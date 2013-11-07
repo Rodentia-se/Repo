@@ -1029,24 +1029,20 @@
     
     function drawGames($dbh, $division = 1) {
       $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
-      switch ($division) {
-        case 2:
-          $players = getPlayers($dbh, ' where cl.id is not null and cl.tournamentDivision_id = '.$division);
-        break;
-        case 3:
-          $players = getTeams($dbh);
-        break;
-        default:
-          $players = getPlayers($dbh, ' where m.tournamentDivision_id = '.$division);
-        break;
-      }
-      $content .= count($players);
+      $qualGroups = getQualGroupsByDivision($dbh, $division);
+      $teamGroup = new qualGroup();
       $games = getGames($dbh, false, 'order by g.name', 1, '');
-      $start = 0;
-      for ($round = 1; $round <= 4; $round++) {
-        $roundGames[$round] = array_slice($games, $start, $start + ceil(count($players)/2));
+      foreach ($qualGroups as $qualGroup) {
+        var_dump($qyalGroup);
+        die('huff');
+        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
+        $content .= 'Players: '.count($players).'<br />';
+        $start = 0;
+        for ($round = 1; $round <= 4; $round++) {
+          $roundGames[$round] = array_slice($games, $start, $start + ceil(count($players)/2));
+        }
+        $content .= 'Games: '.count($roundGames[1]).'<br /><br />';
       }
-      $content .= count($roundGames[1]);
     return $content;
     }
 
