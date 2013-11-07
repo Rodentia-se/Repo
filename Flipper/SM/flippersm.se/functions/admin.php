@@ -1037,7 +1037,7 @@
           $players = getTeams($dbh);
         break;
         default:
-          $players = getPlayers($dbh);
+          $players = getPlayers($dbh, ' where m.tournamentDivision_id = '.$division);
         break;
       }
       $content .= count($players);
