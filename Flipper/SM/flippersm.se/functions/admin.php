@@ -1076,7 +1076,7 @@
               $start = floor(count($players)/2) + 1;
             }
             $entry->createScore($dbh, $game[$start]);
-            $content = 'R: '.$round.', PID: '.$player->id.', GID: '.game->id.'<br /><br />';
+            $content = 'R: '.$round.', PID: '.$player->id.', GID: '.$game->id.'<br /><br />';
             $start++;
           }
           $number = ceil(count($players)/2);
