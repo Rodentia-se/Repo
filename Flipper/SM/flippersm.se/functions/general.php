@@ -2295,6 +2295,10 @@
     return $objs;
   }
   
+  function getGamesByDivision($dbh, $division) {
+    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, '');
+  }
+  
   function getMachines($dbh, $where, $order = 'order by g.name') {
     $query = getGameSelect(true);
     $where = preg_replace('/ id /', ' ma.id ', $where);

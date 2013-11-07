@@ -1,7 +1,7 @@
 <?php
   class qualGroup extends base {
     
-    public $tournamenDivision_id;
+    public $tournamentDivision_id;
     public $date;
     public $fullName;
     public $shortName;

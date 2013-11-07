@@ -1026,16 +1026,28 @@
       }
       return $content;
     }
-    
+
     function drawGames($dbh, $division = 1) {
       $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
-      $qualGroups = getQualGroupsByDivision($dbh, $division);
-      $teamGroup = new qualGroup();
-      $games = getGames($dbh, false, 'order by g.name', 1, '');
+      if ($division == 3) {
+        $qualGroups[0] = new qualGroup(array(
+          'tournamentDivision_id' => 3,
+          'date' => '2013-11-08',
+          'fullName' => '2013-11-08 18:00 - 2013-11-09 22:00',
+          'shortName' => 'L',
+          'startTime' => '18:00',
+          'endTime' => '22:00',
+          'class' => 'qualGroup',
+          'id' => '1',
+          'name' => 'L (18:00-22:00)',
+          'tournamentEdition_id' => 1,
+        ));
+      } else {
+        $qualGroups = getQualGroupsByDivision($dbh, $division);
+      }
+      $games = getGamesByDivision($dbh, $division);
       foreach ($qualGroups as $qualGroup) {
-        var_dump($qualGroup);
-        die('huff');
-        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
+        $players = $qualGroup->getPlayers($dbh);
         $content .= 'Players: '.count($players).'<br />';
         $start = 0;
         for ($round = 1; $round <= 4; $round++) {
