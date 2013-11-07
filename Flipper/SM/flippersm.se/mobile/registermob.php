@@ -30,10 +30,11 @@
 
       if($iIDEntry == null) {
         $div = $oGame->getDivision($iIDGame);
+          echo "div: " . $div;
         if ($div != false){
           $entry = $oEntry->fromPlayerAndDivision($iIDPlayer, $div);
           $iIDEntry = (string)$entry->id;
-          echo $iIDEntry;
+          echo "entry: ".$iIDEntry;
         }
       }
 
