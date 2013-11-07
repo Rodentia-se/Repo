@@ -138,7 +138,12 @@
 
     public function fromPlayerAndDivision($idPlayer, $idDivision)
     {
-      $e = getEntry(DataMapper::$db, $idPlayer, $idDivision);
+      $team = false;
+      if ($idDivision == '3')
+      {
+        $team = true;
+      }
+      $e = getEntry(DataMapper::$db, $idPlayer, $idDivision, $team);
       return $e;
     }
 
