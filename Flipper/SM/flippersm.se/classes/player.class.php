@@ -583,13 +583,13 @@
       $player = getPlayerById($dbh, $this->id);
       switch ($type) {
         case 'final':
-          return (($player->hereFinal) == ($here)) ? true : false;
+          return ((bool) $player->hereFinal ==  $here) ? true : false;
         break;
         case 'vol':
-          return (($player->hereVol) == ($here)) ? true : false;
+          return ((bool) $player->hereVol == $here) ? true : false;
         break;
         default:
-          return (($player->here) == ($here)) ? true : false;
+          return ((bool) ($player->here == $here) ? true : false;
         break;
       }
     }
