@@ -3293,7 +3293,7 @@
         max(qs.score) as score,' : '
         qs.place as place,
         qs.points as points,
-        qs.order as order,
+        qs.order as `order`,
         qs.round as round,
         qs.score as score,').'
         if(qs.points is not null, 1, 0) as valid,

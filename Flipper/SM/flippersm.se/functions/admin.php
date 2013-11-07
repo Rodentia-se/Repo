@@ -1090,8 +1090,8 @@
           }
           $number = ceil(count($players)/2);
         }
-        array_multisort($games, $gameNumbers);
-        array_multisort($gameNumbers);
+        array_multisort($games, $gameNumbers, SORT_NUMERIC);
+        sort($gameNumbers, SORT_NUMERIC);
       }
       foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
