@@ -1047,7 +1047,8 @@
       }
       $games = getGamesByDivision($dbh, $division);
       foreach ($qualGroups as $qualGroup) {
-        $players = $qualGroup->getPlayers($dbh);
+//        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
+        $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $content .= 'Players: '.count($players).'<br />';
         $start = 0;
         for ($round = 1; $round <= 4; $round++) {
