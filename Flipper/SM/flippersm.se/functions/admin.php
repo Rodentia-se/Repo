@@ -1077,7 +1077,7 @@
             }
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq]);
-            $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round]->id.'<br /><br />';
+            $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round][$gameSeq]->id.'<br /><br />';
             $gameSeq++;
           }
           $number = ceil(count($players)/2);
