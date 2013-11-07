@@ -204,7 +204,7 @@
           '.(($currentPlayer) ? 'registerPerson_id = :registrator,' : '').'
           city = :city
       ';
-      $insert[':name'] = (($this->tournamentDivision_id == 1) ? 'Main' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Team')).' 2013: '.$this->firstName.' '.$this->lastName.(($game) ? ' on '.$game->name : '');
+      $insert[':name'] = (($this->tournamentDivision_id == 1) ? 'Main' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Team')).' 2013: '.(($this->tournamentDivision_id == 3) ? $this->team : $this->firstName.' '.$this->lastName).(($game) ? ' on '.$game->name : '');
       $insert[':qualEntryId'] = $this->id;
       $insert[':machineId'] = ($game) ? $game->machine_id : null;
       $insert[':gameId'] = ($game) ? (($game->id == $game->machine_id) ? $game->game_id : $game->id) : null;
