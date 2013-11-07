@@ -1046,9 +1046,11 @@
         $qualGroups = getQualGroupsByDivision($dbh, $division);
       }
       $games = getGamesByDivision($dbh, $division);
+      shuffle($games);
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
+        shuffle($players);
         foreach($players as $player) {
           $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
@@ -1062,7 +1064,7 @@
             $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $end));
             $end = ceil(count($players)/2) - count($roundGames[$round]);
           }
-          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).'<br />';
+          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start ID: '.$roundGames[$round][0]->id.'<br />';
           foreach($players as $player) {
           }
           $start = ($end == count($games)) ? 0 : $end + 1;
