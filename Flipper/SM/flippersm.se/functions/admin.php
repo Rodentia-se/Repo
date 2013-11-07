@@ -1050,11 +1050,11 @@
         $qualGroups = getQualGroupsByDivision($dbh, $division);
       }
       $games = getMachines($dbh, 'where tournamentDivision_id = '.$division);
+      shuffle($games);
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
         shuffle($players);
-        shuffle($games);
         foreach ($players as $player) {
           $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
