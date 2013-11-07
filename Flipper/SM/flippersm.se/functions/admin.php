@@ -1062,13 +1062,13 @@
           $roundGames[$round] = array();
           while ($number > 0) {
             $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $number));
-            $end = $number;
+            $end = $start + $number;
             $number = ceil(count($players)/2) - count($roundGames[$round]);
           }
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$start.', start ID: '.$roundGames[$round][0]->id.'<br />';
           foreach($players as $player) {
           }
-          $start = ($end >= count($games)) ? abs(count($games) - $end) : $end;
+          $start = $end;
           $number = ceil(count($players)/2);
         }
       }
