@@ -1044,7 +1044,7 @@
       $games = getGames($dbh, false, 'order by g.name', 1, '');
       $start = 0;
       for ($round = 1; $round <= 4; $round++) {
-        $roundGames[$round] = array_slice($games, $start, $start + ceil(intval(count($players)/2)/2)*2);
+        $roundGames[$round] = array_slice($games, $start, $start + ceil(count($players)/2);
       }
       $content .= count($roundGames[1]);
     return $content;
