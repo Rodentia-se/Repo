@@ -1077,6 +1077,7 @@
             } else if ($gameSeq == count($roundGames[$round])) {
               $gameSeq = 0;
             }
+            $gameArray[$roundGames[$round][$gameSeq]->id]++;
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $order, $round);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, (($order == 1) ? 2 : 1), $round);
@@ -1090,6 +1091,7 @@
         $entry = getEntryById($dbh, $qualEntryId);
 //        $entry->delete($dbh);
       }
+      var_dump($gameArray);
       return $content;
     }
 
