@@ -1051,7 +1051,7 @@
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
         shuffle($players);
-        foreach($players as $player) {
+        foreach ($players as $player) {
           $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
         }
@@ -1070,7 +1070,7 @@
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
           $gameSeq = 0;
           $order = 1;
-          foreach($players as $player) {
+          foreach ($players as $player) {
             if ($gameSeq == floor(count($players)/2)) {
               $gameSeq = 1;
               $order = 2;
@@ -1087,7 +1087,7 @@
           $number = ceil(count($players)/2);
         }
       }
-      foreach($qualEntryIds as $qualEntryId) {
+      foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
 //        $entry->delete($dbh);
       }
