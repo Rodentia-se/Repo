@@ -1060,13 +1060,14 @@
         $number = ceil(count($players)/2);
         for ($round = 1; $round <= 4; $round++) {
           $roundGames[$round] = array();
+          $origStart = $start;
           while ($number > 0) {
             $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $number));
             $end = $start + count(array_slice($games, $start, $number));
             $start = ($end >= count($games) - 1) ? 0 : $end;
             $number = ceil(count($players)/2) - count($roundGames[$round]);
           }
-          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$start.', start ID: '.$roundGames[$round][0]->id.'<br />';
+          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
           foreach($players as $player) {
           }
           $number = ceil(count($players)/2);
