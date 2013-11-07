@@ -227,7 +227,6 @@
       $insert[':division'] = $this->tournamentDivision_id;
       $insert[':tournament'] = $this->tournamentEdition_id;
       $insert[':registrator'] = ($currentPlayer) ? $currentPlayer->id : null;
-      }
       $sth = $dbh->prepare($query);
       if ($sth->execute($insert)) {
         return $dbh->lastInsertId();
