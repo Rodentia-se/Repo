@@ -971,7 +971,7 @@
     }
 
     function getAdminQualGroupTable($dbh) {
-      $content .= '<br /><br /><h2 class="entry-title">Qualification groups</h2>';
+      $content = '<br /><br /><h2 class="entry-title">Qualification groups</h2>';
       $qualGroups = getQualGroups($dbh);
       $qualLimit['Main'] = __mainQualLimit__;
       $qualLimit['Classics'] = __classicsQualLimit__;
@@ -1027,6 +1027,22 @@
       return $content;
     }
     
+    function drawGames($dbh, $division = 1) {
+      $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
+      switch ($division) {
+        case 2:
+          $players = getPlayers($dbh, ' where cl.id is not null and m.tournamentEdition_id = '.$tournament);
+        break;
+        case 3:
+          $players = getTeams($sbh);
+        break;
+        default:
+          $players = getPlayers($dbh);
+        break;
+      }
+      $content .= count($players);
+    }
+    return $content;
   }
   
 ?>
