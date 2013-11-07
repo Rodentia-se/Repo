@@ -1079,8 +1079,8 @@
             }
             $gameArray[$roundGames[$round][$gameSeq]->id]++;
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
-            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $order, $round);
-            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, (($order == 1) ? 2 : 1), $round);
+            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
+            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
             $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round][$gameSeq]->id.'<br /><br />';
             $gameSeq++;
           }
