@@ -76,6 +76,7 @@
     {
       return getPlayerById(DataMapper::$db, $id);
     }
+
     public function setHere($id, $type)
     {
       $player = getPlayerById(DataMapper::$db, $id);
@@ -83,7 +84,7 @@
       {
         return false;
       }
-      return $player->setHere(DataMapper::$db, $type);
+      return $player->setHere(DataMapper::$db, true, $type);
     }
   }
 
