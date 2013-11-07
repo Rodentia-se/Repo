@@ -1052,7 +1052,11 @@
         $content .= 'Players: '.count($players).'<br />';
         $start = 0;
         for ($round = 1; $round <= 4; $round++) {
-          $roundGames[$round] = array_slice($games, $start, $start + ceil(count($players)/2));
+          $roundGames[$round] = array();
+          while (count($roundGames[$round]) < ceil(count($players)/2)) {
+            array_merge($roundGames[$round],array_slice($games, $start, $start + ceil(count($players)/2)));
+            $start += ceil(count($players)/2);
+          }
         }
         $content .= 'Games: '.count($roundGames[1]).'<br /><br />';
       }
