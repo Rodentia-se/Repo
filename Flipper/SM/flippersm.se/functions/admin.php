@@ -1075,6 +1075,7 @@
             } else if ($start == count($players)) {
               $start = floor(count($players)/2) + 1;
             }
+            $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $game[$start]);
             $content = 'R: '.$round.', PID: '.$player->id.', GID: '.$game->id.'<br /><br />';
             $start++;
