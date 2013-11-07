@@ -1056,7 +1056,7 @@
           $roundGames[$round] = array();
           while ($end > 0) {
             echo '1 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
-            array_merge($roundGames[$round],array_slice($games, $start, $end));
+            $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $end));
             echo '2 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
             $end = ceil(count($players)/2) - count($roundGames[$round]);
             echo '3 E: '.$end.'<br />C: '.count($roundGames[$round]).'<br />';
