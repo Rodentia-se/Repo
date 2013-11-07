@@ -1034,7 +1034,7 @@
           $players = getPlayers($dbh, ' where cl.id is not null and cl.tournamentDivision_id = '.$division);
         break;
         case 3:
-          $players = getTeams($sbh);
+          $players = getTeams($dbh);
         break;
         default:
           $players = getPlayers($dbh);
