@@ -1530,7 +1530,6 @@
         on q.tournamentDivision_id = td.id
       where td.id = '.$division.' order by q.date, q.startTime
       ';
-      echo $query;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('qualGroup')) {
       $objs[] = $obj;

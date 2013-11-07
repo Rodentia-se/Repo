@@ -1033,7 +1033,7 @@
       $teamGroup = new qualGroup();
       $games = getGames($dbh, false, 'order by g.name', 1, '');
       foreach ($qualGroups as $qualGroup) {
-        var_dump($qyalGroup);
+        var_dump($qualGroup);
         die('huff');
         $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $content .= 'Players: '.count($players).'<br />';
