@@ -888,7 +888,7 @@
                 <span class="error errorSpan toolTip" id="0_gameAddSpan"></span>
               </td>
             </tr>
-      ';      
+      ';
       $games = getGames($dbh, false, 'order by g.name', 1, '');
       foreach($games as $game) {
         $gameTable .= '
@@ -1041,6 +1041,12 @@
         break;
       }
       $content .= count($players);
+      $games = getGames($dbh, false, 'order by g.name', 1, '');
+      $start = 0;
+      for ($round = 1; $round <= 4; $round++) {
+        $roundGames[$round] = array_slice($games, $start, $start + ceil(intval(count($players)/2)/2)*2);
+      }
+      $content .= count($roundGames[1]);
     return $content;
     }
 
