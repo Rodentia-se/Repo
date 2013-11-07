@@ -2928,7 +2928,7 @@
   }
 
   function getEntry($dbh, $idPlayer, $idDivision) {
-    $where = 'where qe.'.(($division == 3) ? 'player' : 'person').'_id = '.$idPlayer.' and qe.tournamentDivision_id = '.$idDivision;
+    $where = 'where qe.'.(($idDivision == 3) ? 'player' : 'person').'_id = '.$idPlayer.' and qe.tournamentDivision_id = '.$idDivision;
     if ($obj = getEntries($dbh, $where)[0]) {
       return $obj;
     } else {
