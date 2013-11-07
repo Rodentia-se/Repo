@@ -1069,14 +1069,17 @@
           }
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
           $gameSeq = 0;
+          $order = 1;
           foreach($players as $player) {
             if ($gameSeq == floor(count($players)/2)) {
               $gameSeq = 1;
+              $order = 2;
             } else if ($gameSeq == count($roundGames[$round])) {
               $gameSeq = 0;
             }
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
-            $entry->createScore($dbh, $roundGames[$round][$gameSeq]);
+            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $order, $round);
+            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, (($order == 1) ? 2 : 1), $round);
             $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round][$gameSeq]->id.'<br /><br />';
             $gameSeq++;
           }

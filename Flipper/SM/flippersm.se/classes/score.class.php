@@ -12,6 +12,8 @@
     public $score;
     public $place;
     public $points;
+    public $order;
+    public $round;
     public $valid;
     public $person_id;
     public $player_id;

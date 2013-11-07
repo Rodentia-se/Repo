@@ -180,7 +180,7 @@
       }
     }
     
-    function createScore($dbh, $game = null, $score = null) {
+    function createScore($dbh, $game = null, $score = null, $round = null, $order = null) {
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       $query = '
         insert into qualScore set
@@ -191,6 +191,8 @@
           game = :game,
           gameAcronym = :gameAcronym,
           score = :score,
+          round = :round,
+          order = :order,
           player_id = :playerId,
           person_id = :personId,
           firstName = :firstName,
@@ -201,7 +203,7 @@
           country_id = :countryId,
           country = :country,
           city_id = :cityId,
-          '.(($currentPlayer) ? 'registerPerson_id = :registrator,' : '').'
+          registerPerson_id = :registrator,
           city = :city
       ';
       $insert[':name'] = (($this->tournamentDivision_id == 1) ? 'Main' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Team')).' 2013: '.(($this->tournamentDivision_id == 3) ? $this->team : $this->firstName.' '.$this->lastName).(($game) ? ' on '.$game->name : '');
@@ -211,6 +213,8 @@
       $insert[':game'] = ($game) ? $game->name : null;
       $insert[':gameAcronym'] = ($game) ? $game->acronym : null;
       $insert[':score'] = $score;
+      $insert[':score'] = $round;
+      $insert[':score'] = $order;
       $insert[':playerId'] = ($this->tournamentDivision_id == 3) ? $this->team_id : $this->player_id;
       $insert[':personId'] = ($this->tournamentDivision_id == 3) ? null : $this->person_id;
       $insert[':firstName'] = ($this->tournamentDivision_id == 3) ? $this->team : $this->firstName;
@@ -222,8 +226,7 @@
       $insert[':city'] = $this->city;
       $insert[':division'] = $this->tournamentDivision_id;
       $insert[':tournament'] = $this->tournamentEdition_id;
-      if ($currentPlayer) {
-        $insert[':registrator'] = $currentPlayer->id;
+      $insert[':registrator'] = ($currentPlayer) ? $currentPlayer->id : null;
       }
       $sth = $dbh->prepare($query);
       if ($sth->execute($insert)) {
