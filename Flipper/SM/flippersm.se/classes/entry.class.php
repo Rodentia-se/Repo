@@ -228,13 +228,15 @@
       }
     }
 
-    function delete($dbh) {
+    function delete($dbh, $scores = true) {
       $delete[':id'] = $this->id;
       $query = 'delete from qualEntry where id = :id';
       $sth = $dbh->prepare($query);
-      $scores = $this->getScores($dbh, false, false);
-      foreach($scores as $score) {
-        $score->delete($dbh);
+      $qualScores = $this->getScores($dbh, false, false);
+      if ($scores && $qualScores) {
+        foreach($qualScores as $qualScore) {
+          $qualScore->delete($dbh);
+        }
       }
       return $sth->execute($delete);
     }

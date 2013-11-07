@@ -1068,14 +1068,23 @@
             $number = ceil(count($players)/2) - count($roundGames[$round]);
           }
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
+          $start = 0;
           foreach($players as $player) {
+            if ($start == floor(count($players)/2) + 1) {
+              $start = count($players) - 1;
+            } else if ($start == count($players)) {
+              $start = floor(count($players)/2) + 1;
+            }
+            $entry->createScore($dbh, $game[$start]);
+            $content = 'R: '.$round.', PID: '.$player->id.', GID: '.game->id.'<br /><br />';
+            $start++;
           }
           $number = ceil(count($players)/2);
         }
       }
       foreach($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
-        $entry->delete($dbh);
+//        $entry->delete($dbh);
       }
       return $content;
     }
