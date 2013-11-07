@@ -258,8 +258,10 @@
       $sth = $dbh->prepare($query);
       $sth->execute($update);
       $team = getTeamById($dbh, $this->id);
-      return ($type == 'final') ? $team->hereFinal : $team->here;
+      return ($type == 'final') ? (((bool) $team->hereFinal == $here) ? true : false)  : (((bool) $team->here == $here) ? true : false);
     }
+
+          return ((bool) $player->hereFinal ==  $here) ? true : false;
 
     function createEntry($dbh, $games = null) {
       $query = '
