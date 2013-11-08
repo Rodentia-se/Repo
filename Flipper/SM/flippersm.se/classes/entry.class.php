@@ -63,13 +63,13 @@
     function checkAlone($dbh) {
       $player = getPlayerById($dbh, $this->person_id);
       $query = '
-        select count(*) from qualScore, 
+        select count(*) from qualScore q 
         left join player pl on
         qualScore.player_id = pl.id 
-        where round = '.$this->round.'
-          and machine_id = '.$this->machineId.'
+        where q.round = '.$this->round.'
+          and q.machine_id = '.$this->machineId.'
           and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
-          and person_id != '.$this->person_id;
+          and q.person_id != '.$this->person_id;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
         return true;
