@@ -211,7 +211,7 @@
       $this->game = ($game) ? $game->name : null;
       $this->gameAcronym = ($game) ? $game->shortName : null;
       $this->gameShortName = $this->gameAcronym;
-      $this->machine_id = ($machine) ? $machine->id : null;
+      $this->machine_id = ($machine) ? $machine->machine_id : null;
       $this->name = ($game) ? (($this->tournamentDivision_id == 3) ? 'Team' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Main')).' 2013: '.(($this->tournamentDivision_id == 3) ? $this->team : $this->player).' on '.$game->shortName : null;
       $query = '
         update qualScore set

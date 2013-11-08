@@ -3237,7 +3237,7 @@
   function getScoreById($dbh, $id) {
     if ($id) {
       $where = 'where qs.id = '.$id;
-      if ($obj = getScores($dbh, $where)[0]) {
+      if ($obj = getScores($dbh, $where, null, null)[0]) {
         return $obj;
       } else {
         return false;
