@@ -1087,7 +1087,7 @@
             if ($gameSeq == ceil(count($players)/2)) {
               $gameSeq = 1;
               $order = 2;
-            } else if ($gameSeq >= count($roundGames[$round])) {
+            } else if ($gameSeq >= count($roundGames[$round]) - 1) {
               $gameSeq = 0;
             }
           }
