@@ -1081,6 +1081,7 @@
           }
           $content .= '</tbody></table>';
         }
+        return $content;
       }
       return false; // Just to be safe!
       ini_set('max_execution_time', 300);
