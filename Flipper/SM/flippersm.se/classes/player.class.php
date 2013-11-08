@@ -672,6 +672,7 @@
       $query = '
         select
           qe.person_id as id,
+          qe.person_id as person_id,
           qs.id as qualScoreId,
           qe.id as qualEntryId,
           qs.place as place,
