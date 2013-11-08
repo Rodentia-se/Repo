@@ -1126,7 +1126,7 @@
               } else {
                 $dupe = false;
               }
-              $scores = getScores($dbh);
+              $scores = $entry->getScores($dbh);
               foreach ($scores as $score) {
                 $content .= $score->machine_id.', ';
               }
