@@ -194,7 +194,7 @@
       $info = array(
         'machine_id' => 'ID: '.$this->machine_id,
         'shortName' => $this->shortName,
-        'balls' => ($this->balls) ? $this->balls.' kulor' : (($this->classics) ? '3 kulor' : '5 kulor'),
+        'balls' => ($this->balls) ? $this->balls.' kulor' : (($this->classics) ? '5 kulor' : '3 kulor'),
         'division' => ($this->tournamentDivision_id == 1) ? 'A' : (
           ($this->tournamentDivision_id == 2) ? 'C' : (
             ($this->tournamentDivision_id == 3) ? 'S' : (
