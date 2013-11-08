@@ -921,9 +921,8 @@
       ';
       return $gameTable;
     }
-
-    function getAdminScoreTable($dbh) {
-      $content = '<br /><br /><h2 class="entry-title">Score administration</h2>';
+    
+    function listEntries($dbh, $division = 1)
       if ($division == 3) {
         $qualGroups[0] = new qualGroup(array(
           'tournamentDivision_id' => 3,
@@ -943,7 +942,7 @@
       foreach ($qualGroups as $qualGroup) {
         $content .= '
           <h2>'.$qualGroup->name.'</h2>
-          <table>
+          <table class="entryList">
             <thead>
               <tr>
                 <th>Player</th>
@@ -973,7 +972,12 @@
         }
         $content .= '</tbody></table>';
       }
-      $content .= '
+      return $content;
+    }
+
+    function getAdminScoreTable($dbh) {
+      $content = '
+        <br /><br /><h2 class="entry-title">Score administration</h2>
         <ul>
           <li>Choose a player, team or game to show the scores.</li>
           <li>Each line is a score, but it can also be used to edit the entire entry.</li>

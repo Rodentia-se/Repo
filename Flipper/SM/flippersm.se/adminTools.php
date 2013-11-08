@@ -55,10 +55,14 @@
           $content .= drawGames($dbh, $ulogin, 1);
           $content .= drawGames($dbh, $ulogin, 2);
           $content .= drawGames($dbh, $ulogin, 3);
+          $datatables = null;
         break;
         case 'score':
           $content .= getAdminScoreTable($dbh);
-          $datatables = null;
+          $content .= listEntries($dbh, 1);
+          $content .= listEntries($dbh, 2);
+          $content .= listEntries($dbh, 3);
+          $datatables = getDataTables('.entryList');
         break;
       }
       $content .= $datatables;
