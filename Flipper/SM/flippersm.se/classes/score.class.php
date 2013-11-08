@@ -219,7 +219,7 @@
       $this->game = ($game) ? $game->name : null;
       $this->gameAcronym = ($game) ? $game->shortName : null;
       $this->gameShortName = $this->gameAcronym;
-      $this->machine_id = ($machine) ? $machine->machine_id : null;
+      $this->machine_id = ($machine[0]) ? $machine[0]->machine_id : null;
       $this->name = ($game) ? (($this->tournamentDivision_id == 3) ? 'Team' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Main')).' 2013: '.(($this->tournamentDivision_id == 3) ? $this->team : $this->player).' on '.$game->shortName : null;
       $query = '
         update qualScore set
@@ -234,10 +234,7 @@
       $update[':gameId'] = $this->game_id;
       $update[':game'] = $this->game;
       $update[':gameAcronym'] = $this->gameAcronym;
-      var_dump($machine);
-      echo('<br />Maskin: '.$machine->machine_id);
-      die('huff');
-      $update[':machineId'] = $machine->machine_id;
+      $update[':machineId'] = $this->machine_id;
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
