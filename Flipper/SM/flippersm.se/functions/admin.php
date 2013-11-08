@@ -1051,6 +1051,9 @@
       }
       $games = getMachines($dbh, 'where tournamentDivision_id = '.$division);
       shuffle($games);
+      foreach ($games as $game) {
+        $gameNumbers[$game->id] = 0;        
+      }
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
@@ -1091,7 +1094,7 @@
           $number = ceil(count($players)/2);
         }
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
-        sort($gameNumbers, SORT_NUMERIC);
+        asort($gameNumbers, SORT_NUMERIC);
       }
       foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
