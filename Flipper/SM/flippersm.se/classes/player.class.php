@@ -705,6 +705,9 @@
           and qe.tournamentDivision_id = '.$tournament.' ';
       $query .= ($groupBy) ? $groupBy : '';
       $query .= ($groupBy) ? ' order by bestPlace asc' : ' order by qs.place asc';
+      if ($this->id) {
+        echo $query;
+      }
       $sth = $dbh->query($query);
       while ($obj = $sth->fetchObject('entry')) {
         $objs[] = $obj;
