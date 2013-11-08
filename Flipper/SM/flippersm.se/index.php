@@ -136,14 +136,14 @@ function print_payment_info()
 
    if($s == "")
      {
-       @include("start.fil");
+       include("start.fil");
      }
    else
      {
        $filnamn = str_replace(":", "", $s);
-       @include('pages/'.$filnamn.".fil");
+      include('pages/'.$filnamn.".fil");
      }
 
-      @include("fot.fil");
+      include("fot.fil");
 
 ?>
