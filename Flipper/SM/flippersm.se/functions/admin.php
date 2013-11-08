@@ -970,6 +970,7 @@
             </tbody>
           </table>
         </div>
+        <br /><br /><h2 class="entry-title">Game drawer</h2>
         <p><a href="'.__baseHref__.'/adminTools.php?tool=gameDrawer">Game draw! (Only ÜBERADMIN can do this)</a></p>
       ';
       return $content;
@@ -1084,8 +1085,8 @@
             foreach ($players as $player) {
               $gameNumbers['ID'.$roundGames[$round][$gameSeq]->machine_id]++;
               $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
-              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
-              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
+              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order, $ulogin);
+              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1), $ulogin);
               $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
               $gameSeq++;
               $playerSeq++;
@@ -1111,9 +1112,12 @@
           $entry->delete($dbh);
         }
         return $content;
+      } else {
+        return '
+          <br /><br /><h2 class="entry-title">Game drawer</h2>
+          <p>Sorry - only the ÜBERADMIN is allowed to do this!
+        ';
       }
-    } else {
-      return '<p>Sorry - only the ÜBERADMIN is allowed to do this!';
     }
 
   }
