@@ -1035,10 +1035,8 @@
     }
 
     function drawGames($dbh, $ulogin, $division = 1) {
-      echo 1;
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       if ($currentPlayer->id == 1) {
-      echo 2;
         if ($division == 3) {
           $qualGroups[0] = new qualGroup(array(
             'tournamentDivision_id' => 3,
@@ -1055,10 +1053,8 @@
         } else {
           $qualGroups = getQualGroupsByDivision($dbh, $division);
         }
-      echo 3;
         foreach ($qualGroups as $qualGroup) {
-      echo 4;
-          $content = '
+          $content .= '
             <h2>'.$qualGroup->name.'</h2>
             <table>
               <thead>

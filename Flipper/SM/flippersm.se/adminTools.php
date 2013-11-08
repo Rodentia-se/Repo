@@ -55,7 +55,6 @@
           $content .= drawGames($dbh, $ulogin, 1);
           $content .= drawGames($dbh, $ulogin, 2);
           $content .= drawGames($dbh, $ulogin, 3);
-          $datatables = null;
         break;
         case 'score':
           $content .= getAdminScoreTable($dbh);
