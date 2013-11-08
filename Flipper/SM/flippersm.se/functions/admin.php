@@ -1076,6 +1076,7 @@
           }
           $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
           $gameSeq = 0;
+          $playerSeq = 0;
           $order = 1;
           foreach ($players as $player) {
             $gameNumbers['ID'.$roundGames[$round][$gameSeq]->machine_id]++;
@@ -1084,10 +1085,12 @@
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
             $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
             $gameSeq++;
+            $playerSeq++;
             if ($gameSeq == ceil(count($players)/2)) {
               $gameSeq = 1;
               $order = 2;
-            } else if ($gameSeq >= count($players) - 1) {
+            }
+            if ($playerSeq >= count($players) - 1) {
               $gameSeq = 0;
             }
           }
