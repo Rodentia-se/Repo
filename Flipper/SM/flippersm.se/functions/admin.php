@@ -923,6 +923,7 @@
     }
     
     function listEntries($dbh, $division = 1) {
+      $content = '<br /><br /><h2 class="entry-title">'.(($division == 1) ? 'Main' : (($division == 2) ? 'Classics' : (($division == 3) ? 'Team' : 'Other'))))).' qualification groups</h2>';
       if ($division == 3) {
         $qualGroups[0] = new qualGroup(array(
           'tournamentDivision_id' => 3,
