@@ -68,7 +68,7 @@
         qualScore.player_id = pl.id 
         where round = '.$this->round.'
           and machine_id = '.$this->machineId.'
-          and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->$classicsQualGroup_id).'
+          and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
           and person_id != '.$this->person_id;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
