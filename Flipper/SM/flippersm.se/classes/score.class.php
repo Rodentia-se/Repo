@@ -235,7 +235,7 @@
       $update[':game'] = $this->game;
       $update[':gameAcronym'] = $this->gameAcronym;
       var_dump($machine);
-      var_dump('<br />Maskin: '.$machine->machine_id);
+      echo('<br />Maskin: '.$machine->machine_id);
       die('huff');
       $update[':machineId'] = $machine->machine_id;
       $update[':id'] = $this->id;
