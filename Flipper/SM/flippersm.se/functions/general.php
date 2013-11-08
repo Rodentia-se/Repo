@@ -1581,7 +1581,7 @@
     $checked = ($playerQualGroups) ? 'checked' : '';
     $qualLimit[1] = __mainQualLimit__;
     $qualLimit[2] = __classicsQualLimit__;
-    $choice = ($_REQUEST['active']) ? true : false;
+    $choice = ($_REQUEST['active']) ? false : false;
     $content = '
           <div id="qualGroupDiv">
             <h2 class="entry-title">'.(($choice) ? 'Välj dina' : 'Ansök om att byta').' kvaltider här</h2>
@@ -1949,7 +1949,7 @@
   }
   
   function getTimeSlotRow($dbh, $type, $item = null, $checked = false, $prefered = false, $disabled = false, $bold = false) {
-    $choice = ($_REQUEST['active']) ? true : false;
+    $choice = ($_REQUEST['active']) ? false : false;
     $content = '<div id="'.$item->id.'_'.$type.'Div"'.(($bold) ? ' class="bold"' : '').'>';
     $content .= ($type == 'task') ? ucfirst($item->name) : '';
     $content .= ($type != 'qualGroup' || $choice) ? '<input type="checkbox" id="'.$item->id.'_'.$type.'Checkbox" onchange="timeSlotChanged(this, \''.$type.'\', '.$item->id.');" class="'.$type.'Checkbox '.(($type == 'qualGroup') ? $item->tournamentDivision_id.'_' : '').$item->date.'" ' : '';
@@ -3865,11 +3865,11 @@
       ';
       if ($type == 'player') {
         $content .= '
-        <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
-          <a href="#mainTable" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">Main</a>
+        <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+          <a href="#mainTable" style="display: '.(($_REQUEST['active']) ? '' : '').';">Main</a>
             '.(($obj->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
           
-          <div id="mainTable" class="section" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
+          <div id="mainTable" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
             <table class="scores">
               <thead>
                 <tr>
@@ -3901,8 +3901,8 @@
         ';
         if ($obj->classics) {
           $content .= '
-          <div id="classicsTable" class="section hidden" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
-            <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
+          <div id="classicsTable" class="section hidden" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+            <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : '').';">
               <thead>
                 <tr>
                   <th>Place</th>
@@ -3936,7 +3936,7 @@
       }
       if ($type == 'game') {
         $content .= '
-          <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
+          <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : '').';">
             <thead>
               <tr>
                 <th>Place</th>
@@ -3968,7 +3968,7 @@
       }
       if ($type == 'team') {
         $content .= '
-            <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : 'none').';">
+            <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : '').';">
               <thead>
                 <tr>
                   <th>Place</th>
