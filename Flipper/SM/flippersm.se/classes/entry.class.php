@@ -70,9 +70,6 @@
           and q.machine_id = '.$this->machineId.'
           and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
           and pl.person_id != '.$this->person_id;
-      if ($player-id == 1) {
-        echo $query;
-      }
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
         return false;
