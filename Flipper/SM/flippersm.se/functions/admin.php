@@ -1096,9 +1096,9 @@
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
         foreach ($games as $game) {
-          $content .= '<br />MID: '.$game->machine_id.', G: '.$game->shortName.'<br />';        
+          $content .= '<br />MID: '.$game->machine_id.', G: '.$game->shortName;        
         }
-         $content .= var_dump($gameNumbers);
+         $content .= json_encode($gameNumbers);
       }
       foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
