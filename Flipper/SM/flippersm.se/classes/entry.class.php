@@ -65,7 +65,7 @@
       $query = '
         select count(*) from qualScore q 
         left join player pl on
-        qualScore.player_id = pl.id 
+        q.player_id = pl.id 
         where q.round = '.$this->round.'
           and q.machine_id = '.$this->machineId.'
           and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
