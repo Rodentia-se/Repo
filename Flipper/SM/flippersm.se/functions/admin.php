@@ -1064,6 +1064,10 @@
                   <th>Game 2</th>
                   <th>Game 3</th>
                   <th>Game 4</th>
+                  <th>Game 5</th>
+                  <th>Game 6</th>
+                  <th>Game 7</th>
+                  <th>Game 8</th>
                 </tr>
               </thead>
               <tbody>
