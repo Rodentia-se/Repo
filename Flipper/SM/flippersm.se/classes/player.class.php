@@ -679,6 +679,7 @@
           qs.points as points,
           qe.points as entryPoints,
           qs.score as score,
+          qs.round as round,
           qe.realPlayer_id as playerId,
           qe.firstName as firstName,
           qe.lastName as lastName,

@@ -21,6 +21,7 @@
     public $maxScore;
     public $maxPoints;
     public $bestPlace;
+    public $round;
     public $class = 'entry';
     
     public function __construct($data = null, $type = 'array') {
@@ -57,6 +58,20 @@
         $objs[] = $obj;
       }
       return $objs;
+    }
+
+    function checkAlone($dbh) {
+      $query = '
+        select count(*) from qualScore 
+        where round = '.$this->round.'
+          and machine_id = '.$this->machine_id.'
+          and person_id != '.$this->person_id;
+      $sth = $dbh->query($query);
+      if ($sth->fetchColumn() > 0) {
+        return true;
+      } else {
+        return false;
+      }      
     }
 
     function setPoints($dbh, $points = null) {
