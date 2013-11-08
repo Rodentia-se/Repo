@@ -1036,6 +1036,7 @@
 
     function drawGames($dbh, $ulogin, $division = 1) {
       echo 1;
+      $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       if ($currentPlayer->id == 1) {
       echo 2;
         if ($division == 3) {
@@ -1088,6 +1089,7 @@
         return $content;
       }
       return false; // Just to be safe!
+/*
       ini_set('max_execution_time', 300);
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       if ($currentPlayer->id == 1) {
@@ -1187,12 +1189,14 @@
             }
           }
         }
+*/
 /*
         foreach ($qualEntryIds as $qualEntryId) {
           $entry = getEntryById($dbh, $qualEntryId);
           $entry->delete($dbh);
         }
 */
+/*
         return $content;
       } else {
         return '
@@ -1200,7 +1204,7 @@
           <p>Sorry - only the ÜBERADMIN is allowed to do this!</p>
         ';
       }
-
+*/
     }
 
   }
