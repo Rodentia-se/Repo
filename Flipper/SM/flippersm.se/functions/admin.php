@@ -1084,11 +1084,11 @@
             } else if ($gameSeq == count($roundGames[$round])) {
               $gameSeq = 0;
             }
-            $gameNumbers[$roundGames[$round][$gameSeq]->machine_id]++;
+            $gameNumbers['ID'.$roundGames[$round][$gameSeq]->machine_id]++;
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
-            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.'<br /><br />';
+            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.'<br />';
             $gameSeq++;
           }
           $number = ceil(count($players)/2);
@@ -1096,7 +1096,7 @@
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
         foreach ($games as $game) {
-          $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName;        
+          $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.'<br />';
         }
          $content .= json_encode($gameNumbers);
       }
