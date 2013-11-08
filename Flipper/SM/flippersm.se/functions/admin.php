@@ -1052,7 +1052,7 @@
       $games = getMachines($dbh, 'where tournamentDivision_id = '.$division);
       shuffle($games);
       foreach ($games as $game) {
-        $gameNumbers[$game->id] = 0;        
+        $gameNumbers[$game->machine_id] = 0;        
       }
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
@@ -1084,18 +1084,20 @@
             } else if ($gameSeq == count($roundGames[$round])) {
               $gameSeq = 0;
             }
-            $gameNumbers[$roundGames[$round][$gameSeq]->id]++;
+            $gameNumbers[$roundGames[$round][$gameSeq]->machine_id]++;
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
-            $content .= 'R: '.$round.', PID: '.$player->id.', GID: '.$roundGames[$round][$gameSeq]->id.'<br /><br />';
+            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.'<br /><br />';
             $gameSeq++;
           }
           $number = ceil(count($players)/2);
         }
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
-        var_dump($games);
+        foreach ($games as $game) {
+          echo '<br />MID: '.$game->machine_id.', G: '.$game->shortName.'<br />';        
+        }
         var_dump($gameNumbers);
       }
       foreach ($qualEntryIds as $qualEntryId) {
