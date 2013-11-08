@@ -66,6 +66,7 @@
         where round = '.$this->round.'
           and machine_id = '.$this->machineId.'
           and person_id != '.$this->person_id;
+      echo $query;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
         return true;
