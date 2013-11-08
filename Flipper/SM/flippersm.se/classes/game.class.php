@@ -411,7 +411,7 @@
     }
 
     function getMachine($dbh, $division = 1) {
-      return getMachines($dbh, ' where game_id = '.$this->id.' and tournamentDivision_id = '.$division);
+      return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division);
     }
 
     function getQR($link = true, $right = false, $info = false) {
