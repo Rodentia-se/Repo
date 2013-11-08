@@ -1035,6 +1035,53 @@
     }
 
     function drawGames($dbh, $ulogin, $division = 1) {
+      if ($currentPlayer->id == 1) {
+        if ($division == 3) {
+          $qualGroups[0] = new qualGroup(array(
+            'tournamentDivision_id' => 3,
+            'date' => '2013-11-08',
+            'fullName' => '2013-11-08 18:00 - 2013-11-09 22:00',
+            'shortName' => 'L',
+            'startTime' => '18:00',
+            'endTime' => '22:00',
+            'class' => 'qualGroup',
+            'id' => '1',
+            'name' => 'L (18:00-22:00)',
+            'tournamentEdition_id' => 1,
+          ));
+        } else {
+          $qualGroups = getQualGroupsByDivision($dbh, $division);
+        }
+        foreach ($qualGroups as $qualGroup) {
+          $content = '
+            <h2>'.$qualGroup->name.'</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Player</th>
+                  <th>Game 1</th>
+                  <th>Game 2</th>
+                  <th>Game 3</th>
+                  <th>Game 4</th>
+                </tr>
+              </thead>
+              <tbody>
+          ';
+          $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
+          foreach($players as $player) {
+            $entries = $player->getEntries($dbh, 1, $division);
+            $content .= '<tr><td>'.$player->id.' '.$player->name.'</td>';
+            foreach ($entries as $entry) {
+              $scores = $entry->getScores($dbh, null, ' order by qs.round asc');
+              foreach ($scores as $score) {
+                $content .= '<td>'.$score->machine_id.': '.$score->gameShortName.'</td>';
+              }
+            }
+            $content .= '</tr>';
+          }
+          $content .= '</tbody></table>';
+        }
+      }
       return false; // Just to be safe!
       ini_set('max_execution_time', 300);
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
