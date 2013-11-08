@@ -1052,7 +1052,7 @@
       $games = getMachines($dbh, 'where ma.tournamentDivision_id = '.$division);
       shuffle($games);
       foreach ($games as $game) {
-        $gameNumbers[$game->machine_id] = 0;        
+        $gameNumbers['ID'.$game->machine_id] = 0;        
       }
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
@@ -1093,7 +1093,7 @@
           }
           $number = ceil(count($players)/2);
         }
-        array_multisort($games, $gameNumbers, SORT_NUMERIC);
+        array_multisort($gameNumbers, $games, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
         foreach ($games as $game) {
           $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.'<br />';
