@@ -195,7 +195,15 @@
         'machine_id' => 'ID: '.$this->machine_id,
         'shortName' => $this->shortName,
         'balls' => ($this->balls) ? $this->balls.' kulor' : (($this->classics) ? '3 kulor' : '5 kulor'),
-        'division' => ($this->tournamentDivision_id == 1) ? 'A' : (($this->tournamentDivision_id == 2) ? 'C' : (($this->tournamentDivision_id == 3) ? 'S' : (($this->tournamentDivision_id == 13) ? 'M' : (($this->tournamentDivision_id == 14) ? 'R' : ''))));
+        'division' => ($this->tournamentDivision_id == 1) ? 'A' : (
+          ($this->tournamentDivision_id == 2) ? 'C' : (
+            ($this->tournamentDivision_id == 3) ? 'S' : (
+              ($this->tournamentDivision_id == 13) ? 'M' : (
+                ($this->tournamentDivision_id == 14) ? 'R' : ''
+                )
+              )
+            )
+          )
       );
       if ($this->extraBalls) {
         $info['extraBalls'] = 'Extrabollar är på';
