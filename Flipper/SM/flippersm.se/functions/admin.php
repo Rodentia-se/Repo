@@ -1035,6 +1035,7 @@
     }
 
     function drawGames($dbh, $ulogin, $division = 1) {
+      ini_set('max_execution_time', 300);
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       if ($currentPlayer->id == 1) {
         $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
@@ -1101,17 +1102,37 @@
             }
             $number = ceil(count($players)/2);
             array_multisort($gameNumbers, $games, SORT_NUMERIC);
-  //          asort($gameNumbers, SORT_NUMERIC);
             foreach ($games as $game) {
               $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.', #: '.$gameNumbers['ID'.$game->machine_id].'<br />';
             }
             $content .= json_encode($gameNumbers).'<br />';
           }
         }
+        foreach ($players as $player) {
+          $entries = $player->getEntries($dbh, 1, $division);
+          foreach ($entris as $entry) {
+            array_multisort($gameNumbers, $games, SORT_NUMERIC);
+            $gameSeq = 0;
+            $dupe = true;
+            while ($dupe == true) {
+              $score = $entry->checkForDuplicates($dbh);
+              if ($score) {
+                $gameNumbers['ID'.$score->machine_id]--;
+                $score->setGame($dbh, $games[$gameSeq]);
+                $gameNumbers['ID'.$games[$gameSeq]->machine_id]++;
+                $gameSeq++;
+              } else {
+                $dupe = false;
+              }
+            }
+          }
+        }
+/*
         foreach ($qualEntryIds as $qualEntryId) {
           $entry = getEntryById($dbh, $qualEntryId);
-//          $entry->delete($dbh);
+          $entry->delete($dbh);
         }
+*/
         return $content;
       } else {
         return '
@@ -1119,8 +1140,9 @@
           <p>Sorry - only the ÜBERADMIN is allowed to do this!</p>
         ';
       }
+
     }
 
   }
-  
+
 ?>

@@ -180,6 +180,17 @@
       }
     }
     
+    function checkForDuplicates($dbh) {
+      $scores = $this->getScores($dbh);
+      foreach ($scores as $score) {
+        $machineIds[$score->machine_id]++;
+        if ($machineIds[$score->machine_id] > 1) {
+          return $score;
+        }
+      }
+      return false;
+    }
+    
     function createScore($dbh, $game = null, $score = null, $round = null, $order = null, $ulogin) {
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       $query = '
