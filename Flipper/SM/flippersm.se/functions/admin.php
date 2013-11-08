@@ -1084,10 +1084,10 @@
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
             $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
             $gameSeq++;
-            if ($gameSeq == floor(count($players)/2)) {
+            if ($gameSeq == ceil(count($players)/2)) {
               $gameSeq = 1;
               $order = 2;
-            } else if ($gameSeq >= count($roundGames[$round]) * 2) {
+            } else if ($gameSeq >= count($players) - 1) {
               $gameSeq = 0;
             }
           }
