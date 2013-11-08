@@ -64,7 +64,7 @@
       $query = '
         select count(*) from qualScore 
         where round = '.$this->round.'
-          and machine_id = '.$this->machine_id.'
+          and machine_id = '.$this->machineId.'
           and person_id != '.$this->person_id;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
