@@ -1035,6 +1035,7 @@
     }
 
     function drawGames($dbh, $ulogin, $division = 1) {
+      return false; // Just to be safe!
       ini_set('max_execution_time', 300);
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       if ($currentPlayer->id == 1) {
