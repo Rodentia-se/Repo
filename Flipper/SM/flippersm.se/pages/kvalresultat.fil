@@ -1,7 +1,7 @@
 <?php
 
   $tournament = (isset($_REQUEST['t']) && preg_match('/^[0-9]+$/', $_REQUEST['t'])) ? $_REQUEST['t'] : 1;
-  $active = (isset($_REQUEST['active']) && $_REQUEST['active'] == 1) ? true : false;
+  $active = (isset($_REQUEST['active']) && $_REQUEST['active'] == 1) ? true : true;
   $noOfGames = array(1 => 4, 2 => 4, 3 => 4);
   $noTeamPlayers = 2;
 
