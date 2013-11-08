@@ -207,12 +207,14 @@
 
     function setGame($dbh, $game = null) {
       $machine = ($game) ? $game->getMachine($dbh, $this->tournamentDivision_id) : null;
+/*
       echo '<pre>';
       var_dump($machine);
       var_dump($game);
       var_dump($this);
       echo '</pre>';
       die('huff');
+*/
       $this->game_id = ($game) ? $game->id : null;
       $this->game = ($game) ? $game->name : null;
       $this->gameAcronym = ($game) ? $game->shortName : null;
@@ -232,7 +234,7 @@
       $update[':gameId'] = $this->game_id;
       $update[':game'] = $this->game;
       $update[':gameAcronym'] = $this->gameAcronym;
-      $update[':machineId'] = $this->machine_id;
+      $update[':machineId'] = $machine->machine_id;
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
