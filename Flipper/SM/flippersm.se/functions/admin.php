@@ -1024,9 +1024,6 @@
             </tbody>
           </table>
         </div>
-        <br /><br /><h2 class="entry-title">Game drawer</h2>
-        <p><a href="'.__baseHref__.'/adminTools.php?tool=gameDrawer">Game draw! (Only ÜBERADMIN can do this)</a></p>
-        <p class="italic">Be patient - it will take a while...</p>
       ';
       return $content;
     }
