@@ -1082,9 +1082,9 @@
             $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
             $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
-            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.'<br />';
+            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
             $gameSeq++;
-            if ($gameSeq == ceil(count($players)/2)) {
+            if ($gameSeq == ceil(count($players)/2) + 1) {
               $gameSeq = 1;
               $order = 2;
             } else if ($gameSeq >= count($roundGames[$round]) - 1) {
