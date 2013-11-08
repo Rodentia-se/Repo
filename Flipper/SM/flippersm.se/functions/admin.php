@@ -1095,6 +1095,8 @@
         }
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
+        var_dump($games);
+        var_dump($gameNumbers);
       }
       foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
