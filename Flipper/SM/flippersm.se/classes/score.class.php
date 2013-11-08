@@ -190,6 +190,20 @@
         return ($sth->execute($update)) ? true : false;
       }
     }
+    
+    function checkAlone($dbh) {
+      $query = '
+        select count(*) from qualScore 
+        where round = '.$this->round.'
+          and machine_id = '.$this->machine_id.'
+          and person_id != '.$this->person_id;
+      $sth = $dbh->query($query);
+      if ($sth->fetchColumn() > 0) {
+        return true;
+      } else {
+        return false;
+      }      
+    }
 
     function setGame($dbh, $game = null) {
       $machine = ($game) ? $game->getMachine($dbh, $this->tournamentDivision_id) : null;

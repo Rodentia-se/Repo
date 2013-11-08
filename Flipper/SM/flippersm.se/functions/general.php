@@ -3887,7 +3887,7 @@
             $content .= '
                 <tr>
                   <td>'.$qualScore->place.'</td>
-                  <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.'</a></td>
+                  <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$qualScore->gameId.'">'.$qualScore->game.(($qualScore->checkAlone($dbh)) ? '(Ensam)' : '').'</a></td>
                   <td>'.$qualScore->score.'</td>
                   <td>'.round($qualScore->points).'</td>
                 </tr>
