@@ -71,7 +71,7 @@
           and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
           and q.person_id != '.$this->person_id;
       if ($player->id == 20694) {
-        echo $query;
+        echo $query.' '.$this->tournamentDivision_id;
       }
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
