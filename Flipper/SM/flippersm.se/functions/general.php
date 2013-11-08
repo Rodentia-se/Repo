@@ -2308,7 +2308,6 @@
     $where = preg_replace('/ tournamentEdition_id /', ' ma.tournamentEdition_id ', $where);
     $where = preg_replace('/ type = main /', ' ma.tournamentDivision_id = 1 ', $where);
     $where = preg_replace('/ type = classics /', ' ma.tournamentDivision_id = 2 ', $where);
-    echo $query.' '.$where.' '.$order;
     $sth = $dbh->query($query.' '.$where.' '.$order);
     while ($obj = $sth->fetchObject('game')) {
       $objs[] = $obj;
