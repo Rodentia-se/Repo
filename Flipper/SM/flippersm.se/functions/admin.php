@@ -922,7 +922,7 @@
       return $gameTable;
     }
     
-    function listEntries($dbh, $division = 1)
+    function listEntries($dbh, $division = 1) {
       if ($division == 3) {
         $qualGroups[0] = new qualGroup(array(
           'tournamentDivision_id' => 3,
