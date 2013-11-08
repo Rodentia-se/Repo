@@ -51,10 +51,13 @@
           $content .= $playerTables['qualGroups'];
           $content .= '<p>'.$playerTables['csv'].'</p>';
         break;
+        case 'gameDrawer':
+          $content .= drawGames($dbh, $ulogin, 1);
+          $content .= drawGames($dbh, $ulogin, 2);
+          $content .= drawGames($dbh, $ulogin, 3);
+          $datatables = null;
+        break;
         case 'score':
-          $content .= drawGames($dbh, 1);
-          $content .= drawGames($dbh, 2);
-          $content .= drawGames($dbh, 3);
           $content .= getAdminScoreTable($dbh);
           $datatables = null;
         break;

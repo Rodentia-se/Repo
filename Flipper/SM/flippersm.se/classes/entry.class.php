@@ -180,7 +180,7 @@
       }
     }
     
-    function createScore($dbh, $game = null, $score = null, $round = null, $order = null) {
+    function createScore($dbh, $game = null, $score = null, $round = null, $order = null, $ulogin) {
       $currentPlayer = getCurrentPlayer($dbh, $ulogin);
       $query = '
         insert into qualScore set

@@ -970,6 +970,7 @@
             </tbody>
           </table>
         </div>
+        <p><a href="'.__baseHref__.'/adminTools.php?tool=gameDrawer">Game draw! (Only ÜBERADMIN can do this)</a></p>
       ';
       return $content;
     }
@@ -1031,83 +1032,88 @@
       return $content;
     }
 
-    function drawGames($dbh, $division = 1) {
-      $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
-      if ($division == 3) {
-        $qualGroups[0] = new qualGroup(array(
-          'tournamentDivision_id' => 3,
-          'date' => '2013-11-08',
-          'fullName' => '2013-11-08 18:00 - 2013-11-09 22:00',
-          'shortName' => 'L',
-          'startTime' => '18:00',
-          'endTime' => '22:00',
-          'class' => 'qualGroup',
-          'id' => '1',
-          'name' => 'L (18:00-22:00)',
-          'tournamentEdition_id' => 1,
-        ));
-      } else {
-        $qualGroups = getQualGroupsByDivision($dbh, $division);
-      }
-      $games = getMachines($dbh, 'where ma.tournamentDivision_id = '.$division);
-      shuffle($games);
-      foreach ($games as $game) {
-        $gameNumbers['ID'.$game->machine_id] = 0;        
-      }
-      foreach ($qualGroups as $qualGroup) {
-//        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
-        $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
-        foreach ($players as $player) {
-          $player->tournamentDivision_id = $division;
-          $qualEntryIds[$player->id] = $player->createEntry($dbh);
+    function drawGames($dbh, $ulogin, $division = 1) {
+      $currentPlayer = getCurrentPlayer($dbh, $ulogin);
+      if ($currentPlayer->id == 1) {
+        $content = '<br /><br /><h2 class="entry-title">Game drawer</h2>';
+        if ($division == 3) {
+          $qualGroups[0] = new qualGroup(array(
+            'tournamentDivision_id' => 3,
+            'date' => '2013-11-08',
+            'fullName' => '2013-11-08 18:00 - 2013-11-09 22:00',
+            'shortName' => 'L',
+            'startTime' => '18:00',
+            'endTime' => '22:00',
+            'class' => 'qualGroup',
+            'id' => '1',
+            'name' => 'L (18:00-22:00)',
+            'tournamentEdition_id' => 1,
+          ));
+        } else {
+          $qualGroups = getQualGroupsByDivision($dbh, $division);
         }
-        $content .= 'Players: '.count($players).', Games: '.count($games).'<br />';
-        for ($round = 1; $round <= 4; $round++) {
-          shuffle($players);
-          $start = 0;
-          $number = ceil(count($players)/2);
-          $roundGames[$round] = array();
-          $origStart = $start;
-          while ($number > 0) {
-            $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $number));
-            $end = $start + count(array_slice($games, $start, $number));
-            $start = ($end >= count($games) - 1) ? 0 : $end;
-            $number = ceil(count($players)/2) - count($roundGames[$round]);
-          }
-          $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
-          $gameSeq = 0;
-          $playerSeq = 0;
-          $order = 1;
+        $games = getMachines($dbh, 'where ma.tournamentDivision_id = '.$division);
+        shuffle($games);
+        foreach ($games as $game) {
+          $gameNumbers['ID'.$game->machine_id] = 0;        
+        }
+        foreach ($qualGroups as $qualGroup) {
+  //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
+          $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
           foreach ($players as $player) {
-            $gameNumbers['ID'.$roundGames[$round][$gameSeq]->machine_id]++;
-            $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
-            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
-            $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
-            $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
-            $gameSeq++;
-            $playerSeq++;
-            if ($gameSeq == ceil(count($players)/2)) {
-              $gameSeq = 1;
-              $order = 2;
-            }
-            if ($playerSeq >= count($players) - 1) {
-              $gameSeq = 0;
-            }
+            $player->tournamentDivision_id = $division;
+            $qualEntryIds[$player->id] = $player->createEntry($dbh);
           }
-          $number = ceil(count($players)/2);
-          array_multisort($gameNumbers, $games, SORT_NUMERIC);
-//          asort($gameNumbers, SORT_NUMERIC);
-          foreach ($games as $game) {
-            $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.', #: '.$gameNumbers['ID'.$game->machine_id].'<br />';
+          $content .= 'Players: '.count($players).', Games: '.count($games).'<br />';
+          for ($round = 1; $round <= 4; $round++) {
+            shuffle($players);
+            $start = 0;
+            $number = ceil(count($players)/2);
+            $roundGames[$round] = array();
+            $origStart = $start;
+            while ($number > 0) {
+              $roundGames[$round] = array_merge($roundGames[$round],array_slice($games, $start, $number));
+              $end = $start + count(array_slice($games, $start, $number));
+              $start = ($end >= count($games) - 1) ? 0 : $end;
+              $number = ceil(count($players)/2) - count($roundGames[$round]);
+            }
+            $content .= 'Games, round '.$round.': '.count($roundGames[$round]).', start: '.$origStart.', End: '.$end.', start ID: '.$roundGames[$round][0]->id.'<br />';
+            $gameSeq = 0;
+            $playerSeq = 0;
+            $order = 1;
+            foreach ($players as $player) {
+              $gameNumbers['ID'.$roundGames[$round][$gameSeq]->machine_id]++;
+              $entry = getEntryById($dbh, $qualEntryIds[$player->id]);
+              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, $order);
+              $entry->createScore($dbh, $roundGames[$round][$gameSeq], null, $round, (($order == 1) ? 2 : 1));
+              $content .= 'R: '.$round.', PID: '.$player->id.', MID: '.$roundGames[$round][$gameSeq]->machine_id.', SEQ: '.$gameSeq.'<br />';
+              $gameSeq++;
+              $playerSeq++;
+              if ($gameSeq == ceil(count($players)/2)) {
+                $gameSeq = 1;
+                $order = 2;
+              }
+              if ($playerSeq >= count($players) - 1) {
+                $gameSeq = 0;
+              }
+            }
+            $number = ceil(count($players)/2);
+            array_multisort($gameNumbers, $games, SORT_NUMERIC);
+  //          asort($gameNumbers, SORT_NUMERIC);
+            foreach ($games as $game) {
+              $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.', #: '.$gameNumbers['ID'.$game->machine_id].'<br />';
+            }
+            $content .= json_encode($gameNumbers).'<br />';
           }
-          $content .= json_encode($gameNumbers);
         }
+        foreach ($qualEntryIds as $qualEntryId) {
+          $entry = getEntryById($dbh, $qualEntryId);
+          $entry->delete($dbh);
+        }
+        return $content;
       }
-      foreach ($qualEntryIds as $qualEntryId) {
-        $entry = getEntryById($dbh, $qualEntryId);
-        $entry->delete($dbh);
-      }
-      return $content;
+    } else {
+      return '<p>Sorry - only the ÜBERADMIN is allowed to do this!';
     }
 
   }
