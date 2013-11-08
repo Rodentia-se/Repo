@@ -206,7 +206,7 @@
     }
 
     function setGame($dbh, $game = null) {
-      $machine = ($game) ? $game->getMachine($dbh, $this->tournamentDivision_id) : null;
+      $machine = ($game->machine_id) ? $game->getMachine($dbh, $this->tournamentDivision_id) : null;
       $this->game_id = ($game) ? $game->id : null;
       $this->game = ($game) ? $game->name : null;
       $this->gameAcronym = ($game) ? $game->shortName : null;
