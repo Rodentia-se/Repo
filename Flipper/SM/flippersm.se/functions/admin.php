@@ -1107,30 +1107,30 @@
             }
             $content .= json_encode($gameNumbers).'<br />';
           }
-        }
-        foreach ($players as $player) {
-          $entries = $player->getEntries($dbh, 1, $division);
-          $content .= 'Player: '.$player->id;
-          foreach ($entries as $entry) {
-            $content .= ', Entry: '.$entry->id.', Games: ';
-            array_multisort($gameNumbers, $games, SORT_NUMERIC);
-            $gameSeq = 0;
-            $dupe = true;
-            while ($dupe == true) {
-              $score = $entry->checkForDuplicates($dbh);
-              if ($score) {
-                $gameNumbers['ID'.$score->machine_id]--;
-                $score->setGame($dbh, $games[$gameSeq]);
-                $gameNumbers['ID'.$games[$gameSeq]->machine_id]++;
-                $gameSeq++;
-              } else {
-                $dupe = false;
+          foreach ($players as $player) {
+            $entries = $player->getEntries($dbh, 1, $division);
+            $content .= 'Player: '.$player->id;
+            foreach ($entries as $entry) {
+              $content .= ', Entry: '.$entry->id.', Games: ';
+              array_multisort($gameNumbers, $games, SORT_NUMERIC);
+              $gameSeq = 0;
+              $dupe = true;
+              while ($dupe == true) {
+                $score = $entry->checkForDuplicates($dbh);
+                if ($score) {
+                  $gameNumbers['ID'.$score->machine_id]--;
+                  $score->setGame($dbh, $games[$gameSeq]);
+                  $gameNumbers['ID'.$games[$gameSeq]->machine_id]++;
+                  $gameSeq++;
+                } else {
+                  $dupe = false;
+                }
+                $scores = $entry->getScores($dbh);
+                foreach ($scores as $score) {
+                  $content .= $score->machine_id.', ';
+                }
+                $content .= '<br />';
               }
-              $scores = $entry->getScores($dbh);
-              foreach ($scores as $score) {
-                $content .= $score->machine_id.', ';
-              }
-              $content .= '<br />';
             }
           }
         }
