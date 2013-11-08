@@ -234,6 +234,8 @@
       $update[':gameId'] = $this->game_id;
       $update[':game'] = $this->game;
       $update[':gameAcronym'] = $this->gameAcronym;
+      var_dump('Maskin: '.$machine->machine_id);
+      die('huff');
       $update[':machineId'] = $machine->machine_id;
       $update[':id'] = $this->id;
       $sth = $dbh->prepare($query);
