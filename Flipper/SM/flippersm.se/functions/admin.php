@@ -1049,7 +1049,7 @@
       } else {
         $qualGroups = getQualGroupsByDivision($dbh, $division);
       }
-      $games = getMachines($dbh, 'where tournamentDivision_id = '.$division);
+      $games = getMachines($dbh, 'where ma.tournamentDivision_id = '.$division);
       shuffle($games);
       foreach ($games as $game) {
         $gameNumbers[$game->machine_id] = 0;        
@@ -1096,7 +1096,7 @@
         array_multisort($games, $gameNumbers, SORT_NUMERIC);
         asort($gameNumbers, SORT_NUMERIC);
         foreach ($games as $game) {
-          $content .= '<br />MID: '.$game->machine_id.', G: '.$game->shortName;        
+          $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName;        
         }
          $content .= json_encode($gameNumbers);
       }
