@@ -1057,7 +1057,6 @@
       foreach ($qualGroups as $qualGroup) {
 //        $players = ($division == 3) ? $qualGroup->getTeams($dbh) : $qualGroup->getPlayers($dbh);
         $players = ($division == 3) ? getTeams($dbh) : $qualGroup->getPlayers($dbh);
-        shuffle($players);
         foreach ($players as $player) {
           $player->tournamentDivision_id = $division;
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
@@ -1066,6 +1065,7 @@
         $start = 0;
         $number = ceil(count($players)/2);
         for ($round = 1; $round <= 4; $round++) {
+          shuffle($players);
           $roundGames[$round] = array();
           $origStart = $start;
           while ($number > 0) {
@@ -1092,13 +1092,13 @@
             $gameSeq++;
           }
           $number = ceil(count($players)/2);
+          array_multisort($gameNumbers, $games, SORT_NUMERIC);
+          asort($gameNumbers, SORT_NUMERIC);
+          foreach ($games as $game) {
+            $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.', #: '.$gameNumbers['ID'.$game->machine_id].'<br />';
+          }
+          $content .= json_encode($gameNumbers);
         }
-        array_multisort($gameNumbers, $games, SORT_NUMERIC);
-        asort($gameNumbers, SORT_NUMERIC);
-        foreach ($games as $game) {
-          $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.'<br />';
-        }
-         $content .= json_encode($gameNumbers);
       }
       foreach ($qualEntryIds as $qualEntryId) {
         $entry = getEntryById($dbh, $qualEntryId);
