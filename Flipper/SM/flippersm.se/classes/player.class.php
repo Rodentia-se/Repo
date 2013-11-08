@@ -673,6 +673,7 @@
         select
           qe.person_id as id,
           qe.person_id as person_id,
+          qe.tournamentDivision_id as tournamentDivision_id,
           qs.id as qualScoreId,
           qe.id as qualEntryId,
           qs.place as place,
