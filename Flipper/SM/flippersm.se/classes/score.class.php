@@ -219,7 +219,7 @@
     }
     function delete($dbh) {
       $delete[':id'] = $this->id;
-      $query = 'delete from qualEntry where id = :id';
+      $query = 'delete from qualScore where id = :id';
       $sth = $dbh->prepare($query);
       return $sth->execute($delete);
     }

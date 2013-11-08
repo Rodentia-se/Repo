@@ -1093,7 +1093,7 @@
           }
           $number = ceil(count($players)/2);
           array_multisort($gameNumbers, $games, SORT_NUMERIC);
-          asort($gameNumbers, SORT_NUMERIC);
+//          asort($gameNumbers, SORT_NUMERIC);
           foreach ($games as $game) {
             $content .= 'MID: '.$game->machine_id.', G: '.$game->shortName.', #: '.$gameNumbers['ID'.$game->machine_id].'<br />';
           }
