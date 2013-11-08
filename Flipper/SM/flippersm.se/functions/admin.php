@@ -1062,10 +1062,10 @@
           $qualEntryIds[$player->id] = $player->createEntry($dbh);
         }
         $content .= 'Players: '.count($players).', Games: '.count($games).'<br />';
-        $start = 0;
-        $number = ceil(count($players)/2);
         for ($round = 1; $round <= 4; $round++) {
           shuffle($players);
+          $start = 0;
+          $number = ceil(count($players)/2);
           $roundGames[$round] = array();
           $origStart = $start;
           while ($number > 0) {
