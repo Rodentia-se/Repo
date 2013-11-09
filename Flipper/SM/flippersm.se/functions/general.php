@@ -2281,6 +2281,7 @@
   }
 
   function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
+    echo 'group'.$groupBy;
     $query = getGameSelect($groupBy);
     $where = preg_replace('/ id /', ' g.id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
