@@ -2916,7 +2916,6 @@
   function calcEntryPlaces($dbh, $division, $calcPoints = true) {
     clearEntryPlaces($dbh, $division);
     $entries = getEntriesByDivision($dbh, $division);
-    var_dump($entries);
     if ($entries) {
       foreach ($entries as $entry) {
         if ($calcPoints) {
