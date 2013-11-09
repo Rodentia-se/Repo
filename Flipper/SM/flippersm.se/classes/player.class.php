@@ -829,7 +829,6 @@
         foreach ($entries as $entry) {
           $content .= '
             <div id="'.(($division == 1) ? 'main' : 'classics').'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
-            <p>'.$this->name.' har entry ID '.$entry->id.(($entry->points) ? ' med <span title="'.$entry->points.'">'.round($entry->points).'</span> poäng' : '').(($entry->place) ? ' på plats '.$entry->place : '').'</p>
           ';
         }
       }
