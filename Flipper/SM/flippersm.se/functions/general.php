@@ -2294,7 +2294,7 @@
     if ($tournament) {
       $where = (($where) ? $where.' and' : ' where').' ma.tournamentEdition_id = '.$tournament;
     }    
-    $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
+    $sth = $dbh->query($query.' '.$where.' '.(($groupBy != 'no') ? $groupBy : '').' '.$order);
     while ($obj = $sth->fetchObject('game')) {
       $objs[] = $obj;
     }
