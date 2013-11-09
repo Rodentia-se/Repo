@@ -818,15 +818,15 @@
           '.(($this->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
       ';
       $content .= $this->getResultsByDivision($dbh, 1);
-      $content .= ($this->classics) ? $this->getResultsByDivision($dbh, 2) : '';
+      $content .= ($this->classics) ? $this->getResultsByDivision($dbh, 2, false) : '';
       $content .= '</div>'.getDataTables('.scores');
       return $content;
     }
 
-    function getResultsByDivision($dbh, $division) {
+    function getResultsByDivision($dbh, $division, $display = true) {
       $entries = $this->getEntries($dbh, null, $division);
       $content .= '
-        <div id="'.(($division == 1) ? 'main' : 'classics').'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+        <div id="'.(($division == 1) ? 'main' : 'classics').'Table" class="section" style="display: '.(($display) ? (($_REQUEST['active']) ? '' : '') : 'none').';">
       ';
       if ($entries) {
         foreach ($entries as $entry) {
