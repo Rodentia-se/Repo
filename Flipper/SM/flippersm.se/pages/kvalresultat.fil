@@ -222,6 +222,16 @@
                 </thead>
                 <tbody>
       ';
+      unset($teamPoints);
+      foreach ($teams as $team) {
+        $qualEntries = $team->getEntries($dbh, $tournament, 2);
+        $points = 0;
+        foreach ($qualEntries as $qualEntry) {
+          $points += $qualEntry->points;
+        }
+        $teamPoints[] = $points;
+      }
+      array_multisort($teamPoints, SORT_DESC, SORT_NUMERIC, $teams);
       foreach ($teams as $team) {
         $qualEntries = $team->getEntries($dbh, $tournament, 3);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
