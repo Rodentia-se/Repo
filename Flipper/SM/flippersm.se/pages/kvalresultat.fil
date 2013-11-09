@@ -43,7 +43,7 @@
         }
         $playerPoints[] = $points;
       }
-      array_multisort($playerPoints, $players, SORT_NUMERIC, SORT_DESC);
+      array_multisort($playerPoints, $players, SORT_NUMERIC SORT_DESC);
       foreach ($players as $player) {
         $qualEntries = $player->getEntries($dbh, $tournament, 1);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
