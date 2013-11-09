@@ -534,15 +534,15 @@
       ';
       $display = true;
       if ($this->main) {
-        $content .= $this->getResultsByDivision($dbh, 1, $display) : '';
+        $content .= $this->getResultsByDivision($dbh, 1, $display);
         $display = false;
       }
       if ($this->classics) {
-        $content .= $this->getResultsByDivision($dbh, 2, $display) : '';
+        $content .= $this->getResultsByDivision($dbh, 2, $display);
         $display = false;
       }
       if ($this->team) {
-        $content .= $this->getResultsByDivision($dbh, 3, $display) : '';
+        $content .= $this->getResultsByDivision($dbh, 3, $display);
         $display = false;
       }
       $content .= '</div>'.getDataTables('.scores');
