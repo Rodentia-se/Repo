@@ -2972,7 +2972,7 @@
     }
   }
 
-  function getEntries($dbh, $where = null, $order = 'order by qe.points desc, qe.place asc', $gruopBy = 'group by qe.id') {
+  function getEntries($dbh, $where = null, $order = 'order by qe.points desc, qe.place asc', $groupBy = 'group by qe.id') {
     $query = getEntrySelect().'
       left join qualScore qs
         on qe.id = qs.qualEntry_id
@@ -2987,8 +2987,8 @@
     $where = preg_replace('/ lastName /', ' qe.lastName ', $where);
     $where = preg_replace('/ country_id /', ' qe.countryId ', $where);
     $where = preg_replace('/ country /', ' qe.country ', $where);
-    echo($query.' '.$where.' '.$gruopBy.' '.$order);
-    $sth = $dbh->query($query.' '.$where.' '.$gruopBy.' '.$order);
+    echo($query.' '.$where.' '.$groupBy.' '.$order);
+    $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('entry')) {
       $objs[] = $obj;
     }
