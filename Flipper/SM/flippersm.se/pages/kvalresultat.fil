@@ -98,6 +98,7 @@
                 </thead>
                 <tbody>
       ';
+      unset $playerPoints;
       foreach ($players as $player) {
         $qualEntries = $player->getEntries($dbh, $tournament, 2);
         $points = 0;
