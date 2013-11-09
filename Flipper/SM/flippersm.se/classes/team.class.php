@@ -303,6 +303,57 @@
       return $lastInsertId;
     }
 
+    function getResults($dbh) {
+      $content = '
+      <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+      ';
+      $content .= $this->getResultsByDivision($dbh, 3);
+      $content .= getDataTables('.scores');
+      return $content;
+    }
+
+    function getResultsByDivision($dbh, $division, $display = true) {
+      $entries = $this->getEntries($dbh, null, $division);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          $content .= '
+            <p style="display: '.(($_REQUEST['active']) ? '' : '').';">'.$this->name.' har entry ID '.$entry->id.(($entry->points) ? ' med <span title="'.$entry->points.'">'.round($entry->points).'</span> poäng' : '').(($entry->place) ? ' på plats '.$entry->place : '').'</p>
+          ';
+        }
+      }
+      $content .= '
+          <table class="scores" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Game</th>
+                <th>Score</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+      ';
+      $scores = $this->getScores($dbh, null, $division, false, false);
+      if ($scores) {
+        foreach ($scores as $score) {
+          $content .= '
+              <tr>
+                <td>'.$score->place.'</td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$score->game_id.'">'.$score->game.(($score->checkAlone($dbh)) ? ' (Ensam)' : '').'</a></td>
+                <td>'.$score->score.'</td>
+                <td><span title="'.$score->points.'">'.round($score->points).'</span></td>
+              </tr>
+          '; 
+        }
+      }
+      $content .= '
+            </tbody>
+          </table>
+        </div>
+      ';
+      return $content;
+    }
+
     function getQR($link = true, $right = false) {
       $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon'.(($right) ? ' right' : '').'" alt="QR" title="Click for QR code">';
       return ($link) ? '<a href="'.__baseHref__.'/mobile/teamPrinter.php?teamId='.$this->id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
