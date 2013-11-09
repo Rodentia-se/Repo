@@ -368,7 +368,7 @@
       return $objs;
     }
 
-    function getAllEntries ($dbh, $groupBy = false, $tournament = 1) {
+    function getAllEntries($dbh, $groupBy = false, $tournament = 1) {
       $query = '
         select
           qe.person_id as id,
