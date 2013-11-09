@@ -199,9 +199,9 @@
           and person_id != '.$this->person_id;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }      
     }
 
