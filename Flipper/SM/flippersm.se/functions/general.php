@@ -2912,8 +2912,8 @@
   function calcScorePlaces($dbh, $division = 1) {
     $games = getGamesByDivision($dbh, $division);
     if ($games) {
-      echo $game->name.'...';
       foreach ($games as $game) {
+        echo $game->name.'...';
         $game->setPlaces($dbh, $division);
       }
     }
