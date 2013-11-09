@@ -2290,10 +2290,10 @@
     $where = preg_replace('/ tournamentEdition_id /', ' ma.tournamentEdition_id ', $where);
     $where = preg_replace('/ type = main /', ' ma.tournamentDivision_id = 1 ', $where);
     $where = preg_replace('/ type = classics /', ' ma.tournamentDivision_id = 2 ', $where);
-    // echo $query.' '.$where.' and e.id = 1 group by g.id '.$order;
     if ($tournament) {
       $where = (($where) ? $where.' and' : ' where').' ma.tournamentEdition_id = '.$tournament;
     }    
+    echo($query.' '.$where.' '.$groupBy.' '.$order);
     $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('game')) {
       $objs[] = $obj;
@@ -2302,7 +2302,7 @@
   }
   
   function getGamesByDivision($dbh, $division) {
-    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, false);
+    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, '');
   }
   
   function getMachines($dbh, $where, $order = 'order by g.name') {
