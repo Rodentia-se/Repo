@@ -363,6 +363,7 @@
     }
     
     function setPlaces($dbh, $division = 1) {
+      echo $game->name.'<br />';
       $this->clearPlaces($dbh, $division);
       if ($this->machine_id) {
         $machine = getMachineById($dbh, $this->machine_id);
@@ -372,6 +373,7 @@
       $entries = $machine->getEntries($dbh, null, $machine->tournamentDivision_id);
       if ($entries) {
         foreach ($entries as $entry) {
+          echo $entry->id.'<br />';
           $score = $entry->getBestScore($dbh, $machine);
           if ($score) {
             if ($score->score) {
