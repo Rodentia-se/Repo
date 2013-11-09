@@ -824,7 +824,7 @@
     }
 
     function getResultsByDivision($dbh, $division) {
-      $entries = $this->getEntry($dbh, null, $division);
+      $entries = $this->getEntries($dbh, null, $division);
       if ($entries) {
         foreach ($entries as $entry) {
           $content .= '
@@ -870,7 +870,6 @@
       $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon'.(($right) ? ' right' : '').'" alt="QR" title="Click for QR code">';
       return ($link) ? '<a href="'.__baseHref__.'/mobile/playerPrinter.php?playerId='.$this->id.'&autoPrint=true" target="_blank">'.$qr.'</a>' : $qr;
     }
-
 
   }
 ?>

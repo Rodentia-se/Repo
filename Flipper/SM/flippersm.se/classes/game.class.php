@@ -525,6 +525,63 @@
       return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division)[0];
     }
 
+    function getResults($dbh) {
+      $content = '
+      <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+        <a href="#mainTable" style="display: '.(($_REQUEST['active']) ? '' : '').';">Main</a>
+          '.(($this->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
+          '.(($this->team) ? '<a href="#teamTable">Team</a>' : '').'
+      ';
+      $content .= $this->getResultsByDivision($dbh, 1);
+      $content .= ($this->classics) ? $this->getResultsByDivision($dbh, 2) : '';
+      $content .= ($this->team) ? $this->getResultsByDivision($dbh, 3) : '';
+      $content .= '</div>'.getDataTables('.scores');
+      return $content;
+    }
+
+    function getResultsByDivision($dbh, $division) {
+      $entries = $this->getEntries($dbh, null, $division);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          $content .= '
+            <div id="'.(($division == 1) ? 'main' : (($division == 2) ? 'classics' : 'team')).'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+            <p>'.$this->name.' har entry ID '.$entry->id.(($entry->points) ? ' med <span title="'.$entry->points.'">'.round($entry->points).'</span> poäng' : '').(($entry->place) ? ' på plats '.$entry->place : '').'</p>
+          ';
+        }
+      }
+      $content .= '
+          <table class="scores">
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Player</th>
+                <th>Score</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+      ';
+      $scores = $this->getScores($dbh, null, $division, false, false);
+      if ($scores) {
+        foreach ($scores as $score) {
+          $content .= '
+              <tr>
+                <td>'.$score->place.'</td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=player&id='.$score->person_id.'">'.$score->player.'</a></td>
+                <td>'.$score->score.'</td>
+                <td><span title="'.$score->points.'">'.round($score->points).'</span></td>
+              </tr>
+          '; 
+        }
+      }
+      $content .= '
+            </tbody>
+          </table>
+        </div>
+      ';
+      return $content;
+    }
+
     function getQR($link = true, $right = false, $info = false) {
       $img = ($info) ? 'print.png': 'qr.png';
       $title = ($info) ? 'Click to print game info' : 'Click to print QR code';
