@@ -53,27 +53,21 @@ class setupTree {
 
 	private function putInPlace() {
 
-		// Ordning för förstespelaren när det är sexton, åtta eller fyra matcher.
-		$ordning16 = array(1,16,9,8,5,12,13,4,3,14,11,6,7,10,15,2);
-		$ordning8 = array(1,8,5,4,3,6,7,2);
-		$ordning4 = array(1,4,3,2);
-		$ordning2 = array(1,2);
+		$siffra = $this->noc;
 
+		// Order for the players for different sizes.
+		$this->ordning64 = array(1,64,32,33,17,48,16,49,9,56,24,41,25,40,8,57,
+							5,60,28,37,21,44,12,53,13,52,20,45,29,36,4,61,
+							3,62,30,35,19,46,51,14,11,54,22,43,27,38,6,59,
+							7,58,26,39,23,42,10,55,15,50,18,47,31,34,2,63);
+		$this->ordning32 = array(1,32,16,17,8,25,9,24,4,29,13,20,5,28,12,21,
+							3,30,14,19,6,27,11,22,10,23,7,26,15,18,2,31);
+		$this->ordning16 = array(1,16,9,8,5,12,13,4,3,14,11,6,7,10,15,2);
+		$this->ordning8 = array(1,8,5,4,3,6,7,2);
+		$this->ordning4 = array(1,4,3,2);
+		$this->ordning2 = array(1,2);
 
-		// Depending of no of Creamfiles, how many players in first round?
-		if (tournament::$creamfiles == 0) {
-			$siffra = $this->noc;
-		}
-		if (tournament::$creamfiles == 1) {
-			echo "bulle";
-		}
-		if (tournament::$creamfiles == 2) {
-			$siffra = $this->noc/2;
-		}
-
-		// Sort the spelarArray according to the order of ordningX.
-//		array_multisort(${"ordning" . $siffra}, $this->spelarArray['rank'], $this->spelarArray['spelarid'], $this->spelarArray['tag'], $this->spelarArray['namn']);
-		# var_dump($this->spelarArray);
+		// Re-arrange the array if it's creamfiles, when the worst ranked plays each other first.
 		if (tournament::$creamfiles == 2) {
 			
 			$this->{"ordning" . $siffra} = creamOrder($this->{"ordning" . $siffra}, 2);
