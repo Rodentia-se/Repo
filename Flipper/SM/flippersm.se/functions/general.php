@@ -2301,7 +2301,7 @@
   }
   
   function getGamesByDivision($dbh, $division) {
-    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, '');
+    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, false);
   }
   
   function getMachines($dbh, $where, $order = 'order by g.name') {
