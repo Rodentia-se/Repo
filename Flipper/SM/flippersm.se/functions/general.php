@@ -2902,18 +2902,28 @@
   
   function calcScorePlaces($dbh, $division = 1) {
     clearScorePlaces($dbh, $division);
-    $players = getPlayersByDivision($dbh, $division);
-    foreach ($players as $player) {
-      $entries = $player->getEntries($dbh, null, $division);
-      foreach ($entries as $entry) {
-        $score = $entry->getBestScore($dbh);
-        if ($score->score) {
-          $scores[] = $score;
+    $games = getGamesByDivision($dbh, $division);
+    if ($games) {
+      foreach ($games as $game) {
+        $entries = $game->getEntries($dbh, null, $division);
+        if ($entries) {
+          foreach ($entries as $entry) {
+            $score = $entry->getBestScore($dbh);
+            if ($score) {
+              if ($score->score) {
+                $scores[] = $score;
+              }
+            }
+          }
         }
       }
     }
-    usort($scores, 'scoreComp');
-    var_dump($scores);
+    if ($scores) {
+      usort($scores, 'scoreComp');
+      echo '<pre>';
+      var_dump($scores);
+      echo '</pre>';
+    }
   }
 
   function clearScorePlaces($dbh, $division = 1) {
@@ -3264,6 +3274,15 @@
     } else if ($division) {
       $where = 'where m.tournamentDivision_id = '.$division.' or cl.tournamentDivision_id = '.$division;
       return getPlayers($dbh, $where);
+    } else {
+      return false;
+    }
+  }
+
+  function getMachinesByDivision($dbh, $division = 1) {
+    if ($division) {
+      $where = 'where ma.tournamentDivision_id = '.$division;
+      return getMachines($dbh, $where);
     } else {
       return false;
     }
