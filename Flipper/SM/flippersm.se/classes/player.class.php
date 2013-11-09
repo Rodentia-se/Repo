@@ -845,7 +845,7 @@
             </thead>
             <tbody>
       ';
-      $scores = $this->getScores($dbh, null, $division);
+      $scores = $this->getScores($dbh, null, $division, false, false);
       if ($scores) {
         foreach ($scores as $score) {
           $content .= '
