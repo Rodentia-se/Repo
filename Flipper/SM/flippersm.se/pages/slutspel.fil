@@ -2,7 +2,7 @@
 
   $content = '
     <h1>Slutspelsresultat</h1>
-        <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#bDiv">B</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
+        <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
   ';
 
   $content .= '
