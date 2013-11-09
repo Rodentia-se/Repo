@@ -2903,8 +2903,6 @@
   function calcScorePlaces($dbh, $division = 1) {
     clearScorePlaces($dbh, $division);
     $players = getPlayersByDivision($dbh, $division);
-    echo count($players);
-    die('huff');
     foreach ($players as $player) {
       $entries = $player->getEntries($dbh, null, $division);
       foreach ($entries as $entry) {
@@ -3264,7 +3262,7 @@
       $where = 'where tm.tournamentDivision_id = '.$division;
       return getTeams($dbh, $where);
     } else if ($division) {
-      $where = 'where p.tournamentDivision_id = '.$division.' or cl.tournamentDivision_id = '.$division;
+      $where = 'where m.tournamentDivision_id = '.$division.' or cl.tournamentDivision_id = '.$division;
       return getPlayers($dbh, $where);
     } else {
       return false;
