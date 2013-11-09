@@ -3258,10 +3258,10 @@
   }
 
   function getPlayersByDivision($dbh, $division = 1) {
-    if ($$division == 3) {
+    if ($division == 3) {
       $where = 'where tm.tournamentDivision_id = '.$division;
       return getTeams($dbh, $where);
-    } else íf ($division) {
+    } else if ($division) {
       $where = 'where p.tournamentDivision_id = '.$division.' or cl.tournamentDivision_id = '.$division;
       return getPlayers($dbh, $where);
     } else {
