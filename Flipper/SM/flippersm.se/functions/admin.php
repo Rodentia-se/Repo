@@ -968,7 +968,7 @@
             unset($machineIds);
             foreach ($scores as $score) {
               $machineIds[$score->machine_id]++;
-              $content .= '<td'.(($machineIds[$score->machine_id] > 2) ? ' class="red"' : '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
+              $content .= '<td'.(($machineIds[$score->machine_id] > 2) ? ' class="errorTd"' : '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
             }
           }
           $content .= '</tr>';
