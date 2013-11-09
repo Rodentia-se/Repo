@@ -2919,11 +2919,9 @@
     var_dump($entries);
     if ($entries) {
       foreach ($entries as $entry) {
-        echo 'Entry: '.$entry->id.'<br />';
         if ($calcPoints) {
           $entry->points = $entry->calcPoints($dbh);
         }
-        echo 'Points: '.$entry->points.'<br />';
         if ($entry->points) {
           $pointsEntries[] = $entry;
         }
