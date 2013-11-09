@@ -351,30 +351,34 @@
       return $objs;
     }
 
-    function clearPlaces($dbh, $division = 1) {
-      if ($this->machine_id) {
-        $machine = getMachineById($dbh, $this->machine_id);
-      } else {
+    function clearPlaces($dbh, $division = 1, $points = true) {
+      if (!$this->machine_id) {
         $machine = $this->getMachine($dbh, $division);
+        $this->machine_id = $machine->machine_id;
+        $this->tournamentDivision_id = $machine->tournamentDivision_id;
       }
-      $query = 'update qualScore set place = null where machine_id = '.$machine->machine_id.' and tournamentDivision_id = '.$machine->tournamentDivision_id;
+      $query = 'update qualScore set place = null where machine_id = '.$this->machine_id.' and tournamentDivision_id = '.$this->tournamentDivision_id;
       $sth = $dbh->prepare($query);
-      return $sth->execute($update);
+      $return = $sth->execute($update);
+      if ($points) {
+        $this->clearPoints($dbh, $this->tournamentDivision_id, false);
+      }
+      return $return;
     }
     
-    function setPlaces($dbh, $division = 1) {
+    function setPlaces($dbh, $division = 1, $points = true) {
       echo $this->name.'<br />';
       $this->clearPlaces($dbh, $division);
-      if ($this->machine_id) {
-        $machine = getMachineById($dbh, $this->machine_id);
-      } else {
+      if (!$this->machine_id) {
         $machine = $this->getMachine($dbh, $division);
-      } 
-      $entries = $this->getEntries($dbh, null, $machine->tournamentDivision_id);
+        $this->machine_id = $machine->machine_id;
+        $this->tournamentDivision_id = $machine->tournamentDivision_id;
+      }
+      $entries = $this->getEntries($dbh, null, $this->tournamentDivision_id);
       if ($entries) {
         foreach ($entries as $entry) {
           echo $entry->id.'<br />';
-          $score = $entry->getBestScore($dbh, $machine);
+          $score = $entry->getBestScore($dbh, $this);
           if ($score) {
             if ($score->score) {
               $scores[] = $score;
@@ -389,13 +393,83 @@
           $place++;
           $score->setPlace($dbh, $place);
         }
+        if ($points) {
+          $this->setPoints($dbh, $this->tournamentDivision_id, false);
+        }
       }
     }
+
+    function clearPoints($dbh, $division = 1, $places = true) {
+      if ($places) {
+        $this->clearPlaces($dbh, $division, false);
+      }
+      if (!$this->machine_id) {
+        $machine = $this->getMachine($dbh, $division);
+        $this->machine_id = $machine->machine_id;
+        $this->tournamentDivision_id = $machine->tournamentDivision_id;
+      }
+      $query = 'update qualScore set points = null where machine_id = '.$this->machine_id.' and tournamentDivision_id = '.$this->tournamentDivision_id;
+      $sth = $dbh->prepare($query);
+      return $sth->execute($update);
+    }
+    
+    function setPoints($dbh, $division = 1, $places = true) {
+      if ($places) {
+        $this->setPlaces($dbh, $division, false);
+      }
+      if (!$this->machine_id) {
+        $machine = $this->getMachine($dbh, $division);
+        $this->machine_id = $machine->machine_id;
+        $this->tournamentDivision_id = $machine->tournamentDivision_id;
+      }
+      $number = $this->getNoOfPlaces($dbh);
+      $entries = $this->getEntries($dbh, null, $this->tournamentDivision_id);
+      $extra = array(10, 5, 2);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          echo $entry->id.'<br />';
+          $score = $entry->getBestScore($dbh, $this);
+          if ($score) {
+            if ($score->place) {
+              $points = 100 * (1 - ($score->place - 0.5) / $number ) + $extra[$score->place - 1];
+              $score->setPoints($dbh, $points);
+            }
+          }
+        }
+      }
+    }
+
+    function getNoOfScores($dbh, $division = 1) {
+      return getNoOf($dbh, 'score', $division);
+    }
+
+    function getNoOfPlaces($dbh, $division = 1) {
+      return getNoOf($dbh, 'place', $division);
+    }
+
+    function getNoOfPoints($dbh, $division = 1) {
+      return getNoOf($dbh, 'points', $division);
+    }
+    
+    protected function getNoOf($dbh, $type = 'score', $division = 1) {
+      if (!$this->machine_id) {
+        $this->machine_id = $this->getMachine($dbh, $division)->machine_id;
+      }
+      $query = '
+        select count(*)
+        from qualScore qs
+        where qs.'.$type.' is not null
+        and qs.machine_id = '.$this->machine_id.'
+        group by qs.qualEntry_id
+      ';
+      $sth = $dbh->query($query);
+      return $sth->fetchColumn();
+    }    
 
     function getQualScores($dbh, $tournament = 1, $division = 1) {
       return getScores($dbh, $tournament, $division);
     }
-
+    
     function getScores($dbh, $tournament = 1, $division = 1, $groupBy = 'group by qs.machine_id', $orderBy = 'order by max(qs.points) desc, min(qs.place) asc') {
       $query = getScoreSelect(($groupBy) ? true : false).'
         where qs.game_id = '.$this->id;
