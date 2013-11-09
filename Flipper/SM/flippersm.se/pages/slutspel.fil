@@ -12,7 +12,7 @@
           <div id="bDiv" class="section hidden">
           </div>
           <div id="classicsDiv" class="section hidden">
-          <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="3000"></iframe>
+          <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000"></iframe>
           </div>
           <div id="u18Div" class="section hidden">
           </div>
