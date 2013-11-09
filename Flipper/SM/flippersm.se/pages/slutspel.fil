@@ -12,7 +12,7 @@
           <div id="bDiv" class="section hidden">
           </div>
           <div id="classicsDiv" class="section hidden">
-          <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%"></iframe>
+          <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="664"></iframe>
           </div>
           <div id="u18Div" class="section hidden">
           </div>
@@ -37,4 +37,4 @@ function hide_all_sections() {
 		$(".section").eq(n).addClass("hidden");
 	}
 }
-</script
+</script>
