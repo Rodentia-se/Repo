@@ -71,8 +71,13 @@ class setupTree {
 		}
 
 		// Sort the spelarArray according to the order of ordningX.
-		array_multisort(${"ordning" . $siffra}, $this->spelarArray['rank'], $this->spelarArray['spelarid'], $this->spelarArray['tag'], $this->spelarArray['namn']);
+//		array_multisort(${"ordning" . $siffra}, $this->spelarArray['rank'], $this->spelarArray['spelarid'], $this->spelarArray['tag'], $this->spelarArray['namn']);
 		# var_dump($this->spelarArray);
+		if (tournament::$creamfiles == 2) {
+			
+			$this->{"ordning" . $siffra} = creamOrder($this->{"ordning" . $siffra}, 2);
+
+		}
 
 	}
 

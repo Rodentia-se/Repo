@@ -7,7 +7,7 @@ include_once "class/tournament.php";
 include "class/uppkoppling.php";
 include "class/setupTree.php";
 include "class/drawTree.php";
-include "statictest.php";
+//include "statictest.php";
 
 // Sätt all felrapportering PÅ.
    ini_set('display_errors',1);
