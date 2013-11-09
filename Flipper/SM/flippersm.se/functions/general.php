@@ -2920,6 +2920,11 @@
         }
         if ($scores) {
           usort($scores, 'scoreComp');
+          $place = 0;
+          foreach ($scores as $score) {
+            $place++;
+            $score->setPlace($dbh, $place)
+          }
           echo '<pre>';
           var_dump($scores);
           echo '</pre>';
