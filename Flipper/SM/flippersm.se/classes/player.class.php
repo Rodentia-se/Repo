@@ -847,7 +847,7 @@
             </thead>
             <tbody>
       ';
-      $scores = $this->getScores($dbh, null, $division, false, false);
+      $scores = $this->getScores($dbh, null, $division, false, 'order by qs.points desc');
       if ($scores) {
         foreach ($scores as $score) {
           $content .= '
