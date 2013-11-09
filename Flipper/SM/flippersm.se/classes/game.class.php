@@ -363,7 +363,7 @@
     }
     
     function setPlaces($dbh, $division = 1) {
-      echo $game->name.'<br />';
+      echo $this->name.'<br />';
       $this->clearPlaces($dbh, $division);
       if ($this->machine_id) {
         $machine = getMachineById($dbh, $this->machine_id);
