@@ -967,8 +967,8 @@
             $scores = $entry->getScores($dbh, null, ' order by qs.round asc');
             unset($machineIds);
             foreach ($scores as $score) {
-              $machineIds[] = $score->machine_id;
-              $content .= '<td'.((in_array($score->machine_id, $machineIds)) ? ' class="red"' : '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
+              $machineIds[$score->machine_id]++;
+              $content .= '<td'.(($machineIds[$score->machine_id] > 2) ? ' class="red"' : '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
             }
           }
           $content .= '</tr>';
