@@ -810,6 +810,61 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
+    
+    function getResults($dbh) {
+      $content = '
+      <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+        <a href="#mainTable" style="display: '.(($_REQUEST['active']) ? '' : '').';">Main</a>
+          '.(($this->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
+      ';
+      $content .= $this->getResultsByDivision($dbh, 1);
+      $content .= ($this->classics) ? $this->getResultsByDivision($dbh, 2) : '';
+      $content .= '</div>'.getDataTables('.scores');
+      return $content;
+    }
+
+    function getResultsByDivision($dbh, $division) {
+      $entries = $this->getEntry($dbh, null, $division);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          $content .= '
+            <div id="'.(($division == 1) ? 'main' : 'classics').'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+            <p>'.$this->name.' har entry ID '.$entry->id.(($entry->points) ? ' med '.$entry->points.' poäng' : '').(($entry->place) ? ' på plats '.$entry->place).'</p>
+          ';
+        }
+      }
+      $content .= '
+          <table class="scores">
+            <thead>
+              <tr>
+                <th>Place</th>
+                <th>Game</th>
+                <th>Score</th>
+                <th>Points</th>
+              </tr>
+            </thead>
+            <tbody>
+      ';
+      $scores = $this->getScores($dbh, null, $division);
+      if ($scores) {
+        foreach ($scores as $score) {
+          $content .= '
+              <tr>
+                <td>'.$score->place.'</td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$score->gameId.'">'.$score->game.(($score->checkAlone($dbh)) ? ' (Ensam)' : '').'</a></td>
+                <td>'.$score->score.'</td>
+                <td>'.round($score->points).'</td>
+              </tr>
+          '; 
+        }
+      }
+      $content .= '
+            </tbody>
+          </table>
+        </div>
+      ';
+      return $content;
+    }
 
     function getQR($link = true, $right = false) {
       $qr = '<img src="'.__baseHref__.'/images/qr.png" class="icon'.(($right) ? ' right' : '').'" alt="QR" title="Click for QR code">';

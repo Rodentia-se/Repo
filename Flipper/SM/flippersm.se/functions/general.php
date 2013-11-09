@@ -3953,6 +3953,9 @@
                     <img class="objectPhoto" src="'.$obj->getPhoto().'" alt="'.$obj->name.'">
                   </div>
       ';
+      if ($type == 'player' || $type = 'team' || $type == 'game') {
+        $content .= $obj->getResults($dbh);
+      }
       return $content;
     } else {
       return false;
