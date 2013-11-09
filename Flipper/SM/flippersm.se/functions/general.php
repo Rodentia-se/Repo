@@ -2987,7 +2987,6 @@
     $where = preg_replace('/ lastName /', ' qe.lastName ', $where);
     $where = preg_replace('/ country_id /', ' qe.countryId ', $where);
     $where = preg_replace('/ country /', ' qe.country ', $where);
-    echo($query.' '.$where.' '.$groupBy.' '.$order);
     $sth = $dbh->query($query.' '.$where.' '.$groupBy.' '.$order);
     while ($obj = $sth->fetchObject('entry')) {
       $objs[] = $obj;
