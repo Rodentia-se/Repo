@@ -2911,6 +2911,7 @@
 
   function calcScorePlaces($dbh, $division = 1) {
     $games = getGamesByDivision($dbh, $division);
+    echo $division;
     echo count($games);
     if ($games) {
       foreach ($games as $game) {
