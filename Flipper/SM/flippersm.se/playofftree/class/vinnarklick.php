@@ -175,7 +175,7 @@ $klicket = new vinnarklick();
 
 // send user back to the full tree.
    echo "<script type='text/javascript'>
-   			document.location.href = '../treeclient.php';
+   			document.location.href = '../playoffclassic.php';
 		</script>";
    exit;     
  
