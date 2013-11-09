@@ -968,7 +968,7 @@
             unset($machineIds);
             foreach ($scores as $score) {
               $machineIds[] = $score->machine_id;
-              $content .= '<td'.((in_array($score->machine_id, $machineIds) ? ' class="red"' ; '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
+              $content .= '<td'.((in_array($score->machine_id, $machineIds) ? ' class="red"' : '').'>'.$score->machine_id.': '.$score->gameShortName.'</td>';
             }
           }
           $content .= '</tr>';
