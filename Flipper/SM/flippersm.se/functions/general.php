@@ -2227,7 +2227,7 @@
   }
 
   function getGameSelect($machine = false, $groupBy = true) {
-//    $groupBy = (!$groupBy || $groupBy == 'no') ? false : $groupBy;
+    $groupBy = (!$groupBy || $groupBy == 'no') ? false : $groupBy;
     return '
       select
         '.(($machine) ? 'ma' : 'g').'.id as id,
@@ -2282,7 +2282,7 @@
   }
 
   function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
-    $query = getGameSelect($groupBy);
+    $query = getGameSelect(false, $groupBy);
     $where = preg_replace('/ id /', ' g.id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
     $where = preg_replace('/ game_id /', ' g.id ', $where);
