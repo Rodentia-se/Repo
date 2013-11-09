@@ -37,6 +37,15 @@
       ';
       foreach ($players as $player) {
         $qualEntries = $player->getEntries($dbh, $tournament, 1);
+        $points = 0;
+        foreach ($qualEntries as $qualEntry) {
+          $points += $qualEntry->points;
+        }
+        $playerPoints[] = $points;
+      }
+      array_multisort($playerPoints, $players, SORT_NUMERIC, SORT_DESC);
+      foreach ($players as $player) {
+        $qualEntries = $player->getEntries($dbh, $tournament, 1);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
