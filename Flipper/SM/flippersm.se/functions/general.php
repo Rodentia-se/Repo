@@ -2905,9 +2905,11 @@
     $games = getGamesByDivision($dbh, $division);
     if ($games) {
       foreach ($games as $game) {
+        echo $game->name.'<br />';
         $entries = $game->getEntries($dbh, null, $division);
         if ($entries) {
           foreach ($entries as $entry) {
+            echo $entry->id.'<br />';
             $score = $entry->getBestScore($dbh);
             if ($score) {
               if ($score->score) {
