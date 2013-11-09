@@ -541,13 +541,9 @@
 
     function getResultsByDivision($dbh, $division) {
       $entries = $this->getEntries($dbh, null, $division);
-      if ($entries) {
-        foreach ($entries as $entry) {
-          $content .= '
-            <div id="'.(($division == 1) ? 'main' : (($division == 2) ? 'classics' : 'team')).'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
-          ';
-        }
-      }
+      $content .= '
+        <div id="'.(($division == 1) ? 'main' : (($division == 2) ? 'classics' : 'team')).'Table" class="section" style="display: '.(($_REQUEST['active']) ? '' : '').';">
+      ';
       $content .= '
           <table class="scores">
             <thead>
