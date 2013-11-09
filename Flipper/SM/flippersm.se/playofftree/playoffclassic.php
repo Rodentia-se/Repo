@@ -53,7 +53,7 @@ include "class/drawTree.php";
 
 	// Draw the tree
 	$drawer = new drawTree($sparris);	
-
+    
 
 ?>
 
