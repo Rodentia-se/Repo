@@ -528,9 +528,9 @@
     function getResults($dbh) {
       $content = '
       <p class="submenu2 clearboth" id="tab_links" style="display: '.(($_REQUEST['active']) ? '' : '').';">
-        <a href="#mainTable" style="display: '.(($_REQUEST['active']) ? '' : '').';">Main</a>
-          '.(($this->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
-          '.(($this->team) ? '<a href="#teamTable">Team</a>' : '').'
+        '.(($this->main) ? '<a href="#mainTable">Main</a>' : '').'
+        '.(($this->classics) ? '<a href="#classicsTable">Classics</a>' : '').'
+        '.(($this->team) ? '<a href="#teamTable">Team</a>' : '').'
       ';
       $display = true;
       if ($this->main) {
