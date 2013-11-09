@@ -198,7 +198,7 @@
         left join player pl on qs.player_id = pl.id
         where qs.round = '.$this->round.'
           and qs.machine_id = '.$this->machine_id.'
-          and pl.qualGroup_id = '.$player->qualGroup_id.'
+          and pl.qualGroup_id = '.(($this->tournamentDivision_id == 1) ? $player->mainQualGroup_id : $player->classicsQualGroup_id).'
           and pl.person_id != '.$this->person_id;
       $sth = $dbh->query($query);
       if ($sth->fetchColumn() > 0) {
