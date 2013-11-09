@@ -461,7 +461,6 @@
         from qualScore qs
         where qs.'.$type.' is not null
         and qs.machine_id = '.$this->machine_id.'
-        group by qs.qualEntry_id
       ';
       $sth = $dbh->query($query);
       return $sth->fetchColumn();
