@@ -22,6 +22,7 @@ include "class/drawTree.php";
 	<title>Tree-testing</title>
 	<meta charset = "UTF-8">
 	<link rel = 'stylesheet' type = 'text/css' href = 'css/treestyle.css'>
+	<link rel = 'stylesheet' type = 'text/css' href = 'css/treestyle_creamfile.css'>
 	<link rel = 'stylesheet' type = 'text/css' href = 'css/mi.css'>
 </head>
 
@@ -29,7 +30,7 @@ include "class/drawTree.php";
 <?php
 
 
-	// Setup tree for main-slutspelet i flipper-SM
+	// Setup tree for classic-slutspelet i flipper-SM
 
 	$tree = new tournament();
 	$tree->setNoc(64);

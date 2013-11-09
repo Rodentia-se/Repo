@@ -20,7 +20,7 @@ class drawTree {
 		$this->calculateNoOfNodesFromStart();
 
 		//echo "<p>NOC " . tournament::$numberOfCompetitors;
-		// echo "<p>SIM: " . tournament::$numberOfSets;
+		//echo "<p>SIM: " . tournament::$numberOfSets;
 
 		# Rita upp trädet	
 		echo $this->setTree();

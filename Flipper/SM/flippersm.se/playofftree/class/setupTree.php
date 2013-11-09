@@ -42,17 +42,16 @@ class setupTree {
 		$connect = new uppkoppling();
 		$pdo = $connect->conn();
 
-		$STH = $pdo->prepare("SELECT place, person_id, initials, firstName, lastName FROM " . tournament::SPELARTABELL . " WHERE tournamentDivision_id = " . tournament::$competitionid . " ORDER BY place LIMIT 0, " . tournament::$numberOfCompetitors);
+		$STH = $pdo->prepare("SELECT Rank, SpelarID, Tag, Namn FROM " . tournament::SPELARTABELL . " ORDER BY Rank LIMIT 0, " . tournament::$numberOfCompetitors);
 		$STH->execute();
 
 		while ($row = $STH->fetch(PDO::FETCH_ASSOC)) {
 
-			$this->spelarArray['place'][] = $row['place']; 
-			$this->spelarArray['person_id'][] = $row['person_id']; 
-			$this->spelarArray['initials'][] = $row['initials']; 
-			$this->spelarArray['firstname'][] = $row['firstName'];
-			$this->spelarArray['lastname'][] = $row['lastName']; 
-			
+			$this->spelarArray['rank'][] = $row['Rank']; 
+			$this->spelarArray['spelarid'][] = $row['SpelarID']; 
+			$this->spelarArray['tag'][] = $row['Tag']; 
+			$this->spelarArray['namn'][] = $row['Namn']; 
+
 		}
 
 	}
@@ -102,53 +101,19 @@ class setupTree {
 				$anummer = $this->{"ordning" . $this->noc}[$playerA];
 				$bnummer = $this->{"ordning" . $this->noc}[$playerB];
 
-				$firstname = $this->spelarArray['firstname'][$anummer-1];
-				$lastname = $this->spelarArray['lastname'][$anummer-1];
-				$initials = $this->spelarArray['initials'][$anummer-1];
 				
 				// The first round has two players in each match...
-				if ($i <= ($this->noc/(2 + tournament::$creamfiles))) {
+				if ($i <= (tournament::$numberOfCompetitors/(2 + tournament::$creamfiles))) {
 
-					$pida = $this->spelarArray['person_id'][$anummer-1];				
-					$pidb = $this->spelarArray['person_id'][$bnummer-1];
+					$pida = $this->spelarArray['spelarid'][$anummer-1];				
+					$pidb = $this->spelarArray['spelarid'][$bnummer-1];
 
-					// Insert values into db-table matchplayer, one row per match, one row per player
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " 
-										(match_id, player_id, firstName, lastName, initials) 
-										VALUES ('$i', '$pida','$firstname', '$lastname', '$initials')");
-
-					$STH->execute();
-
-					// Insert values for the second player into db-table matchplayer.
-					$firstname = $this->spelarArray['firstname'][$bnummer-1];
-					$lastname = $this->spelarArray['lastname'][$bnummer-1];
-					$initials = $this->spelarArray['initials'][$bnummer-1];
-
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " 
-										(match_id, player_id, firstName, lastName, initials) 
-										VALUES ('$i', '$pidb','$firstname', '$lastname', '$initials')");
-
-					$STH->execute();
-
-					// Insert values into db-table match, one row per match.
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHTABELL . " 
-										(id, tournamentDivision_id, round, sets) 
-										VALUES ('$i', 'tournament::$competitionid',1, '$this->setsInMatch')");
-
-					$STH->execute();
-
-					// Prepare to insert values into table matchSet
 					$STH = $pdo->prepare("INSERT INTO " . tournament::SETTABELL . " 
-										(match_id) 
-										VALUES ('$i')");
+										(matchID, competitionID, playerA, playerB) 
+										VALUES ('$i', '" . tournament::$competitionid . "', '$pida','$pidb')");
 
-
-					for ($j = 0 ; $j < $this->setsInMatch; $j ++ ) {
-
-						// And populate table matchSet three (or apropriate number) times per match.
+					for ($j = 0 ; $j < $this->setsInMatch; $j ++ ) 
 						$STH->execute();
-
-					}
 
 					$playerA += 2;
 					$playerB += 2;
@@ -157,32 +122,15 @@ class setupTree {
 				// ... but the following rounds only has one player waiting.
 				else {
 
-					$round = round( $i / ($this->noc/2 + tournament::$creamfiles), 0, PHP_ROUND_HALF_DOWN);
+					$pidb = $this->spelarArray['spelarid'][$anummer-1];
 
-					$pidb = $this->spelarArray['person_id'][$anummer-1];
-
-					// Insert values into db-table matchplayer, one row per match.
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " 
-										(match_id, player_id, firstName, lastName, initials) 
-										VALUES ('$i', '$pidb','$firstname', '$lastname', '$initials')");
-
-					$STH->execute();
-
-					// Insert values into db-table match, one row per match.
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHTABELL . " 
-										(id, tournamentDivision_id, round, sets) 
-										VALUES ('$i', '" . tournament::$competitionid . "','$round','$this->setsInMatch')");
-
-					$STH->execute();
-
-					// Prepare to insert values into table matchSet
 					$STH = $pdo->prepare("INSERT INTO " . tournament::SETTABELL . " 
-										(match_id) 
-										VALUES ('$i')");
+										(matchID, competitionID, playerB) 
+										VALUES ('$i', '" . tournament::$competitionid . "', '$pidb')");
 
-					for ($j = 0 ; $j < $this->setsInMatch; $j ++ ) {
+					for ($j = 0 ; $j < $this->setsInMatch; $j ++ )
 						$STH->execute();
-					}
+					
 
 					$playerA ++;
 				}				
@@ -191,63 +139,22 @@ class setupTree {
 
 		}
 		else {
-
-			$incer = $this->noc/4; // Two variables for calculating the actual round.
-			$round = 1;
 			
-			for ($i = 1; $i <= ($this->noc/2); $i++) {
-
-				// Get which round it is.			
-				$incer = $incer + ($this->noc/2) / pow(2, $round);
-				if ($i > $incer) {
-					$round++;
-					$incer = $incer + ($noc) / pow(2, $round+1);
-				}
+			for ($i = 1; $i <= (tournament::$numberOfCompetitors/2); $i++) {
 
 				// Get the actual positions from the array.
 				$anummer = $this->{"ordning" . $this->noc}[$playerA];
 				$bnummer = $this->{"ordning" . $this->noc}[$playerB];
 
-				$pida = $this->spelarArray['person_id'][$anummer-1];
-				$pidb = $this->spelarArray['person_id'][$bnummer-1];
+				$pida = $this->spelarArray['spelarid'][$anummer-1];
+				$pidb = $this->spelarArray['spelarid'][$bnummer-1];
 
-					// Insert values into db-table matchplayer, one row per match, one row per player
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " 
-										(match_id, player_id, firstName, lastName, initials) 
-										VALUES ('$i', '$pida','$firstname', '$lastname', '$initials')");
+				$STH = $pdo->prepare("INSERT INTO " . tournament::SETTABELL . " 
+									(matchID, competitionID, playerA, playerB) 
+									VALUES ('$i', '" . tournament::$competitionid . "', '$pida','$pidb')");
 
+				for ($j = 0 ; $j < $this->setsInMatch; $j ++ )
 					$STH->execute();
-
-					// Insert values for the second player into db-table matchplayer.
-					$firstname = $this->spelarArray['firstname'][$bnummer-1];
-					$lastname = $this->spelarArray['lastname'][$bnummer-1];
-					$initials = $this->spelarArray['initials'][$bnummer-1];
-
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " 
-										(match_id, player_id, firstName, lastName, initials) 
-										VALUES ('$i', '$pidb','$firstname', '$lastname', '$initials')");
-
-					$STH->execute();
-
-					// Insert values into db-table match, one row per match.
-					$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHTABELL . " 
-										(id, tournamentDivision_id, round, sets) 
-										VALUES ('$i', '" . tournament::$competitionid . "','$round', '$this->setsInMatch')");
-
-					$STH->execute();
-
-					// Prepare to insert values into table matchSet
-					$STH = $pdo->prepare("INSERT INTO " . tournament::SETTABELL . " 
-										(match_id) 
-										VALUES ('$i')");
-
-
-					for ($j = 0 ; $j < $this->setsInMatch; $j ++ ) {
-
-						// And populate table matchSet three (or apropriate number) times per match.
-						$STH->execute();
-
-					}
 
 				$playerA += 2;
 				$playerB += 2;

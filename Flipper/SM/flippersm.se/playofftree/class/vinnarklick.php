@@ -50,9 +50,9 @@ class vinnarklick {
 		$connect = new uppkoppling();
 		$pdo = $connect->conn();
 
-		$STH = $pdo->prepare("UPDATE " . tournament::MATCHSCORETABELL . " SET
-							  score = 1  
-							  WHERE setID = {$this->set[1]} AND matchPlayer_id = {$this->sid[1]}");
+		$STH = $pdo->prepare("UPDATE " . tournament::SETTABELL . " SET
+							  vinnare = {$this->sid[1]} 
+							  WHERE setID = {$this->set[1]}");
 
 		$STH->execute();
 
@@ -66,13 +66,13 @@ class vinnarklick {
 		$pdo = $connect->conn();
 
 		// Get winners from each set that belongs to the newly updated match.
-		$STH = $pdo->prepare("SELECT score, player_id, match_id FROM " . tournament::MATCHSCORETABELL . " 
-							  WHERE " . tournament::MATCHSCORETABELL . ".matchSet_id = {$this->set[1]})");
+		$STH = $pdo->prepare("SELECT " . tournament::SETTABELL . ".vinnare, matchID FROM " . tournament::SETTABELL . " 
+							  WHERE " . tournament::SETTABELL . ".matchID IN 
+							  (SELECT matchID FROM " . tournament::SETTABELL . " WHERE setID = {$this->set[1]})");
 		$STH->execute();
 		while ($row = $STH->fetch(PDO::FETCH_ASSOC)) {
-			if ($row['score'] == 1)
-				$vinnare[] = $row['player_id'];
-			$this->matchid = $row['match_id'];
+			$vinnare[] = $row['vinnare'];
+			$this->matchid = $row['matchID'];
 		}
 
 		// Variables for playerID and counters.
@@ -113,7 +113,7 @@ class vinnarklick {
 		if (($this->creamfiles == 2) && ($this->matchid <= $this->noc-($this->noc/2))) {
 
 			$theNewMatchID = $this->matchid + ($this->noc / (2 + $this->creamfiles));
-			// echo "BULTTUUTAN";
+			echo "BULTTUUTAN";
 			$whichplayer = "playerA";
 		}
 		else {
@@ -129,54 +129,37 @@ class vinnarklick {
 
 			// If this player should be on top... (previous matchid was odd)
 			if ($this->matchid&1)
-				$ordning = 1;
+				$whichplayer = "playerA";
 			else 
-				$ordning = 2;
+				$whichplayer = "playerB";
 
 		}
 
 		// Check if it exists.
 		$connect = new uppkoppling();
 		$pdo = $connect->conn();
-		$sql = "SELECT COUNT(*) FROM " . tournament::SETTABELL . " WHERE match_id = $theNewMatchID"; 
+		$sql = "SELECT COUNT(*) FROM " . tournament::SETTABELL . " WHERE matchID = $theNewMatchID"; 
 		if ($resu = $pdo->query($sql)) {
 
 			if ($resu->fetchColumn() > 0) {
 
-				// echo "alfkjadslkdfjsldkfjadlkfjdslkj";
+				echo "alfkjadslkdfjsldkfjadlkfjdslkj";
 
 				// The match already existed, so update database
-				$STH = $pdo->prepare("UPDATE " . tournament::MATCHPLAYERTABELL . " SET
-								  	  player_id = " . $this->avancemang . ",
-									  order = " . $ordning . "
-									  WHERE match_id = $theNewMatchID");
+				$STH = $pdo->prepare("UPDATE " . tournament::SETTABELL . " SET
+								  	  $whichplayer = $this->avancemang 
+									  WHERE matchID = $theNewMatchID");
 				try {
 					$STH->execute();
 				} 
 				catch(PDOException $e) {
 				    echo 'ERROR: ' . $e->getMessage();
 				}
-
-
 			}
 			else {
 				// It didn't exist, so insert it.
 
-				$STH = $pdo->prepare("INSERT INTO " . tournament::MATCHPLAYERTABELL . " (match_id, player_id, order) VALUES ('$theNewMatchID', '$this->avancemang', '$ordning')");
-
-				$STH->execute();
-
-				// And create a new match in MATCHTABELL
-				$STH = $pdo->prepare("
-				INSERT INTO " . tournament::MATCHTABELL . " (id, tournamentDivision_id, sets) 
-				VALUES ('$theNewMatchID', '" . tournament::$competitionid . "', 3)");
-
-				$STH->execute();
-
-				// And create three (or appropriate number) of sets in SETTABELL
-				$STH = $pdo->prepare("
-				INSERT INTO " . tournament::SETTABELL . " (match_id) 
-				VALUES ('$theNewMatchID')");
+				$STH = $pdo->prepare("INSERT INTO " . tournament::SETTABELL . " (matchID, competitionID, " . $whichplayer . ") VALUES ('$theNewMatchID', '$this->competitionid', '$this->avancemang')");
 
 				for ($j = 0 ; $j < $this->setsInMatch; $j ++ ) {
 					$STH->execute();

@@ -4,8 +4,6 @@ session_start();
 
 include_once "tournament.php";
 include "uppkoppling.php";
-include "functions/general.php"; // EDIT!!! Sätt rättare sökväg till den här,
-								 // eller vilken fil som behövs för admin-control.
 
 
 class matchInfo {
@@ -27,7 +25,7 @@ class matchInfo {
 
 		$this->noc = $_SESSION['noc'];
 
-		// echo "<p>NOC from tournament: " . $this->noc;
+		echo "<p>NOC from tournament: " . $this->noc;
 
 	}
 
@@ -37,61 +35,27 @@ class matchInfo {
 		$connect = new uppkoppling();
 		$pdo = $connect->conn();
 
-		$STH = $pdo->prepare("SELECT Match.id AS Matchid, 
-									sets.id AS setid, 
-									sets.machine_id, 
-									sets.gameAcronym,
-									mp1.initials AS TagA, 
-									mp2.initials AS TagB,
-									mp1.firstname AS FirstA,
-									mp2.firstname AS FirstB,
-									mp1.lastname AS LastA,
-									mp2.lastname AS LastB,
-									mp1.player_id AS pidA,
-									mp2.player_id AS pidB,
-									ms1.Score AS scoreA,
-									ms2.Score AS scoreB 
-								FROM " . tournament::MATCHTABELL . " AS Match 
-								LEFT JOIN " . tournament::SETTABELL . " AS sets ON sets.match_id = Match.id
-
-								LEFT JOIN (
-    									SELECT * 
-    									FROM " . tournament::MATCHPLAYERTABELL . " 
-    									WHERE mp1.order = 1) mp1
-											ON Match.id = mp1.match_id
-								LEFT JOIN (
-    									SELECT * 
-    									FROM " . tournament::MATCHPLAYERTABELL . " 
-    									WHERE mp2.order = 2) mp2
-											ON Match.id = mp2.match_id
-								LEFT JOIN (
-										SELECT Score
-										FROM " . tournament::MATCHSCORETABELL . "
-										WHERE ms1.player_id = pidA) ms1
-											ON ms1.matchSet_id = sets.id
-								LEFT JOIN (
-										SELECT Score
-										FROM " . tournament::MATCHSCORETABELL . "
-										WHERE ms2.player_id = pidB) ms2
-											ON ms2.matchSet_id = sets.id
-								WHERE Match.id = " . $this->matchid . "");
+		$STH = $pdo->prepare("SELECT matchID, setID, playerA, playerB, spel, vinnare, SpA.Tag AS TagA, SpB.Tag AS TagB, SpA.Namn AS fullnamnA, SpB.Namn AS fullnamnB, Game.Abbreviation AS Abbr 
+						  FROM " . tournament::SETTABELL . "
+						  LEFT JOIN " . tournament::SPELARTABELL . " AS SpA ON sets.playerA = SpA.SpelarID
+						  LEFT JOIN " . tournament::SPELARTABELL . " AS SpB ON sets.playerB = SpB.SpelarID
+						  LEFT JOIN " . tournament::SPELTABELL . " AS Game ON sets.spel = Game.Gameid
+						  WHERE matchID = $this->matchid 
+						  ORDER BY matchID, setID");
 		$STH->execute();
 
 		while ($row = $STH->fetch(PDO::FETCH_ASSOC)) {
-			$this->matchArray['matchID'][] = $row['Matchid']; 
-			$this->matchArray['setID'][] = $row['setid']; 
-			$this->matchArray['playerA'][] = $row['pidA']; 
-			$this->matchArray['playerB'][] = $row['pidB']; 
-			$this->matchArray['spel'][] = $row['machine_id']; 
+			$this->matchArray['matchID'][] = $row['matchID']; 
+			$this->matchArray['setID'][] = $row['setID']; 
+			$this->matchArray['playerA'][] = $row['playerA']; 
+			$this->matchArray['playerB'][] = $row['playerB']; 
+			$this->matchArray['spel'][] = $row['spel']; 
 			$this->matchArray['tagA'][] = $row['TagA']; 
 			$this->matchArray['tagB'][] = $row['TagB']; 
-			$this->matchArray['fullnamnA'][] = $row['FirstA'] . " " . $row['LastA']; 
-			$this->matchArray['fullnamnB'][] = $row['FirstB'] . " " . $row['LastB']; 
-			if ($row['scoreA'] > $row['scoreB'])
-				$this->setArray['vinnare'][] = $row['pidA'];
-			else 
-				$this->setArray['vinnare'][] = $row['pidB'];
-			$this->matchArray['abbr'][] = $row['gameAcronym'];
+			$this->matchArray['fullnamnA'][] = $row['fullnamnA']; 
+			$this->matchArray['fullnamnB'][] = $row['fullnamnB']; 
+			$this->matchArray['vinnare'][] = $row['vinnare']; 
+			$this->matchArray['abbr'][] = $row['Abbr'];
 		
 		}
 
@@ -131,10 +95,6 @@ class matchInfo {
 			$vinnarbuttonB = "";
 
 			if (empty($this->matchArray['vinnare'][$i])) {
-
-				// Ska man lägga till en första skydd för felklick? Typ med en alert som nedan?
-				// onClick="return confirm('Är du helt säker på resultatet?') 
-	
 				$vinnarbuttonA = "<button id = 'set" . $this->matchArray['setID'][$i] . "sid" . $playerA . "'>" . $tagA . "</button>";
 				$vinnarbuttonB = "<button id = 'set" . $this->matchArray['setID'][$i] . "sid" . $playerB . "'>" . $tagB . "</button>";
 			}
@@ -153,16 +113,6 @@ class matchInfo {
 				$vinnarbuttonA = "";
 				$vinnarbuttonB = "";
 			}			
-
-
-			// Put admincontrol here (AND MAKE IT WORK)
-			$player = getCurrentPlayer($dbh); 
-			if ($player->adminLevel == 0) { 
-
-				// If user is not Admin, user shall have no buttons to click.
-				$vinnarbuttonA = "";
-				$vinnarbuttonB = "";
-			}
 
 			echo "<div class = 'set'>";
 			echo "<div class = 'winA'>" . $vinnarbuttonA . "</div>";

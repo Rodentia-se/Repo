@@ -7,10 +7,7 @@
  * @author  unknown unknown@no-idea.net>
  */
 
-
 class uppkoppling {
-
-    public $tabellnamn = 'spelare';
 
     public function conn() {
 
@@ -23,6 +20,7 @@ class uppkoppling {
         try {
             $pdo = new PDO("mysql:host=$host;dbname=$dbname", $dbuser, $dbpass);
             #Set Error Mode to ERRMODE_EXCEPTION.
+			$pdo->setAttribute( PDO::ATTR_EMULATE_PREPARES, false);
             $pdo->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);  
         }
         catch(PDOException $e) {  
