@@ -2916,6 +2916,7 @@
   function calcEntryPlaces($dbh, $division, $calcPoints = true) {
     clearEntryPlaces($dbh, $division);
     $entries = getEntriesByDivision($dbh, $division);
+    echo count($entries);
     if ($entries) {
       foreach ($entries as $entry) {
         echo 'Entry: '.$entry->id.'<br />';
@@ -2927,14 +2928,17 @@
           $pointsEntries[] = $entry;
         }
       }
-    }
-    if ($pointsEntries) {
-      usort($pointsEntries, 'entryComp');
-      $place = 0;
-      foreach ($pointsEntries as $pointsEntry) {
-        $place++;
-        $pointsEntry->setPlace($dbh, $place);
+      if ($pointsEntries) {
+        usort($pointsEntries, 'entryComp');
+        $place = 0;
+        foreach ($pointsEntries as $pointsEntry) {
+          $place++;
+          $pointsEntry->setPlace($dbh, $place);
+        }
       }
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -2957,6 +2961,15 @@
     //print 'Query: ' . $query;
     $sth = $dbh->prepare($query);
     $sth->execute($update);
+  }
+
+  function getEntriesByDivision($dbh, $division = 1) {
+    if ($division) {
+      $where = 'where qe.tournamentDivision_id = '.$division;
+      return getEntries($dbh, $where);
+    } else {
+      return false;
+    }
   }
 
   function getEntries($dbh, $where = null, $order = 'order by qe.points desc, qe.place asc', $gruopBy = 'group by qe.id') {
@@ -3308,15 +3321,6 @@
       } else {
         return false;
       }
-    } else {
-      return false;
-    }
-  }
-
-  function getEntriesByDivision($dbh, $division = 1) {
-    if ($division) {
-      $where = 'where qe.tournamentDivision_id = '.$division;
-      return getEntries($dbh, $where);
     } else {
       return false;
     }
