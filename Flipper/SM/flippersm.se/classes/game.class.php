@@ -522,7 +522,7 @@
     }
 
     function getMachine($dbh, $division = 1) {
-      return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division, 1, 'no')[0];
+      return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division)[0];
     }
 
     function getResults($dbh) {
