@@ -2923,7 +2923,7 @@
           $place = 0;
           foreach ($scores as $score) {
             $place++;
-            $score->setPlace($dbh, $place)
+            $score->setPlace($dbh, $place);
           }
           echo '<pre>';
           var_dump($scores);
