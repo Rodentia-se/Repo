@@ -370,7 +370,7 @@
       } else {
         $machine = $this->getMachine($dbh, $division);
       } 
-      $entries = $machine->getEntries($dbh, null, $machine->tournamentDivision_id);
+      $entries = $this->getEntries($dbh, null, $machine->tournamentDivision_id);
       if ($entries) {
         foreach ($entries as $entry) {
           echo $entry->id.'<br />';
