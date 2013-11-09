@@ -63,10 +63,9 @@ class setupTree {
 		if (tournament::$creamfiles == 0) {
 			$siffra = $this->noc;
 		}
-		if (tournament::$creamfiles == 1) 
+		if (tournament::$creamfiles == 1) {
 			echo "bulle";
 		}
-
 		if (tournament::$creamfiles == 2) {
 			$siffra = $this->noc/2;
 		}
