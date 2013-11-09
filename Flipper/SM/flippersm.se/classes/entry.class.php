@@ -91,6 +91,19 @@
         return true;
       }      
     }
+    
+    function calcPoints($dbh, $set = true) {
+      $scores = $this->getScores($dbh);
+      foreach ($scores as $score) {
+        $points += $score->points;
+      }
+      if ($set) {
+        if (!$this->setPoints($dbh, $points)) {
+          return false;
+        }
+      }
+      return $points;
+    }
 
     function setPoints($dbh, $points = null) {
       $this->points = ($points) ? $points : null;

@@ -2900,11 +2900,38 @@
     return ($score1->score == $score2->score) ? 0 : (($score1->score > $score2->score) ? -1 : 1);
   }
   
+  function entryComp($entry1, $entry2) {
+    return ($entry1->points == $entry2->points) ? 0 : (($entry1->points > $entry2->points) ? -1 : 1);
+  }
+
   function calcScorePlaces($dbh, $division = 1) {
     $games = getGamesByDivision($dbh, $division);
     if ($games) {
       foreach ($games as $game) {
         $game->setPlaces($dbh, $division);
+      }
+    }
+  }
+  
+  function calcEntryPlaces($dbh, $division, $calcPoints = true) {
+    clearEntryPlaces($dbh, $division);
+    $entries = getEntriesByDivision($dbh, $division);
+    if ($entries) {
+      foreach ($entries as $entry) {
+        if ($calcPoints) {
+          $entry->points = $entry->calcPoints($dbh);
+        }
+        if ($entry->points) {
+          $pointsEntries[] = $entry
+        }
+      }
+    }
+    if ($pointsEntries) {
+      usort($pointsEntries, 'entryComp');
+      $place = 0;
+      foreach ($pointsEntries as $pointsEntry) {
+        $place++;
+        $pointsEntry->setPlace($dbh, $place);
       }
     }
   }
@@ -3279,6 +3306,15 @@
       } else {
         return false;
       }
+    } else {
+      return false;
+    }
+  }
+
+  function getEntriesByDivision($dbh, $division = 1) {
+    if ($division) {
+      $where = 'where qe.tournamentDivision_id = '.$division;
+      return getEntries($dbh, $where);
     } else {
       return false;
     }

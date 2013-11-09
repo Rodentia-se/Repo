@@ -367,7 +367,6 @@
     }
     
     function setPlaces($dbh, $division = 1, $points = true) {
-      echo $this->name.'<br />';
       $this->clearPlaces($dbh, $division);
       if (!$this->machine_id) {
         $machine = $this->getMachine($dbh, $division);
@@ -377,7 +376,6 @@
       $entries = $this->getEntries($dbh, null, $this->tournamentDivision_id);
       if ($entries) {
         foreach ($entries as $entry) {
-          echo $entry->id.'<br />';
           $score = $entry->getBestScore($dbh, $this);
           if ($score) {
             if ($score->score) {
@@ -427,12 +425,10 @@
       $extra = array(10, 5, 2);
       if ($entries) {
         foreach ($entries as $entry) {
-          echo $entry->id.'<br />';
           $score = $entry->getBestScore($dbh, $this);
           if ($score) {
             if ($score->place) {
               $points = 100 * (1 - ($score->place - 0.5) / $number ) + $extra[$score->place - 1];
-              echo 'Antal: '.$number.', Place: '.$score->place.', Points: '.$points.'<br />';
               $score->setPoints($dbh, $points);
             }
           }

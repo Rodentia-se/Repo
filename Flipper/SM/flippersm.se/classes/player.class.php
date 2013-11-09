@@ -787,6 +787,18 @@
       }
     }
     
+    function setPoints($dbh, $division = 1) {
+      $entries = $this->getEntries($dbh);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          $entry->calcPoints($dbh);          
+        }
+        return true;
+      } else {
+        return false;
+      }
+    }
+    
     function setPlace($dbh, $place = 0, $division = 1, $wppr = false) {
       $query = '
         update player set

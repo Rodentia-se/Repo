@@ -1088,7 +1088,8 @@
     }
     
     function adminScoreCalc($dbh, $division = 1) {
-      return calcScorePlaces($dbh, $division);
+      calcScorePlaces($dbh, $division);
+      calcEntryPlaces($dbh, $division);
     }
 
     function drawGames($dbh, $ulogin, $division = 1) {
