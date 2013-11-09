@@ -2910,7 +2910,7 @@
         if ($entries) {
           foreach ($entries as $entry) {
             echo $entry->id.'<br />';
-            $score = $entry->getBestScore($dbh);
+            $score = $entry->getBestScore($dbh, $game);
             if ($score) {
               if ($score->score) {
                 $scores[] = $score;

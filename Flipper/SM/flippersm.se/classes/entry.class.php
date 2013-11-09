@@ -60,9 +60,10 @@
       return $objs;
     }
 
-    function getBestScore($dbh) {
+    function getBestScore($dbh, $game) {
       $query = getScoreSelect(false).'
         where qs.qualEntry_id = '.$this->id.'
+        and qs.machine_id = '.$game->machine_id.'
         order by score desc
         limit 1
       ';

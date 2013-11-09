@@ -335,7 +335,7 @@
       return getEntries($dbh, $tournament, $division);
     }
 
-    function getEntries($dbh, $tournament = 1, $division = 3) {
+    function getEntries($dbh, $tournament = 1, $division = 1) {
       $query = getEntrySelect().'
         left join qualScore qs
           on qe.id = qs.qualEntry_id
