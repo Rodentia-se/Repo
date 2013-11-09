@@ -2914,8 +2914,9 @@
     echo count($games);
     if ($games) {
       foreach ($games as $game) {
-        echo $game->name.'...';
+        echo $game->name;
         $game->setPlaces($dbh, $division);
+        echo '...';
       }
     }
   }
