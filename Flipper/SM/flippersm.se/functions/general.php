@@ -2903,6 +2903,8 @@
   function calcScorePlaces($dbh, $division = 1) {
     clearScorePlaces($dbh, $division);
     $players = getPlayersByDivision($dbh, $division);
+    echo count($players);
+    die('huff');
     foreach ($players as $player) {
       $entries = $player->getEntries($dbh, null, $division);
       foreach ($entries as $entry) {
