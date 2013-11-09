@@ -2918,13 +2918,14 @@
             }
           }
         }
+        if ($scores) {
+          usort($scores, 'scoreComp');
+          echo '<pre>';
+          var_dump($scores);
+          echo '</pre>';
+          die('huff');
+        }
       }
-    }
-    if ($scores) {
-      usort($scores, 'scoreComp');
-      echo '<pre>';
-      var_dump($scores);
-      echo '</pre>';
     }
   }
 
