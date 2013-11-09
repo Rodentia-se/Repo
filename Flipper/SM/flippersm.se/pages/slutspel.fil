@@ -3,20 +3,20 @@
   $content = '
     <h1>Slutspelsresultat</h1>
         <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#bDiv">B</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
-    <p>Slutspelet har inte börjat än</p>
   ';
 
   $content .= '
-          <div id="mainDiv" class="section">
+          <div id="mainDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : 'hidden').'">
+            <p>Slutspelet har inte börjat än</p>
           </div>
-          <div id="bDiv" class="section hidden">
-          </div>
-          <div id="classicsDiv" class="section hidden">
+          <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : 'hidden').'">
           <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000"></iframe>
           </div>
-          <div id="u18Div" class="section hidden">
+          <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : 'hidden').'">
+            <p>Slutspelet har inte börjat än</p>
           </div>
-          <div id="teamDiv" class="section hidden">
+          <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : 'hidden').'">
+            <p>Slutspelet har inte börjat än</p>
           </div>
   ';
   $content .= getDataTables('.standings');
