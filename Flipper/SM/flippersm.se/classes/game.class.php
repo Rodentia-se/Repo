@@ -552,7 +552,7 @@
     function getResultsByDivision($dbh, $division, $display = true) {
       $entries = $this->getEntries($dbh, null, $division);
       $content .= '
-        <div id="'.(($division == 1) ? 'main' : (($division == 2) ? 'classics' : 'team')).'Table" class="section" style="display: '.(($display) ? (($_REQUEST['active']) ? '' : '') : 'none').';">
+        <div id="'.(($division == 1) ? 'main' : (($division == 2) ? 'classics' : 'team')).'Table" class="section'.(($display) ? '' : ' hidden').'" style="display: '.(($_REQUEST['active']) ? '' : '').';">
       ';
       $content .= '
           <table class="scores">
