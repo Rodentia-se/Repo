@@ -2226,7 +2226,7 @@
     ORDER BY m.id'.(($set) ? ', s.id' : '');
   }
 
-  function getGameSelect($machine = false) {
+  function getGameSelect($machine = false, $groupBy = true) {
     return '
       select
         '.(($machine) ? 'ma' : 'g').'.id as id,
@@ -2254,12 +2254,18 @@
         g.game_year_released as year,
         g.game_link_rulesheet as rules,
         if(ma.tournamentDivision_id = 1, "main", if(ma.tournamentDivision_id = 2, "classics", if(ma.tournamentDivision_id = 3, "team", if(ma.tournamentDivision_id = 12, "natTeam", if(ma.tournamentDivision_id = 13, "side", if(ma.tournamentDivision_id = 14, "recreational", null)))))) as type,
-        if(sum(ma.tournamentDivision_id = 1) > 0, 1, 0) as main,
+        '.(($groupBy) ? 'if(sum(ma.tournamentDivision_id = 1) > 0, 1, 0) as main,
         if(sum(ma.tournamentDivision_id = 2) > 0, 1, 0) as classics,
         if(sum(ma.tournamentDivision_id = 3) > 0, 1, 0) as team,
         if(sum(ma.tournamentDivision_id = 12) > 0, 1, 0) as natTeam,
         if(sum(ma.tournamentDivision_id = 13) > 0, 1, 0) as side,
         if(sum(ma.tournamentDivision_id = 14) > 0, 1, 0) as recreational,
+        ' : 'if(ma.tournamentDivision_id = 1, 1, 0) as main,
+        if(ma.tournamentDivision_id = 2, 1, 0) as classics,
+        if(ma.tournamentDivision_id = 3, 1, 0) as team,
+        if(ma.tournamentDivision_id = 12, 1, 0) as natTeam,
+        if(ma.tournamentDivision_id = 13, 1, 0) as side,
+        if(ma.tournamentDivision_id = 14, 1, 0) as recreational,').'
         ma.tournamentDivision_id as tournamentDivision_id,
         ma.tournamentEdition_id as tournamentEdition_id,
         ma.comment as comment
@@ -2275,7 +2281,7 @@
   }
 
   function getGames($dbh, $where = false, $order = 'order by g.name', $tournament = 1, $groupBy = 'group by g.id') {
-    $query = getGameSelect();
+    $query = getGameSelect($groupBy);
     $where = preg_replace('/ id /', ' g.id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
     $where = preg_replace('/ game_id /', ' g.id ', $where);
@@ -2296,11 +2302,11 @@
   }
   
   function getGamesByDivision($dbh, $division) {
-    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, '');
+    return getGames($dbh, 'where tournamentDivision_id = '.$division, 'order by g.name', 1, false);
   }
   
   function getMachines($dbh, $where, $order = 'order by g.name') {
-    $query = getGameSelect(true);
+    $query = getGameSelect(true, false);
     $where = preg_replace('/ id /', ' ma.id ', $where);
     $where = preg_replace('/ game_id /', ' ma.game_id ', $where);
     $where = preg_replace('/ manufacturer_id /', ' ma.manufacturer_id ', $where);
