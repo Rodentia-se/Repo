@@ -207,19 +207,11 @@
 
     function setGame($dbh, $game = null) {
       $machine = ($game) ? $game->getMachine($dbh, $this->tournamentDivision_id) : null;
-/*
-      echo '<pre>';
-      var_dump($machine);
-      var_dump($game);
-      var_dump($this);
-      echo '</pre>';
-      die('huff');
-*/
       $this->game_id = ($game) ? $game->id : null;
       $this->game = ($game) ? $game->name : null;
       $this->gameAcronym = ($game) ? $game->shortName : null;
       $this->gameShortName = $this->gameAcronym;
-      $this->machine_id = ($machine[0]) ? $machine[0]->machine_id : null;
+      $this->machine_id = ($machine) ? $machine->machine_id : null;
       $this->name = ($game) ? (($this->tournamentDivision_id == 3) ? 'Team' : (($this->tournamentDivision_id == 2) ? 'Classics' : 'Main')).' 2013: '.(($this->tournamentDivision_id == 3) ? $this->team : $this->player).' on '.$game->shortName : null;
       $query = '
         update qualScore set

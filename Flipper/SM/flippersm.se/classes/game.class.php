@@ -351,6 +351,45 @@
       return $objs;
     }
 
+    function clearPlaces($dbh, $division = 1) {
+      if ($this->machine_id) {
+        $machine = getMachineById($dbh, $this->machine_id);
+      } else {
+        $machine = $this->getMachine($dbh, $division);
+      }
+      $query = 'update qualScore set place = null where machine_id = '.$machine->machine_id.' and tournamentDivision_id = '.$machine->tournamentDivision_id;
+      $sth = $dbh->prepare($query);
+      return $sth->execute($update);
+    }
+    
+    function setPlaces($dbh, $division = 1) {
+      $this->clearPlaces($dbh, $division);
+      if ($this->machine_id) {
+        $machine = getMachineById($dbh, $this->machine_id);
+      } else {
+        $machine = $this->getMachine($dbh, $division);
+      } 
+      $entries = $machine->getEntries($dbh, null, $machine->tournamentDivision_id);
+      if ($entries) {
+        foreach ($entries as $entry) {
+          $score = $entry->getBestScore($dbh, $machine);
+          if ($score) {
+            if ($score->score) {
+              $scores[] = $score;
+            }
+          }
+        }
+      }
+      if ($scores) {
+        usort($scores, 'scoreComp');
+        $place = 0;
+        foreach ($scores as $score) {
+          $place++;
+          $score->setPlace($dbh, $place);
+        }
+      }
+    }
+
     function getQualScores($dbh, $tournament = 1, $division = 1) {
       return getScores($dbh, $tournament, $division);
     }
@@ -411,7 +450,7 @@
     }
 
     function getMachine($dbh, $division = 1) {
-      return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division);
+      return getMachines($dbh, ' where g.id = '.$this->id.' and ma.tournamentDivision_id = '.$division)[0];
     }
 
     function getQR($link = true, $right = false, $info = false) {

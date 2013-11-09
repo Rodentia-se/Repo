@@ -2895,41 +2895,16 @@
     }
     return $objs;
   } 
-  
+
   function scoreComp($score1, $score2) {
     return ($score1->score == $score2->score) ? 0 : (($score1->score > $score2->score) ? -1 : 1);
   }
   
   function calcScorePlaces($dbh, $division = 1) {
-    clearScorePlaces($dbh, $division);
     $games = getGamesByDivision($dbh, $division);
     if ($games) {
       foreach ($games as $game) {
-        echo $game->name.'<br />';
-        $entries = $game->getEntries($dbh, null, $division);
-        if ($entries) {
-          foreach ($entries as $entry) {
-            echo $entry->id.'<br />';
-            $score = $entry->getBestScore($dbh, $game);
-            if ($score) {
-              if ($score->score) {
-                $scores[] = $score;
-              }
-            }
-          }
-        }
-        if ($scores) {
-          usort($scores, 'scoreComp');
-          $place = 0;
-          foreach ($scores as $score) {
-            $place++;
-            $score->setPlace($dbh, $place);
-          }
-          echo '<pre>';
-          var_dump($scores);
-          echo '</pre>';
-          die('huff');
-        }
+        $game->setPlaces($dbh, $division);
       }
     }
   }
