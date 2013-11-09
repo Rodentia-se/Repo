@@ -1086,6 +1086,10 @@
       }
       return $content;
     }
+    
+    function adminScoreCalc($dbh, $division = 1) {
+      return calcScorePlaces($dbh, $division);
+    }
 
     function drawGames($dbh, $ulogin, $division = 1) {
       return false; // Just to be safe!

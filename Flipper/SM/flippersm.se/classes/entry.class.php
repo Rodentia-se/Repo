@@ -60,6 +60,19 @@
       return $objs;
     }
 
+    function getBestScore($dbh) {
+      $query = getScoreSelect(false).'
+        where qs.qualEntry_id = '.$this->id.'
+        order by score desc
+        limit 1
+      ';
+      $sth = $dbh->query($query);
+      while ($obj = $sth->fetchObject('score')) {
+        return $obj;
+      }
+      return false;
+    }
+
     function checkAlone($dbh) {
       $player = getPlayerById($dbh, $this->person_id);
       $query = '

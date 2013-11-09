@@ -2895,6 +2895,38 @@
     }
     return $objs;
   } 
+  
+  function scoreComp($score1, $score2) {
+    return ($score1->score == $score2->score) ? 0 : (($score1->score > $score2->score) ? -1 : 1);
+  }
+  
+  function calcScorePlaces($dbh, $division = 1) {
+    clearScorePlaces($dbh, $division);
+    $players = getPlayersByDivision($dbh, $division);
+    foreach ($players as $player) {
+      $entries = $player->getEntries($dbh, null, $division);
+      foreach ($entries as $entry) {
+        $score = $entry->getBestScore($dbh);
+        if ($score->score) {
+          $scores[] = $score;
+        }
+      }
+    }
+    usort($scores, 'scoreComp');
+    var_dump($scores);
+  }
+
+  function clearScorePlaces($dbh, $division = 1) {
+    $query = 'update qualScore set place = null where tournamentDivision_id = '.$division;
+    $sth = $dbh->prepare($query);
+    return $sth->execute($update);
+  }
+
+  function clearEntryPlaces($dbh, $division = 1) {
+    $query = 'update qualEntry set place = null where tournamentDivision_id = '.$division;
+    $sth = $dbh->prepare($query);
+    return $sth->execute($update);
+  }
 
   function updateScore($dbh, $idScore, $iScore)
   {
@@ -3215,6 +3247,22 @@
   function getPlayersByCountryId($dbh, $countryId, $tournament = 1) {
     if ($countryId) {
       $where = 'where (p.country_id = '.$countryId.' or p.parentCountry_id = '.$countryId.') and m.tournamentEdition_id = '.$tournament;
+      return getPlayers($dbh, $where);
+    } else {
+      return false;
+    }
+  }
+
+  function getTeamsByDivision($dbh, $division = 3) {
+    return getPlayersByDivision($dbh, $division);
+  }
+
+  function getPlayersByDivision($dbh, $division = 1) {
+    if ($$division == 3) {
+      $where = 'where tm.tournamentDivision_id = '.$division;
+      return getTeams($dbh, $where);
+    } else íf ($division) {
+      $where = 'where p.tournamentDivision_id = '.$division.' or cl.tournamentDivision_id = '.$division;
       return getPlayers($dbh, $where);
     } else {
       return false;
