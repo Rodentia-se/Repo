@@ -70,7 +70,7 @@
           $datatables = getDataTables('.entryList');
         break;
         case 'calcScores':
-          $content .= calcScorePlaces($dbh, 1);
+          $content .= adminScoreCalc($dbh, 1);
           $datatables = null;
         break;
       }
