@@ -440,15 +440,15 @@
     }
 
     function getNoOfScores($dbh, $division = 1) {
-      return getNoOf($dbh, 'score', $division);
+      return $this->getNoOf($dbh, 'score', $division);
     }
 
     function getNoOfPlaces($dbh, $division = 1) {
-      return getNoOf($dbh, 'place', $division);
+      return $this->getNoOf($dbh, 'place', $division);
     }
 
     function getNoOfPoints($dbh, $division = 1) {
-      return getNoOf($dbh, 'points', $division);
+      return $this->getNoOf($dbh, 'points', $division);
     }
     
     protected function getNoOf($dbh, $type = 'score', $division = 1) {
