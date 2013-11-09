@@ -71,6 +71,8 @@
         break;
         case 'calcScores':
           $content .= adminScoreCalc($dbh, 1);
+          $content .= adminScoreCalc($dbh, 2);
+          $content .= adminScoreCalc($dbh, 3);
           $datatables = null;
         break;
       }
