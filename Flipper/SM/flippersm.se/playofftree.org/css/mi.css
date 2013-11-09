@@ -1,0 +1,85 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 2em;
+	min-height: 600px;
+	min-width: 600px;
+}
+
+.tagruta {
+	width: 30%;
+	font-size: 2em;
+	font-family: 'courier', monospace;
+	float: left;
+	border: 1px solid black;
+	min-height: 20%;
+}
+
+#spA, #spB {
+	background-color: gray;
+	color: black;
+}
+
+#spel {
+	background-color: black;
+	color: white;
+}
+
+.clear {
+	clear: both;
+}
+
+.fullinfo {
+	width: 30%;
+	font-size: 0.8em;
+	font-family: 'Verdana', sans-serif;
+	float: left;
+}
+
+.set {
+	clear: both;
+	width: 100%;
+}
+
+.winA, .winB, .game {
+	width: 30%;
+	float: left;
+	border: 1px solid black;
+	margin: 0 auto;
+	height: 15%;	
+} 
+
+.winA, .winB {
+	background-color: #ddd;
+	font: 20px/24px 'Arial', sans-serif;
+	margin: 0px auto;
+}
+ 
+.game {
+	background-color: gray;
+}
+
+h2 {
+	font-family: 'verdana', sans-serif;
+	font-size: 1.3em;
+}
+
+.tagruta h1, .fullinfo p, .game h2 {
+	margin: 0 auto;
+	width: 85%;
+}
+
+#spel h1 {
+	font-size: 2em;
+	font-family: 'Arial', sans-serif;
+}
+
+button {
+	width: 80%;
+	height: 60%;
+	margin: 20px;
+}
+

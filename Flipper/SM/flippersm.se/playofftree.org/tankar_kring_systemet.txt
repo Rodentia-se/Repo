@@ -1,0 +1,13 @@
+Lite tankar och förklaringar kring hur systemet är uppbyggt:
+
+
+- Treeclient startar och anropar allt.
+
+- setupTree ska bara anropas en gång, då den skriver in set och matcher i db.
+	Anropas den fler gånger så blir slutspelsträdet konstigt.
+
+- drawTree läser data från en array och ritar utifrån det upp trädet.
+
+- matchinfo anropas när man klickar på en match.
+
+- Vinnarklick anropas av matchinfo när man trycker fram en vinnare i ett set.
