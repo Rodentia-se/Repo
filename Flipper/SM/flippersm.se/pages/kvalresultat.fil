@@ -169,7 +169,7 @@
                 <tbody>
       ';
       foreach ($players as $player) {
-        $qualEntries = $player->getEntries($dbh, $tournament, 2);
+        $qualEntries = $player->getEntries($dbh, $tournament, 1);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
           foreach ($qualEntries as $qualEntry) {
             $content .= '
