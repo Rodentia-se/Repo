@@ -2227,7 +2227,7 @@
   }
 
   function getGameSelect($machine = false, $groupBy = true) {
-    $groupBy = (!$groupBy || $groupBy == 'no') ? false : $groupBy;
+//    $groupBy = (!$groupBy || $groupBy == 'no') ? false : $groupBy;
     return '
       select
         '.(($machine) ? 'ma' : 'g').'.id as id,
