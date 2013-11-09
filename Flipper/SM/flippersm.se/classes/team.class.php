@@ -339,7 +339,7 @@
           $content .= '
               <tr>
                 <td>'.$score->place.'</td>
-                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$score->game_id.'">'.$score->game.(($score->checkAlone($dbh)) ? ' (Ensam)' : '').'</a></td>
+                <td><a href="'.__baseHref__.'/?s=object&obj=game&id='.$score->game_id.'">'.$score->game.'</a></td>
                 <td>'.$score->score.'</td>
                 <td><span title="'.$score->points.'">'.round($score->points).'</span></td>
               </tr>
