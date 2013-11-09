@@ -32,14 +32,14 @@ include "statictest.php";
 	// Setup tree with initial eight players
 
 	$tree = new tournament();
-	$tree->setNoc(16);
+	$tree->setNoc(64);
 	$tree->setCreamfiles(2);
 
 	$_SESSION['noc'] = $tree->getNoc();
 	$_SESSION['sim'] = tournament::$numberOfSets;
 
-	#$setupTree = new setupTree();
-	#$setupTree->insertSets();
+	$setupTree = new setupTree();
+	$setupTree->insertSets();
 
 	$sparris = $tree->getSetArray();
 
