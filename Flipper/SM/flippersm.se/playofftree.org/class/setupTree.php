@@ -3,7 +3,7 @@
 session_start();
 
 include_once "tournament.php";
-include_once "../functions/creamorder.php";
+include_once "functions/creamorder.php";
 
 
 
