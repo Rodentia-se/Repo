@@ -234,6 +234,7 @@
       $sth = $dbh->prepare($query);
       return ($sth->execute($update)) ? true : false;
     }
+    
     function delete($dbh) {
       $delete[':id'] = $this->id;
       $query = 'delete from qualScore where id = :id';
