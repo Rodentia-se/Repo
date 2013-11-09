@@ -432,6 +432,7 @@
           if ($score) {
             if ($score->place) {
               $points = 100 * (1 - ($score->place - 0.5) / $number ) + $extra[$score->place - 1];
+              echo 'Place: '.$score->place.', Points: '.$points.'<br />';
               $score->setPoints($dbh, $points);
             }
           }
