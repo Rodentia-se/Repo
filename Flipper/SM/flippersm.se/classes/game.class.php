@@ -562,7 +562,8 @@
           $content .= '
               <tr>
                 <td>'.$score->place.'</td>
-                <td><a href="'.__baseHref__.'/?s=object&obj=player&id='.$score->person_id.'">'.$score->player.'</a></td>
+                '.(($division == 3) ? '<td><a href="'.__baseHref__.'/?s=object&obj=team&id='.$score->team_id.'">'.$score->team.'</a></td>' : '
+                <td><a href="'.__baseHref__.'/?s=object&obj=player&id='.$score->person_id.'">'.$score->player.'</a></td>').'
                 <td>'.$score->score.'</td>
                 <td><span title="'.$score->points.'">'.round($score->points).'</span></td>
               </tr>
