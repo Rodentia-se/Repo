@@ -168,6 +168,16 @@
                 </thead>
                 <tbody>
       ';
+      unset($playerPoints);
+      foreach ($players as $player) {
+        $qualEntries = $player->getEntries($dbh, $tournament, 1);
+        $points = 0;
+        foreach ($qualEntries as $qualEntry) {
+          $points += $qualEntry->points;
+        }
+        $playerPoints[] = $points;
+      }
+      array_multisort($playerPoints, SORT_DESC, SORT_NUMERIC, $players);
       foreach ($players as $player) {
         $qualEntries = $player->getEntries($dbh, $tournament, 1);
         if (is_array($qualEntries) && count($qualEntries) > 0) {
