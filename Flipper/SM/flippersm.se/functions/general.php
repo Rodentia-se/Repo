@@ -2922,7 +2922,7 @@
           $entry->points = $entry->calcPoints($dbh);
         }
         if ($entry->points) {
-          $pointsEntries[] = $entry
+          $pointsEntries[] = $entry;
         }
       }
     }
