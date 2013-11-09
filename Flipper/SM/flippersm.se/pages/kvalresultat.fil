@@ -224,7 +224,7 @@
       ';
       unset($teamPoints);
       foreach ($teams as $team) {
-        $qualEntries = $team->getEntries($dbh, $tournament, 2);
+        $qualEntries = $team->getEntries($dbh, $tournament, 3);
         $points = 0;
         foreach ($qualEntries as $qualEntry) {
           $points += $qualEntry->points;
