@@ -11,7 +11,10 @@
             <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
-            <h2>Slutspelsträd, Classics</h2>
+            <h2>Classics</h2>
+            <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=554">Abbe Tjeder</a> är svensk mästare i Classics 2013!</p>
+            <p><a href="https://www.flippersm.se/?s=object&obj=player&id=12">Alvar Palm</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=23">Diner</a>, <a href="https://www.flippersm.se/?s=object&obj=game&id=311">Eight Ball</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=388">Totem</a>.
+            <h2>Slutspelsträd</h2>
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
