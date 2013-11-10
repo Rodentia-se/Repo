@@ -13,7 +13,7 @@
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
-            <iframe src="'.__baseHref__.'/playofftree/U18.html" width="100%" height="400" frameborder="no"></iframe>
+            <iframe src="'.__baseHref__.'/playofftree_u18/playoff.html" width="100%" height="400" frameborder="no"></iframe>
           </div>
           <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : ' hidden').'">
             <iframe src="'.__baseHref__.'/playofftree_team/playoff.php" width="100%" height="800" frameborder="no"></iframe>
