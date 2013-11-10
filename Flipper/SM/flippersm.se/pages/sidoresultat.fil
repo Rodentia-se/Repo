@@ -2,6 +2,10 @@
 
   $content = '
     <h1>Sidotävlingar</h1>
+    <h2>Enhandsflipper</h2>
+    <p>Patrik Lindberg tog den svenska mästartiteln i enhandsflipper efter fantastiska 105 miljoner på Spider-Man i finalen mot radarpartnern Harald Jönsson.</p>
+    <h2>Set the highscore</h2>
+    <p>Mats Runsten vann på T3 med 716 517 080 poäng.</p>
     <h2>Flipperorientering, fredag</h2>
     <p>Vinnare: Nicklas Lindahl</p>
     <p>Nicklas tog en minut och sex sekunder på sig att locka en kula på AFM, stoppa in en kula i tuggummimaskinen på TZ och ta ner skölden på SM.</p>
@@ -20,8 +24,6 @@
     <h2>Bäst på en minut, söndag</h2>
     <p>Vinnare: Anders Carlsson</p>
     <p>En minut på Attack from Mars gav Anders 913 390 540 poäng.</p>
-    <h2>Enhandsflipper</h2>
-    <p>Patrik Lindberg tog den svenska mästartiteln i enhandsflipper efter fantastiska 105 miljoner på Spider-Man i finalen mot radarpartnern Harald Jönsson.</p>
   ';
 
   echo $content;
