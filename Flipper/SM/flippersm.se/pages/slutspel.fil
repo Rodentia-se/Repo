@@ -16,7 +16,7 @@
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
             <h2>Slutspelsträd, U18</h2>
-            <iframe src="'.__baseHref__.'/playofftree_u18/playoff.html" width="100%" height="400" frameborder="no"></iframe>
+            <iframe src="'.__baseHref__.'/playofftree_u18/playoff.html" width="100%" height="800" frameborder="no"></iframe>
           </div>
           <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : ' hidden').'">
             <h2>Slutspelsträd, Dubbel</h2>
