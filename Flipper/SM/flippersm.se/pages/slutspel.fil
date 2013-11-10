@@ -10,10 +10,10 @@
             <p>Slutspelet har inte börjat än</p>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
-            <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000" border="0"></iframe>
+            <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000" frameborder="no"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
-            <iframe src="'.__baseHref__.'/playofftree/U18.html" width="1000" height="400" border="0"></iframe>
+            <iframe src="'.__baseHref__.'/playofftree/U18.html" width="1000" height="400" frameborder="no"></iframe>
           </div>
           <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : ' hidden').'">
             <p>Slutspelet har inte börjat än</p>
