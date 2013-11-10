@@ -2,7 +2,25 @@
 
   $content = '
     <h1>Sidotävlingar</h1>
-    <p>Tävlingen har inte börjat än</p>
+    <h2>Flipperorientering, fredag</h2>
+    <p>Vinnare: Nicklas Lindahl</p>
+    <p>Nicklas tog en minut och sex sekunder på sig att locka en kula på AFM, stoppa in en kula i tuggummimaskinen på TZ och ta ner skölden på SM.</p>
+    <h2>Flipperorientering, lördag</h2>
+    <p>Vinnare: Jorma Lindgren</p>
+    <p>Jorma tog 52 sekunder på sig att träffa pianot på TZ, Spider Sense på SM och Safe House på 24.</p>
+    <h2>Flipperorientering, söndag</h2>
+    <p>Vinnare: Patrik Lindberg</p>
+    <p>Patrik tog en minut och dem sänka skölden på AFM, skriva HERO på SM och klara första scenen på 24.
+    <h2>Bäst på en minut, fredag</h2>
+    <p>Vinnare: Jorma Lindgren</p>
+    <p>En minut på 24 gav Jorma 4 265 650 poäng.
+    <h2>Bäst på en minut, lördag</h2>
+    <p>Vinnare: Per Holknekt</p>
+    <p>En minut på Spider-Man gav Per 11 104 120  poäng.</p>
+    <h2>Bäst på en minut, söndag</h2>
+    <p>Vinnare: Anders Carlsson</p>
+    <p>En minut på Attack from Mars gav Anderes 913 390 540 poäng.  
+
   ';
 
   echo $content;
