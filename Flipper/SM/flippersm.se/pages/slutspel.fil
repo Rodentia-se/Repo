@@ -7,7 +7,7 @@
 
   $content .= '
           <div id="mainDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : ' hidden').'">
-            <p>Slutspelet har inte börjat än</p>
+            <p>Slutspelet i huvudtävlingen har inte börjat än</p>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000" frameborder="no"></iframe>
@@ -16,7 +16,7 @@
             <iframe src="'.__baseHref__.'/playofftree/U18.html" width="1000" height="400" frameborder="no"></iframe>
           </div>
           <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : ' hidden').'">
-            <p>Slutspelet har inte börjat än</p>
+            <p>Slutspelet i dubbel har inte börjat än</p>
           </div>
   ';
   $content .= getDataTables('.standings');
