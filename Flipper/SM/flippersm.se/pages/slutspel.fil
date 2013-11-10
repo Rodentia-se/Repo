@@ -9,8 +9,8 @@
           <div id="mainDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : 'hidden').'">
             <p>Slutspelet har inte börjat än</p>
           </div>
-          <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : 'hidden').'">
-          <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000"></iframe>
+          <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : 'hidden').'">
+            <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : 'hidden').'">
             <p>Slutspelet har inte börjat än</p>
