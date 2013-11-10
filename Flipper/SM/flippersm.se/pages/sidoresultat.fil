@@ -10,17 +10,18 @@
     <p>Jorma tog 52 sekunder på sig att träffa pianot på TZ, Spider Sense på SM och Safe House på 24.</p>
     <h2>Flipperorientering, söndag</h2>
     <p>Vinnare: Patrik Lindberg</p>
-    <p>Patrik tog en minut och dem sänka skölden på AFM, skriva HERO på SM och klara första scenen på 24.
+    <p>Patrik tog en minut och dem sänka skölden på AFM, skriva HERO på SM och klara första scenen på 24.</p>
     <h2>Bäst på en minut, fredag</h2>
     <p>Vinnare: Jorma Lindgren</p>
-    <p>En minut på 24 gav Jorma 4 265 650 poäng.
+    <p>En minut på 24 gav Jorma 4 265 650 poäng.</p>
     <h2>Bäst på en minut, lördag</h2>
     <p>Vinnare: Per Holknekt</p>
     <p>En minut på Spider-Man gav Per 11 104 120  poäng.</p>
     <h2>Bäst på en minut, söndag</h2>
     <p>Vinnare: Anders Carlsson</p>
-    <p>En minut på Attack from Mars gav Anderes 913 390 540 poäng.  
-
+    <p>En minut på Attack from Mars gav Anders 913 390 540 poäng.</p>
+    <h2>Enhandsflipper</h2>
+    <p>Patrik Lindberg tog den svenska mästartiteln i enhandsflipper efter fantastiska 105 miljoner på Spider-Man i finalen mot radarpartnern Harald Jönsson.</p>
   ';
 
   echo $content;
