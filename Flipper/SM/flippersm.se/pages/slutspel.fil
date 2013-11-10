@@ -13,7 +13,7 @@
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
-            <p>Slutspelet har inte börjat än</p>
+            <iframe src="'.__baseHref__.'/playofftree/U18.html" width="400" height="400"></iframe>
           </div>
           <div id="teamDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'team') ? '' : ' hidden').'">
             <p>Slutspelet har inte börjat än</p>
