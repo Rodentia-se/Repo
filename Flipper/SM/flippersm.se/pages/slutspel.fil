@@ -7,7 +7,7 @@
 
   $content .= '
           <div id="mainDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'main') ? '' : ' hidden').'">
-            <p>Slutspelet i huvudtävlingen har inte börjat än</p>
+            <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="1024" height="2000" frameborder="no"></iframe>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="1024" height="2000" frameborder="no"></iframe>
