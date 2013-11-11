@@ -8,11 +8,10 @@
   $content .= '
           <div id="mainDiv" class="section'.((($_REQUEST['type'] && $_REQUEST['type']  == 'main') || !$_REQUEST['type']) ? '' : ' hidden').'">
             <h1>Svenska mästaren i flipper 2013></h1>
-            <h2>Grattis Theo!</h2>
-            <p><img alt="Theo" src="https://www.flippersm.se/images/2013/u18_theo.jpg"></p>
-            <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=525">Theo Valsröm</a> är svensk ungdomsmästare i flipper 2013!</p>
-            <p><a href="https://www.flippersm.se/?s=object&obj=player&id=20689">Link Spets</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, <a href="https://www.flippersm.se/?s=object&obj=game&id=5">Twilight Zone</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=104">Indianapolis 500</a>.
-            Bronset togs av <a href="https://www.flippersm.se/?s=object&obj=player&id=20679">Julia Fischer</a> efter vinst mot <a href="https://www.flippersm.se/?s=object&obj=player&id=18678">Felix Holm</a>.</p>
+            <h2>Grattis Jorian!</h2>
+            <p><img alt="JOE" src="https://www.flippersm.se/images/2013/DSC_1393.JPG"></p>
+            <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=525">Jorian Engelbrektsson</a> är svensk mästare i flipper 2013!</p>
+            <p><a href="https://www.flippersm.se/?s=object&obj=player&id=20689">Jonas Johansson</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Doctor Who</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=5">Batman - The Dark Knight</a>, trots en väldigt stark sistakula på TDK som så när räckte för att gå om.
             <h2>Slutspelsträd</h2>
             <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
