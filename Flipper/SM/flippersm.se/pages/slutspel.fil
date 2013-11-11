@@ -19,8 +19,8 @@
             <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
-            <h2>U18</h2>
-            <h3>Grattis Theo!</h3>
+            <h1>U18</h1>
+            <h2>Grattis Theo!</h2>
             <p><img alt="Theo" src="https://www.flippersm.se/images/2013/u18_theo.jpg"></p>
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=525">Theo Valsröm</a> är svensk ungdomsmästare i flipper 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=player&id=20689">Link Spets</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, <a href="https://www.flippersm.se/?s=object&obj=game&id=5">Twilight Zone</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=104">Indianapolis 500</a>.
