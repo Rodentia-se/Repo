@@ -142,9 +142,11 @@
             <td>'.$team->initials.'</td>
             <td>
       ';
-      while ($player = each($players)) {
-        $content .= $player->getLink();
-        $content .= ', ';
+      if ($players) {
+        foreach ($players as $player) {
+          $members .= $player->getLink();
+        }
+        $content .= implode($members, ', ');
       }
       $content .= '</td></tr>';
    }
