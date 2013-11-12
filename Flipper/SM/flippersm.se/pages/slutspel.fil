@@ -80,14 +80,14 @@
   foreach ($players as $player) {
     if ($player->classicsPlace) {
       $content .= '
-          <tr>
-            <td>'.$player->classicsPlace.'</td>
-            <td>'.$player->classicsWpprPlace.'</td>
-            <td>'.$player->classicsWpprPoints.'</td>
-            <td>'.$player->getLink().'</td>
-            <td>'.$player->initials.'</td>
-            <td><a href="'.__baseHref__.'/countries/?obj=country&id='.$player->country_id.'">'.$player->country.'</td>
-          </tr>
+                    <tr>
+                      <td>'.$player->classicsPlace.'</td>
+                      <td>'.$player->classicsWpprPlace.'</td>
+                      <td>'.$player->classicsWpprPoints.'</td>
+                      <td>'.$player->getLink().'</td>
+                      <td>'.$player->initials.'</td>
+                      <td>'.$player->city.'</td>
+                    </tr>
       ';
    }
   }
@@ -116,8 +116,46 @@
             <p><img alt="JFK" src="https://www.flippersm.se/images/2013/jfk.jpg"></p>
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=team&id=50">JFK</a> bestående av <a href="https://www.flippersm.se/?s=object&obj=player&id=171">Jorian Engelbrektsson</a> och <a href="https://www.flippersm.se/?s=object&obj=player&id=179">Jörgen Holm</a> är svenska mästare i dubbel 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=team&id=71">Familjen</a> fick se sig slagna i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, <a href="https://www.flippersm.se/?s=object&obj=game&id=104">Indianapolis 500</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=323">Spider-Man</a>.
-            <h2>Slutspelsträd</h2>
-            <iframe src="'.__baseHref__.'/playofftree_team/playoff.php" width="100%" height="800" frameborder="no"></iframe>
+            <p class="submenu2" id="team_links">Visa: <a href="#teamListDiv">Resultatlista</a> <a href="#teamTreeDiv">Slutspelsträd</a></p>
+            <div id="teamListDiv" class="teamSection">
+              <h2>Resultatlista</h2>
+              <table id="list" class="standings">
+                <thead>
+                  <tr>
+                    <th>Placering</th>
+                    <th>Lag</th>
+                    <th>Tag</th>
+                    <th>Spelare</th>
+                  </tr>
+                </thead>
+                <tbody>
+  ';
+  $teams = getTeams($dbh);
+  foreach ($teams as $team) {
+    $players = $team->getMembers();
+    if ($team->place) {
+      $content .= '
+          <tr>
+            <td>'.$team->place.'</td>
+            <td>'.$team->getLink().'</td>
+            <td>'.$team->initials.'</td>
+            <td>
+      ';
+      while ($player = each($player)) {
+        $content .= $player->getLink();
+        $content .= ', ';
+      }
+      $content .= '</td></tr>';
+   }
+  }
+  $content .= '
+                </tbody>
+              </table>
+            </div>
+            <div id="teamTreeDiv" class="teamSection hidden">
+              <h2>Slutspelsträd</h2>
+              <iframe src="'.__baseHref__.'/playofftree_team/playoff.php" width="100%" height="800" frameborder="no"></iframe>
+            </div>
           </div>
   ';
   $content .= getDataTables('.standings');
