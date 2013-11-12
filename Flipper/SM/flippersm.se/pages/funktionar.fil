@@ -1,10 +1,11 @@
 <?php
+  $m2 = isset($_GET['m2']) ? $_GET['m2'] : 'anmalda';
 
   $player = getCurrentPlayer($dbh, $ulogin);
 
   $content = '
     <h1>Funktionärer</h1>
-    '.submenu2($dbh, $ulogin, "funktionar", false).'
+    '.submenu2($dbh, $ulogin, $m2, false, $player).'
     <p>Nedan ser du alla funktionärspass, och vem som gör vad när. Står det "vakant" så betyder det att ingen har tagit det passet än. Alltså är det ditt om du vill ha det!
   ';
   if (!__registrationDisabled__) {  
