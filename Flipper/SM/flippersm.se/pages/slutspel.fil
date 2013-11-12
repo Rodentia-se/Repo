@@ -90,7 +90,7 @@
 
 ?>
 <script>
-$("#tab_links a").click(function(class) {
+$("#tab_links a").click(function() {
 	var section_to_show = $(this).attr('href');
 	hide_all_sections();
 	$(section_to_show).removeClass("hidden");
