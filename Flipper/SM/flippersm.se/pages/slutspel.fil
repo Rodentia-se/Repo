@@ -141,7 +141,7 @@
             <td>'.$team->initials.'</td>
             <td>
       ';
-      while ($player = each($player)) {
+      while ($player = each($players)) {
         $content .= $player->getLink();
         $content .= ', ';
       }
