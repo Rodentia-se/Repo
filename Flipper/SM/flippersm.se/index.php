@@ -12,9 +12,7 @@ function undermenu($dbh, $ulogin, $page, $m)
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam($dbh) : false;
 
-  if (__registrationDisabled__) {
-    $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmalda">Anmälda</a>';    
-  } else {
+  if (!__registrationDisabled__) {
     $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmalan">Anmälan</a>';
   }
 
