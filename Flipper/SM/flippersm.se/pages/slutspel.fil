@@ -134,7 +134,6 @@
   foreach ($teams as $team) {
     $players = $team->getMembers($dbh);
     unset($members);
-    var_dump($players);
     if ($team->place) {
       $content .= '
           <tr>
