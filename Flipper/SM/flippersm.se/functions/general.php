@@ -10,7 +10,7 @@
   require_once(__ROOT__.'/functions/auth.php');
   require_once(__ROOT__.'/functions/header.php');
 
-  define('__tshirtsDisabled__', false);
+  define('__tshirtsDisabled__', true);
 
   $baseHref = __baseHref__;
 
