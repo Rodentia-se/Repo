@@ -11,6 +11,7 @@
   require_once(__ROOT__.'/functions/header.php');
 
   define('__tshirtsDisabled__', true);
+  define('__registrationDisabled__', true);
 
   $baseHref = __baseHref__;
 
