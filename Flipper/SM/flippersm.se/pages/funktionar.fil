@@ -1,5 +1,5 @@
 <?php
-  $m2 = isset($_GET['m2']) ? $_GET['m2'] : 'anmalda';
+  $m2 = isset($_GET['m2']) ? $_GET['m2'] : 'funktionar';
 
   $player = getCurrentPlayer($dbh, $ulogin);
 
