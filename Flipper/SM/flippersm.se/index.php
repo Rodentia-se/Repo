@@ -12,8 +12,8 @@ function undermenu($dbh, $ulogin, $page, $m)
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam($dbh) : false;
 
-  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : ((__registrationDisabled__) '' : '<a href="?s=anmalan">Anmälan</a>');
-
+  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : ((__registrationDisabled__) ? '' : '<a href="?s=anmalan">Anmälan</a>');
+ 
   switch ($page) {
     case 'anmal':
     case 'object':
