@@ -130,7 +130,7 @@
                 </thead>
                 <tbody>
   ';
-  $teams = getTeams($dbh);
+  $teams = getTeams($dbh, ' where tm.tournamentDivision_id = 3 ', false, ' order by place asc ');
   foreach ($teams as $team) {
     $players = $team->getMembers($dbh);
     unset($members);

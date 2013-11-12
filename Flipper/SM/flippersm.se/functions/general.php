@@ -1284,9 +1284,10 @@
     ';
   }  
     
-  function getTeams($dbh, $where = ' where tm.tournamentDivision_id = 3 ', $national = false) {
+  function getTeams($dbh, $where = ' where tm.tournamentDivision_id = 3 ', $national = false, $order = null) {
     $query = getTeamSelect().' '.$where;
     $query .= ($national) ? (($where) ? ' and ' : ' where ').' tm.national = 1 ' : (($where) ? ' and ' : ' where ').' (tm.national is null or tm.national != 1) ';
+    $query .= $order;
     $sth = $dbh->query($query);
     while ($obj = $sth->fetchObject('team')) {
       $objs[] = $obj;
