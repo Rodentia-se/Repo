@@ -90,25 +90,22 @@
 
 ?>
 <script>
-$("#tab_links a").click(function() {
+$("#tab_links a").click(function(class) {
 	var section_to_show = $(this).attr('href');
 	hide_all_sections();
 	$(section_to_show).removeClass("hidden");
 	return false;
 });
 
-function hide_all_sections() {
-  $(".section").addClass("hidden");
+function hide_all_sections(class) {
+  class = (class) ? class : 'section';
+  $("." + class).addClass("hidden");
 }
 
 $("#tree_links a").click(function() {
 	var section_to_show = $(this).attr('href');
-	hide_all_tree_sections();
+	hide_all_sections('treeSection');
 	$(section_to_show).removeClass("hidden");
 	return false;
 });
-
-function hide_all_tree_sections() {
-  $(".treeSection").addClass("hidden");
-}
 </script>
