@@ -189,4 +189,12 @@ $("#classics_links a").click(function() {
 	$(section_to_show).removeClass("hidden");
 	return false;
 });
+
+$("#team_links a").click(function() {
+	var section_to_show = $(this).attr('href');
+	hide_all_sections('teamSection');
+	$(section_to_show).removeClass("hidden");
+	return false;
+});
+
 </script>
