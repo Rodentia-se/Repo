@@ -23,11 +23,12 @@
               <table id="list" class="standings">
                 <thead>
                   <tr>
-                    <th>Place</th>
-                    <th>WPPR place</th>
-                    <th>WPPR points</th>
-                    <th>Player</th>
+                    <th>Placering</th>
+                    <th>WPPR-placering</th>
+                    <th>WPPR-poäng</th>
+                    <th>Spelare</th>
                     <th>Tag</th>
+                    <th>Ort</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -43,6 +44,7 @@
                       <td>'.$player->wpprPoints.'</td>
                       <td>'.$player->getLink().'</td>
                       <td>'.$player->initials.'</td>
+                      <td>'.$player->city.'</td>
                     </tr>
       ';
     }
