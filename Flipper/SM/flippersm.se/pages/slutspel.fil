@@ -13,9 +13,44 @@
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=171">Jorian Engelbrektsson</a> är svensk mästare i flipper 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=player&id=166">Jonas Johansson</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=25">Doctor Who</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, trots en väldigt stark sistakula på TDK som så när räckte för att gå om.
             Bronset togs av <a href="https://www.flippersm.se/?s=object&obj=player&id=229">Mats Runsten</a> efter vinst mot <a href="https://www.flippersm.se/?s=object&obj=player&id=94">Fredrik Malmqvist</a>.</p>
-            <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
+            <p class="submenu2" id="tree_links"><a href="#treeDiv">Slutspelsträd</a> <a href="#listDiv">Resultatlista</a></p>
+            <div id="treeDiv" class="treeSection">
               <h2>Slutspelsträd</h2>
               <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
+            </div>
+            <div id="treeDiv" class="treeSection">
+              <table id="list" class="listView">
+                <thead>
+                  <tr>
+                    <th>Place</th>
+                    <th>WPPR place</th>
+                    <th>WPPR points</th>
+                    <th>Player</th>
+                    <th>Tag</th>
+                    <th>Country</th>
+                  </tr>
+                </thead>
+                <tbody>
+  ';
+  $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1', 'order by ifnull(m.wpprPlace, m.place) asc');
+            
+  foreach ($players as $player) {
+    if ($player->place) {
+      $content .= '
+                    <tr>
+                      <td>'.$player->place.'</td>
+                      <td>'.$player->wpprPlace.'</td>
+                      <td>'.$player->wpprPoints.'</td>
+                      <td>'.$player->getLink().'</td>
+                      <td>'.$player->initials.'</td>
+                    </tr>
+      ';
+    }
+  }
+    $content .= '
+                </tbody>
+              </table>
+            </div>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
             <h1>Classics</h1>
@@ -72,8 +107,6 @@ $("#tree_links a").click(function() {
 });
 
 function hide_all_tree_sections() {
-	for (var n=0;n<$(".treeSection").length;n++) {
-		$(".treeSection").eq(n).addClass("hidden");
-	}
+  $(".treeSection").addClass("hidden");
 }
 </script>
