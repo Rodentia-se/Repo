@@ -138,9 +138,16 @@ function hide_all_sections(className) {
   $("." + className).addClass("hidden");
 }
 
-$("#tree_links a").click(function() {
+$("#main_links a").click(function() {
 	var section_to_show = $(this).attr('href');
-	hide_all_sections('treeSection');
+	hide_all_sections('mainSection');
+	$(section_to_show).removeClass("hidden");
+	return false;
+});
+
+$("#classics_links a").click(function() {
+	var section_to_show = $(this).attr('href');
+	hide_all_sections('classicsSection');
 	$(section_to_show).removeClass("hidden");
 	return false;
 });
