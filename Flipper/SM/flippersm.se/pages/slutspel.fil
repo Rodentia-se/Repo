@@ -13,8 +13,9 @@
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=171">Jorian Engelbrektsson</a> är svensk mästare i flipper 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=player&id=166">Jonas Johansson</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=25">Doctor Who</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, trots en väldigt stark sistakula på TDK som så när räckte för att gå om.
             Bronset togs av <a href="https://www.flippersm.se/?s=object&obj=player&id=229">Mats Runsten</a> efter vinst mot <a href="https://www.flippersm.se/?s=object&obj=player&id=94">Fredrik Malmqvist</a>.</p>
-            <h2>Slutspelsträd</h2>
-            <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
+            <p class="submenu2" id="tab_links"><a href="#mainDiv">Main</a> <a href="#classicsDiv">Classics</a> <a href="#u18Div">U18</a> <a href="#teamDiv">Dubbel</a></p>
+              <h2>Slutspelsträd</h2>
+              <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
           </div>
           <div id="classicsDiv" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'classics') ? '' : ' hidden').'">
             <h1>Classics</h1>
@@ -60,8 +61,19 @@ $("#tab_links a").click(function() {
 });
 
 function hide_all_sections() {
-	for (var n=0;n<$(".section").length;n++) {
-		$(".section").eq(n).addClass("hidden");
+  $(".section").addClass("hidden");
+}
+
+$("#tree_links a").click(function() {
+	var section_to_show = $(this).attr('href');
+	hide_all_tree_sections();
+	$(section_to_show).removeClass("hidden");
+	return false;
+});
+
+function hide_all_tree_sections() {
+	for (var n=0;n<$(".treeSection").length;n++) {
+		$(".treeSection").eq(n).addClass("hidden");
 	}
 }
 </script>
