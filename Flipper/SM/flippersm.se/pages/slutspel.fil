@@ -13,10 +13,10 @@
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=171">Jorian Engelbrektsson</a> är svensk mästare i flipper 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=player&id=166">Jonas Johansson</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=25">Doctor Who</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=365">Batman - The Dark Knight</a>, trots en väldigt stark sistakula på TDK som så när räckte för att gå om.
             Bronset togs av <a href="https://www.flippersm.se/?s=object&obj=player&id=229">Mats Runsten</a> efter vinst mot <a href="https://www.flippersm.se/?s=object&obj=player&id=94">Fredrik Malmqvist</a>.</p>
-            <p class="submenu2" id="tree_links">Visa: <a href="#listDiv">Resultatlista</a> <a href="#treeDiv">Slutspelsträd</a></p>
-            <div id="listDiv" class="treeSection hidden">
+            <p class="submenu2" id="main_links">Visa: <a href="#mainListDiv">Resultatlista</a> <a href="#mainTreeDiv">Slutspelsträd</a></p>
+            <div id="mainListDiv" class="mainSection">
               <h2>Resultatlista</h2>
-              <table id="list" class="standings">
+              <table class="standings">
                 <thead>
                   <tr>
                     <th>Placering</th>
@@ -30,7 +30,6 @@
                 <tbody>
   ';
   $players = getPlayers($dbh, ' where m.tournamentEdition_id = 1', 'order by ifnull(m.wpprPlace, m.place) asc');
-            
   foreach ($players as $player) {
     if ($player->place) {
       $content .= '
@@ -45,11 +44,11 @@
       ';
     }
   }
-    $content .= '
+  $content .= '
                 </tbody>
               </table>
             </div>
-            <div id="treeDiv" class="treeSection">
+            <div id="mainTreeDiv" class="mainSection hidden">
               <h2>Slutspelsträd</h2>
               <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
             </div>
@@ -61,8 +60,45 @@
             <p class="big bold"><a href="https://www.flippersm.se/?s=object&obj=player&id=554">Abbe Tjeder</a> är svensk mästare i Classics 2013!</p>
             <p><a href="https://www.flippersm.se/?s=object&obj=player&id=12">Alvar Palm</a> fick se sig slagen i finalen på <a href="https://www.flippersm.se/?s=object&obj=game&id=23">Diner</a>, <a href="https://www.flippersm.se/?s=object&obj=game&id=311">Eight Ball</a> och <a href="https://www.flippersm.se/?s=object&obj=game&id=388">Totem</a>.
             Bronset togs av <a href="https://www.flippersm.se/?s=object&obj=player&id=305">Reidar Spets</a> efter vinst mot <a href="https://www.flippersm.se/?s=object&obj=player&id=92">Fredrik Lindberg</a>.</p>
-            <h2>Slutspelsträd</h2>
-            <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%" height="2000" frameborder="no"></iframe>
+            <p class="submenu2" id="classics_links">Visa: <a href="#classicsListDiv">Resultatlista</a> <a href="#classicsTreeDiv">Slutspelsträd</a></p>
+            <div id="classicsListDiv" class="classicsSection">
+              <h2>Resultatlista</h2>
+              <table id="list" class="standings">
+                <thead>
+                  <tr>
+                    <th>Placering</th>
+                    <th>WPPR-placering</th>
+                    <th>WPPR-poäng</th>
+                    <th>Spelare</th>
+                    <th>Tag</th>
+                    <th>Ort</th>
+                  </tr>
+                </thead>
+                <tbody>
+  ';
+  $players = getPlayers($dbh, ' where cl.tournamentEdition_id = 1', 'order by ifnull(cl.wpprPlace, cl.place) asc');
+  foreach ($players as $player) {
+    if ($player->classicsPlace) {
+      $content .= '
+          <tr>
+            <td>'.$player->classicsPlace.'</td>
+            <td>'.$player->classicsWpprPlace.'</td>
+            <td>'.$player->classicsWpprPoints.'</td>
+            <td>'.$player->getLink().'</td>
+            <td>'.$player->initials.'</td>
+            <td><a href="'.__baseHref__.'/countries/?obj=country&id='.$player->country_id.'">'.$player->country.'</td>
+          </tr>
+      ';
+   }
+  }
+  $content .= '
+                </tbody>
+              </table>
+            </div>
+            <div id="classicsTreeDiv" class="classicsSection hidden">
+              <h2>Slutspelsträd</h2>
+              <iframe src="'.__baseHref__.'/playofftree/playoffclassic.php" width="100%" height="2000" frameborder="no"></iframe>
+            </div>
           </div>
           <div id="u18Div" class="section'.(($_REQUEST['type'] && $_REQUEST['type']  == 'u18') ? '' : ' hidden').'">
             <h1>U18</h1>
