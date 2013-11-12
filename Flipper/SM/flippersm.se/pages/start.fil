@@ -120,7 +120,7 @@ else {
     echo showLogin($ulogin, 'Redan anmäld? Logga in!');
   }
   echo '<h2>Följ oss på sociala media!</h2>';
-  echo '<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.jpg" alt="Facebook" class="social" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="Twitter" class="social" /></a><a href="https://plus.google.com/+FlippersmSe" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Google+" class="social" /></a>';
+  echo '<a href="https://www.facebook.com/flippersm" target="_blank"><img src="'.__baseHref__.'/images/logo-facebook.png" alt="Facebook" class="social" /></a><a href="http://twitter.com/FlipperSM" target="_blank"><img src="'.__baseHref__.'/images/twitter.png" alt="Twitter" class="social" /></a><a href="https://plus.google.com/+FlippersmSe" target="_blank"><img src="'.__baseHref__.'/images/google.png" alt="Google+" class="social" /></a>';
   echo '<a href="http://www.twitch.tv/flippersm" target="_blank"><img src="'.__baseHref__.'/images/twitch.png" alt="Twitch" class="social" /></a><a href="https://bambuser.com/channel/Flipper-SM" target="_blank"><img src="'.__baseHref__.'/images/bambuser.png" alt="bambuser" class="social" /></a><a href="http://www.youtube.com/user/FlipperSMse" target="_blank"><img src="'.__baseHref__.'/images/youtube.png" alt="youtube" class="social" /></a>';
   echo '<h2>Ladda hem affischen!</h2>';
   echo '<p>Ladda hem affischen, skriv ut och sätt upp den på dina lokala flipperhak:</p>';
