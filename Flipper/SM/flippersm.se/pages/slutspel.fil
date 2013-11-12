@@ -97,9 +97,9 @@ $("#tab_links a").click(function() {
 	return false;
 });
 
-function hide_all_sections(class) {
-  class = (class) ? class : 'section';
-  $("." + class).addClass("hidden");
+function hide_all_sections(className) {
+  className = (className) ? className : 'section';
+  $("." + className).addClass("hidden");
 }
 
 $("#tree_links a").click(function() {
