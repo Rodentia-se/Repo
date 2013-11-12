@@ -23,7 +23,7 @@
     $content .= showLogin($ulogin, 'Om du redan har ett användarnamn, logga in här.');
   }
 
-  $content .= '<p>Du betalar för dina tröjor på <a href="'.__baseHref__.'/?s=betala">betalningssidan</a>';
+  $content .= (!__paymentDisabled__) ? '<p>Du betalar för dina tröjor på <a href="'.__baseHref__.'/?s=betala">betalningssidan</a>.</p>' : '';
 
   echo($content);
 ?>

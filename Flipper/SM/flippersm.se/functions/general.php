@@ -12,6 +12,7 @@
 
   define('__tshirtsDisabled__', true);
   define('__registrationDisabled__', true);
+  define('__paymentDisabled__', true);
 
   $baseHref = __baseHref__;
 
