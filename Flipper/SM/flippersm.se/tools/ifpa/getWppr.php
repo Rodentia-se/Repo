@@ -11,7 +11,7 @@
   foreach ($players as $player) {
     $place = ($division == 2) ? $player->classicsWpprPlace : $player->wpprPlace;
     if ($place) {
-      echo 'European Pinball Championships '.(($division == 2) ? 'Classics ' : '').'2013,2013-09-13,'.$place.','.$player->name.','.$player->country.','.$player->ifpa_id."\n";
+      echo 'The Swedish Championships '.(($division == 2) ? 'Classics ' : '').'2013,2013-09-13,'.$place.','.$player->name.','.$player->country.','.$player->ifpa_id."\n";
     }
   }
  ?>
