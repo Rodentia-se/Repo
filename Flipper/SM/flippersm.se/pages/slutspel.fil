@@ -18,7 +18,7 @@
               <h2>Slutspelsträd</h2>
               <iframe src="'.__baseHref__.'/playofftree_main/playoff.php" width="100%" height="2000" frameborder="no"></iframe>
             </div>
-            <div id="treeDiv" class="treeSection">
+            <div id="treeDiv" class="treeSection hidden">
               <table id="list" class="listView">
                 <thead>
                   <tr>
