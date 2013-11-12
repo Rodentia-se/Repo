@@ -12,7 +12,7 @@ function undermenu($dbh, $ulogin, $page, $m)
   $player = getCurrentPlayer($dbh, $ulogin);
   $team = ($player) ? $player->getTeam($dbh) : false;
 
-  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmal">Anmälan</a>';
+  $registrationLink = ($player->mainPlayerId) ? '<a href="?s=object&obj=player&id=self">Dina sidor</a>' : '<a href="?s=anmalda">Anmälda</a>';
 
   switch ($page) {
     case 'anmal':
@@ -83,7 +83,8 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
     {
       if (($player && $obj->class == 'player' && $obj->id == $player->id) || ($team && $obj->class == 'team' && $obj->id == $team->id)) {
         $volunteerHeader = ($player->volunteer) ? 'Funktionärspass' : 'Bli funktionär!';
-        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."&m2=anmalda\">".$volunteerHeader."</a> <a href=\"?s=betala".$m."\">Betala</a>";
+//        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=edit\">Ändra uppgifter</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=editdubbel".$m."\">Ändra lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=kvalval".$m."\">Välj kvaltider</a> <a href=\"?s=funktionarsval".$m."&m2=anmalda\">".$volunteerHeader."</a> <a href=\"?s=betala".$m."\">Betala</a>";
+        $content .= "<a href=\"?s=object&obj=player&id=self".$m."\">Du</a> <a href=\"?s=object&obj=team&id=self".$m."\">Ditt lag</a> <a href=\"?s=tshirt".$m."\">Tröjor</a> <a href=\"?s=object&obj=qualGroup".$m."\">Kvaltider</a> <a href=\"?s=funktionar".$m."&m2=anmalda\">Funktionärspass</a>";
       } else {
         $content .= "<a href=\"?s=anmalda".$m."\">Anmälda spelare</a> <a href=\"?s=kvalgrupper".$m."\">Kvalgrupper</a> <a href=\"?s=object&obj=team".$m."\">Dubbellag</a>";
       }
@@ -94,7 +95,8 @@ function submenu2($dbh, $ulogin, $category, $echo = true, $obj = null)
       $content .= "<a href = '?s=funktionar".$m."'>Funktionärer</a> <a href = '?s=instruktioner".$m."'>Instruktioner</a>";
       if ($player->mainPlayerId) {
         $volunteerHeader = ($player->volunteer) ? 'Funktionärspass' : 'Bli funktionär!';
-        $content .= ' <a href="?s=funktionarsval'.$m.'&m2=funktionar">'.$volunteerHeader.'</a>';
+//        $content .= ' <a href="?s=funktionarsval'.$m.'&m2=funktionar">'.$volunteerHeader.'</a>';
+        $content .= ' <a href="?s=funktionar'.$m.'&m2=funktionar">Funktionärspass</a>';
       }
     }
 
