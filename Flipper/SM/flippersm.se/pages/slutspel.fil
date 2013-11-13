@@ -123,7 +123,7 @@
   ';
   $players = array(525, 20689, 20679, 18678, 20678, 20676);
   $i = 0;
-  foreach ($players as $playerId);
+  foreach ($players as $playerId) {
     $player = getPlayerById($dbh, $playerId);
     $i++;
     $content .= '
