@@ -24,4 +24,5 @@
     public $selfParent = false;
     public $class = 'geography';
     
+  }
 ?>
