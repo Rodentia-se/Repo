@@ -11,7 +11,7 @@
         o.latitude as latitude,
         o.longitude as longitude,
         o.comment as comment
-      from region o
+      from country o
     ';
     
     public static $parents = array(
