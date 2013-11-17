@@ -6,6 +6,7 @@
     public $startDate;
     public $endDate;
     public $location_id;
+    public $location;
     
     public static $select = '
       select 
@@ -21,6 +22,10 @@
       left join tournamentEdition o
         on o.tournament_id = t.id
     ';
+    
+    public static $parents = array(
+      'location' => 'location'
+    )
     
   }
 

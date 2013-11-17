@@ -32,6 +32,7 @@
           $this->_set($data);
         }
       }
+      $this->populate();
     }
     
     protected function _set($data) {
@@ -40,5 +41,11 @@
       }
     }
     
+    protected function populate() {
+      foreach (self::$parents as $field => $class) {
+        $this->$field = new $class($this->{$field.'_id'});
+      }
+    }
+
   }
 ?>
