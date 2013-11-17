@@ -11,22 +11,10 @@
     private $sth;
     
     public function __construct() {
-      parent::__construct();
-      try {
-        $dbh = new PDO('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
-      } catch (PDOException $e) {
-        die('Failed to connect to MySQL: '.$e->getMessage());
-      }
-      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      $this->_set($dbh);
+      parent::__construct('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
+      $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
-    protected function _set($data) {
-      foreach ($data as $key => $value) {
-        $this->{$key} = $value;
-      }
-    }
-
     public function getObjectById($class, $id) {
       $query = $class::$select.' where o.id = '.$id;
       $this->sth = $this->query($query);
