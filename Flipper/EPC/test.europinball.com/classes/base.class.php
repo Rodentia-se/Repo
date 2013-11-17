@@ -1,0 +1,43 @@
+<?php
+
+  abstract class base {
+    
+    public static $_db;
+
+    public $db;
+    public $id;
+    public $name;
+    public $fullName;
+    public $shortName;
+    public $acronym;
+    public $photo;
+    public $icon;
+    public $comment;
+    
+    public function __construct($data) {
+      if (!self::$_db) {
+        self::$_db = new db();
+      } 
+      $this->db = self::$_db;
+      if ($data) {
+        if (preg_match('/^[0-9]+/', $data)) {
+          $obj = $this->db->getObjectById($this->class, $data);
+          if ($obj) {
+            $this->_set($obj);
+          }
+        } else if (is_string($data) && is_object(json_decode($data))) {
+          $this->_set(json_decode($json, true));
+        } else if (is_array($data)) {
+          $this->_set($data);
+        }
+      }
+    }
+    
+    protected function _set($data) {
+      foreach ($data as $key => $value) {
+        $this->{$key} = $value;
+      }
+    }
+    
+  }
+?>
