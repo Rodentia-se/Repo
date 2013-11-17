@@ -35,6 +35,8 @@
           $this->_set($data);
         }
       }
+      echo get_class($this).': '.$this->id.' ';
+      flush();
       $this->populate();
     }
     
@@ -45,7 +47,6 @@
     }
     
     protected function populate() {
-      echo get_class($this).': '.$this->id.' ';
       foreach (static::$parents as $field => $class) {
         $this->$field = new $class($this->{$field.'_id'});
       }
