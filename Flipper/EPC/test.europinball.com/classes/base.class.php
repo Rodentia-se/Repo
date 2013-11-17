@@ -14,7 +14,8 @@
     public $icon;
     public $comment;
     
-    public static $parents = array();
+    public static $parents = array(
+    );
     
     public function __construct($data = null) {
       if (!self::$_db) {
