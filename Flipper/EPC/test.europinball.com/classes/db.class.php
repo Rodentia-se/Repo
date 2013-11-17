@@ -8,6 +8,7 @@
     private $pass = 'vLdqLYyvxSZermEv';
     private $charset = 'utf8';
     private $dbh;
+    private $sth;
     
     public function __construct() {
       try {
@@ -27,8 +28,8 @@
 
     public function getObjectById($class, $id) {
       $query = $class::$select.' where o.id = '.$id;
-      $sth = $dbh->query($query);
-      $obj = $sth->fetchObject(get_class($object));
+      $this->sth = $this->query($query);
+      $obj = $this->sth->fetchObject(get_class($object));
       if ($this->last_row_count()) {
         return $obj;
       } else {
