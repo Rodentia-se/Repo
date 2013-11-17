@@ -2,9 +2,6 @@
 
 function customTemplate($page) {
 	switch($page) {
-		case 'tournament':
-			include($_SERVER['DOCUMENT_ROOT'].'/tournament.php');
-	  break;
 		case 'you':
 		case 'you-2':
 		case 'your-pages':
@@ -61,7 +58,7 @@ function customTemplate($page) {
 	    include($_SERVER['DOCUMENT_ROOT'].'/volunteerSchedule.php');
     break;
 		case 'admin-tools':
-	    include($_SERVER['DOCUMENT_ROOT'].'/adminTools.php');
+	    include($_SERVER['DOCUMENT_ROOT'].'/tournament.php');
     break;
 		case 'password-reset':
 	    include($_SERVER['DOCUMENT_ROOT'].'/forgotPassword.php');
