@@ -13,7 +13,7 @@
         o.id as id,
         t.id as tournament_id,
         o.name as name,
-        concat(t.name, left(o.startDate,4)) as fullName,
+        concat(t.name, " ", left(o.startDate,4)) as fullName,
         t.acronym as shortName,
         o.startDate as startDate,
         o.endDate as endDate,

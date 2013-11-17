@@ -44,6 +44,7 @@
     }
     
     protected function populate() {
+      var_dump(self::$parents);
       foreach (self::$parents as $field => $class) {
         $this->$field = new $class($this->{$field.'_id'});
       }

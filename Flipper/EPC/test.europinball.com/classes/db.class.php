@@ -13,6 +13,7 @@
     public function __construct() {
       parent::__construct('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+      unset($this->pass);
     }
     
     public function getObjectById($class, $id) {
