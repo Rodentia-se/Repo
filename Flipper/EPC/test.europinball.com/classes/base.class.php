@@ -14,7 +14,7 @@
     public $icon;
     public $comment;
     
-    public function __construct($data) {
+    public function __construct($data = null) {
       if (!self::$_db) {
         self::$_db = new db();
       } 
