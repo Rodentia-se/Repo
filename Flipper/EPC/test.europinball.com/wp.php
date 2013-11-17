@@ -2,6 +2,9 @@
 
 function customTemplate($page) {
 	switch($page) {
+		case 'tournament':
+			include($_SERVER['DOCUMENT_ROOT'].'/tournament.php');
+	  break;
 		case 'you':
 		case 'you-2':
 		case 'your-pages':
