@@ -5,6 +5,8 @@
   
   $tournament = new tournament(1);
   
+  echo '<pre>';
   var_dump($tournament);
+  echo '</pre>';
 
 ?>
