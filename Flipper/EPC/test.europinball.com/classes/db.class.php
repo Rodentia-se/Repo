@@ -15,8 +15,8 @@
       } catch (PDOException $e) {
         die('Failed to connect to MySQL: '.$e->getMessage());
       }
+      $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       $this->_set($dbh);
-      $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
     
     protected function _set($data) {
