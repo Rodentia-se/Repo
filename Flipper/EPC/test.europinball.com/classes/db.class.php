@@ -26,7 +26,7 @@
     }
 
     public function getObjectById($object, $id) {
-      $query = get_class($object)::select.' where o.id = '.$id;
+      $query = get_class($object)::$select.' where o.id = '.$id;
       $sth = $dbh->query($query);
       $obj = $sth->fetchObject(get_class($object));
       if ($this->last_row_count()) {
