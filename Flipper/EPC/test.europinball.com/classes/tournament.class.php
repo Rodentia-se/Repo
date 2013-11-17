@@ -25,7 +25,7 @@
     
     public static $parents = array(
       'location' => 'location'
-    )
+    );
     
   }
 

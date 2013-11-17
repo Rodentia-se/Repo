@@ -18,7 +18,6 @@
         o.comment as comment
       from location o
     ';
-    
 
   }
 
