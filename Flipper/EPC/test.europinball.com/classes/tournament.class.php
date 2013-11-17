@@ -7,7 +7,7 @@
     public $endDate;
     public $location_id;
     
-    public static select = '
+    public static $select = '
       select 
         o.id as id,
         t.id as tournament_id,
