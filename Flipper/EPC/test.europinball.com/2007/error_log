@@ -1,6 +1,0 @@
-[04-Feb-2007 20:50:41] PHP Warning:  main(parts/header.epf) [<a href='function.main'>function.main</a>]: failed to open stream: No such file or directory in /home/europinb/public_html/index.php on line 3
-[04-Feb-2007 20:50:41] PHP Warning:  main(parts/header.epf) [<a href='function.main'>function.main</a>]: failed to open stream: No such file or directory in /home/europinb/public_html/index.php on line 3
-[04-Feb-2007 20:50:41] PHP Warning:  main() [<a href='function.include'>function.include</a>]: Failed opening 'parts/header.epf' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/europinb/public_html/index.php on line 3
-[04-Feb-2007 20:50:41] PHP Warning:  main(parts/menu.epf) [<a href='function.main'>function.main</a>]: failed to open stream: No such file or directory in /home/europinb/public_html/parts/footer.epf on line 5
-[04-Feb-2007 20:50:41] PHP Warning:  main(parts/menu.epf) [<a href='function.main'>function.main</a>]: failed to open stream: No such file or directory in /home/europinb/public_html/parts/footer.epf on line 5
-[04-Feb-2007 20:50:41] PHP Warning:  main() [<a href='function.include'>function.include</a>]: Failed opening 'parts/menu.epf' for inclusion (include_path='.:/usr/lib/php:/usr/local/lib/php') in /home/europinb/public_html/parts/footer.epf on line 5

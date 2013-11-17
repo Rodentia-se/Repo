@@ -1,9 +1,0 @@
-</div>
-</div>
-
-<?php
-include("parts/menu.epf");
-?>
-
-</body>
-</html>
