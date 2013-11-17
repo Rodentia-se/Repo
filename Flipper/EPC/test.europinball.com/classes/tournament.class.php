@@ -17,7 +17,7 @@
         o.startDate as startDate,
         o.endDate as endDate,
         o.location_id as location_id
-      from tournmament t
+      from tournament t
       left join tournamentEdition o
         on o.tournament_id = t.id
     ';
