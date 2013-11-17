@@ -17,7 +17,7 @@
     public static $parents = array(
     );
     
-    public function __construct($data = null, $populate = true) {
+    public function __construct($data = NULL, $populate = TRUE) {
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -29,7 +29,7 @@
             $this->_set($obj);
           }
         } else if (is_string($data) && is_object(json_decode($data))) {
-          $this->_set(json_decode($json, true));
+          $this->_set(json_decode($data));
         } else if (is_array($data)) {
           $this->_set($data);
         }
