@@ -17,7 +17,7 @@
     public static $parents = array(
     );
     
-    public function __construct($data = null) {
+    public function __construct($data = null, $populate = true) {
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -36,8 +36,9 @@
         }
       }
       echo get_class($this).': '.$this->id.' ';
-      flush();
-      $this->populate();
+      if ($populate) {
+        $this->populate();
+      }
     }
     
     protected function _set($data) {
@@ -48,7 +49,7 @@
     
     protected function populate() {
       foreach (static::$parents as $field => $class) {
-        $this->$field = new $class($this->{$field.'_id'});
+        $this->$field = new $class($this->{$field.'_id'}, FALSE);
       }
     }
 
