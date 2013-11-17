@@ -34,7 +34,7 @@
           $this->_set($data);
         }
       }
-      if ($populate && get_class($this) == 'location') {
+      if ($populate && get_class($this) == 'tournament') {
         echo get_class($this).': '.$this->id.' P: '.(($populate === TRUE) ? 'true' : 'false').' ';
         $this->populate();
       }
