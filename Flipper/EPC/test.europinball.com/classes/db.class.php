@@ -18,7 +18,7 @@
     public function getObjectById($class, $id) {
       $query = $class::$select.' where o.id = '.$id;
       $this->sth = $this->query($query);
-      $obj = $this->sth->fetchObject(get_class($object));
+      $obj = $this->sth->fetchObject($class);
       if ($this->last_row_count()) {
         return $obj;
       } else {
