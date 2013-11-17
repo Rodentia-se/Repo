@@ -11,6 +11,7 @@
     private $sth;
     
     public function __construct() {
+      parent::__construct();
       try {
         $dbh = new PDO('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
       } catch (PDOException $e) {
