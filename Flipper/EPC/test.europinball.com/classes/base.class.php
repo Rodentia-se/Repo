@@ -24,7 +24,6 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          echo get_class($this);
           $obj = $this->db->getObjectById(get_class($this), $data);
           if ($obj) {
             $this->_set($obj);
@@ -35,7 +34,7 @@
           $this->_set($data);
         }
       }
-      echo get_class($this).': '.$this->id.' ';
+      echo get_class($this).': '.$this->id.' P: '.$populate.' ';
       if ($populate) {
         $this->populate();
       }
