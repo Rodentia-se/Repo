@@ -9,7 +9,7 @@
     private $charset = 'utf8';
     private $dbh;
     
-    public function __construct {
+    public function __construct() {
       try {
         $dbh = new PDO('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
       } catch (PDOException $e) {
