@@ -34,8 +34,8 @@
           $this->_set($data);
         }
       }
-      echo get_class($this).': '.$this->id.' P: '.(($populate === TRUE) ? 'true' : 'false').' ';
-      if ($populate) {
+      if ($populate && get_class($this) == 'location') {
+        echo get_class($this).': '.$this->id.' P: '.(($populate === TRUE) ? 'true' : 'false').' ';
         $this->populate();
       }
     }
