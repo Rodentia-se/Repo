@@ -26,7 +26,7 @@
     }
 
     public function getObjectById($object, $id) {
-      $class = get_class($object)
+      $class = get_class($object);
       $query = $class::$select.' where o.id = '.$id;
       $sth = $dbh->query($query);
       $obj = $sth->fetchObject(get_class($object));
