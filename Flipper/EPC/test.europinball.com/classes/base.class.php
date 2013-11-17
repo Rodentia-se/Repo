@@ -34,7 +34,7 @@
           $this->_set($data);
         }
       }
-      echo get_class($this).': '.$this->id.' P: '.$populate.' ';
+      echo get_class($this).': '.$this->id.' P: '.(($populate) ? 'true' : 'false').' ';
       if ($populate) {
         $this->populate();
       }
