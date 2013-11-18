@@ -4,12 +4,6 @@
     
     public static $instances = array();
 
-    public $tournament_id;
-    public $startDate;
-    public $endDate;
-    public $location_id;
-    public $location;
-    
     public static $select = '
       select 
         o.id as id,

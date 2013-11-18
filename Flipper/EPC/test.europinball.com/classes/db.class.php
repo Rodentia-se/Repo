@@ -29,7 +29,7 @@
         unset($obj->db->sth);
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
-          return $obj;
+          return $class::$instances['ID'.$id];
         } else {
           return FALSE;
         }

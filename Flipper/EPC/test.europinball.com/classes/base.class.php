@@ -13,7 +13,11 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
+          if (is_object(static::$instances['ID'.$id])) {
+            $obj = static::$instances['ID'.$id];
+          } else {
             $obj = $this->db->getObjectById(get_class($this), $data);
+          }
           if ($obj) {
             $this->_set($obj);
           }
@@ -27,6 +31,12 @@
         static::$instances['ID'.$this->id] = $this;
       }
       $this->populate();
+    }
+    
+    function __destruct() {
+      if ($this->id) {
+        unset(static::$instances['ID'.$this->id]);
+      }
     }
     
     protected function _set($data) {
