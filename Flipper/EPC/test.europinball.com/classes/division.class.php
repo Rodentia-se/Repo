@@ -16,7 +16,7 @@
         o.tournamentEdition_id as tournamentEdition_id
       from division d
       left join tournamentDivision o
-        on o.tournament_id = d.id
+        on o.division_id = d.id
     ';
     
     public static $parents = array(
