@@ -6,6 +6,6 @@
   $city = new city(1930);
   $locations = $city->getLocations();
   
-  pre_dump(city::$instances);
+  pre_dump(location::$instances);
 
 ?>
