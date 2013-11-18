@@ -15,6 +15,7 @@
     ';
     
     public static $parents = array(
+      'parentCountry' => 'country',
       'continent' => 'continent'
     );
 
