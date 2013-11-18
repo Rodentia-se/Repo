@@ -18,11 +18,7 @@
     ';
     
     public static $parents = array(
-      'region' => 'region',
-      'parentRegion' => 'region',
-      'country' => 'country',
-      'parentCountry' => 'country',
-      'continent' => 'continent'
+      'region' => 'region'
     );
 
   }

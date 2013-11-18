@@ -22,7 +22,6 @@
     public $latitude;
     public $longitude;
     public $selfParent = false;
-    public $class = 'geography';
     
   }
 ?>
