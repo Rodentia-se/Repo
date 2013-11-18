@@ -5,6 +5,7 @@
     public static $_db;
     public static $instances = array();
     public static $parents = array();
+    public static $selfParent = FALSE;
 
     public function __construct($data = NULL) {
       if (!self::$_db) {
