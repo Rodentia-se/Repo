@@ -2,7 +2,7 @@
 
   class config {
 
-    public static $depth = 2;
+    public static $parentDepth = 2;
     
   }
 

@@ -6,7 +6,7 @@
     public static $instances = array();
     public static $parents = array();
     public static $selfParent = FALSE;
-    public static $depth = 0;
+    public static $parentDepth = 0;
 
     public function __construct($data = NULL) {
       if (!self::$_db) {
@@ -32,10 +32,7 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
       }
-      echo self::$depth.'/'.config::$depth.' ';
-      if (self::$depth < config::$depth) {
-        $this->populate();
-      }
+      $this->populate();
     }
     
     protected function _set($data) {
@@ -45,8 +42,8 @@
     }
     
     protected function populate() {
-      if (self::$depth < config::$depth) {
-        self::$depth++;
+      if (self::$parentDepth < config::$parentDepth) {
+        self::$parentDepth++;
         foreach (static::$parents as $field => $class) {
           if ($this->{$field.'_id'}) {
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
