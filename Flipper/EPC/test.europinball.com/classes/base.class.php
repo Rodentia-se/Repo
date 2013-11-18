@@ -43,7 +43,7 @@
       foreach (static::$parents as $field => $class) {
         if ($this->{$field.'_id'}) {
           if (array_key_exists('ID'.$this->{$field.'_id'}, $class::$instances)) {
-            $this->$field = $class::$instances['ID'.{$field.'_id'}];
+            $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
           } else {
             $this->$field = new $class($this->{$field.'_id'});
           }
