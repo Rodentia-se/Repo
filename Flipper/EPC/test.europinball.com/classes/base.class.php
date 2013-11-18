@@ -43,7 +43,9 @@
     protected function populate() {
       foreach (static::$parents as $field => $class) {
         if ($this->{$field.'_id'}) {
+          echo '<pre>';
           var_dump($class::$instances);
+          echo '</pre>';
           if (array_key_exists('ID'.$this->{$field.'_id'}, $class::$instances)) {
             $this->$field = $class::$instances['ID'.$id];
           } else {
