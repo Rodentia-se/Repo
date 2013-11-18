@@ -13,7 +13,11 @@
     public function __construct() {
       parent::__construct('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      unset($this->pass);
+      unset($host->pass);
+      unset($name->pass);
+      unset($user->pass);
+      unset($pass->pass);
+      unset($pass->charset);
     }
     
     public function getObjectById($class, $id) {
@@ -28,6 +32,7 @@
         $obj = $this->sth->fetchObject($class);
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
+          unset($this->queryString);
           return $obj;
         } else {
           return FALSE;
