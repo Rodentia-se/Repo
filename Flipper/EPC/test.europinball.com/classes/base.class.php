@@ -3,20 +3,9 @@
   abstract class base {
     
     public static $_db;
+    public static $instances = array();
+    public static $parents = array();
 
-    public $db;
-    public $id;
-    public $name;
-    public $fullName;
-    public $shortName;
-    public $acronym;
-    public $photo;
-    public $icon;
-    public $comment;
-    
-    public static $parents = array(
-    );
-    
     public function __construct($data = NULL) {
       if (!self::$_db) {
         self::$_db = new db();
@@ -24,7 +13,11 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          $obj = $this->db->getObjectById(get_class($this), $data);
+          if (array_key_exists('ID'.$id, static::$instances)) {
+            $obj = static::$instances['ID'.$id];
+          } else {
+            $obj = $this->db->getObjectById(get_class($this), $data);
+          }
           if ($obj) {
             $this->_set($obj);
           }
@@ -49,7 +42,11 @@
     protected function populate() {
       foreach (static::$parents as $field => $class) {
         if ($this->{$field.'_id'}) {
-          $this->$field = new $class($this->{$field.'_id'});
+          if (array_key_exists('ID'.$this->{$field.'_id'}, $class::$instances)) {
+            $this->$field = $class::$instances['ID'.$id];
+          } else {
+            $this->$field = new $class($this->{$field.'_id'});
+          }
         }
       }
     }
