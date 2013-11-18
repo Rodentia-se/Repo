@@ -3,7 +3,7 @@
   abstract class base {
     
     public static $_db;
-    private static $ids = array();
+    private static $instances = array();
 
     public $db;
     public $id;
@@ -25,17 +25,18 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          if (!in_array($data, self::$ids)) {
-            $obj = $this->db->getObjectById(get_class($this), $data);
-            if ($obj) {
-              $this->_set($obj);
-            }            
+          $obj = $this->db->getObjectById(get_class($this), $data);
+          if ($obj) {
+            $this->_set($obj);
           }
         } else if (is_string($data) && is_object(json_decode($data))) {
           $this->_set(json_decode($data));
         } else if (is_array($data)) {
           $this->_set($data);
         }
+      }
+      if ($this->id) {
+        static::$instances['ID'.$this->id] = $this;
       }
       $this->populate();
     }
