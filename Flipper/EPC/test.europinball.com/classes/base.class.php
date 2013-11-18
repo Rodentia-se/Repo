@@ -41,9 +41,10 @@
       }
     }
     
-    public function __set($prop, $val) {
+    public function __get($prop) {
       self::$parentDepth = 0;
       $this->populate();
+      return $this->$prop;
     }
     
     protected function populate() {
