@@ -21,7 +21,7 @@
     }
     
     public function getObjectById($class, $id) {
-      echo $class.' '.$id.': ';
+      echo '<br />'.$class.' '.$id.': ';
       if (array_key_exists('ID'.$id, $class::$instances)) {
         echo 'YES '.count($class::$instances).'<br/>';
         return $class::$instances['ID'.$id];
