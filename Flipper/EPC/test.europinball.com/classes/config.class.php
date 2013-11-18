@@ -2,7 +2,7 @@
 
   class config {
 
-    public static $depth = 1;
+    public static $depth = 2;
     
   }
 
