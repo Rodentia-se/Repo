@@ -13,6 +13,7 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
+          var_dump(static::$instances);
           if (array_key_exists('ID'.$id, static::$instances)) {
             $obj = static::$instances['ID'.$id];
           } else {
