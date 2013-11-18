@@ -12,8 +12,8 @@
 
 
   $tournament = new tournament(1);
-  $divisions = $tournament->getDivisions();
+//  $divisions = $tournament->getDivisions();
   
-  pre_dump($divisions);
+  pre_dump($tournament);
 
 ?>
