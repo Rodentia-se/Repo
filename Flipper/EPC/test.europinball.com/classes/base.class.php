@@ -18,8 +18,9 @@
     public static $parents = array(
     );
     
-    public function __construct($data = NULL, $populate = TRUE) {
+    public function __construct($data = NULL) {
       if (!self::$_db) {
+        echo 'NEW DB!<br/>';
         self::$_db = new db();
       } 
       $this->db = self::$_db;
@@ -49,7 +50,7 @@
     
     protected function populate() {
       foreach (static::$parents as $field => $class) {
-        $this->$field = new $class($this->{$field.'_id'}, FALSE);
+        $this->$field = new $class($this->{$field.'_id'});
       }
     }
 
