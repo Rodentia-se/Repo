@@ -17,9 +17,12 @@
     }
     
     public function getObjectById($class, $id) {
+      echo $class.' '.$id.': ';
       if (array_key_exists('ID'.$id, $class::$instances)) {
+        echo 'YES<br/>';
         return $class::$instances['ID'.$id];
       } else {
+        echo 'NO<br/>';
         $query = $class::$select.' where o.id = '.$id;
         $this->sth = $this->query($query);
         $obj = $this->sth->fetchObject($class);
