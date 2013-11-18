@@ -44,8 +44,7 @@
       while($obj = $this->sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
         $objs[] = $obj;
-      } 
-      unset($obj->db->sth);
+      }
       return $objs;
     }
 
