@@ -7,7 +7,6 @@
     private $user = 'epc';
     private $pass = 'vLdqLYyvxSZermEv';
     private $charset = 'utf8';
-    private $dbh;
     private $sth;
     
     public function __construct() {
@@ -31,6 +30,7 @@
         $this->sth = $this->query($query);
         $obj = $this->sth->fetchObject($class);
         unset($this->queryString);
+        unset($this->sth);
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
           return $obj;
