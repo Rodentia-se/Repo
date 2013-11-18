@@ -32,8 +32,8 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
       }
-      echo self::depth.'/'.config::$depth.' ';
-      if (self::depth < config::$depth) {
+      echo self::$depth.'/'.config::$depth.' ';
+      if (self::$depth < config::$depth) {
         $this->populate();
       }
     }
@@ -45,7 +45,7 @@
     }
     
     protected function populate() {
-      if (self::depth < config::$depth) {
+      if (self::$depth < config::$depth) {
         self::$depth++;
         foreach (static::$parents as $field => $class) {
           if ($this->{$field.'_id'}) {
