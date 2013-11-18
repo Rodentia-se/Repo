@@ -42,6 +42,7 @@
       $query = $class::$select.' where o.'.$column.' = '.$parent->id.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = '.$parent->id : '');
       echo $query;
       $this->sth = $this->query($query);
+      pre_dump($this->sth);
       while($obj = $this->sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
         $objs[] = $obj;
