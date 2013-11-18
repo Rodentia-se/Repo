@@ -13,6 +13,9 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
+          if (get_class($this) == 'continent') {
+            pre_dump(static::$instances);
+          }
           if (is_object(static::$instances['ID'.$data])) {
             $obj = static::$instances['ID'.$data];
           } else {
@@ -30,16 +33,7 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
       }
-          if (get_class($this) == 'continent') {
-            pre_dump(static::$instances);
-          }
       $this->populate();
-    }
-    
-    function __destruct() {
-      if ($this->id) {
-        unset(static::$instances['ID'.$this->id]);
-      }
     }
     
     protected function _set($data) {
