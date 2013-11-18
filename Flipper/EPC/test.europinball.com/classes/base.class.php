@@ -19,7 +19,6 @@
     
     public function __construct($data = NULL) {
       if (!self::$_db) {
-        echo 'NEW DB!<br/>';
         self::$_db = new db();
       } 
       $this->db = self::$_db;
@@ -48,14 +47,11 @@
     }
     
     protected function populate() {
-      echo count(static::$parents).' parents: ';
       foreach (static::$parents as $field => $class) {
-        echo $field.' ';
         if ($this->{$field.'_id'}) {
           $this->$field = new $class($this->{$field.'_id'});
         }
       }
-      echo '<br />';
     }
 
   }
