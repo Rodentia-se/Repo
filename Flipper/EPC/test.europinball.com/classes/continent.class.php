@@ -1,6 +1,6 @@
 <?php
 
-  class continent extends geography {
+  class continent extends country {
 
     public static $instances = array();
 
@@ -16,6 +16,10 @@
     
     public static $parents = array(
     );
+    
+    public function getCountries() {
+      return $this->db->getObjectsByParent('country', $this);
+    }
 
   }
 
