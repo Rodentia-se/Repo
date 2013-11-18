@@ -7,7 +7,6 @@
     private $user = 'epc';
     private $pass = 'vLdqLYyvxSZermEv';
     private $charset = 'utf8';
-    private $sth;
     
     public function __construct() {
       parent::__construct('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
@@ -24,8 +23,8 @@
         return $class::$instances['ID'.$id];
       } else {
         $query = $class::$select.' where o.id = '.$id;
-        $this->sth = $this->query($query);
-        $obj = $this->sth->fetchObject($class);
+        $sth = $this->query($query);
+        $obj = $sth->fetchObject($class);
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
           return $class::$instances['ID'.$id];
@@ -40,8 +39,8 @@
       $parentClass = get_class($parent);
       $query = $class::$select.' where o.'.$column.' = '.$parent->id.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = '.$parent->id : '');
       echo $query;
-      $this->sth = $this->query($query);
-      while($obj = $this->sth->fetchObject($class)) {
+      $sth = $this->query($query);
+      while($obj = $sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
         $objs[] = $obj;
       }
