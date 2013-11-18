@@ -11,11 +11,11 @@
         d.name as divisionName,
         concat(substring_index(o.name, " ", 1), ", ", right(o.name, 4)) as name,
         o.name as fullName,
-        d.acronym as acronym,
         substring_index(o.name, " ", 1) as shortName,
+        d.acronym as acronym,
         o.tournamentEdition_id as tournamentEdition_id
-      from division d
-      left join tournamentDivision o
+      from tournamentDivision o 
+      left join division d
         on o.division_id = d.id
     ';
     

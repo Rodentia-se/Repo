@@ -11,13 +11,14 @@
         t.name as tournamentName,
         o.name as name,
         concat(t.name, " ", left(o.startDate,4)) as fullName,
-        t.acronym as acronym,
         o.name as shortName,
+        t.acronym as acronym,
         o.startDate as startDate,
         o.endDate as endDate,
-        o.location_id as location_id
-      from tournament t
-      left join tournamentEdition o
+        o.location_id as location_id,
+        o.comment as comment
+      from tournamentEdition o 
+      left join tournament t
         on o.tournament_id = t.id
     ';
     

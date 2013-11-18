@@ -8,6 +8,9 @@
       select 
         o.id as id,
         o.name as name,
+        o.name as fullName,
+        o.name as shortName,
+        o.altName as altName,
         o.region_id as region_id,
         o.parentRegion_id as parentRegion_id,
         o.country_id as country_id,
