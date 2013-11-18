@@ -14,6 +14,6 @@
   $tournament = new tournament(1);
 //  $divisions = $tournament->getDivisions();
   
-  var_dump($tournament->location->city->region->continent);
+  pre_dump($tournament->location->city->region->continent);
 
 ?>
