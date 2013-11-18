@@ -40,6 +40,7 @@
       $column = ($column) ? $column : get_class($parent).'_id';
       $parentClass = get_class($parent);
       $query = $class::$select.' where o.'.$column.' = '.$parent->id.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = '.$parent->id : '');
+      echo $query;
       $this->sth = $this->query($query);
       while($obj = $this->sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
