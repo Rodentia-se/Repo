@@ -41,10 +41,11 @@
       $parentClass = get_class($parent);
       $query = $class::$select.' where o.'.$column.' = '.$parent->id.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = '.$parent->id : '');
       $this->sth = $this->query($query);
-      while ($obj = $sth->fetchObject($class)) {
+      while ($obj = $this->sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
         $objs[] = $obj;
       }
+      unset($obj->db->sth);
       return $objs;
     }
 
