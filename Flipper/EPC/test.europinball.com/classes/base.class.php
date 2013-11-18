@@ -7,7 +7,7 @@
     public static $parents = array();
     public static $selfParent = FALSE;
 
-    public function __construct($data = NULL) {
+    public function __construct($data = NULL, $depth = 0) {
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -31,7 +31,9 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
       }
-      $this->populate();
+      if ($depth < config::$depth) {
+        $this->populate($depth);
+      }
     }
     
     protected function _set($data) {
@@ -40,13 +42,13 @@
       }
     }
     
-    protected function populate() {
+    protected function populate($depth) {
       foreach (static::$parents as $field => $class) {
         if ($this->{$field.'_id'}) {
           if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
             $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
           } else {
-            $this->$field = new $class($this->{$field.'_id'});
+            $this->$field = new $class($this->{$field.'_id'}, $depth + 1);
           }
         }
       }
