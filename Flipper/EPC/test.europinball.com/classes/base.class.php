@@ -14,7 +14,7 @@
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
           if (get_class($this) == 'continent') {
-            pre_dump(continent::$instances);
+            pre_dump(static::$instances);
           }
           if (is_object(static::$instances['ID'.$data])) {
             $obj = static::$instances['ID'.$data];
