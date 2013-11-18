@@ -1,5 +1,9 @@
 <?php
 
-  public static $depth = 1;
+  class config {
+
+    public static $depth = 1;
+    
+  }
 
 ?>
