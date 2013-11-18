@@ -21,7 +21,6 @@
     ';
     
     public static $parents = array(
-      'city' => 'city'
     );
 
   }
