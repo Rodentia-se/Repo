@@ -14,7 +14,7 @@
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
           var_dump(static::$instances);
-          if (array_key_exists('ID'.$id, static::$instances)) {
+          if (is_object(static::$instances['ID'.$id])) {
             $obj = static::$instances['ID'.$id];
           } else {
             $obj = $this->db->getObjectById(get_class($this), $data);
