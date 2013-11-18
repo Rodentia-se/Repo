@@ -44,8 +44,8 @@
     }
     
     protected function populate($depth) {
-      foreach (static::$parents as $field => $class) {
-        if ($depth < config::$depth) {
+      if ($depth < config::$depth) {
+        foreach (static::$parents as $field => $class) {
           if ($this->{$field.'_id'}) {
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
