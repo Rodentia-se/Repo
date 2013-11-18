@@ -3,6 +3,7 @@
   abstract class base {
     
     public static $_db;
+    private static $ids = array();
 
     public $db;
     public $id;
@@ -24,9 +25,11 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          $obj = $this->db->getObjectById(get_class($this), $data);
-          if ($obj) {
-            $this->_set($obj);
+          if (!in_array($data, self::$ids)) {
+            $obj = $this->db->getObjectById(get_class($this), $data);
+            if ($obj) {
+              $this->_set($obj);
+            }            
           }
         } else if (is_string($data) && is_object(json_decode($data))) {
           $this->_set(json_decode($data));
@@ -34,10 +37,7 @@
           $this->_set($data);
         }
       }
-      if ($populate && get_class($this) == 'tournament') {
-        echo get_class($this).': '.$this->id.' P: '.(($populate === TRUE) ? 'true' : 'false').' ';
-        $this->populate();
-      }
+      $this->populate();
     }
     
     protected function _set($data) {
