@@ -1,21 +1,10 @@
 <?php
 
   class db extends PDO {
-    
-    private $host = 'localhost';
-    private $name = 'epc_test';
-    private $user = 'epc';
-    private $pass = 'vLdqLYyvxSZermEv';
-    private $charset = 'utf8';
-    
+
     public function __construct() {
-      parent::__construct('mysql:host='.$this->host.';dbname='.$this->name.';charset='.$this->charset, $this->user, $this->pass);
+      parent::__construct('mysql:host='.config::$dbhost.';dbname='.config::$dbname.';charset='.config::$charset, config::$dbuser, config::$dbpass);
       $this->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-      unset($this->host);
-      unset($this->name);
-      unset($this->user);
-      unset($this->pass);
-      unset($this->charset);
     }
     
     public function getObjectById($class, $id) {
