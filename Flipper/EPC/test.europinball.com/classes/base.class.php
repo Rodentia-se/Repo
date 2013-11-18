@@ -52,7 +52,9 @@
       echo count(static::$parents).' parents: ';
       foreach (static::$parents as $field => $class) {
         echo $field.' ';
-        $this->$field = new $class($this->{$field.'_id'});
+        if ($this->{$field.'_id'}) {
+          $this->$field = new $class($this->{$field.'_id'});
+        }
       }
       echo '<br />';
     }
