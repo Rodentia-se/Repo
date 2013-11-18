@@ -13,8 +13,8 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          if (is_object(static::$instances['ID'.$id])) {
-            $obj = static::$instances['ID'.$id];
+          if (is_object(static::$instances['ID'.$data])) {
+            $obj = static::$instances['ID'.$data];
           } else {
             $obj = $this->db->getObjectById(get_class($this), $data);
           }
@@ -48,7 +48,7 @@
     protected function populate() {
       foreach (static::$parents as $field => $class) {
         if ($this->{$field.'_id'}) {
-          if (array_key_exists('ID'.$this->{$field.'_id'}, $class::$instances)) {
+          if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
             $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
           } else {
             $this->$field = new $class($this->{$field.'_id'});

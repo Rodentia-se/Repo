@@ -19,7 +19,7 @@
     }
     
     public function getObjectById($class, $id) {
-      if (array_key_exists('ID'.$id, $class::$instances)) {
+      if (is_object($class::$instances['ID'.$id])) {
         return $class::$instances['ID'.$id];
       } else {
         $query = $class::$select.' where o.id = '.$id;
