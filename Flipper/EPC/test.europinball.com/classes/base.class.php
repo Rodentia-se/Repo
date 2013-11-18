@@ -13,11 +13,7 @@
       $this->db = self::$_db;
       if ($data) {
         if (preg_match('/^[0-9]+/', $data)) {
-          if (is_object(static::$instances['ID'.$id])) {
-            $obj = static::$instances['ID'.$id];
-          } else {
             $obj = $this->db->getObjectById(get_class($this), $data);
-          }
           if ($obj) {
             $this->_set($obj);
           }
