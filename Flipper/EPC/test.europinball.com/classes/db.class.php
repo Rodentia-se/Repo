@@ -21,7 +21,7 @@
     public function getObjectById($class, $id) {
       if (is_object($class::$instances['ID'.$id])) {
           if ($class == 'continent') {
-            pre_dump($class::$instances);
+            pre_dump(continent::$instances);
           }
         return $class::$instances['ID'.$id];
       } else {
@@ -31,7 +31,7 @@
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
           if ($class == 'continent') {
-            pre_dump($class::$instances);
+            pre_dump(continent::$instances);
           }
           return $class::$instances['ID'.$id];
         } else {
