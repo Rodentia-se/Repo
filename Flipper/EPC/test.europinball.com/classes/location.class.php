@@ -21,12 +21,7 @@
     ';
     
     public static $parents = array(
-      'city' => 'city',
-      'region' => 'region',
-      'parentRegion' => 'region',
-      'country' => 'country',
-      'parentCountry' => 'country',
-      'continent' => 'continent'
+      'city' => 'city'
     );
 
   }
