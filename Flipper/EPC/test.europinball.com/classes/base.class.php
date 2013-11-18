@@ -3,7 +3,6 @@
   abstract class base {
     
     public static $_db;
-    public static $instances = array();
 
     public $db;
     public $id;

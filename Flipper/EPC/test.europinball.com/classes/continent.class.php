@@ -2,6 +2,8 @@
 
   class continent extends geography {
 
+    public static $instances = array();
+
     public static $select = '
       select 
         o.id as id,

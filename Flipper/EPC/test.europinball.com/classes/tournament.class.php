@@ -2,6 +2,8 @@
 
   class tournament extends base {
     
+    public static $instances = array();
+
     public $tournament_id;
     public $startDate;
     public $endDate;
