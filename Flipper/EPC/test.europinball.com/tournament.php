@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/general.php');
   
   $tournament = new tournament(1);
-  $divisions = $country->getDivisions();
+  $divisions = $tournament->getDivisions();
   
   pre_dump($divisions);
 
