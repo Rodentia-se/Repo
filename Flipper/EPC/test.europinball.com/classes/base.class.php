@@ -32,7 +32,7 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
       }
-      echo $this->depth;
+      echo $this->depth.'/'.config::$depth.' ';
       if ($this->depth < config::$depth) {
         $this->populate();
       }
