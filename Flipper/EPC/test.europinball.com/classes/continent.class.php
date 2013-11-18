@@ -3,6 +3,7 @@
   class continent extends geography {
 
     public static $instances = array();
+    public static $selfParent = FALSE;
 
     public static $select = '
       select 

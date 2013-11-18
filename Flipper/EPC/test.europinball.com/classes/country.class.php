@@ -3,6 +3,7 @@
   class country extends geography {
 
     public static $instances = array();
+    public static $selfParent = TRUE;
 
     public static $select = '
       select 
