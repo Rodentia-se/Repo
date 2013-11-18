@@ -26,8 +26,8 @@
         $query = $class::$select.' where o.id = '.$id;
         $this->sth = $this->query($query);
         $obj = $this->sth->fetchObject($class);
-        unset($this->queryString);
-        unset($this->sth);
+        unset($obj->db->queryString);
+        unset($obj->db->sth);
         if ($this->last_row_count()) {
           $class::$instances['ID'.$id] = $obj;
           return $obj;
