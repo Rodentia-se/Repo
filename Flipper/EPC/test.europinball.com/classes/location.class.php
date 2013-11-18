@@ -30,6 +30,8 @@
       'parentCountry' => 'country',
       'continent' => 'continent'
     );
+    
+    public function getLocations() {}
 
   }
 

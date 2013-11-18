@@ -3,8 +3,8 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
   
-  $city = new city(1930);
-  $locations = $city->getLocations();
+  $country = new country(188);
+  $locations = $country->getLocations();
   
   pre_dump($locations);
 
