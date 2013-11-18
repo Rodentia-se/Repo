@@ -7,7 +7,7 @@
     public static $dbuser = 'epc';
     public static $dbpass = 'vLdqLYyvxSZermEv';
     public static $charset = 'utf8';
-    public static $parentDepth = 2;
+    public static $parentDepth = 1;  // The depth for automatic population of parent objects.
     
   }
 
