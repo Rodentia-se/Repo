@@ -43,6 +43,7 @@
       echo $query;
       $this->sth = $this->query($query);
       pre_dump($this->sth);
+      pre_dump($this->sth->fetchObject($class));
       while($obj = $this->sth->fetchObject($class)) {
         $class::$instances['ID'.$id] = $obj;
         $objs[] = $obj;
