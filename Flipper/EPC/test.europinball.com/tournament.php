@@ -3,10 +3,9 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
   
-  $tournament = new tournament(1);
+  $city = new city(1930);
+  $locations = $city->getLocations();
   
-  echo '<pre>';
-  var_dump($tournament);
-  echo '</pre>';
+  pre_dump($locations);
 
 ?>
