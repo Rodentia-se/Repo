@@ -27,6 +27,7 @@
       } else {
         echo 'NO<br/>';
         $query = $class::$select.' where o.id = '.$id;
+        echo $query;
         $this->sth = $this->query($query);
         $obj = $this->sth->fetchObject($class);
         unset($this->queryString);
