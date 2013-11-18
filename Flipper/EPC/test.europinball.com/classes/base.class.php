@@ -41,6 +41,11 @@
       }
     }
     
+    public function __set($prop, $val) {
+      self::$parentDepth = 0;
+      $this->populate();
+    }
+    
     protected function populate() {
       if (self::$parentDepth < config::$parentDepth) {
         self::$parentDepth++;
