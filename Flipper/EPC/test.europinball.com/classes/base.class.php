@@ -45,11 +45,13 @@
     
     protected function populate($depth) {
       foreach (static::$parents as $field => $class) {
-        if ($this->{$field.'_id'}) {
-          if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
-            $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
-          } else {
-            $this->$field = new $class($this->{$field.'_id'}, $depth + 1);
+        if ($depth < config::$depth) {
+          if ($this->{$field.'_id'}) {
+            if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
+              $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
+            } else {
+              $this->$field = new $class($this->{$field.'_id'}, $depth + 1);
+            }
           }
         }
       }
