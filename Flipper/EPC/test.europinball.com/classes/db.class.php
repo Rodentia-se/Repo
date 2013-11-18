@@ -20,14 +20,15 @@
       if (array_key_exists('ID'.$id, $class::$instances)) {
         return $class::$instances['ID'.$id];
       } else {
-      $query = $class::$select.' where o.id = '.$id;
-      $this->sth = $this->query($query);
-      $obj = $this->sth->fetchObject($class);
-      if ($this->last_row_count()) {
-        $class::$instances['ID'.$id] = $obj;
-        return $obj;
-      } else {
-        return FALSE;
+        $query = $class::$select.' where o.id = '.$id;
+        $this->sth = $this->query($query);
+        $obj = $this->sth->fetchObject($class);
+        if ($this->last_row_count()) {
+          $class::$instances['ID'.$id] = $obj;
+          return $obj;
+        } else {
+          return FALSE;
+        }
       }
     }
 
