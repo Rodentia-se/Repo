@@ -42,8 +42,10 @@
     }
     
     public function __get($prop) {
-      self::$parentDepth = 0;
-      $this->populate();
+      if (!$this->$prop) {
+        self::$parentDepth = 0;
+        $this->populate();
+      }
       return $this->$prop;
     }
     
