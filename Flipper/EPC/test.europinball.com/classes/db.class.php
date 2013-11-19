@@ -21,7 +21,7 @@
 
     protected function action($query, $values = NULL) {
       if ($values) {
-        $sth = $dbh->prepare($query);
+        $sth = $this->prepare($query);
         if (!$sth->execute($values)) {
           return FALSE;
         }
@@ -37,7 +37,7 @@
 
     public function select($query, $values = NULL) {
       if ($values) {
-        $sth = $dbh->prepare($query);
+        $sth = $this->prepare($query);
         if (!$sth->execute($values)) {
           return FALSE;
         }
@@ -108,7 +108,7 @@
           $values[':'.$key] = $value;
         }
       }
-      $sth = $dbh->prepare($query);
+      $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
       }
@@ -133,7 +133,7 @@
       $column = ($column) ? $column : $parentClass.'_id';
       $query = $class::$select.' where o.'.$column.' = :parentId'.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = :parentId' : '');
       $values[':parentId'] = $parent->id;
-      $sth = $dbh->prepare($query);
+      $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
       }
