@@ -101,11 +101,12 @@
     protected function getObjectsByProps($class, $props, $cond = 'and') {
       foreach ($props as $key => $value) {
         if ($where) {
-          $query = $class::$select.' where '.$key.' = :'.$key;
-          $values = array(':'.$key => $value);
-        } else {
           $query .= ' '.$cond.' '.$key.' = :'.$key;
           $values[':'.$key] = $value;
+        } else {
+          $query = $class::$select.' where '.$key.' = :'.$key;
+          $values = array(':'.$key => $value);
+          $where = true;
         }
       }
       $sth = $this->prepare($query);
