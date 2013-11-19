@@ -125,7 +125,7 @@
       if (is_object($class::$instances['ID'.$id])) {
         return $class::$instances['ID'.$id];
       } else {
-        return $this->getObjectsByProp($class, 'id', $id);
+        return $this->getObjectsByProp($class, 'o.id', $id);
       }
     }
     
