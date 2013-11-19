@@ -109,8 +109,6 @@
           $where = true;
         }
       }
-      pre_dump($query);
-      pre_dump($values);
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
