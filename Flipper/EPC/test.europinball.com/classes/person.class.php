@@ -32,7 +32,7 @@
         ifnull(v.hours, 0) as hours,
         ifnull(v.alloc, 0) as alloc,
         timediff(time(concat(ifnull(v.hours, "00"), ":00:00")), ifnull(v.alloc, time("00:00:00"))) as hoursDiff,
-        o.username as username,
+        o.username as username
       from person p
       left join volunteer v
         on v.person_id = o.id and v.tournamentEdition_id = 1
