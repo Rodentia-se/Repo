@@ -13,7 +13,18 @@
         self::$_db = new db();
       } 
       $this->db = self::$_db;
-      if (!$type) {
+      if ($search) {
+        if (isAssoc($data)) {
+          $obj = $this->db->getObjectsByProps($class, $data);
+        } else {
+          $obj = $this->db->getObjectsByProp(get_class($this), $search, $date);
+          if ($obj) {
+            $this->_set($obj);
+          } else {
+            return FALSE;
+          }
+        }
+      } else  {
         if ($data) {
           if (preg_match('/^[0-9]+/', $data)) {
             if (is_object(static::$instances['ID'.$data])) {
@@ -23,6 +34,8 @@
             }
             if ($obj) {
               $this->_set($obj);
+            } else {
+              return FALSE;
             }
           } else if (is_string($data) && is_object(json_decode($data))) {
             $this->_set(json_decode($data));

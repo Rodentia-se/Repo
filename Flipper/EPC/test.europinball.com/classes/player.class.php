@@ -68,7 +68,9 @@ class player extends participant {
     
     public function __construct($data, $type = NULL) {
       parent::__construct($data, $type);
-      $this->person == new person($this->person_id);
+      if ($this->person_id) {
+        $this->person == new person($this->person_id);
+      }
     }
     
     public function __call($method, $args) {

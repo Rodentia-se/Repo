@@ -5,8 +5,13 @@
       include __ROOT__.'/classes/'.$class.'.class.php';
     }
   });
+  
+  function isAssoc(&$arr) {
+    for (reset($arr); is_int(key($arr)); next($arr));
+    return !(is_array($arr) && is_null(key($arr)));
+  }
 
-  function pre_dump($obj) {
+  function preDump($obj) {
     echo '<pre>';
     var_dump($obj);
     echo '</pre>';
