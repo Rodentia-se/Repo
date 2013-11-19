@@ -100,12 +100,13 @@
     
     protected function getObjectsByProps($class, $props, $cond = 'and') {
       foreach ($props as $key => $value) {
+        $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
         if ($where) {
-          $query .= ' '.$cond.' '.$key.' = :'.str_replace('.', '', $key);
-          $values[':'.str_replace('.', '', $key)] = $value;
+          $query .= ' '.$cond.' '.$key.' = :'.preg_replace('[^a-zA-Z0-9_]', '', $key);
+          $values[':'.preg_replace('[^a-zA-Z0-9_]', '', $key)] = $value;
         } else {
-          $query = $class::$select.' where '.$key.' = :'.str_replace('.', '', $key);
-          $values = array(':'.str_replace('.', '', $key) => $value);
+          $query = $class::$select.' where '.$key.' = :'.preg_replace('[^a-zA-Z0-9_]', '', $key);
+          $values = array(':'.preg_replace('[^a-zA-Z0-9_]', '', $key) => $value);
           $where = true;
         }
       }
