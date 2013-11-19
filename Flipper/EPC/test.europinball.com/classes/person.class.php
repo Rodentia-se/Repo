@@ -2,7 +2,7 @@
 
   class person extends base {
    
-    public static select = '
+    public static $select = '
       select 
         o.id as id,
         o.firstName as firstName,
