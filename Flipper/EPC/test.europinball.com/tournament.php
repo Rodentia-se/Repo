@@ -17,7 +17,7 @@
   preDump($tournament->location->city->region->continent);
 */
 
-$player = new player('the@pal.pp.se', 'mailAddress');
+$player = new person('the@pal.pp.se', 'mailAddress');
 preDump($player);
 
 ?>
