@@ -45,7 +45,7 @@ class player extends participant {
       p.payDate as payDate,
       p.tournamentEdition_id as tournamentEdition_id,
       p.tournamentDivision_id as tournamentDivision_id,
-      o.username as username,
+      o.username as username
     from person p
     left join player p
       on p.person_id = o.id
