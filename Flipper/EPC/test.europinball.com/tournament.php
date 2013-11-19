@@ -17,15 +17,7 @@
   preDump($tournament->location->city->region->continent);
 */
 
-$a = array('hej', 'hepp', 'huff');
-preDump(isAssoc($a));
-$a = array(1 => 'hej', 3 => 'hepp', 2 => 'huff');
-preDump(isAssoc($a));
-$a = array('hej' => 'hej', 'hepp' => 'hepp', 'huff' => 'huff');
-preDump(isAssoc($a));
-$a = 'hej';
-preDump(isAssoc($a));
-$a = array('hej');
-preDump(isAssoc($a));
+$player = new player('the@pal.pp.se', 'mailAddress');
+preDump($player);
 
 ?>
