@@ -4,7 +4,7 @@ class player extends participant {
   
   private $person;
   
-  public static select = '
+  public static $select = '
     select 
       o.id as id,
       p.person_id as person_id,
