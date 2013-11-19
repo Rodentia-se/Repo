@@ -104,8 +104,8 @@
           $query .= ' '.$cond.' '.$key.' = :'.str_replace('.', '', $key);
           $values[':'.str_replace('.', '', $key)] = $value;
         } else {
-          $query = $class::$select.' where '.$key.' = :'.$key;
-          $values = array(':'.$key => $value);
+          $query = $class::$select.' where '.$key.' = :'.str_replace('.', '', $key);
+          $values = array(':'.str_replace('.', '', $key) => $value);
           $where = true;
         }
       }
