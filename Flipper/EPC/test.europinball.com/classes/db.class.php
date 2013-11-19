@@ -54,8 +54,8 @@
       if ($this->getRowCount() == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
-          $class::$instances['ID'.$obj->id]) = $obj;
-          return $class::$instances['ID'.$obj->id]);
+          $class::$instances['ID'.$obj->id] = $obj;
+          return $class::$instances['ID'.$obj->id];
         } else {
           return $obj;
         }
@@ -68,16 +68,16 @@
       if ($this->getRowCount() == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
-          $class::$instances['ID'.$obj->id]) = $obj;
-          return $class::$instances['ID'.$obj->id]);
+          $class::$instances['ID'.$obj->id] = $obj;
+          return $class::$instances['ID'.$obj->id];
         } else {
           return $obj;
         }
       } else if ($this->getRowCount() > 1) {
         while($obj = $sth->fetchObject($class)) {
           if ($class && $obj->id) {
-            $class::$instances['ID'.$obj->id]) = $obj;
-            $objs[] = $class::$instances['ID'.$obj->id]);
+            $class::$instances['ID'.$obj->id] = $obj;
+            $objs[] = $class::$instances['ID'.$obj->id];
           } else {
             $objs[] = $obj;
           }
