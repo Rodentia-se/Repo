@@ -9,6 +9,11 @@
       select 
         o.id as id,
         o.name as name,
+        o.name as fullName,
+        o.acronym as shortName,
+        o.acronym as acronym,
+        o.altName as altName,
+        o.capitalCity_id as capitalCity_id,
         o.parentRegion_id as parentRegion_id,
         o.country_id as country_id,
         o.parentCountry_id as parentCountry_id,
@@ -23,7 +28,8 @@
       'parentRegion' => 'region',
       'country' => 'country',
       'parentCountry' => 'country',
-      'continent' => 'continent'
+      'continent' => 'continent',
+      'capitalCity' => 'city'
     );
 
     public function getCities() {

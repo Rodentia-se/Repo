@@ -1,8 +1,9 @@
 <?php
 
-  abstract class geography extends base {
-
+  class timeSlot extends base {
+        
     public static $parents = array();
 
   }
+
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  class location extends base {
+  class team extends player {
         
     public static $instances = array();
 
@@ -9,22 +9,28 @@
         o.id as id,
         o.name as name,
         o.name as fullName,
-        o.name as shortName,
-        o.streetAddress as streetAddress,
-        o.zipCode as zipCode,
+        o.initials as shortName,
+        o.national as national,
+        o.contactPlayer_id as contactPlayer_id,
         o.city_id as city_id,
         o.region_id as region_id,
         o.parentRegion_id as parentRegion_id,
         o.country_id as country_id,
         o.parentCountry_id as parentCountry_id,
         o.continent_id as continent_id,
-        o.latitude as latitude,
-        o.longitude as longitude,
+        o.tournamentDivision_id as tournamentDivision_id,
+        o.tournamentEdition_id as tournamentEdition_id,
+        o.dateRegistered as dateRegistered,
+        o.registerPerson_id as registerPerson_id,
         o.comment as comment
-      from location o
+      from team o
     ';
     
     public static $parents = array(
+      'contactPlayer' => 'player',
+      'registerPerson_id' => 'person',
+      'tournamentEdition' => 'tournament',
+      'tournamentDivision' => 'division',
       'city' => 'city',
       'region' => 'region',
       'parentRegion' => 'region',

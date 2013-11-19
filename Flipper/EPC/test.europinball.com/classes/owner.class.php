@@ -1,6 +1,6 @@
 <?php
 
-  class location extends base {
+  class owner extends base {
         
     public static $instances = array();
 
@@ -9,7 +9,13 @@
         o.id as id,
         o.name as name,
         o.name as fullName,
-        o.name as shortName,
+        o.shortName as shortName,
+        o.shortName as acronym,
+        o.national as national,
+        o.contactPerson_id as contactPerson_id,
+        o.telephoneNumber as telephoneNumber,
+        o.mobileNumber as mobileNumber,
+        o.mailAddress as mailAddress,
         o.streetAddress as streetAddress,
         o.zipCode as zipCode,
         o.city_id as city_id,
@@ -20,11 +26,14 @@
         o.continent_id as continent_id,
         o.latitude as latitude,
         o.longitude as longitude,
+        o.account as account,
+        o.paid as paid,
         o.comment as comment
-      from location o
+      from team o
     ';
     
     public static $parents = array(
+      'contactPerson' => 'person',
       'city' => 'city',
       'region' => 'region',
       'parentRegion' => 'region',
