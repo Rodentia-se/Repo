@@ -35,14 +35,9 @@
 
     public static $baseHref = 'https://test.europinball.org/';
     
-    
-    
-    
     // Do not change anything below this line!
     public static $currentTournament = 1;
-    
-    
-    
+
   }
 
 ?>

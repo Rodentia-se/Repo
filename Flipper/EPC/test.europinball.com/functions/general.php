@@ -1,11 +1,7 @@
 <?php
 
-  spl_autoload_register(function($class) {
-    if (is_file(__ROOT__.'/classes/'.$class.'.class.php')) {
-      include __ROOT__.'/classes/'.$class.'.class.php';
-    }
-  });
-  
+  require_once('classes.php');
+
   function isAssoc(&$arr) {
     if (is_array($arr)) {
       for (reset($arr); is_int(key($arr)); next($arr));
@@ -20,5 +16,5 @@
     var_dump($obj);
     echo '</pre>';
   }
-
+  
 ?>
