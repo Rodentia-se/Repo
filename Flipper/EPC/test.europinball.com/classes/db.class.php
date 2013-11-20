@@ -116,6 +116,7 @@
       if (!$sth->execute($values)) {
         return FALSE;
       }
+      preDump($sth);
       return $this->getRows($sth, $class);
     }
 

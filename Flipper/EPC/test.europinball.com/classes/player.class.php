@@ -58,6 +58,7 @@ class player extends participant {
   ';
 
     public static $parents = array(
+      'person' => 'person',
       'qualGroup' => 'qualGroup',
       'tournamentEdition' => 'tournament',
       'tournamentDivision' => 'division',
@@ -70,17 +71,6 @@ class player extends participant {
       'continent' => 'continent'
     );
     
-    public function __construct($data, $type = NULL) {
-      parent::__construct($data, $type);
-      if ($this->person_id) {
-        $this->person == new person($this->person_id);
-      }
-    }
-    
-    public function __call($method, $args) {
-      $this->person->$method($args[0]);
-    }
-
   }
 
 ?>
