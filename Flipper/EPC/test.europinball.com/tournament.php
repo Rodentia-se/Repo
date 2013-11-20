@@ -17,7 +17,7 @@
   preDump($tournament->location->city->region->continent);
 */
 
-$player = new person('27', 'ifpa_id');
+$player = new player('27', 'ifpa_id');
 preDump($player);
 
 ?>
