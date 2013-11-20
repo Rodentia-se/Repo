@@ -51,10 +51,10 @@
     }
     
     protected function getRow($sth, $class = null) {
-      echo("Row count: ".$this->getRowCount());
-      if ($this->getRowCount() > 1) {
+      $rowCount = $this->getRowCount();
+      if ($rowCount > 1) {
         die('Error: Single object expected, several objects found...');
-      } else if ($this->getRowCount() == 1) {
+      } else if ($rowCount == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
           $class::$instances['ID'.$obj->id] = $obj;
@@ -68,8 +68,8 @@
     }
 
     protected function getRows($sth, $class = null) {
-      echo("Rows: ".$this->getRowCount());
-      if ($this->getRowCount() == 1) {
+      $rowCount = $this->getRowCount();
+      if ($rowCount == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
           $class::$instances['ID'.$obj->id] = $obj;
@@ -77,7 +77,7 @@
         } else {
           return $obj;
         }
-      } else if ($this->getRowCount() > 1) {
+      } else if ($rowCount > 1) {
         while($obj = $sth->fetchObject($class)) {
           if ($class && $obj->id) {
             $class::$instances['ID'.$obj->id] = $obj;
