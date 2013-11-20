@@ -31,6 +31,16 @@
       from person o
     ';
 
+    public static $parents = array(
+      'gender' => 'gender',
+      'city' => 'city',
+      'region' => 'region',
+      'parentRegion' => 'region',
+      'country' => 'country',
+      'parentCountry' => 'country',
+      'continent' => 'continent'
+    );
+
 /*
     public function __construct($data, $type = NULL, $search = NULL) {
       switch ($type) {
