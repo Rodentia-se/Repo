@@ -3,8 +3,10 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
 
-  $country = new country(188);
-  $obj = $country->getLocations();
+  $obj = new country(188);
+
+//  $country = new country(188);
+//  $obj = $country->getLocations();
   
 //  $tournament = new tournament(1);
 //  $obj = $tournament->getDivisions();
