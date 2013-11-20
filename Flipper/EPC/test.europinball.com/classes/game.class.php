@@ -1,6 +1,6 @@
 <?php
 
-  class game extends base {
+  class machine extends base {
         
     public static $instances = array();
 
@@ -31,6 +31,7 @@
     ';
     
     public static $parents = array(
+      'game' => 'game',
       'manufacturer' => 'manufacturer',
       'tournamentDivision' => 'division',
       'tournamentEdition' => 'tournament',

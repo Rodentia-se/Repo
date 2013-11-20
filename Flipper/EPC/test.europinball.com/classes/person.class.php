@@ -8,6 +8,7 @@
         o.firstName as firstName,
         o.lastName as lastName,
         concat(ifnull(o.firstName, " "), " ", ifnull(o.lastName, " ")) as name,
+        concat(ifnull(o.firstName, " "), " ", ifnull(o.lastName, " ")) as fullName,
         o.initials as shortName,
         o.streetAddress as streetAddress,
         o.zipCode as zipCode,
@@ -29,6 +30,7 @@
       from person o
     ';
 
+/*
     public function __construct($data, $type = NULL, $search = NULL) {
       switch ($type) {
         case 'username':
@@ -47,6 +49,7 @@
         break;
       }
     }
+*/
 
   }
 
