@@ -26,6 +26,7 @@
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
         o.comment as comment,
+        o.nonce as nonce,
         o.username as username
       from person o
     ';
