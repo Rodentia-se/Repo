@@ -69,15 +69,7 @@
 
     protected function getRows($sth, $class = null) {
       $rowCount = $this->getRowCount();
-      if ($rowCount == 1) {
-        $obj = $sth->fetchObject($class);
-        if ($class && $obj->id) {
-          $class::$instances['ID'.$obj->id] = $obj;
-          return $class::$instances['ID'.$obj->id];
-        } else {
-          return $obj;
-        }
-      } else if ($rowCount > 1) {
+      if ($rowCount > 0) {
         while($obj = $sth->fetchObject($class)) {
           if ($class && $obj->id) {
             $class::$instances['ID'.$obj->id] = $obj;
