@@ -57,12 +57,6 @@ class player extends participant {
 
     public static $parents = array(
       'person' => 'person',
-      'city' => 'city',
-      'region' => 'region',
-      'parentRegion' => 'region',
-      'country' => 'country',
-      'parentCountry' => 'country',
-      'continent' => 'continent'
     );
     
   }
