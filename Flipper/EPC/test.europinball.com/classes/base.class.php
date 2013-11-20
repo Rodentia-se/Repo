@@ -15,9 +15,9 @@
       $this->db = self::$_db;
       if ($search) {
         if (isAssoc($data)) {
-          $obj = $this->db->getObjectsByProps($class, $data);
+          $obj = $this->db->getObjectByProps($class, $data);
         } else if ($data) {
-          $obj = $this->db->getObjectsByProp(get_class($this), $search, $data);
+          $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
           if ($obj) {
             $this->_set($obj);
           } else {
