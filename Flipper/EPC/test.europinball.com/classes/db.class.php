@@ -51,7 +51,9 @@
     }
     
     protected function getRow($sth, $class = null) {
-      if ($this->getRowCount() == 1) {
+      if ($this->getRowCount() > 1) {
+        die('Error: Single object expected, several objects found...');
+      } else if ($this->getRowCount() == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
           $class::$instances['ID'.$obj->id] = $obj;
