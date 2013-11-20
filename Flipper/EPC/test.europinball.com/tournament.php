@@ -17,7 +17,7 @@
   preDump($tournament->location->city->region->continent);
 */
 
-$player = new player('27', 'ifpa_id');
+$player = new player(array('ifpa_id' => '27', 'tournamentDivision_id' => 1), true);
 preDump($player);
 
 ?>
