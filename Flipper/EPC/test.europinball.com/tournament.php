@@ -18,6 +18,8 @@
 */
 
 $player = new person(array('ifpa_id' => '27', 'mailAddress' => 'the@pal.pp.se'), true);
+$player = new person(array('ifpa_id' => '27', 'mailAddress' => 'the@pal.pp.se'), true);
+$player = new person('27', 'ifpa_id');
 echo 'hej';
 preDump($player);
 
