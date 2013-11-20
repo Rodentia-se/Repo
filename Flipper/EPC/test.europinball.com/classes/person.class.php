@@ -2,6 +2,8 @@
 
   class person extends base {
    
+    public static $instances = array();
+
     public static $select = '
       select
         o.id as id,
