@@ -56,7 +56,6 @@ class player extends participant {
   ';
 
     public static $parents = array(
-      'person' => 'person',
     );
     
   }
