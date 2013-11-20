@@ -2,7 +2,7 @@
 
 class player extends participant {
   
-  public $person;
+  private $person;
   
   public static $select = '
     select 
