@@ -17,7 +17,7 @@
   preDump($tournament->location->city->region->continent);
 */
 
-$player = new player(array('ifpa_id' => '27', 'tournamentDivision_id' => 1), true);
+$player = new person(array('ifpa_id' => '27', 'mailAddress' => 'the@pal.pp.se'), true);
 echo 'hej';
 preDump($player);
 
