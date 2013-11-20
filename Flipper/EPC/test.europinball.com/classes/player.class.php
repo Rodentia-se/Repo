@@ -1,7 +1,7 @@
 <?php
 
 class player extends participant {
-  
+    
   public static $select = '
     select 
       o.id as id,
