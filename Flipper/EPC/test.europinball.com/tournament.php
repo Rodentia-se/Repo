@@ -20,6 +20,6 @@
  $obj = new players(1645, 'id');
 
 echo 'hej';
-preDump($obj);
+preDump($obj[0]);
 
 ?>
