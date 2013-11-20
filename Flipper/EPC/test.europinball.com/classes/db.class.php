@@ -68,6 +68,7 @@
     }
 
     protected function getRows($sth, $class = null) {
+      echo("Rows: ".$this->getRowCount());
       if ($this->getRowCount() == 1) {
         $obj = $sth->fetchObject($class);
         if ($class && $obj->id) {
