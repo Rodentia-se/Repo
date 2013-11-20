@@ -131,7 +131,7 @@
 
     public function getObjectByProp($class, $prop, $value) {
       $props[$prop] = $value;
-      return $this->getObjectsByProps($class, $props);
+      return $this->getObjectByProps($class, $props);
     }
 
     public function getObjectsByProps($class, $props, $cond = 'and') {
