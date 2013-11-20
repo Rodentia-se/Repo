@@ -33,7 +33,7 @@ class player extends participant {
       v.here as hereVol,
       o.ifpa_id as ifpa_id,
       coalesce(p.ifpaRank, o.ifpaRank) as ifpaRank,
-      coalesce(p.adminLevel, o.adminLevel) as adminLevel,
+      v.adminLevel as adminLevel,
       coalesce(p.comment, o.comment) as comment,
       p.qualGroup_id as qualGroup_id,
       if(v.id is not null,1,0) as volunteer,

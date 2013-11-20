@@ -24,7 +24,6 @@
         o.birthDate as birthDate,
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
-        o.adminLevel as adminLevel,
         o.comment as comment,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
