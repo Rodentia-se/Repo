@@ -51,7 +51,7 @@
     }
     
     protected function getRow($sth, $class = null) {
-      preDump($this->getRowCount());
+      echo("Rows: ".$this->getRowCount());
       if ($this->getRowCount() > 1) {
         die('Error: Single object expected, several objects found...');
       } else if ($this->getRowCount() == 1) {
