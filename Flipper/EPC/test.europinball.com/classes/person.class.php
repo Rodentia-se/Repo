@@ -22,7 +22,6 @@
         o.mobileNumber as mobileNumber,
         o.mailAddress as mailAddress,
         o.birthDate as birthDate,
-        o.place as place,
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
         o.adminLevel as adminLevel,
