@@ -124,22 +124,22 @@
       return $sth;
     }
     
-    protected function getObjectByProps($class, $props, $cond = 'and') {
+    public function getObjectByProps($class, $props, $cond = 'and') {
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
       return $this->getRow($sth, $class);
     }
 
-    protected function getObjectByProp($class, $prop, $value) {
+    public function getObjectByProp($class, $prop, $value) {
       $props[$prop] = $value;
       return $this->getObjectsByProps($class, $props);
     }
 
-    protected function getObjectsByProps($class, $props, $cond = 'and') {
+    public function getObjectsByProps($class, $props, $cond = 'and') {
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
       return $this->getRows($sth, $class);
     }
 
-    protected function getObjectsByProp($class, $prop, $value) {
+    public function getObjectsByProp($class, $prop, $value) {
       $props[$prop] = $value;
       return $this->getObjectsByProps($class, $props);
     }
