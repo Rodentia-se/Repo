@@ -3,8 +3,8 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
 
-//  $country = new country(188);
-//  $obj = $country->getLocations();
+  $country = new country(188);
+  $obj = $country->getLocations();
   
 //  $tournament = new tournament(1);
 //  $obj = $tournament->getDivisions();
@@ -14,7 +14,7 @@
 
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
-$obj = new player(1645);
+// $obj = new player(1645);
 
 echo 'hej';
 preDump($obj);
