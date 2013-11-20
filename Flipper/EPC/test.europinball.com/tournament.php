@@ -18,6 +18,7 @@
 */
 
 $player = new player(array('ifpa_id' => '27', 'tournamentDivision_id' => 1), true);
+echo 'hej';
 preDump($player);
 
 ?>
