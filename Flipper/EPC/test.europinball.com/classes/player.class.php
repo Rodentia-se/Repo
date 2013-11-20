@@ -59,10 +59,6 @@ class player extends participant {
 
     public static $parents = array(
       'person' => 'person',
-      'qualGroup' => 'qualGroup',
-      'tournamentEdition' => 'tournament',
-      'tournamentDivision' => 'division',
-      'gender' => 'gender',
       'city' => 'city',
       'region' => 'region',
       'parentRegion' => 'region',
