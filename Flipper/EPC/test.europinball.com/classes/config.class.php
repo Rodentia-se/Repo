@@ -10,7 +10,7 @@
     public static $dbconfig = FALSE; // Set to TRUE to keep the rest of the config in the database
     
     // The below will not be used if $dbconfig is set to TRUE
-    public static $parentDepth = 1;  // The depth for automatic population of parent objects.
+    public static $parentDepth = 3;  // The depth for automatic population of parent objects.
     public static $activeTournament = 1;
  
     public static $main = TRUE;
