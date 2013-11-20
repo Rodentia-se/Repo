@@ -65,6 +65,7 @@
     }
     
     protected function populate() {
+      echo 'POP';
       if (self::$parentDepth < config::$parentDepth) {
         self::$parentDepth++;
         foreach (static::$parents as $field => $class) {
