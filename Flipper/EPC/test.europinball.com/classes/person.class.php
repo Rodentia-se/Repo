@@ -27,13 +27,14 @@
         o.comment as comment,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
+        v.adminLevel as adminLevel,
         ifnull(v.hours, 0) as hours,
         ifnull(v.alloc, 0) as alloc,
         timediff(time(concat(ifnull(v.hours, "00"), ":00:00")), ifnull(v.alloc, time("00:00:00"))) as hoursDiff,
         o.username as username
       from person o
       left join volunteer v
-        on v.person_id = o.id and v.tournamentEdition_id = 1
+        on v.person_id = o.id and v.tournamentEdition_id = '.config::$currentTournament.'
     ';
 
     public function __construct($data, $type = NULL, $search = NULL) {
