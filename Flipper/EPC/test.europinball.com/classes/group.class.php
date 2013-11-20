@@ -1,11 +1,15 @@
 <?php
 
-  abstract class group extends base implements ArrayAccess {
+  abstract class group implements ArrayAccess {
     
     private $container = array();
     public static $type = 'group';
     
     public function __construct($data = NULL, $prop = NULL) {
+      if (!base::$_db) {
+        base::$_db = new db();
+      } 
+      $this->db = base::$_db;
       if (isAssoc($data)) {
         $objs = $this->db->getObjectsByProps(static::$type, $data);
       } else if ($data && $prop) {
@@ -40,19 +44,5 @@
         return isset($this->container[$offset]) ? $this->container[$offset] : null;
     }
     
-    protected function _set($data) {
-      foreach ($data as $key => $value) {
-        $this->{$key} = $value;
-      }
-    }
-    
-    public function __get($prop) {
-      return $this->$prop;
-    }
-    
-    protected function populate() {
-      return false;
-    }
-
   }
 ?>
