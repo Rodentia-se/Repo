@@ -102,7 +102,7 @@
       return $this->getRows($sth, $class);
     }
     
-    protected function getObjectsByProps($class, $props, $cond = 'and') {
+    protected function getObjectsByPropsHelper($class, $props, $cond = 'and') {
       foreach ($props as $key => $value) {
         $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
         if ($where) {
@@ -121,10 +121,25 @@
         return FALSE;
       }
       preDump($sth);
+      return $sth;
+    }
+    
+    protected function getObjectByProps($class, $props, $cond = 'and') {
+      $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
+      return $this->getRow($sth, $class);
+    }
+
+    protected function getObjectByProp($class, $prop, $value) {
+      $props[$prop] = $value;
+      return $this->getObjectsByProps($class, $props);
+    }
+
+    protected function getObjectsByProps($class, $props, $cond = 'and') {
+      $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
       return $this->getRows($sth, $class);
     }
 
-    public function getObjectsByProp($class, $prop, $value) {
+    protected function getObjectsByProp($class, $prop, $value) {
       $props[$prop] = $value;
       return $this->getObjectsByProps($class, $props);
     }
