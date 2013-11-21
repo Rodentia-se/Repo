@@ -123,6 +123,15 @@
       return $this->getObjectByProps($class, $props);
     }
 
+    public function getObjectByWhere($class, $where = 1) {
+      $query = $class::$select.' '.((preg_match('/^where /', trim($where))) ? '' : 'where ').$where;
+      $sth = $this->query($query);
+      if (!$sth) {
+        return FALSE;
+      }        
+      return $this->getRow($sth, $class);
+    }
+
     public function getObjectsByProps($class, $props, $cond = 'and') {
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
       return $this->getRows($sth, $class);
@@ -131,6 +140,15 @@
     public function getObjectsByProp($class, $prop, $value) {
       $props[$prop] = $value;
       return $this->getObjectsByProps($class, $props);
+    }
+
+    public function getObjectsByWhere($class, $where = 1) {
+      $query = $class::$select.' '.((preg_match('/^where /', trim($where))) ? '' : 'where ').$where;
+      $sth = $this->query($query);
+      if (!$sth) {
+        return FALSE;
+      }        
+      return $this->getRows($sth, $class);
     }
 
     public function getObjectById($class, $id) {
