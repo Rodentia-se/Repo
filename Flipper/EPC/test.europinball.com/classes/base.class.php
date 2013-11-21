@@ -68,7 +68,6 @@
       if (self::$parentDepth < config::$parentDepth) {
         self::$parentDepth++;
         foreach (static::$parents as $field => $class) {
-          echo 'POP: f'.$field.' c'.$class.'<br>';
           if ($this->{$field.'_id'}) {
             $this->{$field.'ParentDepth'} = self::$parentDepth;
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
