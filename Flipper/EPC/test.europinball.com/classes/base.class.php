@@ -75,7 +75,7 @@
             } else {
               $this->$field = new $class($this->{$field.'_id'});
             }
-            $this->{$field.'Name'} = $rhis->$field->name;
+            $this->{$field.'Name'} = $this->$field->name;
           }
         }
         self::$parentDepth--;
@@ -94,7 +94,7 @@
     }
     
     function getFlat() {
-      $obj = $this;
+      $obj = clone $this;
       foreach (static::$parents as $field => $class) {
         unset($obj->$field);
       }
