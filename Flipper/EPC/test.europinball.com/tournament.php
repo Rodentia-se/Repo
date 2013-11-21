@@ -22,7 +22,7 @@
 echo 'hej';
 foreach($objs as $obj) {
   echo '<br><br>';
-  echo($obj->id.' ');  
+  echo ($obj->id) ? $obj->id : 'No ID';  
 }
 
 ?>
