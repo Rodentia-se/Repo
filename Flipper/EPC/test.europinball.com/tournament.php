@@ -17,7 +17,7 @@
 
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
- $objs = new players($obj);
+ $objs = new players('the@pal.pp.se');
 
 echo 'hej';
 foreach($objs as $obj) {
