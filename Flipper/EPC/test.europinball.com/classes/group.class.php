@@ -1,8 +1,7 @@
 <?php
 
-  abstract class group implements ArrayAccess {
+  abstract class group extends ArrayObject {
     
-    private $container = array();
     public static $type = 'group';
     
     public function __construct($data = NULL, $prop = NULL) {
@@ -15,34 +14,35 @@
       } else if ($data && $prop) {
         $objs = $this->db->getObjectsByProp(static::$type, $prop, $data);
       }
+      parent::__construct();
       if ($objs) {
         foreach ($objs as $obj) {
           $this[] = $obj;
         }
-      } else {
-        return FALSE;
       }
     }
 
-    public function offsetSet($offset, $value) {
-      if (is_null($offset)) {
-        $this->container[] = $value;
+/*
+    public function offsetSet($index, $value) {
+      if (is_null($index)) {
+        $this->objects[] = $value;
       } else {
-        $this->container[$offset] = $value;
+        $this->objects[$index] = $value;
       }
     }
 
-    public function offsetExists($offset) {
-        return isset($this->container[$offset]);
+    public function offsetExists($index) {
+        return isset($this->objects[$index]);
     }
 
-    public function offsetUnset($offset) {
-        unset($this->container[$offset]);
+    public function offsetUnset($index) {
+        unset($this->objects[$index]);
     }
 
-    public function offsetGet($offset) {
-        return isset($this->container[$offset]) ? $this->container[$offset] : null;
+    public function offsetGet($index) {
+        return isset($this->objects[$index]) ? $this->objects[$index] : null;
     }
+*/
     
   }
 ?>
