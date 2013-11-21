@@ -21,7 +21,8 @@
 
 echo 'hej';
 foreach($objs as $obj) {
-  echo $obj;  
+  echo '<br><br>';
+  preDump($obj);  
 }
 
 ?>
