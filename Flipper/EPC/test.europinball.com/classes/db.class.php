@@ -171,10 +171,6 @@
       return $this->getRows($sth, $class);
     }
     
-    public function getObjectsByWhere($class, $where) {
-      
-    }
-
     public function getRowCount() {
       return $this->query("SELECT FOUND_ROWS()")->fetchColumn();
     }
