@@ -28,10 +28,10 @@ foreach($objs as $obj) {
   preDump($obj);
   preDump($obj->getFlat());
   preDump($obj);
-  preDump(json_encode($obj));
+  echo(json_encode($obj));
   preDump($obj);
   $obj->flatten();
   preDump($obj);
 }
 
-?>
+?> 
