@@ -22,7 +22,7 @@
 echo 'hej';
 foreach($objs as $obj) {
   echo '<br><br>';
-  echo ($obj->id) ? $obj->id : 'No ID';  
+  echo ($obj->id) ? $obj->id.': '.$obj->firstName.' '.$obj->lastName : 'No ID';  
 }
 
 ?>
