@@ -21,8 +21,11 @@
 
 echo 'hej';
 foreach($objs as $obj) {
+/*
   echo '<br><br>';
   echo ($obj->id) ? $obj->id.': '.$obj->firstName.' '.$obj->lastName : 'No ID';  
+  */
+  preDump($obj);
 }
 
 ?>
