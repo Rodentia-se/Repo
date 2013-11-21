@@ -26,6 +26,12 @@ foreach($objs as $obj) {
   echo ($obj->id) ? $obj->id.': '.$obj->firstName.' '.$obj->lastName : 'No ID';  
   */
   preDump($obj);
+  preDump($obj->getFlat());
+  preDump($obj);
+  preDump(json_encode($obj));
+  preDump($obj);
+  $obj->flatten();
+  preDump($obj);
 }
 
 ?>
