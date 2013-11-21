@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/general.php');
 
 //  $obj = new city(8);
-//  $obj = new country(188);
+  $obj = new country(188);
 
 //  $country = new country(188);
 //  $obj = $country->getLocations();
@@ -17,7 +17,7 @@
 
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
- $objs = new players(188, 'country_id');
+ $objs = new players($obj);
 
 echo 'hej';
 foreach($objs as $obj) {
