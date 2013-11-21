@@ -1,6 +1,6 @@
 <?php
 
-  abstract class base {
+  abstract class base implements JsonSerializable {
     
     public static $_db;
     public static $instances = array();
@@ -75,10 +75,30 @@
             } else {
               $this->$field = new $class($this->{$field.'_id'});
             }
+            $this->{$field.'Name'} = $rhis->$field->name;
           }
         }
         self::$parentDepth--;
       }
+    }
+
+    function jsonSerialize() {
+      self::$parentDepth = 999999;
+      return $this;
+    }
+    
+    function flatten() {
+      foreach (static::$parents as $field => $class) {
+        unset($this->$field);
+      }
+    }
+    
+    function getFlat() {
+      $obj = $this;
+      foreach (static::$parents as $field => $class) {
+        unset($obj->$field);
+      }
+      return $obj;
     }
 
   }

@@ -21,6 +21,10 @@
     public static $parents = array(
       'tournamentEdition' => 'tournament'
     );
+    
+    public function __toString() {
+      
+    }
 
   }
 

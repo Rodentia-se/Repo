@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/general.php');
 
-  $obj = new city(8);
+  $obj = new city(1390);
 //  $obj = new country(188);
 
 //  $country = new country(188);
