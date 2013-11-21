@@ -17,12 +17,12 @@
 
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
- $objs = new players(1645, 'id');
+ $objs = new players(188, 'country_id');
 
 echo 'hej';
 foreach($objs as $obj) {
   echo '<br><br>';
-  preDump($obj);  
+  echo($obj->id.' ');  
 }
 
 ?>
