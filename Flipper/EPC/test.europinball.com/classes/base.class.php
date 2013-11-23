@@ -3,7 +3,7 @@
   abstract class base implements JsonSerializable {
     
     public static $_db;
-    public static $instances = array();
+    public static $instances;
     public static $parents = array();
     public static $selfParent = FALSE;
     public static $parentDepth = 0;
@@ -13,6 +13,9 @@
         self::$_db = new db();
       } 
       $this->db = self::$_db;
+      if (!static::$instances) {
+        static::$instances = new $this->arrClass;
+      }
       if ($search) {
         if (isAssoc($data)) {
           $obj = $this->db->getObjectByProps(get_class($this), $data);
