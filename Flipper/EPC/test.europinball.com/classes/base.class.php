@@ -13,7 +13,7 @@
         self::$_db = new db();
       } 
       $this->db = self::$_db;
-      if (!static::$instances && property_exists($this, 'arrClass') {
+      if (!static::$instances && property_exists($this, 'arrClass')) {
         static::$instances = new static::$arrClass;
       } else {
         static::$instances = array();
