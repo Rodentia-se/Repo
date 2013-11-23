@@ -2,7 +2,7 @@
 
   class player extends participant {
     
-    public static $instances = players();
+    public static $instances = new players();
 
     public static $select = '
       select 
