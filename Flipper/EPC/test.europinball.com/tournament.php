@@ -19,7 +19,7 @@
 // $obj = new player('27', 'ifpa_id');
  $objs = new player(1645);
  
- preDump($objs);
+ preDump(player::$instances);
 
 /*
 echo 'hej';
