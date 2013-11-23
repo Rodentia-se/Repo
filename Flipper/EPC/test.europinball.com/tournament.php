@@ -17,7 +17,7 @@
 
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
- $objs = new players($obj);
+ $objs = new player(1645);
  
  preDump($objs);
 
