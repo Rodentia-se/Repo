@@ -18,13 +18,17 @@
 // $obj = new person('27', 'ifpa_id');
 // $obj = new player('27', 'ifpa_id');
  $objs = new players($obj);
+ 
+ preDump($objs);
 
+/*
 echo 'hej';
 foreach($objs as $obj) {
 /*
   echo '<br><br>';
   echo ($obj->id) ? $obj->id.': '.$obj->firstName.' '.$obj->lastName : 'No ID';  
   */
+/*
   preDump($obj);
   preDump($obj->getFlat());
   preDump($obj);
@@ -33,5 +37,6 @@ foreach($objs as $obj) {
   $obj->flatten();
   preDump($obj);
 }
+*/
 
 ?> 
