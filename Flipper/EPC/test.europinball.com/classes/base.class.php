@@ -13,8 +13,10 @@
         self::$_db = new db();
       } 
       $this->db = self::$_db;
-      if (!static::$instances) {
+      if (!static::$instances && static::$arrClass) {
         static::$instances = new static::$arrClass;
+      } else {
+        static::$instances = array();
       }
       if ($search) {
         if (isAssoc($data)) {
