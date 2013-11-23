@@ -19,9 +19,9 @@
 // $obj = new player('27', 'ifpa_id');
  $objs = new player(1645);
  
-echo "P".property_exists($this, '$arrClass');
-echo " P2".property_exists($this, 'arrClass');
-echo " A".$this->arrClass;
+echo "P".property_exists($objs, '$arrClass');
+echo " P2".property_exists($objs, 'arrClass');
+echo " A".$objs->arrClass;
 echo " A2".player::arrClass;
  preDump(player::$instances);
 
