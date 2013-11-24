@@ -44,8 +44,6 @@
           $this[] = $obj;
         }
       }
-              echo "HUPP2".get_class(player::$instances);
-
     }
 
   }

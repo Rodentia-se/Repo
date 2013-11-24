@@ -38,6 +38,7 @@
             } else {
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
+        echo "HUPP2".get_class(static::$instances);
             if ($obj) {
               $this->_set($obj);
             } else {
@@ -54,6 +55,7 @@
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
       }
+        echo "HUPP3".get_class(static::$instances);
     }
     
     protected function _set($data) {
