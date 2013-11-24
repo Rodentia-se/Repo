@@ -2,7 +2,8 @@
 
   class person extends base {
    
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'persons';
 
     public static $select = '
       select

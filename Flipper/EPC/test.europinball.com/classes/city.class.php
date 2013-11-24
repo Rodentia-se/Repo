@@ -2,7 +2,8 @@
 
   class city extends geography {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'cities';
 
     public static $select = '
       select 

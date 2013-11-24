@@ -2,7 +2,8 @@
 
   class gender extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'genders';
 
     public static $select = '
       select 

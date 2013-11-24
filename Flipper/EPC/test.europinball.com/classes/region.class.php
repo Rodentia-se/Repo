@@ -2,7 +2,9 @@
 
   class region extends city {
 
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'regions';
+
     public static $selfParent = TRUE;
 
     public static $select = '

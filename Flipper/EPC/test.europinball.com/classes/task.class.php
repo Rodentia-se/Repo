@@ -2,7 +2,8 @@
 
   class task extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'tasks';
 
     public static $select = '
       select 

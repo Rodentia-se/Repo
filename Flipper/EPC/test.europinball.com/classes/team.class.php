@@ -2,7 +2,8 @@
 
   class team extends player {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'teams';
 
     public static $select = '
       select 

@@ -2,7 +2,8 @@
 
   class tshirt extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'tshirts';
 
     public static $select = '
       select 

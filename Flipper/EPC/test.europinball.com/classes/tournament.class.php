@@ -2,7 +2,8 @@
 
   class tournament extends base {
     
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'tournaments';
 
     public static $select = '
       select 

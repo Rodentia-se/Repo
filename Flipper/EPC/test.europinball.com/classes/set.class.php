@@ -2,7 +2,8 @@
 
   class set extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'sets';
 
     public static $select = '
       select 

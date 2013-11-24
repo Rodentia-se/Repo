@@ -2,7 +2,8 @@
 
   class owner extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'owners';
 
     public static $select = '
       select 

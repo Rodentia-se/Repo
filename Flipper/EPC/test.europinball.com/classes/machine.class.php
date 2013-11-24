@@ -2,7 +2,8 @@
 
   class machine extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'machines';
 
     public static $select = '
       select 

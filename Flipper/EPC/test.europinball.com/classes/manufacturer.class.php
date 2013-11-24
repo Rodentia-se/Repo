@@ -2,7 +2,8 @@
 
   class manufacturer extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'manufacturers';
 
     public static $select = '
       select 

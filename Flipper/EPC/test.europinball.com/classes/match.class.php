@@ -2,7 +2,8 @@
 
   class match extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'matches';
 
     public static $select = '
       select 

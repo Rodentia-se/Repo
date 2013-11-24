@@ -2,7 +2,9 @@
 
   class country extends region {
 
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'countries';
+
     public static $selfParent = TRUE;
 
     public static $select = '

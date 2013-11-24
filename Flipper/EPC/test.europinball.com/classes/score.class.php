@@ -2,7 +2,8 @@
 
   class score extends base {
         
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'score';
 
     public static $select = '
       select 

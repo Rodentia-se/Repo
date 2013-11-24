@@ -2,7 +2,8 @@
 
   class division extends base {
     
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'divisions';
 
     public static $select = '
       select 

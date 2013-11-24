@@ -2,7 +2,8 @@
 
   class continent extends country {
 
-    public static $instances = array();
+    public static $instances;
+    public static $arrClass = 'continents';
 
     public static $select = '
       select 
