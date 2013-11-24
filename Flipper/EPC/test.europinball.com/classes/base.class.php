@@ -52,13 +52,14 @@
           }
           echo (get_class($this) == 'player') ? "HUPP4".get_class(static::$instances) : '';
         }
+        echo (get_class($this) == 'player') ? "HUPP5".get_class(static::$instances) : '';
       }
-      echo (get_class($this) == 'player') ? "HUPP5".get_class(static::$instances) : '';
+      echo (get_class($this) == 'player') ? "HUPP6".get_class(static::$instances) : '';
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
       }
-      echo (get_class($this) == 'player') ? "HUPP6".get_class(static::$instances) : '';
+      echo (get_class($this) == 'player') ? "HUPP7".get_class(static::$instances) : '';
     }
     
     protected function _set($data) {
