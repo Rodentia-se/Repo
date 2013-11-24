@@ -24,6 +24,9 @@
 // echo " A".$objs->arrClass;
  echo " A2".player::$arrClass;
  preDump(get_class(player::$instances));
+ preDump(get_class(city::$instances));
+ preDump(get_class(country::$instances));
+ preDump(get_class(gender::$instances));
 
 /*
 echo 'hej';
