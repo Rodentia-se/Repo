@@ -15,7 +15,7 @@
       $this->db = self::$_db;
       if (!static::$instances && property_exists($this, 'arrClass')) {
         static::$instances = new static::$arrClass;
-        echo "HUPP";
+        echo "HUPP".get_class(static::$instances);
       } else {
         static::$instances = array();
       }
