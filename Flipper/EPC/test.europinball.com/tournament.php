@@ -23,7 +23,7 @@
 // echo " P2".property_exists($objs, 'arrClass');
 // echo " A".$objs->arrClass;
  echo " A2".player::$arrClass;
- preDump(getclass(player::$instances));
+ preDump(get_class(player::$instances));
 
 /*
 echo 'hej';
