@@ -15,7 +15,7 @@
       $this->db = self::$_db;
       if (!static::$instances && property_exists($this, 'arrClass')) {
         static::$instances = new static::$arrClass;
-        echo "HUPP".get_class(static::$instances);
+        echo (get_class($this) == 'player') ? "HUPP".get_class(static::$instances) : '';
       } else {
         static::$instances = array();
       }
@@ -32,13 +32,14 @@
         }
       } else  {
         if ($data) {
+        echo (get_class($this) == 'player') ? "HUPP2".get_class(static::$instances) : '';
           if (preg_match('/^[0-9]+/', $data)) {
             if (is_object(static::$instances['ID'.$data])) {
               $obj = static::$instances['ID'.$data];
             } else {
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
-        echo "HUPP2".get_class(static::$instances);
+        echo (get_class($this) == 'player') ? "HUPP3".get_class(static::$instances) : '';
             if ($obj) {
               $this->_set($obj);
             } else {
@@ -55,7 +56,7 @@
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
       }
-        echo "HUPP3".get_class(static::$instances);
+        echo (get_class($this) == 'player') ? "HUPP4".get_class(static::$instances) : '';
     }
     
     protected function _set($data) {
