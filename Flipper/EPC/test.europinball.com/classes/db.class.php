@@ -56,12 +56,7 @@
         die('Error: Single object expected, '.$rowCount.' objects found...');
       } else if ($rowCount == 1) {
         $obj = $sth->fetchObject($class);
-        if ($class && $obj->id) {
-          $class::$instances['ID'.$obj->id] = $obj;
-          return $class::$instances['ID'.$obj->id];
-        } else {
-          return $obj;
-        }
+        return $obj;
       } else {
         return FALSE;
       }
@@ -71,12 +66,7 @@
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
         while($obj = $sth->fetchObject($class)) {
-          if ($class && $obj->id) {
-            $class::$instances['ID'.$obj->id] = $obj;
-            $objs[] = $class::$instances['ID'.$obj->id];
-          } else {
-            $objs[] = $obj;
-          }
+          $objs[] = $obj;
         }
         return $objs;
       } else {
@@ -152,11 +142,7 @@
     }
 
     public function getObjectById($class, $id) {
-      if (is_object($class::$instances['ID'.$id])) {
-        return $class::$instances['ID'.$id];
-      } else {
-        return $this->getObjectByProp($class, 'o.id', $id);
-      }
+      return $this->getObjectByProp($class, 'o.id', $id);
     }
     
     public function getObjectsByParent($class, $parent, $column = null) {
