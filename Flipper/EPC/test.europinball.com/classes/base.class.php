@@ -14,7 +14,7 @@
       } 
       $this->db = self::$_db;
       echo (get_class($this) == 'player') ? "HUP".get_class(static::$instances) : '';
-      if (!static::$instances  {
+      if (!static::$instances)  {
         if (property_exists($this, 'arrClass')) {
           static::$instances = new static::$arrClass;
           echo (get_class($this) == 'player') ? "HUPP".get_class(static::$instances) : '';
