@@ -44,7 +44,7 @@
           $this[] = $obj;
         }
       }
-//              echo "HUPP2".get_class($this);
+              echo "HUPP2".get_class($this);
 
     }
 
