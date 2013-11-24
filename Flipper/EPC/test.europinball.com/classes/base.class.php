@@ -14,11 +14,7 @@
       } 
       $this->db = self::$_db;
       if (!static::$instances)  {
-        if (property_exists($this, 'arrClass')) {
-          static::$instances = new static::$arrClass;
-        } else {
-          static::$instances = array();
-        }
+        static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
       if ($search) {
         if (isAssoc($data)) {

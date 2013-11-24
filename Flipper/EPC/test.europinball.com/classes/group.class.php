@@ -19,10 +19,12 @@
             if (get_class($data) == static::$objClass) {
               $objs[] = $data;
             } else if (is_string($prop)) {
-              $objs = array_merge($objs, $this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));              
+              $objs = array_merge($objs, $this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
             } else {
               $objs = array_merge($objs, $this->db->getObjectsByProp(static::$objClass, get_class($obj).'_id', $obj->id));
             }
+          } else if (is_int($obj)) {
+            $objs[] = $this->db->getObjectById(static::$objClass, $obj);
           }
         }
       } else if (is_object($data) && $data->id && is_string($prop)) {
