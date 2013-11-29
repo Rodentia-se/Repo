@@ -60,7 +60,7 @@
       return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
     }
     
-    public function print($header = TRUE, $footer = TRUE) {
+    public function submit($header = TRUE, $footer = TRUE) {
       echo  getContent($header, $footer);
     }
 

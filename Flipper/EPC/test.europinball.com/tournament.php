@@ -34,7 +34,7 @@ $login = $page->login->reqLogin('Hej!', false);
 if ($login) {
   echo $page->login->person;
 } else {
-  $page->print(FALSE);
+  $page->submit(FALSE);
 }
 
 preDump($_SESSION);
