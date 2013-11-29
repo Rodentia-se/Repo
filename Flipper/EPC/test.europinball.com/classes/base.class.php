@@ -140,7 +140,7 @@
           $update .= ' and '.$field.' = :value';
           $values[':value'] = $value;
         }
-        if ($this->db->update($update, $values) {
+        if ($this->db->update($update, $values)) {
           return TRUE;
         }
       }
