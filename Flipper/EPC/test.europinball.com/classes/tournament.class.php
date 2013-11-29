@@ -40,7 +40,7 @@
         'delete' => TRUE
       ),
       'tshirt' => array(
-        'table' => 'tournamentTShirt'
+        'table' => 'tournamentTShirt',
         'field' => 'tournamentEdition'
       ),
       'entry' => 'tournamentEdition',
