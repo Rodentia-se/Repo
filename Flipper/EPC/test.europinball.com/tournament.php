@@ -32,7 +32,7 @@ $page = new page(true);
 
 $login = $page->login->reqLogin('Hej!', false);
 if ($login === true) {
-  echo $page->login->person);
+  echo $page->login->person;
 } else {
   $page->print(FALSE);
 }
