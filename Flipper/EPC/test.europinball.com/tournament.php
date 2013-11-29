@@ -30,7 +30,7 @@
 */
 $page = new page(true);
 
-$login = $page->login->reqLogin('Hej!', false);
+$login = $page->reqLogin('Hej!', false);
 if ($login) {
   echo $page->login->person;
 } else {
