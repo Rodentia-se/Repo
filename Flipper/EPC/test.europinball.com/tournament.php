@@ -38,7 +38,7 @@ if ($login === true) {
 }
 
 preDump($_SESSION);
-$person =  new person(array('username' => $_SESSION['username']));
+$person =  new person(array('username' => $_SESSION['username']), true);
 preDump($person);
 /*
 echo 'hej';
