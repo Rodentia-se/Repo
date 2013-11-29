@@ -109,11 +109,11 @@
       }
     }
 
-    public static function checkLogin() {
+    public function checkLogin() {
       return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
     }
 
-    public static function reqLogin($title = 'Please provide your login credentials') {
+    public function reqLogin($title = 'Please provide your login credentials') {
       $action = @$_REQUEST['loginAction'];
       if ($this->checkLogin()) {
         return TRUE;
