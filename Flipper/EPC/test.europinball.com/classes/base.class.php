@@ -20,14 +20,12 @@
         if (isAssoc($data)) {
           $obj = $this->db->getObjectByProps(get_class($this), $data);
         } else if ($data) {
-        preDump($data);
-        die('huff');
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
-          if ($obj) {
-            $this->_set($obj);
-          } else {
-            return FALSE;
-          }
+        }
+        if ($obj) {
+          $this->_set($obj);
+        } else {
+          return FALSE;
         }
       } else {
         if ($data) {
