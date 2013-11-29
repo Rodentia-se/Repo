@@ -43,7 +43,7 @@
         $this->Authenticate($username, $password);
         if ($this->IsAuthSuccess()) {
           $_SESSION['uid'] = $this->AuthResult;
-          $_SESSION['username'] = $this->Username($uid);
+          $_SESSION['username'] = $this->Username($_SESSION['uid']);
           $_SESSION['loggedIn'] = TRUE;
           if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === TRUE)) {
             if (!$ulogin->SetAutologin($username, TRUE)) {
@@ -51,7 +51,7 @@
             }
             unset($_SESSION['appRememberMeRequested']);
           } else {
-            if (!$ulogin->SetAutologin($username, FALSE)) {
+            if (!$this->SetAutologin($username, FALSE)) {
               warning('Could not turn off autologin');
             }
           }
