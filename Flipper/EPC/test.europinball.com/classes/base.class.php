@@ -18,8 +18,6 @@
       }
       if ($search) {
         if (isAssoc($data)) {
-        preDump($data);
-        die('huff');
           $obj = $this->db->getObjectByProps(get_class($this), $data);
         } else if ($data) {
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
