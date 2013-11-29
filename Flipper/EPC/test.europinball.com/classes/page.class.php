@@ -43,6 +43,7 @@
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
+      preDump($this->login)
       if ($this->login->checkLogin()) {
         return TRUE;
       } else if ($action && $this->login->action('login')) {
