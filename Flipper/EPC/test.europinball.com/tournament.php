@@ -38,6 +38,8 @@ if ($login === true) {
 }
 preDump($_SESSION);
 
+$person =  new person(array('username' => $_SESSION['username']));
+preDump($person);
 /*
 echo 'hej';
 foreach($objs as $obj) {
