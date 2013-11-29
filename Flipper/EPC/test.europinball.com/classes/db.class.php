@@ -56,8 +56,6 @@
         die('Error: Single object expected, '.$rowCount.' objects found...');
       } else if ($rowCount == 1) {
         $obj = $sth->fetchObject($class);
-        preDump($obj);
-        die('huff');
         return $obj;
       } else {
         return FALSE;
