@@ -81,8 +81,8 @@
       return TRUE;
     }
 
-    public function action() {
-      $action = @$_REQUEST['action'];
+    public function action($action) {
+      $action = ($action) ? $action : @$_REQUEST['action'];
       switch ($action) {
         case 'login':
           return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
@@ -116,6 +116,8 @@
     public function reqLogin($title = 'Please provide your login credentials') {
       $action = @$_REQUEST['loginAction'];
       if ($this->checkLogin()) {
+        return TRUE;
+      } else if ($this->action('login') {
         return TRUE;
       } else {
         return $this->getLogin($title);
