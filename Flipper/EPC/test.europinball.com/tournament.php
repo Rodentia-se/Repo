@@ -28,7 +28,7 @@
  preDump(get_class(country::$instances));
  preDump(get_class(gender::$instances));
 */
-$page = new page(true);
+$page = new page('Test', true);
 
 $login = $page->reqLogin('Hej!', false);
 if ($login) {
