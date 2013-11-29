@@ -28,7 +28,7 @@
     
     public function getPerson() {
       if ($_SESSION['username']) {
-        return new person(array('username' => $_SESSION['username'));
+        return new person(array('username' => $_SESSION['username']));
       } else {
         return FALSE;
       }
