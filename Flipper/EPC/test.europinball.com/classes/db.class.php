@@ -51,6 +51,8 @@
     }
     
     protected function getRow($sth, $class = null) {
+        preDump($sth);
+        die('huff');
       $rowCount = $this->getRowCount();
       if ($rowCount > 1) {
         die('Error: Single object expected, '.$rowCount.' objects found...');
@@ -63,8 +65,6 @@
     }
 
     protected function getRows($sth, $class = null) {
-        preDump($sth);
-        die('huff');
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
         while($obj = $sth->fetchObject($class)) {
