@@ -96,9 +96,11 @@
           $where = true;
         }
       }
-      preDump($query);
-      preDump($values);
-      die('huff');
+      if ($class == 'person') {
+        preDump($query);
+        preDump($values);
+        die('huff');
+      }
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;

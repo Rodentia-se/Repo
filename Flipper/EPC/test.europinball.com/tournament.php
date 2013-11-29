@@ -2,7 +2,7 @@
 
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/init.php');
-
+/*
   $obj = new city(1907);
 //  $obj = new country(188);
 
@@ -37,7 +37,7 @@ if ($login === true) {
   echo $login;
 }
 preDump($_SESSION);
-
+*/
 $person =  new person(array('username' => $_SESSION['username']));
 preDump($person);
 /*
