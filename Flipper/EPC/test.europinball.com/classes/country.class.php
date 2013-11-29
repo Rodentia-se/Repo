@@ -31,6 +31,30 @@
       'capitalCity' => 'city'
     );
 
+    public static $children = array(
+      'location' => 'country',
+      'location' => 'parentCountry',
+      'city' => 'country',
+      'city' => 'parentCountry',
+      'region' => 'country',
+      'region' => 'parentCountry',
+      'owner' => 'country',
+      'owner' => 'parentCountry',
+      'person' => 'country',
+      'person' => 'parentCountry',
+      'player' => 'country',
+      'player' => 'parentCountry',
+      'team' => 'country',
+      'team' => 'parentCountry',
+      'volunteer' => 'country',
+      'volunteer' => 'parentCountry',
+      'country' => 'parentCountry',
+      'matchPlayer' => 'country',
+      'matchScore' => 'country',
+      'entry' => 'country',
+      'score' => 'country'
+    );
+
     public function getRegions() {
       return $this->db->getObjectsByParent('region', $this);
     }

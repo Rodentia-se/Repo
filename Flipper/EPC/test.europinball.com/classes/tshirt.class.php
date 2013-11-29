@@ -11,7 +11,7 @@
         o.name as name,
         pt.number as number,
         pt.number as number_id,
-        pt.person_id as player_id,
+        pt.person_id as person_id,
         pt.id as playerTshirt_id,
         tc.name as color,
         tc.id as color_id,
@@ -27,10 +27,24 @@
     ';
     
     public static $parents = array(
-      'tournamentEdition' => 'tournament'
+      'tournamentEdition' => 'tournament',
+      'person' => 'person',
     );
 
-    public static function getBuyers() {
+    public static $children = array(
+      'tshirt' => array(
+        'table' => 'tournamentTshirt',
+        'field' => 'tshirt',
+        'delete' => TRUE
+      ),
+    );
+    
+    public function delete($propagate = TRUE) {
+      parent::delete($propagate);
+      //delete tournamentTShirt_id from personTShirt
+    }
+
+    public function getBuyers() {
       $query = player::$select.'
         left join personTShirt pt
           on pt.person_id = o.person_id

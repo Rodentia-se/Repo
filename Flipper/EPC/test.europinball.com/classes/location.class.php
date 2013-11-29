@@ -34,6 +34,14 @@
       'continent' => 'continent'
     );
 
+    public static $children = array(
+      'tournament' => array(
+        'table' => 'tournament',
+        'field' => 'defaultLocation'
+      ),
+      'tournament' => 'location'
+    );
+
   }
 
 ?>

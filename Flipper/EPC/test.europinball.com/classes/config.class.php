@@ -34,6 +34,9 @@
     public static $nationalTeamQualLimit = FALSE;
 
     public static $baseHref = 'https://test.europinball.org/';
+    public static $baseDir = '/www/test.europinball.org/';
+    
+    public static $loginBackend = 'pdo';
     
     // Do not change anything below this line!
     public static $currentTournament = 1;

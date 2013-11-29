@@ -43,6 +43,10 @@
       'continent' => 'continent'
     );
 
+    public static $children = array(
+      'machine' => 'owner'
+    );
+
   }
 
 ?>

@@ -31,6 +31,21 @@
       'continent' => 'continent'
     );
     
+    public static $children = array(
+      'country' => 'capitalCity',
+      'region' => 'capitalCity',
+      'location' => 'city',
+      'owner' => 'city',
+      'person' => 'city',
+      'player' => 'city',
+      'team' => 'city',
+      'volunteer' => 'city',
+      'matchPlayer' => 'city',
+      'matchScore' => 'city',
+      'entry' => 'city',
+      'score' => 'city'
+    );
+    
     public function getLocations() {
       return $this->db->getObjectsByParent('location', $this);
     }

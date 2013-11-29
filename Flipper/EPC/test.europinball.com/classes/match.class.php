@@ -25,6 +25,12 @@
       'tournamentDivision' => 'division'
     );
 
+    public static $children = array(
+      'matchPlayer' => 'match',
+      'matchScore' => 'match',
+      'set' => 'match'
+    );
+
   }
 
 ?>

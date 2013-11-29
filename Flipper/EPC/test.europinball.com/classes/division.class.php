@@ -5,6 +5,8 @@
     public static $instances;
     public static $arrClass = 'divisions';
 
+    public static $table = 'tournamentDivision';
+
     public static $select = '
       select 
         o.id as id,
@@ -24,6 +26,38 @@
       'tournamentEdition' => 'tournament'
     );
     
+    public static $children = array(
+      'machine' => array(
+        'field' => 'tournamentDivision',
+        'delete' => TRUE
+      ),
+      'match' => array(
+        'field' => 'tournamentDivision',
+        'delete' => true
+      ),
+      'player' => array(
+        'field' => 'tournamentDivision',
+        'delete' => true
+      ),
+      'team' => array(
+        'field' => 'tournamentDivision',
+        'delete' => true
+      ),
+      '´qualGroup' => array(
+        'field' => 'tournamentDivision',
+        'delete' => true
+      ),
+      'entry' => 'tournamentDivision',
+      'score' => 'tournamentDivision'
+    );
+
+    public function delete() {
+      if(parent::delete()){
+        // Remove from children
+        return TRUE;
+      }
+    }
+
   }
 
 ?>

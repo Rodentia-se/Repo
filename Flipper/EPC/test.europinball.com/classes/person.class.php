@@ -44,6 +44,28 @@
       'continent' => 'continent'
     );
 
+    public static $children = array(
+      'player' => array(
+        'field' => 'person',
+        'delete' => TRUE,
+      ),
+      'volunteer' => array(
+        'field' => 'person',
+        'delete' => TRUE,
+      ),
+      'matchPlayer' => 'person',
+      'matchScore' => 'person',
+      'owner' => 'contactPerson',
+      'tshirt' => array(
+        'table' => 'personTShirt', 
+        'field' => 'person'
+      ),
+      'entry' => 'person',
+      'score' => 'person',
+      'score' => 'registerPerson',
+      'team' => 'registerPerson'
+    );
+
 /*
     public function __construct($data, $type = NULL, $search = NULL) {
       switch ($type) {

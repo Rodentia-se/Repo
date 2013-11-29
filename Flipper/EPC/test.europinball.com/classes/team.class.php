@@ -40,6 +40,18 @@
       'continent' => 'continent'
     );
 
+    public static $children = array(
+      'player' => array(
+        'field' => 'team',
+        'delete' => TRUE
+      ),
+      'teamPlayer' => array(
+        'table' => 'teamPlayer',
+        'field' => 'player',
+        'delete' => TRUE
+      )
+    )
+
   }
 
 ?>

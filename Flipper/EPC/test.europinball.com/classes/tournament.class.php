@@ -5,6 +5,8 @@
     public static $instances;
     public static $arrClass = 'tournaments';
 
+    public static $table = 'tournamentEdition';
+
     public static $select = '
       select 
         o.id as id,
@@ -25,6 +27,30 @@
     
     public static $parents = array(
       'location' => 'location'
+    );
+    
+    public static $children = array(
+      'match' => 'tournamentEdition',
+      'machine' => 'tournamentEdition',
+      'period' => 'tournamentEdition',
+      'player' => 'tournamentEdition',
+      'team' => 'tournamentEdition',
+      'division' => array(
+        'field' => 'tournamentEdition',
+        'delete' => TRUE
+      ),
+      'tshirt' => array(
+        'table' => 'tournamentTShirt'
+        'field' => 'tournamentEdition'
+      ),
+      'entry' => 'tournamentEdition',
+      'score' => 'tournamentEdition',
+      'task' => 'tournamentEdition',
+      'volunteer' => 'tournamentEdition',
+      'period' => array(
+        'table' => 'volunteerPeriod',
+        'field' => 'tournamentEdition'
+      )
     );
     
     public function getDivisions() {

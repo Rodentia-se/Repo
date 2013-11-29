@@ -21,6 +21,17 @@
       'tournamentEdition' => 'tournament'
     );
 
+    public static $children = array(
+      'volunteerNeed' => array(
+        'table' => 'volunteerNeed',
+        'field' => 'task'
+      ),
+      'period' => array(
+        'table' => 'volunteerPeriod',
+        'field' => 'task'
+      )
+    );
+
   }
 
 ?>

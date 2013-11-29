@@ -9,10 +9,22 @@
       select 
         o.id as id,
         o.person_id as person_id,
+        o.team_id as team_id,
         coalesce(o.firstName, p.firstName) as firstName,
         coalesce(o.lastName, p.lastName) as lastName,
-        concat(ifnull(coalesce(o.firstName, p.firstName), " "), " ", ifnull(coalesce(o.lastName, p.lastName), " ")) as name,
-        concat(ifnull(coalesce(o.firstName, p.firstName), " "), " ", ifnull(coalesce(o.lastName, p.lastName), " ")) as fullName,
+        o.teamName as teamName,
+        if (o.team_id is not null, o.teamName,
+          concat(
+            ifnull(coalesce(o.firstName, p.firstName), " "), " ", 
+            ifnull(coalesce(o.lastName, p.lastName), " ")
+          )
+        )¨as name,
+        if (o.team_id is not null, o.teamName,
+          concat(
+            ifnull(coalesce(o.firstName, p.firstName), " "), " ", 
+            ifnull(coalesce(o.lastName, p.lastName), " ")
+          )
+        ) as fullName,
         coalesce(o.initials, p.initials) as shortName,
         coalesce(o.streetAddress, p.streetAddress) as streetAddress,
         coalesce(o.zipCode, p.zipCode) as zipCode,
@@ -72,6 +84,25 @@
       'continent' => 'continent'
     );
     
+    public static $children = array(
+      'matchPlayer' => 'player',
+      'matchScore' => 'player',
+      'playerQualGroups' => array(
+        'field' => 'player',
+        'delete' => TRUE
+      ),
+      'entry' => array(
+        'field' => 'player',
+        'delete' = TRUE
+      ),
+      'score' => 'player',
+      'team' => 'contactPlayer',
+      'teamPlayer' => array(
+        'table' => 'teamPlayer',
+        'field' => 'player'
+      )
+    );
+
   }
 
 ?>

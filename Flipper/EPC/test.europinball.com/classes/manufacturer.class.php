@@ -19,6 +19,11 @@
     
     public static $parents = array();
 
+    public static $children = array(
+      'game' => 'manufacturer',
+      'machine' => 'manufacturer'
+    );
+
   }
 
 ?>

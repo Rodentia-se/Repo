@@ -23,9 +23,17 @@
       'tournamentEdition' => 'tournament'
     );
     
-    public function __toString() {
-      
-    }
+    public static $children = array(
+      'volunteerNeed' => array(
+        'table' => 'volunteerNeed',
+        'field' => 'period'
+      ),
+      'period' => array(
+        'table' => 'volunteerPeriod',
+        'field' => 'period',
+        'delete' => TRUE
+      )
+    );
 
   }
 

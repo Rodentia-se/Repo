@@ -4,6 +4,8 @@
         
     public static $instances;
     public static $arrClass = 'entries';
+    
+    public static $table = 'qualEntry';
 
     public static $select = '
       select 
@@ -31,6 +33,13 @@
       'tournamentDivision' => 'division',
       'player' => 'player'
     );
+    
+    public static $children = array(
+      'score' => array(
+        'field' => 'qualEntry',
+        'delete' => TRUE
+      ),
+
 
     public function populate() {
       parent::populate();

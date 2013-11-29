@@ -18,6 +18,10 @@
     
     public static $parents = array();
 
+    public static $children = array(
+      'player' => 'gender',
+      'volunteer' => 'gender'
+    );
   }
 
 ?>

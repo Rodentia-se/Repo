@@ -23,6 +23,16 @@
     public static $parents = array(
       'tournamentDivision' => 'division'
     );
+    
+    public static $children = array(
+      'player' => 'qualGroup',
+      'team' => 'qualGroup',
+      'playerQualGroups' => array(
+        'field' => 'qualGroup',
+        'delete' => TRUE
+      )
+    );
+
 
   }
 

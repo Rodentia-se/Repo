@@ -28,6 +28,10 @@
       'tournamentDivision' => 'division'
     );
 
+    public static $children = array(
+      'matchScore' => 'matchSet'
+    );
+
   }
 
 ?>

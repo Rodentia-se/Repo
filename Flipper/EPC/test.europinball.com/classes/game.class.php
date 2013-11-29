@@ -39,6 +39,13 @@
       'owner' => 'owner'
     );
 
+    public static $children = array(
+      'gamachineme' => 'game',
+      'matchScore' => 'game',
+      'set' => 'game',
+      'score' => 'game'
+    );
+
   }
 
 ?>

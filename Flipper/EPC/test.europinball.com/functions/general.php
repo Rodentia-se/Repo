@@ -1,7 +1,5 @@
 <?php
 
-  require_once('classes.php');
-
   function isAssoc(&$arr) {
     if (is_array($arr)) {
       for (reset($arr); is_int(key($arr)); next($arr));
@@ -15,6 +13,18 @@
     echo '<pre>';
     var_dump($obj);
     echo '</pre>';
+  }
+  
+  function warning($text) {
+    preDump('WARNING: '.$text);
+  }
+
+  function error($text) {
+    preDump('ERROR: '.$text);
+  }
+
+  function debug($text) {
+    preDump('DEBUG: '.$text);
   }
   
 ?>

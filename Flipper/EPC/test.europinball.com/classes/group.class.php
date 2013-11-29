@@ -48,5 +48,43 @@
       }
     }
 
+    function nullify($field, $value = NULL, $cond = 'or') {
+      if (count($this) > 0) {
+        foreach($this as $obj) {
+          $return = $obj->nullify($field, $value);
+          if (!$return) {
+            return FALSE;
+          }
+        }
+        return TRUE;
+      } else if ($field) {
+        $table = (property_exists(static::$objClass, 'table')) ? static::$objClass::$table : static::$objClass;
+        $update = 'update '.$table.' set '.$field.' = null where 1 = :one';
+        $values[':one'] = 1;
+        if (isAssoc($value)) {
+          $update .= ' and (';
+          foreach ($value as $col => $val) {
+            $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $col);
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
+          }
+          $update .= implode($updates, ' '.$cond.' ').')';
+        } else if (is_array($value)) {
+          foreach ($value as $val) {
+            $i++;
+            $updates[] = $field .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i;
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i] = $val;
+          }
+          $update .= implode($updates, ' '.$cond.' ').')';
+        } else if ($value) {
+          $update .= ' and '.$field.' = :value';
+          $values[':value'] = $value;
+        }
+        if ($this->db->update($update, $values) {
+          return TRUE;
+        }
+      }
+      return FALSE;
+    }
+
   }
 ?>

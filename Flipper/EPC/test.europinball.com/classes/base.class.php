@@ -27,7 +27,7 @@
             return FALSE;
           }
         }
-      } else  {
+      } else {
         if ($data) {
           if (preg_match('/^[0-9]+/', $data)) {
             if (is_object(static::$instances['ID'.$data])) {
@@ -67,8 +67,9 @@
       return $this->$prop;
     }
     
-    protected function populate() {
-      if (self::$parentDepth < config::$parentDepth) {
+    protected function populate($depth = NULL) {
+      $depth = ($depth) ? $depth : config::$parentDepth;
+      if (self::$parentDepth < $depth) {
         self::$parentDepth++;
         foreach (static::$parents as $field => $class) {
           if ($this->{$field.'_id'}) {
@@ -84,19 +85,103 @@
         self::$parentDepth--;
       }
     }
+    
+    public function delete($propagate = TRUE) {
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      if ($this->id) {
+        $delete = (property_exists($this, 'delete')) ? static::$delete : 'delete from '.$table.' where id = :id';
+        if ($this->db->delete($delete, array('id' => $this->id))) {
+          if ($propagate) {
+            foreach (static::$children as $class => $target) {
+              if (isAssoc($target)) {
+                $field = ($target['field']) ? $target['field'] : $field;
+                $delete = ($target['delete']) ? $target['delete'] : NULL;
+              } else {
+                $field = (is_string($target)) ? $target : get_class($parent);
+              }
+              if ($delete) {
+                $objs = new get_class($class)::$arrClass(array($field = $this->id)));
+                $objs->delete();
+              } else {
+                $objs = new get_class($class)::$arrClass());
+                $objs->nullify(array($field.'_id' = $this->id));
+              }
+            }
+          }
+          return TRUE;
+        } else {
+          return FALSE;
+        }
+      } else {
+        return FALSE;
+      }
+    }
 
-    function jsonSerialize() {
+    public function nullify($field, $value = NULL, $cond = 'or') {
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      if ($field) {
+        $update = 'update '.$table.' set '.$field.' = null where id = :id';
+        $values[':id'] = $this->id;
+        if (isAssoc($value)) {
+          $update .= ' and (';
+          foreach ($value as $col => $val) {
+            $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $col);
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
+          }
+          $update .= implode($updates, ' '.$cond.' ').')';
+        } else if (is_array($value)) {
+          foreach ($value as $val) {
+            $i++;
+            $updates[] = $field .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i;
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i] = $val;
+          }
+          $update .= implode($updates, ' '.$cond.' ').')';
+        } else if ($value) {
+          $update .= ' and '.$field.' = :value';
+          $values[':value'] = $value;
+        }
+        if ($this->db->update($update, $values) {
+          return TRUE;
+        }
+      }
+      return FALSE;
+    }
+
+/*
+    function removeParent($parent, - $target = NULL) {
+      $field = ($target) ? $target : get_class($parent).'_id';
+      if ($this->$field == $parent->id) {
+        return $this->setParent(NULL, $target);
+      } else {
+        return FALSE;
+      }
+    }
+    
+    function setParent($parent, $target = NULL)
+      $parent = ($parent) ? $parent : new $parent();
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      if (isAssoc($field)) {
+        $table = ($field['table']) ? $field['table'] : $table;
+        $field = ($field['field']) ? $field['field'] : $field;
+      } else {
+        $field = (is_string($field)) ? $field : get_class($parent).'_id';
+      }
+      return $this->db->update('update '.$table.' set '.$field.' = :parent where id = :id', array(':parent' => $parent->id, ':id' => $this->id));
+    }
+*/
+
+    public function jsonSerialize() {
       self::$parentDepth = 999999;
       return $this;
     }
     
-    function flatten() {
+    public function flatten() {
       foreach (static::$parents as $field => $class) {
         unset($this->$field);
       }
     }
     
-    function getFlat() {
+    public function getFlat() {
       $obj = clone $this;
       foreach (static::$parents as $field => $class) {
         unset($obj->$field);

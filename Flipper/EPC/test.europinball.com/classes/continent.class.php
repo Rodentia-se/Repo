@@ -21,6 +21,18 @@
     public static $parents = array(
     );
     
+    public static $children = array(
+      'location' => 'continent',
+      'city' => 'continent',
+      'region' => 'continent',
+      'country' => 'continent',
+      'owner' => 'continent',
+      'player' => 'continent',
+      'team' => 'continent',
+      'volunteer' => 'continent',
+      'person' => 'continent'
+    );
+
     public function getCountries() {
       return $this->db->getObjectsByParent('country', $this);
     }

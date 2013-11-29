@@ -39,6 +39,12 @@
       'owner' => 'owner'
     );
 
+    public static $children = array(
+      'matchScore' => 'machine',
+      'set' => 'machine',
+      'score' => 'machine'
+    );
+
   }
 
 ?>
