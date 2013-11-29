@@ -104,7 +104,7 @@
                 $objs->delete();
               } else {
                 $objs = new $class::$arrClass();
-                $objs->nullify(array($field.'_id' = $this->id));
+                $objs->nullify(array($field.'_id' => $this->id));
               }
             }
           }
