@@ -7,7 +7,7 @@
     sses_start();
   }
 
-  class auth extends uLogin() {
+  class auth extends uLogin {
     
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
       $backends = array(
