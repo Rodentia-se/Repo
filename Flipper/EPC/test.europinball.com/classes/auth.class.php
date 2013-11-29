@@ -31,7 +31,7 @@
     }
     
     public function getPerson() {
-      if ($_SESSION['username']) {
+      if (isset($_SESSION['username'])) {
         return new person(array('username' => $_SESSION['username']));
       } else {
         return FALSE;
@@ -131,12 +131,12 @@
             <input type="hidden" name="baseHref" id="baseHref" value="'.config::$baseHref.'">
 			      <input type="hidden" name="nonce" id="nonce" value="'.ulNonce::Create('login').'">
             <div id="usernameDiv">
-              <label for="username">Användarnamn:</label>
+              <label for="username">Username:</label>
   		        <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
               <span id="usernameLoginSpan" class="errorSpan">*</span>
             </div>
             <div id="passwordDiv">
-              <label for="password">Lösenord:</label>
+              <label for="password">Password:</label>
               <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);" onchange="login(this);">
               <span id="passwordSpan" class="errorSpan">*</span>
             </div>
@@ -145,8 +145,8 @@
               <input type="checkbox" name="autologin" value="1" id="autologinCheckbox">
             </div>
             <div id="loginDiv">
-    		      <input type="submit" value="Logga in" id="loginButton" onclick="login(this);" disabled>&nbsp;&nbsp;
-              <a href="'.config::$baseHref.'/?s=losenreset" class="italic">Glömt lösenordet?</a>
+    		      <input type="submit" value="Log in" id="loginButton" onclick="login(this);">&nbsp;&nbsp;
+              <a href="'.config::$baseHref.'/?s=losenreset" class="italic">Forgot username or password?</a>
             </div>
   	      </form>
         </div>
