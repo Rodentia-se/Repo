@@ -53,7 +53,6 @@
     protected function getRow($sth, $class = null) {
       $rowCount = $this->getRowCount();
         preDump($rowCount);
-        die('huff');
       if ($rowCount > 1) {
         die('Error: Single object expected, '.$rowCount.' objects found...');
       } else if ($rowCount == 1) {
