@@ -93,7 +93,7 @@
       ),
       'entry' => array(
         'field' => 'player',
-        'delete' = TRUE
+        'delete' => TRUE
       ),
       'score' => 'player',
       'team' => 'contactPlayer',
