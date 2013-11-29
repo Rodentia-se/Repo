@@ -62,7 +62,7 @@
     }
     
     public function submit($header = TRUE, $footer = TRUE) {
-      echo  getContent($header, $footer);
+      echo $this->getContent($header, $footer);
     }
 
   }
