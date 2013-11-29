@@ -100,7 +100,7 @@
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
               if ($delete) {
-                $objs = new get_class($class)::$arrClass(array($field = $this->id)));
+                $objs = new $class::$arrClass(array($field = $this->id)));
                 $objs->delete();
               } else {
                 $objs = new get_class($class)::$arrClass());
