@@ -27,16 +27,16 @@
  preDump(get_class(city::$instances));
  preDump(get_class(country::$instances));
  preDump(get_class(gender::$instances));
-
+*/
 $page = new page(true);
 
-//$login = $page->login->reqLogin('Hej!', false);
+$login = $page->login->reqLogin('Hej!', false);
 if ($login === true) {
   preDump($page->login->person);
 } else {
   echo $login;
 }
-*/
+
 preDump($_SESSION);
 $person =  new person(array('username' => $_SESSION['username']));
 preDump($person);
