@@ -31,8 +31,10 @@
 $page = new page(true);
 
 $login = $page->login->reqLogin('Hej!');
-if ($login) {
-  preDump($login->person);
+if ($login === true) {
+  preDump($page->login->person);
+} else {
+  echo $login;
 }
 
 /*
