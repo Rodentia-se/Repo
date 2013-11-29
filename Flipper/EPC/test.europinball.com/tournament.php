@@ -32,9 +32,9 @@ $page = new page(true);
 
 $login = $page->login->reqLogin('Hej!', false);
 if ($login === true) {
-  preDump($page->login->person);
+  echo $page->login->person);
 } else {
-  echo $login;
+  $page->print(FALSE);
 }
 
 preDump($_SESSION);

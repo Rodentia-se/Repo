@@ -4,7 +4,7 @@
     
     public static $_login;
 
-    public function __construct($login = FALSE) {
+    public function __construct($title='EPC', $login = FALSE) {
       if ($login) {
         if (!self::$_login) {
 //          self::$_login = new auth(NULL, NULL, config::$loginBackend);
@@ -14,8 +14,12 @@
       }
     }
 
+    public function addHeader($title = 'EPC') {
+      $this->header = $this->getHeader($title);
+    }
+    
     public function getHeader($title = 'EPC') {
-      $content = '
+      return '
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
         <html>
           <head>
@@ -36,6 +40,28 @@
             <title>'.$title.'</title>
           </head>
       ';
+    }
+
+    public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
+      if ($this->checkLogin()) {
+        return TRUE;
+      } else if ($action && $this->action('login')) {
+        return TRUE;
+      } else {
+        $this->content .= $this->getLogin($title);
+      }
+    }
+    
+    public function addContent($content) {
+      $this->content .= $content;
+    }
+    
+    public function getContent($header = TRUE, $footer = TRUE) {
+      return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
+    }
+    
+    public function print($header = TRUE, $footer = TRUE) {
+      echo  getContent($header, $footer);
     }
 
   }
