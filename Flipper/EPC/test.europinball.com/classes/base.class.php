@@ -9,8 +9,6 @@
     public static $parentDepth = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-        preDump($data);
-        die('huff');
       if (!self::$_db) {
         self::$_db = new db();
       } 
