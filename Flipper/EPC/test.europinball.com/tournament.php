@@ -30,7 +30,10 @@
 
 $page = new page(true);
 
-echo $page->login->getLogin('Hej!');
+$login = $page->login->reqLogin('Hej!');
+if ($login) {
+  preDump($login->person);
+}
 
 /*
 echo 'hej';
