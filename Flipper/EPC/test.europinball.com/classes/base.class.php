@@ -103,7 +103,7 @@
                 $objs = new $class::$arrClass(array($field = $this->id));
                 $objs->delete();
               } else {
-                $objs = new get_class($class)::$arrClass());
+                $objs = new $class::$arrClass();
                 $objs->nullify(array($field.'_id' = $this->id));
               }
             }
