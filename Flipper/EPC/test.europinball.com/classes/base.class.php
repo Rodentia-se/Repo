@@ -49,10 +49,10 @@
       }
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
-        preDump($this);
-        die('huff');
         //$this->populate();
       }
+        preDump($this);
+        die('huff');
     }
     
     protected function _set($data) {
