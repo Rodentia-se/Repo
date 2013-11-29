@@ -65,6 +65,28 @@
       echo $this->getContent($header, $footer);
     }
 
+    public function getAuthPerson() {
+      return $this->login->getPerson();
+    }
+    
+    public function login($username, $password, $nonce) {
+      return $this->login->login($username, $password, $nonce);
+    }
+    
+    public function logoff() {
+      return $this->login->logoff();
+    }
+
+    public function checkLogin() {
+      return $this->login->checkLogin();
+    }
+
+    public function getLogin($title = 'Please provide your login credentials') {
+      return $this->login->getLogin($title);
+    }
+
   }
+
+?>  }
 
 ?>

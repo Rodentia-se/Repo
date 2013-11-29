@@ -29,7 +29,6 @@
  preDump(get_class(gender::$instances));
 */
 $page = new page('Test', true);
-$page->login->logoff();
 
 $login = $page->reqLogin('Hej!', false);
 if ($login) {
