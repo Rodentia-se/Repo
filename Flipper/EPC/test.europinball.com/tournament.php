@@ -30,7 +30,7 @@
 
 $page = new page(true);
 
-$login = $page->login->reqLogin('Hej!');
+$login = $page->login->reqLogin('Hej!', false);
 if ($login === true) {
   preDump($page->login->person);
 } else {

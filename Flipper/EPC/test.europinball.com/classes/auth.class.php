@@ -113,11 +113,10 @@
       return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
     }
 
-    public function reqLogin($title = 'Please provide your login credentials') {
-      $action = @$_REQUEST['loginAction'];
+    public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
       if ($this->checkLogin()) {
         return TRUE;
-      } else if ($this->action('login')) {
+      } else if ($action && $this->action('login')) {
         return TRUE;
       } else {
         return $this->getLogin($title);
