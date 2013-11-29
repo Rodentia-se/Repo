@@ -20,10 +20,6 @@
       $backend = ($backends[$backend]) ? $backends[$backend] : config::$loginBackend;
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-      if (!base::$_db) {
-        base::$_db = new db();
-      } 
-      $this->db = base::$_db;
       $this->person = $this->getPerson();
       if ($this->person) {
         $this->person_id = $this->person->id;

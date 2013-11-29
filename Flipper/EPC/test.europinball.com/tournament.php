@@ -28,6 +28,10 @@
  preDump(get_class(country::$instances));
  preDump(get_class(gender::$instances));
 
+$page = new page(true);
+
+echo $page->login->getLogin('Hej!');
+
 /*
 echo 'hej';
 foreach($objs as $obj) {
