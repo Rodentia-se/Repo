@@ -114,7 +114,7 @@
       if ($this->checkLogin()) {
         return TRUE;
       } else {
-        return $this->getLogin($title)
+        return $this->getLogin($title);
       }
     }
 
