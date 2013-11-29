@@ -58,7 +58,7 @@
         }
         return TRUE;
       } else if ($field) {
-        $table = (property_exists(static::$objClass, 'table')) ? {static::$objClass}::$table : static::$objClass;
+        $table = (property_exists(static::$objClass, 'table')) ? get_class_vars(static::$objClass)['table'] : static::$objClass;
         $update = 'update '.$table.' set '.$field.' = null where 1 = :one';
         $values[':one'] = 1;
         if (isAssoc($value)) {
