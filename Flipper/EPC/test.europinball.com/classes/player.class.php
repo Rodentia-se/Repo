@@ -18,7 +18,7 @@
             ifnull(coalesce(o.firstName, p.firstName), " "), " ", 
             ifnull(coalesce(o.lastName, p.lastName), " ")
           )
-        )¨as name,
+        ) as name,
         if (o.team_id is not null, o.teamName,
           concat(
             ifnull(coalesce(o.firstName, p.firstName), " "), " ", 
