@@ -24,7 +24,7 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-//      $this->person = $this->getPerson();
+      $this->person = $this->getPerson();
       if ($this->person) {
         $this->person_id = $this->person->id;
       }
@@ -33,7 +33,7 @@
     public function getPerson() {
       if (isset($_SESSION['username'])) {
         return new person(array('username' => $_SESSION['username']));
-      } else if ($this->Username($_SESSION['uid']) {
+      } else if ($this->Username($_SESSION['uid'])) {
         $_SESSION['username'] = $this->Username($_SESSION['uid']);
         return new person(array('username' => $_SESSION['username']));
       } else {
