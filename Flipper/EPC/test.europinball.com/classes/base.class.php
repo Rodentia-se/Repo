@@ -21,6 +21,8 @@
           $obj = $this->db->getObjectByProps(get_class($this), $data);
         } else if ($data) {
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
+        preDump($obj);
+        die('huff');
           if ($obj) {
             $this->_set($obj);
           } else {
@@ -51,8 +53,6 @@
         static::$instances['ID'.$this->id] = $this;
         //$this->populate();
       }
-        preDump($this);
-        die('huff');
     }
     
     protected function _set($data) {
