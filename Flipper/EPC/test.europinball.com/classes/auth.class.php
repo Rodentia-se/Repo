@@ -24,7 +24,7 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-      $this->person = $this->getPerson();
+//      $this->person = $this->getPerson();
       if ($this->person) {
         $this->person_id = $this->person->id;
       }
