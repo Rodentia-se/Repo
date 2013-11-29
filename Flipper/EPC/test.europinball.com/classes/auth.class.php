@@ -10,6 +10,7 @@
   class auth extends uLogin {
     
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
+/*
       $backends = array(
         'pdo' => 'ulPdoLoginBackend',
         'openid' => 'ulOpenIdLoginBackend',
@@ -17,9 +18,10 @@
         'ldap' => 'ulLdapLoginBackend',
         'ssh' => 'ulSsh2LoginBackend'
       );
-      echo $backend;
       $backend = ($backends[$backend]) ? $backends[$backend] : config::$loginBackend;
       echo $backend;
+      $this->Backend = new $backend();
+*/
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
       $this->person = $this->getPerson();

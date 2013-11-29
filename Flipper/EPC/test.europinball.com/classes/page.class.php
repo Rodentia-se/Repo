@@ -7,7 +7,8 @@
     public function __construct($login = FALSE) {
       if ($login) {
         if (!self::$_login) {
-          self::$_login = new auth(NULL, NULL, config::$loginBackend);
+//          self::$_login = new auth(NULL, NULL, config::$loginBackend);
+          self::$_login = new auth();
         } 
         $this->login = self::$_login;
       }
