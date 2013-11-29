@@ -36,6 +36,7 @@ if ($login === true) {
 } else {
   echo $login;
 }
+preDump($_SESSION);
 
 /*
 echo 'hej';
