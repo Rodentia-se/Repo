@@ -96,9 +96,6 @@
           $where = true;
         }
       }
-        preDump($query);
-        preDump($values);
-        die('huff');
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
