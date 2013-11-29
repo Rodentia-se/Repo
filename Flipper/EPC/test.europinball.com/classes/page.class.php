@@ -34,7 +34,7 @@
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
-      ');
+      ';
     }
 
   }
