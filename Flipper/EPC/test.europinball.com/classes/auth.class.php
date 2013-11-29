@@ -117,7 +117,7 @@
       $action = @$_REQUEST['loginAction'];
       if ($this->checkLogin()) {
         return TRUE;
-      } else if ($this->action('login') {
+      } else if ($this->action('login')) {
         return TRUE;
       } else {
         return $this->getLogin($title);
