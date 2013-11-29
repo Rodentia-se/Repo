@@ -125,6 +125,7 @@
     public function getLogin($title = 'Please provide your login credentials') {
       return '
         <div id="loginDiv" class="loginDiv">
+        	<h2 class="loginTitle">'.$title.'</h2>
           <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="loginForm">
             <input type="hidden" name="action" value="login">
             <input type="hidden" name="loggedIn" id="loggedIn" value="false">
