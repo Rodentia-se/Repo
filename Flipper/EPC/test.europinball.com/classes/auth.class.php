@@ -60,7 +60,7 @@
             return FALSE;
           }
         } else {
-          error('Login failed')
+          error('Login failed');
           return FALSE;
         }
       } else {
