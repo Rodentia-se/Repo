@@ -63,6 +63,8 @@
     }
 
     protected function getRows($sth, $class = null) {
+        preDump($sth);
+        die('huff');
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
         while($obj = $sth->fetchObject($class)) {
