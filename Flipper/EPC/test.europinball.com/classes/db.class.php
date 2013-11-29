@@ -105,7 +105,7 @@
     
     public function getObjectByProps($class, $props, $cond = 'and') {
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
-      return $this->getRow($sth);
+      return $this->getRow($sth, $class);
     }
 
     public function getObjectByProp($class, $prop, $value) {
