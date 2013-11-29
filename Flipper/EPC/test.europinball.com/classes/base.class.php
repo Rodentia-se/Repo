@@ -52,7 +52,6 @@
         //$this->populate();
       }
         preDump($this);
-        die('huff');
     }
     
     protected function _set($data) {
