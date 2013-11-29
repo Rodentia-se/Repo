@@ -48,7 +48,7 @@
       } else if ($action && $this->login->action('login')) {
         return TRUE;
       } else {
-        $this->content .= $this->getLogin($title);
+        $this->content .= $this->login->getLogin($title);
       }
     }
     
