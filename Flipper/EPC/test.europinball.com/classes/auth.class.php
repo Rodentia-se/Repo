@@ -17,8 +17,9 @@
         'ldap' => 'ulLdapLoginBackend',
         'ssh' => 'ulSsh2LoginBackend'
       );
-      echo $backends[$backend];
+      echo $backend;
       $backend = ($backends[$backend]) ? $backends[$backend] : config::$loginBackend;
+      echo $backend;
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
       $this->person = $this->getPerson();
