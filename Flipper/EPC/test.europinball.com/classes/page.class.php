@@ -12,6 +12,9 @@
           self::$_login = new auth();
         } 
         $this->login = self::$_login;
+//        if ($this->checkLogin()) {
+//          $this->login->person = $this->login->getPerson();
+//        }
       }
       $this->title = $title;
       if ($header) {

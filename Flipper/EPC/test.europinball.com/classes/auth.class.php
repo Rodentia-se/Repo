@@ -24,10 +24,11 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-        $_SESSION['username'] = $this->Username($_SESSION['uid']);
-//      $this->person = $this->getPerson();
-      if ($this->person) {
-        $this->person_id = $this->person->id;
+      if ($this->checkLogin()) {
+        $this->person = $this->getPerson();
+        if ($this->person) {
+          $this->person_id = $this->person->id;
+        }
       }
     }
     
@@ -61,7 +62,6 @@
             }
           }
           $this->person = $this->getPerson();
-          debug($this);
           if ($this->person) {
             $this->person_id = $this->person->id;
             return TRUE;
