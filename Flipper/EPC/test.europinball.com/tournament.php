@@ -32,14 +32,12 @@ $page = new page('Test', true);
 
 $login = $page->reqLogin('Hej!', true);
 if ($login) {
-  echo $page->login->person;
+  $page->content = 'Logged in!';
 } else {
-  $page->submit(FALSE, TRUE);
+  $page->content = 'NOT logged in!';
 }
+$page->submit(FALSE, TRUE);
 
-preDump($_SESSION);
-$person =  new person(array('username' => $_SESSION['username']), true);
-preDump($person);
 /*
 echo 'hej';
 foreach($objs as $obj) {

@@ -3,6 +3,7 @@
   class page {
     
     public static $_login;
+    protected $content;
 
     public function __construct($title='EPC', $login = FALSE, $header = NULL, $footer = NULL) {
       if ($login) {
