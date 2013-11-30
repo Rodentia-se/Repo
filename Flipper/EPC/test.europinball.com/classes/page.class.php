@@ -64,10 +64,9 @@
       $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
     }
 
-    public function getFooter($header = TRUE) {
+    public function getFooter() {
       debug($this->login);
       return '
-            '.(($header) = '</div>' : '').'
             <div id="loginbuttons">
               '.(($this->checkLogin()) ? '
                 <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login.php?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
