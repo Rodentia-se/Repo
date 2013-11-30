@@ -87,12 +87,12 @@
       return TRUE;
     }
 
-    public function action($action) {
+    public function action($action = NULL) {
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            echo $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+            return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
             return FALSE;
           }
@@ -121,6 +121,9 @@
           } else {
             return TRUE;
           }
+        break;
+        default:
+          return FALSE;
         break;
       }
     }
