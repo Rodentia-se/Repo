@@ -115,9 +115,10 @@
         break;
         case 'autologin':
           if (!$ulogin->IsAuthSuccess()) {
-            $msg = 'Autologin misslyckades';
+            warning('Autologin misslyckades');
+            return FALSE;
           } else {
-            $msg = 'Autologin ok';
+            return TRUE;
           }
         break;
       }
