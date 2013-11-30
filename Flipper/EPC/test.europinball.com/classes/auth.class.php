@@ -90,15 +90,24 @@
       $action = ($action) ? $action : @$_REQUEST['action'];
       switch ($action) {
         case 'login':
-          return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+          if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
+            return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+          } else {
+            return FALSE;
+          }
         break;
         case 'logout':
           return $this->logoff();
         break;
         case 'changeCredentials':
-          $ulogin->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
-          if ($ulogin->IsAuthSuccess()) {
-            return $this->changeUser($_REQUEST['username'], $_REQUEST['newPassword']);
+          if ($_REQUEST['currentUsername'] && $_REQUEST['currentPassword']) {
+            $ulogin->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
+            if ($ulogin->IsAuthSuccess()) {
+              return $this->changeUser($_REQUEST['username'], $_REQUEST['newPassword']);
+            } else {
+              error('Could not login with your current credentials');
+              return FALSE;
+            }
           } else {
             error('Could not login with your current credentials');
             return FALSE;
