@@ -92,7 +92,8 @@
       } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
         return NULL;
       } else {
-        return $this->content .= $this->getLogin($title);
+        $this->content .= $this->getLogin($title);
+        return $this->getLogin($title);
       }
     }
 

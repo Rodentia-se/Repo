@@ -115,7 +115,7 @@ function customTemplate($page) {
 			include($_SERVER['DOCUMENT_ROOT'].'/statistics.php');
 	  break;
 		case 'registration':
-			include($_SERVER['DOCUMENT_ROOT'].'/reg.php');
+			include($_SERVER['DOCUMENT_ROOT'].'/register.php');
 	  break;
 		case 'change-credentials':
 			include($_SERVER['DOCUMENT_ROOT'].'/changeCredentials.php');

@@ -65,6 +65,14 @@
       'score' => 'registerPerson',
       'team' => 'registerPerson'
     );
+    
+    public function getPlayer() {
+      
+    }
+
+    public function addPlayer() {
+      
+    }
 
 /*
     public function __construct($data, $type = NULL, $search = NULL) {
