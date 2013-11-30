@@ -59,6 +59,23 @@
           <body>
       ';
     }
+    
+    public function setEditable($editable = TRUE) {
+      $this->js_jquery = $editable;
+      $this->js_jqueryui = $editable;
+      $this->js_datatables = $editable;
+      $this->js_jeditable = $editable;
+   }
+   
+   public function addScript($script, $onload) {
+     return '
+        <script type="text/javascript">
+          '.(($onload) ? '$(document).ready(function() {' : '').'
+            '.$script.'
+          '.(($onload) ? '});' : '').'
+        </script>
+     ';
+   }
 
     public function addFooter($footer = FALSE) {
       $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
