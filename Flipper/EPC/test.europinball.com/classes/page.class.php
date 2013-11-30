@@ -68,13 +68,15 @@
    }
    
    public function addScript($script, $onload) {
-     return '
+     $return = '
         <script type="text/javascript">
           '.(($onload) ? '$(document).ready(function() {' : '').'
             '.$script.'
           '.(($onload) ? '});' : '').'
         </script>
      ';
+     $this->content .= $return;
+     return $return;
    }
 
     public function addFooter($footer = FALSE) {
