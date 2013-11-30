@@ -12,7 +12,7 @@
   $login = $page->reqLogin('Please provide your credentials', true);
 
   if ($login) {
-    $page->content = 'You are already logged in!';
+    $page->content .= 'You are already logged in!';
   }
 
   $page->submit(FALSE, TRUE);
