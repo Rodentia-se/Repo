@@ -10,11 +10,15 @@
         if (!self::$_login) {
 //          self::$_login = new auth(NULL, NULL, config::$loginBackend);
           self::$_login = new auth();
-        } 
+        } else {
+          if ($this->checkLogin() && !$this-login->person) {
+            $this->login->person = $this->login->getPerson();
+            if ($this->login->person) {
+              $this->login->person_id = $this->login->person->id;
+            }
+          }
+        }
         $this->login = self::$_login;
-//        if ($this->checkLogin()) {
-//          $this->login->person = $this->login->getPerson();
-//        }
       }
       $this->title = $title;
       if ($header) {
