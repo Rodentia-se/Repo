@@ -9,22 +9,23 @@
     }
   }
 
-  function preDump($obj) {
+  function preDump($obj, $title = NULL) {
     echo '<pre>';
+    echo ($title) ? $title.':' : '';
     var_dump($obj);
     echo '</pre>';
   }
   
   function warning($text) {
-    preDump('WARNING: '.$text);
+    preDump($text,'WARNING');
   }
 
   function error($text) {
-    preDump('ERROR: '.$text);
+    preDump($text,'ERROR');
   }
 
   function debug($text) {
-    preDump('DEBUG: '.$text);
+    preDump($text,'DEBUG');
   }
   
 ?>
