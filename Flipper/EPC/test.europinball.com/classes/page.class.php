@@ -68,8 +68,8 @@
       return '
             <div id="loginbuttons">
               '.(($this->checkLogin()) ? '
-                <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login.php?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
-                '<p class="italic">You are not logged in. <a href="'.config::$baseHref.'/login.php"><input type="button" id="loginButton" value="Log in"></a').'
+                <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
+                '<p class="italic">You are not logged in. <a href="'.config::$baseHref.'/login"><input type="button" id="loginButton" value="Log in"></a').'
           </body>
         </html>
       ';
