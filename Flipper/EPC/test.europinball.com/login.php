@@ -1,17 +1,20 @@
 <?php
 
-$page = new page('Login', true);
+  define('__ROOT__', dirname(__FILE__)); 
+  require_once(__ROOT__.'/functions/init.php');
 
-if ($_REQUEST['action']) {
-  $page->login->action();
-}
+  $page = new page('Login', true);
 
-$login = $page->reqLogin('Please provide your credentials', true);
+  if ($_REQUEST['action']) {
+    $page->login->action();
+  }
 
-if ($login) {
-  $page->content = 'You are already logged in!';
-}
+  $login = $page->reqLogin('Please provide your credentials', true);
 
-$page->submit(FALSE, TRUE);
+  if ($login) {
+    $page->content = 'You are already logged in!';
+  }
+
+  $page->submit(FALSE, TRUE);
 
 ?>

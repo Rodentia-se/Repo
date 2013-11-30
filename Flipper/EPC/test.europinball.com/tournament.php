@@ -28,15 +28,15 @@
  preDump(get_class(country::$instances));
  preDump(get_class(gender::$instances));
 */
-$page = new page('Test', true);
+  $page = new page('Test', true);
 
-$login = $page->reqLogin('Hej!', true);
-if ($login) {
-  $page->content = 'Logged in!';
-} else {
-  $page->content = 'NOT logged in!';
-}
-$page->submit(FALSE, TRUE);
+  $login = $page->reqLogin('Hej!', true);
+  if ($login) {
+    $page->content = 'Logged in!';
+  } else {
+    $page->content = 'NOT logged in!';
+  }
+  $page->submit(FALSE, TRUE);
 
 /*
 echo 'hej';
