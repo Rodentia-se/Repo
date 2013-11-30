@@ -79,6 +79,7 @@
       if ($this->checkLogin()) {
         return TRUE;
       } else if ($action && $this->login->action($_REQUEST['action'])) {
+        die('huff');
         return TRUE;
       } else {
         $this->content .= $this->getLogin($title);
