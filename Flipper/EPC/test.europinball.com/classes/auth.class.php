@@ -33,11 +33,11 @@
     
     public function getPerson() {
       if (isset($_SESSION['username']) && $_SESSION['username']) {
-        return new person(array('username' => $_SESSION['username']));
+        return new person(array('username' => $_SESSION['username']), TRUE);
       } else if ($this->Username($_SESSION['uid'])) {
         $_SESSION['username'] = $this->Username($_SESSION['uid']);
         if (isset($_SESSION['username']) && $_SESSION['username']) {
-          return new person(array('username' => $_SESSION['username']));
+          return new person(array('username' => $_SESSION['username']), TRUE);
         }
       }
       return FALSE;
@@ -60,7 +60,7 @@
               warning('Could not turn off autologin');
             }
           }
-//          $this->person = $this->getPerson();
+          $this->person = $this->getPerson();
           if ($this->person) {
             $this->person_id = $this->person->id;
             return TRUE;
