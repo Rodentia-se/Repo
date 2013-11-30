@@ -85,10 +85,10 @@
     
     public function getContent($header = TRUE, $footer = TRUE) {
       if ($header && !$this->header) {
-        $this->addHeader();
+        $this->addHeader($header);
       }
       if ($footer && !$this->footer) {
-        $this->addFooter();
+        $this->addFooter($footer);
       }
       return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
     }
