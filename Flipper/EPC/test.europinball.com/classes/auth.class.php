@@ -60,7 +60,7 @@
               warning('Could not turn off autologin');
             }
           }
-          $this->person = $this->getPerson();
+//          $this->person = $this->getPerson();
           if ($this->person) {
             $this->person_id = $this->person->id;
             return TRUE;
@@ -90,10 +90,8 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          debug($_REQUEST);
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             echo $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
-            die();
           } else {
             return FALSE;
           }
@@ -103,8 +101,8 @@
         break;
         case 'changeCredentials':
           if ($_REQUEST['currentUsername'] && $_REQUEST['currentPassword']) {
-            $ulogin->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
-            if ($ulogin->IsAuthSuccess()) {
+            $this->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
+            if ($this->IsAuthSuccess()) {
               return $this->changeUser($_REQUEST['username'], $_REQUEST['newPassword']);
             } else {
               error('Could not login with your current credentials');
@@ -116,7 +114,7 @@
           }
         break;
         case 'autologin':
-          if (!$ulogin->IsAuthSuccess()) {
+          if (!$this->IsAuthSuccess()) {
             warning('Autologin misslyckades');
             return FALSE;
           } else {
