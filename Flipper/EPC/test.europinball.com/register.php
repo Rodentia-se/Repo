@@ -43,7 +43,7 @@
     ';
   }
   $page->addScript("
-            $('.button').click(function(){
+            $('.viewButton').click(function(){
               $(#login).hide();
               $(#search).hide();
               $(#'.this.id.').show();
