@@ -4,7 +4,7 @@
     
     public static $_login;
 
-    public function __construct($title='EPC', $login = FALSE) {
+    public function __construct($title='EPC', $login = FALSE, $header = NULL, $footer = NULL) {
       if ($login) {
         if (!self::$_login) {
 //          self::$_login = new auth(NULL, NULL, config::$loginBackend);
@@ -12,10 +12,16 @@
         } 
         $this->login = self::$_login;
       }
+      if ($header) {
+        $this->addHeader($header);
+      }
+      if ($footer) {
+        $this->addFooter($footer);
+      }
     }
 
-    public function addHeader($title = 'EPC') {
-      $this->header = $this->getHeader($title);
+    public function addHeader($title = 'EPC', $header = FALSE) {
+      $this->header = ($header && $header !== TRUE) ? $header : $this->getHeader($title);
     }
     
     public function getHeader($title = 'EPC') {
@@ -39,17 +45,34 @@
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
+          <body>
+            <div id="mainContent" class="content">
+      ';
+    }
+
+    public function addFooter($footer = FALSE) {
+      $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
+    }
+
+    public function getFooter() {
+      return '
+            </div>
+            <div id="loginbuttons">
+              '.(($this->checkLogin()) ? '
+                <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login.php?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
+                '<p class="italic">You are not logged in. <a href="'.config::$baseHref.'/login.php"><input type="button" id="loginButton" value="Log in"></a').'
+          </body>
+        </html>
       ';
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
-      preDump($this->login);
-      if ($this->login->checkLogin()) {
+      if ($this->checkLogin()) {
         return TRUE;
       } else if ($action && $this->login->action('login')) {
         return TRUE;
       } else {
-        $this->content .= $this->login->getLogin($title);
+        $this->content .= $this->getLogin($title);
       }
     }
     
@@ -58,6 +81,7 @@
     }
     
     public function getContent($header = TRUE, $footer = TRUE) {
+      
       return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
     }
     
