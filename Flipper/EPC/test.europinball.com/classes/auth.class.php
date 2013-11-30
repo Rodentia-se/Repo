@@ -88,10 +88,10 @@
 
     public function action($action) {
       $action = ($action) ? $action : $_REQUEST['action'];
-      debug($_REQUEST);
-      die();
       switch ($action) {
         case 'login':
+      debug($_REQUEST);
+      die();
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
