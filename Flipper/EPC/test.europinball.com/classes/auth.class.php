@@ -32,14 +32,15 @@
     }
     
     public function getPerson() {
-      if (isset($_SESSION['username'])) {
+      if (isset($_SESSION['username']) && $_SESSION['username']) {
         return new person(array('username' => $_SESSION['username']));
       } else if ($this->Username($_SESSION['uid'])) {
         $_SESSION['username'] = $this->Username($_SESSION['uid']);
-        return new person(array('username' => $_SESSION['username']));
-      } else {
-        return FALSE;
+        if (isset($_SESSION['username']) && $_SESSION['username']) {
+          return new person(array('username' => $_SESSION['username']));
+        }
       }
+      return FALSE;
     }
 
     public function login($username, $password, $nonce) {
