@@ -82,6 +82,7 @@
         return TRUE;
       } else {
         $this->content .= $this->getLogin($title);
+        return FALSE;
       }
     }
     
