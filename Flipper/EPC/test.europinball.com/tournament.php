@@ -32,9 +32,9 @@
 
   $login = $page->reqLogin('Hej!', true);
   if ($login) {
-    $page->content = 'Logged in!';
+    $page->content .= 'Logged in!';
   } else {
-    $page->content = 'NOT logged in!';
+    $page->content .= 'NOT logged in!';
   }
   $page->submit(FALSE, TRUE);
 
