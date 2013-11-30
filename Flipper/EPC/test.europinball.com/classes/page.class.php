@@ -78,8 +78,7 @@
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
       if ($this->checkLogin()) {
         return TRUE;
-      } else if ($action && $this->login->action($_REQUEST['action'])) {
-        die('huff');
+      } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
         return TRUE;
       } else {
         $this->content .= $this->getLogin($title);
