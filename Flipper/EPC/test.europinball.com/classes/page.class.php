@@ -59,6 +59,7 @@
     }
 
     public function getFooter() {
+      debug($this->login);
       return '
             </div>
             <div id="loginbuttons">
@@ -68,7 +69,6 @@
           </body>
         </html>
       ';
-      debug($this);
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
