@@ -36,7 +36,7 @@ if ($login) {
 } else {
   $page->content = 'NOT logged in!';
 }
-$page->submit(FALSE, FALSE);
+$page->submit(FALSE, TRUE);
 
 /*
 echo 'hej';
