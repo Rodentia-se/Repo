@@ -5,7 +5,7 @@
 
   $page = new page('Register', true);
 
-  if (page->loggedin()) {
+  if ($page->loggedin()) {
     $person = $page->login->person;
     $player = $person->getPlayer();
     if ($player) {
