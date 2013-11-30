@@ -61,6 +61,7 @@
             }
           }
           $this->person = $this->getPerson();
+          debug($this);
           if ($this->person) {
             $this->person_id = $this->person->id;
             return TRUE;
