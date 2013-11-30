@@ -68,6 +68,7 @@
           </body>
         </html>
       ';
+      debug($this->login);
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
