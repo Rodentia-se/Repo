@@ -57,7 +57,6 @@
             <title>'.$title.'</title>
           </head>
           <body>
-            <div id="mainContent" class="content">
       ';
     }
 
@@ -65,10 +64,10 @@
       $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
     }
 
-    public function getFooter() {
+    public function getFooter($header = TRUE) {
       debug($this->login);
       return '
-            </div>
+            '.(($header) = '</div>' : '').'
             <div id="loginbuttons">
               '.(($this->checkLogin()) ? '
                 <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login.php?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
@@ -92,18 +91,19 @@
       $this->content .= $content;
     }
     
-    public function getContent($header = TRUE, $footer = TRUE) {
+    public function getContent($header = TRUE, $footer = TRUE, $div = TRUE) {
+      $this->content = ($div) ? '<div id="mainContent" class="content">'.$this->content.'</div>' : $this->content;
       if ($header && !$this->header) {
         $this->addHeader($header);
       }
       if ($footer && !$this->footer) {
         $this->addFooter($footer);
       }
-      return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
+      return (($header) ? $this->header : '').$this->content.(($footer) ? $this->footer : '');
     }
     
-    public function submit($header = TRUE, $footer = TRUE) {
-      echo $this->getContent($header, $footer);
+    public function submit($header = TRUE, $footer = TRUE, $div = TRUE) {
+      echo $this->getContent($header, $footer, $div);
     }
 
     public function getAuthPerson() {
