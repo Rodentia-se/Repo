@@ -44,9 +44,9 @@
   }
   $page->addScript("
             $('.viewButton').click(function(){
-              $(#login).hide();
-              $(#search).hide();
-              $(#'.this.id.').show();
+              $('#login').hide();
+              $('#search').hide();
+              $('#'.this.id).show();
             });
   ");
   
