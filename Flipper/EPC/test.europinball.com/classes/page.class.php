@@ -65,7 +65,6 @@
     }
 
     public function getFooter() {
-      debug($this->login);
       return '
             <div id="loginbuttons">
               '.(($this->checkLogin()) ? '
