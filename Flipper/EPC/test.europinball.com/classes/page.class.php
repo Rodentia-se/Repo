@@ -12,6 +12,7 @@
         } 
         $this->login = self::$_login;
       }
+      $this->title = $title;
       if ($header) {
         $this->addHeader($header);
       }
@@ -20,11 +21,13 @@
       }
     }
 
-    public function addHeader($title = 'EPC', $header = FALSE) {
+    public function addHeader($title = NULL, $header = FALSE) {
+      $title = ($title) ? $title : $thie->title;
       $this->header = ($header && $header !== TRUE) ? $header : $this->getHeader($title);
     }
     
-    public function getHeader($title = 'EPC') {
+    public function getHeader($title = NULL) {
+      $title = ($title) ? $title : $thie->title;
       return '
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
         <html>
@@ -81,7 +84,12 @@
     }
     
     public function getContent($header = TRUE, $footer = TRUE) {
-      
+      if ($header && !$this->header) {
+        $this->addHeader();
+      }
+      if ($footer && !$this->footer) {
+        $this->addFooter();
+      }
       return (($header) ? $this->header : '').$this->content.(($this->footer) ? $this->footer : '');
     }
     
