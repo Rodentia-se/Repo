@@ -24,7 +24,7 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-      if ($this->checkLogin() && !$this->person) {
+      if ($this->loggedin() && !$this->person) {
         $this->person = $this->getPerson();
         if ($this->person) {
           $this->person_id = $this->person->id;
@@ -128,7 +128,7 @@
       }
     }
 
-    public function checkLogin() {
+    public function loggedin() {
       return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
     }
 

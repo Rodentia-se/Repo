@@ -11,7 +11,7 @@
 //          self::$_login = new auth(NULL, NULL, config::$loginBackend);
           self::$_login = new auth();
         } else {
-          if ($this->checkLogin() && !$this->login->person) {
+          if ($this->loggedin() && !$this->login->person) {
             $this->login->person = $this->login->getPerson();
             if ($this->login->person) {
               $this->login->person_id = $this->login->person->id;
@@ -67,7 +67,7 @@
     public function getFooter() {
       return '
             <div id="loginbuttons">
-              '.(($this->checkLogin()) ? '
+              '.(($this->loggedin()) ? '
                 <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
                 '<p class="italic">You are not logged in. <a href="'.config::$baseHref.'/login"><input type="button" id="loginButton" value="Log in"></a').'
           </body>
@@ -76,7 +76,7 @@
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
-      if ($this->checkLogin()) {
+      if ($this->loggedin()) {
         return TRUE;
       } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
         return TRUE;
@@ -86,6 +86,16 @@
       }
     }
     
+    public function addLogin($title = 'Please provide your login credentials', $action = TRUE) {
+      if ($this->loggedin()) {
+        return NULL;
+      } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
+        return NULL;
+      } else {
+        return $this->content .= $this->getLogin($title);
+      }
+    }
+
     public function addContent($content) {
       $this->content .= $content;
     }
@@ -117,8 +127,8 @@
       return $this->login->logoff();
     }
 
-    public function checkLogin() {
-      return $this->login->checkLogin();
+    public function loggedin() {
+      return $this->login->loggedin();
     }
 
     public function getLogin($title = 'Please provide your login credentials') {
