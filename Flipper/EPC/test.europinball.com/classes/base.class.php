@@ -37,7 +37,7 @@
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
             if ($obj) {
-              $this->_set($obj);
+              $this->_set((array) $obj);
               die();
             } else {
               $this->failed = TRUE;
