@@ -88,7 +88,7 @@
       } else {
         $division_id = config::$mainDivision;
       }
-      $player = player($this->getFlat());
+      $player = player($this->getFlat(), NULL, 0);
       debug ($player, true);
     }
 
