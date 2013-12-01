@@ -23,7 +23,6 @@
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
         if ($obj) {
-          $this->id = 1;
           $this->_set($obj);
           die('huff');
         } else {
