@@ -115,7 +115,7 @@
         $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$prop];
       }
       $update = implode($updates, $cond).' where id = '.$obj->id;
-      return array('update' => , 'values' => $values);
+      return array('update' => $update, 'values' => $values);
     }
 
     protected function populate($depth = NULL) {
