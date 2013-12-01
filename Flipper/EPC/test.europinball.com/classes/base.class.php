@@ -81,7 +81,7 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
-              if (get_class($this) == 'country') {
+              if (get_class($this) == 'continent') {
                 die('huff: '.self::$parentDepth);
               }
       if (self::$parentDepth < $depth) {
