@@ -135,6 +135,7 @@
     }
 
     public function getLogin($title = 'Please provide your login credentials') {
+      debug($_SESSION);
       return '
         <div id="loginDiv" class="loginDiv">
         	<h2 class="loginTitle">'.$title.'</h2>
