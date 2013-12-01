@@ -10,7 +10,7 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL, $depth = NULL) {
-      $depth = ($depth) ? $depth : config::$parentDepth;
+      $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
       } 
