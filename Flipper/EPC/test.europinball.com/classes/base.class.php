@@ -25,11 +25,7 @@
         if ($obj) {
           $this->id = 1;
           $this->_set($obj);
-      flush();
-      ob_flush();
-          debug(25, false);
-      flush();
-      ob_flush();
+          die('huff');
         } else {
           $this->failed = TRUE;
         }
