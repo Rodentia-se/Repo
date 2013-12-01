@@ -13,6 +13,7 @@
               if (self::$count > 4 || (($this) != 'region' && get_class($this) != 'city')) {
                 self::$count++;
                 debug($this);
+                debug(self::$count);
                 die('hepp: '.get_class($this));
               }
       if (!self::$_db) {
