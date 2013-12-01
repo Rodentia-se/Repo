@@ -60,7 +60,7 @@
     }
     
     protected function _set($data) {
-      foreach (get_object_vars($data) as $key => $value) {
+      foreach ($data as $key => $value) {
       debug($key.': '.$value.' ');
       flush();
       ob_flush();
