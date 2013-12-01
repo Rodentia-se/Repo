@@ -90,7 +90,6 @@
       }
       debug(get_object_vars($this), true);
       $player = player();
-      
     }
 
 /*
