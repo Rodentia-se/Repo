@@ -89,7 +89,8 @@
         $division_id = config::$mainDivision;
       }
       debug(get_object_vars($this), true);
-      $player = player();
+      $player = player($this->getFlat());
+      debug ($player);
     }
 
 /*
