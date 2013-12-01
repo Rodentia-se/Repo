@@ -52,9 +52,6 @@
       }
       debug($this);
       debug(static::$instances);
-              if (get_class($this) == 'region') {
-                die('huff');
-              }
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
@@ -94,6 +91,9 @@
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
             debug('7');
+              if (get_class($this) == 'region') {
+                die('huff');
+              }
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
             debug('8');
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
