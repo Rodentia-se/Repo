@@ -11,7 +11,7 @@
 
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
-              if (self::$count > 2) {
+              if (self::$count > 1) {
                 debug($this);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
