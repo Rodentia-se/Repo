@@ -61,6 +61,8 @@
     protected function _set($data) {
       foreach ($data as $key => $value) {
       debug($key.': '.$value.' ');
+      flush();
+      ob_flush();
         $this->{$key} = $value;
       }
     }
