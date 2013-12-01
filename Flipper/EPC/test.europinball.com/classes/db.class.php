@@ -20,6 +20,8 @@
     }
 
     protected function action($query, $values = NULL) {
+      debug($query);
+      debug($values);
       if ($values) {
         $sth = $this->prepare($query);
         if (!$sth->execute($values)) {
