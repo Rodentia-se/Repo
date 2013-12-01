@@ -40,6 +40,9 @@
             if ($obj) {
           debug($this);
               $this->_set($obj);
+              if (get_class($this) == 'region') {
+                die('huff');
+              }
             } else {
               $this->failed = TRUE;
             }
@@ -98,7 +101,7 @@
             } else {
             debug(' Class: '.$class);
             debug(' Field: '.$field);
-            debug(' ID: '.$this->{$field.'_id'}, true);
+            debug(' ID: '.$this->{$field.'_id'});
               $this->$field = $class($this->{$field.'_id'});
             debug('11');
             }
