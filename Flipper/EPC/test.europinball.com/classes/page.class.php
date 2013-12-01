@@ -69,7 +69,7 @@
    
     public function addScript($script, $onload = TRUE) {
       $script = self::getScript($script, $onload);
-      $this->content .= $script;
+      $this->addContent($script);
       return $script;
     }
     
@@ -87,15 +87,95 @@
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
     
-    public function addTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
-      $table = self::getTable($id, $headers, $rows, $display, $class);
-      $this->content .= $table;
-      return $table;
+    public function startDiv($id, $class) {
+      return '<div '.(($id) ? 'id="'.$id.'"' : '').' '.(($id) ? 'class="'.$class.'"' : '').'>';
+    }
+    
+    public function addElement($text, $type = 'p', $id = NULL, $class = NULL, $close = TRUE) {
+      $element = self::getElement($text, $type, $class, $close);
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public static function getElement($text, $type = 'p', $id = NULL, $class = NULL, $close = TRUE) {
+      if ($type) {
+        return '<'.$type.' class="'.$class.'">'.$text.(($close) ? '</p>' : '');
+      } else if ($class) {
+        return '<span class="'.$class.'">'.$text.(($close) ? '</span>' : '');
+      } else {
+        return $text;
+      }
+    }
+    
+    public function addParagraph($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getParagraph($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getParagraph($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'p', $id, $class, $close);
+    }
+    
+    public function addH1($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getH1($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getH1($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'h1', $id, $class.' entry-title', $close);
+    }
+    
+    public function addH2($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getH2($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getH2($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'h2', $id, $class.' entry-title', $close);
+    }
+    
+    public function addH3($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getH3($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getH3($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'h3', $id, $class, $close);
+    }
+    
+    public function addH4($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getH4($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getH4($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'h4', $id, $class, $close);
+    }
+    
+    public function addSpan($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getSpan($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getSpan($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'span', $id, $class, $close);
+    }
+    
+    public function addTable($id, $headers = array('Name'), $rows = NULL, $class = NULL) {
+      $table = self::getTable($id, $headers, $rows, $class);
+       $this->addContent($table);
+     return $table;
     }
    
-    public static function getTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
+    public static function getTable($id, $headers = array('Name'), $rows = NULL, $class = NULL) {
       $table = '
-        <table id="resultsTable" class="'.$class.'" style="display: '.(($display) ? '' : 'none').'">
+        <table id="resultsTable" class="'.$class.'">
           <thead>
             <tr>
       ';
@@ -156,7 +236,7 @@
         return ($add) ? NULL : TRUE;
       } else {
         $login = $this->getLogin($title);
-        $this->content .= ($add || $req) ? $login : '';
+        $this->addContent((($add || $req) ? $login : ''));
         return ($add) ? $login : FALSE;
       }
     }

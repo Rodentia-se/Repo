@@ -16,39 +16,32 @@
         $person->addPlayer();
         header('Location: '.config::$baseHref.'/edit/');
       } else {
-        $page->content .= '
-          <h2 class="entry-title">Register player</h2>
-          <p>You are logged in as '.$page->login->person->name.'. Press the button to register for EPC 2014:
+        $page->addH2('Register player');
+        $page->addParagraph('You are logged in as '.$page->login->person->name.'. Press the button to register for EPC 2014:
           <a href="'.config::$baseHref.'/registration/?action=register"><input type="button" id="registerButton" value="Register"></a>
-        ';
+        ');
         $page->focus('registerButton');
       }
     }
   } else {
     $page->setEditable();
-    $page->content .= '
-        <div id="login">
-          <h2 class="entry-title">Register existing player</h2>
-    ';
-    $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', true);
-    $page->content .= '
-          <p>If you are sure you do not have any user, please click this button to proceed: <input type="button" id="view_search" class="viewButton" value="Search">
-        </div>
-        <div id="search" style="display: none">
-          <h2 class="entry-title">Register a new player</h2>
-          <p>We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.</p>
-          <p>PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.</p>
-          <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">
-          <p>Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login"></p>
-          <p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!"></p>
-          <div id="searchResults">
-            <span id="resultsTableLoading" style="display: "><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
-    ';
-    $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, TRUE);
-    $page->content .= '
-          </div>
-        </div>
-    ';
+    $page->startDiv('login');
+      $page->addH2('Register existing player');
+      $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', true);
+      $page->addParagraph('If you are sure you do not have any user, please click this button to proceed: <input type="button" id="view_search" class="viewButton" value="Search">');
+    $page->closeDiv();
+    $page->startDiv('search', 'hidden');
+      $page->addH2('Register a new player');
+      $page->addParagraph('We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.');
+      $page->addParagraph('PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.');
+      $page->addParagraph('Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">');
+      $page->addParagraph('Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login">');
+      $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
+      $page->startDiv('searchResults');
+        $page->addSpan('<img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data...">', 'resultsTableLoading', 'hidden');
+        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, TRUE);
+      $page->closeDiv();
+    $page->closeDiv();
     $page->focus('usernameLogin');
   }
   $page->addScript("
