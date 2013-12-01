@@ -75,11 +75,17 @@
     }
     
     public function __get($prop) {
-      if ($this->{$prop.'_id'} && !$this->$prop) {
-        self::$parentDepth = 0;
-        $this->populate();
+      if (property_exists($this, $prop.'_id') {
+        if ($this->{$prop.'_id'} && !$this->$prop) {
+          self::$parentDepth = 0;
+          $this->populate();
+          return $this->$prop;
+        }
+      } else if (property_exists($this, $prop) {
+       return $this->$prop;
+      } else {
+        return FALSE;
       }
-      return ($this->$prop) ? $this->$prop : FALSE;
     }
     
     protected function populate($depth = NULL) {
