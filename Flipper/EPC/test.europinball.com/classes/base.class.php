@@ -79,6 +79,9 @@
     
     protected function populate($depth = NULL) {
             debug('1');
+              if (get_class($this) == 'region') {
+                die('huff');
+              }
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
       if (self::$parentDepth < $depth) {
@@ -91,9 +94,6 @@
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
             debug('7');
-              if (get_class($this) == 'region') {
-                die('huff');
-              }
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
             debug('8');
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
