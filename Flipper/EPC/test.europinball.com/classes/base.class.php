@@ -38,7 +38,7 @@
             }
             if ($obj) {
               $this->_set($obj);
-              die();
+              die('huff');
             } else {
               $this->failed = TRUE;
             }
