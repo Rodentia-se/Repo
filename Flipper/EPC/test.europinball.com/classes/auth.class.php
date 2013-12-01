@@ -46,6 +46,7 @@
 
     public function login($username, $password, $nonce) {
       debug("LOGIN ".$nonce);
+      debug("HASHED".hash(UL_HMAC_FUNC, $code));
       if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
         debug("LOGGING IN");
         $this->Authenticate($username, $password);
