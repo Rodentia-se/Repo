@@ -79,15 +79,15 @@
     
     protected function populate($depth = NULL) {
             debug('1');
-              if (get_class($this) == 'region') {
-                die('huff');
-              }
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
             debug('4');
+              if (get_class($this) == 'region') {
+                die('huff');
+              }
         foreach (static::$parents as $field => $class) {
             debug('5');
           if ($this->{$field.'_id'}) {
