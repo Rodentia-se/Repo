@@ -21,7 +21,7 @@
 
     protected function action($query, $values = NULL) {
       debug($query);
-      debug($values);
+      debug($values, true);
       if ($values) {
         $sth = $this->prepare($query);
         if (!$sth->execute($values)) {
@@ -163,6 +163,23 @@
       return $this->query("SELECT FOUND_ROWS()")->fetchColumn();
     }
     
+    public function getColNames($table) {
+      if ($table) {
+        $query = '
+          select column_name 
+            from information_schema.columns 
+            where table_schema = :db 
+              and table_name = :table
+        ';
+        $values[':db'] = config::$dbname;
+        $values[':table'] = $table;
+        $sth = $this->prepare($query);
+        if ($sth->exeecute($values)) {
+          return $sth->fetchAll(PDO::FETCH_COLUMN);
+        }
+      }
+    }
+    return FALSE;
   }
 
 ?>

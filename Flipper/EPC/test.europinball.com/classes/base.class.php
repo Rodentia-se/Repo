@@ -90,6 +90,7 @@
     
     protected function update() {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      $cols = $this->db->getColNames($table);
       $query = 'update '.$table.' set ';
       $array = $this->getQueryArray($this, ',');
       $query .= $array['update'];
@@ -98,16 +99,19 @@
     
     protected function add() {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      $cols = $this->db->getColNames($table);
       $query = 'insert into '.$table.' set ';
       $array = $this->getQueryArray($this, ', ');
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
     
-    protected function getQueryArray($array, $cond = 'or') {
-      foreach ($array as $col => $val) {
+    protected function getQueryArray($obj, $cond = 'or', $cols = NULL) {
+      $obj = (array) $obj;
+      $cols = ($cols) ? $cols : array_keys($obj);
+      foreach ($cols as $col) {
         $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
-        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $val;
+        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$col];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
