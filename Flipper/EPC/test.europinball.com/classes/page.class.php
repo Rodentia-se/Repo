@@ -67,13 +67,13 @@
       $this->js_jeditable = $editable;
     }
    
-    public function addScript($script, $onload) {
+    public function addScript($script, $onload = TRUE) {
       $script = self::getScript($script, $onload);
       $this->content .= $script;
       return $script;
     }
     
-    public ststic function getScript($script, $onload) {
+    public static function getScript($script, $onload = TRUE) {
       return '
         <script type="text/javascript">
           '.(($onload) ? '$(document).ready(function() {' : '').'
