@@ -92,7 +92,7 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->db->getColNames($table);
       $query = 'update '.$table.' set ';
-      $array = $this->getQueryArray($this, ',');
+      $array = $this->getQueryArray($this, ',', $cols);
       $query .= $array['update'];
       return $this->db->update($query, $array['values']);
     }
@@ -101,7 +101,7 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->db->getColNames($table);
       $query = 'insert into '.$table.' set ';
-      $array = $this->getQueryArray($this, ', ');
+      $array = $this->getQueryArray($this, ', ', $cols);
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
