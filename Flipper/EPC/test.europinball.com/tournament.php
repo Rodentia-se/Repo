@@ -2,6 +2,9 @@
 
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/init.php');
+
+  $page = new page('Register', true);
+
 /*
   $obj = new city(1907);
 //  $obj = new country(188);
@@ -58,5 +61,6 @@ foreach($objs as $obj) {
   preDump($obj);
 }
 */
+  $page->submit();
 
 ?> 
