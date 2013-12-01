@@ -28,6 +28,7 @@
  preDump(get_class(country::$instances));
  preDump(get_class(gender::$instances));
 */
+/*
   $page = new page('Test', true);
 
   $login = $page->reqLogin('Hej!', true);
@@ -37,7 +38,9 @@
     $page->content .= 'NOT logged in!';
   }
   $page->submit(FALSE, TRUE);
-
+*/
+  $obj = city(1907);
+  debug($obj);
 /*
 echo 'hej';
 foreach($objs as $obj) {

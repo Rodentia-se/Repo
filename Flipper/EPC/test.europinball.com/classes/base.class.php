@@ -85,7 +85,7 @@
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
             } else {
-//              $this->$field = $class($this->{$field.'_id'});
+              $this->$field = $class($this->{$field.'_id'});
             }
             $this->{$field.'Name'} = $this->$field->name;
           }
