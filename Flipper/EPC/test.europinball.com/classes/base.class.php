@@ -110,8 +110,9 @@
       $obj = (array) $obj;
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
+        $prop = (static::$cols[$col]) ? static::$cols[$col] : $col;
         $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
-        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$col];
+        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }

@@ -103,8 +103,8 @@
       )
     );
     
-    public static $saveFields = array(
-      'shortName' => 'initials'
+    public static $cols = array(
+      'initials' => 'shortName'
     );
 
   }
