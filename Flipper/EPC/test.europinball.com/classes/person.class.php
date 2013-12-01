@@ -74,11 +74,10 @@
       } else {
         $division_id = config::$mainDivision;
       }
-      $player = new player(array(
+      return player(array(
         'person_id' => $this->id,
         'tournamentDivision_id' => $division_id
       ), TRUE);
-      return $player;
     }
 
     public function addPlayer($division = NULL) {
@@ -90,7 +89,7 @@
         $division_id = config::$mainDivision;
       }
       debug(get_object_vars($this), true);
-      $player = new player();
+      $player = player();
       
     }
 

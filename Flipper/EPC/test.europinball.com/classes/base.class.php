@@ -14,7 +14,7 @@
       } 
       $this->db = self::$_db;
       if (!static::$instances)  {
-        static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
+        static::$instances = (property_exists($this, 'arrClass')) ? static::$arrClass : array();
       }
       if ($search) {
         if (isAssoc($data)) {
@@ -25,8 +25,7 @@
         if ($obj) {
           $this->_set($obj);
         } else {
-          $this = FALSE;
-          return FALSE;
+          $this->failed = TRUE;
         }
       } else {
         if ($data) {
@@ -39,8 +38,7 @@
             if ($obj) {
               $this->_set($obj);
             } else {
-              $this = FALSE;
-              return FALSE;
+              $this->failed = TRUE;
             }
           } else if (is_string($data) && is_object(json_decode($data))) {
             $this->_set(json_decode($data));
@@ -79,7 +77,7 @@
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
             } else {
-              $this->$field = new $class($this->{$field.'_id'});
+              $this->$field = $class($this->{$field.'_id'});
             }
             $this->{$field.'Name'} = $this->$field->name;
           }
@@ -102,10 +100,10 @@
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
               if ($delete) {
-                $objs = new $class::$arrClass(array($field = $this->id));
+                $objs = $class::$arrClass(array($field = $this->id));
                 $objs->delete();
               } else {
-                $objs = new $class::$arrClass();
+                $objs = $class::$arrClass();
                 $objs->nullify(array($field.'_id' => $this->id));
               }
             }
@@ -160,7 +158,7 @@
     }
     
     function setParent($parent, $target = NULL)
-      $parent = ($parent) ? $parent : new $parent();
+      $parent = ($parent) ? $parent : $parent();
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       if (isAssoc($field)) {
         $table = ($field['table']) ? $field['table'] : $table;

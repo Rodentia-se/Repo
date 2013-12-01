@@ -34,11 +34,11 @@
     
     public function getPerson() {
       if (isset($_SESSION['username']) && $_SESSION['username']) {
-        return new person(array('username' => $_SESSION['username']), TRUE);
+        return person(array('username' => $_SESSION['username']), TRUE);
       } else if ($this->Username($_SESSION['uid'])) {
         $_SESSION['username'] = $this->Username($_SESSION['uid']);
         if (isset($_SESSION['username']) && $_SESSION['username']) {
-          return new person(array('username' => $_SESSION['username']), TRUE);
+          return person(array('username' => $_SESSION['username']), TRUE);
         }
       }
       return FALSE;
