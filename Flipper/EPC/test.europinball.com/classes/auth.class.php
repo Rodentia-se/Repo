@@ -142,8 +142,8 @@
       $nonce = ulNonce::Create('login');
       return '
         <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'">
+          '.(($closeButton) ? '<img src="'.config::$baseHref.'/images/cancel.png" id="'.$prefix.'closeLoginDiv" class="right icon" alt="Click to close the box" title="Close">' : '').'
         	<h2 class="loginTitle">'.$title.'</h2>
-          '.(($closeButton) ? '<img src="'.config::$baseHref.'/images/cancel.png" id="'.$prefix.'closeLoginDiv" class="right textIcon" alt="Click to close the box" title="Close">' : '').'
           <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="'.$prefix.'loginForm">
             <input type="hidden" name="action" value="login">
             <input type="hidden" name="baseHref" id="'.$prefix.'baseHref" value="'.config::$baseHref.'">
