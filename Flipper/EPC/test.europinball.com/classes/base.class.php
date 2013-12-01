@@ -23,8 +23,8 @@
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
         if ($obj) {
-          $this->_set($obj);
       debug($this, true);
+          $this->_set($obj);
         } else {
           $this->failed = TRUE;
         }
@@ -37,7 +37,7 @@
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
             if ($obj) {
-              $this->_set((array) $obj);
+              $this->_set($obj);
               die();
             } else {
               $this->failed = TRUE;
