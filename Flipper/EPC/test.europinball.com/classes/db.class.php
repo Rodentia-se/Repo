@@ -170,6 +170,7 @@
             from information_schema.columns 
             where table_schema = :db 
               and table_name = :table
+              and column_name != "id"
         ';
         $values[':db'] = config::$dbname;
         $values[':table'] = $table;
