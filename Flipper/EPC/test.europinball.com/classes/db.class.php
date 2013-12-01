@@ -55,7 +55,7 @@
       if ($rowCount > 1) {
         die('Error: Single object expected, '.$rowCount.' objects found...');
       } else if ($rowCount == 1) {
-        $obj = $sth->fetchObject($class);
+        $obj = $sth->fetchObject();
         return $obj;
       } else {
         return FALSE;
