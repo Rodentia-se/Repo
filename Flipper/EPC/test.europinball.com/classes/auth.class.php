@@ -95,6 +95,7 @@
         case 'login':
           debug("ACTION");
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
+            debug("REQUEST");
             return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
             return FALSE;
