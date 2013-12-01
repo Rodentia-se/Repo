@@ -3,6 +3,12 @@
   class page {
     
     public static $_login;
+    public $js_jquery = TRUE;
+    public $js_jqueryui = TRUE;
+    public $js_datatables = FALSE;
+    public $js_jeditable = FALSE;
+    public $js_purl = TRUE;
+    public $js_recaptcha = FALSE;
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
