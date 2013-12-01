@@ -76,7 +76,7 @@
       }
     }
     
-    public function save($propagate = TRUE) {
+    public function save($propagate = FALSE) {
       if ($this->id) {
         $return = $this->update();
       } else {
