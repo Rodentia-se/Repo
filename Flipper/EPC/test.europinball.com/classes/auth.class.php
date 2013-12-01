@@ -170,7 +170,7 @@
         </div>
         '.page::getScript("
           $('#".$prefix."closeLoginDiv').click(function() {
-            $('#".$prefix."loginDiv').toggle();
+            $('#".$prefix."loginDiv').hide();
           });
         ", TRUE).'
       ';

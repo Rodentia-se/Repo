@@ -70,10 +70,10 @@
         $footer .= self::getParagraph('You are logged in as '.$this->login->person->name.'. <a href="'.$_SERVER['REQUEST_URI'].'/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>', NULL, 'italic');
       } else {
         $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
-        $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip');
+        $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip', TRUE);
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
-            $('#footerloginDiv').show();
+            $('#footerloginDiv').toggle();
           });
           $('#footerloginDiv').css('bottom', '0px');
           $('#footerloginDiv').css('left', '250px');
