@@ -24,18 +24,17 @@
 
   function cities($data = NULL, $search = NULL) {
     $obj = new cities($data, $search);
-    return object($obj);
+    return ($obj->failed) ? FALSE : object($obj);
   }
 
   function continent($data = NULL, $search = NULL) {
     debug('continent');
     $obj = new continent($data, $search);
-    return object($obj);
+    return ($obj->failed) ? FALSE : object($obj);
   }
 
   function continents($data = NULL, $search = NULL) {
-    $obj = new continents($data, $search);
-    return object($obj);
+    return new continents($data, $search);
   }
 
   function country($data = NULL, $search = NULL) {
