@@ -82,7 +82,7 @@
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
               if (get_class($this) == 'region') {
-                die('huff');
+                die('huff: '.self::$parentDepth);
               }
       if (self::$parentDepth < $depth) {
             debug('3');
