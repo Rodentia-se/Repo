@@ -6,6 +6,7 @@
   $page = new page('Register', true);
 
     debug($_SESSION);
+    debug($_REQUEST);
     debug($page->login);
   if ($page->checkLogin()) {
     $person = $page->login->person;
