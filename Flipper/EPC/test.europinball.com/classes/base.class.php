@@ -10,7 +10,7 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-              if (self::$count > 1 || (($this) != 'region' && get_class($this) != 'city')) {
+              if (self::$count > 2 || (($this) != 'region' && get_class($this) != 'city')) {
                 self::$count++;
                 debug($obj);
                 debug($this);
