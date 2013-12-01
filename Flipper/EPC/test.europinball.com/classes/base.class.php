@@ -25,6 +25,7 @@
         if ($obj) {
           $this->_set($obj);
         } else {
+          $this = FALSE;
           return FALSE;
         }
       } else {
@@ -38,6 +39,7 @@
             if ($obj) {
               $this->_set($obj);
             } else {
+              $this = FALSE;
               return FALSE;
             }
           } else if (is_string($data) && is_object(json_decode($data))) {
