@@ -75,8 +75,8 @@
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').show();
           });
-          $(#footerloginDiv).css('bottom', '0px');
-          $(#footerloginDiv).css('left', '250px');
+          $('#footerloginDiv').css('bottom', '0px');
+          $('#footerloginDiv').css('left', '250px');
         ", TRUE);
       }
       $footer .= self::getDivEnd();
