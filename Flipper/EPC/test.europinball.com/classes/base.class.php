@@ -92,7 +92,7 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->db->getColNames($table);
       $query = 'update '.$table.' set ';
-      $array = $this->getQueryArray($this, ',', $cols);
+      $array = $this->getQueryArray($cols, ', ');
       $query .= $array['update'];
       return $this->db->update($query, $array['values']);
     }
@@ -101,20 +101,21 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->db->getColNames($table);
       $query = 'insert into '.$table.' set ';
-      $array = $this->getQueryArray($this, ', ', $cols);
+      $array = $this->getQueryArray($cols, ', ');
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
     
-    protected function getQueryArray($obj, $cond = 'or', $cols = NULL) {
-      $obj = (array) $obj;
+    protected function getQueryArray($cols = NULL, $cond = 'or') {
+      $obj = get_object_vars($this);
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (static::$cols[$col]) ? static::$cols[$col] : $col;
         $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
         $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$prop];
       }
-      return array('update' => implode($updates, $cond), 'values' => $values);
+      $update = implode($updates, $cond).' where id = '.$obj->id;
+      return array('update' => , 'values' => $values);
     }
 
     protected function populate($depth = NULL) {
