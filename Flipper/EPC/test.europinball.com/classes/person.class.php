@@ -94,7 +94,6 @@
       $player->person_id = $this->id;
       $player->dateRegistered = date('Y-m-d');
       $player->save();
-      debug($player, TRUE);
     }
 
 /*
