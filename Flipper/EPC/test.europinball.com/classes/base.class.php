@@ -24,9 +24,6 @@
         }
         if ($obj) {
           debug($this);
-              if (get_class($this) == 'country') {
-                die('hepp: '.self::$parentDepth);
-              }
           $this->_set($obj);
           debug($this);
         } else {
@@ -42,9 +39,6 @@
             }
             if ($obj) {
           debug($this);
-              if (get_class($this) == 'country') {
-                die('huff: '.self::$parentDepth);
-              }
               $this->_set($obj);
             } else {
               $this->failed = TRUE;
@@ -92,6 +86,9 @@
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
+              if ($field == 'parentRegion') {
+                die('huff: '.self::$parentDepth);
+              }
             debug('5');
           if ($this->{$field.'_id'}) {
             debug('6');
