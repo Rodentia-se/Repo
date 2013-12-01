@@ -8,15 +8,30 @@
     }
     
     public function insert($query, $values = NULL) {
-      return $this->action($query, $values);
+      if ($this->action($query, $values)) {
+        return $this->lastInsertId();
+      } else {
+        return FALSE;
+      }
     }
 
     public function update($query, $values = NULL) {
-      return $this->action($query, $values);
+      if($this->action($query, $values)) {
+        $rowCount = $sth->rowCount();
+        return ($rowCount == 0) ? TRUE : $rowCount;
+      } else {
+        return FALSE;
+      }
     }
 
     public function delete($query, $values = NULL) {
-      return $this->action($query, $values);
+      if ($this->action($query, $values)){
+        $rowCount = $sth->rowCount();
+        return ($rowCount == 0) ? TRUE : $rowCount;
+      }
+      } else {
+        return FALSE;
+      }
     }
 
     protected function action($query, $values = NULL) {
@@ -31,8 +46,7 @@
           return FALSE;
         }
       }
-      $rowCount = $sth->rowCount();
-      return ($rowCount == 0) ? TRUE : $rowCount;
+      return TRUE;
     }
 
     public function select($query, $values = NULL) {
