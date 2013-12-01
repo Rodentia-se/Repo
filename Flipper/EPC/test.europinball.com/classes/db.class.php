@@ -178,8 +178,9 @@
           return $sth->fetchAll(PDO::FETCH_COLUMN);
         }
       }
+      return FALSE;
     }
-    return FALSE;
+
   }
 
 ?>
