@@ -48,14 +48,14 @@
           </div>
         </div>
     ';
-    $page->focus('username');
+    $page->focus('usernameLogin');
   }
   $page->addScript("
             $('.viewButton').click(function(){
               $('#login').hide();
               $('#search').hide();
               $('#' + this.id.replace('view_', '')).show();
-              $('#' + ((this.id == 'view_login') ? 'username' : 'searchBox')).focus();
+              $('#' + ((this.id == 'view_login') ? 'usernameLogin' : 'searchBox')).focus();
             });
   ", TRUE);
   
