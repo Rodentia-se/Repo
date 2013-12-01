@@ -24,7 +24,7 @@
         }
         if ($obj) {
           debug($this);
-              if (get_class($this) == 'region') {
+              if (get_class($this) == 'country') {
                 die('hepp: '.self::$parentDepth);
               }
           $this->_set($obj);
@@ -42,7 +42,7 @@
             }
             if ($obj) {
           debug($this);
-              if (get_class($this) == 'region') {
+              if (get_class($this) == 'country') {
                 die('huff: '.self::$parentDepth);
               }
               $this->_set($obj);
