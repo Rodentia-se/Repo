@@ -10,7 +10,7 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-              if (self::$count > 1) {
+              if (self::$count > 0) {
                 self::$count++;
                 debug($this);
                 debug(self::$count);
