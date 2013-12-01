@@ -280,6 +280,10 @@ input[type=text], input[type=password] {
   white-space: nowrap;
 }
 
+.inlineBlock {
+  display: inline-block;
+}
+
 .big {
   font-size: 125%;
   font-weight: bold;
