@@ -79,7 +79,7 @@
       return $return;
     }
     
-    public function focus($id);
+    public function focus($id) {
       $page->addScript('$("#'.$id.'").focus()', TRUE);
     };
    
