@@ -79,7 +79,7 @@
         self::$parentDepth = 0;
         $this->populate();
       }
-      return $this->$prop;
+      return ($this->$prop) ? $this->$prop : FALSE;
     }
     
     protected function populate($depth = NULL) {
