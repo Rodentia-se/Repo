@@ -77,7 +77,7 @@
           return FALSE;
         }
       } else {
-        debug(Felaktig nonce: '.$nonce);
+        debug('Felaktig nonce: '.$nonce);
         return FALSE;
       }
     }
