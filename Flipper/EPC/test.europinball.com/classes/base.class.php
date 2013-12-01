@@ -52,6 +52,9 @@
       }
       debug($this);
       debug(static::$instances);
+              if (get_class($this) == 'region') {
+                die('huff');
+              }
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
@@ -99,9 +102,6 @@
             debug(' Class: '.$class);
             debug(' Field: '.$field);
             debug(' ID: '.$this->{$field.'_id'});
-              if (get_class($this) == 'region') {
-                die('huff');
-              }
               $this->$field = $class($this->{$field.'_id'});
             debug('11');
             }
