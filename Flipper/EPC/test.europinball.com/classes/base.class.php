@@ -65,6 +65,7 @@
         $this->{$key} = $value;
       }
       debug($this, false);
+      return TRUE;
     }
     
     public function __get($prop) {
