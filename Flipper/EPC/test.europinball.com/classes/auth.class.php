@@ -45,8 +45,9 @@
     }
 
     public function login($username, $password, $nonce) {
+      debug("LOGIN ".$nonce);
       if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
-        debug("LOGIN");
+        debug("LOGGING IN");
         $this->Authenticate($username, $password);
         if ($this->IsAuthSuccess()) {
           debug("SUCCESS");
