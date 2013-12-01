@@ -64,12 +64,12 @@
       debug(static::$instances);
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
-              if (self::$count > 2) {
+        $this->populate();
+              if (self::$count > 1) {
                 debug($this);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
-        $this->populate();
       }
     }
     
