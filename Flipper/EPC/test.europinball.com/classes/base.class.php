@@ -11,6 +11,13 @@
 
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
+              if (self::$count > 2) {
+                debug($this);
+                debug($data);
+                debug($obj);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
       debug (self::$count);
       if (!self::$_db) {
         self::$_db = new db();
@@ -60,13 +67,6 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
-              if (self::$count > 1) {
-                debug($this);
-                debug($data);
-                debug($obj);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
       }
     }
     
