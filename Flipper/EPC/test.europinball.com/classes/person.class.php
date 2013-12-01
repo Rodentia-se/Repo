@@ -76,7 +76,7 @@
       }
       $player = new player(array(
         'person_id' => $this->id,
-        'tournamentDivision_id' => config::$division_id
+        'tournamentDivision_id' => $division_id
       ), TRUE);
       return $player;
     }
