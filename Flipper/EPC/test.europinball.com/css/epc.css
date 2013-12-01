@@ -249,6 +249,10 @@ li {
   color: red;
 }
 
+.right {
+  float: right;
+}
+
 #imageForm {
   float: right;
 }
