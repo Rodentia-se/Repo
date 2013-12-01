@@ -8,8 +8,8 @@
   if ($page->loggedin()) {
     $person = $page->login->person;
     $player = $person->getPlayer();
+    debug($player, TRUE);
     if ($player) {
-      debug($player, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['action'] == 'register') {
