@@ -124,7 +124,7 @@
             debug('16');
       }
             debug('17');
-              if (self::$count > 1) {
+              if (self::$count > 2) {
                 debug($this);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
