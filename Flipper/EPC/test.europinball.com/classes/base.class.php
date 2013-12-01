@@ -9,13 +9,13 @@
     public static $parentDepth = 0;
 
     public function __construct($data = NULL, $search = NULL) {
+              if (get_class($this) != 'region' && get_class($this) != 'city') {
+                die('hepp: '.get_class($this));
+              }
       if (!self::$_db) {
         self::$_db = new db();
       } 
       $this->db = self::$_db;
-              if (get_class($this) != 'region' && get_class($this) != 'city') {
-                die('hepp: '.self::$parentDepth);
-              }
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
@@ -28,7 +28,7 @@
         if ($obj) {
           debug($this);
               if (get_class($this) != 'region' && get_class($this) != 'city') {
-                die('hepp: '.self::$parentDepth);
+                die('hepp: '.get_class($this));
               }
           $this->_set($obj);
           debug($this);
@@ -46,7 +46,7 @@
             if ($obj) {
           debug($this);
               if (get_class($this) != 'region' && get_class($this) != 'city') {
-                die('huff: '.self::$parentDepth);
+                die('huff: '.get_class($this));
               }
               $this->_set($obj);
             } else {
