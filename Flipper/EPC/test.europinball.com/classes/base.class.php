@@ -65,6 +65,7 @@
       ob_flush();
         $this->{$key} = $value;
       }
+      debug($this);
     }
     
     public function __get($prop) {
