@@ -174,7 +174,7 @@
         $values[':db'] = config::$dbname;
         $values[':table'] = $table;
         $sth = $this->prepare($query);
-        if ($sth->exeecute($values)) {
+        if ($sth->execute($values)) {
           return $sth->fetchAll(PDO::FETCH_COLUMN);
         }
       }
