@@ -15,6 +15,7 @@
   }
 
   function city($data = NULL, $search = NULL) {
+    debug('city');
     $obj = new city($data, $search);
     return object($obj);
   }
@@ -25,6 +26,7 @@
   }
 
   function continent($data = NULL, $search = NULL) {
+    debug('continent');
     $obj = new continent($data, $search);
     return object($obj);
   }
@@ -35,6 +37,7 @@
   }
 
   function country($data = NULL, $search = NULL) {
+    debug('country');
     $obj = new country($data, $search);
     return object($obj);
   }
@@ -185,6 +188,7 @@
   }
 
   function region($data = NULL, $search = NULL) {
+    debug('region');
     $obj = new region($data, $search);
     return object($obj);
   }
