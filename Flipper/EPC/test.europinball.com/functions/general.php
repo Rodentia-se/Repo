@@ -31,7 +31,7 @@
     if (config::$debug) {
       preDump($text,'DEBUG');
       if ($die) {
-        $die('Abort requested.');
+        die('Abort requested.');
       }
     }
   }

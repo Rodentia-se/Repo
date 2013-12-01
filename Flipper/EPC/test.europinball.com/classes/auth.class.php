@@ -45,13 +45,9 @@
     }
 
     public function login($username, $password, $nonce) {
-      debug("LOGIN ".$nonce);
-      debug("HASHED ".hash(UL_HMAC_FUNC, $nonce));
       if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
-        debug("LOGGING IN");
         $this->Authenticate($username, $password);
         if ($this->IsAuthSuccess()) {
-          debug("SUCCESS");
           $_SESSION['uid'] = $this->AuthResult;
           $_SESSION['username'] = $this->Username($_SESSION['uid']);
           $_SESSION['loggedIn'] = TRUE;
@@ -78,7 +74,7 @@
           return FALSE;
         }
       } else {
-        debug('Felaktig nonce: '.$nonce);
+        error('Invalid nonce: '.$nonce);
         return FALSE;
       }
     }
@@ -146,7 +142,7 @@
             <input type="hidden" name="action" value="login">
             <input type="hidden" name="loggedIn" id="loggedIn" value="false">
             <input type="hidden" name="baseHref" id="baseHref" value="'.config::$baseHref.'">
-			      <input type="hidden" name="nonce" id="nonce" value="'.ulNonce::Create('login').'">
+			      <input type="hidden" name="nonce" id="nonce" value="'.((ulNonce::Exists('login')) ? $_SESSION['ulNonces']['login'] : ulNonce::Create('login')).'">
             <div id="usernameDiv">
               <label for="username">Username:</label>
   		        <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
