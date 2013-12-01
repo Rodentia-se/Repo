@@ -24,8 +24,8 @@
         }
         if ($obj) {
           $this->id = 1;
-      debug($this, false);
           $this->_set($obj);
+      debug($this, false);
         } else {
           $this->failed = TRUE;
         }
@@ -65,7 +65,6 @@
       ob_flush();
         $this->{$key} = $value;
       }
-      debug($this);
     }
     
     public function __get($prop) {
