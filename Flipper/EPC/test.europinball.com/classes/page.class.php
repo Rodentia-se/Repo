@@ -100,7 +100,7 @@
     }
     
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
-      return '<'.$type.(($id) ? ' id="'.$id'"' : '').(($class) = ' class="'.$class.'"' : '').'>';
+      return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) = ' class="'.$class.'"' : '').'>';
     } 
 
     public static function getElementEnd($type = 'p') {
