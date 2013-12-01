@@ -102,6 +102,10 @@
         'field' => 'player'
       )
     );
+    
+    public static $saveFields = array(
+      'shortName' => 'initials'
+    );
 
   }
 

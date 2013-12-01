@@ -75,6 +75,43 @@
         return FALSE;
       }
     }
+    
+    public function save($propagate = TRUE) {
+      if ($this->id) {
+        $return = $this->update();
+      } else {
+        $return = $this->add();
+      }
+      if ($propagate) {
+        // Propagate
+      }
+      return $return;
+    }
+    
+    protected function update() {
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      $query = 'update '.$table.' set ';
+      $array = getQueryArray($this, ',');
+      $query .= $array['update'];
+      return $this->db->update($query, $array['values']);
+    }
+    
+    protected function add() {
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      $query = 'insert into '.$table.' set ';
+      $array = getQueryArray($this, ',');
+      $query .= $array['update'];
+      return $this->db->insert($query, $array['values']);
+    }
+    
+    protected function getQueryArray($array, $cond = 'or') {
+      foreach ($array as $col => $val) {
+        $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $col);
+        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
+      }
+      $update .= implode($updates, ' '.$cond.' ').')';
+      return array('update' => $update, 'values' = $values);
+    }
 
     protected function populate($depth = NULL) {
       $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
