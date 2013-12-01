@@ -99,7 +99,7 @@
     protected function add() {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $query = 'insert into '.$table.' set ';
-      $array = $this->getQueryArray($this, ',');
+      $array = $this->getQueryArray($this, ', ');
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
@@ -109,8 +109,7 @@
         $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
         $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $val;
       }
-      $update .= implode($updates, ' '.$cond.' ').')';
-      return array('update' => $update, 'values' => $values);
+      return array('update' => implode($updates, $cond), 'values' => $values);
     }
 
     protected function populate($depth = NULL) {
