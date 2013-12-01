@@ -8,8 +8,10 @@
   
   function object($obj) {
     if ($obj->failed) {
+      debug('FAIL');
       return FALSE;
     } else {
+      debug('FINE');
       return $obj;
     }
   }

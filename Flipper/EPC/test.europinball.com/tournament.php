@@ -40,7 +40,7 @@
   $page->submit(FALSE, TRUE);
 */
 //  $obj = city(1907);
-  $obj = country(188);
+  $obj = continent(1);
   debug($obj);
 /*
 echo 'hej';
