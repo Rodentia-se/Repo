@@ -40,7 +40,6 @@
             if ($obj) {
           debug($this);
               $this->_set($obj);
-          debug($this, true);
             } else {
               $this->failed = TRUE;
             }
@@ -81,7 +80,7 @@
     protected function populate($depth = NULL) {
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
-            debug('2');
+            debug('2', true);
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
