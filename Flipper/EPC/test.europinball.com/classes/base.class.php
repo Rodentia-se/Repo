@@ -80,13 +80,13 @@
     protected function populate($depth = NULL) {
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
-            debug('2', true);
+            debug('2');
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
-            debug('5');
+            debug('5', true);
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
