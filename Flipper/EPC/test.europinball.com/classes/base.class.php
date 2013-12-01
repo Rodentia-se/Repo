@@ -86,7 +86,7 @@
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
-              if ($field == 'region') {
+              if ($field != 'region') {
                 die('huff: '.self::$parentDepth);
               }
             debug('5');
