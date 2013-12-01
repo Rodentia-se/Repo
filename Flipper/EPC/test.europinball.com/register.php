@@ -43,10 +43,10 @@
     ';
   }
   $page->addScript("
-            $('.viewButton').click(function(){
+            $('.viewButton').click(function(event){
               $('#login').hide();
               $('#search').hide();
-              $('#'.this.id.replace('view_', '')).show();
+              $('#'.event.target.id.replace('view_', '')).show();
             });
   ", TRUE);
   
