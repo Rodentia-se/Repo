@@ -59,9 +59,8 @@
     }
     
     protected function _set($data) {
-      debug($data, true);
       foreach ($data as $key => $value) {
-      debug($this->{$key}.': '.$value.' ', true);
+      debug($data, true);
         $this->{$key} = $value;
       }
     }
