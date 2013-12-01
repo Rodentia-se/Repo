@@ -9,6 +9,11 @@
     public static $parentDepth = 0;
 
     public function __construct($data = NULL, $search = NULL) {
+              if (get_class($this) != 'region' && get_class($this) != 'city') {
+                debug($obj);
+                debug($this);
+                die('hepp: '.get_class($this));
+              }
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -83,11 +88,6 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
-              if (get_class($this) != 'region' && get_class($this) != 'city') {
-                debug($obj);
-                debug($this);
-                die('hepp: '.get_class($this));
-              }
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
