@@ -102,10 +102,10 @@
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
               if ($delete) {
-                $objs = $class::$arrClass(array($field = $this->id));
+                $objs = call_user_func($class::$arrClass, array($field = $this->id));
                 $objs->delete();
               } else {
-                $objs = $class::$arrClass();
+                $objs = call_user_func($class::$arrClass);
                 $objs->nullify(array($field.'_id' => $this->id));
               }
             }
