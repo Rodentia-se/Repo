@@ -86,13 +86,13 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
+      if (self::$parentDepth < $depth) {
+            debug('3');
               if (self::$count > 1) {
                 debug($this);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
-      if (self::$parentDepth < $depth) {
-            debug('3');
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
@@ -124,6 +124,11 @@
             debug('16');
       }
             debug('17');
+              if (self::$count > 1) {
+                debug($this);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
     }
     
     public function delete($propagate = TRUE) {
