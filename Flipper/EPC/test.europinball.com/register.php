@@ -40,9 +40,9 @@
           <p>PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.</p>
           <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">
           <p>Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login"></p>
-          <p>If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!"></p>
+          <p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!"></p>
           <div id="searchResults">
-            <span id="loading" style="display: none"><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
+            <span id="resultsTableLoading" style="display: "><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
     ';
     $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, TRUE);
     $page->content .= '
@@ -52,11 +52,20 @@
     $page->focus('usernameLogin');
   }
   $page->addScript("
-            $('.viewButton').click(function(){
+            $('.viewButton').click(function() {
               $('#login').hide();
               $('#search').hide();
               $('#' + this.id.replace('view_', '')).show();
               $('#' + ((this.id == 'view_login') ? 'usernameLogin' : 'searchBox')).focus();
+            });
+            $('#searchButton').click(function() {
+              if ($.trim($('#searchBox').val()).length > 0) {
+                $('#newGuy').show();
+                $('#resultsTable').show();
+                ajaxTable('resultsTable', '')
+              } else {
+                toolTip('searchBox', 'Please enter a search term', true);
+              }
             });
   ", TRUE);
   
