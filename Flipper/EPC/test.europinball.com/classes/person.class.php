@@ -91,6 +91,7 @@
       $player = player($this->getFlat(), NULL, 0);
       $player->tournamenDivision_id = $division_id;
       $player->save(FALSE);
+      debug($player, TRUE);
     }
 
 /*
