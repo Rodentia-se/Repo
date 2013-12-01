@@ -117,10 +117,10 @@
       if ($type) {
         $element = self::getElementStart($type, $id, $class);
       } else if ($class) {
-        $element = self::getElementEnd('span', $id, $class);
+        $element = self::getElementStart('span', $id, $class);
       }
       $element .= $text;
-      $element .= ($close) ? self::closeElement($type) : '';
+      $element .= ($close) ? self::getElementEnd($type) : '';
       return $element;
     }
     
