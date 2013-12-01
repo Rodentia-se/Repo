@@ -52,7 +52,7 @@
             $('.viewButton').click(function(event){
               $('#login').hide();
               $('#search').hide();
-              $('#' + event.target.id.replace('view_', '')).show();
+              $('#' + this.id.replace('view_', '')).show();
             });
   ", TRUE);
   
