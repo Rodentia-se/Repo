@@ -298,7 +298,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
                             (     properties.aoColumns != null
                                 && properties.aoColumns[aPos[2]] != null 
                                 && properties.aoColumns[aPos[2]].sSuccessResponse == "IGNORE") || 
-                            (sNewCellValue == null) || (sNewCellValue.trim() == sValue.trim()) ||
+                            (sNewCellValue == null) || (sNewCellValue == sValue) || 
                             properties.sSuccessResponse == sValue) {
                             if(sNewCellDisplayValue == null)
                             {
@@ -1257,7 +1257,7 @@ returns true if plugin should continue with sending AJAX request, false will abo
             }
 
             //Add handler to the inline delete buttons
-            $(".table-action-deletelink", oTable).on("click", _fnOnRowDeleteInline);
+            $(".table-action-deletelink", oTable).live("click", _fnOnRowDeleteInline);
 
             if (!properties.bUseKeyTable) {
             //Set selected class on row that is clicked

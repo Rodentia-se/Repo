@@ -74,6 +74,7 @@
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').toggle();
+            $('#footerusernameLogin').focus(); 
           });
           $('#footerloginDiv').css('bottom', '0px');
           $('#footerloginDiv').css('left', '250px');

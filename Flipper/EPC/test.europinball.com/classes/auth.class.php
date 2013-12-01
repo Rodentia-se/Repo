@@ -168,11 +168,11 @@
             </div>
   	      </form>
         </div>
-        '.page::getScript("
+        '.(($closeButton) ? page::getScript("
           $('#".$prefix."closeLoginDiv').click(function() {
             $('#".$prefix."loginDiv').hide();
           });
-        ", TRUE).'
+        ", TRUE) : '').'
       ';
     }
 
