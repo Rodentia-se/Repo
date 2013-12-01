@@ -77,7 +77,7 @@
           });
         ", TRUE);
       }
-      $footer = self::getDivEnd();
+      $footer .= self::getDivEnd();
       $footer .= '
           </body>
         </html>
