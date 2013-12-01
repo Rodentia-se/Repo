@@ -23,6 +23,7 @@
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
         if ($obj) {
+          $this->id = 1;
       debug($this, false);
           $this->_set($obj);
         } else {
