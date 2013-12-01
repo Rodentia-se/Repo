@@ -40,7 +40,7 @@
             if ($obj) {
           debug($this);
               $this->_set($obj);
-          debug($this);
+          debug($this, true);
             } else {
               $this->failed = TRUE;
             }
