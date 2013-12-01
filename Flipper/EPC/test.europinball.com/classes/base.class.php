@@ -13,6 +13,7 @@
                 self::$count++;
               if (self::$count > 1) {
                 debug($this);
+                debug($data);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
