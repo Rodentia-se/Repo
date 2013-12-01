@@ -134,37 +134,36 @@
       return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
     }
 
-    public function getLogin($title = 'Please provide your login credentials') {
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
       debug($_SESSION);
       if (ulNonce::Exists('login')) {
         ulNonce::Verify('login', 'nonsense');
       }
       $nonce = ulNonce::Create('login');
       return '
-        <div id="loginDiv" class="loginDiv">
+        <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'">
         	<h2 class="loginTitle">'.$title.'</h2>
-          <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="loginForm">
+          <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="'.$prefix.'loginForm">
             <input type="hidden" name="action" value="login">
-            <input type="hidden" name="loggedIn" id="loggedIn" value="false">
-            <input type="hidden" name="baseHref" id="baseHref" value="'.config::$baseHref.'">
-			      <input type="hidden" name="nonce" id="nonce" value="'.$nonce.'">
+            <input type="hidden" name="baseHref" id="'.$prefix.'baseHref" value="'.config::$baseHref.'">
+            <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
             <div id="usernameDiv">
               <label for="username">Username:</label>
-  		        <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
-              <span id="usernameLoginSpan" class="errorSpan">*</span>
+              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
+              <span id="'.$prefix.'usernameLoginSpan" class="errorSpan">*</span>
             </div>
             <div id="passwordDiv">
               <label for="password">Password:</label>
-              <input type="password" name="password" id="passwordText" class="mandatory" onkeyup="login(this);" onchange="login(this);">
-              <span id="passwordSpan" class="errorSpan">*</span>
+              <input type="password" name="password" id="'.$prefix.'passwordText" class="mandatory" onkeyup="login(this);" onchange="login(this);">
+              <span id="'.$prefix.'passwordSpan" class="errorSpan">*</span>
             </div>
-            <div id="autologinDiv">
+            <div id="'.$prefix.'autologinDiv">
               <label for="autologin" class="infoLabel">Remember me:</label>
-              <input type="checkbox" name="autologin" value="1" id="autologinCheckbox">
+              <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox">
             </div>
-            <div id="loginDiv">
-    		      <input type="submit" value="Log in" id="loginButton" onclick="login(this);">&nbsp;&nbsp;
-              <a href="'.config::$baseHref.'/?s=losenreset" class="italic">Forgot username or password?</a>
+            <div id="'.$prefix.'loginButtonDiv">
+              <input type="submit" value="Log in" id="'.$prefix.'loginButton" onclick="login(this);">&nbsp;&nbsp;
+              <a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a>
             </div>
   	      </form>
         </div>

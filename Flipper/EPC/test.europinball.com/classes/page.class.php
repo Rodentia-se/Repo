@@ -5,7 +5,7 @@
     public static $_login;
     public $content;
 
-    public function __construct($title='EPC', $login = FALSE, $header = NULL, $footer = NULL) {
+    public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
       if ($login) {
         if (!self::$_login) {
 //          self::$_login = new auth(NULL, NULL, config::$loginBackend);
@@ -60,6 +60,31 @@
       ';
     }
     
+    public function addFooter($footer = FALSE) {
+      $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
+    }
+
+    public function getFooter() {
+      $footer = self::getDivStart('loginFooter');
+      if ($this->loggedin()) {
+        $footer .= self::getParagraph('You are logged in as '.$this->login->person->name.'. <a href="'.$_SERVER['REQUEST_URI'].'/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>', NULL, 'italic');
+      } else {
+        $footer .= self::getParagraph('<p class="italic">You are not logged in. <input type="button" id="loginButton" value="Log in">', NULL, 'italic');
+        $footer .= self::addLogin('Please provide your login credentials', 'footer', 'toolTip');
+      }
+      $footer .= self::getScript("
+      $footer = self::getDivStart('loginFooter');
+        $('#footerloginButton').click(function() {
+          $('#footerloginDiv').show();
+        });
+      ", TRUE);
+      $footer .= '
+          </body>
+        </html>
+      ';
+      return $footer;
+    }
+
     public function setEditable($editable = TRUE) {
       $this->js_jquery = $editable;
       $this->js_jqueryui = $editable;
@@ -88,17 +113,25 @@
     }
     
     public function startDiv($id, $class = NULL) {
-      $div = self::getElementStart('div', $id, $class);
+      $div = self::getDivStart($id, $class);
       $this->addContent($div);
       return $div;
+    }
+    
+    public static function getDivStart($id, $class = NULL) {
+      return self::getElementStart('div', $id, $class);
     }
     
     public function closeDiv() {
-      $div = self::getElementEnd('div');
+      $div = self::getDivEnd();
       $this->addContent($div);
       return $div;
     }
-    
+
+    public static function getDivEnd() {
+      return self::getElementEnd('div');
+    }
+
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
       return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>';
     } 
@@ -231,28 +264,13 @@
       return $table;
     }
 
-    public function addFooter($footer = FALSE) {
-      $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
-    }
-
-    public function getFooter() {
-      return '
-            <div id="loginbuttons">
-              '.(($this->loggedin()) ? '
-                <p class="italic">You are logged in as '.$this->login->person->name.'. <a href="'.config::$baseHref.'/login/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>' :
-                '<p class="italic">You are not logged in. <a href="'.config::$baseHref.'/login"><input type="button" id="loginButton" value="Log in"></a').'
-          </body>
-        </html>
-      ';
-    }
-
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
         return ($add) ? NULL : TRUE;
       } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
         return ($add) ? NULL : TRUE;
       } else {
-        $login = $this->getLogin($title);
+        $login = self::getLogin($title);
         $this->addContent((($add || $req) ? $login : ''));
         return ($add) ? $login : FALSE;
       }
@@ -301,8 +319,8 @@
       return $this->login->loggedin();
     }
 
-    public function getLogin($title = 'Please provide your login credentials') {
-      return $this->login->getLogin($title);
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
+      return auth::getLogin($title, $prefix, $class);
     }
 
   }
