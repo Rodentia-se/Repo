@@ -39,7 +39,12 @@
           <p>PLEASE SEARCH BEFORE YOU DECIDE TO CLICK ON THE NEW GUY BUTTON! If you have ever played a pinball tournament, you are most likely NOT a new guy.</p>
           <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="search" name="search">
           <input type="button" id="nologinButton" value="Search"><input type="button" id="nologinButton" value="Search"><input type="button" id="view_login" class="viewButton" value="Back to login">
-          <div id="searchResults">Resultat</div>
+          <div id="searchResults">
+            <span id="loading" style="display: none"><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
+    ';
+    $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, FALSE);
+    $page->content .= '
+          </div>
         </div>
     ';
   }

@@ -65,19 +65,55 @@
       $this->js_jqueryui = $editable;
       $this->js_datatables = $editable;
       $this->js_jeditable = $editable;
-   }
+    }
    
-   public function addScript($script, $onload) {
-     $return = '
+    public function addScript($script, $onload) {
+      $return = '
         <script type="text/javascript">
           '.(($onload) ? '$(document).ready(function() {' : '').'
             '.$script.'
           '.(($onload) ? '});' : '').'
         </script>
-     ';
-     $this->content .= $return;
-     return $return;
-   }
+      ';
+      $this->content .= $return;
+      return $return;
+    }
+   
+    public function addTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
+      $table = '
+        <table id="resultsTable" class="'.$class.'" style="display: '.(($display) ? '' : 'none').'">
+          <thead>
+            <tr>
+      ';
+      foreach ($headers as $header) {
+        $table .= '<th>'.$header."</th>\n";
+      }
+      $table .= '
+            </tr>
+          </thead>
+          <tbody>
+      ';
+      if ($rows) {
+        foreach ($rows as $row => $cells) {
+          $table .= '<tr>';
+          if ($cells)
+            if (count($cells) != count($headers)) {
+              warning('¨Headers and cells count does not match - no cells added');
+            }
+            $cell = 0;
+            foreach ($headers as $header) {
+              if ($cells[$header]) {
+                $table .= '<td>'.$cells[$header]."</td>\n";
+              } else {
+                $table .= '<td>'.$cells[$cell]."</td>\n";
+              }
+              $cell++;
+            }
+          }
+          $tebla .= "</tr>\n";
+        }
+      }
+    }
 
     public function addFooter($footer = FALSE) {
       $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
