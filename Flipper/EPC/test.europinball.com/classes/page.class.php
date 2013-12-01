@@ -87,10 +87,26 @@
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
     
-    public function startDiv($id, $class) {
-      return '<div '.(($id) ? 'id="'.$id.'"' : '').' '.(($id) ? 'class="'.$class.'"' : '').'>';
+    public function startDiv($id, $class = NULL) {
+      $div = getElementStart('div', $id, $class);
+      $this->addContent($div);
+      return $div;
     }
     
+    public function closeDiv() {
+      $div = getElementEndt('div');
+      $this->addContent($div);
+      return $div;
+    }
+    
+    public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
+      return '<'.$type.(($id) ? ' id="'.$id'"' : '').(($class) = ' class="'.$class.'"' : '').'>';
+    } 
+
+    public static function getElementEnd($type = 'p') {
+      return '</'.$type.'>';
+    } 
+
     public function addElement($text, $type = 'p', $id = NULL, $class = NULL, $close = TRUE) {
       $element = self::getElement($text, $type, $class, $close);
       $this->addContent($element);
@@ -99,12 +115,13 @@
     
     public static function getElement($text, $type = 'p', $id = NULL, $class = NULL, $close = TRUE) {
       if ($type) {
-        return '<'.$type.' class="'.$class.'">'.$text.(($close) ? '</p>' : '');
+        $element = self::getElementStart($type, $id, $class);
       } else if ($class) {
-        return '<span class="'.$class.'">'.$text.(($close) ? '</span>' : '');
-      } else {
-        return $text;
+        $element = self::getElementEnd('span', $id, $class);
       }
+      $element .= $text;
+      $element .= ($close) ? self::closeElement($type) : '';
+      return $element;
     }
     
     public function addParagraph($text, $id = NULL, $class = NULL, $close = TRUE) {

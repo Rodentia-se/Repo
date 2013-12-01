@@ -56,6 +56,9 @@ img.textIcon {
   display: none;
 }
 
+.hidden {
+  display: none;
+}
 .comment {
   font-style: italic;
 }
