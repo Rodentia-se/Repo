@@ -12,9 +12,10 @@
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
       debug (self::$count);
-              if (self::$count > 0 || !$data || get_class($this) != 'city') {
+              if (self::$count > 0) {
                 self::$count++;
                 debug($this);
+                debug("Data:".$data);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
