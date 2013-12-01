@@ -46,8 +46,10 @@
 
     public function login($username, $password, $nonce) {
       if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
+        debug("LOGIN");
         $this->Authenticate($username, $password);
         if ($this->IsAuthSuccess()) {
+          debug("SUCCESS");
           $_SESSION['uid'] = $this->AuthResult;
           $_SESSION['username'] = $this->Username($_SESSION['uid']);
           $_SESSION['loggedIn'] = TRUE;
@@ -91,6 +93,7 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
+          debug("ACTION");
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
