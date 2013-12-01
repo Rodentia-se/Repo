@@ -80,6 +80,11 @@
     }
     
     protected function populate($depth = NULL) {
+              if (get_class($this) != 'asd' && get_class($this) != 'city') {
+                debug($obj);
+                debug($this);
+                die('hepp: '.get_class($this));
+              }
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
@@ -90,11 +95,6 @@
         foreach (static::$parents as $field => $class) {
             debug('5f'.$field);
             debug('5c'.$class);
-              if (get_class($this) != 'asd' && get_class($this) != 'city') {
-                debug($obj);
-                debug($this);
-                die('hepp: '.get_class($this));
-              }
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
