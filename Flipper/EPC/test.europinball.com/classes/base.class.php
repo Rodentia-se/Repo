@@ -10,7 +10,7 @@
 
     public function __construct($data = NULL, $search = NULL) {
               if (get_class($this) != 'asd' && get_class($this) != 'city') {
-                die('hepp: '.get_class($this));
+                die('hepp: '.$data);
               }
       if (!self::$_db) {
         self::$_db = new db();
