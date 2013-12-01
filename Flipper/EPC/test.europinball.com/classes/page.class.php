@@ -88,13 +88,13 @@
     }
     
     public function startDiv($id, $class = NULL) {
-      $div = getElementStart('div', $id, $class);
+      $div = self::getElementStart('div', $id, $class);
       $this->addContent($div);
       return $div;
     }
     
     public function closeDiv() {
-      $div = getElementEndt('div');
+      $div = self::getElementEnd('div');
       $this->addContent($div);
       return $div;
     }
