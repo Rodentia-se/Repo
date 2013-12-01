@@ -38,6 +38,7 @@
             }
             if ($obj) {
               $this->_set($obj);
+              die();
             } else {
               $this->failed = TRUE;
             }
