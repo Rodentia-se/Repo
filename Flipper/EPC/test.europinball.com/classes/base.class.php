@@ -22,7 +22,6 @@
         } else if ($data) {
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
-      debug($this, true);
         if ($obj) {
           $this->_set($obj);
         } else {
