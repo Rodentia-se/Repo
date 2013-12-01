@@ -66,15 +66,31 @@
       'team' => 'registerPerson'
     );
     
-    public function getPlayer() {
+    public function getPlayer($division = NULL) {
+      if (get_class($division) == 'division') {
+        $division_id = $division->id;
+      } else (is_int($division)) {
+        $division_id = $division;
+      } else {
+        $division_id = config::$mainDivision;
+      }
       $player = new player(array(
         'person_id' => $this->id,
-        'tournamentDivision_id' => config::$mainDivision
+        'tournamentDivision_id' => config::$division_id
       ), TRUE);
       return $player;
     }
 
-    public function addPlayer() {
+    public function addPlayer($division = NULL) {
+      if (get_class($division) == 'division') {
+        $division_id = $division->id;
+      } else (is_int($division)) {
+        $division_id = $division;
+      } else {
+        $division_id = config::$mainDivision;
+      }
+      debug(get_object_vars($this), true);
+      $player = new player();
       
     }
 

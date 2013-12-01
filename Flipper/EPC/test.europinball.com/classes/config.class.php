@@ -14,7 +14,7 @@
     public static $activeTournament = 1;
  
     public static $main = TRUE;
-    public static $mainDivision = 1;
+    public static $mainDivision = 1212;
     public static $mainQualLimit = 50;
  
     public static $classics = TRUE;

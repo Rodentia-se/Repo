@@ -51,13 +51,6 @@
       'score' => 'tournamentDivision'
     );
 
-    public function delete() {
-      if(parent::delete()){
-        // Remove from children
-        return TRUE;
-      }
-    }
-
   }
 
 ?>
