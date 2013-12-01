@@ -84,7 +84,7 @@
     public function addPlayer($division = NULL) {
       if (get_class($division) == 'division') {
         $division_id = $division->id;
-      } else (is_int($division)) {
+      } else if (is_int($division)) {
         $division_id = $division;
       } else {
         $division_id = config::$mainDivision;
