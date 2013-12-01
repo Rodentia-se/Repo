@@ -86,13 +86,13 @@
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
-            debug('5', true);
+            debug('5');
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
             debug('7');
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
-            debug('8');
+            debug('8', true);
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
             debug('9');
             } else {
