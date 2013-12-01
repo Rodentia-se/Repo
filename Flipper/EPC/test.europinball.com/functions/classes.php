@@ -29,7 +29,7 @@
 
   function continent($data = NULL, $search = NULL) {
     debug('continent');
-    return ($obj->failed) ? FALSE : object($obj);
+    return ($obj->failed) ? FALSE : $obj;
   }
 
   function continents($data = NULL, $search = NULL) {
