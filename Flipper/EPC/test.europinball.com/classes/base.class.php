@@ -14,7 +14,7 @@
       } 
       $this->db = self::$_db;
       if (!static::$instances)  {
-        static::$instances = (property_exists($this, 'arrClass')) ? call_user_func(static::$arrClass) : array();
+        static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
       if ($search) {
         if (isAssoc($data)) {
@@ -105,10 +105,10 @@
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
               if ($delete) {
-                $objs = call_user_func($class::$arrClass, array($field = $this->id));
+                $objs = new $class::$arrClass(array($field = $this->id));
                 $objs->delete();
               } else {
-                $objs = call_user_func($class::$arrClass);
+                $objs = new $class::$arrClass;
                 $objs->nullify(array($field.'_id' => $this->id));
               }
             }
