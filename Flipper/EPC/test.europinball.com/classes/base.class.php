@@ -25,7 +25,7 @@
         if ($obj) {
           $this->id = 1;
           $this->_set($obj);
-          debug($this, false);
+          debug(25, false);
         } else {
           $this->failed = TRUE;
         }
