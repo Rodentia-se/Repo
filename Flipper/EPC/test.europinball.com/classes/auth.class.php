@@ -136,6 +136,11 @@
 
     public function getLogin($title = 'Please provide your login credentials') {
       debug($_SESSION);
+      if (ulNonce::Exists('login') && is_array($_SESSION['ulNonces']) && is_array $_SESSION['ulNonces']['login']) {
+        $nonce = hash(UL_HMAC_FUNC, $_SESSION['ulNonces']['login']['code']);
+      } else {
+        $nonce = ulNonce::Create('login');
+      }
       return '
         <div id="loginDiv" class="loginDiv">
         	<h2 class="loginTitle">'.$title.'</h2>
@@ -143,7 +148,7 @@
             <input type="hidden" name="action" value="login">
             <input type="hidden" name="loggedIn" id="loggedIn" value="false">
             <input type="hidden" name="baseHref" id="baseHref" value="'.config::$baseHref.'">
-			      <input type="hidden" name="nonce" id="nonce" value="'.((ulNonce::Exists('login')) ? $_SESSION['ulNonces']['login'] : ulNonce::Create('login')).'">
+			      <input type="hidden" name="nonce" id="nonce" value="'.$nonce.'">
             <div id="usernameDiv">
               <label for="username">Username:</label>
   		        <input type="text" name="username" id="usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
