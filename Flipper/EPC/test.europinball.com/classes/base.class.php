@@ -9,9 +9,6 @@
     public static $parentDepth = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-              if (get_class($this) != 'asd' && get_class($this) != 'city') {
-                die('hepp: '.$data);
-              }
       if (!self::$_db) {
         self::$_db = new db();
       } 
