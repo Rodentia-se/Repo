@@ -11,6 +11,11 @@
 
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
+              if (get_class($this) != 'region' && get_class($this) != 'city') {
+                debug($this);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
       debug (self::$count);
       if (!self::$_db) {
         self::$_db = new db();
@@ -59,12 +64,12 @@
       debug(static::$instances);
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
-        $this->populate();
-              if (self::$count > 1) {
+              if (self::$count > 2) {
                 debug($this);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
+        $this->populate();
       }
     }
     
