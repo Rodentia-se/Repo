@@ -100,8 +100,9 @@
       } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
         return ($add) ? NULL : TRUE;
       } else {
-        $this->content .= ($add || $req) ? $this->getLogin($title) : '';
-        return ($add) ? $this->getLogin($title) : FALSE;
+        $login = $this->getLogin($title);
+        $this->content .= ($add || $req) ? $login : '';
+        return ($add) ? $login : FALSE;
       }
     }
 
