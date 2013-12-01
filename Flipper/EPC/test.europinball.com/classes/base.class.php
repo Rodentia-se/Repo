@@ -24,7 +24,6 @@
         }
         if ($obj) {
           $this->_set($obj);
-          die('huff');
         } else {
           $this->failed = TRUE;
         }
@@ -38,7 +37,6 @@
             }
             if ($obj) {
               $this->_set($obj);
-              die('huff');
             } else {
               $this->failed = TRUE;
             }
