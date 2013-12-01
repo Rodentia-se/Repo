@@ -77,7 +77,7 @@
           return FALSE;
         }
       } else {
-        $msg = 'Felaktig nonce: '.$nonce;
+        debug(Felaktig nonce: '.$nonce);
         return FALSE;
       }
     }
