@@ -65,11 +65,6 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
-              if (self::$count > 1) {
-                debug($this);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
       }
     }
     
