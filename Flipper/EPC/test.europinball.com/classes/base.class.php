@@ -76,22 +76,39 @@
     }
     
     protected function populate($depth = NULL) {
+            debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
+            debug('2');
       if (self::$parentDepth < $depth) {
+            debug('3');
         self::$parentDepth++;
+            debug('4');
         foreach (static::$parents as $field => $class) {
+            debug('5');
           if ($this->{$field.'_id'}) {
+            debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
+            debug('7');
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
+            debug('8');
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
+            debug('9');
             } else {
+            debug('10');
               $this->$field = $class($this->{$field.'_id'});
+            debug('11');
             }
+            debug('12');
             $this->{$field.'Name'} = $this->$field->name;
+            debug('13');
           }
+            debug('14');
         }
+            debug('15');
         self::$parentDepth--;
+            debug('16');
       }
+            debug('17');
     }
     
     public function delete($propagate = TRUE) {
