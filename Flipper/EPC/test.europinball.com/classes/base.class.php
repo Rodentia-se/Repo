@@ -11,12 +11,6 @@
 
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
-              if (self::$count > 1) {
-                debug($this);
-                debug($data);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
       debug (self::$count);
       if (!self::$_db) {
         self::$_db = new db();
@@ -41,6 +35,12 @@
       } else {
         if ($data) {
           if (preg_match('/^[0-9]+/', $data)) {
+              if (self::$count > 1) {
+                debug($this);
+                debug($data);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
             if (is_object(static::$instances['ID'.$data])) {
               $obj = static::$instances['ID'.$data];
             } else {
