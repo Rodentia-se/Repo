@@ -91,7 +91,7 @@
     protected function update() {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $query = 'update '.$table.' set ';
-      $array = getQueryArray($this, ',');
+      $array = $this->getQueryArray($this, ',');
       $query .= $array['update'];
       return $this->db->update($query, $array['values']);
     }
@@ -99,7 +99,7 @@
     protected function add() {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $query = 'insert into '.$table.' set ';
-      $array = getQueryArray($this, ',');
+      $array = $this->getQueryArray($this, ',');
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
