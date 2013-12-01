@@ -22,12 +22,12 @@
         } else if ($data) {
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
+      debug($this, true);
         if ($obj) {
           $this->_set($obj);
         } else {
           $this->failed = TRUE;
         }
-      debug($this, true);
       } else {
         if ($data) {
           if (preg_match('/^[0-9]+/', $data)) {
