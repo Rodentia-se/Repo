@@ -10,8 +10,6 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-                self::$count++;
-      debug (self::$count);
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -26,9 +24,7 @@
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
         if ($obj) {
-          debug($this);
           $this->_set($obj);
-          debug($this);
         } else {
           $this->failed = TRUE;
         }
@@ -41,10 +37,7 @@
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
             if ($obj) {
-          debug($this);
               $this->_set($obj);
-                debug($obj);
-                debug($this);
             } else {
               $this->failed = TRUE;
             }
@@ -55,22 +48,16 @@
           }
         }
       }
-      debug($this);
-      debug(static::$instances);
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
       }
     }
-    
+
     protected function _set($data) {
       foreach ($data as $key => $value) {
-      debug($key.': '.$value.' ');
-      flush();
-      ob_flush();
         $this->{$key} = $value;
       }
-      debug($this, false);
       return TRUE;
     }
     
@@ -87,44 +74,24 @@
         return FALSE;
       }
     }
-    
+
     protected function populate($depth = NULL) {
-            debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
-            debug('2');
       if (self::$parentDepth < $depth) {
-            debug('3');
         self::$parentDepth++;
-            debug('4');
         foreach (static::$parents as $field => $class) {
-            debug('5f'.$field);
-            debug('5c'.$class);
           if ($this->{$field.'_id'}) {
-            debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
-            debug('7');
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
-            debug('8');
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
-            debug('9');
             } else {
-            debug(' Class: '.$class);
-            debug(' Field: '.$field);
-            debug(' ID: '.$this->{$field.'_id'});
               $this->$field = $class($this->{$field.'_id'});
-            debug('11');
             }
-            debug('12');
             $this->{$field.'Name'} = $this->$field->name;
-            debug('13');
           }
-            debug('14');
         }
-            debug('15');
         self::$parentDepth--;
-            debug('16');
       }
-            debug('17');
     }
     
     public function delete($propagate = TRUE) {
