@@ -20,12 +20,18 @@
     preDump($text,'WARNING');
   }
 
-  function error($text) {
+  function error($text, $die = FALSE) {
     preDump($text,'ERROR');
+    if ($die) {
+      $die('Abort requested.');
+    }
   }
 
-  function debug($text) {
+  function debug($text, $die = FALSE) {
     preDump($text,'DEBUG');
+    if ($die) {
+      $die('Abort requested.');
+    }
   }
   
 ?>

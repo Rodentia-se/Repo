@@ -67,7 +67,11 @@
     );
     
     public function getPlayer() {
-      
+      $player = new player(array(
+        'person_id' => $this->id,
+        'tournamentDivision_id' => config::$mainDivision
+      ));
+      return $player;
     }
 
     public function addPlayer() {
