@@ -58,14 +58,13 @@
     }
     
     protected function _set($data) {
-      foreach ($data as $key => $value) {
+      foreach (get_object_vars($data) as $key => $value) {
       debug($key.': '.$value.' ');
       flush();
       ob_flush();
         $this->{$key} = $value;
       }
       debug($this, false);
-          die('huff');
     }
     
     public function __get($prop) {
