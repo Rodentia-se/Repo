@@ -23,7 +23,9 @@
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
         if ($obj) {
+          debug($this);
           $this->_set($obj);
+          debug($this);
         } else {
           $this->failed = TRUE;
         }
@@ -36,7 +38,9 @@
               $obj = $this->db->getObjectById(get_class($this), $data);
             }
             if ($obj) {
+          debug($this);
               $this->_set($obj);
+          debug($this);
             } else {
               $this->failed = TRUE;
             }
