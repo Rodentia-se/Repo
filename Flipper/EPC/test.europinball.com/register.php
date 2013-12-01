@@ -37,7 +37,7 @@
           <h2 class="entry-title">Register a new player</h2>
           <p>We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.</p>
           <p>PLEASE SEARCH BEFORE YOU DECIDE TO CLICK ON THE NEW GUY BUTTON! If you have ever played a pinball tournament, you are most likely NOT a new guy.</p>
-          <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="search" name="search">
+          <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search">
           <input type="button" id="nologinButton" value="Search"><input type="button" id="nologinButton" value="Search"><input type="button" id="view_login" class="viewButton" value="Back to login">
           <div id="searchResults">
             <span id="loading" style="display: none"><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
@@ -49,10 +49,11 @@
     ';
   }
   $page->addScript("
-            $('.viewButton').click(function(event){
+            $('.viewButton').click(function(){
               $('#login').hide();
               $('#search').hide();
               $('#' + this.id.replace('view_', '')).show();
+              $('#' + ((this.id == 'view_login') ? 'username' : 'searchBox')).focus();
             });
   ", TRUE);
   
