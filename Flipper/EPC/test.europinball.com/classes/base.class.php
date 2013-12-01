@@ -11,7 +11,7 @@
 
     public function __construct($data = NULL, $search = NULL) {
               if (self::$count > 1 || (($this) != 'region' && get_class($this) != 'city')) {
-                self::$count++
+                self::$count++;
                 debug($obj);
                 debug($this);
                 die('hepp: '.get_class($this));
