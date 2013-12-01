@@ -83,11 +83,11 @@
             debug('2');
       if (self::$parentDepth < $depth) {
             debug('3');
-        self::$parentDepth++;
-            debug('4');
               if (get_class($this) == 'region') {
                 die('huff');
               }
+        self::$parentDepth++;
+            debug('4');
         foreach (static::$parents as $field => $class) {
             debug('5');
           if ($this->{$field.'_id'}) {
