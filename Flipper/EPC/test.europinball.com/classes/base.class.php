@@ -60,7 +60,7 @@
     
     protected function _set($data) {
       foreach ($data as $key => $value) {
-      debug($key.': '.$value.' ', true);
+      debug($key.': '.$value.' ');
         $this->{$key} = $value;
       }
     }
