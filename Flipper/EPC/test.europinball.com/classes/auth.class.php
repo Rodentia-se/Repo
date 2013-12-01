@@ -136,7 +136,7 @@
 
     public function getLogin($title = 'Please provide your login credentials') {
       debug($_SESSION);
-      if (ulNonce::Exists('login') && is_array($_SESSION['ulNonces']) && is_array $_SESSION['ulNonces']['login']) {
+      if (ulNonce::Exists('login') && is_array($_SESSION['ulNonces']) && is_array($_SESSION['ulNonces']['login'])) {
         $nonce = hash(UL_HMAC_FUNC, $_SESSION['ulNonces']['login']['code']);
       } else {
         $nonce = ulNonce::Create('login');
