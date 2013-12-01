@@ -37,28 +37,21 @@
           if (preg_match('/^[0-9]+/', $data)) {
             if (is_object(static::$instances['ID'.$data])) {
               $obj = static::$instances['ID'.$data];
-              if (self::$count > 1) {
-                debug($this);
-                debug($data);
-                debug($obj);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
             } else {
               $obj = $this->db->getObjectById(get_class($this), $data);
-              if (self::$count > 1) {
-                debug($this);
-                debug($data);
-                debug($obj);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
             }
             if ($obj) {
           debug($this);
               $this->_set($obj);
                 debug($obj);
                 debug($this);
+              if (self::$count > 1) {
+                debug($this);
+                debug($data);
+                debug($obj);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
             } else {
               $this->failed = TRUE;
             }
