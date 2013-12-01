@@ -42,7 +42,7 @@
           <div id="searchResults">
             <span id="loading" style="display: none"><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
     ';
-    $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, FALSE);
+    $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, TRUE);
     $page->content .= '
           </div>
         </div>
