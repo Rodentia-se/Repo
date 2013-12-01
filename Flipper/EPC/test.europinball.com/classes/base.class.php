@@ -57,13 +57,6 @@
       }
       debug($this);
       debug(static::$instances);
-              if (self::$count > 1) {
-                debug($this);
-                debug($data);
-                debug($obj);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
@@ -95,6 +88,13 @@
             debug('2');
       if (self::$parentDepth < $depth) {
             debug('3');
+              if (self::$count > 1) {
+                debug($this);
+                debug($data);
+                debug($obj);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
@@ -126,6 +126,13 @@
             debug('16');
       }
             debug('17');
+              if (self::$count > 1) {
+                debug($this);
+                debug($data);
+                debug($obj);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
     }
     
     public function delete($propagate = TRUE) {
