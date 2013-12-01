@@ -88,7 +88,7 @@
       } else {
         $division_id = config::$mainDivision;
       }
-      debug(get_object_vars($this), true);
+      debug(get_object_vars($this));
       $player = player($this->getFlat());
       debug ($player);
     }
