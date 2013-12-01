@@ -40,11 +40,8 @@
             if ($obj) {
           debug($this);
               $this->_set($obj);
-              if (get_class($this) != 'asd' && get_class($this) != 'city') {
                 debug($obj);
                 debug($this);
-                die('hepp: '.get_class($this));
-              }
             } else {
               $this->failed = TRUE;
             }
@@ -93,6 +90,11 @@
         foreach (static::$parents as $field => $class) {
             debug('5f'.$field);
             debug('5c'.$class);
+              if (get_class($this) != 'asd' && get_class($this) != 'city') {
+                debug($obj);
+                debug($this);
+                die('hepp: '.get_class($this));
+              }
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
