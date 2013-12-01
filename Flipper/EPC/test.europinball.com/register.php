@@ -46,7 +46,7 @@
             $('.viewButton').click(function(){
               $('#login').hide();
               $('#search').hide();
-              $('#'.this.id).show();
+              $('#'.this.id.replace('view_', '')).show();
             });
   ");
   
