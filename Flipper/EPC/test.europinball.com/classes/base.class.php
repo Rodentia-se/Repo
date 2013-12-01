@@ -96,7 +96,9 @@
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
             debug('9');
             } else {
-            debug('10', true);
+            debug(' Class: '.$class);
+            debug(' Field: '.$field);
+            debug(' ID: '.$this->{$field.'_id'}, true);
               $this->$field = $class($this->{$field.'_id'});
             debug('11');
             }
