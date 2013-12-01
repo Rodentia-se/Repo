@@ -71,13 +71,13 @@
       } else {
         $footer .= self::getParagraph('<p class="italic">You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
         $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip');
+        $footer .= self::getScript("
+          $('#footerloginButton').click(function() {
+            $('#footerloginDiv').show();
+          });
+        ", TRUE);
       }
-      $footer .= self::getScript("
-      $footer = self::getDivStart('loginFooter');
-        $('#footerloginButton').click(function() {
-          $('#footerloginDiv').show();
-        });
-      ", TRUE);
+      $footer = self::getDivEnd();
       $footer .= '
           </body>
         </html>
