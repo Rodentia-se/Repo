@@ -12,13 +12,6 @@
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
       debug (self::$count);
-              if (self::$count > 1) {
-                self::$count++;
-                debug($this);
-                debug("Data:".$data);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -52,6 +45,12 @@
               $this->_set($obj);
                 debug($obj);
                 debug($this);
+              if (self::$count > 1) {
+                debug($this);
+                debug("Data:".$data);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
             } else {
               $this->failed = TRUE;
             }
