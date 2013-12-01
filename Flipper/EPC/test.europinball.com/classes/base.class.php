@@ -42,6 +42,7 @@
               $this->_set($obj);
               if (get_class($this) != 'asd' && get_class($this) != 'city') {
                 debug($obj);
+                debug($this);
                 die('hepp: '.get_class($this));
               }
             } else {
@@ -90,7 +91,8 @@
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
-            debug('5');
+            debug('5f'.$field);
+            debug('5c'.$class);
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
