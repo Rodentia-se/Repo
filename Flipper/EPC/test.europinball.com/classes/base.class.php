@@ -59,8 +59,8 @@
       debug(static::$instances);
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
-//        $this->populate();
-              if (self::$count > 1) {
+        $this->populate();
+              if (self::$count > 0) {
                 debug($this);
                 debug($data);
                 debug($obj);
