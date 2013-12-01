@@ -28,7 +28,6 @@
       if ($this->action($query, $values)){
         $rowCount = $sth->rowCount();
         return ($rowCount == 0) ? TRUE : $rowCount;
-      }
       } else {
         return FALSE;
       }
