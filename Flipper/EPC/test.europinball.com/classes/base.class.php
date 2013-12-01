@@ -43,7 +43,7 @@
             }
           } else if (is_string($data) && is_object(json_decode($data))) {
             $this->_set(json_decode($data));
-          } else if (is_array($data)) {
+          } else if (is_array($data) || is_object($data)) {
             $this->_set($data);
           }
         }
