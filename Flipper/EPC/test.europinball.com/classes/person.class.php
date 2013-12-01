@@ -89,8 +89,9 @@
         $division_id = config::$mainDivision;
       }
       $player = player($this->getFlat(), NULL, 0);
-      $player->tournamentDivision_id = $division_id;
       unset($player->id);
+      $player->tournamentDivision_id = $division_id;
+      $player->person_id = $this->id;
       $player->save(FALSE);
       debug($player, TRUE);
     }

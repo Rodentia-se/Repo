@@ -89,12 +89,15 @@
     }
     
     protected function update() {
-      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
-      $cols = $this->db->getColNames($table);
-      $query = 'update '.$table.' set ';
-      $array = $this->getQueryArray($cols, ', ');
-      $query .= $array['update'];
-      return $this->db->update($query, $array['values']);
+      if ($this->id) {
+        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+        $cols = $this->db->getColNames($table);
+        $query = 'update '.$table.' set ';
+        $array = $this->getQueryArray($cols, ', ');
+        $query .= $array['update'].' where id = '.$this->id;;
+        return $this->db->update($query, $array['values']);
+      }
+      return false;
     }
     
     protected function add() {
@@ -114,8 +117,7 @@
         $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
         $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$prop];
       }
-      $update = implode($updates, $cond).' where id = '.$obj->id;
-      return array('update' => $update, 'values' => $values);
+      return array('update' => implode($updates, $cond), 'values' => $values);
     }
 
     protected function populate($depth = NULL) {
