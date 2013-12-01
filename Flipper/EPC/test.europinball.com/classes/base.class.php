@@ -25,6 +25,7 @@
         if ($obj) {
           debug($this);
               if (get_class($this) != 'asd' && get_class($this) != 'city') {
+                debug($obj);
                 die('hepp: '.get_class($this));
               }
           $this->_set($obj);
@@ -42,8 +43,9 @@
             }
             if ($obj) {
           debug($this);
-              if (get_class($this) != 'ads' && get_class($this) != 'city') {
-                die('huff: '.get_class($this));
+              if (get_class($this) != 'asd' && get_class($this) != 'city') {
+                debug($obj);
+                die('hepp: '.get_class($this));
               }
               $this->_set($obj);
             } else {
