@@ -48,6 +48,7 @@
         }
       }
       debug($this);
+      debug(static::$instances);
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate();
