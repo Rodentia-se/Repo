@@ -16,7 +16,7 @@
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? call_user_func(static::$arrClass) : array();
       }
-      debug(static::$arrClass, true);
+      debug(get_class(static::$instances), true);
       if ($search) {
         if (isAssoc($data)) {
           $obj = $this->db->getObjectByProps(get_class($this), $data);
