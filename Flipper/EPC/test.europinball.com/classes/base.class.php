@@ -65,6 +65,7 @@
         $this->{$key} = $value;
       }
       debug($this, false);
+          die('huff');
     }
     
     public function __get($prop) {
