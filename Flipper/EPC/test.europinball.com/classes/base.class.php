@@ -88,7 +88,6 @@
             debug('2');
               if (self::$count > 1) {
                 debug($this);
-                debug("Data:".$data);
                 debug(self::$count);
                 die('hepp: '.get_class($this));
               }
