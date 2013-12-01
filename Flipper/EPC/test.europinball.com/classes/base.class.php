@@ -22,9 +22,9 @@
         } else if ($data) {
           $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
         }
-      debug($obj, true);
         if ($obj) {
           $this->_set($obj);
+      debug($this, true);
         } else {
           $this->failed = TRUE;
         }
@@ -58,6 +58,7 @@
     
     protected function _set($data) {
       foreach ($data as $key => $value) {
+      debug($this->{$key}.': '.$value.' ', true);
         $this->{$key} = $value;
       }
     }
