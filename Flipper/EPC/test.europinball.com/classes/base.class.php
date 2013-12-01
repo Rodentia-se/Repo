@@ -99,7 +99,7 @@
             debug(' Class: '.$class);
             debug(' Field: '.$field);
             debug(' ID: '.$this->{$field.'_id'});
-              if (get_class($this) == 'city') {
+              if (get_class($this) == 'region') {
                 die('huff');
               }
               $this->$field = $class($this->{$field.'_id'});
