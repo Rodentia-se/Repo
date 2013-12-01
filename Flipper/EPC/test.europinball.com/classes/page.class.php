@@ -78,6 +78,10 @@
       $this->content .= $return;
       return $return;
     }
+    
+    public function focus($id);
+      $page->addScript('$("#'.$id.'").focus()', TRUE);
+    };
    
     public function addTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
       $table = '

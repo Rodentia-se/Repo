@@ -21,6 +21,7 @@
           <p>You are logged in as '.$page->login->person->name.'. Press the button to register for EPC 2014:
           <a href="'.config::$baseHref.'/registration/?action=register"><input type="button" id="registerButton" value="Register"></a>
         ';
+        $page->focus('registerButton');
       }
     }
   } else {
@@ -47,6 +48,7 @@
           </div>
         </div>
     ';
+    $page->focus('username');
   }
   $page->addScript("
             $('.viewButton').click(function(){
