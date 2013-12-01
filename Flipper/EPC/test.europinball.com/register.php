@@ -7,7 +7,7 @@
 
     debug($_SESSION);
     debug($page->login);
-  if ($page->loggedin()) {
+  if ($page->checkLogin()) {
     $person = $page->login->person;
     $player = $person->getPlayer();
     debug($player, TRUE);

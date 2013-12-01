@@ -94,26 +94,23 @@
       ';
     }
 
-    public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
+    public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
-        return TRUE;
+        return ($add) ? NULL : TRUE;
       } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
-        return TRUE;
+        return ($add) ? NULL : TRUE;
       } else {
-        $this->content .= $this->getLogin($title);
-        return FALSE;
+        $this->content .= ($add || $req) ? $this->getLogin($title) : '';
+        return ($add) ? $this->getLogin($title) : FALSE;
       }
+    }
+
+    public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
+      return $this->checkLogin($action, FALSE, TRUE, $title);
     }
     
     public function addLogin($title = 'Please provide your login credentials', $action = TRUE) {
-      if ($this->loggedin()) {
-        return NULL;
-      } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
-        return NULL;
-      } else {
-        $this->content .= $this->getLogin($title);
-        return $this->getLogin($title);
-      }
+      return $this->checkLogin($action, TRUE, FALSE, $title);
     }
 
     public function addContent($content) {
