@@ -69,7 +69,7 @@
       if ($this->loggedin()) {
         $footer .= self::getParagraph('You are logged in as '.$this->login->person->name.'. <a href="'.$_SERVER['REQUEST_URI'].'/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>', NULL, 'italic');
       } else {
-        $footer .= self::getParagraph('<p class="italic">You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
+        $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
         $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip');
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
@@ -319,8 +319,8 @@
       return $this->login->loggedin();
     }
 
-    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
-      return auth::getLogin($title, $prefix, $class);
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $closeButton = FALSE) {
+      return auth::getLogin($title, $prefix, $class, $closeButton);
     }
 
   }
