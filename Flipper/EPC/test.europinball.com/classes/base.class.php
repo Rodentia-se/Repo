@@ -9,7 +9,7 @@
     public static $parentDepth = 0;
 
     public function __construct($data = NULL, $search = NULL) {
-              if (get_class($this) != 'region' && get_class($this) != 'city') {
+              if (get_class($this) != 'asd' && get_class($this) != 'city') {
                 die('hepp: '.get_class($this));
               }
       if (!self::$_db) {
@@ -27,7 +27,7 @@
         }
         if ($obj) {
           debug($this);
-              if (get_class($this) != 'region' && get_class($this) != 'city') {
+              if (get_class($this) != 'asd' && get_class($this) != 'city') {
                 die('hepp: '.get_class($this));
               }
           $this->_set($obj);
@@ -45,7 +45,7 @@
             }
             if ($obj) {
           debug($this);
-              if (get_class($this) != 'region' && get_class($this) != 'city') {
+              if (get_class($this) != 'ads' && get_class($this) != 'city') {
                 die('huff: '.get_class($this));
               }
               $this->_set($obj);
