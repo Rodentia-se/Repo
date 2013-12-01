@@ -40,7 +40,7 @@
           <p>PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.</p>
           <p>Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">
           <p>Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login"></p>
-          <p>If you realy can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!"></p>
+          <p>If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!"></p>
           <div id="searchResults">
             <span id="loading" style="display: none"><img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data..."></span>
     ';

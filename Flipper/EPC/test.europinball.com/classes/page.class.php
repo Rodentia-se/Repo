@@ -68,22 +68,32 @@
     }
    
     public function addScript($script, $onload) {
-      $return = '
+      $script = self::getScript($script, $onload);
+      $this->content .= $script;
+      return $script;
+    }
+    
+    public ststic function getScript($script, $onload) {
+      return '
         <script type="text/javascript">
           '.(($onload) ? '$(document).ready(function() {' : '').'
             '.$script.'
           '.(($onload) ? '});' : '').'
         </script>
       ';
-      $this->content .= $return;
-      return $return;
     }
     
     public function focus($id) {
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
-   
+    
     public function addTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
+      $table = self::getTable($id, $headers, $rows, $display, $class);
+      $this->content .= $table;
+      return $table;
+    }
+   
+    public static function getTable($id, $headers = array('Name'), $rows = NULL, $display = TRUE, $class = NULL) {
       $table = '
         <table id="resultsTable" class="'.$class.'" style="display: '.(($display) ? '' : 'none').'">
           <thead>
