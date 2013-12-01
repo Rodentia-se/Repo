@@ -110,7 +110,7 @@
         $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
       }
       $update .= implode($updates, ' '.$cond.' ').')';
-      return array('update' => $update, 'values' = $values);
+      return array('update' => $update, 'values' => $values);
     }
 
     protected function populate($depth = NULL) {
