@@ -48,7 +48,7 @@
               $('#search').hide();
               $('#'.this.id.replace('view_', '')).show();
             });
-  ");
+  ", TRUE);
   
   $page->submit();
 
