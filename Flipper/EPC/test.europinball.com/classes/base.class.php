@@ -90,9 +90,9 @@
           if ($this->{$field.'_id'}) {
             debug('6');
             $this->{$field.'ParentDepth'} = self::$parentDepth;
-            debug('7');
+            debug('7', true);
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
-            debug('8', true);
+            debug('8',);
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
             debug('9');
             } else {
