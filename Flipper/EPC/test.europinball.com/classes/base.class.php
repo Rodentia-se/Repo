@@ -75,14 +75,14 @@
     }
     
     public function __get($prop) {
-      if (property_exists($this, $prop.'_id') {
+      if (property_exists($this, $prop)) {
+       return $this->$prop;
+      } else if (property_exists($this, $prop.'_id')) {
         if ($this->{$prop.'_id'} && !$this->$prop) {
           self::$parentDepth = 0;
           $this->populate();
           return $this->$prop;
         }
-      } else if (property_exists($this, $prop) {
-       return $this->$prop;
       } else {
         return FALSE;
       }
