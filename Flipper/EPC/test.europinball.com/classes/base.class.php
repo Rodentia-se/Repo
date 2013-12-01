@@ -81,11 +81,11 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
-      if (self::$parentDepth < $depth) {
-            debug('3');
               if (get_class($this) == 'region') {
                 die('huff');
               }
+      if (self::$parentDepth < $depth) {
+            debug('3');
         self::$parentDepth++;
             debug('4');
         foreach (static::$parents as $field => $class) {
