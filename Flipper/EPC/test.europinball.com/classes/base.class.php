@@ -88,10 +88,14 @@
       return $return;
     }
     
+    public function getColNames() {
+        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+        return $this->db->getColNames($table);
+    }
+
     protected function update() {
       if ($this->id) {
-        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
-        $cols = $this->db->getColNames($table);
+        $cols = $this->getColNames();
         $query = 'update '.$table.' set ';
         $array = $this->getQueryArray($cols, ', ');
         $query .= $array['update'].' where id = '.$this->id;;
