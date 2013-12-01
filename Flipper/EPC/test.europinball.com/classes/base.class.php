@@ -106,8 +106,8 @@
     
     protected function getQueryArray($array, $cond = 'or') {
       foreach ($array as $col => $val) {
-        $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $col);
-        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
+        $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
+        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $val;
       }
       $update .= implode($updates, ' '.$cond.' ').')';
       return array('update' => $update, 'values' => $values);
@@ -171,15 +171,15 @@
         if (isAssoc($value)) {
           $update .= ' and (';
           foreach ($value as $col => $val) {
-            $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $col);
-            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $col)] = $val;
+            $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if (is_array($value)) {
           foreach ($value as $val) {
             $i++;
-            $updates[] = $field .' = :'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i;
-            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', $field).$i] = $val;
+            $updates[] = $field .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $field).$i;
+            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $field).$i] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if ($value) {
