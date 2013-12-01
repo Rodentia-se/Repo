@@ -24,6 +24,9 @@
         }
         if ($obj) {
           debug($this);
+              if (get_class($this) == 'region') {
+                die('huff: '.self::$parentDepth);
+              }
           $this->_set($obj);
           debug($this);
         } else {
@@ -81,9 +84,6 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
-              if (get_class($this) == 'continent') {
-                die('huff: '.self::$parentDepth);
-              }
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
