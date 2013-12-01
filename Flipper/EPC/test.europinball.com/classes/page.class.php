@@ -127,6 +127,10 @@
           $table .= "</tr>\n";
         }
       }
+      $table .= '
+          </tbody>
+        </table>
+      ';
       return $table;
     }
 
