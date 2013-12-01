@@ -11,7 +11,7 @@
 
     public function __construct($data = NULL, $search = NULL) {
       debug (self::$count);
-              if (self::$count > 0) {
+              if (self::$count > 0 || !$data) {
                 self::$count++;
                 debug($this);
                 debug(self::$count);
