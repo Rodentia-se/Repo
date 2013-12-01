@@ -3,12 +3,24 @@
   class page {
     
     public static $_login;
-    public $js_jquery = TRUE;
-    public $js_jqueryui = TRUE;
-    public $js_datatables = FALSE;
-    public $js_jeditable = FALSE;
-    public $js_purl = TRUE;
-    public $js_recaptcha = FALSE;
+    public static $_scripts = array(
+      'jquery' => 'contrib/jquery.js',
+      'jqueryui' => 'contrib/jquery-ui.js',
+      'datatables' => 'contrib/jquery.dataTables.js',
+      'jeditable' => 'contrib/jquery.jeditable.js',
+      'datatablesEditable' => 'jquery.dataTables.editable.js',
+      'purl' => 'contrib/purl.js',
+      'recaptcha' => 'contrib/recaptcha_ajax.js',
+      'ga' => 'contrib/ga.js'
+    );
+    public $scripts = array();
+    public $jquery = TRUE;
+    public $jqueryui = TRUE;
+    public $datatables = FALSE;
+    public $jeditable = FALSE;
+    public $purl = TRUE;
+    public $ga = TRUE;
+    public $recaptcha = FALSE;
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
@@ -35,39 +47,35 @@
       }
     }
 
-    public function addHeader($title = NULL, $header = FALSE) {
+    public function addHeader($title = NULL, $src = FALSE) {
       $title = ($title) ? $title : $thie->title;
-      $this->header = ($header && $header !== TRUE) ? $header : $this->getHeader($title);
+      $this->header = ($src && $src !== TRUE) ? $src : $this->getHeader($title);
+      return $this->header;
     }
     
-    public function getHeader($title = NULL) {
+    public function getHeader($title = NULL, $scripts = NULL) {
       $title = ($title) ? $title : $thie->title;
-      return '
+      $header = '
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
         <html>
           <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-            '.(($this->js_jquery) ? '<script type="text/javascript" src="'.config::$baseHref.'js/contrib/jquery.js"></script>' : '').'
-            '.(($this->js_jqueryui) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery-u.js"></script>' : '').'
-            '.(($this->js_datatables) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.dataTables.js"></script>' : '').'
-            '.(($this->js_jeditable) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.jeditable.js"></script>' : '').'
-            '.(($this->js_datatables && $this->js_jeditable) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.dataTables.editable.js"></script>' : '').'
-            '.(($this->js_purl) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/purl.js"></script>' : '').'
-            '.(($this->js_recaptcha) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/recaptcha_ajax.js"></script>' : '').'
-            <script type="text/javascript" src="'.config::$baseHref.'/js/general.js"></script>
-            '.(($this->js_datatables) ? '<link href="'.config::$baseHref.'/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
+      ';
+      $header .= $this->addScripts($scripts);
+      $header .= (($this->js_datatables) ? '<link href="'.config::$baseHref.'/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
             '.(($this->js_jqueryui) ? '<link href="'.config::$baseHref.'/css/jquery-ui.css" rel="stylesheet" type="text/css" />' : '').'
             <link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css" />
-            <script type="text/javascript" src="'.config::$baseHref.'/js/contrib/ga.js"></script>
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
           <body>
       ';
+      return $header;
     }
     
     public function addFooter($footer = FALSE) {
       $this->footer = ($footer && $footer !== TRUE) ? $footer : $this->getFooter();
+      return $this->footer;
     }
 
     public function getFooter() {
@@ -119,6 +127,50 @@
       ';
     }
     
+    public function addScripts($scripts = NULL, $default = TRUE) {
+      if (is_string($scripts)) {
+        if (!in_array($scripts, $this->scripts)) {
+          $this->scripts[] = $scripts;
+        }
+      } else if (is_array($scripts)) {
+        foreach ($scripts as $script) {
+          if (!in_array($script, $this->scripts)) {
+            $this->scripts[] = $script;
+          }
+        }
+      }
+      $scripts = self::getScripts($this->scripts, $default, TRUE);
+      $this->scripts = $scripts['scripts'];
+      return $scripts['htmlCode'];
+    }
+    
+    public static function getScripts($scripts = NULL, $default = TRUE, $array = FALSE) {
+      if ($default) {
+        $this->datatablesEditable = ($this->datatables && $this->jeditable) ? TRUE : FALSE;
+        foreach ($this->_scripts as $script => $scriptSrc) {
+          if ($this->$script && !in_array($scriptSrc, $scriptSrcs)) {
+            $scriptSrcs[] = $scriptSrc;
+          }
+        }
+      }
+      if (is_string($scripts)) {
+        if (!in_array($scripts, $scriptSrcs)) {
+          $scriptSrcs[] = $scripts;
+        }
+      } else if (is_array($scripts)) {
+        foreach ($scripts as $script) {
+          if (!in_array($script, $scriptSrcs)) {
+            $scriptSrcs[] = $script;
+          }
+        }
+      }
+      $scriptSrcs[] = 'general.js';
+      foreach ($scriptSrcs as $script) {
+        $htmlCode .= '<script type="text/javascript" src="'.config::$baseHref.'js/'.$script.'"></script>'."\n";
+      }
+      return ($array) ? array('scripts' => $scriptSrcs, 'htmlCode' => $htmlCode) : $htmlCode;
+    }
+
     public function focus($id) {
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
