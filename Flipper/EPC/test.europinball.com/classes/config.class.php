@@ -38,6 +38,8 @@
     
     public static $loginBackend = 'pdo';
     
+    public static $debug = TRUE;
+    
     // Do not change anything below this line!
     public static $currentTournament = 1;
 

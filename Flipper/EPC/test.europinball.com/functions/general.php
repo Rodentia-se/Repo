@@ -28,9 +28,11 @@
   }
 
   function debug($text, $die = FALSE) {
-    preDump($text,'DEBUG');
-    if ($die) {
-      $die('Abort requested.');
+    if (config::$debug) {
+      preDump($text,'DEBUG');
+      if ($die) {
+        $die('Abort requested.');
+      }
     }
   }
   
