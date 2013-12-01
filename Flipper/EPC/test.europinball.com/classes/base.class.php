@@ -27,6 +27,7 @@
         } else {
           $this->failed = TRUE;
         }
+      debug($this, true);
       } else {
         if ($data) {
           if (preg_match('/^[0-9]+/', $data)) {
