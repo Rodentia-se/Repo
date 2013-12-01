@@ -13,6 +13,9 @@
         self::$_db = new db();
       } 
       $this->db = self::$_db;
+              if (get_class($this) != 'region' && get_class($this) != 'city') {
+                die('hepp: '.self::$parentDepth);
+              }
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
