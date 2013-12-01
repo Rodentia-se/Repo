@@ -10,6 +10,7 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL) {
+                self::$count++;
       debug (self::$count);
               if (self::$count > 0 || !$data || get_class($this) != 'city') {
                 self::$count++;
