@@ -93,7 +93,9 @@
       $player->tournamentDivision_id = $division_id;
       $player->person_id = $this->id;
       $player->dateRegistered = date('Y-m-d');
-      $player->save();
+      $id = $player->save();
+      $newPlayer = player($id);
+      debug($newPlayer, TRUE);
     }
 
 /*
