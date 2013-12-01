@@ -42,9 +42,9 @@
           <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
             '.(($this->js_jquery) ? '<script type="text/javascript" src="'.config::$baseHref.'js/contrib/jquery.js"></script>' : '').'
-            '.(($this->js_jqueryui) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery-ui.js"></script>' : '').'
-            '.(($this->js_datatables) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.dataTables.min.js"></script>' : '').'
-            '.(($this->js_jeditable) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.jeditable.mini.js"></script>' : '').'
+            '.(($this->js_jqueryui) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery-u.js"></script>' : '').'
+            '.(($this->js_datatables) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.dataTables.js"></script>' : '').'
+            '.(($this->js_jeditable) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.jeditable.js"></script>' : '').'
             '.(($this->js_datatables && $this->js_jeditable) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/jquery.dataTables.editable.js"></script>' : '').'
             '.(($this->js_purl) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/purl.js"></script>' : '').'
             '.(($this->js_recaptcha) ? '<script type="text/javascript" src="'.config::$baseHref.'/js/contrib/recaptcha_ajax.js"></script>' : '').'
@@ -74,7 +74,9 @@
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').toggle();
-            $('#footerusernameLogin').focus(); 
+            if ('#footerloginDiv').is(':visible') {
+              $('#footerusernameLogin').focus(); 
+            }
           });
           $('#footerloginDiv').css('bottom', '0px');
           $('#footerloginDiv').css('left', '250px');
