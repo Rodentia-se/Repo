@@ -45,12 +45,6 @@
               $this->_set($obj);
                 debug($obj);
                 debug($this);
-              if (self::$count > 1) {
-                debug($this);
-                debug("Data:".$data);
-                debug(self::$count);
-                die('hepp: '.get_class($this));
-              }
             } else {
               $this->failed = TRUE;
             }
@@ -92,6 +86,12 @@
             debug('1');
       $depth = ($depth) ? $depth : config::$parentDepth;
             debug('2');
+              if (self::$count > 1) {
+                debug($this);
+                debug("Data:".$data);
+                debug(self::$count);
+                die('hepp: '.get_class($this));
+              }
       if (self::$parentDepth < $depth) {
             debug('3');
         self::$parentDepth++;
