@@ -12,7 +12,7 @@
     public function __construct($data = NULL, $search = NULL) {
                 self::$count++;
       debug (self::$count);
-              if (self::$count > 0) {
+              if (self::$count > 1) {
                 self::$count++;
                 debug($this);
                 debug("Data:".$data);
