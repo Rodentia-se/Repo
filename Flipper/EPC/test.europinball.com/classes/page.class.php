@@ -96,7 +96,7 @@
       if ($rows) {
         foreach ($rows as $row => $cells) {
           $table .= '<tr>';
-          if ($cells)
+          if ($cells) {
             if (count($cells) != count($headers)) {
               warning('¨Headers and cells count does not match - no cells added');
             }
@@ -110,9 +110,10 @@
               $cell++;
             }
           }
-          $tebla .= "</tr>\n";
+          $table .= "</tr>\n";
         }
       }
+      return $table;
     }
 
     public function addFooter($footer = FALSE) {
