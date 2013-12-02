@@ -22,4 +22,6 @@
   display: inline-block;
 }
 
-
+a {
+  text-decoration: underline;
+}
