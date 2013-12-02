@@ -22,7 +22,7 @@
   display: inline-block;
 }
 
-label, input {
+label, input[type=text], input[type=password] {
   display:block;
 }
 
