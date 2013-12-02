@@ -89,7 +89,7 @@
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
-            $('.ui-widget-overlay').click(function() {
+            $('.ui-widget-overlay').on('click', function() {
               $('#".$prefix."loginDiv').dialog('close');
             });
           });
