@@ -48,7 +48,6 @@
       $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
       $page->startDiv('searchResults');
         $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
-        $page->addSpan('<img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data...">', 'resultsTableLoading', 'hidden');
         $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
       $page->closeDiv();
     $page->closeDiv();
