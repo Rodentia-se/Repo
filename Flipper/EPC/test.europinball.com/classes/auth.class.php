@@ -176,9 +176,9 @@
                 $(this).dialog('close');
               }
             }
-            $(document).on('click', '.ui-widget-overlay', function() {
-              $('#".$prefix."loginDiv').dialog('close');
-            });
+          });
+          $(document).on('click', '.ui-widget-overlay', function() {
+            $('#".$prefix."loginDiv').dialog('close');
           });
         ", TRUE);
       }
