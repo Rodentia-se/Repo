@@ -137,28 +137,46 @@
       return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
     }
 
-    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       if (ulNonce::Exists('login')) {
         ulNonce::Verify('login', 'nonsense');
       }
       $nonce = ulNonce::Create('login');
       $form = '
-        <div id="dialog-form" title="'.$title.'">
-          <form>
-            <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
+        <div id="'.$prefix.'loginDiv" title="'.$title.'">
+          <form id="'.$prefix.'loginForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
             <fieldset>
+              <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
               <label for="username">Username</label>
               <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all">
               <label for="password">Password</label>
               <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all">
+              <label for="autologin">Remember me:</label>
+              <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox">
+              <a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a>
+              '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
             </fieldset>
           </form>
         </div>
       ';
-      $script = page::getScript("
-        $('#".$prefix."loginButton').button();
+      if ($dialog) {
+        $form .= page::getScript("
+        $('#".$prefix."loginDiv').dialog({
+          autoOpen: ".(($autoopen) ? 'true' : 'false').",
+          modal: true,
+          buttons: {
+            'Login': function() {
+              if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
+                $('#".$prefix."loginForm').submit();
+              }
+            },
+            'Cancel': function() {
+              $(this).dialog('close');
+            }
+          }
+        });
       ", TRUE);
-      return $form.$script;
+      return $form;
       $return =  '
         <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'" title="'.$title.'">
         	<h2 class="loginTitle inlineBlock">'.$title.'</h2>
