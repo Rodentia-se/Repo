@@ -70,6 +70,9 @@
           "bDestroy": true,
           "fnInitComplete": function() {
             $(":button").button();
+            $(".isMe").click(function() {
+              $("#" + this.id.split('_')[0] + "_isMeForm").submit();
+            })
           },
           "bJQueryUI": true,
       	  "sPaginationType": "full_numbers",
