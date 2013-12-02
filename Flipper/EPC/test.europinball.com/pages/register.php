@@ -74,6 +74,7 @@
           'bServerSide': true,
           'sAjaxSource': '".config::$baseHref."ajax/getPlayers.php?type=regSearch&search=' + $('#searchBox').val()
         });
+        $('#resultsTable').css('width', '');
       } else {
         toolTip('searchBox', 'Please enter a search term', true);
       }
