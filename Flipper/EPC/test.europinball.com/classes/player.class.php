@@ -104,7 +104,14 @@
     );
     
     public static $cols = array(
-      'initials' => 'shortName'
+      'initials' => 'shortName',
+      'city' => 'cityName',
+      'region' => 'regionName',
+      'parentRegion' => 'parentRegionName',
+      'country' => 'countryName',
+      'parentCountry' => 'parentCountryName',
+      'continent' => 'continentName',
+      'gender' => 'genderName'
     );
 
   }
