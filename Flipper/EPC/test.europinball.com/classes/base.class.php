@@ -89,10 +89,11 @@
     }
     
     protected function setProp($prop, $value = NULL) {
-      if ($this->id && property_exists($this->$prop && in_array($prop, $this->getColNames())) {
-        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
-        $query = 'update '.$table.' set '.$prop.' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop).' where id = '.$this->id;
-        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop)] = $value;
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      $prop = (static::$cols[$prop]) ? static::$cols[$prop] : $prop;
+      if ($this->id && in_array($prop, $this->getColNames())) {
+        $query = 'update '.$table.' set '.$prop.' = '.db::getMarker($prop).' where id = '.$this->id;
+        $values[db::getMarker($prop)] = $value;
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
@@ -136,8 +137,8 @@
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
-        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $obj[$prop];
+        $updates[] = $col .' = '.db::getMarker($col);
+        $values[db::getMarker($col)] = $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
@@ -212,15 +213,15 @@
         if (isAssoc($value)) {
           $update .= ' and (';
           foreach ($value as $col => $val) {
-            $updates[] = $col .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $col);
-            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $col)] = $val;
+            $updates[] = $col .' = '.db::getMarker($col);
+            $values[db::getMarker($col)] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if (is_array($value)) {
           foreach ($value as $val) {
             $i++;
-            $updates[] = $field .' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $field).$i;
-            $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $field).$i] = $val;
+            $updates[] = $field .' = '.db::getMarker($field).$i;
+            $values[db::getMarker($field).$i] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if ($value) {
