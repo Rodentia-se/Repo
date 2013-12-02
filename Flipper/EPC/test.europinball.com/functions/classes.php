@@ -10,8 +10,8 @@
     return ($obj->failed) ? FALSE : $obj;
   }
 
-  function city($data = NULL, $search = NULL) {
-    $obj = new city($data, $search);
+  function city($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new city($data, $search, $depth);
     return object($obj);
   }
 
@@ -19,8 +19,8 @@
     return new cities($data, $search);
   }
 
-  function continent($data = NULL, $search = NULL) {
-    $obj = new continent($data, $search);
+  function continent($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new continent($data, $search, $depth);
     return object($obj);
   }
 
@@ -28,8 +28,8 @@
     return new continents($data, $search);
   }
 
-  function country($data = NULL, $search = NULL) {
-    $obj = new country($data, $search);
+  function country($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new country($data, $search, $depth);
     return object($obj);
   }
 
@@ -37,8 +37,8 @@
     return new countries($data, $search);
   }
 
-  function division($data = NULL, $search = NULL) {
-    $obj = new division($data, $search);
+  function division($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new division($data, $search, $depth);
     return object($obj);
   }
 
@@ -46,8 +46,8 @@
     return new divisions($data, $prop);
   }
 
-  function entry($data = NULL, $search = NULL) {
-    $obj = new entry($data, $search);
+  function entry($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new entry($data, $search, $depth);
     return object($obj);
   }
 
@@ -55,8 +55,8 @@
     return new entries($data, $prop);
   }
 
-  function game($data = NULL, $search = NULL) {
-    $obj = new game($data, $search);
+  function game($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new game($data, $search, $depth);
     return object($obj);
   }
 
@@ -64,8 +64,8 @@
     return new games($data, $search);
   }
 
-  function gender($data = NULL, $search = NULL) {
-    $obj = new gender($data, $search);
+  function gender($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new gender($data, $search, $depth);
     return object($obj);
   }
 
@@ -73,8 +73,8 @@
     return new genders($data, $search);
   }
 
-  function location($data = NULL, $search = NULL) {
-    $obj = new location($data, $search);
+  function location($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new location($data, $search, $depth);
     return object($obj);
   }
 
@@ -82,8 +82,8 @@
     return new locations($data, $prop);
   }
 
-  function machine($data = NULL, $search = NULL) {
-    $obj = new machine($data, $search);
+  function machine($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new machine($data, $search, $depth);
     return object($obj);
   }
 
@@ -91,8 +91,8 @@
     return new machines($data, $search);
   }
 
-  function manufacturer($data = NULL, $search = NULL) {
-    $obj = new manufacturer($data, $search);
+  function manufacturer($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new manufacturer($data, $search, $depth);
     return object($obj);
   }
 
@@ -100,8 +100,8 @@
     return new manufacturers($data, $search);
   }
 
-  function match($data = NULL, $search = NULL) {
-    $obj = new match($data, $search);
+  function match($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new match($data, $search, $depth);
     return object($obj);
   }
 
@@ -109,8 +109,8 @@
     return new matches($data, $search);
   }
 
-  function matchPlayer($data = NULL, $search = NULL) {
-    $obj = new matchPlayer($data, $search);
+  function matchPlayer($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new matchPlayer($data, $search, $depth);
     return object($obj);
   }
 
@@ -118,8 +118,8 @@
     return new matchPlayers($data, $search);
   }
 
-  function owner($data = NULL, $search = NULL) {
-    $obj = new owner($data, $search);
+  function owner($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new owner($data, $search, $depth);
     return object($obj);
   }
   
@@ -127,8 +127,8 @@
     return new owners($data, $search);
   }
   
-  function period($data = NULL, $search = NULL) {
-    $obj = new period($data, $search);
+  function period($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new period($data, $search, $depth);
     return object($obj);
   }
 
@@ -136,8 +136,8 @@
     return new periods($data, $search);
   }
 
-  function person($data = NULL, $search = NULL) {
-    $obj = new person($data, $search);
+  function person($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new person($data, $search, $depth);
     return object($obj);
   }
 
@@ -145,8 +145,8 @@
     return new persons($data, $search);
   }
 
-  function player($data = NULL, $search = NULL) {
-    $obj = new player($data, $search);
+  function player($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new player($data, $search, $depth);
     return object($obj);
   }
 
@@ -154,8 +154,8 @@
     return new players($data, $search);
   }
 
-  function qualGroup($data = NULL, $search = NULL) {
-    $obj = new qualGroup($data, $search);
+  function qualGroup($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new qualGroup($data, $search, $depth);
     return object($obj);
   }
 
@@ -163,8 +163,8 @@
     return new qualGroups($data, $search);
   }
 
-  function region($data = NULL, $search = NULL) {
-    $obj = new region($data, $search);
+  function region($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new region($data, $search, $depth);
     return object($obj);
   }
 
@@ -172,8 +172,8 @@
     return new regions($data, $search);
   }
 
-  function score($data = NULL, $search = NULL) {
-    $obj = new score($data, $search);
+  function score($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new score($data, $search, $depth);
     return object($obj);
   }
 
@@ -181,8 +181,8 @@
     return new scores($data, $search);
   }
 
-  function set($data = NULL, $search = NULL) {
-    $obj = new set($data, $search);
+  function set($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new set($data, $search, $depth);
     return object($obj);
   }
 
@@ -190,8 +190,8 @@
     return new sets($data, $search);
   }
 
-  function task($data = NULL, $search = NULL) {
-    $obj = new task($data, $search);
+  function task($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new task($data, $search, $depth);
     return object($obj);
   }
 
@@ -199,8 +199,8 @@
     return new tasks($data, $search);
   }
 
-  function team($data = NULL, $search = NULL) {
-    $obj = new team($data, $search);
+  function team($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new team($data, $search, $depth);
     return object($obj);
   }
 
@@ -208,8 +208,8 @@
     return new teams($data, $search);
   }
 
-  function tournament($data = NULL, $search = NULL) {
-    $obj = new tournament($data, $search);
+  function tournament($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new tournament($data, $search, $depth);
     return object($obj);
   }
 
@@ -217,8 +217,8 @@
     return new tournaments($data, $prop);
   }
 
-  function tshirt($data = NULL, $search = NULL) {
-    $obj = new tshirt($data, $search);
+  function tshirt($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new tshirt($data, $search, $depth);
     return object($obj);
   }
 
@@ -226,8 +226,8 @@
     return new tshirts($data, $search);
   }
 
-  function volunteer($data = NULL, $search = NULL) {
-    $obj = new volunteer($data, $search);
+  function volunteer($data = NULL, $search = NULL, $depth = NULL) {
+    $obj = new volunteer($data, $search, $depth);
     return object($obj);
   }
 
