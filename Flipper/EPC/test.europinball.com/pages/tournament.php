@@ -42,7 +42,7 @@
   }
   $page->submit(FALSE, TRUE);
 */
-  $obj = city(1907);
+  $obj = person(1);
   debug($obj);
 /*
 echo 'hej';
