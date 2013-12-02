@@ -48,7 +48,8 @@
           }
         }
       }
-      $page->addPlayer();
+      debug('huff', true);
+      $person->addPlayer();
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       $page->setEditable();
