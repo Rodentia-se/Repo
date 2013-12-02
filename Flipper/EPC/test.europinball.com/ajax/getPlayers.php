@@ -25,7 +25,7 @@
             $person->countryName,
             $person->getLink('ifpa'),
             $person->getLink('photo'),
-            '<input type="button" id="'.$person->id.'_isMe" class="ui-button ui-widget ui-state-default ui-corner-all" value="This is me!">'
+            '<input type="button" id="'.$person->id.'_isMe" value="This is me!">'
           );
         } 
       } else {
