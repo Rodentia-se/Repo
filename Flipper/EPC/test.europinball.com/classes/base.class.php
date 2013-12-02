@@ -72,7 +72,7 @@
           return $this->$prop;
         }
       } else {
-        return FALSE;
+        return NULL;
       }
     }
     
