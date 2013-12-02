@@ -1,6 +1,6 @@
 <?php
 
-  define('__ROOT__', dirname(__FILE__)); 
+  define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Test', true);
