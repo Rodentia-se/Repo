@@ -24,11 +24,9 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
-      debug($_REQUEST);
       if ($_REQUEST['action']) {
         $this->action($_REQUEST['action']);
       }
-      debug($_SESSION);
       if ($this->loggedin() && !$this->person) {
         $this->person = $this->getPerson();
         if ($this->person) {
