@@ -48,27 +48,37 @@
       $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
       $page->startDiv('searchResults');
         $page->addSpan('<img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data...">', 'resultsTableLoading', 'hidden');
-        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture'), NULL, TRUE);
+        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
       $page->closeDiv();
     $page->closeDiv();
     $page->focus('usernameLogin');
   }
   $page->addScript("
-            $('.viewButton').click(function() {
-              $('#login').hide();
-              $('#search').hide();
-              $('#' + this.id.replace('view_', '')).show();
-              $('#' + ((this.id == 'view_login') ? 'usernameLogin' : 'searchBox')).focus();
-            });
-            $('#searchButton').click(function() {
-              if ($.trim($('#searchBox').val()).length > 0) {
-                $('#newGuy').show();
-                $('#resultsTable').show();
-                ajaxTable('resultsTable', '')
-              } else {
-                toolTip('searchBox', 'Please enter a search term', true);
-              }
-            });
+    $('.viewButton').click(function() {
+      $('#login').hide();
+      $('#search').hide();
+      $('#' + this.id.replace('view_', '')).show();
+      $('#' + ((this.id == 'view_login') ? 'usernameLogin' : 'searchBox')).focus();
+    });
+    $('#searchButton').click(function() {
+      if ($.trim($('#searchBox').val()).length > 0) {
+        $('#newGuy').show();
+        $('#resultsTable').show();
+        var tbl = $('#resultsTable').dataTable({
+          'bProcessing': true,
+          'bDestroy': true,
+          'bJQueryUI': true,
+      	  'sPaginationType': 'full_numbers',
+          'iDisplayLength': -1,
+          'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
+          'bServerSide': true,
+          'sAjaxSource': baseHref + '/ajax/getPlayers.php?search=' + $('#searchBox').val();
+          }
+        });
+      } else {
+        toolTip('searchBox', 'Please enter a search term', true);
+      }
+    });
   ");
   
   $page->submit();
