@@ -182,9 +182,10 @@
                 <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox"> Remember me
               </label><br />
               '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
-              <a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a>
+              <input type="button" id="'.$prefix.'forgotButton" value="I forgot all this!">
             </fieldset>
           </form>
+          <form id="'.$prefix.'forgotForm" method="POST"><input type="hidden" name="action" value="reset"></form>
         </div>
       ';
       if ($dialog) {
@@ -213,6 +214,9 @@
           });
           $(document).on("click", ".ui-widget-overlay", function() {
             $("#'.$prefix.'loginDiv").dialog("close");
+          });
+          $("#'.$prefix.'forgotButton").click(function() {
+            $("#'.$prefix.'forgotForm").submit();
           });
         ');
       }
