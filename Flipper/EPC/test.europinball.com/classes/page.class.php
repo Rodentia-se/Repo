@@ -87,7 +87,8 @@
         $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip', TRUE);
         $footer .= self::getScript("
           $('#footerloginDiv').dialog({
-            modal: true
+            modal: true,
+            autoopen: false
           });
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
