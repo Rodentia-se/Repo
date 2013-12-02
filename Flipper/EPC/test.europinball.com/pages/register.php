@@ -44,7 +44,7 @@
       $page->addParagraph('We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.');
       $page->addParagraph('PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.');
       $page->addParagraph('Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">');
-      $page->addParagraph('Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login">');
+      $page->addParagraph('Do you want to try logging in again? <input type="button" id="view_login" class="viewButton" value="Back to login">');
       $page->startDiv('searchResults', 'hidden');
         $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
         $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
