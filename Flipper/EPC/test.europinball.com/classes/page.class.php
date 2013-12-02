@@ -91,8 +91,7 @@
           });
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
-          $('#footerloginDiv').css('bottom', '0px');
-          $('#footerloginDiv').css('left', '250px');
+          });
         ", TRUE);
       }
       $footer .= self::getDivEnd();
