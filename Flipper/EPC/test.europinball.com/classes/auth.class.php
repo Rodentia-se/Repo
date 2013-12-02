@@ -177,9 +177,6 @@
               }
             }
           });
-          $('.ui-widget-overlay').click(function() {
-            $('#".$prefix."loginDiv').dialog('close');
-          })
         ", TRUE);
       }
       return $form;
