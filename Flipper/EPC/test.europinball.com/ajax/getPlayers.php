@@ -30,7 +30,7 @@
           );
         }
         echo json_encode($json);
-      } else 
+      } else {
         echo '{"aaData": []}';
       }
     break;
