@@ -33,7 +33,7 @@
           'sEcho' => $_REQUEST['sEcho'],
           'iTotalRecords' => 0,
           'iTotalDisplayRecords' => 0,
-          'aaDara' => array()
+          'aaData' => array()
         );
       }
       echo json_encode($json);
