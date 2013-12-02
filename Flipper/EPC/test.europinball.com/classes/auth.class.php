@@ -143,7 +143,8 @@
       }
       $nonce = ulNonce::Create('login');
       $form = '
-        <div id="'.$prefix.'loginDiv" title="'.$title.'">
+        <div id="'.$prefix.'loginDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
+        	<h2>'.$title.'</h2>').'
           <form id="'.$prefix.'loginForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
             <fieldset>
               <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
