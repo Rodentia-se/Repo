@@ -137,7 +137,7 @@
               $person = person($_REQUEST['person_id']);
               if ($person) {
                 if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
-                  if($person->setUsername($_REQUEST['username']) {
+                  if($person->setUsername($_REQUEST['username'])) {
                     return TRUE;
                   } else {
                     error('User created, but could not associate the user with the person');
