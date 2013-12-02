@@ -9,6 +9,13 @@
    
    if ($search) {
      $persons = persons($search);
+     if ($persons) {
+       $json = (object) array(
+         'sEcho' => $_REQUEST['sEcho'],
+         'iTotalRecords' => count($persons),
+         'iTotalDisplayRecords' => count($persons),
+       );
+     }
      debug($persons);
    }
    
