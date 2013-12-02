@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $search = (isId($_REQUEST['search'])) ? $_REQUEST['search'] : null;
+  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'scores')) ? $_REQUEST['type'] : null;
    
   if ($search) {
