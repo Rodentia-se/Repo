@@ -72,7 +72,7 @@
           'iDisplayLength': -1,
           'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
           'bServerSide': true,
-          'sAjaxSource': baseHref + '/ajax/getPlayers.php?search=' + $('#searchBox').val();
+          'sAjaxSource': ".config::$baseHref." + '/ajax/getPlayers.php?search=' + $('#searchBox').val()
           }
         });
       } else {
