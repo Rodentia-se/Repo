@@ -75,6 +75,7 @@
           'sAjaxSource': '".config::$baseHref."ajax/getPlayers.php?type=regSearch&search=' + $('#searchBox').val()
         });
         $('#resultsTable').css('width', '');
+        $(":button").button();
       } else {
         toolTip('searchBox', 'Please enter a search term', true);
       }
