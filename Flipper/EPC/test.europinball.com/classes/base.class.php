@@ -10,7 +10,8 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL, $depth = NULL) {
-      $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
+      $depth = (is_int($depth)) ? $depth : config::$parentDepth;
+      debug('depth: '.$depth);
       if (!self::$_db) {
         self::$_db = new db();
       } 
@@ -52,7 +53,6 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate($depth);
-        debug('depth: '.$depth);
       }
     }
 
