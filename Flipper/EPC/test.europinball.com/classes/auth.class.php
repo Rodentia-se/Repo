@@ -171,6 +171,9 @@
             </div>
   	      </form>
         </div>
+        '.page::getScript("
+          $('#".$prefix."loginButton').button();
+        ", TRUE).'
       ';
     }
 
