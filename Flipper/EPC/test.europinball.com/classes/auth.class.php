@@ -161,21 +161,22 @@
       ';
       if ($dialog) {
         $form .= page::getScript("
-        $('#".$prefix."loginDiv').dialog({
-          autoOpen: ".(($autoopen) ? 'true' : 'false').",
-          modal: true,
-          buttons: {
-            'Login': function() {
-              if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
-                $('#".$prefix."loginForm').submit();
+          $('#".$prefix."loginDiv').dialog({
+            autoOpen: ".(($autoopen) ? 'true' : 'false').",
+            modal: true,
+            buttons: {
+              'Login': function() {
+                if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
+                  $('#".$prefix."loginForm').submit();
+                }
+              },
+              'Cancel': function() {
+                $(this).dialog('close');
               }
-            },
-            'Cancel': function() {
-              $(this).dialog('close');
             }
-          }
-        });
-      ", TRUE);
+          });
+        ", TRUE);
+      }
       return $form;
       $return =  '
         <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'" title="'.$title.'">
