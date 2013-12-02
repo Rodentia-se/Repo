@@ -178,7 +178,7 @@
               }
             }
           });
-          $("#.enterSubmit").keypress(function(e) {
+          $(".enterSubmit").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
               $(this).parent().find("button:eq(0)").trigger("click");
             }
