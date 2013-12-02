@@ -88,7 +88,7 @@
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').toggle();
-            if ('#footerloginDiv').is(':visible') {
+            if ($('#footerloginDiv').is(':visible')) {
               $('#footerusernameLogin').focus(); 
             }
           });
