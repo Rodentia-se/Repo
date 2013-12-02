@@ -92,7 +92,7 @@
             $("#footerLogoutButton").click(function() {
               $("#footerLogoutForm").submit();
             });
-          ', TRUE);
+          ');
         } else {
           $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Log in">', NULL, 'italic');
           $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
@@ -100,13 +100,13 @@
             $("#footerLoginButton").click(function() {
               $("#footerloginDiv").dialog("open");
             });
-          ', TRUE);
+          ');
       }
       $footer .= self::getDivEnd();
       $footer .= self::getScript('
         $(":button").button();
         $("input[type=submit]").button();
-      ', TRUE);
+      ');
       $footer .= '
           </body>
         </html>

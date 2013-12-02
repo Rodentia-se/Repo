@@ -191,7 +191,7 @@
           $(document).on("click", ".ui-widget-overlay", function() {
             $("#'.$prefix.'loginDiv").dialog("close");
           });
-        ', TRUE);
+        ');
       }
       return $form;
     }

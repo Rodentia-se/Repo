@@ -60,7 +60,7 @@
                 toolTip('searchBox', 'Please enter a search term', true);
               }
             });
-  ", TRUE);
+  ");
   
   $page->submit();
 
