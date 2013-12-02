@@ -171,8 +171,6 @@
               "Login": function() {
                 if ($.trim($("#'.$prefix.'usernameLogin").val()).length > 0 && $.trim($("#'.$prefix.'passwordText").val()).length > 0) {
                   $("#'.$prefix.'loginForm").submit();
-                } else {
-                  
                 }
               },
               "Cancel": function() {
