@@ -20,7 +20,7 @@
         $page->addH2('Register player');
         $page->addParagraph('
           <form id="registerForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-            You are logged in as '.$page->login->person->name.'. Press the button to register for '.$$tournament->name.':
+            You are logged in as '.$page->login->person->name.'. Press the button to register for '.$tournament->name.':
             <input type="hidden" name="register" value="yes">
             <input type="button" id="registerButton" value="Register">
           </form>');
