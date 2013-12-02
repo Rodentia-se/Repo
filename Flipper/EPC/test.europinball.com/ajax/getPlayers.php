@@ -29,6 +29,7 @@
             '<input type="button" id="'.$person->id.'_isMe">'
           );
         }
+        debug($json);
         echo json_encode($json);
       } else {
         echo '{"aaData": []}';
