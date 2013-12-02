@@ -62,8 +62,9 @@
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
       ';
       $header .= $this->addScripts($scripts);
-      $header .= (($this->js_datatables) ? '<link href="'.config::$baseHref.'/css/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
-            '.(($this->js_jqueryui) ? '<link href="'.config::$baseHref.'/css/jquery-ui.css" rel="stylesheet" type="text/css" />' : '').'
+      $header .= '
+            '.(($this->js_jqueryui) ? '<link href="'.config::$baseHref.'/css/contrib/jquery-ui.css" rel="stylesheet" type="text/css" />' : '').'
+            '.(($this->js_datatables) ? '<link href="'.config::$baseHref.'/css/contrib/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
             <link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css" />
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
