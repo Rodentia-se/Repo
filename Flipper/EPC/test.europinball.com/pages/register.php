@@ -33,70 +33,89 @@
       }
     }
   } else {
-    $page->setEditable();
-    $page->startDiv('login');
-      $page->addH2('Register existing player');
-      $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', true);
-      $page->addParagraph('If you are sure you do not have any user, please click this button to proceed: <input type="button" id="view_search" class="viewButton" value="Register a new player">');
-    $page->closeDiv();
-    $page->startDiv('search', 'hidden');
-      $page->addH2('Register a new player');
-      $page->addParagraph('We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.');
-      $page->addParagraph('PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.');
-      $page->addParagraph('Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">');
-      $page->addParagraph('Do you want to try logging in again? <input type="button" id="view_login" class="viewButton" value="Back to login">');
-      $page->startDiv('searchResults', 'hidden');
-        $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
-        $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
-        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
-      $page->closeDiv();
-    $page->closeDiv();
-    $page->focus('usernameLogin');
-  }
-  $page->addScript('
-    $(".viewButton").click(function() {
-      $("#login").hide();
-      $("#search").hide();
-      $("#" + this.id.replace("view_", "")).show();
-      $("#" + ((this.id == "view_login") ? "usernameLogin" : "searchBox")).focus();
-    });
-    $("#searchButton").click(function() {
-      $("#searchResults").show();
-      if ($.trim($("#searchBox").val()).length > 0) {
-        $("#newGuy").show();
-        $("#resultsTable").show();
-        var tbl = $("#resultsTable").dataTable({
-          "bProcessing": true,
-          "bDestroy": true,
-          "fnInitComplete": function() {
-            $(":button").button();
-            $(".isMe").click(function() {
-              $("#" + this.id.split("_")[0] + "_isMeForm").submit();
-            })
-          },
-          "bJQueryUI": true,
-      	  "sPaginationType": "full_numbers",
-          "iDisplayLength": -1,
-          "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
-          "bServerSide": true,
-          "oLanguage": {
-            "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
-          },
-          "sAjaxSource": "'.config::$baseHref.'ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
-        });
-        $("#resultsTable").css("width", "");
-      } else {
-        toolTip("searchBox", "Please enter a search term", true);
-      }
-    });
-    $("#searchBox").keypress(function(e) {
-      if (e.keyCode == $.ui.keyCode.ENTER) {
-        if ($.trim($("#searchBox").val()).length > 0) {
-          $("#searchButton").click();
+    if ($_REQUEST['register'] == 'yes') {
+      $person_id = $_REQUEST['person_id'];
+      if (isId($person_id)) {
+        $person = person($person_id);
+        if ($person) {
+          if ($person->username) {
+            $page->addH2('Register player');
+            $page->addLogin('You already have a user registered, please login here', TRUE);
+          } else {
+            $page->addH2('Register new user');
+            $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? person->cityName.', ').person->countryName.'. Make sure this is correct, and then choose a username and password below.';
+            $page->addNewUser('Register a new user');
+          }
         }
       }
-    });
-  ');
+      $page->addPlayer();
+      header('Location: '.config::$baseHref.'/edit/');
+    } else {
+      $page->setEditable();
+      $page->startDiv('login');
+        $page->addH2('Register existing player');
+        $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', TRUE);
+        $page->addParagraph('If you are sure you do not have any user, please click this button to proceed: <input type="button" id="view_search" class="viewButton" value="Register a new player">');
+      $page->closeDiv();
+      $page->startDiv('search', 'hidden');
+        $page->addH2('Register a new player');
+        $page->addParagraph('We might already know who you are! Enter your IFPA ID (visible in the address bar when you look at your IFPA page), your email address or phone number used for SO, SM or EPC registrations in the past, your first, last, middle, partial or full name (more than three letters) or even your three-letter TAG (include trailing spaces). Then press the button (or enter/return) and feel the magic. If we can\'t find you, just try another sarch - we\'ve got more than 20 000 friends, and you\'re most probably one of them.');
+        $page->addParagraph('PLEASE SEARCH BEFORE YOU DECIDE TO REGISTER AS A NEW PERSON! If you have ever played a pinball tournament, you are most likely NOT a new guy.');
+        $page->addParagraph('Enter IFPA ID, email address, phone number, name or tag: <input type="text" id="searchBox" name="search"> <input type="button" id="searchButton" value="Search">');
+        $page->addParagraph('Do you want to try logging in again? <input type="button" id="view_login" class="viewButton" value="Back to login">');
+        $page->startDiv('searchResults', 'hidden');
+          $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
+          $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
+          $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
+        $page->closeDiv();
+      $page->closeDiv();
+      $page->focus('usernameLogin');
+      $page->addScript('
+        $(".viewButton").click(function() {
+          $("#login").hide();
+          $("#search").hide();
+          $("#" + this.id.replace("view_", "")).show();
+          $("#" + ((this.id == "view_login") ? "usernameLogin" : "searchBox")).focus();
+        });
+        $("#searchButton").click(function() {
+          $("#searchResults").show();
+          if ($.trim($("#searchBox").val()).length > 0) {
+            $("#newGuy").show();
+            $("#resultsTable").show();
+            var tbl = $("#resultsTable").dataTable({
+              "bProcessing": true,
+              "bDestroy": true,
+              "fnInitComplete": function() {
+                $(":button").button();
+                $(".isMe").click(function() {
+                  $("#" + this.id.split("_")[0] + "_isMeForm").submit();
+                })
+              },
+              "bJQueryUI": true,
+          	  "sPaginationType": "full_numbers",
+              "iDisplayLength": -1,
+              "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+              "bServerSide": true,
+              "oLanguage": {
+                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
+              },
+              "sAjaxSource": "'.config::$baseHref.'ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
+            });
+            $("#resultsTable").css("width", "");
+          } else {
+            toolTip("searchBox", "Please enter a search term", true);
+          }
+        });
+        $("#searchBox").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            if ($.trim($("#searchBox").val()).length > 0) {
+              $("#searchButton").click();
+            }
+          }
+        });
+      ');
+    }
+  }
   
   $page->submit();
 

@@ -31,7 +31,7 @@
         }
       } else {
         if ($data) {
-          if (preg_match('/^[0-9]+/', $data)) {
+          if (isId($data)) {
             if (is_object(static::$instances['ID'.$data])) {
               $obj = static::$instances['ID'.$data];
             } else {

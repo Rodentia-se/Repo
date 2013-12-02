@@ -397,6 +397,16 @@
       return auth::getLogin($title, $prefix, $class, $closeButton);
     }
 
+    public function addNewUser($title = 'Please provide your login credentials') {
+      $dialog = self::getNewUser($title);
+      $this->addContent($dialog);
+      return $dialog;
+    }
+
+    public static function getNewUser($title = 'Please choose a new username and password', $prefix = NULL, $class = NULL, $closeButton = FALSE) {
+      return auth::getNewUser($title, $prefix, $class, $closeButton);
+    }
+
   }
 
 ?>

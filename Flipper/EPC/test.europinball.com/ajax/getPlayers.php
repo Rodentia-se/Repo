@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
+  $search = (isId($_REQUEST['search'])) ? $_REQUEST['search'] : null;
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'scores')) ? $_REQUEST['type'] : null;
    
   if ($search) {
@@ -25,7 +25,7 @@
             $person->countryName,
             $person->getLink('ifpa'),
             $person->getLink('photo'),
-            '<form id="'.$person->id.'_isMeForm" method="POST"><input type="hidden" name="person_id" value="'.$person->id.'"><input type="button" id="'.$person->id.'_isMe" class="isMe" value="This is me!"></form>'
+            '<form id="'.$person->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="yes"><input type="hidden" name="person_id" value="'.$person->id.'"><input type="button" id="'.$person->id.'_isMe" class="isMe" value="This is me!"></form>'
           );
         } 
       } else {

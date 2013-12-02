@@ -196,6 +196,54 @@
       return $form;
     }
 
+    public static function getNewUser($title = 'Please choose a new username and password', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      $form = '
+        <div id="'.$prefix.'newUserDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
+        	<h2>'.$title.'</h2>').'
+          <form id="'.$prefix.'newUserForm" method="POST">
+            <fieldset>
+              <input type="hidden" name="action" value="newUser">
+              <input type="hidden" name="nonce" value="'.self::$nonce.'">
+              <label for="username">Username</label>
+              <input type="text" name="username" id="'.$prefix.'usernameNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
+              <label for="password">Password</label>
+              <input type="password" name="password" id="'.$prefix.'passwordNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
+              '.(($dialog) ? '' : '<input type="submit" value="Register">').'
+            </fieldset>
+          </form>
+        </div>
+      ';
+      if ($dialog) {
+        $form .= page::getScript('
+          $("#'.$prefix.'newUserDiv").dialog({
+            autoOpen: '.(($autoopen) ? 'true' : 'false').',
+            modal: true,
+            width: 400,
+            buttons: {
+              "Register": function() {
+                if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+                  $("#'.$prefix.'newUserForm").submit();
+                }
+              },
+              "Cancel": function() {
+                $(this).dialog("close");
+              }
+            }
+          });
+          $(".enterSubmit").keypress(function(e) {
+            if (e.keyCode == $.ui.keyCode.ENTER) {
+              if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+                $("#'.$prefix.'newUserForm").submit();
+              }
+            }
+          });
+          $(document).on("click", ".ui-widget-overlay", function() {
+            $("#'.$prefix.'newUserDiv").dialog("close");
+          });
+        ');
+      }
+      return $form;
+    }
   }
 
 ?>
