@@ -89,9 +89,6 @@
         $footer .= self::getScript("
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
-            $(document).on('click', '.ui-widget-overlay', function() {
-              $('#footerloginDiv').dialog('close');
-            });
           });
           $(':button').button();
           $('input[type=submit]').button();
