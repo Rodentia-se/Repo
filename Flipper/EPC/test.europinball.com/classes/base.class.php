@@ -10,7 +10,7 @@
     public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL, $depth = NULL) {
-      $depth = (is_int($depth)) ? $depth : config::$parentDepth;
+      $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       debug('depth: '.$depth);
       if (!self::$_db) {
         self::$_db = new db();
