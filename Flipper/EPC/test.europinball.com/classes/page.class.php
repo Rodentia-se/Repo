@@ -83,8 +83,8 @@
       $footer = self::getDivStart('loginFooter');
         if ($this->loggedin()) {
           $footer .= self::getParagraph('
-            You are logged in as '.$this->login->person->name.'. 
             <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
+              You are logged in as '.$this->login->person->name.'. 
               <input type="hidden" action="logout">
               <input type="button" id="footerLogoutButton" value="Log out">
             </form>', NULL, 'italic');
