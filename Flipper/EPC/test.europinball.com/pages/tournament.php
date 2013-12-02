@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(__FILE__)); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register', true);
+  $page = new page('Test', true);
 
 /*
   $obj = new city(1907);
