@@ -146,7 +146,7 @@
       }
       $nonce = ulNonce::Create('login');
       return '
-        <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'">
+        <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'" title="'.$title.'">
           '.(($closeButton) ? '<img src="'.config::$baseHref.'/images/cancel.png" id="'.$prefix.'closeLoginDiv" class="right icon" alt="Click to close the box" title="Close">' : '').'
         	<h2 class="loginTitle inlineBlock">'.$title.'</h2>
           <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="'.$prefix.'loginForm">

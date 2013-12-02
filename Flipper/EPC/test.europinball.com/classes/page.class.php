@@ -86,6 +86,9 @@
         $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
         $footer .= self::getLogin('Please provide your login credentials', 'footer', 'toolTip', TRUE);
         $footer .= self::getScript("
+          $('#footerloginDiv').dialog({
+            modal: true
+          });
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').toggle();
             if ($('#footerloginDiv').is(':visible')) {
