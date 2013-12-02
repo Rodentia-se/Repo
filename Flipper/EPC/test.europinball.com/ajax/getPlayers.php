@@ -26,7 +26,7 @@
             $person->countryName,
             $person->getLink('ifpa'),
             $person->getLink('photo'),
-            '<input type="button" id="'.$person->id.'_isMe">'
+            '<input type="button" id="'.$person->id.'_isMe" class="ui-button">'
           );
         } 
         echo json_encode($json);
