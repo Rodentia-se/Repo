@@ -147,7 +147,8 @@
         	<h2>'.$title.'</h2>').'
           <form id="'.$prefix.'loginForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
             <fieldset>
-              <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
+              <input type="hidden" name="action" value="login">
+              <input type="hidden" name="nonce" value="'.$nonce.'">
               <label for="username">Username</label>
               <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all enterSubmit"><br />
               <label for="password">Password</label>
