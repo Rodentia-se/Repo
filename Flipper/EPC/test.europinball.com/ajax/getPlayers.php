@@ -15,7 +15,7 @@
         $json = (object) array(
           'sEcho' => $_REQUEST['sEcho'],
           'iTotalRecords' => count($persons),
-          'iTotalDisplayRecords' => count($persons),
+          'iTotalDisplayRecords' => count($persons)
         );
         foreach ($persons as $person) {
           $json->aaData[] = array(
@@ -28,10 +28,15 @@
             '<input type="button" id="'.$person->id.'_isMe" class="ui-button ui-widget ui-state-default ui-corner-all" value="This is me!">'
           );
         } 
-        echo json_encode($json);
       } else {
-        echo '{"aaData": []}';
+        $json = (object) array(
+          'sEcho' => $_REQUEST['sEcho'],
+          'iTotalRecords' => 0,
+          'iTotalDisplayRecords' => 0,
+          'aaDara' => array()
+        );
       }
+      echo json_encode($json);
     break;
   }
 
