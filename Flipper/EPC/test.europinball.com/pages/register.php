@@ -12,13 +12,22 @@
       debug($player, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
     } else {
-      if ($_REQUEST['action'] == 'register') {
+      if ($_REQUEST['register'] == 'yes') {
         $person->addPlayer();
         header('Location: '.config::$baseHref.'/edit/');
       } else {
+        $tournament = tournament(config::$activeTournament);
         $page->addH2('Register player');
-        $page->addParagraph('You are logged in as '.$page->login->person->name.'. Press the button to register for EPC 2014:
-          <a href="'.config::$baseHref.'/registration/?action=register"><input type="button" id="registerButton" value="Register"></a>
+        $page->addParagraph('
+          <form id="registerForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
+            You are logged in as '.$page->login->person->name.'. Press the button to register for '.$$tournament->name.':
+            <input type="hidden" name="register" value="yes">
+            <input type="button" id="registerButton" value="Register">
+          </form>');
+        $page->addScript('
+          $("#registerButton").click(function() {
+            $("#registerForm").submit();
+          });
         ');
         $page->focus('registerButton');
       }
