@@ -94,7 +94,7 @@
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
           });
-          $('button').button();
+          $(':button').button();
         ", TRUE);
       }
       $footer .= self::getDivEnd();
