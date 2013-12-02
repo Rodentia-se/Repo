@@ -171,11 +171,23 @@
               'Login': function() {
                 if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
                   $('#".$prefix."loginForm').submit();
+                } else {
+                  
                 }
               },
               'Cancel': function() {
                 $(this).dialog('close');
               }
+            }
+          });
+          $('#".$prefix."usernameLogin').keypress(function(e) {
+            if (e.keyCode == $.ui.keyCode.ENTER) {
+              $(this).parent().find("button:eq(0)").trigger("click");
+            }
+          });
+          $('#".$prefix."passwordText').keypress(function(e) {
+            if (e.keyCode == $.ui.keyCode.ENTER) {
+              $(this).parent().find("button:eq(0)").trigger("click");
             }
           });
           $(document).on('click', '.ui-widget-overlay', function() {
