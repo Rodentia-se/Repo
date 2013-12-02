@@ -36,9 +36,6 @@
           'aaData' => array()
         );
       }
-      while(1){
-        $i=1;
-      }
       echo json_encode($json);
     break;
   }
