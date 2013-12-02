@@ -89,7 +89,9 @@
         $division_id = config::$mainDivision;
       }
       $division = division($division_id);
+      debug($this);
       $player = player($this->getFlat(), NULL, 0);
+      debug($player);
       unset($player->id);
       $player->tournamentDivision_id = $division->id;
       $player->tournamentEdition_id = $division->tournamentEdition_id;
