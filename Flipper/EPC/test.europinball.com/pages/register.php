@@ -47,6 +47,7 @@
       $page->addParagraph('Do you want to try logging in again? Press this button: <input type="button" id="view_login" class="viewButton" value="Back to login">');
       $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
       $page->startDiv('searchResults');
+        $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
         $page->addSpan('<img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data...">', 'resultsTableLoading', 'hidden');
         $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
       $page->closeDiv();
@@ -67,6 +68,9 @@
         var tbl = $("#resultsTable").dataTable({
           "bProcessing": true,
           "bDestroy": true,
+          "fnInitComplete": function() {
+            $(":button").button();
+          },
           "bJQueryUI": true,
       	  "sPaginationType": "full_numbers",
           "iDisplayLength": -1,
