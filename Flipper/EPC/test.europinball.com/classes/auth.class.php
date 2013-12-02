@@ -149,9 +149,9 @@
             <fieldset>
               <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
               <label for="username">Username</label>
-              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all"><br />
+              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all enterSubmit"><br />
               <label for="password">Password</label>
-              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all"><br />
+              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all enterSubmit"><br />
               <label for="autologin">
                 <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox"> Remember me
               </label><br />
@@ -162,71 +162,35 @@
         </div>
       ';
       if ($dialog) {
-        $form .= page::getScript("
-          $('#".$prefix."loginDiv').dialog({
-            autoOpen: ".(($autoopen) ? 'true' : 'false').",
+        $form .= page::getScript('
+          $("#'.$prefix.'loginDiv").dialog({
+            autoOpen: '.(($autoopen) ? 'true' : 'false').',
             modal: true,
             width: 400,
             buttons: {
-              'Login': function() {
-                if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
-                  $('#".$prefix."loginForm').submit();
+              "Login": function() {
+                if ($.trim($("#'.$prefix.'usernameLogin").val()).length > 0 && $.trim($("#'.$prefix.'passwordText").val()).length > 0) {
+                  $("#'.$prefix.'loginForm").submit();
                 } else {
                   
                 }
               },
-              'Cancel': function() {
-                $(this).dialog('close');
+              "Cancel": function() {
+                $(this).dialog("close");
               }
             }
           });
-          $('#".$prefix."usernameLogin').keypress(function(e) {
+          $("#.enterSubmit").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
               $(this).parent().find("button:eq(0)").trigger("click");
             }
           });
-          $('#".$prefix."passwordText').keypress(function(e) {
-            if (e.keyCode == $.ui.keyCode.ENTER) {
-              $(this).parent().find("button:eq(0)").trigger("click");
-            }
+          $(document).on("click", ".ui-widget-overlay", function() {
+            $("#'.$prefix.'loginDiv"").dialog("close");
           });
-          $(document).on('click', '.ui-widget-overlay', function() {
-            $('#".$prefix."loginDiv').dialog('close');
-          });
-        ", TRUE);
+        ', TRUE);
       }
       return $form;
-      $return =  '
-        <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'" title="'.$title.'">
-        	<h2 class="loginTitle inlineBlock">'.$title.'</h2>
-          <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="'.$prefix.'loginForm">
-            <input type="hidden" name="action" value="login">
-            <input type="hidden" name="baseHref" id="'.$prefix.'baseHref" value="'.config::$baseHref.'">
-            <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
-            <div id="usernameDiv">
-              <label for="username">Username:</label>
-              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="mandatory" onkeyup="login(this);" onchange="login(this);">
-              <span id="'.$prefix.'usernameLoginSpan" class="errorSpan">*</span>
-            </div>
-            <div id="passwordDiv">
-              <label for="password">Password:</label>
-              <input type="password" name="password" id="'.$prefix.'passwordText" class="mandatory" onkeyup="login(this);" onchange="login(this);">
-              <span id="'.$prefix.'passwordSpan" class="errorSpan">*</span>
-            </div>
-            <div id="'.$prefix.'autologinDiv">
-              <label for="autologin" class="infoLabel">Remember me:</label>
-              <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox">
-            </div>
-            <div id="'.$prefix.'loginButtonDiv">
-              <input type="submit" value="Log in" id="'.$prefix.'loginButton" onclick="login(this);">&nbsp;&nbsp;
-              <a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a>
-            </div>
-  	      </form>
-        </div>
-        '.page::getScript("
-          $('#".$prefix."loginButton').button();
-        ", TRUE).'
-      ';
     }
 
   }
