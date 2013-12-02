@@ -82,12 +82,22 @@
     public function getFooter() {
       $footer = self::getDivStart('loginFooter');
         if ($this->loggedin()) {
-          $footer .= self::getParagraph('You are logged in as '.$this->login->person->name.'. <a href="'.$_SERVER['REQUEST_URI'].'/?action=logout"><input type="button" id="logoutButton" value="Log out"></a>', NULL, 'italic');
+          $footer .= self::getParagraph('
+            You are logged in as '.$this->login->person->name.'. 
+            <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
+              <input type="hidden" action="logout">
+              <input type="button" id="footerLogoutButton" value="Log out">
+            </form>', NULL, 'italic');
+          $footer .= self::getScript('
+            $("#footerLogoutButton").click(function() {
+              $("#footerLogoutForm").submit();
+            });
+          ', TRUE);
         } else {
-          $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerloginButton" value="Log in">', NULL, 'italic');
+          $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Log in">', NULL, 'italic');
           $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
           $footer .= self::getScript('
-            $("#footerloginButton").click(function() {
+            $("#footerLoginButton").click(function() {
               $("#footerloginDiv").dialog("open");
             });
           ', TRUE);
