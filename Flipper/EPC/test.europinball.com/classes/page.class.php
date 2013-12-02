@@ -115,10 +115,10 @@
     }
 
     public function setEditable($editable = TRUE) {
-      $this->js_jquery = $editable;
-      $this->js_jqueryui = $editable;
-      $this->js_datatables = $editable;
-      $this->js_jeditable = $editable;
+      $this->jquery = $editable;
+      $this->jqueryui = $editable;
+      $this->datatables = $editable;
+      $this->jeditable = $editable;
     }
    
     public function addScript($script, $onload = TRUE) {
