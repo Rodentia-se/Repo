@@ -21,3 +21,8 @@
 .inlineBlock {
   display: inline-block;
 }
+
+.loginFooter {
+  border-top: 1px solid #ddd;
+  padding: 1.625em 5%;
+}
