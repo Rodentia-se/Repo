@@ -9,6 +9,7 @@
 
   class auth extends uLogin {
     
+    private static $nonce;
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
 /*
       $backends = array(
@@ -32,6 +33,11 @@
         if ($this->person) {
           $this->person_id = $this->person->id;
         }
+      } else {
+        if (ulNonce::Exists('login')) {
+          ulNonce::Verify('login', 'nonsense');
+        }
+        self::$nonce = ulNonce::Create('login');
       }
     }
     
@@ -138,17 +144,13 @@
     }
 
     public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      if (ulNonce::Exists('login')) {
-        ulNonce::Verify('login', 'nonsense');
-      }
-      $nonce = ulNonce::Create('login');
       $form = '
         <div id="'.$prefix.'loginDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
         	<h2>'.$title.'</h2>').'
           <form id="'.$prefix.'loginForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
             <fieldset>
               <input type="hidden" name="action" value="login">
-              <input type="hidden" name="nonce" value="'.$nonce.'">
+              <input type="hidden" name="nonce" value="'.self::$nonce.'">
               <label for="username">Username</label>
               <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all enterSubmit"><br />
               <label for="password">Password</label>
