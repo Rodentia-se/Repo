@@ -43,7 +43,7 @@
             $page->addLogin('You already have a user registered, please login here', TRUE);
           } else {
             $page->addH2('Register new user');
-            $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? person->cityName.', ').person->countryName.'. Make sure this is correct, and then choose a username and password below.');
+            $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? $person->cityName.', ').$person->countryName.'. Make sure this is correct, and then choose a username and password below.');
             $page->addNewUser('Register a new user');
           }
         }
