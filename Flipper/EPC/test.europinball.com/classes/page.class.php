@@ -90,11 +90,7 @@
             modal: true
           });
           $('#footerloginButton').click(function() {
-            $('#footerloginDiv').toggle();
-            if ($('#footerloginDiv').is(':visible')) {
-              $('#footerusernameLogin').focus(); 
-            }
-          });
+            $('#footerloginDiv').dialog('open');
           $('#footerloginDiv').css('bottom', '0px');
           $('#footerloginDiv').css('left', '250px');
         ", TRUE);
