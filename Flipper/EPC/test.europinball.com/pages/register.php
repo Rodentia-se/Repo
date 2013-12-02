@@ -40,7 +40,7 @@
         if ($person) {
           if ($person->username) {
             $page->addH2('Register player');
-            $page->addLogin('Hello '.$person->name.'! You are already registered as a user, please login here', TRUE);
+            $page->addLogin('Hello '.$person->name.'! You are already registered as a user.Please login here:', TRUE);
           } else {
             $page->addH2('Register new user');
             $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName.'. Make sure this is correct, and then choose a username and password below.');

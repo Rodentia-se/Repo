@@ -128,6 +128,16 @@
         break;
       }
     }
+    
+    public function setUsername($username) {
+      if (!is_object($this->person)) {
+        $this->populate(1);
+      }
+      if (!is_object($this->person)) {
+        return $this->person->setUsername($username);
+      }
+      return FALSE;
+    }
 
   }
 

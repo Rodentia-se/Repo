@@ -88,6 +88,24 @@
       return $return;
     }
     
+    protected function setProp($prop, $value = NULL) {
+      if ($this->id && property_exists($this->$prop && in_array($prop, $this->getColNames())) {
+        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+        $query = 'update '.$table.' set '.$prop.' = :'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop).' where id = '.$this->id;
+        $values[':'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop)] = $value;
+        $update = $this->db->update($query, $values);
+        if ($update) {
+          $this->$prop = $value;
+          debug(substr($prop, strlen($prop) - 3, 3));
+          if (substr($prop, strlen($prop) - 3, 3) == '_id') {
+            $this->populate(1);
+          }
+        }
+        return $update;
+      }
+      return FALSE;
+    }
+    
     public function getColNames() {
         $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
         return $this->db->getColNames($table);

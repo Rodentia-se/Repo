@@ -100,9 +100,7 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          debug("ACTION");
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            debug("REQUEST");
             return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
             return FALSE;
@@ -127,11 +125,36 @@
         break;
         case 'autologin':
           if (!$this->IsAuthSuccess()) {
-            warning('Autologin misslyckades');
+            warning('Autologin failed');
             return FALSE;
           } else {
             return TRUE;
           }
+        break;
+        case 'newUser':
+          if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
+            if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+              $person = person($_REQUEST['person_id']);
+              if ($person) {
+                if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
+                  if($person->setUsername($_REQUEST['username']) {
+                    return TRUE;
+                  } else {
+                    error('User created, but could not associate the user with the person');
+                  }
+                } else {
+                  error('Could not create user'.$_REQUEST['username']);
+                }
+              } else {
+                error('Could not find person ID '.$_REQUEST['person_id'])
+              }
+            } else {
+              error('Invalid nonce');
+            }
+          } else {
+            error('Not enough parameters provided');
+          }
+          return FALSE;
         break;
         default:
           return FALSE;

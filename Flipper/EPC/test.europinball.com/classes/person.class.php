@@ -97,6 +97,10 @@
       $player->dateRegistered = date('Y-m-d');
       $id = $player->save();
     }
+    
+    public function setUsername($username) {
+      return $this->setProp('username', $username);
+    }
 
     public function getLink($type = 'object') {
       switch ($type) {
