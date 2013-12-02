@@ -90,7 +90,7 @@
           $('#footerloginButton').click(function() {
             $('#footerloginDiv').dialog('open');
             $(document).on('click', '.ui-widget-overlay', function() {
-              $('#".$prefix."loginDiv').dialog('close');
+              $('#footerloginDiv').dialog('close');
             });
           });
           $(':button').button();
