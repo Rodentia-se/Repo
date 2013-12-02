@@ -184,7 +184,7 @@
             }
           });
           $(document).on("click", ".ui-widget-overlay", function() {
-            $("#'.$prefix.'loginDiv"").dialog("close");
+            $("#'.$prefix.'loginDiv").dialog("close");
           });
         ', TRUE);
       }
