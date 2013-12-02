@@ -22,9 +22,4 @@
   display: inline-block;
 }
 
-input[type=text], input[type=password] {
-  display:block;
-}
-
-
 
