@@ -24,6 +24,7 @@
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       $this->AutoLogin();
+      debug($_REQUEST);
       if ($_REQUEST['action']) {
         $this->action($_REQUEST['action']);
       }
