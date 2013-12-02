@@ -166,6 +166,7 @@
           $('#".$prefix."loginDiv').dialog({
             autoOpen: ".(($autoopen) ? 'true' : 'false').",
             modal: true,
+            width: 300,
             buttons: {
               'Login': function() {
                 if ($.trim($('#".$prefix."usernameLogin').val()).length > 0 && $.trim($('#".$prefix."passwordText').val()).length > 0) {
