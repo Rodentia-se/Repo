@@ -402,14 +402,14 @@
       return auth::getLogin($title, $prefix, $class, $closeButton);
     }
 
-    public function addNewUser($title = 'Please provide your login credentials') {
-      $dialog = self::getNewUser($title);
+    public function addNewUser($title = 'Please provide your login credentials', $person_id) {
+      $dialog = self::getNewUser($title, $person_id);
       $this->addContent($dialog);
       return $dialog;
     }
 
-    public static function getNewUser($title = 'Please choose a new username and password', $prefix = NULL, $class = NULL, $closeButton = FALSE) {
-      return auth::getNewUser($title, $prefix, $class, $closeButton);
+    public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $closeButton = FALSE) {
+      return auth::getNewUser($title, $person_id, $prefix, $class, $closeButton);
     }
 
   }

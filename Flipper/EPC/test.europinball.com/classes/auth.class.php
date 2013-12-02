@@ -223,13 +223,14 @@
       return $form;
     }
 
-    public static function getNewUser($title = 'Please choose a new username and password', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+    public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       $form = '
         <div id="'.$prefix.'newUserDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
         	<h2>'.$title.'</h2>').'
           <form id="'.$prefix.'newUserForm" method="POST">
             <fieldset>
               <input type="hidden" name="action" value="newUser">
+              <input type="hidden" name="person_id" value="'.$person_id.'">
               <input type="hidden" name="nonce" value="'.self::$nonce.'">
               <label for="username">Username</label>
               <input type="text" name="username" id="'.$prefix.'usernameNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
