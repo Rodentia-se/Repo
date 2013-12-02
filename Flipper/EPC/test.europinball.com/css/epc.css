@@ -22,7 +22,7 @@
   display: inline-block;
 }
 
-.loginFooter {
+#loginFooter {
   border-top: 1px solid #ddd;
   padding: 1.625em 5%;
 }
