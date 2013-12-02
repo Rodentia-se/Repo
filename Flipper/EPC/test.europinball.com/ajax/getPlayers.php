@@ -16,7 +16,7 @@
          'iTotalDisplayRecords' => count($persons),
        );
      }
-     debug($persons);
+     debug($json);
    }
    
 
