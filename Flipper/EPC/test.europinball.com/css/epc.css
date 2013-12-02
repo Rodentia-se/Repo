@@ -22,5 +22,9 @@
   display: inline-block;
 }
 
-label, input { display:block; }
+label, input {
+  display:block;
+}
+
+
 
