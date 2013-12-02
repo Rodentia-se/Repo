@@ -148,12 +148,12 @@
             <fieldset>
               <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
               <label for="username">Username</label>
-              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all">
+              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all"><br />
               <label for="password">Password</label>
-              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all">
+              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all"><br />
               <label for="autologin">
                 <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox"> Remember me
-              </label>
+              </label><br />
               '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
               <p><a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a></p>
             </fieldset>
