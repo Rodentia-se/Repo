@@ -5,6 +5,8 @@
 
    $search = (isset($_REQUEST['search'])) ? $_REQUEST['type'] : null;
    
+   echo "hej";
+   
    if ($search) {
      $persons = persons($search);
      debug($persons);
