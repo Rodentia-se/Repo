@@ -90,10 +90,12 @@
             $("#footerloginButton").click(function() {
               $("#footerloginDiv").dialog("open");
             });
-            $(":button").button();
-            $("input[type=submit]").button();
           ', TRUE);
       }
+      $footer .= self::getScript('
+        $(":button").button();
+        $("input[type=submit]").button();
+      ');
       $footer .= self::getDivEnd();
       $footer .= '
           </body>
