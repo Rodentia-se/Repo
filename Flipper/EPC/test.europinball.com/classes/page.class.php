@@ -145,6 +145,7 @@
     }
     
     public function getScripts($scripts = NULL, $default = TRUE, $array = FALSE) {
+      $scriptSrcs = array();
       if ($default) {
         $this->datatablesEditable = ($this->datatables && $this->jeditable) ? TRUE : FALSE;
         foreach (self::$_scripts as $script => $scriptSrc) {
