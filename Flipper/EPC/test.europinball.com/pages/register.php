@@ -53,30 +53,37 @@
     $page->closeDiv();
     $page->focus('usernameLogin');
   }
-  $page->addScript("
-    $('.viewButton').click(function() {
-      $('#login').hide();
-      $('#search').hide();
-      $('#' + this.id.replace('view_', '')).show();
-      $('#' + ((this.id == 'view_login') ? 'usernameLogin' : 'searchBox')).focus();
+  $page->addScript('
+    $(".viewButton").click(function() {
+      $("#login").hide();
+      $("#search").hide();
+      $("#" + this.id.replace("view_", "")).show();
+      $("#" + ((this.id == "view_login") ? "usernameLogin" : "searchBox")).focus();
     });
-    $('#searchButton').click(function() {
-      if ($.trim($('#searchBox').val()).length > 0) {
-        $('#newGuy').show();
-        $('#resultsTable').show();
-        var tbl = $('#resultsTable').dataTable({
-          'bProcessing': true,
-          'bDestroy': true,
-          'bJQueryUI': true,
-      	  'sPaginationType': 'full_numbers',
-          'iDisplayLength': -1,
-          'aLengthMenu': [[10, 25, 50, 100, -1], [10, 25, 50, 100, 'All']],
-          'bServerSide': true,
-          'sAjaxSource': '".config::$baseHref."ajax/getPlayers.php?type=regSearch&search=' + $('#searchBox').val()
+    $("#searchButton").click(function() {
+      if ($.trim($("#searchBox").val()).length > 0) {
+        $("#newGuy").show();
+        $("#resultsTable").show();
+        var tbl = $("#resultsTable").dataTable({
+          "bProcessing": true,
+          "bDestroy": true,
+          "bJQueryUI": true,
+      	  "sPaginationType": "full_numbers",
+          "iDisplayLength": -1,
+          "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
+          "bServerSide": true,
+          "sAjaxSource": "'.config::$baseHref.'ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
         });
-        $('#resultsTable').css('width', '');
+        $("#resultsTable").css("width", "");
       } else {
-        toolTip('searchBox', 'Please enter a search term', true);
+        toolTip("searchBox", "Please enter a search term", true);
+      }
+    });
+    $(".searchBox").keypress(function(e) {
+      if (e.keyCode == $.ui.keyCode.ENTER) {
+        if ($.trim($("#searchBox").val()).length > 0) {
+          $("#searchButton").click();
+        }
       }
     });
   ");
