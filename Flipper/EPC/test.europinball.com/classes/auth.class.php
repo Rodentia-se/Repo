@@ -154,8 +154,8 @@
               <label for="autologin">
                 <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox"> Remember me
               </label>
-              <p><a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a></p>
               '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
+              <p><a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a></p>
             </fieldset>
           </form>
         </div>
