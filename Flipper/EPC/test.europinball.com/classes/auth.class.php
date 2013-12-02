@@ -144,7 +144,24 @@
         ulNonce::Verify('login', 'nonsense');
       }
       $nonce = ulNonce::Create('login');
-      return '
+      $form = '
+        <div id="dialog-form" title="'.$title.'">
+          <form>
+            <input type="hidden" name="nonce" id="'.$prefix.'nonce" value="'.$nonce.'">
+            <fieldset>
+              <label for="username">Username</label>
+              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all">
+            </fieldset>
+          </form>
+        </div>
+      ';
+      $script = page::getScript("
+        $('#".$prefix."loginButton').button();
+      ", TRUE);
+      return $form.$script;
+      $return =  '
         <div id="'.$prefix.'loginDiv" class="loginDiv '.$class.'" title="'.$title.'">
         	<h2 class="loginTitle inlineBlock">'.$title.'</h2>
           <form action="'.$_SERVER['REQUEST_URI'].'" method="POST" id="'.$prefix.'loginForm">
