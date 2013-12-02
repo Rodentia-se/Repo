@@ -151,8 +151,9 @@
               <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all">
               <label for="password">Password</label>
               <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all">
-              <label for="autologin">Remember me:</label>
-              <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox">
+              <label for="autologin">Remember me
+                <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox">
+              </label>
               <a href="'.config::$baseHref.'/login/?action=reset" class="italic">Forgot username or password?</a>
               '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
             </fieldset>
