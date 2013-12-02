@@ -102,11 +102,11 @@
             });
           ', TRUE);
       }
+      $footer .= self::getDivEnd();
       $footer .= self::getScript('
         $(":button").button();
         $("input[type=submit]").button();
-      ');
-      $footer .= self::getDivEnd();
+      ', TRUE);
       $footer .= '
           </body>
         </html>
