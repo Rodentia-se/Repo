@@ -52,6 +52,7 @@
       if ($this->id) {
         static::$instances['ID'.$this->id] = $this;
         $this->populate($depth);
+        debug('depth: '.$depth)
       }
     }
 
@@ -126,21 +127,37 @@
 
     protected function populate($depth = NULL) {
       $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
+      debug(1);
       if (self::$parentDepth < $depth) {
+      debug(2);
         self::$parentDepth++;
+      debug(3);
         foreach (static::$parents as $field => $class) {
+      debug(4);
           if ($this->{$field.'_id'}) {
+      debug(5);
             $this->{$field.'ParentDepth'} = self::$parentDepth;
+      debug(6);
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
+      debug(7);
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
+      debug(8);
             } else {
+      debug(9);
               $this->$field = $class($this->{$field.'_id'});
+      debug(10);
             }
+      debug(12);
             $this->{$field.'Name'} = $this->$field->name;
+      debug(13);
           }
+      debug(14);
         }
+      debug(15);
         self::$parentDepth--;
+      debug(16);
       }
+      debug(17);
     }
     
     public function delete($propagate = TRUE) {
