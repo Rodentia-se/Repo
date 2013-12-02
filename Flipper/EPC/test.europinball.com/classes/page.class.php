@@ -8,7 +8,7 @@
       'jqueryui' => 'contrib/jquery-ui.js',
       'datatables' => 'contrib/jquery.dataTables.js',
       'jeditable' => 'contrib/jquery.jeditable.js',
-      'datatablesEditable' => 'jquery.dataTables.editable.js',
+      'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
       'ga' => 'contrib/ga.js'
