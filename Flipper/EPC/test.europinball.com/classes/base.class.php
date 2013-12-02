@@ -124,6 +124,18 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
 
+    public function getLink($type = 'object') {
+      switch ($type) {
+        case 'photo':
+          return FALSE;
+        break;
+        case 'object':
+        default:
+          return FALSE;
+        break;
+      }
+    }
+
     protected function populate($depth = NULL) {
       $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
       if (self::$parentDepth < $depth) {
