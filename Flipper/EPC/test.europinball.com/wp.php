@@ -8,6 +8,9 @@ function customTemplate($page) {
 		case 'login':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/login.php');
 	  break;
+		case 'admin-tools':
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/test.php');
+	  break;
 	}
 }
 
