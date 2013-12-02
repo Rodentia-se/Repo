@@ -180,7 +180,9 @@
           });
           $(".enterSubmit").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
-              $(this).parent().find("button:eq(0)").trigger("click");
+              if ($.trim($("#'.$prefix.'usernameLogin").val()).length > 0 && $.trim($("#'.$prefix.'passwordText").val()).length > 0) {
+                $("#'.$prefix.'loginForm").submit();
+              }
             }
           });
           $(document).on("click", ".ui-widget-overlay", function() {
