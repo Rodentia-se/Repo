@@ -147,7 +147,7 @@
       $form = '
         <div id="'.$prefix.'loginDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
         	<h2>'.$title.'</h2>').'
-          <form id="'.$prefix.'loginForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
+          <form id="'.$prefix.'loginForm" method="POST">
             <fieldset>
               <input type="hidden" name="action" value="login">
               <input type="hidden" name="nonce" value="'.self::$nonce.'">
