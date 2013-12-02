@@ -48,7 +48,7 @@
       $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
       $page->startDiv('searchResults');
         $page->addSpan('<img src="'.config::$baseHref.'/images/ajax-loader.gif" alt="Loading data...">', 'resultsTableLoading', 'hidden');
-        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
+        $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'), NULL, TRUE);
       $page->closeDiv();
     $page->closeDiv();
     $page->focus('usernameLogin');

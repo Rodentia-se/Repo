@@ -22,7 +22,6 @@
             $person->name,
             $person->shortName,
             $person->cityName,
-            $person->regionName,
             $person->countryName,
             $person->getLink('ifpa'),
             $person->getLink('photo'),
