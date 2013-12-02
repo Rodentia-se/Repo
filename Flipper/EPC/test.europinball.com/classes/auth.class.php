@@ -146,7 +146,7 @@
                   error('Could not create user'.$_REQUEST['username']);
                 }
               } else {
-                error('Could not find person ID '.$_REQUEST['person_id'])
+                error('Could not find person ID '.$_REQUEST['person_id']);
               }
             } else {
               error('Invalid nonce');
