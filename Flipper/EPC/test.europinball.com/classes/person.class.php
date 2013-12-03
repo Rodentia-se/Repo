@@ -145,8 +145,6 @@
       $regions = regions('all');
       $countries = countries('all');
       $continents = continents('all');
-      debug($continents);
-      debug($continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id));
       
       $content = '
         <div id="editDiv">

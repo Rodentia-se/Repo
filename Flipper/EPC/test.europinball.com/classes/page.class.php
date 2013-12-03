@@ -404,7 +404,7 @@
       if (isGroup($objs)) {
         $select = $objs->getSelect($id, $class, $label, $selected);
       } else {
-        $select = group::getSelect($id, $class, $label, $selected, $objs);
+        $select = group::_getSelect($id, $class, $label, $selected, $objs);
       }
         debug($select);
       return $select;
