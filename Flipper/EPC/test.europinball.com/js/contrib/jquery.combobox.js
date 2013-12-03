@@ -23,11 +23,12 @@
             delay: 0,
             minLength: 0,
             source: $.proxy( this, "_source" )
-          })
+          });
+/*
           .tooltip({
             tooltipClass: "ui-state-highlight"
           });
- 
+*/ 
         this._on( this.input, {
           autocompleteselect: function( event, ui ) {
             ui.item.option.selected = true;
@@ -47,7 +48,7 @@
         $( "<a>" )
           .attr( "tabIndex", -1 )
           .attr( "title", "Show All Items" )
-          .tooltip()
+//          .tooltip()
           .appendTo( this.wrapper )
           .button({
             icons: {
@@ -113,7 +114,7 @@
         this.input
           .val( "" )
           .attr( "title", value + " didn't match any item" )
-          .tooltip( "open" );
+//          .tooltip( "open" );
         this.element.val( "" );
         this._delay(function() {
           this.input.tooltip( "close" ).attr( "title", "" );
