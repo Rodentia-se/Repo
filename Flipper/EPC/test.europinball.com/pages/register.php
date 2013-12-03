@@ -93,7 +93,7 @@
             var tbl = $("#resultsTable").dataTable({
               "bProcessing": true,
               "bDestroy": true,
-              "fnInitComplete": function() {
+              "fnDrawCallback": function() {
                 $(":button").button();
                 $(".isMe").click(function() {
                   $("#" + this.id.split("_")[0] + "_isMeForm").submit();
