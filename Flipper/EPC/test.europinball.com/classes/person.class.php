@@ -150,23 +150,23 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT!</p>
-          '.page::getInput((($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text', 'First name').'
-          '.page::getInput((($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text', 'Last name').'
-          '.page::getInput((($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text', 'Tag').'
-          '.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'
-          '.page::getInput((($this->streetAddress) ? $this->streetAddress : 'Enter address'), 'streetAddress', 'edit', 'text', 'Address').'
-          '.page::getInput((($this->zipCode) ? $this->zipCode : 'Enter ZIP'), 'zipCode', 'edit', 'text', 'ZIP').'
-          '.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).'
-          '.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).'
-          '.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'
-          '.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'
-          '.page::getInput((($this->telephoneNumber) ? $this->telephoneNumber : 'Enter phone'), 'telephoneNumber', 'edit', 'text', 'Phone').'
-          '.page::getInput((($this->mobileNumber) ? $this->mobileNumber : 'Enter cell'), 'mobileNumber', 'edit', 'text', 'Cell phone').'
-          '.page::getInput((($this->mailAddress) ? $this->mailAddress : 'Enter email'), 'mailAddress', 'edit', 'text', 'Email').'
-          '.(($main) ? page::getInput($this->main, 'main', 'check', 'checkbox', 'Main') : '').'
-          '.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'
-          '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'
-          '.page::getInput($this->birthDate, 'birthDate', 'date', 'date', 'Born').'
+          <div>'.page::getInput((($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text', 'First name').'</div>
+          <div>'.page::getInput((($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text', 'Last name').'</div>
+          <div>'.page::getInput((($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text', 'Tag').'</div>
+          <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
+          <div>'.page::getInput((($this->streetAddress) ? $this->streetAddress : 'Enter address'), 'streetAddress', 'edit', 'text', 'Address').'</div>
+          <div>'.page::getInput((($this->zipCode) ? $this->zipCode : 'Enter ZIP'), 'zipCode', 'edit', 'text', 'ZIP').'</div>
+          <div>'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).'</div>
+          <div>'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).'</div>
+          <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
+          <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
+          <div>'.page::getInput((($this->telephoneNumber) ? $this->telephoneNumber : 'Enter phone'), 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
+          <div>'.page::getInput((($this->mobileNumber) ? $this->mobileNumber : 'Enter cell'), 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
+          <div>'.page::getInput((($this->mailAddress) ? $this->mailAddress : 'Enter email'), 'mailAddress', 'edit', 'text', 'Email').'</div>
+          <div>'.(($main) ? page::getInput($this->main, 'main', 'check', 'checkbox', 'Main') : '').'</div>
+          <div>'.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'</div>
+          <div>'.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'</div>
+          <div>'.page::getInput($this->birthDate, 'birthDate', 'date', 'date', 'Born').'</div>
         </div>
       ';
       return $content;
