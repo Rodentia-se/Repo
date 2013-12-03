@@ -20,7 +20,7 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="'.$division->shortName.'">'.$division->divisionName.'</a>');
+        $page->addLi('<a href="#'.$division->shortName.'">'.$division->divisionName.'</a>');
       }
     $page->closeUl();
     foreach ($divisions as $division) {
