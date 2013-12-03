@@ -384,7 +384,7 @@
 
     public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE) {
       $label = ($label === TRUE) ? $id : $label;
-      $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || type == 'checkbox') ? '' :  label').'">'.$label : '';
+      $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || type == 'checkbox') ? '' :  ' label').'">'.$label : '';
       if ($type == 'radio' || type == 'checkbox') {
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked' : '').'>'.(($label) ? '</label>' : '');
       } else {
