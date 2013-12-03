@@ -93,13 +93,6 @@
             var tbl = $("#resultsTable").dataTable({
               "bProcessing": true,
               "bDestroy": true,
-              "fnDrawCallback": function() {
-                $(":button").button();
-                $(".isMe").click(function() {
-                  $("#" + this.id.split("_")[0] + "_isMeForm").submit();
-                });
-                return true;
-              },
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
               "iDisplayLength": -1,
