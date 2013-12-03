@@ -26,7 +26,6 @@
   }
   
   switch ($type) {
-    debug(1);
     case 'registered':
     debug(2);
       if ($players && count($players) > 0) {
