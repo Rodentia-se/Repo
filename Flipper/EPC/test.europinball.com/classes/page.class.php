@@ -387,7 +387,7 @@
       if ($type == 'radio' || type == 'checkbox') {
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked' : '').'>'.(($label) ? '</label>' : '');
       } else {
-        $input .= (($label) ? '</label' : '').'
+        $input .= (($label) ? '</label>' : '').'
           <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>';
       }
       return $input;
