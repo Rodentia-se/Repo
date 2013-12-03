@@ -14,6 +14,7 @@
       debug($object);
       if ($object) {
         $players = players($object);
+        debug($players);
       }
     }
   } else if ($id) {
