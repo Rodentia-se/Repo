@@ -43,11 +43,18 @@
       }
       if ($objs) {
         debug($objs);
-        $objs = array_unique($objs, SORT_REGULAR);
+        $objs = $this->array_unique($objs, SORT_REGULAR);
         foreach ($objs as $obj) {
           $this[] = $obj;
         }
       }
+    }
+
+    public function __call($func, $argv) {
+      if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
+        throw new BadMethodCallException(__CLASS__.'->'.$func);
+      }
+      return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
     }
 
     public function nullify($field, $value = NULL, $cond = 'or') {
