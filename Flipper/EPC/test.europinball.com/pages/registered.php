@@ -15,9 +15,7 @@
     error('No tournament found!', TRUE);
   }
   $divisions = $tournament->getDivisions();
-  debug($divisions);
   $divisions->filter('includeInStats');
-  debug($divisions);
   if (count($divisions) < 1) {
     error('No divisions found!', TRUE);
   }
