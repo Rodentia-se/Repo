@@ -115,13 +115,17 @@
       'gender' => 'genderName'
     );
 
-    public function getEdit() {
-      $content = '<div id="labels">';
-      $content .= '<div id="firstNameLabel">First Name</div>';
-      $content .= '</div>';
-      $content .= '<div id="fields" class="right">';
-      $content .= '<div id="firstName">'.$this->firstName.'</div>';
-      $content .= '</div>';
+    public function getEdit($title = 'Edit profile') {
+      $content = '
+        <div id="editDiv">
+        	<h2>'.$title.'</h2>
+          <p class="italic">Note: All changes below are INSTANT!</p>
+          <p><span class="label">First Name:</span> <span class="edit">'.$this->firstName.'</p>
+          <p><span class="label">Last Name:</span> <span class="edit">'.$this->firstName.'</p>
+          <p><span class="label">Tag:</span> <span class="edit">'.$this->firstName.'</p>
+          <p><span class="label">Gender:</span> <span class="edit">'.$this->genderName.'</p>
+        </div>
+      ';
       return $content;
     }
 

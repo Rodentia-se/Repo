@@ -18,10 +18,11 @@
           if ($obj->id) {
             if (get_class($data) == static::$objClass) {
               $objs[] = $data;
-            } else if (is_string($prop)) {
-              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
             } else {
-              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, get_class($obj).'_id', $obj->id));
+              if (!is_string($prop)) {
+                $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id';
+              }
+              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
             }
           } else if (is_int($obj)) {
             $objs[] = $this->db->getObjectById(static::$objClass, $obj);
@@ -40,6 +41,10 @@
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
       } else if (is_string($data) && preg_match('/^where /', trim($data))) {
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
+      } else if ($data == 'all') {
+        $class = static::$objClass;
+        $query = $class::$select;
+        $objs = $this->db->getObjects($query, $class);
       }
       if ($objs) {
         $objs = $objs->array_unique(SORT_REGULAR);
