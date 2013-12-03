@@ -162,10 +162,10 @@
           '.page::getInput((($this->telephoneNumber) ? $this->telephoneNumber : 'Enter phone'), 'telephoneNumber', 'edit', 'text', 'Phone').'
           '.page::getInput((($this->mobileNumber) ? $this->mobileNumber : 'Enter cell'), 'mobileNumber', 'edit', 'text', 'Cell phone').'
           '.page::getInput((($this->mailAddress) ? $this->mailAddress : 'Enter email'), 'mailAddress', 'edit', 'email', 'Email').'
-          '.(($main) ? page::getInput($this->main, 'main', 'edit', 'checkbox', 'Main') : '').'
-          '.(($classics) ? page::getInput($this->classics, 'classics', 'edit', 'checkbox', 'Classics') : '').'
-          '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'edit', 'checkbox', '80s') : '').'
-          '.page::getInput($this->birthDate, 'birthDate', 'edit', 'date', 'Born').'
+          '.(($main) ? page::getInput($this->main, 'main', 'check', 'checkbox', 'Main') : '').'
+          '.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'
+          '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'
+          '.page::getInput($this->birthDate, 'birthDate', 'date', 'date', 'Born').'
         </div>
       ';
       return $content;
