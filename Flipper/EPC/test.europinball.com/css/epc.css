@@ -45,17 +45,17 @@
 .edit { 
   width: 210px;
   height: 20px;
-  border: 1px solid #B6B6B6; !important
+  border: 1px solid #B6B6B6 !important;
   padding: 0;
   margin: 0;
-  background: #ededed url(images/bg_fallback.png) 0 0 repeat-x; !important
-  background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%); !important
-  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4)); !important
-  background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%); !important
-  background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%); !important
-  background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%); !important
-  background: linear-gradient(top, #ededed 0%,#c4c4c4 100%); !important
-  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset; !important
-  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset; !important
-  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset; !important
+  background: #ededed url(images/bg_fallback.png) 0 0 repeat-x !important;
+  background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%) !important;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4)) !important;
+  background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%) !important;
+  background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%) !important;
+  background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%) !important;
+  background: linear-gradient(top, #ededed 0%,#c4c4c4 100%) !important;
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset !important;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset !important;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset !important;
 }
