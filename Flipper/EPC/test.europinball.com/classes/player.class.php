@@ -120,10 +120,10 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT!</p>
-          <p><span class="label">First Name:</span> <span class="edit">'.$this->firstName.'</p>
-          <p><span class="label">Last Name:</span> <span class="edit">'.$this->lastName.'</p>
-          <p><span class="label">Tag:</span> <span class="edit">'.$this->shortName.'</p>
-          <p><span class="label">Gender:</span> <span class="edit">'.$this->gender->name.'</p>
+          <p><span class="label">First Name:</span> <span class="edit">'.(($this->firstName) ? $this->firstName : 'Enter first name').'</p>
+          <p><span class="label">Last Name:</span> <span class="edit">'.(($this->lastName) ? $this->lastName : 'Enter first name').'</p>
+          <p><span class="label">Tag:</span> <span class="edit">'.(($this->shortName) ? $this->shortName : 'Enter first name').'</p>
+          <p><span class="label">Gender:</span> <span class="edit">'.(($this->gender->name) ? $this->gender->name : 'Choose gender...').'</p>
         </div>
       ';
       return $content;
