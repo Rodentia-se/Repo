@@ -149,7 +149,7 @@
           return FALSE;
         break;
         case 'object':
-          $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='$this->id : FALSE;
+          $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : FALSE;
         break;
         default:
           return FALSE;
