@@ -11,6 +11,10 @@
     $page->startDiv('editDiv');
       $page->addContent($player->getEdit());
     $page->closeDiv();
+    $page->jeditable = TRUE;
+    $page->addScript('
+      $(".edit").editable("'.config::$baseHref.'"/setPlayerProp.php");
+    ');
   }
   
   $page->submit();
