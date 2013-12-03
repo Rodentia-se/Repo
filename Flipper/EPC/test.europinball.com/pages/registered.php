@@ -31,8 +31,8 @@
     foreach ($divisions as $division) {
       $players = $division->getPlayers();
       $rows = array();
+      $page->startDiv($division->shortName);
       if (count($players) > 0) {
-        $page->startDiv($division->shortName);
           if ($division->team) {
             if ($division->national) {
               $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
@@ -46,8 +46,10 @@
             $rows[] = $player->getRegRow();
           }
           $page->addTable($division->shortName.'Table', $headers, $rows, TRUE);
-        $page->closeDiv();
+      } else {
+        $page->addParagraph('No players have registered for the '.$division->divisionName);
       }
+      $page->closeDiv();
     }
   $page->closeDiv();
   $page->addScript('
