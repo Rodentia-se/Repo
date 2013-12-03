@@ -27,7 +27,7 @@
   function error($text, $die = FALSE) {
     preDump($text,'ERROR');
     if ($die) {
-      $die('Abort requested.');
+      die('Abort requested.');
     }
   }
 
