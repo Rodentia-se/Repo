@@ -16,7 +16,8 @@
     }
 
     public function update($query, $values = NULL) {
-      if($this->action($query, $values)) {
+      $sth = $this->action($query, $values)
+      if ($sth) {
         $rowCount = $sth->rowCount();
         return ($rowCount == 0) ? TRUE : $rowCount;
       } else {
@@ -25,7 +26,8 @@
     }
 
     public function delete($query, $values = NULL) {
-      if ($this->action($query, $values)){
+      $sth = $this->action($query, $values)
+      if ($sth) {
         $rowCount = $sth->rowCount();
         return ($rowCount == 0) ? TRUE : $rowCount;
       } else {
@@ -45,7 +47,7 @@
           return FALSE;
         }
       }
-      return TRUE;
+      return $sth;
     }
 
     public function select($query, $values = NULL) {

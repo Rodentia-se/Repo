@@ -143,7 +143,7 @@
                     error('User created, but could not associate the user with the person');
                   }
                 } else {
-                  error('Could not create user'.$_REQUEST['username']);
+                  error('Could not create user '.$_REQUEST['username']);
                 }
               } else {
                 error('Could not find person ID '.$_REQUEST['person_id']);
