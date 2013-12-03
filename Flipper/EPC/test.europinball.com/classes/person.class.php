@@ -133,9 +133,9 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT! Click on a field to change it.</p>
-          '.page::getInput(($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text').'
-          '.page::getInput(($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text').'
-          '.page::getInput(($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text').'
+          '.page::getInput((($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text').'
+          '.page::getInput((($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text').'
+          '.page::getInput((($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text').'
         </div>
       ';
       return $content;
