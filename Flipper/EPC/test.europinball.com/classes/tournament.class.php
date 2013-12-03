@@ -54,7 +54,7 @@
     );
     
     public function getDivisions() {
-      $division = $this->db->getObjectsByParent('division', $this, 'tournamentEdition_id');
+      return $this->db->getObjectsByParent('division', $this, 'tournamentEdition_id');
     }
     
   }
