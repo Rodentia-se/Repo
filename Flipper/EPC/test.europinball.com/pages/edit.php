@@ -13,7 +13,7 @@
     $page->closeDiv();
     $page->jeditable = TRUE;
     $page->addScript('
-      $(".edit").editable("'.config::$baseHref.'"/setPlayerProp.php");
+      $(".edit").editable("'.config::$baseHref.'/setPlayerProp.php");
     ');
   }
   
