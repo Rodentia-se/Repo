@@ -120,7 +120,7 @@
       $content .= '<div id="firstNameLabel">First Name</div>';
       $content .= '</div>';
       $content .= '<div id="fields" class="right">';
-      $content .= '<div id="firstName">'.$player->firstName.'</div>';
+      $content .= '<div id="firstName">'.$this->firstName.'</div>';
       $content .= '</div>';
       return $content;
     }
