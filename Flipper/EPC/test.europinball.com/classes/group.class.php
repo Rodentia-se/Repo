@@ -48,7 +48,7 @@
       }
     }
 
-    function nullify($field, $value = NULL, $cond = 'or') {
+    public function nullify($field, $value = NULL, $cond = 'or') {
       if (count($this) > 0) {
         foreach($this as $obj) {
           $return = $obj->nullify($field, $value);
@@ -81,6 +81,29 @@
         }
         if ($this->db->update($update, $values)) {
           return TRUE;
+        }
+      }
+      return FALSE;
+    }
+    
+    public function filter($prop, $value = NULL, $out = FALSE) {
+      foreach ($this as $index => $obj) {
+        if (isAssoc($prop)) {
+          foreach ($prop as $key => $val) {
+            if (($obj->$prop == $val) == ($out)) {
+              unset($this[$index]);
+            }
+          }
+        } else if ($prop) {
+          if ($value) {
+            if (($obj->$prop == $value) == ($out)) {
+              unset($this[$index]);
+            }
+          } else {
+            if (($obj->$prop) == ($out)) {
+              unset($this[$index]);
+            }
+          }
         }
       }
       return FALSE;
