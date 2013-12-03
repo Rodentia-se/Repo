@@ -80,13 +80,13 @@
     protected function getRows($sth, $class = null) {
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
-        while($obj = $sth->fetchObject($class)) {
+        $objs = ($class) ? $class::$arrClass() : array();
+        while ($obj = $sth->fetchObject($class)) {
           $objs[] = $obj;
         }
         return $objs;
-      } else {
-        return FALSE;
       }
+      return FALSE;
     }
 
     public function getObject($query, $class = NULL) {
