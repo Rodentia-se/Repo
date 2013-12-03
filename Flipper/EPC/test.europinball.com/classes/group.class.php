@@ -19,9 +19,9 @@
             if (get_class($data) == static::$objClass) {
               $objs[] = $data;
             } else if (is_string($prop)) {
-              $objs = $this->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
+              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
             } else {
-              $objs = $this->array_merge($this->db->getObjectsByProp(static::$objClass, get_class($obj).'_id', $obj->id));
+              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, get_class($obj).'_id', $obj->id));
             }
           } else if (is_int($obj)) {
             $objs[] = $this->db->getObjectById(static::$objClass, $obj);
@@ -43,7 +43,7 @@
       }
       if ($objs) {
         debug($objs);
-        $objs = $this->array_unique(SORT_REGULAR);
+        $objs = $objs->array_unique(SORT_REGULAR);
         debug($objs);
         debug($this);
         foreach ($objs as $obj) {
