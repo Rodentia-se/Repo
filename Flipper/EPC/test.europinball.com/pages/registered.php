@@ -32,7 +32,7 @@
       $players = $division->getPlayers();
       $rows = array();
       $page->startDiv($division->shortName);
-      if (count($players) > 0) {
+        if (count($players) > 0) {
           if ($division->team) {
             if ($division->national) {
               $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
@@ -43,12 +43,30 @@
             $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture');
           }
           foreach ($players as $player) {
-            $rows[] = $player->getRegRow();
+            $rows[] = $player->getRegRow(TRUE);
           }
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
-      } else {
-        $page->addParagraph('No players have registered for the '.$division->divisionName);
-      }
+          $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
+          $page->addScript('
+            var tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({
+              "bProcessing": true,
+              "bDestroy": true,
+              "bJQueryUI": true,
+          	  "sPaginationType": "full_numbers",
+              "oLanguage": {
+                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
+              },
+              "iDisplayLength": -1,
+              "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+            });
+            $("#'.$division->shortName.'_reloadButton").click(function() {
+              tbl["'.$division->shortName.'"].sAjaxSource = "'.config::$baseHref.'/ajax/getPlayers.php?type=registered&search='.$division->id.'";
+              tbl["'.$division->shortName.'"].fnReloadAjax();
+            });
+          ');
+        } else {
+          $page->addParagraph('No players have registered for the '.$division->divisionName);
+        }
       $page->closeDiv();
     }
   $page->closeDiv();
@@ -67,14 +85,6 @@
         var newIndex = ui.newTab.parent().children().index(ui.newTab);
         dataStore.setItem(index, newIndex) 
       }
-    });
-    var tbl = $(".regTable").dataTable({
-      "bProcessing": true,
-      "bDestroy": true,
-      "bJQueryUI": true,
-  	  "sPaginationType": "full_numbers",
-      "iDisplayLength": -1,
-      "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
     });
   ');
   

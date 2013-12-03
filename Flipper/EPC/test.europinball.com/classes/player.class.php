@@ -140,7 +140,7 @@
       return FALSE;
     }
     
-    public function getRegRow() {
+    public function getRegRow($array = FALSE) {
       if ($this->team) {
         $members = $this->team->getMembers();
         unset($memberLinks);
@@ -149,23 +149,25 @@
         }
         $memberCell = implode($memberLinks, '<br />');
         if ($this->team->national) {
-          return array(
+          $return = array(
             $this->getLink(),
             $this->shortName,
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
             $this->getLink('photo')
           );
+          return ($array) ? $return : (object) $return;
         } else {
-          return array(
+          $return = array(
             $this->getLink(),
             $this->shortName,
             $memberCell,
             $this->getLink('photo')
           );
+          return ($array) ? $return : (object) $return;
         }
       } else {
-        return array(
+        $return = array(
           $this->getLink(),
           $this->shortName,
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
@@ -175,7 +177,9 @@
           $this->getLink('ifpa'),
           $this->getLink('photo')
         );
+        return ($array) ? $return : (object) $return;
       }
+      return FALSE;
     }
 
   }

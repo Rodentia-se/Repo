@@ -108,7 +108,7 @@
               "oLanguage": {
                 "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
               },
-              "sAjaxSource": "'.config::$baseHref.'ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
+              "sAjaxSource": "'.config::$baseHref.'/ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
             });
             $("#resultsTable").css("width", "");
           } else {
