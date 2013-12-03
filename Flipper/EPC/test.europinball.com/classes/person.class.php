@@ -123,7 +123,7 @@
           }
         break;
         default:
-          parent::getLink($type);
+          return parent::getLink($type);
         break;
       }
     }
