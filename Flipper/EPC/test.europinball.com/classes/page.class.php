@@ -394,6 +394,21 @@
       return $input;
     }
 
+    public function addSelect($objs = NULL, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
+      $select = self::getSelect($objs, $id, $class, $label, $selected);
+      $this->addContent($select);
+      return $select;
+    }
+
+    public static function getSelect($objs, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
+      if (isGroup($objs)) {
+        $select = $objs->getSelect($id, $class, $label, $selected);
+      } else {
+        $select = group::getSelect($id, $class, $label, $selected, $objs);
+      }
+      return $select;
+    }
+
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
         return ($add) ? NULL : TRUE;

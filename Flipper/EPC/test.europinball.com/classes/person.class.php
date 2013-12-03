@@ -120,23 +120,52 @@
       $tournament = tournament($tournament_id);
       $divisions = $tournament->getDivisions();
       foreach ($divisions as $division) {
+        $player = $this->getPlayer($division);
         if ($division->main) {
-          $this->main = TRUE;
+          $main = TRUE;
+          if ($player) {
+            $this->main = TRUE;
+          }
         }
         if ($division->classics) {
-          $this->classics = TRUE;
+          $classics = TRUE;
+          if ($player) {
+            $this->classics = TRUE;
+          }
         }
         if ($division->eighties) {
-          $this->eighties = TRUE;
+          $eighties = TRUE;
+          if ($player) {
+            $this->eighties = TRUE;
+          }
         }
       }
+      $genders = genders('all');
+      $cities = cities('all');
+      $regions = regions('all');
+      $countries = countries('all');
+      $continents = continents('all');
       $content = '
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
-          <p class="italic">Note: All changes below are INSTANT! Click on a field to change it.</p>
+          <p class="italic">Note: All changes below are INSTANT!</p>
           '.page::getInput((($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text', 'First name').'
           '.page::getInput((($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text', 'Last name').'
           '.page::getInput((($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text', 'Tag').'
+          '.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'
+          '.page::getInput((($this->streetAddress) ? $this->streetAddress : 'Enter address'), 'streetAddress', 'edit', 'text', 'Address').'
+          '.page::getInput((($this->zipCode) ? $this->zipCode : 'Enter ZIP'), 'zipCode', 'edit', 'text', 'ZIP').'
+          '.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).'
+          '.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).'
+          '.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'
+          '.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'
+          '.page::getInput((($this->telephoneNumber) ? $this->telephoneNumber : 'Enter phone'), 'telephoneNumber', 'edit', 'text', 'Phone').'
+          '.page::getInput((($this->mobileNumber) ? $this->mobileNumber : 'Enter cell'), 'mobileNumber', 'edit', 'text', 'Cell phone').'
+          '.page::getInput((($this->mailAddress) ? $this->mailAddress : 'Enter email'), 'mailAddress', 'edit', 'email', 'Email').'
+          '.(($main) ? page::getInput($this->main, 'main', 'edit', 'checkbox', 'Main') : '').'
+          '.(($classics) ? page::getInput($this->classics, 'classics', 'edit', 'checkbox', 'Classics') : '').'
+          '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'edit', 'checkbox', '80s') : '').'
+          '.page::getInput($this->birthDate, 'birthDate', 'edit', 'date', 'Born').'
         </div>
       ';
       return $content;

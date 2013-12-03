@@ -122,5 +122,23 @@
       return FALSE;
     }
 
+    public static function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL);
+      id ($this && count($this) > 0 && (!$objs || count($objs) < 1)) {
+        $objs = $this;
+      }
+      $id = ($id) ? $id : static::$objClass;
+      if ($objs && count($objs) > 0)) {
+      $label = ($label === TRUE) ? $id : $label;
+      $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
+      $select .= '
+        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
+          <option value="0">Choose...</option>
+      ';
+      foreach ($objs as $obj) {
+        $select .= '<option value="'.$obj->id.'"'.(((is_object($select) && $selected->id == $obj->id) || $obj->id == $selected) ? ' selected' : '').'>'.$obj->name.'</option>';
+      }
+      $select .= '</select>';
+      return $select;
+    }
   }
 ?>

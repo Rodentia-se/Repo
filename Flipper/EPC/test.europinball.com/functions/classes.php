@@ -235,4 +235,33 @@
     return new volunteers($data, $search);
   }
 
+  function isGroup($group) {
+    $groups = array(
+      'continents',
+      'countries',
+      'divisions',
+      'entries',
+      'games',
+      'genders',
+      'locations',
+      'machines',
+      'manufacturers',
+      'matches',
+      'matchPlayers',
+      'owners',
+      'periods',
+      'persons',
+      'players',
+      'qualGroups',
+      'regions',
+      'scores',
+      'sets',
+      'tasks',
+      'tournaments',
+      'tshirts',
+      'volunteers'
+    );
+    return (in_array(get_class($group), $groups));
+  }
+
 ?>
