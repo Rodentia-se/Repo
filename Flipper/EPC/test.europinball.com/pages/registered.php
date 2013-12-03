@@ -31,8 +31,8 @@
     $page->closeUl();
     foreach ($divisions as $division) {
       $page->startDiv($division->shortName);
-        if ($division->isTeam) {
-          if ($division->isNational) {
+        if ($division->team) {
+          if ($division->national) {
             $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
           } else {
             $headers = array('Name', 'Tag', 'Members', 'Picture');
