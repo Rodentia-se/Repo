@@ -11,7 +11,7 @@
   if ($obj) {
     if ($id) {
       $object = $obj($id);
-      debug($object)
+      debug($object);
       if ($object) {
         $players = players($object);
       }
