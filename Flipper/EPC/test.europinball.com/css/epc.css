@@ -31,3 +31,9 @@
 #editDiv {
   width: 500px;
 }
+
+.label {
+  font-weight: bold;
+  font-size: 10px;
+  width: 150px;
+}
