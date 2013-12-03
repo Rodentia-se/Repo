@@ -124,30 +124,50 @@
       }
       return $unset;
     }
-
-    public  function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
-      debug($this);      
-      if ($this && count($this) > 0 && (!$objs || count($objs) < 1)) {
-        $objs = $this;
-      }
-      debug($objs);
-      debug($this);
-      $id = ($id) ? $id : static::$objClass;
+    
+    public static function _getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
+      $group = new group();
       if ($objs && count($objs) > 0) {
-        $label = ($label === TRUE) ? $id : $label;
-        $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
-        $select .= '
-          <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
-            <option value="0">Choose...</option>
-        ';
-        foreach ($objs as $obj) {
+        foreach ($objs as $key => $obj) {
+          if (is_int($obj->id)) {
+            if ($group[$obj->id]) {
+              if ($group[$obj->id]->id == $obj->id) {
+                $group[$obj->id] = $obj;
+              } else if ($group[$obj->id]->id) {
+                $group[$group[$obj->id]->id] = $group[$obj->id];
+                $group[$obj->id] = $obj;
+              } else {
+                $group[$obj->id]->id = end($group->array_keys()) + 1;
+                $group[$group[$obj->id]->id] = $group[$obj->id];
+                $group[$obj->id] = $obj;
+              }
+            } else {
+              $group[$obj->id] = $obj;
+            }
+          } else {
+            $obj->id = end($group->array_keys()) + 1;
+            $group[$obj->id] = $obj;
+          }
+        }
+      }
+      return $group->getSelect($id, $class, $label, $selected);
+    }
+
+    public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
+      $id = ($id) ? $id : static::$objClass;
+      $label = ($label === TRUE) ? $id : $label;
+      $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
+      $select .= '
+        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
+          <option value="0">Choose...</option>
+      ';
+      if (count($this) > 0) {
+        foreach ($this as $obj) {
           $select .= '<option value="'.$obj->id.'"'.(((is_object($select) && $selected->id == $obj->id) || $obj->id == $selected) ? ' selected' : '').'>'.$obj->name.'</option>';
         }
-        $select .= '</select>';
-        debug($select);
-        return $select;
       }
-      return FALSE;
+      $select .= '</select>';
+      return $select;
     }
     
   }
