@@ -45,8 +45,8 @@
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
           }
-          $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
+          $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->datatables = TRUE;
           $page->datatablesReload = TRUE;
           $page->addScript('
