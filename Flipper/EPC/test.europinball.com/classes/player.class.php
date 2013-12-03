@@ -120,10 +120,10 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT! Click on a field to change it.</p>
-          <p class="label">First Name:</p> <p id="firstName" class="edit">'.(($this->firstName) ? $this->firstName : 'Enter first name').'</p><br />
-          <p class="label">Last Name:</p> <p id="lastName" class="edit">'.(($this->lastName) ? $this->lastName : 'Enter last name').'</p><br />
-          <p class="label">Tag:</p> <p id="shortName" class="edit">'.(($this->shortName) ? $this->shortName : 'Enter tag').'</p><br />
-          <p class="label">Gender:</p> <p id="gender_id" class="edit">'.(($this->gender->name) ? $this->gender->name : 'Choose gender...').'</p><br />
+          <p class="label">First Name:</p> <p id="firstName" class="edit">'.(($this->firstName) ? $this->firstName : 'Enter first name').'</p>
+          <p class="label">Last Name:</p> <p id="lastName" class="edit">'.(($this->lastName) ? $this->lastName : 'Enter last name').'</p>
+          <p class="label">Tag:</p> <p id="shortName" class="edit">'.(($this->shortName) ? $this->shortName : 'Enter tag').'</p>
+          <p class="label">Gender:</p> <p id="gender_id" class="edit">'.(($this->gender->name) ? $this->gender->name : 'Choose gender...').'</p>
         </div>
       ';
       return $content;
