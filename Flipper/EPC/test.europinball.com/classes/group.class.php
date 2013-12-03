@@ -127,7 +127,7 @@
         $objs = $this;
       }
       $id = ($id) ? $id : static::$objClass;
-      if ($objs && count($objs) > 0)) {
+      if ($objs && count($objs) > 0) {
       $label = ($label === TRUE) ? $id : $label;
       $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
       $select .= '
