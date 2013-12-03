@@ -155,7 +155,7 @@
           return FALSE;
         break;
       }
-      return ($href) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
+      return ($url && $href) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
     }
 
     protected function populate($depth = NULL) {
