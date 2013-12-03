@@ -23,6 +23,7 @@
         $(".editText").editable("'.config::$baseHref.'/setPlayerProp.php", {
           cssclass: "inherit"
         });
+        $( ".combobox" ).combobox();
       ');
     } else {
       error('Could not find you in the database?', TRUE);

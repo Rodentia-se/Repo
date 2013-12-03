@@ -38,6 +38,7 @@
   width: 100px;
   height: 20px;
   float: left;
+  clear: left;
   text-align: right;
   margin-right: 10px;
 }
