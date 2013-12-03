@@ -63,6 +63,10 @@
       'score' => 'tournamentDivision'
     );
 
+    public function getPlayers() {
+      return players($this);
+    }
+    
   }
 
 ?>

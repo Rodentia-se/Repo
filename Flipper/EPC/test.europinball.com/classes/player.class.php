@@ -72,6 +72,7 @@
 
     public static $parents = array(
       'person' => 'person',
+      'team' => 'team',
       'qualGroup' => 'qualGroup',
       'tournamentEdition' => 'tournament',
       'tournamentDivision' => 'division',
@@ -137,6 +138,44 @@
         return $this->person->setUsername($username);
       }
       return FALSE;
+    }
+    
+    public function getRegRow() {
+      if ($this->team) {
+        $members = $this->team->getMembers();
+        unset($memberLinks);
+        foreach($members as $member) {
+          $memberLinks[] = $member->getLink();
+        }
+        $memberCell = implode($memberLinks, '<br />');
+        if ($this->team->national) {
+          return array(
+            $this->getLink(),
+            $this->shortName,
+            (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
+            $memberCell,
+            $this->getLink('photo')
+          );
+        } else {
+          return array(
+            $this->getLink(),
+            $this->shortName,
+            $memberCell,
+            $this->getLink('photo')
+          );
+        }
+      } else {
+        return array(
+          $this->getLink(),
+          $this->shortName,
+          (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
+          (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
+          (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
+          (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
+          $this->getLink('ifpa'),
+          $this->getLink('photo')
+        );
+      }
     }
 
   }

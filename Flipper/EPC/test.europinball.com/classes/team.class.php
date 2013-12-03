@@ -52,6 +52,19 @@
       )
     )
 
+    public function getMembers() {
+      $query = player::$select.'
+        left join teamPlayer tp on tp.player_id = o.id
+        where tp.team_id = :id
+      ';
+      $values[':id'] = $this->id;
+      $members = $this->db->select($query, $values, 'player');
+      if (count($members) > 0) {
+        return $members;
+      }
+      return false;
+    }
+
   }
 
 ?>

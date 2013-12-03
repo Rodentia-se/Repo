@@ -50,7 +50,7 @@
       return $sth;
     }
 
-    public function select($query, $values = NULL) {
+    public function select($query, $values = NULL, $class = NULL) {
       if ($values) {
         $sth = $this->prepare($query);
         if (!$sth->execute($values)) {
@@ -62,7 +62,7 @@
           return FALSE;
         }        
       }
-      return $this->getRows($sth);
+      return ($class) ? $this->getRows($sth, $class) : $this->getRows($sth);
     }
     
     protected function getRow($sth, $class = null) {
