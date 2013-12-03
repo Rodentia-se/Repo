@@ -116,14 +116,12 @@
     );
 
     public function getEdit() {
-      foreach (self::$edit as $prop => $params) {
-        $content = '<div id="labels">';
-        $content .= '<div id="firstNameLabel">First Name</div>';
-        $content .= '</div>';
-        $content .= '<div id="fields" class="right">';
-        $content .= '<div id="firstName">'.$player->firstName.'</div>';
-        $content .= '</div>';
-      }
+      $content = '<div id="labels">';
+      $content .= '<div id="firstNameLabel">First Name</div>';
+      $content .= '</div>';
+      $content .= '<div id="fields" class="right">';
+      $content .= '<div id="firstName">'.$player->firstName.'</div>';
+      $content .= '</div>';
       return $content;
     }
 
