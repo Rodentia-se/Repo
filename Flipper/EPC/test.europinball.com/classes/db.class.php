@@ -16,7 +16,7 @@
     }
 
     public function update($query, $values = NULL) {
-      $sth = $this->action($query, $values)
+      $sth = $this->action($query, $values);
       if ($sth) {
         $rowCount = $sth->rowCount();
         return ($rowCount == 0) ? TRUE : $rowCount;
@@ -26,7 +26,7 @@
     }
 
     public function delete($query, $values = NULL) {
-      $sth = $this->action($query, $values)
+      $sth = $this->action($query, $values);
       if ($sth) {
         $rowCount = $sth->rowCount();
         return ($rowCount == 0) ? TRUE : $rowCount;
