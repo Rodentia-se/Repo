@@ -118,7 +118,7 @@
     public function getEdit($title = 'Edit profile') {
       $content = '
         <div id="editDiv">
-        	<h2>'.$title.'</h2>
+        	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT!</p>
           <p><span class="label">First Name:</span> <span class="edit">'.$this->firstName.'</p>
           <p><span class="label">Last Name:</span> <span class="edit">'.$this->firstName.'</p>
