@@ -42,6 +42,7 @@
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       }
       if ($objs) {
+        debug($objs);
         $objs = array_unique($objs, SORT_REGULAR);
         foreach ($objs as $obj) {
           $this[] = $obj;
