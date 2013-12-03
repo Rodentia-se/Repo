@@ -35,6 +35,7 @@
 .label {
   font-weight: bold;
   font-size: 12px;
+  display: inline-block;
   width: 100px;
   height: 20px;
   text-align: right;
@@ -47,4 +48,14 @@
   border: 0;
   padding: 0;
   margin: 0;
+  background: #ededed url(images/bg_fallback.png) 0 0 repeat-x;
+  background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4));
+  background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
