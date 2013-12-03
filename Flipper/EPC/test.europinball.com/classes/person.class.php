@@ -150,23 +150,23 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT!</p>
-          <div>'.page::getInput($this->firstName, 'firstName', 'edit ui-state-default', 'text', 'First name').'</div>
-          <div>'.page::getInput($this->lastName, 'lastName', 'edit ui-state-default', 'text', 'Last name').'</div>
-          <div>'.page::getInput($this->shortName, 'shortName', 'edit ui-state-default', 'text', 'Tag').'</div>
+          <div>'.page::getInput($this->firstName, 'firstName', 'edit', 'text', 'First name').'</div>
+          <div>'.page::getInput($this->lastName, 'lastName', 'edit', 'text', 'Last name').'</div>
+          <div>'.page::getInput($this->shortName, 'shortName', 'edit', 'text', 'Tag').'</div>
           <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-          <div>'.page::getInput($this->streetAddress, 'streetAddress', 'edit ui-state-default', 'text', 'Address').'</div>
-          <div>'.page::getInput($this->zipCode, 'zipCode', 'edit ui-state-default', 'text', 'ZIP').'</div>
+          <div>'.page::getInput($this->streetAddress, 'streetAddress', 'edit', 'text', 'Address').'</div>
+          <div>'.page::getInput($this->zipCode, 'zipCode', 'edit', 'text', 'ZIP').'</div>
           <div>'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).'</div>
           <div>'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).'</div>
           <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
           <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-          <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit ui-state-default', 'text', 'Phone').'</div>
-          <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit ui-state-default', 'text', 'Cell phone').'</div>
-          <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit ui-state-default', 'text', 'Email').'</div>
+          <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
+          <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
+          <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
           '.(($main) ? '<div>'.page::getInput($this->main, 'main', 'check', 'checkbox', 'Main').'</div>' : '').'
           '.(($classics) ? '<div>'.page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics').'</div>' : '').'
           '.(($eighties) ? '<div>'.page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s').'</div>' : '').'
-          <div>'.page::getInput($this->birthDate, 'birthDate', 'date ui-state-default', 'text', 'Born').'</div>
+          <div>'.page::getInput($this->birthDate, 'birthDate', 'date', 'text', 'Born').'</div>
         </div>
       ';
       return $content;
