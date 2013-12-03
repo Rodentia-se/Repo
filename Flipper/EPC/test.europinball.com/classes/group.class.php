@@ -159,7 +159,7 @@
       $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
       $select .= '
         <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
-          <option value="0">Choose...</option>
+          <option value="0"></option>
       ';
       if (count($this) > 0) {
         foreach ($this as $obj) {
