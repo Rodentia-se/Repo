@@ -43,7 +43,7 @@
       }
       if ($objs) {
         debug($objs);
-        $objs = $this->array_unique($objs, SORT_REGULAR);
+        $objs = $this->array_unique(SORT_REGULAR);
         foreach ($objs as $obj) {
           $this[] = $obj;
         }
