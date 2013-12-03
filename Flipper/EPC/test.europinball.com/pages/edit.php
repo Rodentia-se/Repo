@@ -14,9 +14,6 @@
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
-        $(".editText").editable("'.config::$baseHref.'/setPlayerProp.php", {
-          cssclass: "inherit"
-        });
         $( ".combobox" ).combobox();
       ');
     } else {
