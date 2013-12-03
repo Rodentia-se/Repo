@@ -125,7 +125,7 @@
       return $unset;
     }
 
-    public static function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
+    public  function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
       debug($this);      
       if ($this && count($this) > 0 && (!$objs || count($objs) < 1)) {
         $objs = $this;
