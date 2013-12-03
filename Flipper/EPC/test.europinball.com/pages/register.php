@@ -59,7 +59,6 @@
       $person->addPlayer();
       header('Location: '.config::$baseHref.'/edit/');
     } else {
-      $page->setEditable();
       $page->startDiv('login');
         $page->addH2('Register existing player');
         $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', TRUE);
@@ -78,6 +77,7 @@
         $page->closeDiv();
       $page->closeDiv();
       $page->focus('usernameLogin');
+      $page->datatables = TRUE;
       $page->addScript('
         $(".viewButton").click(function() {
           $("#login").hide();

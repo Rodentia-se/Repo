@@ -52,6 +52,7 @@
       $page->closeDiv();
     }
   $page->closeDiv();
+  $page->datatables = TRUE;
   $page->addScript('
     var index = "key";
     var dataStore = window.sessionStorage;
