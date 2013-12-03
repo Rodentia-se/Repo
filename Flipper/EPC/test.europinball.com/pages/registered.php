@@ -47,6 +47,8 @@
           }
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
+          $page->datatables = TRUE;
+          $page->datatablesReload = TRUE;
           $page->addScript('
             var tbl = [];
             tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({
@@ -61,8 +63,7 @@
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
             $("#'.$division->shortName.'_reloadButton").click(function() {
-              tbl["'.$division->shortName.'"].sAjaxSource = "'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'";
-              tbl["'.$division->shortName.'"].fnReloadAjax();
+              tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
             });
           ');
         } else {
@@ -71,7 +72,6 @@
       $page->closeDiv();
     }
   $page->closeDiv();
-  $page->datatables = TRUE;
   $page->addScript('
     var index = "key";
     var dataStore = window.sessionStorage;

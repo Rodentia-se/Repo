@@ -7,6 +7,7 @@
       'jquery' => 'contrib/jquery.js',
       'jqueryui' => 'contrib/jquery-ui.js',
       'datatables' => 'contrib/jquery.dataTables.js',
+      'datatablesReload' => 'contrib/jquery.dataTables.reload.js',
       'jeditable' => 'contrib/jquery.jeditable.js',
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'purl' => 'contrib/purl.js',
@@ -17,6 +18,7 @@
     public $jquery = TRUE;
     public $jqueryui = TRUE;
     public $datatables = FALSE;
+    public $datatablesReload = FALSE;
     public $jeditable = FALSE;
     public $purl = TRUE;
     public $ga = TRUE;
