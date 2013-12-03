@@ -97,7 +97,8 @@
                 $(":button").button();
                 $(".isMe").click(function() {
                   $("#" + this.id.split("_")[0] + "_isMeForm").submit();
-                })
+                });
+                return true;
               },
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
