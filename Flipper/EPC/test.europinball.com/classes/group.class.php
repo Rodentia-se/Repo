@@ -44,6 +44,8 @@
       if ($objs) {
         debug($objs);
         $objs = $this->array_unique(SORT_REGULAR);
+        debug($objs);
+        debug($this);
         foreach ($objs as $obj) {
           $this[] = $obj;
         }
