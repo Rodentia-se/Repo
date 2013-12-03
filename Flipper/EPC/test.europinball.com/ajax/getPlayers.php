@@ -28,10 +28,16 @@
         $players[] = players($player);
       }
       $rows = array();
-      foreach ($players as $player) {
-        $json[] = $player->getRegRow();
+      if ($players && count($players) > 0) {
+        $json = (object) array(
+          'sEcho' => $_REQUEST['sEcho'],
+          'iTotalRecords' => count($players),
+          'iTotalDisplayRecords' => count($players)
+        );
+        foreach ($players as $player) {
+          $json->aaData[] = $player->getRegRow(TRUE);
+        }
       }
-      debug($json);
       echo json_encode($json);
     break;
     case 'regSearch':
