@@ -14,7 +14,6 @@
       debug($object);
       if ($object) {
         $players = players($object);
-        debug($players);
       }
     }
   } else if ($id) {
@@ -22,14 +21,16 @@
   } else if ($search) {
     $players = players($search);
   }
+  if ($player) {
+    $players[] = players($player);
+  }
   
   switch ($type) {
+    debug(1);
     case 'registered':
-      if ($player) {
-        $players[] = players($player);
-      }
-      $rows = array();
+    debug(2);
       if ($players && count($players) > 0) {
+    debug(3);
         $json = (object) array(
           'sEcho' => $_REQUEST['sEcho'],
           'iTotalRecords' => count($players),
