@@ -117,7 +117,7 @@
         this.element.val( "" );
         this._delay(function() {
           this.input.tooltip( "close" ).attr( "title", "" );
-        }, 2500 );
+        }, 60000 );
         this.input.data( "ui-autocomplete" ).term = "";
       },
  
