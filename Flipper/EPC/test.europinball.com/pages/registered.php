@@ -61,7 +61,7 @@
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
             $("#'.$division->shortName.'_reloadButton").click(function() {
-              tbl["'.$division->shortName.'"].sAjaxSource = "'.config::$baseHref.'/ajax/getPlayers.php?type=registered&search='.$division->id.'";
+              tbl["'.$division->shortName.'"].sAjaxSource = "'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'";
               tbl["'.$division->shortName.'"].fnReloadAjax();
             });
           ');
