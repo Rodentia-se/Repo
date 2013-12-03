@@ -208,6 +208,26 @@
       return self::getElementEnd('div');
     }
 
+    public function startUl($id, $class = NULL) {
+      $div = self::getUlStart($id, $class);
+      $this->addContent($div);
+      return $div;
+    }
+    
+    public static function getUlStart($id, $class = NULL) {
+      return self::getElementStart('ul', $id, $class);
+    }
+    
+    public function closeUl() {
+      $div = self::getUlEnd();
+      $this->addContent($div);
+      return $div;
+    }
+
+    public static function getUlEnd() {
+      return self::getElementEnd('ul');
+    }
+
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
       return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>';
     } 
@@ -338,6 +358,16 @@
         </table>
       ';
       return $table;
+    }
+
+    public function addLi($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $paragraph = self::getLi($text, $id, $class, $close);
+      $this->addContent($paragraph);
+      return $paragraph;
+    }
+    
+    public static function getLi($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'li', $id, $class, $close);
     }
 
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {

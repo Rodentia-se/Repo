@@ -16,6 +16,16 @@
         o.name as fullName,
         substring_index(o.name, " ", 1) as shortName,
         d.acronym as acronym,
+        d.isTeam as isTeam,
+        d.isMain as isMain,
+        d.isSecondary as isSecondary,
+        d.isSide as isSide,
+        d.isRecreational as isRecreational,
+        d.isModern as isModern,
+        d.isClassics as isClassics,
+        d.isYouth as isYouth,
+        d.teamMembers as teamMembers,
+        d.wpprPercentage as wpprPercantage,
         o.tournamentEdition_id as tournamentEdition_id
       from tournamentDivision o 
       left join division d
