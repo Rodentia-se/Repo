@@ -33,7 +33,8 @@
         if (get_class($data) == static::$objClass) {
           $objs = array($data);
         } else {
-          $objs = $this->db->getObjectsByProp(static::$objClass, get_class($data).'_id', $data->id);
+          $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
+          $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
         }
       } else if ($data && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
