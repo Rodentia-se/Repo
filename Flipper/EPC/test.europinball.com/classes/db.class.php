@@ -80,7 +80,7 @@
     protected function getRows($sth, $class = null) {
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
-        $objs = ($class) ? $class::$arrClass() : array();
+        $objs = ($class) ? new $class::$arrClass() : array();
         while ($obj = $sth->fetchObject($class)) {
           $objs[] = $obj;
         }
