@@ -117,6 +117,7 @@
       } else {
         $tournament_id = config::$activeTournament;
       }
+      $tournament = tournament($tournament_id);
       $divisions = $tournament->getDivisions();
       foreach ($divisions as $division) {
         if ($division->main) {
