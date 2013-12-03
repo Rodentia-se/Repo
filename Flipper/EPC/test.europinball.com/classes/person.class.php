@@ -145,6 +145,7 @@
       $regions = regions('all');
       $countries = countries('all');
       $continents = continents('all');
+      debug($continents);
       $content = '
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
