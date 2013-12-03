@@ -16,7 +16,7 @@
   }
   $divisions = $tournament->getDivisions();
 
-  $page->addH2('Registered players and teams')
+  $page->addH2('Registered players and teams');
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
