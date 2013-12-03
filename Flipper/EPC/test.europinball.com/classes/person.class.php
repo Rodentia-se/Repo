@@ -163,9 +163,11 @@
           <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
           <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
           <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
-          '.(($main) ? '<div>'.page::getInput($this->main, 'main', 'check', 'checkbox', 'Main').'</div>' : '').'
-          '.(($classics) ? '<div>'.page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics').'</div>' : '').'
-          '.(($eighties) ? '<div>'.page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s').'</div>' : '').'
+          <div>'.page::getLabelStart('partLabel','label').'Participate'.page::getLabelEnd().'
+            '.(($main) ? page::getInput($this->main, 'main', 'check', 'checkbox', 'Main') : '').'
+            '.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'
+            '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'
+          </div>
           <div>'.page::getInput($this->birthDate, 'birthDate', 'date', 'text', 'Born').'</div>
         </div>
       ';

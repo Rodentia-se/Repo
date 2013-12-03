@@ -234,6 +234,26 @@
       return self::getElementEnd('ul');
     }
 
+    public function startLabel($id = NULL, $class = NULL) {
+      $div = self::getLabelStart($id, $class);
+      $this->addContent($div);
+      return $div;
+    }
+    
+    public static function getLabelStart($id = NULL, $class = NULL) {
+      return self::getElementStart('label', $id, $class);
+    }
+    
+    public function closeLabel() {
+      $div = self::getLabelEnd();
+      $this->addContent($div);
+      return $div;
+    }
+
+    public static function getLabelEnd() {
+      return self::getElementEnd('label');
+    }
+
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
       return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>';
     } 
