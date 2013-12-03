@@ -9,8 +9,8 @@
     $person = $page->login->person;
     if ($person) {
       $page->startDiv('editDiv');
-        $page->addContent($player->getEdit());
-      $page->closeDiv();
+        $page->addContent($person->getEdit());
+      $page->closeDiv(); 
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
