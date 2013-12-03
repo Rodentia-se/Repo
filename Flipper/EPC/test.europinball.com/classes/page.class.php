@@ -388,7 +388,7 @@
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked' : '').'>'.(($label) ? '</label>' : '');
       } else {
         $input .= (($label) ? '</label' : '').'
-          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>'.(($label) ? '</label>' : '');
+          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>'.(($label) ? '></label>' : '');
       }
       return $input;
     }
