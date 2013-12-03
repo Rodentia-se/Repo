@@ -14,12 +14,6 @@
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
-        $.editable.addInputType("autocomplete", {
-          element: $.editable.types.text.element,
-          plugin: function(settings, original) {
-            $("input", this).autocomplete(settings.autocomplete.data);
-          }
-        });
         $(".editText").editable("'.config::$baseHref.'/setPlayerProp.php", {
           cssclass: "inherit"
         });
