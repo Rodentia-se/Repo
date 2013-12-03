@@ -47,7 +47,6 @@
           $this[] = $obj;
         }
       }
-      debug($this);
     }
 
     public function __call($func, $argv) {
