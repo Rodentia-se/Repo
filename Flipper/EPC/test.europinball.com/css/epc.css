@@ -36,10 +36,13 @@
   font-weight: bold;
   font-size: 12px;
   width: 100px;
+  height: 20px;
   float: left;
   text-align: right;
+  margin-right: 10px;
 }
 
 .edit {
   display: inline;
+  height: 20px;
 }
