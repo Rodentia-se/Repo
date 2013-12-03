@@ -64,15 +64,15 @@
         if (isAssoc($value)) {
           $update .= ' and (';
           foreach ($value as $col => $val) {
-            $updates[] = $col .' = '.db::getMarker($col);
-            $values[db::getMarker($col)] = $val;
+            $updates[] = $col .' = '.db::getAlias($col);
+            $values[db::getAlias($col)] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if (is_array($value)) {
           foreach ($value as $val) {
             $i++;
-            $updates[] = $field .' = '.db::getMarker($field).$i;
-            $values[db::getMarker($field).$i] = $val;
+            $updates[] = $field .' = '.db::getAlias($field).$i;
+            $values[db::getAlias($field).$i] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if ($value) {

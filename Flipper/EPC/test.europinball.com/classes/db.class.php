@@ -101,11 +101,11 @@
       foreach ($props as $key => $value) {
         $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
         if ($where) {
-          $query .= ' '.$cond.' '.$key.' = '.self::getMarker($key);
-          $values[self::getMarker($key)] = $value;
+          $query .= ' '.$cond.' '.$key.' = '.self::getAlias($key);
+          $values[self::getAlias($key)] = $value;
         } else {
-          $query = $class::$select.' where '.$key.' = '.self::getMarker($key);
-          $values = array(self::getMarker($key) => $value);
+          $query = $class::$select.' where '.$key.' = '.self::getAlias($key);
+          $values = array(self::getAlias($key) => $value);
           $where = true;
         }
       }
@@ -170,9 +170,9 @@
       return $this->getRows($sth, $class);
     }
     
-    public static function getMarker($prop) {
-      $marker = ':'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop);
-      return ($marker && $marker != ':') ? $marker : FALSE;
+    public static function getAlias($prop) {
+      $alias = ':'.preg_replace('/[^a-zA-Z0-9_]/', '', $prop);
+      return ($alias && $alias != ':') ? $alias : FALSE;
     }
     
     public function getRowCount() {

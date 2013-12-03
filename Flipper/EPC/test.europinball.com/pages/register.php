@@ -33,18 +33,21 @@
       }
     }
   } else {
-    if ($_REQUEST['register'] == 'yes') {
+    if ($_REQUEST['register'] == 'isMe') {
       $person_id = $_REQUEST['person_id'];
       if (isId($person_id)) {
         $person = person($person_id);
         if ($person) {
           if ($person->username) {
             $page->addH2('Register player');
-            $page->addLogin('Hello '.$person->name.'! You are already registered as a user.Please login here:', TRUE);
+            $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:', TRUE);
           } else {
             $page->addH2('Register new user');
             $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName.'. Make sure this is correct, and then choose a username and password below.');
             $page->addNewUser('Register a new user', $person_id);
+            $page->addScript('
+              $("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
+            ');
           }
         }
       }

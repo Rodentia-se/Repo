@@ -92,8 +92,8 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $prop = (static::$cols[$prop]) ? static::$cols[$prop] : $prop;
       if ($this->id && in_array($prop, $this->getColNames())) {
-        $query = 'update '.$table.' set '.$prop.' = '.db::getMarker($prop).' where id = '.$this->id;
-        $values[db::getMarker($prop)] = $value;
+        $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop).' where id = '.$this->id;
+        $values[db::getAlias($prop)] = $value;
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
@@ -137,8 +137,8 @@
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = $col .' = '.db::getMarker($col);
-        $values[db::getMarker($col)] = $obj[$prop];
+        $updates[] = $col .' = '.db::getAlias($col);
+        $values[db::getAlias($col)] = $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
@@ -213,15 +213,15 @@
         if (isAssoc($value)) {
           $update .= ' and (';
           foreach ($value as $col => $val) {
-            $updates[] = $col .' = '.db::getMarker($col);
-            $values[db::getMarker($col)] = $val;
+            $updates[] = $col .' = '.db::getAlias($col);
+            $values[db::getAlias($col)] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if (is_array($value)) {
           foreach ($value as $val) {
             $i++;
-            $updates[] = $field .' = '.db::getMarker($field).$i;
-            $values[db::getMarker($field).$i] = $val;
+            $updates[] = $field .' = '.db::getAlias($field).$i;
+            $values[db::getAlias($field).$i] = $val;
           }
           $update .= implode($updates, ' '.$cond.' ').')';
         } else if ($value) {

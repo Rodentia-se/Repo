@@ -65,6 +65,17 @@
       'score' => 'registerPerson',
       'team' => 'registerPerson'
     );
+
+    public static $cols = array(
+      'initials' => 'shortName',
+      'city' => 'cityName',
+      'region' => 'regionName',
+      'parentRegion' => 'parentRegionName',
+      'country' => 'countryName',
+      'parentCountry' => 'parentCountryName',
+      'continent' => 'continentName',
+      'gender' => 'genderName'
+    );
     
     public function getPlayer($division = NULL) {
       if (get_class($division) == 'division') {
