@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register', true);
+  $page = new page('Register');
 
   if ($page->checkLogin()) {
     $person = $page->login->person;

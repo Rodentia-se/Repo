@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register', true);
+  $page = new page('Register');
   
   if (isId($_REQUEST['tournament_id'])) {
     $tournament = tournament($_REQUEST['tournament_id']);
