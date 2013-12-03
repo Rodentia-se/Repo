@@ -44,6 +44,7 @@
 
 .edit {
   display: inline-block;
+  width: 300px;
   height: 20px;
   border: 0;
   padding: 0;

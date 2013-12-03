@@ -9,7 +9,9 @@
       'datatables' => 'contrib/jquery.dataTables.js',
       'datatablesReload' => 'contrib/jquery.dataTables.reload.js',
       'jeditable' => 'contrib/jquery.jeditable.js',
+      'autocomplete' => 'contrib/autocomplete.js',
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
+      'combobox' => 'contrib/jquery.combobox.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
       'ga' => 'contrib/ga.js'
@@ -67,6 +69,7 @@
       $header .= '
             '.(($this->jqueryui) ? '<link href="'.config::$baseHref.'/css/contrib/aristo.css" rel="stylesheet" type="text/css" />' : '').'
             '.(($this->datatables) ? '<link href="'.config::$baseHref.'/css/contrib/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
+            '.(($this->combobox) ? '<link href="'.config::$baseHref.'/css/contrib/jquery.combobox.css" rel="stylesheet" type="text/css" />' : '').'
             <link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css" />
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
@@ -123,6 +126,7 @@
       $this->jqueryui = $editable;
       $this->datatables = $editable;
       $this->jeditable = $editable;
+      $this->autocomplete = $editable;
     }
    
     public function addScript($script, $onload = TRUE) {
@@ -370,6 +374,23 @@
     
     public static function getLi($text, $id = NULL, $class = NULL, $close = TRUE) {
       return self::getElement($text, 'li', $id, $class, $close);
+    }
+
+    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE) {
+      $input = self::getInput($value, $id, $class, $type, $label);
+      $this->addContent($input);
+      return $input;
+    }
+
+    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE) {
+      $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">';
+      if ($type == 'radio' || type == 'checkbox') {
+        $input .= '<input'.(($type) = ' type="'.$type.'"' : '').(($id) = ' id="'.$id.'" name="'.$id.'"' : '').(($class) = ' class="'.$class.'"' : '').(($value) ? ' checked' : '').'>'.(($label) ? '</label>' : '');
+      } else {
+        $input .= (($label) ? '</label' : '').'
+          <input'.(($type) = ' type="'.$type.'"' : '').(($id) = ' id="'.$id.'" name="'.$id.'"' : '').(($class) = ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>'.(($label) ? '</label>' : '');
+      }
+      return $input;
     }
 
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {

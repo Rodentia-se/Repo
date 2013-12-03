@@ -109,6 +109,38 @@
       $id = $player->save();
     }
     
+    public function getEdit($title = 'Edit profile', $tournament = NULL) {
+      if (is_object($tournament) && $tournament->id) {
+        $tournament_id = $tournament->id;
+      } else if (isId($tournament)) {
+        $tournament_id = $tournament;
+      } else {
+        $tournament_id = config::$activeTournament;
+      }
+      $divisions = $tournament->getDivisions();
+      foreach ($divisions as $division) {
+        if ($division->main) {
+          $this->main = TRUE;
+        }
+        if ($division->classics) {
+          $this->classics = TRUE;
+        }
+        if ($division->80s) {
+          $this->80s = TRUE;
+        }
+      }
+      $content = '
+        <div id="editDiv">
+        	<h2 class="entry-title">'.$title.'</h2>
+          <p class="italic">Note: All changes below are INSTANT! Click on a field to change it.</p>
+          '.page::getInput(($this->firstName) ? $this->firstName : 'Enter first name'), 'firstName', 'edit', 'text').'
+          '.page::getInput(($this->lastName) ? $this->lastName : 'Enter last name'), 'lastName', 'edit', 'text').'
+          '.page::getInput(($this->shortName) ? $this->shortName : 'Enter tag'), 'shortName', 'edit', 'text').'
+        </div>
+      ';
+      return $content;
+    }
+    
     public function setUsername($username) {
       return $this->setProp('username', $username);
     }
