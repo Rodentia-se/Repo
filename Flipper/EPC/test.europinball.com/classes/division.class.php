@@ -24,7 +24,7 @@
         d.recreational as recreational,
         d.modern as modern,
         d.classics as classics,
-        d.80s as 80s,
+        d.eighties as eighties,
         d.youth as youth,
         d.teamMembers as teamMembers,
         o.wpprPercentage as wpprPercantage,

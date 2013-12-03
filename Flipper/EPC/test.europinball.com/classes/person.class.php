@@ -125,8 +125,8 @@
         if ($division->classics) {
           $this->classics = TRUE;
         }
-        if ($division->80s) {
-          $this->80s = TRUE;
+        if ($division->eighties) {
+          $this->eighties = TRUE;
         }
       }
       $content = '
