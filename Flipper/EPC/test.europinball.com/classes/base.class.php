@@ -146,13 +146,13 @@
     public function getLink($type = 'object', $anchor = TRUE) {
       switch ($type) {
         case 'photo':
-          return FALSE;
+          return NULL;
         break;
         case 'object':
-          $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : FALSE;
+          $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : NULL;
         break;
         default:
-          return FALSE;
+          return NULL;
         break;
       }
       return ($url && $anchor) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
