@@ -4,14 +4,13 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
-  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'scores')) ? $_REQUEST['type'] : null;
+  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
   
   if ($obj) {
     if ($id) {
       $object = $obj($id);
-      debug($object);
       if ($object) {
         $players = players($object);
       }
@@ -27,9 +26,7 @@
   
   switch ($type) {
     case 'registered':
-    debug(2);
       if ($players && count($players) > 0) {
-    debug(3);
         $json = (object) array(
           'sEcho' => $_REQUEST['sEcho'],
           'iTotalRecords' => count($players),
