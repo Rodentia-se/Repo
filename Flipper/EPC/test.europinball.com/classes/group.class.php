@@ -105,21 +105,24 @@
           foreach ($prop as $key => $val) {
             if (($obj->$prop == $val) == ($out)) {
               unset($this[$index]);
+              $unset = TRUE;
             }
           }
         } else if ($prop) {
           if ($value) {
             if (($obj->$prop == $value) == ($out)) {
               unset($this[$index]);
+              $unset = TRUE;
             }
           } else {
             if (($obj->$prop) == ($out)) {
               unset($this[$index]);
+              $unset = TRUE;
             }
           }
         }
       }
-      return FALSE;
+      return $unset;
     }
 
     public static function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
