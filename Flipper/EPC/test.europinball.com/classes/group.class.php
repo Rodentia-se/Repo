@@ -42,14 +42,12 @@
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       }
       if ($objs) {
-        debug($objs);
         $objs = $objs->array_unique(SORT_REGULAR);
-        debug($objs);
-        debug($this);
         foreach ($objs as $obj) {
           $this[] = $obj;
         }
       }
+      debug($this);
     }
 
     public function __call($func, $argv) {
