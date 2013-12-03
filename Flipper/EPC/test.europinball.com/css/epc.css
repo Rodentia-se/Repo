@@ -43,9 +43,9 @@
 }
 
 .edit {
-  width: 240px;
+  width: 210px;
   height: 20px;
-  border: 0;
+  border: 1px solid #B6B6B6;
   padding: 0;
   margin: 0;
   background: #ededed url(images/bg_fallback.png) 0 0 repeat-x;
