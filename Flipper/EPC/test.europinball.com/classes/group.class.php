@@ -122,7 +122,7 @@
       return FALSE;
     }
 
-    public static function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL);
+    public static function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
       id ($this && count($this) > 0 && (!$objs || count($objs) < 1)) {
         $objs = $this;
       }
