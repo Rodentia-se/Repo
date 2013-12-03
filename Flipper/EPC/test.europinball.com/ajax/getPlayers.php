@@ -11,6 +11,7 @@
   if ($obj) {
     if ($id) {
       $object = $obj($id);
+      debug($object)
       if ($object) {
         $players = players($object);
       }
@@ -28,8 +29,10 @@
       }
       $rows = array();
       foreach ($players as $player) {
-        $rows[] = $player->getRegRow(TRUE);
+        $json[] = $player->getRegRow();
       }
+      debug($json);
+      echo json_encode($json);
     break;
     case 'regSearch':
       if ($search) {
