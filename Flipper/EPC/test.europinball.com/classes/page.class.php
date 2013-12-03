@@ -406,6 +406,7 @@
       } else {
         $select = group::getSelect($id, $class, $label, $selected, $objs);
       }
+        debug($select);
       return $select;
     }
 

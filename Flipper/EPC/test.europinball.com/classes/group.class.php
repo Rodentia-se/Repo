@@ -141,6 +141,7 @@
           $select .= '<option value="'.$obj->id.'"'.(((is_object($select) && $selected->id == $obj->id) || $obj->id == $selected) ? ' selected' : '').'>'.$obj->name.'</option>';
         }
         $select .= '</select>';
+        debug($select);
         return $select;
       }
       return FALSE;
