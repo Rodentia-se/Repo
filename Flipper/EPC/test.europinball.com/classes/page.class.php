@@ -321,7 +321,7 @@
    
     public static function getTable($id = NULL, $headers = array('Name'), $rows = NULL, $class = NULL) {
       $table = '
-        <table'.(($id) = ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
+        <table'.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
           <thead>
             <tr>
       ';
