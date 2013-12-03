@@ -38,6 +38,9 @@
       $page->closeDiv();
     }
   $page->closeDiv();
+  $page->addScript('
+    $("#tabs").tabs();
+  ');
   
   $page->submit();
 

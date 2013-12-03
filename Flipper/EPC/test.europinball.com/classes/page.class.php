@@ -188,13 +188,13 @@
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
     
-    public function startDiv($id, $class = NULL) {
+    public function startDiv($id = NULL, $class = NULL) {
       $div = self::getDivStart($id, $class);
       $this->addContent($div);
       return $div;
     }
     
-    public static function getDivStart($id, $class = NULL) {
+    public static function getDivStart($id = NULL, $class = NULL) {
       return self::getElementStart('div', $id, $class);
     }
     
@@ -208,13 +208,13 @@
       return self::getElementEnd('div');
     }
 
-    public function startUl($id, $class = NULL) {
+    public function startUl($id = NULL, $class = NULL) {
       $div = self::getUlStart($id, $class);
       $this->addContent($div);
       return $div;
     }
     
-    public static function getUlStart($id, $class = NULL) {
+    public static function getUlStart($id = NULL, $class = NULL) {
       return self::getElementStart('ul', $id, $class);
     }
     
@@ -313,15 +313,15 @@
       return self::getElement($text, 'span', $id, $class, $close);
     }
     
-    public function addTable($id, $headers = array('Name'), $rows = NULL, $class = NULL) {
+    public function addTable($id = NULL, $headers = array('Name'), $rows = NULL, $class = NULL) {
       $table = self::getTable($id, $headers, $rows, $class);
        $this->addContent($table);
      return $table;
     }
    
-    public static function getTable($id, $headers = array('Name'), $rows = NULL, $class = NULL) {
+    public static function getTable($id = NULL, $headers = array('Name'), $rows = NULL, $class = NULL) {
       $table = '
-        <table id="resultsTable" class="'.$class.'">
+        <table'.(($id) = ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
           <thead>
             <tr>
       ';
@@ -338,7 +338,7 @@
           $table .= '<tr>';
           if ($cells) {
             if (count($cells) != count($headers)) {
-              warning('¨Headers and cells count does not match - no cells added');
+              warning('Headers and cells count does not match - not all cells added');
             }
             $cell = 0;
             foreach ($headers as $header) {
