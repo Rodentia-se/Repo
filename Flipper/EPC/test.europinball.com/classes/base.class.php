@@ -143,16 +143,19 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
 
-    public function getLink($type = 'object') {
+    public function getLink($type = 'object', $anchor = TRUE) {
       switch ($type) {
         case 'photo':
           return FALSE;
         break;
         case 'object':
+          $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='$this->id : FALSE;
+        break;
         default:
           return FALSE;
         break;
       }
+      return ($href) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
     }
 
     protected function populate($depth = NULL) {

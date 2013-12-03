@@ -37,8 +37,23 @@
           } else {
             $headers = array('Name', 'Tag', 'Members', 'Picture');
           }
+          $players = $division->getTeams();
         } else {
-          $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture');
+          $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture');
+          $players = $division->getPlayers();
+          foreach ($players as $player) {
+            $row = array();
+            $row[] = array(
+              $player->getLink(),
+              $player->shortName,
+              (is_object($player->city)) ? $player->city->getLink() : $player->cityName,
+              (is_object($player->region)) ? $player->region->getLink() : $player->regionName,
+              (is_object($player->country)) ? $player->country->getLink() : $player->countryName,
+              (is_object($player->continent)) ? $player->continent->getLink() : $player->continentName,
+              $player->getLink('ifpa'),
+              $player->getLink('photo')
+            );
+          }
         }
         $page->addTable($division->shortName.'Table', $headers, NULL, TRUE);
       $page->closeDiv();
