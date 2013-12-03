@@ -48,7 +48,8 @@
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
           $page->addScript('
-            var tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({
+            var tbl = [];
+            tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({
               "bProcessing": true,
               "bDestroy": true,
               "bJQueryUI": true,
