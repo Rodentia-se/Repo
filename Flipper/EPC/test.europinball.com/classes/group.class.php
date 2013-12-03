@@ -129,6 +129,7 @@
       if ($this && count($this) > 0 && (!$objs || count($objs) < 1)) {
         $objs = $this;
       }
+      debug($objs);
       $id = ($id) ? $id : static::$objClass;
       if ($objs && count($objs) > 0) {
         $label = ($label === TRUE) ? $id : $label;
