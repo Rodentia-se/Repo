@@ -93,14 +93,18 @@
             var tbl = $("#resultsTable").dataTable({
               "bProcessing": true,
               "bDestroy": true,
+              "fnDrawCallback": function() {
+                $(":button").button();
+                $(".isMe").click(function() {
+                  $("#" + this.id.split("_")[0] + "_isMeForm").submit();
+                });
+                return true;
+              },
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
               "bServerSide": true,
-              "oLanguage": {
-                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
-              },
               "sAjaxSource": "'.config::$baseHref.'ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
             });
             $("#resultsTable").css("width", "");
