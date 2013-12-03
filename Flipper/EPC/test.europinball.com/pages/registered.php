@@ -45,7 +45,7 @@
           foreach ($players as $player) {
             $rows[] = $player->getRegRow();
           }
-          $page->addTable($division->shortName.'Table', $headers, $rows, TRUE);
+          $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
       } else {
         $page->addParagraph('No players have registered for the '.$division->divisionName);
       }
@@ -66,6 +66,14 @@
         var newIndex = ui.newTab.parent().children().index(ui.newTab);
         dataStore.setItem(index, newIndex) 
       }
+    });
+    var tbl = $(".regTable").dataTable({
+      "bProcessing": true,
+      "bDestroy": true,
+      "bJQueryUI": true,
+  	  "sPaginationType": "full_numbers",
+      "iDisplayLength": -1,
+      "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
     });
   ');
   
