@@ -49,7 +49,10 @@
     public function getLocations() {
       return $this->db->getObjectsByParent('location', $this);
     }
+    
+  }
 
+?>
   }
 
 ?>

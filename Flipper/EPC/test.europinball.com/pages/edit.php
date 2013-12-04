@@ -24,6 +24,10 @@
           yearRange: "-100:-0",
           changeMonth: true 
         });
+        $(".addIcon").click(function() {
+          $("#" + this.id.replace("add_", "") + "_id").hide();
+          $("#" + this.id.replace("add_", "")).show();
+        })
       ');
     } else {
       error('Could not find you in the database?', TRUE);
