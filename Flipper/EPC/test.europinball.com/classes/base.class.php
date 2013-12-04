@@ -182,8 +182,8 @@
             }
           }
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
               debug(config::$baseDir.'/images/objects/0.'.$ext);
+            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
               $url = config::$baseHref.'/images/objects/0.'.$ext;
             }
           }
