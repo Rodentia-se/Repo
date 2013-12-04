@@ -11,6 +11,7 @@
       $page->startDiv('editDiv');
         $page->addContent($person->getEdit());
       $page->closeDiv(); 
+      $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
         $(".edit").editable("'.config::$baseHref.'/setPlayerProp.php", {
