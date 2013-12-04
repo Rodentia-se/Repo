@@ -156,14 +156,15 @@
     public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
       $id = ($id) ? $id : static::$objClass;
       $label = ($label === TRUE) ? $id : $label;
+      $selectedId = (is_object($select) && $selected->id) ? $selected->id : (($selected) ? $selected : 0);
       $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
       $select .= '
-        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>
+        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' previous="'.$selectedId.'">
           <option value="0"></option>
       ';
       if (count($this) > 0) {
         foreach ($this as $obj) {
-          $select .= '<option value="'.$obj->id.'"'.(((is_object($select) && $selected->id == $obj->id) || $obj->id == $selected) ? ' selected' : '').'>'.$obj->name.'</option>';
+          $select .= '<option value="'.$obj->id.'"'.(($obj->id == $selectedId) ? ' selected' : '').'>'.$obj->name.'</option>';
         }
       }
       $select .= '</select>';
