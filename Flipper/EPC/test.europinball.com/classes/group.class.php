@@ -62,7 +62,7 @@
         }
       } else if (in_array($func, array('arsort', 'extract', 'in_array', 'key_exists', 'krsort', 'list', 'range', 'rsort', 'shuffle', 'sizeof', 'sort', 'usort'))) {
         $return = call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
-        $this->empty();
+        $this->clear();
         foreach ($objs as $key => $obj) {
           $this[$key] = $objs[$key];
         }
@@ -74,7 +74,7 @@
       }
     }
     
-    public function empty() {
+    public function clear() {
       foreach($this as $key => $obj) {
         unset($this[$key]);
       }
