@@ -23,7 +23,7 @@
               if (data.parents) {
                 $.each(data.parents, function(key, geo) {
                   if (!stop) {
-                    if (data.parent_obj == geo]) {
+                    if (data.parent_obj == geo) {
                       if (data.parent_id != $("#" + geo + "_id").val()) {
                         $("#" + geo + "_id").val(data.parent_id);
                         $("#" + geo + "_id").change();
