@@ -413,7 +413,7 @@
         ';
       }
       if ($close) {
-        $select .= self::getIcon('images/cancel.png', 'close_'.$id, 'closeIcon editIcon', 'Click to remove the new '.$id);
+        $input .= self::getIcon('images/cancel.png', 'close_'.$id, 'closeIcon editIcon', 'Click to remove the new '.$id);
       }
       return $input;
     }
