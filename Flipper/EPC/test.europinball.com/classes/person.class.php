@@ -149,7 +149,7 @@
       $content = '
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
-          <p class="italic">Note: All changes below are INSTANT!</p>
+          <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
           <div>'.page::getInput($this->firstName, 'firstName', 'edit', 'text', 'First name').'</div>
           <div>'.page::getInput($this->lastName, 'lastName', 'edit', 'text', 'Last name').'</div>
           <div>'.page::getInput($this->shortName, 'shortName', 'edit', 'text', 'Tag').'</div>
