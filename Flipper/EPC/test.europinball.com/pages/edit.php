@@ -17,8 +17,8 @@
         $(".combobox").change(function(){
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, value: $(this).val()})
           .done(function(data) {
-            if (data.success) {
               alert(data.success);
+            if (data.success) {
               if (data.continent_id) {
                 $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
               }
