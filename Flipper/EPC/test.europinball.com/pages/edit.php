@@ -27,6 +27,8 @@
               if (data.region_id) {
                 $("#region_id option:eq(" + data.region_id + ")").prop("selected", true);
               }
+              alert($(this).data("previous"));
+              alert($(this).attr("data-previous"));
               $(this).attr("data-previous", $(this).val());
             } else {
               $("#" + this.id + " option:eq(" + $(this).data("previous") + ")").prop("selected", true);
