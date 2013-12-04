@@ -18,7 +18,8 @@
 #imageUpload {
   height: 1px;
   width: 1px;
-  top: -25px;
+  position: relative;
+  z-index: -1;
 }
 
 .label {
