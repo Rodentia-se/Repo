@@ -22,10 +22,10 @@
                 $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
               }
               if (data.country_id) {
-                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
+                $("#country_id option:eq(" + data.country_id + ")").prop("selected", true);
               }
               if (data.region_id) {
-                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
+                $("#region_id option:eq(" + data.region_id + ")").prop("selected", true);
               }
               $(this).attr("previous", $(this).val());
             } else {
