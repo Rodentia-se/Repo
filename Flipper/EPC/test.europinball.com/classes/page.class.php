@@ -414,17 +414,17 @@
       return $input;
     }
 
-    public function addSelect($objs = NULL, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
-      $select = self::getSelect($objs, $id, $class, $label, $selected);
+    public function addSelect($objs = NULL, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
+      $select = self::getSelect($objs, $id, $class, $label, $selected, $add);
       $this->addContent($select);
       return $select;
     }
 
-    public static function getSelect($objs, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
+    public static function getSelect($objs, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
       if (isGroup($objs)) {
-        $select = $objs->getSelect($id, $class, $label, $selected);
+        $select = $objs->getSelect($id, $class, $label, $selected, $add);
       } else {
-        $select = group::_getSelect($id, $class, $label, $selected, $objs);
+        $select = group::_getSelect($id, $class, $label, $selected, $add, $objs);
       }
         debug($select);
       return $select;

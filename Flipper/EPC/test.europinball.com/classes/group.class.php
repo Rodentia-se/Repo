@@ -125,7 +125,7 @@
       return $unset;
     }
     
-    public static function _getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $objs = NULL) {
+    public static function _getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE, $objs = NULL) {
       $group = new group();
       if ($objs && count($objs) > 0) {
         foreach ($objs as $key => $obj) {
@@ -150,10 +150,10 @@
           }
         }
       }
-      return $group->getSelect($id, $class, $label, $selected);
+      return $group->getSelect($id, $class, $label, $selected, $add);
     }
 
-    public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL) {
+    public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
       $id = ($id) ? $id : static::$objClass;
       $label = ($label === TRUE) ? $id : $label;
       $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
@@ -167,6 +167,9 @@
         }
       }
       $select .= '</select>';
+      if ($add) {
+        $select .= page::getIcon('images/add_icon.gif', 'add_'.static::$objClass, 'addIcon', 'Click to add new '.static::$objClass)
+      }
       return $select;
     }
     
