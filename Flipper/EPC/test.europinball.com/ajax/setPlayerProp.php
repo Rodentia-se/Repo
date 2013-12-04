@@ -59,7 +59,7 @@
       $json = error('No value provided', FALSE, TRUE);
   }
   
-  echo($json);
+  echo(json_encode($json));
   
   debug($_REQUEST);
 

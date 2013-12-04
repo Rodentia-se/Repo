@@ -97,8 +97,7 @@
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
-          debug(substr($prop, strlen($prop) - 3, 3));
-          if (substr($prop, strlen($prop) - 3, 3) == '_id') {
+          if (substr($prop, -3) == '_id') {
             $this->populate(1);
           }
         }
