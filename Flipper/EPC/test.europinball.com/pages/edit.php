@@ -9,7 +9,7 @@
     $person = $page->login->person;
     if ($person) {
       $page->addContent($person->getEdit());
-      $page->addContent($person->getPhotoEdit(NULL, 'right'));
+      $page->addContent($person->getPhotoEdit(NULL, 'right')); 
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
