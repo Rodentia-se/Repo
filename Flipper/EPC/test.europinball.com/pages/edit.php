@@ -46,11 +46,11 @@
             debugOut(jqHXR.responseText);
           })
         })
-        .combobox();
-        $(".combobox").on("autocompleteclose", function(event, ui) {
+        .combobox()
+        .on("autocompleteclose", function(event, ui) {
           if ($(this).val() != 0) {
             $(this).val(0);
-            $(this).change();
+            $(this).trigger("change");
           }
         });
         $(".edit").change(function(){
