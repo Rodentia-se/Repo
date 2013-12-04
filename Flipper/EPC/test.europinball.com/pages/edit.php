@@ -32,6 +32,22 @@
           .fail(function(jqHXR,status,error) {
             debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
             debugOut(jqHXR.responseText);
+          })
+        });
+        .combobox();
+        $(".edit").change(function(){
+          var input = this;
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
+          .done(function(data) {
+            if (data.success) {
+              $(input).data("previous", $(input).val());
+            } else {
+              $(input).val($(input).data("previous"));
+            }
+          })
+          .fail(function(jqHXR,status,error) {
+            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            debugOut(jqHXR.responseText);
           });
         });
         $(".edit").change(function(){
@@ -49,11 +65,25 @@
             debugOut(jqHXR.responseText);
           });
         });
-        $(".combobox").combobox();
+        $(".check").change(function(){
+          var box = this;
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: box.id, value: ((box.checked) ? 1 : 0)})
+          .done(function(data) {
+            if (data.success) {
+              $(box).data("previous", ((box.checked) ? 1 : 0));
+            } else {
+              box.checked = ($(box).data("previous"));
+            }
+          })
+          .fail(function(jqHXR,status,error) {
+            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            debugOut(jqHXR.responseText);
+          });
+        });
         $(".date").datepicker({
           dateFormat: "yy-mm-dd",
-          changeYear: true, 
           yearRange: "-100:-0",
+          changeYear: true, 
           changeMonth: true 
         });
         $("#cityDiv").hide();
