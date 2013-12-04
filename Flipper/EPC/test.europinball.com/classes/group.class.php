@@ -176,19 +176,33 @@
     }
     
     public function sort($prop = 'name', $direction = 'asc', $type = 'string') {
+                  debug(1);
+                  debug($prop);
       if (count($this) > 0) {
+                  debug(2);
+                  debug($prop);
         switch ($type) {
           default:
             if ($direction == 'asc') {
+                  debug(3);
+                  debug($prop);
               return $this->usort(function($prop) {
+                  debug(4);
+                  debug($prop);
                 return function($a, $b) use ($prop) {
+                  debug(5);
                   debug($prop);
                   return strcmp($a->$prop, $b->$prop);
                 };
               });
             } else if ($direction == 'desc') {
+                  debug(6);
+                  debug($prop);
               return $this->usort(function($prop) {
+                  debug(7);
+                  debug($prop);
                 return function($a, $b) use ($prop) {
+                  debug(8);
                   debug($prop);
                   return strcmp($b->$prop, $a->$prop);
                 };
