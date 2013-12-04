@@ -21,7 +21,7 @@
               if (data.new_id) {
                 $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
                 $("#" + data.new_obj + "_id").next("input").val($("#" + data.new_obj + "_id").children(":selected").text());
-                $("#" + data.new_obj + "_id").next("input").change();
+                $("#" + data.new_obj + "_id").next("input").trigger("keydown");
               }
               alert($(this).data("previous"));
               alert($(this).attr("data-previous"));
