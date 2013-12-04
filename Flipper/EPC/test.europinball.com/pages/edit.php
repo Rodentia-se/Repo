@@ -29,7 +29,7 @@
               }
               $(this).data("previous", $(this).val());
             } else {
-              $(this + "option:eq(" + $(this).data("previous") + ")").prop("selected", true);
+              $("#" + this.id + " option:eq(" + $(this).data("previous") + ")").prop("selected", true);
             }
           })
           .fail(function(jqHXR,status,error) {
