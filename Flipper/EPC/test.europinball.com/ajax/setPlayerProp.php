@@ -23,35 +23,25 @@
               $class = substr($prop, 0, -3);
               $obj = $class($id, NULL, 0);
               if ($obj) {
-                $geos = array('city', 'region', 'country', 'continent');
-                foreach ($geos as $geo) {
-                  if ($geo == $class) {
-                    foreach($geos as $subGeo) {
-                      if ($start && $obj->{$subGeo.'_id'}) {
-                        $json['new_id'] = $obj->{$subGeo.'_id'};
-                        $json['new_obj'] = $subGeo;
-                      }
-                      if ($subGeo == $geo) {
-                        $start = true;
+                $change = $person->setProp($prop, (($id) ? $id : NULL));
+                if ($change) {
+                  $geos = array('city', 'region', 'country', 'continent');
+                  foreach ($geos as $geo) {
+                    if ($geo == $class) {
+                      foreach($geos as $subGeo) {
+                        if ($start) {
+                          if ($obj->{$subGeo.'_id'}) {
+                            $json['new_id'] = $obj->{$subGeo.'_id'};
+                            $json['new_obj'] = $subGeo;
+                          } else {
+                            $json['nulls'] = $subGeo;
+                          }
+                        }
+                        if ($subGeo == $geo) {
+                          $start = true;
+                        }
                       }
                     }
-                  }
-                }
-                $change = $person->setProp($prop, $id);
-                if ($change) {
-                  switch ($class) {
-                    case 'city':
-                      $json['new_id'] = $obj->region_id;
-                      $json['new_obj'] = 'region';
-                    break;
-                    case 'region':
-                      $json['new_id'] = $obj->country_id;
-                      $json['new_obj'] = 'country';
-                    break;
-                    case 'country':
-                      $json['new_id'] = $obj->continent_id;
-                      $json['new_obj'] = 'continent';
-                    break;
                   }
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
                 } else {
