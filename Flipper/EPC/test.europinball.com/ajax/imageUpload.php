@@ -5,8 +5,10 @@
 
   header('Content-Type: text/html');
 
-  $path = config::$baseDir.'/images/objects/'.$_REQUEST['obj'].'/';
   $prefix = $_REQUEST['prefix'];
+  $obj = $_REQUEST['obj'];
+  $obj = ($obj == 'person') ? 'player' : $obj;
+  $path = config::$baseDir.'/images/objects/'.$_REQUEST['obj'].'/';
 
   if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == 'POST') {
     $name = $_FILES['imageUpload']['name'];
@@ -23,7 +25,7 @@
             //          usleep(100000);
             echo '
               <script src="'.config::$baseHref.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
-              <img src="'.config::$baseHref.'/images/objects/'.$_REQUEST['obj'].'/preview/'.$_REQUEST['id'].'.'.$ext.'?nocache='.rand(10000,20000).'" class="preview" id="'.$prefix.'thumb" alt="Preview of image">
+              <img src="'.config::$baseHref.'/images/objects/'.$obj.'/preview/'.$_REQUEST['id'].'.'.$ext.'?nocache='.rand(10000,20000).'" class="preview" id="'.$prefix.'thumb" alt="Preview of image">
               <div id="'.$prefix.'imageLoader"></div>
               <script type="text/javascript">
                 $(document).ready(function() { 
