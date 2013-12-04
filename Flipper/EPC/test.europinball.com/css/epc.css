@@ -6,6 +6,12 @@
 }
 
 #editDiv {
+  float: left;
+  width: 50%;
+}
+
+#imageDiv {
+  float: right;
   width: 50%;
 }
 
