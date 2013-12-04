@@ -307,7 +307,7 @@
         <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?obj='.get_class($this).'&id='.$this->id.'" class="'.$class.'">
           <h2 colspan="2" id="regPlayerImgH2">Player logo or picture</h2>
     	    <div id="'.$prefix.'preview">
-    		    <img src="'.$this->getLink('photo'¨, FALSE).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
+    		    <img src="'.$this->getLink('photo', FALSE).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
             <div id="'.$prefix.'imageLoader"></div>
     	    </div>
     	    <div id="'.$prefix.'uploadForm">
