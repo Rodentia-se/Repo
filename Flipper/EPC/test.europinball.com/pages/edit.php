@@ -15,10 +15,11 @@
       $page->forms = TRUE;
       $page->addScript('
         $(".combobox").change(function(){
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, value: $(this).val()})
+          var sel = this;
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: sel.id, value: $(this).val()})
           .done(function(data) {
             if (data.success) {
-              alert("#" + this.id + "_combobox");
+              alert("#" + sel.id + "_combobox");
               alert($(this).children(":selected").text());
               $("#" + this.id + "_combobox").val($(this).children(":selected").text());
               if (data.new_id && data.new_id != $("#" + data.new_obj + "_id").val()) {
