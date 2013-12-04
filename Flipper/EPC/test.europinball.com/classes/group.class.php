@@ -57,7 +57,7 @@
 
     public function __call($func, $argv) {
       if (is_callable($func)) {
-        if (substr($func, 0, 6) !== 'array_') {
+        if (substr($func, 0, 6) === 'array_') {
           return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
         }
       } else {
