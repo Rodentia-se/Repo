@@ -27,9 +27,9 @@
               if (data.region_id) {
                 $("#region_id option:eq(" + data.region_id + ")").prop("selected", true);
               }
-              $(this).attr("previous", $(this).val());
+              $(this).data("previous", $(this).val());
             } else {
-              $(this + "option:eq(" + $(this).attr("previous") + ")").prop("selected", true);
+              $(this + "option:eq(" + $(this).data("previous") + ")").prop("selected", true);
             }
           })
           .fail(function(jqHXR,status,error) {

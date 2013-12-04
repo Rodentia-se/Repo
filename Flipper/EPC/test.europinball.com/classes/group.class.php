@@ -159,7 +159,7 @@
       $selectedId = (is_object($select) && $selected->id) ? $selected->id : (($selected) ? $selected : 0);
       $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
       $select .= '
-        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' previous="'.$selectedId.'">
+        <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">
           <option value="0"></option>
       ';
       if (count($this) > 0) {

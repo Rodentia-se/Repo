@@ -60,7 +60,5 @@
   }
   
   echo(json_encode($json));
-  
-  debug($_REQUEST);
 
 ?>
