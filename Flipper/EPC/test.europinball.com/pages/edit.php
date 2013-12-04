@@ -56,7 +56,7 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
             debugOut(jqHXR.responseText);
           });
         });
