@@ -168,7 +168,7 @@
       }
       $select .= '</select>';
       if ($add) {
-        $select .= page::getIcon('images/add_icon.gif', 'add_'.static::$objClass, 'addIcon', 'Click to add new '.static::$objClass)
+        $select .= page::getIcon('images/add_icon.gif', 'add_'.static::$objClass, 'addIcon', 'Click to add new '.static::$objClass);
       }
       return $select;
     }
