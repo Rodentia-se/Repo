@@ -45,7 +45,7 @@
 */
   $objs = continents('all');
   debug($objs);
-  $objs->order();
+  $objs->order(); 
   debug($objs);
 /*
 echo 'hej';
