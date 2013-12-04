@@ -35,6 +35,31 @@
           $("#" + this.id.replace("close_", "") + "Div").hide();
           $("#" + this.id.replace("close_", "")).val("");
         });
+        $(".combobox").change(function(){
+          var prop = this.id.split('_')[0];
+          var id = $(this).val();
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: prop, id: id})
+          .done(function(data) {
+            if (data.success) {
+              if (data.continent_id) {
+                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
+              }
+              if (data.country_id) {
+                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
+              }
+              if (data.region_id) {
+                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
+              }
+              $(this).attr("previous", $(this).val());
+            } else {
+              $(this + "option:eq(" + $(this).attr("previous") + ")").prop("selected", true);
+            }
+          })
+          .fail(function(jqHXR,status,error) {
+            debugOut('Fail: S: ' + status + ' E: ' + error); // Oh, no! Fail!
+            debugOut(jqHXR.responseText);
+          });
+        });
       ');
     } else {
       error('Could not find you in the database?', TRUE);
