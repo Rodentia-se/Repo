@@ -14,27 +14,6 @@
       $page->combobox = TRUE;
       $page->forms = TRUE;
       $page->addScript('
-        $(".edit").editable("'.config::$baseHref.'/setPlayerProp.php", {
-          cssclass: "inherit"
-        });
-        $(".combobox").combobox();
-        $(".date").datepicker({
-          dateFormat: "yy-mm-dd",
-          changeYear: true, 
-          yearRange: "-100:-0",
-          changeMonth: true 
-        });
-        $("#cityDiv").hide();
-        $("#regionDiv").hide();
-        $(".addIcon").click(function() {
-          $("#" + this.id.replace("add_", "") + "_idDiv").hide();
-          $("#" + this.id.replace("add_", "") + "Div").show();
-        });
-        $(".closeIcon").click(function() {
-          $("#" + this.id.replace("close_", "") + "_idDiv").show();
-          $("#" + this.id.replace("close_", "") + "Div").hide();
-          $("#" + this.id.replace("close_", "")).val("");
-        });
         $(".combobox").change(function(){
           var prop = this.id.split("_")[0];
           var id = $(this).val();
@@ -59,6 +38,24 @@
             debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
             debugOut(jqHXR.responseText);
           });
+        });
+        $(".combobox").combobox();
+        $(".date").datepicker({
+          dateFormat: "yy-mm-dd",
+          changeYear: true, 
+          yearRange: "-100:-0",
+          changeMonth: true 
+        });
+        $("#cityDiv").hide();
+        $("#regionDiv").hide();
+        $(".addIcon").click(function() {
+          $("#" + this.id.replace("add_", "") + "_idDiv").hide();
+          $("#" + this.id.replace("add_", "") + "Div").show();
+        });
+        $(".closeIcon").click(function() {
+          $("#" + this.id.replace("close_", "") + "_idDiv").show();
+          $("#" + this.id.replace("close_", "") + "Div").hide();
+          $("#" + this.id.replace("close_", "")).val("");
         });
       ');
     } else {
