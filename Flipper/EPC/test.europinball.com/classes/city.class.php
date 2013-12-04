@@ -51,10 +51,10 @@
     }
     
     public function getParent($selfParents = FALSE, $obj = TRUE) {
-      foreach (static::$parents as $parent) {
+      foreach (static::$parents as $parent => $class) {
         if ($selfParents || substr($parent, 0, 6) != 'parent') {
           if ($this->{$parent.'_id'}) {
-            return ($obj) ? $parent($this->{$parent.'_id'}) : $parent;
+            return ($obj) ? $class($this->{$parent.'_id'}) : $parent;
           }
         }
       }
@@ -62,9 +62,9 @@
     }
     
     public function getParents($selfParents = FALSE, $objs = TRUE) {
-      foreach (static::$parents as $parent) {
+      foreach (static::$parents as $parent => $class) {
         if ($selfParents || substr($parent, 0, 6) != 'parent') {
-          $parents[] = ($objs) ? $parent($this->{$parent.'_id'}) : $parent;
+          $parents[] = ($objs) ? $class($this->{$parent.'_id'}) : $parent;
         }
       }
       return $parents;
