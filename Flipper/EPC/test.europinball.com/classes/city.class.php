@@ -45,11 +45,31 @@
       'entry' => 'city',
       'score' => 'city'
     );
-    
+
     public function getLocations() {
       return $this->db->getObjectsByParent('location', $this);
     }
     
+    public function getParent($selfParents = FALSE, $obj = TRUE) {
+      foreach (static::$parents as $parent) {
+        if ($selfParents || substr($parent, 0, 6) != 'parent') {
+          if ($this->{$parent.'_id'}) {
+            return = ($obj) ? $parent($this->{$parent.'_id'}) : $parent;
+          }
+        }
+      }
+      return FALSE;
+    }
+    
+    public function getParents($selfParents = FALSE, $objs = TRUE) {
+      foreach (static::$parents as $parent) {
+        if ($selfParents || substr($parent, 0, 6) != 'parent') {
+          $parents[] = ($objs) ? $parent($this->{$parent.'_id'}: $parent;
+        }
+      }
+      return $parents;
+    }
+
   }
 
 ?>

@@ -20,14 +20,20 @@
           .done(function(data) {
             if (data.success) {
               $("#" + sel.id + "_combobox").val($(sel).children(":selected").text());
-              if (data.new_id && data.new_id != $("#" + data.new_obj + "_id").val()) {
-                $("#" + data.new_obj + "_id").val(data.new_id);
-                $("#" + data.new_obj + "_id").change();
-              }
-              if (data.nulls) {
-                $.each(data.nulls, function(key, geo) {
-                  $("#" + geo + "_id").val(0);
-                  $("#" + geo + "_id").change();
+              if (data.parents) {
+                $.each(data.parents, function(key, geo) {
+                  if (!stop) {
+                    if (data[geo + "_id"]) {
+                      if (data[geo + "_id"] != $("#" + geo + "_id").val()))
+                        $("#" + geo + "_id").val(data[geo + "_id"]);
+                        $("#" + geo + "_id").change();¨
+                      }
+                      var stop = true;
+                    } else {
+                      $("#" + geo + "_id").val(0);
+                      $("#" + feo + "_id_combobox").val("");
+                    }
+                  }
                 });
               }
               $(sel).data("previous", $(sel).val());

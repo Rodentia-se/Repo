@@ -25,24 +25,10 @@
               if ($obj) {
                 $change = $person->setProp($prop, (($id) ? $id : NULL));
                 if ($change) {
-                  $geos = array('city', 'region', 'country', 'continent');
-                  foreach ($geos as $geo) {
-                    if ($geo == $class) {
-                      foreach($geos as $subGeo) {
-                        if ($start) {
-                          if ($obj->{$subGeo.'_id'}) {
-                            $json['new_id'] = $obj->{$subGeo.'_id'};
-                            $json['new_obj'] = $subGeo;
-                          } else {
-                            $json['nulls'] = $subGeo;
-                          }
-                        }
-                        if ($subGeo == $geo) {
-                          $start = true;
-                        }
-                      }
-                    }
-                  }
+                  $parent = $obj->getParent();
+                  $json['parents'] = $obj->getParents(FALSE, FALSE);
+                  $json['parent_obj'] = get_class($parent);
+                  $json['parent_id'] = $parent->id;
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
                 } else {
                   $json = error('Property assignment failed', FALSE, TRUE);
