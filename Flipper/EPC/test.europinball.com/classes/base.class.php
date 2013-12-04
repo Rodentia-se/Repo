@@ -302,37 +302,39 @@
       return $this->db->update('update '.$table.' set '.$field.' = :parent where id = :id', array(':parent' => $parent->id, ':id' => $this->id));
     }
 */
-    public function getPhotoEdit($prefix, $class) {
+    public function getPhotoEdit($prefix = NULL, $class = NULL) {
       return '
-        <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?obj='.get_class($this).'&id='.$this->id.'" class="'.$class.'">
-          <h2 colspan="2" id="regPlayerImgH2">Player logo or picture</h2>
-    	    <div id="'.$prefix.'preview">
-    		    <img src="'.$this->getLink('photo', FALSE).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
-            <div id="'.$prefix.'imageLoader"></div>
-    	    </div>
-    	    <div id="'.$prefix.'uploadForm">
-            <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
-            <input type="file" name="imageUpload" id="imageUpload">
-          </div>
-          <button id="submitImg" type="button" value="Submit image!" class="formInput" disabled>Submit image!</button>
-          <script type="text/javascript">
-            $(document).ready(function() { 
-              $("#'.$prefix.'imageUpload").on("change", function() {
-                $("#'.$prefix.'preview").html("");
-                $("#'.$prefix.'imageLoader").html("<img src=\"'.config::$baseHref.'/images/loader.gif\" alt=\"Uploading....\"/>");
-                $("#'.$prefix.'submitImg").prop("disabled", false);
-                $("#'.$prefix.'imageForm").ajaxForm({
-                  target: "#'.$prefix.'preview"
-                }).submit();
-                $("#'.$prefix.'imageLoader").html("");
-              });
-              $("#'.$prefix.'thumb").on("click", function() {
-                $("#'.$prefix.'imageUpload").trigger("click");
-              });
-            }); 
-          </script>
-        </form>
-      ';
+        '.page::getDivStart($prefix.'imageDiv', $class).'
+          <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?obj='.get_class($this).'&id='.$this->id.'">
+            <h2 colspan="2" id="regPlayerImgH2">Player logo or picture</h2>
+      	    <div id="'.$prefix.'preview">
+      		    <img src="'.$this->getLink('photo', FALSE).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
+              <div id="'.$prefix.'imageLoader"></div>
+      	    </div>
+      	    <div id="'.$prefix.'uploadForm">
+              <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
+              <input type="file" name="imageUpload" id="imageUpload">
+            </div>
+            <button id="submitImg" type="button" value="Submit image!" class="formInput" disabled>Submit image!</button>
+            <script type="text/javascript">
+              $(document).ready(function() { 
+                $("#'.$prefix.'imageUpload").on("change", function() {
+                  $("#'.$prefix.'preview").html("");
+                  $("#'.$prefix.'imageLoader").html("<img src=\"'.config::$baseHref.'/images/loader.gif\" alt=\"Uploading....\"/>");
+                  $("#'.$prefix.'submitImg").prop("disabled", false);
+                  $("#'.$prefix.'imageForm").ajaxForm({
+                    target: "#'.$prefix.'preview"
+                  }).submit();
+                  $("#'.$prefix.'imageLoader").html("");
+                });
+                $("#'.$prefix.'thumb").on("click", function() {
+                  $("#'.$prefix.'imageUpload").trigger("click");
+                });
+              }); 
+            </script>
+          </form>
+        '.page::getDivEnd().'
+      ':
     }
 
 
