@@ -437,7 +437,7 @@
     }
     
     public static function getIcon($url, $id = NULL, $class = NULL, $label = NULL) {
-      $url = (preg_match('/^http/', $url) ? $url : config::$baseHref.'/'.$url;
+      $url = (preg_match('/^http/', $url)) ? $url : config::$baseHref.'/'.$url;
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
 
