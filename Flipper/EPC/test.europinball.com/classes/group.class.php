@@ -56,26 +56,10 @@
     }
 
     public function __call($func, $argv) {
-      if (is_callable($func)) {
-        if (substr($func, 0, 6) === 'array_') {
-          return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
-        } else if (in_array($func, array('arsort', 'extract', 'in_array', 'key_exists', 'krsort', 'list', 'range', 'rsort', 'shuffle', 'sizeof', 'sort', 'usort'))) {
-          $objs = $this->getArrayCopy();
-          debug($argv);
-          $return = $func($objs, $argv[1], $argv[2], $argv[3], $argv[4], $argv[5], $argv[6], $argv[7], $argv[8], $argv[9]);
-          $this->clear();
-          debug(11);
-          debug($this);
-          debug($objs);
-          foreach ($objs as $key => $obj) {
-            $this[$key] = $objs[$key];
-          }
-          debug(12);
-          debug($this);
-          return $return;
-        }
-      } else {
+      if (is_callable($func) || substr($func, 0, 6) === 'array_') {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
+      } else {
+        return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
       }
     }
     
@@ -213,7 +197,7 @@
             if ($direction == 'asc') {
                   debug(3);
                   debug($prop);
-              return $this->usort(function($a, $b) use ($prop) {
+              return $this->uasort(function($a, $b) use ($prop) {
                 debug(5);
                 debug($prop);
                 debug($a->$prop);
@@ -224,7 +208,7 @@
             } else if ($direction == 'desc') {
                   debug(6);
                   debug($prop);
-              return $this->usort(function($a, $b) use ($prop) {
+              return $this->uasort(function($a, $b) use ($prop) {
                 debug(8);
                 debug($prop);
                 return strcmp($b->$prop, $a->$prop);
