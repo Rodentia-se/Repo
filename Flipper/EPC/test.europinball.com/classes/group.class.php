@@ -186,38 +186,52 @@
       return $select;
     }
     
-    public function order($prop = 'name', $direction = 'asc', $type = 'string') {
-                  debug(1);
-                  debug($prop);
+    public function order($prop = 'name', $type = 'string', $direction = 'asc', $keepkeys = FALSE) {
+      $return = FALSE;
       if (count($this) > 0) {
-                  debug(2);
-                  debug($prop);
         switch ($type) {
+          case 'int':
+          case 'integer':
+          case 'numeric':
+          case 'number':
+          case 'num':
+            if ($direction == 'asc') {
+              $return = $this->uasort(function($a, $b) use ($prop) {
+                if ($a == $b) {
+                  return 0;
+                }
+                return ($a->$prop > $b->$prop) ? 1 : -1;
+              });
+            } else if ($direction == 'desc') {
+               $return = $this->uasort(function($a, $b) use ($prop) {
+                if ($a == $b) {
+                  return 0;
+                }
+                return ($a->$prop < $b->$prop) ? 1 : -1;
+              });
+            }
+          break;
           default:
             if ($direction == 'asc') {
-                  debug(3);
-                  debug($prop);
-              return $this->uasort(function($a, $b) use ($prop) {
-                debug(5);
-                debug($prop);
-                debug($a->$prop);
-                debug($b->$prop);
-                debug(strcmp($a->$prop, $b->$prop));
+              $return = $this->uasort(function($a, $b) use ($prop) {
                 return strcmp($a->$prop, $b->$prop);
               });
             } else if ($direction == 'desc') {
-                  debug(6);
-                  debug($prop);
-              return $this->uasort(function($a, $b) use ($prop) {
-                debug(8);
-                debug($prop);
+               $return = $this->uasort(function($a, $b) use ($prop) {
                 return strcmp($b->$prop, $a->$prop);
               });
             }
           break;
         }
       }
-      return FALSE;
+      if (!$keepkeys) {
+        $objs = $this->getArrayCopy();
+        $this->clear();
+        foreach ($objs as $obj) {
+          $this[] = $obj;
+        }
+      }
+      return $return;
     }
 
   }
