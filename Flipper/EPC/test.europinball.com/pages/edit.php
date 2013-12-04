@@ -19,16 +19,14 @@
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: sel.id, value: $(sel).val()})
           .done(function(data) {
             if (data.success) {
-              alert("#" + sel.id + "_combobox");
-              alert($(sel).children(":selected").text());
               $("#" + sel.id + "_combobox").val($(sel).children(":selected").text());
               if (data.new_id && data.new_id != $("#" + data.new_obj + "_id").val()) {
-                $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
+                $("#" + data.new_obj + "_id").val(data.new_id);
                 $("#" + data.new_obj + "_id").change();
               }
               $(sel).data("previous", $(sel).val());
             } else {
-              $("#" + sel.id + " option:eq(" + $(sel).data("previous") + ")").prop("selected", true);
+              $(sel).val($(sel).data("previous"));
             }
           })
           .fail(function(jqHXR,status,error) {
