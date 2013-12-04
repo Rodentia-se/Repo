@@ -17,18 +17,11 @@
         $(".combobox").change(function(){
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, value: $(this).val()})
           .done(function(data) {
-              alert(data);
-              alert(data.reason);
-              alert(data.success);
             if (data.success) {
-              if (data.continent_id) {
-                $("#continent_id option:eq(" + data.continent_id + ")").prop("selected", true);
-              }
-              if (data.country_id) {
-                $("#country_id option:eq(" + data.country_id + ")").prop("selected", true);
-              }
-              if (data.region_id) {
-                $("#region_id option:eq(" + data.region_id + ")").prop("selected", true);
+              if (data.new_id) {
+                $("#" + data.new_obj + " _id option:eq(" + data." + data.new_obj + " _id + ")").prop("selected", true);
+                $("#" + data.new_obj + " _id").next("input").val($("#" + data.new_obj + " _id").children(':selected').text());
+                $("#" + data.new_obj + " _id").next("input").change();
               }
               alert($(this).data("previous"));
               alert($(this).attr("data-previous"));

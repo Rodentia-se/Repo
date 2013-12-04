@@ -25,9 +25,17 @@
               if ($obj) {
                 $change = $person->setProp($prop, $id);
                 if ($change) {
-                  $json['region_id'] = ($class != 'region') ? $obj->region_id : NULL;
-                  $json['country_id'] = ($class != 'country') ? $obj->country_id : NULL;
-                  $json['continent_id'] = $obj->continent_id;
+                  swicth($class) {
+                    case 'city':
+                      $json['region_id'] = $obj->region_id;
+                    break;
+                    case 'region':
+                      $json['country_id'] = $obj->country_id;
+                    break;
+                    case 'country':
+                      $json['continent_id'] = $obj->continent_id;
+                    break;
+                  }
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
                 } else {
                   $json = error('Property assignment failed', FALSE, TRUE);
