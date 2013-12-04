@@ -9,9 +9,7 @@
     $person = $page->login->person;
     if ($person) {
       $page->addContent($person->getEdit());
-      $page->startDiv('photoDiv', 'right');
-        $page->addContent($person->getPhotoEdit());
-      $page->closeDiv(); 
+      $page->addContent($person->getPhotoEdit(NULL, 'right'));
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
