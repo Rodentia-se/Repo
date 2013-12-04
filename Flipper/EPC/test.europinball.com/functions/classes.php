@@ -137,7 +137,12 @@
   }
 
   function person($data = NULL, $search = NULL, $depth = NULL) {
-    $obj = new person($data, $search, $depth);
+    if ($data == 'login' || $data == 'auth') {
+      $login = new auth();
+      $obj = $login->person;
+    } else {
+      $obj = new person($data, $search, $depth);
+    }
     return object($obj);
   }
 

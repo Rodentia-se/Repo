@@ -15,9 +15,7 @@
       $page->forms = TRUE;
       $page->addScript('
         $(".combobox").change(function(){
-          var prop = this.id.split("_")[0];
-          var id = $(this).val();
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: prop, id: id})
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, id: $(this).val()})
           .done(function(data) {
             if (data.success) {
               if (data.continent_id) {

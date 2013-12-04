@@ -24,13 +24,28 @@
     preDump($text,'WARNING');
   }
 
-  function error($text, $die = FALSE) {
-    preDump($text,'ERROR');
-    if ($die) {
-      die('Abort requested.');
+  function error($text, $die = FALSE, $json = FALSE) {
+    if ($json) {
+      $error = (object) array('success' => false, 'reason' => $text);
+      return json_encode($error);
+    } else {
+      preDump($text,'ERROR');
+      if ($die) {
+        die('Abort requested.');
+      }
     }
   }
 
+  function success($text = NULL, $props = NULL) {
+    $json = (object) array('success' => true, 'reason' => $text);
+    if ($props) {
+      foreach ($props as $prop => $value) {
+        $json->{$prop} = $value;
+      }
+    }
+    return $json;
+  }
+  
   function debug($text, $die = FALSE) {
     if (config::$debug) {
       preDump($text,'DEBUG');
