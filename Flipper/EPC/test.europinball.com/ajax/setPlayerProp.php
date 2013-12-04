@@ -21,7 +21,7 @@
           if (substr($prop, -3) == '_id') {
             if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
-              $json['parents'] = $class::getParents(FALSE);
+              $json['parents'] = $class::_getParents(FALSE);
               if ($id > 0) {
                 $obj = $class($id, NULL, 0);
                 if ($obj) {
