@@ -50,7 +50,7 @@
         .on("autocompleteclose", function(event, ui) {
           if ($(this).val() != 0 && $("#" + sel.id + "_combobox").val() == "") {
             $(this).val(0);
-            alert( $( this ).val();
+            alert( $( this ).val());
             $(this).trigger("change");
           }
         });
