@@ -26,18 +26,22 @@
                 $change = $person->setProp($prop, (($id) ? $id : NULL));
                 if ($change) {
                   $parent = $obj->getParent();
-                  $json['parent_obj'] = get_class($parent);
-                  $json['parent_id'] = $parent->id;
+                  if ($parent) {
+                    $json['parent_obj'] = get_class($parent);
+                    $json['parent_id'] = $parent->id;
+                  }
                   $json['parents'] = $obj->getParents(FALSE, FALSE);
-                  foreach ($json['parents'] as $parent) {
-                    if (!$stop) {
-                      if($obj->{$parent.'_id'}) {
-                        if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
-                          $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                  if ($parents) {
+                    foreach ($json['parents'] as $parent) {
+                      if (!$stop) {
+                        if($obj->{$parent.'_id'}) {
+                          if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
+                            $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                          }
+                          $stop = TRUE;
+                        } else if ($person->{$parent.'_id'}) {
+                          $person->setProp($parent.'_id', NULL);
                         }
-                        $stop = TRUE;
-                      } else if ($person->{$parent.'_id'}) {
-                        $person->setProp($parent.'_id', NULL);
                       }
                     }
                   }
