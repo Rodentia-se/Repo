@@ -33,7 +33,7 @@
             debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
             debugOut(jqHXR.responseText);
           })
-        });
+        })
         .combobox();
         $(".edit").change(function(){
           var input = this;
