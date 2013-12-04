@@ -290,9 +290,9 @@
     }
     
     public function addH1($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getH1($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $h1 = self::getH1($text, $id, $class, $close);
+      $this->addContent($h1);
+      return $h1;
     }
     
     public static function getH1($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -300,9 +300,9 @@
     }
     
     public function addH2($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getH2($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $h2 = self::getH2($text, $id, $class, $close);
+      $this->addContent($h2);
+      return $h2;
     }
     
     public static function getH2($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -310,9 +310,9 @@
     }
     
     public function addH3($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getH3($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $h3 = self::getH3($text, $id, $class, $close);
+      $this->addContent($h3);
+      return $h3;
     }
     
     public static function getH3($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -320,9 +320,9 @@
     }
     
     public function addH4($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getH4($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $h4 = self::getH4($text, $id, $class, $close);
+      $this->addContent($h4);
+      return $h4;
     }
     
     public static function getH4($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -330,9 +330,9 @@
     }
     
     public function addSpan($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getSpan($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $span = self::getSpan($text, $id, $class, $close);
+      $this->addContent($span);
+      return $span;
     }
     
     public static function getSpan($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -387,9 +387,9 @@
     }
 
     public function addLi($text, $id = NULL, $class = NULL, $close = TRUE) {
-      $paragraph = self::getLi($text, $id, $class, $close);
-      $this->addContent($paragraph);
-      return $paragraph;
+      $li = self::getLi($text, $id, $class, $close);
+      $this->addContent($li);
+      return $li;
     }
     
     public static function getLi($text, $id = NULL, $class = NULL, $close = TRUE) {
@@ -428,6 +428,17 @@
       }
         debug($select);
       return $select;
+    }
+    
+    public function addIcon($url, $id = NULL, $class = NULL, $label = NULL) {
+      $icon = self::getSelect($url, $id, $class, $label);
+      $this->addContent($icon);
+      return $icon;
+    }
+    
+    public static function getIcon($url, $id = NULL, $class = NULL, $label = NULL) {
+      $url = (preg_match('/^http/')) ? $url : config::$baseHref.'/'.$url;
+      return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) = ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
 
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {

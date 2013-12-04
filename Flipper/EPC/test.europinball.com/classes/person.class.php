@@ -156,8 +156,8 @@
           <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
           <div>'.page::getInput($this->streetAddress, 'streetAddress', 'edit', 'text', 'Address').'</div>
           <div>'.page::getInput($this->zipCode, 'zipCode', 'edit', 'text', 'ZIP').'</div>
-          <div>'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).'</div>
-          <div>'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).'</div>
+          <div>'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id).page::getIcon('images/add_icon.gif', 'add_city', 'addIcon', 'Click to add new city').'</div>
+          <div>'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id).page::getIcon('images/add_icon.gif', 'add_region', 'addIcon', 'Click to add new region').'</div>
           <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
           <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
           <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
