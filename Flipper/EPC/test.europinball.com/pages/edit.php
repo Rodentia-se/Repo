@@ -18,13 +18,13 @@
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, value: $(this).val()})
           .done(function(data) {
             if (data.success) {
+              alert("#" + this.id + "_combobox");
+              alert($(this).children(":selected").text());
               $("#" + this.id + "_combobox").val($(this).children(":selected").text());
               if (data.new_id) {
                 $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
                 $("#" + data.new_obj + "_id").change();
               }
-              alert($(this).data("previous"));
-              alert($(this).attr("data-previous"));
               $(this).attr("data-previous", $(this).val());
             } else {
               $("#" + this.id + " option:eq(" + $(this).data("previous") + ")").prop("selected", true);
