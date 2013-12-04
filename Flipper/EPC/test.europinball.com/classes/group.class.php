@@ -175,16 +175,24 @@
       return $select;
     }
     
-    public function sort($prop = 'name', $direction = 'asc') {
+    public function sort($prop = 'name', $direction = 'asc', $type = 'string') {
       if (count($this) > 0) {
-        if ($direction == 'asc') {
-          return $this->usort(function($a, $b) {
-            return strcmp($a->$prop, $b->$prop);
-          });
-        } else if ($direction == 'desc') {
-          return $this->usort(function($a, $b) {
-            return strcmp($b->$prop, $a->$prop);
-          });
+        switch ($type) {
+          default:
+            if ($direction == 'asc') {
+              return $this->usort(function($prop) {
+                return function($a, $b) use ($prop) {
+                  strcmp($a->$prop, $b->$prop);
+                };
+              });
+            } else if ($direction == 'desc') {
+              return $this->usort(function($prop) {
+                return function($a, $b) use ($prop) {
+                  strcmp($b->$prop, $a->$prop);
+                };
+              });
+            }
+          break;
         }
       }
       return FALSE;
