@@ -21,7 +21,7 @@
               alert("#" + this.id + "_combobox");
               alert($(this).children(":selected").text());
               $("#" + this.id + "_combobox").val($(this).children(":selected").text());
-              if (data.new_id) {
+              if (data.new_id && data.new_id != $("#" + data.new_obj + "_id").val()) {
                 $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
                 $("#" + data.new_obj + "_id").change();
               }
