@@ -46,7 +46,13 @@
             debugOut(jqHXR.responseText);
           })
         })
-        .combobox();
+        .combobox()
+        .on("autocompleteclose", function(event, ui) {
+          if ($(this).val() != 0) {
+            $(this).val(0);
+            $(this).change();
+          }
+        });
         $(".edit").change(function(){
           var input = this;
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
