@@ -20,7 +20,7 @@
             if (data.success) {
               if (data.new_id) {
                 $("#" + data.new_obj + " _id option:eq(" + data." + data.new_obj + " _id + ")").prop("selected", true);
-                $("#" + data.new_obj + " _id").next("input").val($("#" + data.new_obj + " _id").children(':selected').text());
+                $("#" + data.new_obj + " _id").next("input").val($("#" + data.new_obj + " _id").children(":selected").text());
                 $("#" + data.new_obj + " _id").next("input").change();
               }
               alert($(this).data("previous"));
