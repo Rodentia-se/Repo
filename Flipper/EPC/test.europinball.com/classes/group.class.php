@@ -52,6 +52,7 @@
           $this[] = $obj;
         }
       }
+      $this->sort();
     }
 
     public function __call($func, $argv) {
@@ -174,5 +175,20 @@
       return $select;
     }
     
+    public function sort($prop = 'name', $direction = 'asc') {
+      if (count($this) > 0) {
+        if ($direction == 'asc') {
+          return $this->usort(function($a. $b) {
+            return strcmp($a->$prop, $b->$prop);
+          });
+        } else if ($direction == 'desc') {
+          return $this->usort(function($a. $b) {
+            return strcmp($b->$prop, $a->$prop);
+          });
+        }
+      }
+      return FALSE;
+    }
+
   }
 ?>
