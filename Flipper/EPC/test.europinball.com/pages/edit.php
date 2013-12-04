@@ -16,19 +16,19 @@
       $page->addScript('
         $(".combobox").change(function(){
           var sel = this;
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: sel.id, value: $(this).val()})
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: sel.id, value: $(sel).val()})
           .done(function(data) {
             if (data.success) {
               alert("#" + sel.id + "_combobox");
-              alert($(this).children(":selected").text());
-              $("#" + this.id + "_combobox").val($(this).children(":selected").text());
+              alert($(sel).children(":selected").text());
+              $("#" + sel.id + "_combobox").val($(sel).children(":selected").text());
               if (data.new_id && data.new_id != $("#" + data.new_obj + "_id").val()) {
                 $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
                 $("#" + data.new_obj + "_id").change();
               }
-              $(this).attr("data-previous", $(this).val());
+              $(sel).data("previous", $(sel).val());
             } else {
-              $("#" + this.id + " option:eq(" + $(this).data("previous") + ")").prop("selected", true);
+              $("#" + sel.id + " option:eq(" + $(sel).data("previous") + ")").prop("selected", true);
             }
           })
           .fail(function(jqHXR,status,error) {
