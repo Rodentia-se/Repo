@@ -197,7 +197,7 @@
       return $select;
     }
     
-    public function sort($prop = 'name', $direction = 'asc', $type = 'string') {
+    public function order($prop = 'name', $direction = 'asc', $type = 'string') {
                   debug(1);
                   debug($prop);
       if (count($this) > 0) {
@@ -208,7 +208,7 @@
             if ($direction == 'asc') {
                   debug(3);
                   debug($prop);
-              return usort($this, function($a, $b) use ($prop) {
+              return $this->usort(function($a, $b) use ($prop) {
                 debug(5);
                 debug($prop);
                 debug($a->$prop);
@@ -219,7 +219,7 @@
             } else if ($direction == 'desc') {
                   debug(6);
                   debug($prop);
-              return usort($this, function($a, $b) use ($prop) {
+              return $this->usort(function($a, $b) use ($prop) {
                 debug(8);
                 debug($prop);
                 return strcmp($b->$prop, $a->$prop);
