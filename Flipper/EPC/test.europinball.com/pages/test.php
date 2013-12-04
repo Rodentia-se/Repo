@@ -41,9 +41,12 @@
     $page->content .= 'NOT logged in!';
   }
   $page->submit(FALSE, TRUE);
-*/
   $obj = person(1);
-  debug($obj);
+*/
+  $objs = continents('all');
+  debug($objs);
+  $objs->sort();
+  debug($objs);
 /*
 echo 'hej';
 foreach($objs as $obj) {
