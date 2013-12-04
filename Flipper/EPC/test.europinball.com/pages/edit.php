@@ -29,7 +29,12 @@
         $(".addIcon").click(function() {
           $("#" + this.id.replace("add_", "") + "_idDiv").hide();
           $("#" + this.id.replace("add_", "") + "Div").show();
-        })
+        });
+        $(".closeIcon").click(function() {
+          $("#" + this.id.replace("add_", "") + "_idDiv").show();
+          $("#" + this.id.replace("add_", "") + "Div").hide();
+          $("#" + this.id.replace("add_", "")).val("");
+        });
       ');
     } else {
       error('Could not find you in the database?', TRUE);

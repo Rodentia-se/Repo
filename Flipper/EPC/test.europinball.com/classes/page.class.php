@@ -396,20 +396,24 @@
       return self::getElement($text, 'li', $id, $class, $close);
     }
 
-    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE) {
-      $input = self::getInput($value, $id, $class, $type, $label);
+    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE) {
+      $input = self::getInput($value, $id, $class, $type, $label, $close);
       $this->addContent($input);
       return $input;
     }
 
-    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE) {
+    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE) {
       $label = ($label === TRUE) ? $id : $label;
       $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
       if ($type == 'radio' || $type == 'checkbox') {
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked' : '').'>'.(($label) ? '</label>' : '');
       } else {
         $input .= (($label) ? '</label>' : '').'
-          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>';
+          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'"' : '').'>
+        ';
+      }
+      if ($close) {
+        $select .= self::getIcon('images/cancel.png', 'close_'.$id, 'closeIcon editIcon', 'Click to remove the new '.$id);
       }
       return $input;
     }
