@@ -27,7 +27,7 @@
         $("#cityDiv").hide();
         $("#regionDiv").hide();
         $(".addIcon").click(function() {
-          $("#" + this.id.replace("add_", "") + "Div").hide();
+          $("#" + this.id.replace("add_", "") + "_idDiv").hide();
           $("#" + this.id.replace("add_", "") + "Div").show();
         })
       ');
