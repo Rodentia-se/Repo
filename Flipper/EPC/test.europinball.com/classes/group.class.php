@@ -182,7 +182,6 @@
                   debug(1);
                   debug($prop);
       if (count($this) > 0) {
-        $objs = array()
                   debug(2);
                   debug($prop);
         switch ($type) {
