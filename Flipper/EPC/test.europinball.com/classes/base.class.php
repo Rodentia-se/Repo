@@ -88,7 +88,7 @@
       return $return;
     }
     
-    protected function setProp($prop, $value = NULL) {
+    public function setProp($prop, $value = NULL) {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $prop = (static::$cols[$prop]) ? static::$cols[$prop] : $prop;
       if ($this->id && in_array($prop, $this->getColNames())) {
