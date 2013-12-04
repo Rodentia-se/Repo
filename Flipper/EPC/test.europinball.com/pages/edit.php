@@ -11,13 +11,18 @@
       $page->startDiv('editDiv');
         $page->addContent($person->getEdit());
       $page->closeDiv(); 
-      $page->jeditable = TRUE;
       $page->combobox = TRUE;
       $page->addScript('
         $(".edit").editable("'.config::$baseHref.'/setPlayerProp.php", {
           cssclass: "inherit"
         });
-        $( ".combobox" ).combobox();
+        $(".combobox").combobox();
+        $(".date").datepicker({
+          dateFormat: "yy-mm-dd", 
+          changeYear: true, 
+          yearRange: '-100:-0', 
+          changeMonth: true 
+        });
       ');
     } else {
       error('Could not find you in the database?', TRUE);
