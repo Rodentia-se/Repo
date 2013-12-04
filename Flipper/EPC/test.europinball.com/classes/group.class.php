@@ -52,7 +52,7 @@
           $this[] = $obj;
         }
       }
-      $this->sort();
+      $this->order();
     }
 
     public function __call($func, $argv) {
