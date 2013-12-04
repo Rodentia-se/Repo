@@ -11,7 +11,7 @@
       $page->startDiv('photoDiv', 'right');
         $page->addContent($person->getPhotoEdit());
       $page->closeDiv(); 
-      $page->startDiv('editDiv');
+      $page->startDiv('editDiv', 'left');
         $page->addContent($person->getEdit());
       $page->closeDiv(); 
       $page->jeditable = TRUE;
