@@ -64,13 +64,8 @@
     }
     
     public function clear() {
-      foreach($this as $key => $obj) {
-        unset($this[$key]);
-      }
-      if (count($this) == 0) {
-        return TRUE;
-      }
-      return FALSE;
+      $array = array();
+      $this->exchangeArray($array);
     }
 
     public function nullify($field, $value = NULL, $cond = 'or') {
@@ -225,11 +220,8 @@
         }
       }
       if (!$keepkeys) {
-        $objs = $this->getArrayCopy();
-        $this->clear();
-        foreach ($objs as $obj) {
-          $this[] = $obj;
-        }
+        $objs = array_values($this->getArrayCopy());
+        $this->exchangeArray($objs);
       }
       return $return;
     }
