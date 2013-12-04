@@ -56,16 +56,21 @@
     }
 
     public function __call($func, $argv) {
-      if (is_callable($func)) {
+      if (is_callable($func)) { 
         if (substr($func, 0, 6) === 'array_') {
           return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
         }
       } else if (in_array($func, array('arsort', 'extract', 'in_array', 'key_exists', 'krsort', 'list', 'range', 'rsort', 'shuffle', 'sizeof', 'sort', 'usort'))) {
         $return = call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
         $this->clear();
+        debug(11);
+        debug($this);
+        debug($objs);
         foreach ($objs as $key => $obj) {
           $this[$key] = $objs[$key];
         }
+        debug(12);
+        debug($this);
         return $return;
       } else if (in_array($func, array('asort', 'ksort', 'natcasesort', 'natsort', 'uasort', 'uksort'))) {
         return $this->$func();
