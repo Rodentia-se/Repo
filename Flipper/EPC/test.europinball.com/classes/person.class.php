@@ -156,10 +156,10 @@
           <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
           <div>'.page::getInput($this->streetAddress, 'streetAddress', 'edit', 'text', 'Address').'</div>
           <div>'.page::getInput($this->zipCode, 'zipCode', 'edit', 'text', 'ZIP').'</div>
-          <div>'.page::getInput(NULL, 'city', 'hidden edit', 'text', 'New city').'</div>
-          <div>'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-          <div>'.page::getInput(NULL, 'region', 'hidden edit', 'text', 'New region').'</div>
-          <div>'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
+          <div id="cityDiv">'.page::getInput(NULL, 'city', 'hidden edit', 'text', 'New city').'</div>
+          <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
+          <div id="regionDiv">'.page::getInput(NULL, 'region', 'hidden edit', 'text', 'New region').'</div>
+          <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
           <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
           <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
           <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>

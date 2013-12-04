@@ -24,10 +24,11 @@
           yearRange: "-100:-0",
           changeMonth: true 
         });
+        $("#cityDiv").hide();
+        $("#regionDiv").hide();
         $(".addIcon").click(function() {
-          $("#" + this.id.replace("add_", "") + "_id").combobox("destroy");
-          $("#" + this.id.replace("add_", "") + "_id").hide();
-          $("#" + this.id.replace("add_", "")).show();
+          $("#" + this.id.replace("add_", "") + "Div").hide();
+          $("#" + this.id.replace("add_", "") + "Div").show();
         })
       ');
     } else {
