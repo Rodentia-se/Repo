@@ -8,7 +8,7 @@
   if ($page->reqLogin('You need to be logged in and registered as a participant to access this page. Please go to the <a href="'.config::$baseHref.'/reigstration/">registration page</a> or login here:')) {
     $person = $page->login->person;
     if ($person) {
-      $page->startDiv('photoDiv', 'right');
+      $page->startDiv('photoDiv', 'right half');
         $page->addContent($person->getPhotoEdit());
       $page->closeDiv(); 
       $page->startDiv('editDiv', 'left');
