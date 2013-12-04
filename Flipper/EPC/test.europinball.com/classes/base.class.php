@@ -334,7 +334,7 @@
             </script>
           </form>
         '.page::getDivEnd().'
-      ':
+      ';
     }
 
 
