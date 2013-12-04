@@ -18,9 +18,9 @@
         });
         $(".combobox").combobox();
         $(".date").datepicker({
-          dateFormat: "yy-mm-dd", 
+          dateFormat: "yy-mm-dd",
           changeYear: true, 
-          yearRange: '-100:-0', 
+          yearRange: "-100:-0",
           changeMonth: true 
         });
       ');
