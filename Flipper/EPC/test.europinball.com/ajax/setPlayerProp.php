@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
   
   $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
-  $id = (idId($value)) ? $value : NULL;
+  $id = (isId($value)) ? $value : NULL;
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
   $person_id = (isId($_REQUEST['person_id'])) ? $_REQUEST['person_id'] : NULL;
   
