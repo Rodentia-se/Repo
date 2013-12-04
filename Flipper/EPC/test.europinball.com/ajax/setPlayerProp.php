@@ -27,13 +27,16 @@
                 if ($change) {
                   swicth($class) {
                     case 'city':
-                      $json['region_id'] = $obj->region_id;
+                      $json['new_id'] = $obj->region_id;
+                      $json['new_obj'] = 'region';
                     break;
                     case 'region':
-                      $json['country_id'] = $obj->country_id;
+                      $json['new_id'] = $obj->country_id;
+                      $json['new_obj'] = 'country';
                     break;
                     case 'country':
-                      $json['continent_id'] = $obj->continent_id;
+                      $json['new_id'] = $obj->continent_id;
+                      $json['new_obj'] = 'continent';
                     break;
                   }
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
