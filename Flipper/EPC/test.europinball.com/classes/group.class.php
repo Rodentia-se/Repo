@@ -186,7 +186,7 @@
             if ($direction == 'asc') {
                   debug(3);
                   debug($prop);
-              return $this->usort(function($prop) {
+              return $this->usort(function($this, $prop) {
                   debug(4);
                   debug($prop);
                 return function($a, $b) use ($prop) {
@@ -198,7 +198,7 @@
             } else if ($direction == 'desc') {
                   debug(6);
                   debug($prop);
-              return $this->usort(function($prop) {
+              return $this->usort(function($this, $prop) {
                   debug(7);
                   debug($prop);
                 return function($a, $b) use ($prop) {
