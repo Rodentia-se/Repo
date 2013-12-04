@@ -29,9 +29,9 @@
                         $("#" + geo + "_id").change();¨
                       }
                       var stop = true;
-                    } else {
+                    } else if ($("#" + geo + "_id").val() != 0) {
                       $("#" + geo + "_id").val(0);
-                      $("#" + feo + "_id_combobox").val("");
+                      $("#" + geo + "_id_combobox").val("");
                     }
                   }
                 });

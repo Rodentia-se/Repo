@@ -26,9 +26,21 @@
                 $change = $person->setProp($prop, (($id) ? $id : NULL));
                 if ($change) {
                   $parent = $obj->getParent();
-                  $json['parents'] = $obj->getParents(FALSE, FALSE);
                   $json['parent_obj'] = get_class($parent);
                   $json['parent_id'] = $parent->id;
+                  $json['parents'] = $obj->getParents(FALSE, FALSE);
+                  foreach ($json['parents'] as $parent) {
+                    if (!$stop) {
+                      if($obj->{$parent.'_id'}) {
+                        if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
+                          $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                        }
+                        $stop = TRUE;
+                      } else if ($person->{$parent.'_id'}) {
+                        $person->setProp($parent.'_id', NULL);
+                      }
+                    }
+                  }
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
                 } else {
                   $json = error('Property assignment failed', FALSE, TRUE);
