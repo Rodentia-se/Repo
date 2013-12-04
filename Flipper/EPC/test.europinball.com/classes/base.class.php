@@ -152,33 +152,33 @@
         case 'photo':
           if ($thumbnail) {
             foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/'.$this->id.'.thumb.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.$this->class.'/'.$this->id.'.thumb.'.$ext;
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext;
               }
             }
           } 
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/'.$this->id.'.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/'.$this->class.'/'.$this->id.'.'.$ext;
+            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext;
             }
           }
-          if ($this->class == 'player') {
+          if (get_class($this) == 'player') {
             foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/ifpa/'.$this->ifpa_id.'.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.$this->class.'/ifpa/'.$this->ifpa_id.'.'.$ext;
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext;
               }
             }
           }
           if ($thumbnail) {
             foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/0.thumb.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.$this->class.'/0.thumb.'.$ext;
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.thumb.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.thumb.'.$ext;
               }
             }
           }
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/0.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/'.$this->class.'/0.'.$ext;
+            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.'.$ext;
             }
           }
           foreach (config::$photoExts as $ext) {
