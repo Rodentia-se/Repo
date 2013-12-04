@@ -163,7 +163,7 @@
           <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
           <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
           <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
-          <div>'.page::getLabelStart('partLabel','label').'Participate'.page::getLabelEnd().'
+          <div>'.page::getLabelStart('partLabel','label').'Divisions'.page::getLabelEnd().'
             '.(($main) ? page::getInput($this->main, 'main', 'check', 'checkbox', 'Main') : '').'
             '.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'
             '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'
