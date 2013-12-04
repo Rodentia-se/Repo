@@ -14,7 +14,7 @@
 			
     if(strlen($name)) {
       list($txt, $ext) = explode('.', $name);
-      if(in_array($ext,getPhotoExts())) {
+      if(in_array($ext, config::$photoExts)) {
         if($size < (1024*1024) && $size != 0) {
           $tmp = $_FILES['imageUpload']['tmp_name'];
           $previewFile = $path.'/preview/'.$_REQUEST['id'].'.'.$ext;
