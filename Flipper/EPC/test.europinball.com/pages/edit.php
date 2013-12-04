@@ -12,6 +12,7 @@
       $page->addContent($person->getPhotoEdit(NULL, 'right')); 
       $page->jeditable = TRUE;
       $page->combobox = TRUE;
+      $page->forms = TRUE;
       $page->addScript('
         $(".edit").editable("'.config::$baseHref.'/setPlayerProp.php", {
           cssclass: "inherit"

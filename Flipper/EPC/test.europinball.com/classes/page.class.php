@@ -12,6 +12,7 @@
       'autocomplete' => 'contrib/autocomplete.js',
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'combobox' => 'contrib/jquery.combobox.js',
+      'forms' => 'contrib/jquery.form.min.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
       'ga' => 'contrib/ga.js'
@@ -22,6 +23,7 @@
     public $datatables = FALSE;
     public $datatablesReload = FALSE;
     public $jeditable = FALSE;
+    public $forms = FALSE;
     public $purl = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
