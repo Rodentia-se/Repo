@@ -56,10 +56,13 @@
     }
 
     public function __call($func, $argv) {
-      if (!is_callable($func) || (substr($func, 0, 6) !== 'array_' && !in_array($func, array('usort')))) {
+      if (is_callable($func)) {
+        if (substr($func, 0, 6) !== 'array_') {
+          return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
+        }
+      } else {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
       }
-      return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
     }
 
     public function nullify($field, $value = NULL, $cond = 'or') {
@@ -179,6 +182,7 @@
                   debug(1);
                   debug($prop);
       if (count($this) > 0) {
+        $objs = array()
                   debug(2);
                   debug($prop);
         switch ($type) {
@@ -186,7 +190,7 @@
             if ($direction == 'asc') {
                   debug(3);
                   debug($prop);
-              return $this->usort(function($a, $b) use ($prop) {
+              return usort($this, function($a, $b) use ($prop) {
                 debug(5);
                 debug($prop);
                 debug($a->$prop);
@@ -197,7 +201,7 @@
             } else if ($direction == 'desc') {
                   debug(6);
                   debug($prop);
-              return $this->usort(function($a, $b) use ($prop) {
+              return usort($this, function($a, $b) use ($prop) {
                 debug(8);
                 debug($prop);
                 return strcmp($b->$prop, $a->$prop);
