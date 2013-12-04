@@ -46,13 +46,11 @@
             debugOut(jqHXR.responseText);
           })
         })
-        .combobox()
-        .on("autocompleteclose", function(event, ui) {
-            alert( $( this ).val());
-            alert( $("#" + sel.id + "_combobox").val());
-          if ($(this).val() != 0 && $("#" + sel.id + "_combobox").val() == "") {
-            $(this).val(0);
-            $(this).trigger("change");
+        .combobox();
+        $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
+          if ($(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+            $("#" + this.id.replace("_combobox", "")).val(0);
+            $("#" + this.id.replace("_combobox", "")).change();
           }
         });
         $(".edit").change(function(){
