@@ -18,7 +18,7 @@
           .appendTo( this.wrapper )
           .val( value )
           .attr( "title", "" )
-          .attr( "id", this.element.id + "_combobox")
+          .attr( "id", this.element.attr("id") + "_combobox")
           .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
           .autocomplete({
             delay: 0,
