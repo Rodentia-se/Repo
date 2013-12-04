@@ -26,7 +26,7 @@
                     if (data[geo + "_id"]) {
                       if (data[geo + "_id"] != $("#" + geo + "_id").val()) {
                         $("#" + geo + "_id").val(data[geo + "_id"]);
-                        $("#" + geo + "_id").change();¨
+                        $("#" + geo + "_id").change();
                       }
                       var stop = true;
                     } else if ($("#" + geo + "_id").val() != 0) {
