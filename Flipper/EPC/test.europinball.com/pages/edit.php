@@ -18,11 +18,10 @@
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: this.id, value: $(this).val()})
           .done(function(data) {
             if (data.success) {
+              $("#" + this.id + "_combobox").val($(this).children(":selected").text());
               if (data.new_id) {
                 $("#" + data.new_obj + "_id option:eq(" + data.new_id + ")").prop("selected", true);
-                $("#" + data.new_obj + "_id" + "_combobox").val($("#" + data.new_obj + "_id").children(":selected").text());
-                $("#" + data.new_obj + "_id" + "_combobox").trigger("input");
-                $("#" + data.new_obj + "_id" + "_combobox").trigger("blur");
+                $("#" + data.new_obj + "_id").change();
               }
               alert($(this).data("previous"));
               alert($(this).attr("data-previous"));
