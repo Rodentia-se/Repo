@@ -90,8 +90,15 @@
     
     public function setProp($prop, $value = NULL) {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
-      $prop = (static::$cols[$prop]) ? static::$cols[$prop] : $prop;
-      if ($this->id && in_array($prop, $this->getColNames())) {
+      $cols = $this->getColNames();
+      if (!in_array($prop, $cols)) {
+        $prop = (static::$cols[$prop]) ? static::$cols[$prop] : $prop;
+      }
+      if (!in_array($prop, $cols)) {
+        $props = array_flip(static::$cols);
+        $prop = ($props[$prop]) ? $props[$prop] : $prop;
+      }
+      if ($this->id && in_array($prop, $cols)) {
         $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop).' where id = '.$this->id;
         $values[db::getAlias($prop)] = $value;
         $update = $this->db->update($query, $values);
