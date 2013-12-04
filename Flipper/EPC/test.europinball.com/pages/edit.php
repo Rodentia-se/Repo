@@ -36,7 +36,7 @@
           $("#" + this.id.replace("close_", "")).val("");
         });
         $(".combobox").change(function(){
-          var prop = this.id.split('_')[0];
+          var prop = this.id.split("_")[0];
           var id = $(this).val();
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: prop, id: id})
           .done(function(data) {
