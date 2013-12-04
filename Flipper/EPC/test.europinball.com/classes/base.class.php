@@ -142,11 +142,53 @@
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
+    
+    public function getPhoto($thumbnail = FALSE, $anchor = FALSE) {
+      return $this->getLink('photo', $anchor, $thumbnail);
+    }
 
-    public function getLink($type = 'object', $anchor = TRUE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
       switch ($type) {
         case 'photo':
-          return NULL;
+          if ($thumbnail) {
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/'.$this->id.'.thumb.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.$this->class.'/'.$this->id.'.thumb.'.$ext;
+              }
+            }
+          } 
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/'.$this->id.'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.$this->class.'/'.$this->id.'.'.$ext;
+            }
+          }
+          if ($this->class == 'player') {
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/ifpa/'.$this->ifpa_id.'.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.$this->class.'/ifpa/'.$this->ifpa_id.'.'.$ext;
+              }
+            }
+          }
+          if ($thumbnail) {
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/0.thumb.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.$this->class.'/0.thumb.'.$ext;
+              }
+            }
+          }
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/'.$this->class.'/0.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.$this->class.'/0.'.$ext;
+            }
+          }
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/0.'.$ext;
+            }
+          }
+          if (!$url) {
+            return NULL;
+          }
         break;
         case 'object':
           $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : NULL;
@@ -260,6 +302,39 @@
       return $this->db->update('update '.$table.' set '.$field.' = :parent where id = :id', array(':parent' => $parent->id, ':id' => $this->id));
     }
 */
+    public function getPhotoEdit($prefix, $class) {
+      return '
+        <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?obj='.get_class($this).'&id='.$this->id.'" class="'.$class.'">
+          <h2 colspan="2" id="regPlayerImgH2">Player logo or picture</h2>
+    	    <div id="'.$prefix.'preview">
+    		    <img src="'.$this->getLink('photo'¨, FALSE).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
+            <div id="'.$prefix.'imageLoader"></div>
+    	    </div>
+    	    <div id="'.$prefix.'uploadForm">
+            <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
+            <input type="file" name="imageUpload" id="imageUpload">
+          </div>
+          <button id="submitImg" type="button" value="Submit image!" class="formInput" disabled>Submit image!</button>
+          <script type="text/javascript">
+            $(document).ready(function() { 
+              $("#'.$prefix.'imageUpload").on("change", function() {
+                $("#'.$prefix.'preview").html("");
+                $("#'.$prefix.'imageLoader").html("<img src=\"'.config::$baseHref.'/images/loader.gif\" alt=\"Uploading....\"/>");
+                $("#'.$prefix.'submitImg").prop("disabled", false);
+                $("#'.$prefix.'imageForm").ajaxForm({
+                  target: "#'.$prefix.'preview"
+                }).submit();
+                $("#'.$prefix.'imageLoader").html("");
+              });
+              $("#'.$prefix.'thumb").on("click", function() {
+                $("#'.$prefix.'imageUpload").trigger("click");
+              });
+            }); 
+          </script>
+        </form>
+      ';
+    }
+
 
     public function jsonSerialize() {
       self::$parentDepth = 999999;

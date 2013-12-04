@@ -41,7 +41,9 @@
     public static $debug = TRUE;
     
     // Do not change anything below this line!
-    public static $currentTournament = 1;
+    public static $currentTournament = 5;
+    
+    public static $photoExts = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
 
   }
 

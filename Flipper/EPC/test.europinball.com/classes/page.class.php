@@ -483,6 +483,17 @@
       return (($header) ? $this->header : '').$this->content.(($footer) ? $this->footer : '');
     }
     
+    public function addPhotoEdit($obj, $prefix = NULL, $class = NULL) {
+      $photo = self::getPhotoEdit($obj, $prefix, $class);
+      $this->addContent($photo);
+      return $photo;
+    }
+
+    
+    public static function getPhotoEdit($obj, $prefix = NULL, $class = NULL) {
+      return $obj->getPhotoEdit($prefix, $class);
+    }
+    
     public function submit($header = TRUE, $footer = TRUE, $div = TRUE) {
       echo $this->getContent($header, $footer, $div);
     }
