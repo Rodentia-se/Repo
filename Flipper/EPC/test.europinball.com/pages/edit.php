@@ -25,6 +25,7 @@
           changeMonth: true 
         });
         $(".addIcon").click(function() {
+          $("#" + this.id.replace("add_", "") + "_id").combobox("destroy");
           $("#" + this.id.replace("add_", "") + "_id").hide();
           $("#" + this.id.replace("add_", "")).show();
         })
