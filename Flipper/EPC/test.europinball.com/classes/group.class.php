@@ -182,13 +182,15 @@
             if ($direction == 'asc') {
               return $this->usort(function($prop) {
                 return function($a, $b) use ($prop) {
-                  strcmp($a->$prop, $b->$prop);
+                  return strcmp($a->$prop, $b->$prop);
+                  debug($prop);
                 };
               });
             } else if ($direction == 'desc') {
               return $this->usort(function($prop) {
                 return function($a, $b) use ($prop) {
-                  strcmp($b->$prop, $a->$prop);
+                  return strcmp($b->$prop, $a->$prop);
+                  debug($prop);
                 };
               });
             }
