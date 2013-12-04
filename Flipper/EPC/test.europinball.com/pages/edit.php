@@ -34,6 +34,21 @@
             debugOut(jqHXR.responseText);
           });
         });
+        $(".edit").change(function(){
+          var input = this;
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
+          .done(function(data) {
+            if (data.success) {
+              $(input).data("previous", $(input).val());
+            } else {
+              $(input).val($(input).data("previous"));
+            }
+          })
+          .fail(function(jqHXR,status,error) {
+            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            debugOut(jqHXR.responseText);
+          });
+        });
         $(".combobox").combobox();
         $(".date").datepicker({
           dateFormat: "yy-mm-dd",
