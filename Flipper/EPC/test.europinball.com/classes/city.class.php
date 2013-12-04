@@ -54,7 +54,7 @@
       foreach (static::$parents as $parent) {
         if ($selfParents || substr($parent, 0, 6) != 'parent') {
           if ($this->{$parent.'_id'}) {
-            return = ($obj) ? $parent($this->{$parent.'_id'}) : $parent;
+            return ($obj) ? $parent($this->{$parent.'_id'}) : $parent;
           }
         }
       }
