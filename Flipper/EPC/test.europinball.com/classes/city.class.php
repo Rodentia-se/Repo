@@ -61,6 +61,15 @@
       return FALSE;
     }
     
+    public static function _getParents($selfParents = FALSE) {
+      foreach (static::$parents as $parent => $class) {
+        if ($selfParents || substr($parent, 0, 6) != 'parent') {
+          $parents[] = $parent;
+        }
+      }
+      return $parents;
+    }
+
     public function getParents($selfParents = FALSE, $objs = TRUE) {
       foreach (static::$parents as $parent => $class) {
         if ($selfParents || substr($parent, 0, 6) != 'parent') {

@@ -8,7 +8,7 @@
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
   $person_id = (isId($_REQUEST['person_id'])) ? $_REQUEST['person_id'] : NULL;
   
-  if ($id) {
+  if ($id || $id == 0) {
     if ($prop) {
       $loginPerson = person('login');
       if ($person_id) {
@@ -19,38 +19,50 @@
       if ($person) {
         if ($loginPerson->id == $person->id || $loginPerson->adminLevel > 1) {
           if (substr($prop, -3) == '_id') {
-            if ($id) {
+            if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
-              $obj = $class($id, NULL, 0);
-              if ($obj) {
-                $change = $person->setProp($prop, (($id) ? $id : NULL));
-                if ($change) {
+              $json['parents'] = $class::getParents(FALSE);
+              if ($id > 0) {
+                $obj = $class($id, NULL, 0);
+                if ($obj) {
                   $parent = $obj->getParent();
                   if ($parent) {
                     $json['parent_obj'] = get_class($parent);
                     $json['parent_id'] = $parent->id;
                   }
-                  $json['parents'] = $obj->getParents(FALSE, FALSE);
-                  if ($parents) {
-                    foreach ($json['parents'] as $parent) {
-                      if (!$stop) {
-                        if($obj->{$parent.'_id'}) {
-                          if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
-                            $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                  if ($person->setProp($prop, $id)) {
+                    if ($json['parents']) {
+                      foreach ($json['parents'] as $parent) {
+                        if (!$stop) {
+                          if($obj && $obj->{$parent.'_id'}) {
+                            if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
+                              $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                            }
+                            $stop = TRUE;
+                          } else if ($person->{$parent.'_id'}) {
+                            $person->setProp($parent.'_id', NULL);
                           }
-                          $stop = TRUE;
-                        } else if ($person->{$parent.'_id'}) {
-                          $person->setProp($parent.'_id', NULL);
                         }
                       }
+                    }
+                    $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
+                  } else {
+                    $json = error('Property assignment failed', FALSE, TRUE);
+                  }
+                } else {
+                  $json = error('Could not find '.$prop.' ID '.$id, FALSE, TRUE);
+                }
+              } else {
+                if ($person->setProp($prop, NULL)) {
+                  if ($json['parents']) {
+                    foreach ($json['parents'] as $parent) {
+                      $person->setProp($parent.'_id', NULL);
                     }
                   }
                   $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
                 } else {
                   $json = error('Property assignment failed', FALSE, TRUE);
                 }
-              } else {
-                $json = error('Could not find '.$prop.' ID '.$id, FALSE, TRUE);
               }
             } else {
               $json = error('Malformed value detected', FALSE, TRUE);

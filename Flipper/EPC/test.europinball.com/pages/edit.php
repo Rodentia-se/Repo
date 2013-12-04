@@ -46,8 +46,8 @@
             debugOut(jqHXR.responseText);
           })
         })
-        .combobox()
-        .on("autocompleteclose", function(event, ui) {
+        .combobox();
+        $(".combobox").on("autocompleteclose", function(event, ui) {
           if ($(this).val() != 0) {
             $(this).val(0);
             $(this).change();
