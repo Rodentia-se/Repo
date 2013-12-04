@@ -25,7 +25,7 @@
               if ($obj) {
                 $change = $person->setProp($prop, $id);
                 if ($change) {
-                  swicth($class) {
+                  switch ($class) {
                     case 'city':
                       $json['new_id'] = $obj->region_id;
                       $json['new_obj'] = 'region';
