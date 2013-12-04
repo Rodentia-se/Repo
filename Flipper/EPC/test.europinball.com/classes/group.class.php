@@ -186,26 +186,18 @@
             if ($direction == 'asc') {
                   debug(3);
                   debug($prop);
-              return $this->usort(function($this, $prop) {
-                  debug(4);
-                  debug($prop);
-                return function($a, $b) use ($prop) {
-                  debug(5);
-                  debug($prop);
-                  return strcmp($a->$prop, $b->$prop);
-                };
+              return $this->usort(function($a, $b) use ($prop) {
+                debug(5);
+                debug($prop);
+                return strcmp($a->$prop, $b->$prop);
               });
             } else if ($direction == 'desc') {
                   debug(6);
                   debug($prop);
-              return $this->usort(function($this, $prop) {
-                  debug(7);
-                  debug($prop);
-                return function($a, $b) use ($prop) {
-                  debug(8);
-                  debug($prop);
-                  return strcmp($b->$prop, $a->$prop);
-                };
+              return $this->usort(function($a, $b) use ($prop) {
+                debug(8);
+                debug($prop);
+                return strcmp($b->$prop, $a->$prop);
               });
             }
           break;
