@@ -36,10 +36,16 @@ input[type=text] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
-.editIcon {
+.addIcon {
   position: relative;
   top: 3px;
   left: 40px;
+}
+
+.closeIcon {
+  position: relative;
+  top: 3px;
+  left: 2px;
 }
 
 .italic {

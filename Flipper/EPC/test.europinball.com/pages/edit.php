@@ -31,9 +31,9 @@
           $("#" + this.id.replace("add_", "") + "Div").show();
         });
         $(".closeIcon").click(function() {
-          $("#" + this.id.replace("add_", "") + "_idDiv").show();
-          $("#" + this.id.replace("add_", "") + "Div").hide();
-          $("#" + this.id.replace("add_", "")).val("");
+          $("#" + this.id.replace("close_", "") + "_idDiv").show();
+          $("#" + this.id.replace("close_", "") + "Div").hide();
+          $("#" + this.id.replace("close_", "")).val("");
         });
       ');
     } else {
