@@ -191,7 +191,7 @@
                 debug($prop);
                 debug($a->$prop);
                 debug($b->$prop);
-                debug(strcmp($a->$prop, $b->$prop))
+                debug(strcmp($a->$prop, $b->$prop));
                 return strcmp($a->$prop, $b->$prop);
               });
             } else if ($direction == 'desc') {
