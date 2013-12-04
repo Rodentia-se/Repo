@@ -60,7 +60,8 @@
         if (substr($func, 0, 6) === 'array_') {
           return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
         } else if (in_array($func, array('arsort', 'extract', 'in_array', 'key_exists', 'krsort', 'list', 'range', 'rsort', 'shuffle', 'sizeof', 'sort', 'usort'))) {
-          $return = call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
+          $objs = array_merge(array($this->getArrayCopy();
+          $return = call_user_func_array($func, $objs, $argv));
           $this->clear();
           debug(11);
           debug($this);
