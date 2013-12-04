@@ -24,10 +24,12 @@
                 $("#" + data.new_obj + "_id").val(data.new_id);
                 $("#" + data.new_obj + "_id").change();
               }
-              $.each(data.nulls, function(key, geo) {
-                $("#" + geo + "_id").val(0);
-                $("#" + geo + "_id").change();
-              });
+              if (data.nulls) {
+                $.each(data.nulls, function(key, geo) {
+                  $("#" + geo + "_id").val(0);
+                  $("#" + geo + "_id").change();
+                });
+              }
               $(sel).data("previous", $(sel).val());
             } else {
               $(sel).val($(sel).data("previous"));
