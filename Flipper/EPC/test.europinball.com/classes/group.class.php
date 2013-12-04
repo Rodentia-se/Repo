@@ -60,9 +60,28 @@
         if (substr($func, 0, 6) === 'array_') {
           return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
         }
+      } else if (in_array($func, array('arsort', 'extract', 'in_array', 'key_exists', 'krsort', 'list', 'range', 'rsort', 'shuffle', 'sizeof', 'sort', 'usort'))) {
+        $return = call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
+        $this->empty();
+        foreach ($objs as $key => $obj) {
+          $this[$key] = $objs[$key];
+        }
+        return $return;
+      } else if (in_array($func, array('asort', 'ksort', 'natcasesort', 'natsort', 'uasort', 'uksort'))) {
+        return $this->$func();
       } else {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
       }
+    }
+    
+    public function empty() {
+      foreach($this as $key => $obj) {
+        unset($this[$key]);
+      }
+      if (count($this) == 0) {
+        return TRUE;
+      }
+      return FALSE;
     }
 
     public function nullify($field, $value = NULL, $cond = 'or') {
