@@ -48,7 +48,7 @@
         })
         .combobox();
         $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
-          if ($(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+          if ($(this).id("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
             $("#" + this.id.replace("_combobox", "")).val(0);
             $("#" + this.id.replace("_combobox", "")).change();
           }
