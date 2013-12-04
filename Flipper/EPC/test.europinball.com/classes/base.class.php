@@ -148,10 +148,6 @@
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
-      preDump($anchor);
-          if ($anchor) {
-            debug('hej');
-          }
       switch ($type) {
         case 'photo':
           if ($thumbnail) {
@@ -190,7 +186,6 @@
               $url = config::$baseHref.'/images/objects/0.'.$ext;
             }
           }
-          debug($url);
           if (!$url) {
             $url = NULL;
           }
@@ -310,7 +305,7 @@
     public function getPhotoEdit($prefix = NULL, $class = NULL) {
       return '
         '.page::getDivStart($prefix.'imageDiv', $class).'
-          <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?obj='.get_class($this).'&id='.$this->id.'">
+          <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?prefix='.$prefix.'&obj='.get_class($this).'&id='.$this->id.'">
             <h2 colspan="2" id="regPlayerImgH2">Player logo or picture</h2>
       	    <div id="'.$prefix.'preview">
       		    <img src="'.$this->getPhoto().'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
