@@ -2,10 +2,11 @@
   border-top: 1px solid #ddd;
   margin-top: 20px;
   padding-top: 15px;
+  clear: both;
 }
 
 #editDiv {
-  width: 500px;
+  width: 50%;
 }
 
 .label {
