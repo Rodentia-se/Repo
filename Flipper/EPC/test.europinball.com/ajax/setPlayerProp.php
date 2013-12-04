@@ -28,7 +28,7 @@
                   if ($geo == $class) {
                     foreach($geos as $subGeo) {
                       if ($start && $obj->{$subGeo.'_id'}) {
-                        $json['new_id'] = $obj->{$subGeo.'_id';
+                        $json['new_id'] = $obj->{$subGeo.'_id'};
                         $json['new_obj'] = $subGeo;
                       }
                       if ($subGeo == $geo) {
