@@ -20,11 +20,12 @@
     switch ($type) {
       case 'json':
       case 'obj':
+      case 'object':
       case 'array':
         $return = array('valid' => false, 'reason' => $text);
         if ($props) {
           foreach ($props as $prop => $value) {
-            $return->{$prop} = $value;
+            $return[$prop] = $value;
           }
         }
         return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);

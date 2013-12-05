@@ -433,7 +433,6 @@
       } else {
         $select = group::_getSelect($id, $class, $label, $selected, $add, $objs);
       }
-        debug($select);
       return $select;
     }
     
