@@ -375,37 +375,29 @@
               warning('Non-existing method given as validator.');
             }
           } else if (method_exists($validators[$prop][0], $validators[$prop][1])) {
-              return call_user_func($validators[$prop][0]'::'.$validators[$prop][1], $value, $obj);
+            return call_user_func($validators[$prop][0]'::'.$validators[$prop][1], $value, $obj);
           } else {
             warning('Unknown method given as validator.');
           }
         } else if (is_string($validators[$prop]) {
           if (preg_match('/^\/.*\/$/', $validators[$prop])) {
             if (preg_match($validators[$prop], $value)) {
-              return ($obj) ? (object) array(
-                'valid' => TRUE,
-                'reason' => $prop.' found to be valid.'
-              ) : TRUE;
+              return validate(TRUE, $prop.' found to be valid.', $obj);
             } else {
-              return ($obj) ? (object) array(
-                'valid' => FALSE,
-                'reason' => $prop.' found to be invalid.'
-              ) : FALSE;
+              return validate(FALSE, $prop.' found to be invalid.', $obj);
             }
+          } else if (method_exists(get_called_class(), $validators[$prop])) {
+            return call_user_func(get_called_class().'::'.$validators[$prop], $value, $obj);
+          } else if (function_exists($validators[$prop])) {
+            return call_user_func($validators[$prop], $value, $obj);
           }
         }
       } else {
         if ($value === NULL) {
           if (static::$mandatory && in_array($prop, static::$mandatory))
-            return ($obj) ? (object) array(
-              'valid' => FALSE,
-              'reason' => 'The value is mandatory.'
-            ) : FALSE;
+            return validate(FALSE, 'The value is mandatory.', $obj);
           } else {
-            return ($obj) ? (object) array(
-              'valid' => TRUE,
-              'reason' => 'The value is empty and not mandatory.'
-            ) : TRUE;
+            return validate(TRUE, 'The value is empty and not mandatory.', $obj);
           }
         } else {
           if (method_exists(get_called_class(), 'validate'.ucfirst($prop))) {
@@ -415,10 +407,7 @@
           }
         }
       }
-      return ($obj) ? (object) array(
-        'valid' => TRUE,
-        'reason' => 'No validator found'
-      ) : TRUE;
+      return validate(TRUE, 'No validator found', $obj);
     }
 
   }

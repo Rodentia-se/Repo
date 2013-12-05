@@ -51,6 +51,9 @@
         'delete' => TRUE
       )
     )
+    
+    public static $validators = array(
+    );
 
     public function getMembers() {
       $query = player::$select.'

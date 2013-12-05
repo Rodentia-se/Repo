@@ -115,6 +115,11 @@
       'gender' => 'genderName'
     );
 
+    public static $validators = array(
+      'mailAddress' => array('person', 'validateEmail'),
+      'username' => array('person', 'validateUsername')
+    );
+
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
       switch ($type) {
         case 'ifpa':

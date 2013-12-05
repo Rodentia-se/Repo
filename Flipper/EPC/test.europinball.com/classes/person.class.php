@@ -78,9 +78,6 @@
     );
     
     public static $validators = array(
-      'mailAddress' => array('person', 'validateEmail'),
-      'username' => array('person', 'validateUsername')
-      
     );
     
     public function getPlayer($division = NULL) {
@@ -204,114 +201,51 @@
     public static function validateEmail($email, $obj = FALSE) {
       $atIndex = strrpos($email, "@");
       if (is_bool($atIndex) && !$atIndex) {
-        return ($obj) ? (object) array(
-          'valid' => FALSE,
-          'reason' => 'There is no @ sign in the address.'
-        ) : FALSE;
+        return validate(FALSE, 'There is no @ sign in the address.', $obj);
       } else {
         $domain = substr($email, $atIndex+1);
         $local = substr($email, 0, $atIndex);
         $localLen = strlen($local);
         $domainLen = strlen($domain);
         if ($localLen < 1 || $localLen > 64) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The local part of the address is too long.'
-          ) : FALSE;
+          return validate(FALSE, 'The local part of the address is too long.', $obj);
         } else if ($domainLen < 1 || $domainLen > 255) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The domain part of the address is too long.'
-          ) : FALSE;
+          return validate(FALSE, 'The domain part of the address is too long.', $obj);
         } else if ($local[0] == '.' || $local[$localLen-1] == '.') {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The local part of the address can\'t start or end with a dot.'
-          ) : FALSE;
+          return validate(FALSE, 'The local part of the address can\'t start or end with a dot.', $obj);
         } else if (preg_match('/\\.\\./', $local)) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The local part of the address has two dots in a row.'
-          ) : FALSE;
+          return validate(FALSE, 'The local part of the address has two dots in a row.', $obj);
         } else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The domain part of the address contains invalid characters.'
-          ) : FALSE;
+          return validate(FALSE, 'The domain part of the address contains invalid characters.', $obj);
         } else if (preg_match('/\\.\\./', $domain)) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'The domain part of the address has two dots in a row.'
-          ) : FALSE;
+          return validate(FALSE, 'The domain part of the address has two dots in a row.', $obj);
         } else if (!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/', str_replace("\\\\","",$local))) {
           if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\","",$local))) {
-            return ($obj) ? (object) array(
-              'valid' => FALSE,
-              'reason' => 'The local part of the address contains invalid characters.'
-            ) : FALSE;
+            return validate(FALSE, 'The local part of the address contains invalid characters.', $obj);
           }
         }
         if ($isValid && !(checkdnsrr($domain,"MX") || checkdnsrr($domain,"A"))) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'It seems that the domain doesn\'t exist.'
-          ) : FALSE;
+          return validate(FALSE, 'It seems that the domain doesn\'t exist.', $obj);
         }
       }
-      return ($obj) ? (object) array(
-        'valid' => TRUE,
-        'reason' => 'The address has been validated.'
-      ) : TRUE;
+      return validate(TRUE, 'The address has been validated.', $obj);
     }
 
     public static function validateUsername($username, $obj = FALSE) {
       if (!preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
-        return ($obj) ? (object) array(
-          'valid' => FALSE, 
-          'reason' => 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.'
-        ) : FALSE;
+        return validate(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
         $person = person('username', $username);
         $login = new auth();
         if ($person && $login->person && $login->person->id == $person->id) {
-          return ($obj) ? (object) array(
-            'valid' => TRUE,
-            'reason' => 'Username is already yours, you didn\'t change it.'
-          ) : TRUE;
+          return validate(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {
-          return ($obj) ? (object) array(
-            'valid' => FALSE,
-            'reason' => 'Username is already taken.'
-          ) : FALSE;
+          return validate(FALSE, 'Username is already taken.', $obj);
         } else {
-          return ($obj) ? (object) array(
-            'valid' => TRUE,
-            'reason' => 'Username is up for grabs.'
-          ) : TRUE;
+          return validate(TRUE, 'Username is up for grabs.', $obj);
         }
       }
     }
-
-/*
-    public function __construct($data, $type = NULL, $search = NULL) {
-      switch ($type) {
-        case 'username':
-          $query = 'select id from person where username = :search';
-          $values[':search'] = $search;
-          $sth = $this->db->select($query, $values);
-          if ($sth) {
-            $id = $sth->fetchColumn();
-          }
-          if ($id) {
-            
-          }
-        break;
-        default:
-          parent::__construct($data, $type);
-        break;
-      }
-    }
-*/
 
   }
 

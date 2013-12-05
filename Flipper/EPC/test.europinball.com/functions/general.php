@@ -54,5 +54,18 @@
       }
     }
   }
-  
+
+  function validate($valid = TRUE, $reason = NULL, $obj = FALSE) {
+    if ($obj) {
+      $return = object():
+      $return->valid = $valid;
+      if ($reason) {
+        $return->reason = $reason;
+      }
+      return $return;
+    } else {
+      return $valid;
+    }
+  }
+
 ?>
