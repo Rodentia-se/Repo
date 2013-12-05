@@ -375,11 +375,11 @@
               warning('Non-existing method given as validator.');
             }
           } else if (method_exists($validators[$prop][0], $validators[$prop][1])) {
-            return call_user_func($validators[$prop][0].'::'.$validators[$prop][1], $value, $obj);
+            return call_user_func($validators[$prop][0]. '::'.$validators[$prop][1], $value, $obj);
           } else {
             warning('Unknown method given as validator.');
           }
-        } else if (is_string($validators[$prop]) {
+        } else if (is_string($validators[$prop])) {
           if (preg_match('/^\/.*\/$/', $validators[$prop])) {
             if (preg_match($validators[$prop], $value)) {
               return validate(TRUE, $prop.' found to be valid.', $obj);
