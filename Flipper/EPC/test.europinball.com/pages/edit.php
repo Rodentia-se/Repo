@@ -49,12 +49,14 @@
         .combobox();
         $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
           if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+alert("twice");
             $("#" + this.id.replace("_combobox", "")).val(0);
             $("#" + this.id.replace("_combobox", "")).change();
           }
         });
         $(".edit").change(function(){
           var input = this;
+          alert("once");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             if (data.success) {
