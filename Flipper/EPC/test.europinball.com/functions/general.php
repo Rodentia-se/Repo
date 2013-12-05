@@ -97,7 +97,7 @@
         case 'nationalteam':
         case 'NationalTeam':
         case 'Nationalteam':
-          $division_id = config::$nationalTeamDivision
+          $division_id = config::$nationalTeamDivision;
         break;
         case 'team':
         case 'Team':
