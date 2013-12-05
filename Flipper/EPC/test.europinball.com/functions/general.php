@@ -39,7 +39,7 @@
       default:
         preDump($text, $title);
         if ($die) {
-          die(($title) ? $title.': '.$text.'. Abort requested.' : $text'. Abort requested.');
+          die(($title) ? $title.': '.$text.'. Abort requested.' : $text.'. Abort requested.');
         }
         return ($valid);
       break;
