@@ -358,10 +358,6 @@
       }
       return $obj;
     }
-    public static $validators = array(
-      'mailAddress' => array('person', 'isEmail'),
-      'username' => array('person', 'isFreeUsername'),
-
     
     public static function  validate($prop, $value = NULL, $obj = FALSE) {
       if (static::$validators[$prop]) {
