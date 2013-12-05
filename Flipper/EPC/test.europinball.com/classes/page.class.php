@@ -86,9 +86,9 @@
     }
 
     public function getFooter() {
+      $footer = self::getDivStart('clearer');
+      $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
-        $footer = self::getDivStart('clearer');
-        $footer .= self::getDivEnd();
         $footer .= self::getDivStart('loginFooter');
           if ($this->loggedin()) {
             $footer .= self::getParagraph('
