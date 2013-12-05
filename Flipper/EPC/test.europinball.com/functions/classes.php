@@ -247,6 +247,10 @@
     return is_subclass_of($group, 'geography');
   }
   
+  function isObj($obj) {
+    return is_subclass_of($obj, 'base');
+  }
+  
   function isId($id) {
     return preg_match('/^[0-9]+$/', $id);
   }
