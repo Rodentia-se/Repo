@@ -235,7 +235,7 @@
     public static function validatePassword($password, $obj = FALSE) {
       if (preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$])[0-9A-Za-z!@#$]{6,50}$/', $password)) {
         return validate(TRUE, 'Password is valid', $obj);
-      } else 
+      } else {
         return validate(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
       }
     }
