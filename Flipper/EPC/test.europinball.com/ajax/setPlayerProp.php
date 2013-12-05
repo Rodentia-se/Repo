@@ -59,7 +59,7 @@
                       $person->setProp($parent.'_id', NULL);
                     }
                   }
-                  $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
+                  $json = success((($id) ? 'Changed '.$prop.' to '.$id : 'Removed '.$prop).' for '.$person->name, $json);
                 } else {
                   $json = error('Property assignment failed', FALSE, TRUE);
                 }
