@@ -3,11 +3,8 @@
   abstract class base implements JsonSerializable {
     
     public static $_db;
-    public static $instances;
-    public static $parents = array();
     public static $selfParent = FALSE;
     public static $parentDepth = 0;
-    public static $count = 0;
 
     public function __construct($data = NULL, $search = NULL, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
@@ -360,6 +357,66 @@
         unset($obj->$field);
       }
       return $obj;
+    }
+    public static $validators = array(
+      'mailAddress' => array('person', 'isEmail'),
+      'username' => array('person', 'isFreeUsername'),
+
+    
+    public static function  validate($prop, $value = NULL, $obj = FALSE) {
+      if (static::$validators[$prop]) {
+        if (is_array($validators[$prop])) {
+          if ($validators[$prop][0] == 'function') {
+            if (function_exists($validators[$prop][1])) {
+              return call_user_func($validators[$prop][1], $value, $obj);
+            } else {
+              warning('Non-existing function given as validator'.);
+            }
+          } else if ($validators[$prop][0] == 'method') {
+            if (method_exists(get_called_class(), $validators[$prop][1])) {
+              return call_user_func(get_called_class()'::'.$validators[$prop][1], $value, $obj);
+            } else {
+              warning('Non-existing method given as validator.');
+            }
+          } else if (method_exists($validators[$prop][0], $validators[$prop][1])) {
+              return call_user_func($validators[$prop][0]'::'.$validators[$prop][1], $value, $obj);
+          } else {
+            warning('Unknown method given as validator.');
+          }
+        } else if (is_string($validators[$prop]) {
+          if (preg_match('/^\/.*\/$/', $validators[$prop])) {
+            if (preg_match($validators[$prop], $value)) {
+              return ($obj) ? (object) array(
+                'valid' => TRUE,
+                'reason' => $prop.' found to be valid.'
+              ) : TRUE;
+            } else {
+              return ($obj) ? (object) array(
+                'valid' => FALSE,
+                'reason' => $prop.' found to be invalid.'
+              ) : FALSE;
+            }
+          }
+        }
+      } else {
+        if ($value === NULL) {
+          if (static::$mandatory && in_array($prop, static::$mandatory))
+            return ($obj) ? (object) array(
+              'valid' => FALSE,
+              'reason' => 'The value is empty'
+            ) : FALSE;
+          } else {
+            return ($obj) ? (object) array(
+              'valid' => TRUE,
+              'reason' => 'The value is empty'
+            ) : TRUE;
+          }
+        }
+      }
+      return ($obj) ? (object) array(
+        'valid' => TRUE,
+        'reason' => 'No validator found'
+      ) : TRUE;
     }
 
   }

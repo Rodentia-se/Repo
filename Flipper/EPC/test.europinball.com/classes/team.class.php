@@ -64,6 +64,10 @@
       }
       return false;
     }
+    
+    public static function validateName() {
+      
+    }
 
   }
 

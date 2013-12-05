@@ -77,6 +77,12 @@
       'gender' => 'genderName'
     );
     
+    public static $validate = array(
+      'mailAddress' => array('person', 'isEmail'),
+      'username' => array('person', 'isFreeUsername'),
+      
+    );
+    
     public function getPlayer($division = NULL) {
       if (get_class($division) == 'division') {
         $division_id = $division->id;
@@ -192,6 +198,97 @@
         default:
           return parent::getLink($type, $anchor, $thumbnail);
         break;
+      }
+    }
+
+    public static function validateEmail($email, $obj = FALSE) {
+      $atIndex = strrpos($email, "@");
+      if (is_bool($atIndex) && !$atIndex) {
+        return ($obj) ? (object) array(
+          'valid' => FALSE,
+          'reason' => 'There is no @ sign in the address.'
+        ) : FALSE;
+      } else {
+        $domain = substr($email, $atIndex+1);
+        $local = substr($email, 0, $atIndex);
+        $localLen = strlen($local);
+        $domainLen = strlen($domain);
+        if ($localLen < 1 || $localLen > 64) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The local part of the address is too long.'
+          ) : FALSE;
+        } else if ($domainLen < 1 || $domainLen > 255) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The domain part of the address is too long.'
+          ) : FALSE;
+        } else if ($local[0] == '.' || $local[$localLen-1] == '.') {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The local part of the address can\'t start or end with a dot.'
+          ) : FALSE;
+        } else if (preg_match('/\\.\\./', $local)) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The local part of the address has two dots in a row.'
+          ) : FALSE;
+        } else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The domain part of the address contains invalid characters.'
+          ) : FALSE;
+        } else if (preg_match('/\\.\\./', $domain)) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'The domain part of the address has two dots in a row.'
+          ) : FALSE;
+        } else if (!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/', str_replace("\\\\","",$local))) {
+          if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\","",$local))) {
+            return ($obj) ? (object) array(
+              'valid' => FALSE,
+              'reason' => 'The local part of the address contains invalid characters.'
+            ) : FALSE;
+          }
+        }
+        if ($isValid && !(checkdnsrr($domain,"MX") || checkdnsrr($domain,"A"))) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'It seems that the domain doesn\'t exist.'
+          ) : FALSE;
+        }
+      }
+      return ($obj) ? (object) array(
+        'valid' => TRUE,
+        'reason' => 'The address has been validated.'
+      ) : TRUE;
+    }
+
+    public static function validateUsername($username, $obj = FALSE) {
+      if (!preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
+        return ($obj) ? (object) array(
+          'valid' => FALSE, 
+          'reason' => 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.'
+        ) : FALSE;
+      } else {
+        $person = person('username', $username);
+        $login = new auth();
+        if ($person && $login->person && $login->person->id == $person->id) {
+          return ($obj) ? (object) array(
+            'valid' => TRUE,
+            'reason' => 'Username is already yours, you didn\'t change it.'
+          ) : TRUE;
+        } else if ($person) {
+          return ($obj) ? (object) array(
+            'valid' => FALSE,
+            'reason' => 'Username is already taken.'
+          ) : FALSE;
+        } else {
+          return ($obj) ? (object) array(
+            'valid' => TRUE,
+            'reason' => 'Username is up for grabs.'
+          ) : TRUE;
+        }
       }
     }
 
