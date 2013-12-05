@@ -69,7 +69,6 @@
             }
           } else {
             $validator = person::validate($prop, $value, TRUE);
-            debug($validator);
             if ($validator->valid) {
               $change = $person->setProp($prop, $value);
               if ($change) {

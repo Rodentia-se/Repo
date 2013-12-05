@@ -15,57 +15,67 @@
 
   function preDump($obj, $title = NULL) {
     echo '<pre>';
-    echo ($title) ? $title.':' : '';
+    echo ($title) ? $title.': ' : '';
     var_dump($obj);
     echo '</pre>';
   }
   
+  function output($text = NULL, $title = NULL, $props = NULL, $valid = TRUE, $type = FALSE, $die = FALSE) {
+    switch ($type) {
+      case 'json':
+      case 'obj':
+      case 'array':
+        $return = array('valid' => false, 'reason' => $text);
+        if ($props) {
+          foreach ($props as $prop => $value) {
+            $return->{$prop} = $value;
+          }
+        }
+        return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);
+      break;
+      case 'text':
+        return ($title) ? $title.': '.$text : $text;
+      break;
+      case 'bool':
+        return ($valid);
+      break;
+      case 'dump':
+      default:
+        preDump($text, $title);
+        if ($die) {
+          die(($title) ? $title.': '.$text.'. Abort requested.' : $text'. Abort requested.');
+        }
+        return ($valid);
+      break;
+    }
+  }
+  
   function warning($text) {
-    preDump($text,'WARNING');
+    return output($text, 'WARNING');
   }
 
-  function error($text, $die = FALSE, $json = FALSE) {
-    if ($json) {
-      $error = (object) array('success' => false, 'reason' => $text);
-      return json_encode($error);
-    } else {
-      preDump($text,'ERROR');
-      if ($die) {
-        die('Abort requested.');
-      }
-    }
+  function error($text = NULL, $props = NULL, $json = FALSE, $die = FALSE) {
+    return output($test, 'ERROR', $props, FALSE, (($json) ? 'json' : 'dump'), $die);
   }
 
-  function success($text = NULL, $props = NULL) {
-    $json = (object) array('success' => true, 'reason' => $text);
-    if ($props) {
-      foreach ($props as $prop => $value) {
-        $json->{$prop} = $value;
-      }
-    }
-    return $json;
+  function failure($text = NULL, $props = NULL, $json = TRUE) {
+    return output($text, 'FAILURE', $props, FALSE, (($json) ? 'json' : 'dump'));
+  }
+
+  function success($text = NULL, $props = NULL, $json = TRUE) {
+    return output($text, 'SUCCESS', $props, TRUE, (($json) ? 'json' : 'dump'));
   }
   
   function debug($text, $die = FALSE) {
     if (config::$debug) {
-      preDump($text,'DEBUG');
-      if ($die) {
-        die('Abort requested.');
-      }
+      return output($text, 'DEBUG', NULL, NULL, 'dump', $die);
+    } else {
+      return FALSE;
     }
   }
 
   function validate($valid = TRUE, $reason = NULL, $obj = FALSE) {
-    if ($obj) {
-      $return = new stdClass();
-      $return->valid = $valid;
-      if ($reason) {
-        $return->reason = $reason;
-      }
-      return $return;
-    } else {
-      return $valid;
-    }
+    return output($reason, 'VALIDATION', NULL, $valid, (($obj) ? 'object' : 'bool'));
   }
   
   function getCurrentPerson() {
