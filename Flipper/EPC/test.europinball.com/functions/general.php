@@ -13,10 +13,6 @@
     return preg_match('/^[0-9]+$/', $id);
   }
   
-  function isGroup($id) {
-    
-  }
-
   function preDump($obj, $title = NULL) {
     echo '<pre>';
     echo ($title) ? $title.': ' : '';
