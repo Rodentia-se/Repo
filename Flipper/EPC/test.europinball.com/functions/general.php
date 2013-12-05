@@ -84,7 +84,7 @@
   }
   
   function getDivision($division) {
-    if (get_class($division) == 'division' && $division->id) {
+    if (is_object($division) && get_class($division) == 'division' && $division->id) {
       $division_id = $division->id;
     } else if (is_object($division) && $division->id) {
       $division_id = $division->id;
