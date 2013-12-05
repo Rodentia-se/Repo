@@ -21,7 +21,7 @@
           if (substr($prop, -3) == '_id') {
             if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
-              $json['parents'] = $class::_getParents(FALSE);
+              $json['parents'] = (is_subclass_of($class, 'geography')) ? $class::_getParents(FALSE) : FALSE;
               if ($id > 0) {
                 $obj = $class($id, NULL, 0);
                 if ($obj) {
@@ -70,7 +70,7 @@
           } else {
             $change = $person->setProp($prop, $value);
             if ($change) {
-              $json = success($prop.' changed to '.$id.' for '.$person->name);
+              $json = success($prop.' changed to '.$value.' for '.$person->name);
             } else {
               $json = error('Property assignment failed', FALSE, TRUE);
             }
