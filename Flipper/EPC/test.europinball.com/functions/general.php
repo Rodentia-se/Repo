@@ -74,12 +74,12 @@
   }
 
   function getCurrentPlayer() {
-    $person = getCurrentPerson() 
+    $person = getCurrentPerson();
     return ($person) ? $person->getPlayer() : NULL;
   }
   
   function getCurrentTeam() {
-    $person = getCurrentPerson() 
+    $person = getCurrentPerson();
     return ($person) ? $person->getTeam() : NULL;
   }
   
