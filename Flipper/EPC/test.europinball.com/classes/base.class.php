@@ -366,7 +366,7 @@
             if (function_exists($validators[$prop][1])) {
               return call_user_func($validators[$prop][1], $value, $obj);
             } else {
-              warning('Non-existing function given as validator'.);
+              warning('Non-existing function given as validator.');
             }
           } else if ($validators[$prop][0] == 'method') {
             if (method_exists(get_called_class(), $validators[$prop][1])) {
