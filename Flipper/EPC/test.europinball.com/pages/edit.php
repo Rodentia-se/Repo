@@ -15,11 +15,11 @@
       $page->forms = TRUE;
       $page->addScript('
         $(".combobox").change(function(){
-          var sel = this;
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: sel.id, value: $(sel).val()})
+          var el = this;
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
             if (data.success) {
-              $("#" + sel.id + "_combobox").val($(sel).children(":selected").text());
+              $("#" + el.id + "_combobox").val($(el).children(":selected").text());
               if (data.parents) {
                 $.each(data.parents, function(key, geo) {
                   if (!stop) {
@@ -57,21 +57,6 @@ alert("twice");
         $(".edit").change(function(){
           var input = this;
           alert("once");
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
-          .done(function(data) {
-            if (data.success) {
-              $(input).data("previous", $(input).val());
-            } else {
-              $(input).val($(input).data("previous"));
-            }
-          })
-          .fail(function(jqHXR,status,error) {
-            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
-            debugOut(jqHXR.responseText);
-          });
-        });
-        $(".edit").change(function(){
-          var input = this;
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             if (data.success) {

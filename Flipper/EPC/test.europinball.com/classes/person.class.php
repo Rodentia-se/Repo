@@ -170,7 +170,7 @@
             '.(($classics) ? page::getInput($this->classics, 'classics', 'check', 'checkbox', 'Classics') : '').'
             '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'check', 'checkbox', '80s') : '').'
           </div>
-          <div>'.page::getInput($this->birthDate, 'birthDate', 'date', 'text', 'Born').'</div>
+          <div>'.page::getInput($this->birthDate, 'birthDate', 'edit date', 'text', 'Born').'</div>
         </div>
       ';
       return $content;
