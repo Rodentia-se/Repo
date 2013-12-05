@@ -399,12 +399,12 @@
           if (static::$mandatory && in_array($prop, static::$mandatory))
             return ($obj) ? (object) array(
               'valid' => FALSE,
-              'reason' => 'The value is empty'
+              'reason' => 'The value is mandatory.'
             ) : FALSE;
           } else {
             return ($obj) ? (object) array(
               'valid' => TRUE,
-              'reason' => 'The value is empty'
+              'reason' => 'The value is empty and not mandatory.'
             ) : TRUE;
           }
         } else {

@@ -77,9 +77,9 @@
       'gender' => 'genderName'
     );
     
-    public static $validate = array(
-      'mailAddress' => array('person', 'isEmail'),
-      'username' => array('person', 'isFreeUsername'),
+    public static $validators = array(
+      'mailAddress' => array('person', 'validateEmail'),
+      'username' => array('person', 'validateUsername')
       
     );
     
