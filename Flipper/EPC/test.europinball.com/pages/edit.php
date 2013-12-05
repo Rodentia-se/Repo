@@ -36,9 +36,9 @@
                   }
                 });
               }
-              $(sel).data("previous", $(sel).val());
+              $(el).data("previous", $(el).val());
             } else {
-              $(sel).val($(sel).data("previous"));
+              $(el).val($(el).data("previous"));
             }
           })
           .fail(function(jqHXR,status,error) {
