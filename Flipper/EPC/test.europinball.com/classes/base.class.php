@@ -394,7 +394,7 @@
         }
       } else {
         if ($value === NULL) {
-          if (static::$mandatory && in_array($prop, static::$mandatory))
+          if (static::$mandatory && in_array($prop, static::$mandatory)) {
             return validate(FALSE, 'The value is mandatory.', $obj);
           } else {
             return validate(TRUE, 'The value is empty and not mandatory.', $obj);
