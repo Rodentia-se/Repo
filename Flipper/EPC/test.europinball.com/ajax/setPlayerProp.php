@@ -45,7 +45,7 @@
                         }
                       }
                     }
-                    $json = success('Changed '.$prop.' to '.$id.' for '.$person->name, $json);
+                    $json = success((($id) ? 'Changed '.$prop.' to '.$id : 'Removed '.$prop).' for '.$person->name, $json);
                   } else {
                     $json = error('Property assignment failed', FALSE, TRUE);
                   }
@@ -72,7 +72,7 @@
             if ($validator->valid) {
               $change = $person->setProp($prop, $value);
               if ($change) {
-                $json = success('Changed '.$prop.' to '.$value.' for '.$person->name);
+                $json = success((($value) ? 'Changed '.$prop.' to '.$value : 'Removed '.$prop).' for '.$person->name);
               } else {
                 $json = error('Property assignment failed', FALSE, TRUE);
               }
