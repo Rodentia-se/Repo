@@ -84,9 +84,7 @@
   }
   
   function getDivision($division) {
-    if (is_object($division) && get_class($division) == 'division' && $division->id) {
-      $division_id = $division->id;
-    } else if (is_object($division) && $division->id) {
+    if (is_object($division) && $division->id) {
       $division_id = $division->id;
     } else if (is_int($division)) {
       $division_id = $division;
@@ -123,9 +121,7 @@
   }
   
   function getTournament($tournament) {
-    if (get_class($tournament) == 'tournament' && $tournament->id) {
-      $tournament_id = $tournament->id;
-    } else if (is_object($tournament) && $tournament->id) {
+    if (is_object($tournament) && $tournament->id) {
       $tournament_id = $tournament->id;
     } else if (isId($tournament)) {
       $tournament_id = $tournament;
