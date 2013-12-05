@@ -407,6 +407,12 @@
               'reason' => 'The value is empty'
             ) : TRUE;
           }
+        } else {
+          if (method_exists(get_called_class(), 'validate'.ucfirst($prop))) {
+            return call_user_func(get_called_class().'::validate'.ucfirst($prop), $value, $obj);
+          } else if (function_exists('validate'.ucfirst($prop))) {
+            return call_user_func('validate'.ucfirst($prop), $value, $obj);
+          }
         }
       }
       return ($obj) ? (object) array(
