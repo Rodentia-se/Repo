@@ -65,7 +65,7 @@
                 }
               }
             } else {
-              $json = error('Malformed value detected', FALSE, TRUE);
+              $json = error('Malformed value detected', FALSE, TRUE); 
             }
           } else {
             $validator = person::validate($prop, $value, TRUE);

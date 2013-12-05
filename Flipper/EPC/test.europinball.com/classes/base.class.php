@@ -361,35 +361,35 @@
     
     public static function  validate($prop, $value = NULL, $obj = FALSE) {
       if (static::$validators[$prop]) {
-        if (is_array($validators[$prop])) {
-          if ($validators[$prop][0] == 'function') {
-            if (function_exists($validators[$prop][1])) {
-              return call_user_func($validators[$prop][1], $value, $obj);
+        if (is_array(static::$validators[$prop])) {
+          if (static::$validators[$prop][0] == 'function') {
+            if (function_exists(static::$validators[$prop][1])) {
+              return call_user_func(static::$validators[$prop][1], $value, $obj);
             } else {
               warning('Non-existing function given as validator.');
             }
-          } else if ($validators[$prop][0] == 'method') {
-            if (method_exists(get_called_class(), $validators[$prop][1])) {
-              return call_user_func(get_called_class().'::'.$validators[$prop][1], $value, $obj);
+          } else if (static::$validators[$prop][0] == 'method') {
+            if (method_exists(get_called_class(), static::$validators[$prop][1])) {
+              return call_user_func(get_called_class().'::'.static::$validators[$prop][1], $value, $obj);
             } else {
               warning('Non-existing method given as validator.');
             }
-          } else if (method_exists($validators[$prop][0], $validators[$prop][1])) {
-            return call_user_func($validators[$prop][0]. '::'.$validators[$prop][1], $value, $obj);
+          } else if (method_exists(static::$validators[$prop][0], static::$validators[$prop][1])) {
+            return call_user_func(static::$validators[$prop][0]. '::'.static::$validators[$prop][1], $value, $obj);
           } else {
             warning('Unknown method given as validator.');
           }
-        } else if (is_string($validators[$prop])) {
-          if (preg_match('/^\/.*\/$/', $validators[$prop])) {
-            if (preg_match($validators[$prop], $value)) {
+        } else if (is_string(static::$validators[$prop])) {
+          if (preg_match('/^\/.*\/$/', static::$validators[$prop])) {
+            if (preg_match(static::$validators[$prop], $value)) {
               return validate(TRUE, $prop.' found to be valid.', $obj);
             } else {
               return validate(FALSE, $prop.' found to be invalid.', $obj);
             }
-          } else if (method_exists(get_called_class(), $validators[$prop])) {
-            return call_user_func(get_called_class().'::'.$validators[$prop], $value, $obj);
-          } else if (function_exists($validators[$prop])) {
-            return call_user_func($validators[$prop], $value, $obj);
+          } else if (method_exists(get_called_class(), static::$validators[$prop])) {
+            return call_user_func(get_called_class().'::'.static::$validators[$prop], $value, $obj);
+          } else if (function_exists(static::$validators[$prop])) {
+            return call_user_func(static::$validators[$prop], $value, $obj);
           }
         }
       } else {
