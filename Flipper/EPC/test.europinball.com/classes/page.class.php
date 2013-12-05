@@ -87,7 +87,9 @@
 
     public function getFooter() {
       if (!$this->loginAdded) {
-        $footer = self::getDivStart('loginFooter');
+        $footer = self::getDivStart('clearer');
+        $footer .= self::getDivEnd();
+        $footer .= self::getDivStart('loginFooter');
           if ($this->loggedin()) {
             $footer .= self::getParagraph('
               <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
