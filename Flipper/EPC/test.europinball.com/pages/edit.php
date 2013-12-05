@@ -56,7 +56,6 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          alert("once");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             if (data.success) {
