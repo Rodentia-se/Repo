@@ -45,7 +45,7 @@
                         }
                       }
                     }
-                    $json = success($prop.' changed to '.$id.' for '.$person->name, $json);
+                    $json = success('Changed '.$prop.' to '.$id.' for '.$person->name, $json);
                   } else {
                     $json = error('Property assignment failed', FALSE, TRUE);
                   }
@@ -68,15 +68,20 @@
               $json = error('Malformed value detected', FALSE, TRUE);
             }
           } else {
-            $change = $person->setProp($prop, $value);
-            if ($change) {
-              $json = success($prop.' changed to '.$value.' for '.$person->name);
+            $validator = person::validate($prop, $value, TRUE);
+            if ($validator->valid) {
+              $change = $person->setProp($prop, $value);
+              if ($change) {
+                $json = success('Changed '.$prop.' to '.$value.' for '.$person->name);
+              } else {
+                $json = error('Property assignment failed', FALSE, TRUE);
+              }
             } else {
-              $json = error('Property assignment failed', FALSE, TRUE);
+              $json = error($validator->reason, FALSE, TRUE);
             }
           }
         } else {
-          $json = error('Äuthorization failed', FALSE, TRUE);
+          $json = error('Authorization failed', FALSE, TRUE);
         }
       } else {
         $json = error('Could not identify the target person', FALSE, TRUE);

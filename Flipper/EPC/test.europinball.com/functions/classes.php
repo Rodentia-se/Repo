@@ -138,8 +138,7 @@
 
   function person($data = NULL, $search = NULL, $depth = NULL) {
     if ($data == 'login' || $data == 'auth') {
-      $login = new auth();
-      $obj = $login->person;
+      $obj = getCurrentPerson();
     } else {
       $obj = new person($data, $search, $depth);
     }

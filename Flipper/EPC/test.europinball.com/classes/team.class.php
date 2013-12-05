@@ -55,21 +55,41 @@
     public static $validators = array(
     );
 
-    public function getMembers() {
-      $query = player::$select.'
-        left join teamPlayer tp on tp.player_id = o.id
+    public function getMembers($division = NULL) {
+      $division = getDivision($division);
+      $query = person::$select.'
+        left join teamPerson tp on tp.person_id = o.id
+        left join team t on tp.team_id = t.id
         where tp.team_id = :id
+          and t.tournamentDivision_id = :division
       ';
       $values[':id'] = $this->id;
-      $members = $this->db->select($query, $values, 'player');
+      $values[':division'] = $division->id;
+      $members = $this->db->select($query, $values, 'person');
       if (count($members) > 0) {
         return $members;
       }
       return false;
     }
     
-    public static function validateName() {
-      
+    public static function validateName($name, $obj = FALSE) {
+      if (!$name) {
+        return validate(TRUE, 'Nothing to validate.', $obj);
+      }
+      if (!preg_match('/^[a-zA-ZåäöÅÄÖüÛïÎëÊÿŸçßéÉæøÆØáÁóÓàÀČčŁłĳŠšŮ0-9 \-_#\$]{3,32}$/', $name)) {
+        return validate(FALSE, 'The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores.', $obj);
+      } else {
+        $team = team('name', $name);
+        if ($team) {
+          $currentTeam = getCurrentTeam();
+          if ($team->id == $currentTeam->id) {
+            return validate(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
+          } else {
+            return validate(FALSE, 'That name is already taken.', $obj);
+          }
+        }
+      }
+      return validate(TRUE, 'That name is up for grabs.', $obj);
     }
 
   }

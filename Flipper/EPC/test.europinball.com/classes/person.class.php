@@ -78,31 +78,25 @@
     );
     
     public static $validators = array(
+      'telephoneNumber' => '/^[0-9 \-\+\(\)]{6,}$/',
+      'mobileNumber' => '/^[0-9 \-\+\(\)]{6,}$/',
+      'birthDate' => 'validateDate',
+      'dateRegistered' => 'validateDate',
+      'shortName' => '/^[a-zA-Z0-9 \-]{1,3}$/',
+      'initials' => '/^[a-zA-Z0-9 \-]{1,3}$/',
+      'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
     );
     
     public function getPlayer($division = NULL) {
-      if (get_class($division) == 'division') {
-        $division_id = $division->id;
-      } else if (is_int($division)) {
-        $division_id = $division;
-      } else {
-        $division_id = config::$mainDivision;
-      }
+      $division = getDivision($division);
       return player(array(
         'person_id' => $this->id,
-        'tournamentDivision_id' => $division_id
+        'tournamentDivision_id' => $division->id
       ), TRUE);
     }
 
     public function addPlayer($division = NULL) {
-      if (get_class($division) == 'division') {
-        $division_id = $division->id;
-      } else if (is_int($division)) {
-        $division_id = $division;
-      } else {
-        $division_id = config::$mainDivision;
-      }
-      $division = division($division_id);
+      $division = getDivision($division);
       $player = player($this->getFlat(), NULL, 0);
       unset($player->id);
       $player->tournamentDivision_id = $division->id;
@@ -113,14 +107,7 @@
     }
     
     public function getEdit($title = 'Edit profile', $tournament = NULL) {
-      if (is_object($tournament) && $tournament->id) {
-        $tournament_id = $tournament->id;
-      } else if (isId($tournament)) {
-        $tournament_id = $tournament;
-      } else {
-        $tournament_id = config::$activeTournament;
-      }
-      $tournament = tournament($tournament_id);
+      $tournament = getTournament($tournament);
       $divisions = $tournament->getDivisions();
       foreach ($divisions as $division) {
         $player = $this->getPlayer($division);
@@ -148,8 +135,7 @@
       $regions = regions('all');
       $countries = countries('all');
       $continents = continents('all');
-      
-      $content = '
+      return '
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
@@ -176,7 +162,6 @@
           <div>'.page::getInput($this->birthDate, 'birthDate', 'edit date', 'text', 'Born').'</div>
         </div>
       ';
-      return $content;
     }
 
     public function setUsername($username) {
@@ -236,8 +221,8 @@
         return validate(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
         $person = person('username', $username);
-        $login = new auth();
-        if ($person && $login->person && $login->person->id == $person->id) {
+        $currentPerson = getCurrentPerson();
+        if ($person && $currentPerson && $currentPerson->id == $person->id) {
           return validate(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {
           return validate(FALSE, 'Username is already taken.', $obj);
@@ -245,6 +230,26 @@
           return validate(TRUE, 'Username is up for grabs.', $obj);
         }
       }
+    }
+    
+    public static function validatePassword($password, $obj = FALSE) {
+      if (preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$])[0-9A-Za-z!@#$]{6,50}$/', $password)) {
+        return validate(TRUE, 'Password is valid', $obj);
+      } else 
+        return validate(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
+      }
+    }
+    
+    public function getTeam($division = NULL) {
+      $division = getDivision($division);
+      $query = team::$select.'
+        left join teamPerson tp on tp.team_id = o.id
+        where tp.person_id = :id
+          and o.tournamentDivision_id = :division
+      ';
+      $values[':id'] = $this->id;
+      $values[':division'] = $division->id;
+      return $this->db->select($query, $values, 'team');
     }
 
   }
