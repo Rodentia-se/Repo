@@ -63,6 +63,9 @@ alert("twice");
           .done(function(data) {
             $(input).tooltip("option", "content", data.reason)
             .tooltip("open");
+            setTimeout(function(){
+              $(input).tooltip("destroy")
+            }, 3000);
             if (data.success) {
               $(input).data("previous", $(input).val());
             } else {
@@ -70,8 +73,11 @@ alert("twice");
             }
           })
           .fail(function(jqHXR,status,error) {
-            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
-            debugOut(jqHXR.responseText);
+            $(input).tooltip("option", "content", "Fail: S: " + status + " E: " + error)
+            .tooltip("open");
+            setTimeout(function(){
+              $(input).tooltip("destroy")
+            }, 3000);
           });
         });
         $(".check").change(function(){
