@@ -5,6 +5,8 @@
     public static $_db;
     public static $selfParent = FALSE;
     public static $parentDepth = 0;
+    public static $validators = array();
+    public static $mandatory = array();
 
     public function __construct($data = NULL, $search = NULL, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
