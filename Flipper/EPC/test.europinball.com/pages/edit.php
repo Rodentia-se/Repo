@@ -56,7 +56,7 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          var tooltip = $(el).parent().tooltip({
+          var tooltip = $(input).parent().tooltip({
             items: "[data-reason]",
             content: "Updating the database..."
           });
