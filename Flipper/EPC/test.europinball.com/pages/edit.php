@@ -23,13 +23,6 @@
             showTooltip(combobox, data.reason, 45);
             if (data.valid) {
               $(combobox).val($(el).children(":selected").text())
-              .keypress(function(event){
-                if (event.which == 13 && $("ul.ui-autocomplete").is(":visible")) {
-                  var li = $("li.ui-menu-item:first")[0];
-                  var item = $(li).data("item.autocomplete");
-                  el.data("autocomplete").options.select(event, {item: item});
-                }
-              });
               if (data.parents) {
                 $.each(data.parents, function(key, geo) {
                   if (!stop) {
@@ -61,6 +54,13 @@
 alert("twice");
             $("#" + this.id.replace("_combobox", "")).val(0);
             $("#" + this.id.replace("_combobox", "")).change();
+          }
+        })
+        .keypress(function(event){
+          if (event.which == 13 && $("ul.ui-autocomplete").is(":visible")) {
+            var li = $("li.ui-menu-item:first")[0];
+            var item = $(li).data("item.autocomplete");
+            $(this).data("autocomplete").options.select(event, {item: item});
           }
         });
         $(".edit").change(function(){
