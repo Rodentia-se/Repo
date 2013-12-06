@@ -183,7 +183,7 @@
       }
     }
 
-    public static function validateEmail($email, $obj = FALSE) {
+    public static function validateMailAddress($email, $obj = FALSE) {
       $atIndex = strrpos($email, "@");
       if (is_bool($atIndex) && !$atIndex) {
         return validated(FALSE, 'There is no @ sign in the address.', $obj);
