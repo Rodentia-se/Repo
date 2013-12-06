@@ -43,10 +43,9 @@
   $page->submit(FALSE, TRUE);
   $obj = person(1);
 */
-  $objs = continents('all');
-  debug($objs);
-  $objs->order(); 
-  debug($objs);
+  $tournament = tournament(config::$activeTournament);
+  $divisions = $tournament->getDivisions();
+  debug($divisions);
 /*
 echo 'hej';
 foreach($objs as $obj) {
