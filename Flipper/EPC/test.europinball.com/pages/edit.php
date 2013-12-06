@@ -59,7 +59,7 @@ alert("twice");
           if (input.id == "shortName") {
             $(input).val($(input).val().toUpperCase());
           } 
-          if (tooltipClose) {
+          if (typeof tooltipClose != "undefined") {
             clearTimeout(tooltipClose);
           }
           $(input).tooltip({
