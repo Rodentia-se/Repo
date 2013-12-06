@@ -105,13 +105,23 @@
               }
             } else if (in_array($prop, config::$divisions)) {
               $tournament = tournament(config::$activeTournament);
+              debug($tournament->id);
               if ($tournament) {
                 $division = $tournament->getDivision($prop);
+              debug($division->id);
                 if ($division) {
                   if ($value == 1) {
                     $change = $person->addPlayer($division);
                     if ($change) {
-                      success('Added '.$person->name.' to the '.$division->name);
+                      $player = player(array(
+                        'person_id' => $person->id, 
+                        'tournamentDivision_id' => $division->id
+                      ));
+                      if ($player) {
+                        success('Added '.$person->name.' to the '.$division->name);
+                      } else {
+                        failure('Could not add '.$person->name.' to the '.$division->name);
+                      }
                     } else {
                       failure('Could not add '.$person->name.' to the '.$division->name);
                     }
@@ -120,7 +130,15 @@
                     if ($player) {
                       $change = $player->delete();
                       if ($change) {
-                        success('Removed '.$person->name.' from the '.$division->name);
+                        $player = player(array(
+                          'person_id' => $person->id, 
+                          'tournamentDivision_id' => $division->id
+                        ));
+                        if (!$player) {
+                          success('Rmoved '.$person->name.' from the '.$division->name);
+                        } else {
+                          failure('Could not remove '.$person->name.' from the '.$division->name);
+                        }
                       } else {
                         failure('Could not remove '.$person->name.' from the '.$division->name);
                       }
