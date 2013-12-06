@@ -239,19 +239,18 @@
     return new volunteers($data, $search);
   }
 
-  function isGroup($group) {
-    $group = (is_string($group)) ? new $group() : $group;
-    }
+  function isGroup($group, $nostring = FALSE) {
+    $group = (is_string($group) && !$nostring) ? new $group() : $group;
     return $group instanceof group;
   }
 
-  function isGeo($obj) {
-    $obj = (is_string($obj)) ? new $obj() : $obj;
+  function isGeo($obj, $nostring = FALSE) {
+    $obj = (is_string($obj) && !$nostring) ? new $obj() : $obj;
     return $obj instanceof geography;
   }
   
-  function isObj($obj) {
-    $obj = (is_string($obj)) ? new $obj() : $obj;
+  function isObj($obj, $nostring = FALSE) {
+    $obj = (is_string($obj) && !$nostring) ? new $obj() : $obj;
     return $obj instanceof base;
   }
   

@@ -22,12 +22,16 @@
       case 'obj':
       case 'object':
       case 'array':
-        $return = array('valid' => false, 'reason' => $text);
+        $return = array(
+          'valid' => false, 
+          'reason' => $text
+        );
         if ($props) {
           foreach ($props as $prop => $value) {
             $return[$prop] = $value;
           }
         }
+        debug((object) $return, TRUE);
         return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);
       break;
       case 'text':
@@ -147,9 +151,9 @@
   }
   
   function validate($class, $prop, $value, $obj = NULL) {
-    if (isObj($class)) {
+    if (isObj($class, TRUE)) {
       return call_user_func(get_class($obj).'::validate', $prop, $value, $obj);
-    } else {
+    } else if (isObj($class) {
       return call_user_func($class.'::validate', $prop, $value, $obj);
     }
   }
