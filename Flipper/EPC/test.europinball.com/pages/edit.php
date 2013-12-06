@@ -14,15 +14,14 @@
       $page->combobox = TRUE;
       $page->forms = TRUE;
       $page->addScript('
-        $(document).tooltip({
-            items: "[data-reason]",
-            content: "Updating the database..."
-          });
         $(".combobox").change(function(){
           var el = this;
-          var tooltip = $(el).tooltip({
-            content: "Updating the database..."
+          var tooltip = $(el).parent().tooltip({
+            items: "[data-reason]",
+            content: "Updating the database...",
+            disable: true,
           });
+          tooltip.tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
             tooltip.content = data.reason;
