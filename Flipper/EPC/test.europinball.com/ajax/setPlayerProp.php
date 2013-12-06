@@ -56,7 +56,7 @@
                 }
               } else {
                 if ($person->setProp($prop, NULL)) {
-                  if (isGeo($obj)) {
+                  if (isGeo($class)) {
                     $json['parents'] = $class::_getParents(FALSE);
                     if ($json['parents']) {
                       foreach ($json['parents'] as $parent) {
