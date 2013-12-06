@@ -21,26 +21,28 @@
           if (substr($prop, -3) == '_id') {
             if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
-              $json['parents'] = (is_subclass_of($class, 'geography')) ? $class::_getParents(FALSE) : FALSE;
               if ($id > 0) {
                 $obj = $class($id, NULL, 0);
                 if ($obj) {
-                  $parent = $obj->getParent();
-                  if ($parent) {
-                    $json['parent_obj'] = get_class($parent);
-                    $json['parent_id'] = $parent->id;
-                  }
                   if ($person->setProp($prop, $id)) {
-                    if ($json['parents']) {
-                      foreach ($json['parents'] as $parent) {
-                        if (!$stop) {
-                          if($obj && $obj->{$parent.'_id'}) {
-                            if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
-                              $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                    if (isGeo($obj)) {
+                      $json['parents'] = $class::_getParents(FALSE);
+                      $parent = $obj->getParent();
+                      if ($parent) {
+                        $json['parent_obj'] = get_class($parent);
+                        $json['parent_id'] = $parent->id;
+                      }
+                      if ($json['parents']) {
+                        foreach ($json['parents'] as $parent) {
+                          if (!$stop) {
+                            if($obj && $obj->{$parent.'_id'}) {
+                              if ($obj->{$parent.'_id'} != $person->{$parent.'_id'}) {
+                                $person->setProp($parent.'_id', $obj->{$parent.'_id'});
+                              }
+                              $stop = TRUE;
+                            } else if ($person->{$parent.'_id'}) {
+                              $person->setProp($parent.'_id', NULL);
                             }
-                            $stop = TRUE;
-                          } else if ($person->{$parent.'_id'}) {
-                            $person->setProp($parent.'_id', NULL);
                           }
                         }
                       }

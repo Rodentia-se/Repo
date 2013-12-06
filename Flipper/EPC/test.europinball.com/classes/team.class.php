@@ -74,22 +74,22 @@
     
     public static function validateName($name, $obj = FALSE) {
       if (!$name) {
-        return validate(TRUE, 'Nothing to validate.', $obj);
+        return validated(TRUE, 'Nothing to validate.', $obj);
       }
       if (!preg_match('/^[a-zA-ZåäöÅÄÖüÛïÎëÊÿŸçßéÉæøÆØáÁóÓàÀČčŁłĳŠšŮ0-9 \-_#\$]{3,32}$/', $name)) {
-        return validate(FALSE, 'The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores.', $obj);
+        return validated(FALSE, 'The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores.', $obj);
       } else {
         $team = team('name', $name);
         if ($team) {
           $currentTeam = getCurrentTeam();
           if ($team->id == $currentTeam->id) {
-            return validate(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
+            return validated(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
           } else {
-            return validate(FALSE, 'That name is already taken.', $obj);
+            return validated(FALSE, 'That name is already taken.', $obj);
           }
         }
       }
-      return validate(TRUE, 'That name is up for grabs.', $obj);
+      return validated(TRUE, 'That name is up for grabs.', $obj);
     }
 
   }

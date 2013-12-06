@@ -240,15 +240,19 @@
   }
 
   function isGroup($group) {
-    return is_subclass_of($group, 'group');
+    $group = (is_string($group)) ? new $group() : $group;
+    }
+    return $group instanceof group;
   }
 
-  function isGeo($group) {
-    return is_subclass_of($group, 'geography');
+  function isGeo($obj) {
+    $obj = (is_string($obj)) ? new $obj() : $obj;
+    return $obj instanceof geography;
   }
   
   function isObj($obj) {
-    return is_subclass_of($obj, 'base');
+    $obj = (is_string($obj)) ? new $obj() : $obj;
+    return $obj instanceof base;
   }
   
   function isId($id) {

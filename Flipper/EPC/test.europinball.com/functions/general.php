@@ -71,7 +71,7 @@
     }
   }
 
-  function validate($valid = TRUE, $reason = NULL, $obj = FALSE) {
+  function validated($valid = TRUE, $reason = NULL, $obj = FALSE) {
     return output($reason, 'VALIDATION', NULL, $valid, (($obj) ? 'object' : 'bool'));
   }
   
@@ -140,10 +140,17 @@
   
   function validateDate($date, $obj = FALSE) {
     if (!$date || checkdate(preg_replace('/00/','01',substr($date, 5,2)), preg_replace('/00/','01',substr($date, 8,2)), substr($date, 0,4))) {
-      return validate(TRUE, 'The date is valid.', $obj);
+      return validated(TRUE, 'The date is valid.', $obj);
     } else {
-      return validate(FALSE, 'The date is invalid.', $obj);
+      return validated(FALSE, 'The date is invalid.', $obj);
     }
   }
-
+  
+  function validate($class, $prop, $value, $obj = NULL) {
+    if (isObj($class)) {
+      return call_user_func(get_class($obj).'::validate', $prop, $value, $obj);
+    } else {
+      return call_user_func($class.'::validate', $prop, $value, $obj);
+    }
+  }
 ?>

@@ -382,9 +382,9 @@
         } else if (is_string(static::$validators[$prop])) {
           if (preg_match('/^\/.*\/$/', static::$validators[$prop])) {
             if (preg_match(static::$validators[$prop], $value)) {
-              return validate(TRUE, $prop.' found to be valid.', $obj);
+              return validated(TRUE, $prop.' found to be valid.', $obj);
             } else {
-              return validate(FALSE, $prop.' found to be invalid.', $obj);
+              return validated(FALSE, $prop.' found to be invalid.', $obj);
             }
           } else if (method_exists(get_called_class(), static::$validators[$prop])) {
             return call_user_func(get_called_class().'::'.static::$validators[$prop], $value, $obj);
@@ -395,9 +395,9 @@
       } else {
         if ($value === NULL) {
           if (static::$mandatory && in_array($prop, static::$mandatory)) {
-            return validate(FALSE, 'The value is mandatory.', $obj);
+            return validated(FALSE, 'The value is mandatory.', $obj);
           } else {
-            return validate(TRUE, 'The value is empty and not mandatory.', $obj);
+            return validated(TRUE, 'The value is empty and not mandatory.', $obj);
           }
         } else {
           if (method_exists(get_called_class(), 'validate'.ucfirst($prop))) {
@@ -407,7 +407,7 @@
           }
         }
       }
-      return validate(TRUE, 'No validator found', $obj);
+      return validated(TRUE, 'No validator found', $obj);
     }
 
   }

@@ -186,57 +186,57 @@
     public static function validateEmail($email, $obj = FALSE) {
       $atIndex = strrpos($email, "@");
       if (is_bool($atIndex) && !$atIndex) {
-        return validate(FALSE, 'There is no @ sign in the address.', $obj);
+        return validated(FALSE, 'There is no @ sign in the address.', $obj);
       } else {
         $domain = substr($email, $atIndex+1);
         $local = substr($email, 0, $atIndex);
         $localLen = strlen($local);
         $domainLen = strlen($domain);
         if ($localLen < 1 || $localLen > 64) {
-          return validate(FALSE, 'The local part of the address is too long.', $obj);
+          return validated(FALSE, 'The local part of the address is too long.', $obj);
         } else if ($domainLen < 1 || $domainLen > 255) {
-          return validate(FALSE, 'The domain part of the address is too long.', $obj);
+          return validated(FALSE, 'The domain part of the address is too long.', $obj);
         } else if ($local[0] == '.' || $local[$localLen-1] == '.') {
-          return validate(FALSE, 'The local part of the address can\'t start or end with a dot.', $obj);
+          return validated(FALSE, 'The local part of the address can\'t start or end with a dot.', $obj);
         } else if (preg_match('/\\.\\./', $local)) {
-          return validate(FALSE, 'The local part of the address has two dots in a row.', $obj);
+          return validated(FALSE, 'The local part of the address has two dots in a row.', $obj);
         } else if (!preg_match('/^[A-Za-z0-9\\-\\.]+$/', $domain)) {
-          return validate(FALSE, 'The domain part of the address contains invalid characters.', $obj);
+          return validated(FALSE, 'The domain part of the address contains invalid characters.', $obj);
         } else if (preg_match('/\\.\\./', $domain)) {
-          return validate(FALSE, 'The domain part of the address has two dots in a row.', $obj);
+          return validated(FALSE, 'The domain part of the address has two dots in a row.', $obj);
         } else if (!preg_match('/^(\\\\.|[A-Za-z0-9!#%&`_=\\/$\'*+?^{}|~.-])+$/', str_replace("\\\\","",$local))) {
           if (!preg_match('/^"(\\\\"|[^"])+"$/', str_replace("\\\\","",$local))) {
-            return validate(FALSE, 'The local part of the address contains invalid characters.', $obj);
+            return validated(FALSE, 'The local part of the address contains invalid characters.', $obj);
           }
         }
         if ($isValid && !(checkdnsrr($domain,"MX") || checkdnsrr($domain,"A"))) {
-          return validate(FALSE, 'It seems that the domain doesn\'t exist.', $obj);
+          return validated(FALSE, 'It seems that the domain doesn\'t exist.', $obj);
         }
       }
-      return validate(TRUE, 'The address has been validated.', $obj);
+      return validated(TRUE, 'The address has been validated.', $obj);
     }
 
     public static function validateUsername($username, $obj = FALSE) {
       if (!preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
-        return validate(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
+        return validated(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
         $person = person('username', $username);
         $currentPerson = getCurrentPerson();
         if ($person && $currentPerson && $currentPerson->id == $person->id) {
-          return validate(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
+          return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {
-          return validate(FALSE, 'Username is already taken.', $obj);
+          return validated(FALSE, 'Username is already taken.', $obj);
         } else {
-          return validate(TRUE, 'Username is up for grabs.', $obj);
+          return validated(TRUE, 'Username is up for grabs.', $obj);
         }
       }
     }
     
     public static function validatePassword($password, $obj = FALSE) {
       if (preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$])[0-9A-Za-z!@#$]{6,50}$/', $password)) {
-        return validate(TRUE, 'Password is valid', $obj);
+        return validated(TRUE, 'Password is valid', $obj);
       } else {
-        return validate(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
+        return validated(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
       }
     }
     
