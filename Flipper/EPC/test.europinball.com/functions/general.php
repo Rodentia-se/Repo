@@ -153,7 +153,7 @@
   function validate($class, $prop, $value, $obj = NULL) {
     if (isObj($class, TRUE)) {
       return call_user_func(get_class($obj).'::validate', $prop, $value, $obj);
-    } else if (isObj($class) {
+    } else if (isObj($class)) {
       return call_user_func($class.'::validate', $prop, $value, $obj);
     }
   }
