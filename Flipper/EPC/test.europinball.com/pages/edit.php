@@ -59,8 +59,8 @@ alert("twice");
           $(this).tooltip({
             item: "[data-reason]",
             content: "Updating the database..."
-          })
-          .off("mouseover mouseleave focusin focusout");
+          });
+//          .off("mouseover mouseleave focusin focusout");
           $(this).tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
