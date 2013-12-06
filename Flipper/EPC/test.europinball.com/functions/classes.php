@@ -255,8 +255,7 @@
   }
   
   function isId($id) {
-    debug($id);
-    return preg_match('/^[0-9]+$/', $id);
+    return (is_int($id)) ? preg_match('/^[0-9]+$/', $id) : FALSE;
   }
 
 ?>
