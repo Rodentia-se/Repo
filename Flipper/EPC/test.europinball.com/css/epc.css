@@ -51,6 +51,36 @@ input[type=text] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
+.ui-tooltip {
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+  -webkit-box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa
+}
+
+body .ui-tooltip {
+  border-width: 2px
+}
+
+.tooltip {
+  background: black;
+  font-size:12px;
+  height:10px;
+  width:80px;
+  padding:10px;
+  color:#fff; 
+  z-index: 99;
+  bottom: 10px;
+  border: 2px solid white;
+  /* for IE */
+  filter:alpha(opacity=80);
+  /* CSS3 standard */
+  opacity:0.8;
+}
+
+
 .addIcon {
   position: relative;
   top: 3px;
