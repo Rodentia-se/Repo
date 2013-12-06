@@ -60,7 +60,7 @@ alert("twice");
           if (event.which == 13 && $("ul.ui-autocomplete").is(":visible")) {
             var li = $("li.ui-menu-item:first")[0];
             var item = $(li).data("item.autocomplete");
-            $("#" + this.id.replace("_combobox", "")).data("autocomplete").options.select(event, {item: item});
+            $(this).data("autocomplete").options.select(event, {item: item});
           }
         });
         $(".edit").change(function(){
