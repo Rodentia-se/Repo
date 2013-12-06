@@ -16,8 +16,10 @@
       $page->addScript('
         $(".combobox").change(function(){
           var el = this;
+          showTooltip(el, "Updating the database...");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
+            showTooltip(el, data.reason);
             if (data.valid) {
               $("#" + el.id + "_combobox").val($(el).children(":selected").text());
               if (data.parents) {
@@ -42,8 +44,7 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
-            debugOut(jqHXR.responseText);
+            showTooltip("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
           })
         })
         .combobox();
@@ -55,59 +56,28 @@ alert("twice");
           }
         });
         $(".edit").change(function(){
-          var input = this;
-          if (input.id == "shortName") {
-            $(input).val($(input).val().toUpperCase());
+          var el = this;
+          var value = ($(el).is(":checkbox")) ? ((el.checked ? 1 : 0) : $(el).val();
+          if (el.id == "shortName") {
+            $(el).val($(el).val().toUpperCase());
           } 
-          if (typeof tooltipClose != "undefined") {
-            clearTimeout(tooltipClose);
-          }
-          $(input).tooltip({
-            content: "Updating the database...",
-            position: {
-              my: "left+15 center",
-              at: "right center"
-            }
-          })
-          .on("mouseout focusout", function(event) {
-            event.stopImmediatePropagation();
-          })
-          .tooltip("open");
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
+          showTooltip(el, "Updating the database...");
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value})
           .done(function(data) {
-            $(input).tooltip("option", "content", data.reason)
-            .tooltip("open"); 
-            tooltipClose = setTimeout(function(){
-              $(input).tooltip("destroy")
-            }, 3000);
+            showTooltip(el, data.reason);
             if (data.valid) {
-              $(input).data("previous", $(input).val());
+              $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val());
             } else {
-              $(input).val($(input).data("previous"));
+              if ($(el).is(":checkbox")) {
+                el.checked = ($(box).data("previous"));
+              } else {
+                $(el).val($(el).data("previous"));
+              }
             }
           })
           .fail(function(jqHXR,status,error) {
-            $(input).tooltip("option", "content", "Fail: S: " + status + " E: " + error)
-            .tooltip("open");
-            tooltipClose = setTimeout(function(){
-              $(input).tooltip("destroy")
-            }, 3000);
-          });
-        });
-        $(".check").change(function(){
-          var box = this;
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: box.id, value: ((box.checked) ? 1 : 0)})
-          .done(function(data) {
-            if (data.valid) {
-              $(box).data("previous", ((box.checked) ? 1 : 0));
-            } else {
-              box.checked = ($(box).data("previous"));
-            }
+            showTooltip("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
           })
-          .fail(function(jqHXR,status,error) {
-            debugOut("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
-            debugOut(jqHXR.responseText);
-          });
         });
         $(".date").datepicker({
           dateFormat: "yy-mm-dd",
