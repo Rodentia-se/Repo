@@ -14,7 +14,9 @@
       $page->combobox = TRUE;
       $page->forms = TRUE;
       $page->addScript('
-        $(".combobox").
+        $(".combobox").tooltip({
+            content: "Updating the database..."
+          });
         $(".combobox").change(function(){
           var el = this;
           var tooltip = $(el).tooltip({
