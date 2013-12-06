@@ -56,12 +56,15 @@
                 }
               } else {
                 if ($person->setProp($prop, NULL)) {
-                  if ($json['parents']) {
-                    foreach ($json['parents'] as $parent) {
-                      $person->setProp($parent.'_id', NULL);
+                  if (isGeo($obj)) {
+                    $json['parents'] = $class::_getParents(FALSE);
+                    if ($json['parents']) {
+                      foreach ($json['parents'] as $parent) {
+                        $person->setProp($parent.'_id', NULL);
+                      }
                     }
+                    $json = success((($id) ? 'Changed '.substr($prop, 0, -3).' to '.$obj->name : 'Removed '.substr($prop, 0, -3)).' for '.$person->name, $json);
                   }
-                  $json = success((($id) ? 'Changed '.$prop.' to '.$id : 'Removed '.$prop).' for '.$person->name, $json);
                 } else {
                   $json = failure('Property assignment failed');
                 }
