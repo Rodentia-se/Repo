@@ -61,7 +61,7 @@ alert("twice");
             item: "[data-reason]"
           });
 //          .off("mouseover mouseleave focusin focusout");
-          $(this).tooltip("open");
+          $(this).parent().tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             $(input).data("reason", data.reason);
