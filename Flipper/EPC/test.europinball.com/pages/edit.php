@@ -56,14 +56,13 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          $(input).tooltip({
-            content: "Updating the database..."
-          })
+          $(input).tooltip({content: "Updating the database..."})
           .off("mouseover mouseleave mouseout focusin focusout")
           .tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
-            $(input).data("reason", data.reason);
+            $(input).tooltip("option", "content", data.reason)
+            .tooltip("open");
             if (data.success) {
               $(input).data("previous", $(input).val());
             } else {
