@@ -360,7 +360,7 @@
     }
     
     public static function  validate($prop, $value = NULL, $obj = FALSE, $mandatory = NULL) {
-      if ($value === NULL) {
+      if ($value === NULL || $value === '') {
         if ($mandatory || ($mandatory !== FALSE && static::$mandatory && in_array($prop, static::$mandatory))) {
           return validated(FALSE, 'The value is mandatory.', $obj);
         } else {
