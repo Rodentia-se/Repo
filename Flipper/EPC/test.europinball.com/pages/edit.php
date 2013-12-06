@@ -60,7 +60,7 @@ alert("twice");
             items: "[data-reason]",
             content: "Updating the database..."
           });
-          $(input).tooltip("open");
+          $(input).parent().tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             $(input).data("reason", data.reason);
