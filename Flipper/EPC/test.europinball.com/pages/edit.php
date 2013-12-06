@@ -19,7 +19,7 @@
           var tooltip = $(el).parent().tooltip({
             items: "[data-reason]",
             content: "Updating the database...",
-            disable: true,
+            disable: true
           });
           tooltip.tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
