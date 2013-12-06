@@ -5,6 +5,7 @@ function ucfirst(txt) {
 var tooltips = [];
 
 function showTooltip(el, text, offset) {
+  alert(text);
   var offset = (offset) ? offset : 15;
   if (typeof tooltips[el.id] != "undefined") {
     clearTimeout(tooltips[el.id]);
