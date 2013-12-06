@@ -13,7 +13,6 @@ function showTooltip(el, text, offset) {
   }
   if ($(el).data("tooltipset")) {
     $(el).tooltip("option", "content", text);
-    $(el).tooltip("open");
   } else {
     $(el).tooltip({
       content: text,
@@ -25,8 +24,8 @@ function showTooltip(el, text, offset) {
     .on("mouseout focusout", function(event) {
       event.stopImmediatePropagation();
     })
-    .tooltip("open");
   }
+  $(el).tooltip("open");
   tooltips[el.id] = setTimeout(function(){
     $(el).tooltip("close")
   }, 3000);
