@@ -61,7 +61,7 @@
       $divisions = divisions($this);
       foreach ($divisions as $division) {
         if ($division->{$type}) {
-          return $divison;
+          return $division;
         }
       }
       return NULL;
