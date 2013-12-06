@@ -154,7 +154,7 @@
           <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
           <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
           <div>'.page::getLabelStart('partLabel','label').'Divisions'.page::getLabelEnd().'
-            '.(($main) ? page::getInput($this->main, 'main', 'edit', 'checkbox', 'Main') : '').'
+            '.(($main) ? page::getInput($this->main, 'main', 'edit', 'checkbox', 'Main', TRUE) : '').'
             '.(($classics) ? page::getInput($this->classics, 'classics', 'edit', 'checkbox', 'Classics') : '').'
             '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'edit', 'checkbox', '80s') : '').'
           </div>
