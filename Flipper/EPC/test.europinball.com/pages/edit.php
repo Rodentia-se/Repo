@@ -66,6 +66,7 @@ alert("twice");
           .done(function(data) {
             $(input).tooltip("option", "content", data.reason)
             .tooltip("open");
+            alert($(input).tooltip("option", "position");
             setTimeout(function(){
               $(input).tooltip("destroy")
             }, 3000);
