@@ -20,9 +20,9 @@ function showTooltip(el, text, offset) {
     event.stopImmediatePropagation();
   })
   .tooltip("enable")
-  .tooltip("open");
+  .data("tooltip").show();
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("close")
-    .tooltip("disable");
+    $(el).tooltip("disable");
+    .data("tooltip").hide();
   }, 3000);
 }
