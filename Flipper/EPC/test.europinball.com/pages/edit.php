@@ -56,7 +56,6 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          $(input).data("reason", "Updating the database...");
           $(input).tooltip({
             content: "Updating the database..."
           })
