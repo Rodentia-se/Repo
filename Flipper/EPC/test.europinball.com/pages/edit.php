@@ -59,6 +59,7 @@ alert("twice");
           if (input.id == "shortName") {
             $(input).val($(input).val().toUpperCase());
           } 
+          $(input).tooltip("destroy")
           $(input).tooltip({
             content: "Updating the database...",
             position: {
