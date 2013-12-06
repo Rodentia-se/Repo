@@ -69,7 +69,9 @@ alert("twice");
               at: "right center"
             }
           })
-          .off("mouseover mouseenter mousemove mouseleave mouseout focusin focusout")
+          .on("mousout focusout", function(event) {
+            event.stopImmediatePropagation();
+          })
           .tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
