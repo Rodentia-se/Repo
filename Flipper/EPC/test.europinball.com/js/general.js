@@ -9,21 +9,17 @@ function showTooltip(el, text, offset) {
   if (typeof tooltips[el.id] != "undefined") {
     clearTimeout(tooltips[el.id]);
   }
-  if ($(el).data("tooltipset")) {
-    $(el).tooltip("option", "content", text);
-  } else {
-    $(el).tooltip({
-      content: text,
-      position: {
-        my: "left+" + offset + " center",
-        at: "right center"
-      }
-    })
-    .on("mouseout focusout", function(event) {
-      event.stopImmediatePropagation();
-    })
-  }
-  $(el).tooltip("open");
+  $(el).tooltip({
+    content: text,
+    position: {
+      my: "left+" + offset + " center",
+      at: "right center"
+    }
+  })
+  .on("mouseout focusout", function(event) {
+    event.stopImmediatePropagation();
+  })
+  .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
     $(el).tooltip("close")
   }, 3000);
