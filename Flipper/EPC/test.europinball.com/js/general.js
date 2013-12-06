@@ -16,7 +16,7 @@ function showTooltip(el, text, offset) {
       at: "right center"
     }
   })
-  .on("mouseout mousein mouseover mouseleave focusin focusout", function(event) {
+  .on("mouseover mouseleave focusin focusout", function(event) {
     event.stopImmediatePropagation();
   })
   .tooltip("enable")
