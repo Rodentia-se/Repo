@@ -359,45 +359,45 @@
       return $obj;
     }
     
-    public static function  validate($prop, $value = NULL, $obj = FALSE) {
-      if (static::$validators[$prop]) {
-        if (is_array(static::$validators[$prop])) {
-          if (static::$validators[$prop][0] == 'function') {
-            if (function_exists(static::$validators[$prop][1])) {
-              return call_user_func(static::$validators[$prop][1], $value, $obj);
-            } else {
-              warning('Non-existing function given as validator.');
-            }
-          } else if (static::$validators[$prop][0] == 'method') {
-            if (method_exists(get_called_class(), static::$validators[$prop][1])) {
-              return call_user_func(get_called_class().'::'.static::$validators[$prop][1], $value, $obj);
-            } else {
-              warning('Non-existing method given as validator.');
-            }
-          } else if (method_exists(static::$validators[$prop][0], static::$validators[$prop][1])) {
-            return call_user_func(static::$validators[$prop][0]. '::'.static::$validators[$prop][1], $value, $obj);
-          } else {
-            warning('Unknown method given as validator.');
-          }
-        } else if (is_string(static::$validators[$prop])) {
-          if (preg_match('/^\/.*\/$/', static::$validators[$prop])) {
-            if (preg_match(static::$validators[$prop], $value)) {
-              return validated(TRUE, $prop.' found to be valid.', $obj);
-            } else {
-              return validated(FALSE, $prop.' found to be invalid.', $obj);
-            }
-          } else if (method_exists(get_called_class(), static::$validators[$prop])) {
-            return call_user_func(get_called_class().'::'.static::$validators[$prop], $value, $obj);
-          } else if (function_exists(static::$validators[$prop])) {
-            return call_user_func(static::$validators[$prop], $value, $obj);
-          }
+    public static function  validate($prop, $value = NULL, $obj = FALSE, $mandatory = NULL) {
+      if ($value === NULL) {
+        if ($mandatory || ($mandatory !== FALSE && static::$mandatory && in_array($prop, static::$mandatory))) {
+          return validated(FALSE, 'The value is mandatory.', $obj);
+        } else {
+          return validated(TRUE, 'The value is empty and not mandatory.', $obj);
         }
       } else {
-        if ($value === NULL) {
-          if (static::$mandatory && in_array($prop, static::$mandatory)) {
-            return validated(FALSE, 'The value is mandatory.', $obj);
-          } else {
-            return validated(TRUE, 'The value is empty and not mandatory.', $obj);
+        if (static::$validators[$prop]) {
+          if (is_array(static::$validators[$prop])) {
+            if (static::$validators[$prop][0] == 'function') {
+              if (function_exists(static::$validators[$prop][1])) {
+                return call_user_func(static::$validators[$prop][1], $value, $obj);
+              } else {
+                warning('Non-existing function given as validator.');
+              }
+            } else if (static::$validators[$prop][0] == 'method') {
+              if (method_exists(get_called_class(), static::$validators[$prop][1])) {
+                return call_user_func(get_called_class().'::'.static::$validators[$prop][1], $value, $obj);
+              } else {
+                warning('Non-existing method given as validator.');
+              }
+            } else if (method_exists(static::$validators[$prop][0], static::$validators[$prop][1])) {
+              return call_user_func(static::$validators[$prop][0]. '::'.static::$validators[$prop][1], $value, $obj);
+            } else {
+              warning('Unknown method given as validator.');
+            }
+          } else if (is_string(static::$validators[$prop])) {
+            if (preg_match('/^\/.*\/$/', static::$validators[$prop])) {
+              if (preg_match(static::$validators[$prop], $value)) {
+                return validated(TRUE, $prop.' found to be valid.', $obj);
+              } else {
+                return validated(FALSE, $prop.' found to be invalid.', $obj);
+              }
+            } else if (method_exists(get_called_class(), static::$validators[$prop])) {
+              return call_user_func(get_called_class().'::'.static::$validators[$prop], $value, $obj);
+            } else if (function_exists(static::$validators[$prop])) {
+              return call_user_func(static::$validators[$prop], $value, $obj);
+            }
           }
         } else {
           if (method_exists(get_called_class(), 'validate'.ucfirst($prop))) {
