@@ -56,9 +56,9 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
+          $(input).data("reason", "Updating the database...");
           $(this).tooltip({
-            item: "[data-reason]",
-            content: "Updating the database..."
+            item: "[data-reason]"
           });
 //          .off("mouseover mouseleave focusin focusout");
           $(this).tooltip("open");
