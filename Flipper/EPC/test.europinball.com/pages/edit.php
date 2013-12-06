@@ -18,7 +18,7 @@
           var el = this;
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            if (data.success) {
+            if (data.valid) {
               $("#" + el.id + "_combobox").val($(el).children(":selected").text());
               if (data.parents) {
                 $.each(data.parents, function(key, geo) {
@@ -69,7 +69,7 @@ alert("twice");
             setTimeout(function(){
               $(input).tooltip("destroy")
             }, 3000);
-            if (data.success) {
+            if (data.valid) {
               $(input).data("previous", $(input).val());
             } else {
               $(input).val($(input).data("previous"));
@@ -87,7 +87,7 @@ alert("twice");
           var box = this;
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: box.id, value: ((box.checked) ? 1 : 0)})
           .done(function(data) {
-            if (data.success) {
+            if (data.valid) {
               $(box).data("previous", ((box.checked) ? 1 : 0));
             } else {
               box.checked = ($(box).data("previous"));
