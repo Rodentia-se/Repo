@@ -19,10 +19,10 @@ function showTooltip(el, text, offset) {
   .on("mouseout mousein mouseover mouseleave focusin focusout", function(event) {
     event.stopImmediatePropagation();
   })
-  .tooltip("enable");
+  .tooltip("enable")
   .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("close");
-    $(el).tooltip("disable");
+    $(el).tooltip("close")
+    .tooltip("disable");
   }, 3000);
 }
