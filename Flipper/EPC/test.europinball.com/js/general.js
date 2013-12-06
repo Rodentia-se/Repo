@@ -22,7 +22,7 @@ function showTooltip(el, text, offset) {
   .tooltip("enable")
   .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("hide")
-    .tooltip("close");
+    $(el).tooltip("close")
+    .tooltip("disable");
   }, 3000);
 }
