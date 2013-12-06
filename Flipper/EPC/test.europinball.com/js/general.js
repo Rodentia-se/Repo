@@ -4,7 +4,8 @@ function ucfirst(txt) {
 
 var tooltips = [];
 
-function showTooltip(el, text) {
+function showTooltip(el, text, offset) {
+  var offset = (offset) ? offset : 15;
   if (typeof tooltips[el.id] != "undefined") {
     clearTimeout(tooltips[el.id]);
   }
@@ -14,7 +15,7 @@ function showTooltip(el, text) {
   $(el).tooltip({
     content: text,
     position: {
-      my: "left+15 center",
+      my: "left+" + offset + " center",
       at: "right center"
     }
   })
