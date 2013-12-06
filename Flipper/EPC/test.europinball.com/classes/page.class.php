@@ -399,20 +399,20 @@
       return self::getElement($text, 'li', $id, $class, $close);
     }
 
-    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE) {
-      $input = self::getInput($value, $id, $class, $type, $label, $close);
+    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $disabled = FALSE) {
+      $input = self::getInput($value, $id, $class, $type, $label, $disabled);
       $this->addContent($input);
       return $input;
     }
 
-    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE) {
+    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $disabled = FALSE) {
       $label = ($label === TRUE) ? $id : $label;
       $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
       if ($type == 'radio' || $type == 'checkbox') {
-        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').' data-reason="Huff">'.(($label) ? '</label>' : '');
+        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? '</label>' : '');
       } else {
         $input .= (($label) ? '</label>' : '').'
-          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'" data-previous="'.$value.'"' : ' data-previous=""').' data-reason="Huff" title="Huff">
+          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'" data-previous="'.$value.'"' : ' data-previous=""').(($disabled) ? ' disabled': '').'>
         ';
       }
       if ($close) {
