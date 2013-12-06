@@ -16,14 +16,8 @@
       $page->addScript('
         $(".combobox").change(function(){
           var el = this;
-          var tooltip = $(el).parent().tooltip({
-            items: "[data-reason]",
-            content: "Updating the database..."
-          });
-          tooltip.tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            $(el).data("reason", data.reason);
             if (data.success) {
               $("#" + el.id + "_combobox").val($(el).children(":selected").text());
               if (data.parents) {
@@ -62,8 +56,14 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
+          var tooltip = $(el).parent().tooltip({
+            items: "[data-reason]",
+            content: "Updating the database..."
+          });
+          tooltip.tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
+            $(input).data("reason", data.reason);
             if (data.success) {
               $(input).data("previous", $(input).val());
             } else {
