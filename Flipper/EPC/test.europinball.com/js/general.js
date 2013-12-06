@@ -12,19 +12,21 @@ function showTooltip(el, text, offset) {
     clearTimeout(tooltips[el.id]);
   }
   if ($(el).data("tooltipset")) {
-    $(el).tooltip("destroy");
+    $(el).tooltip("option", "content", text);
+    $(el).tooltip("open");
+  } else {
+    $(el).tooltip({
+      content: text,
+      position: {
+        my: "left+" + offset + " center",
+        at: "right center"
+      }
+    })
+    .on("mouseout focusout", function(event) {
+      event.stopImmediatePropagation();
+    })
+    .tooltip("open");
   }
-  $(el).tooltip({
-    content: text,
-    position: {
-      my: "left+" + offset + " center",
-      at: "right center"
-    }
-  })
-  .on("mouseout focusout", function(event) {
-    event.stopImmediatePropagation();
-  })
-  .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
     $(el).tooltip("destroy")
   }, 3000);
