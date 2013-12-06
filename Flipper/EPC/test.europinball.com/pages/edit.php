@@ -69,7 +69,7 @@ alert("twice");
               at: "right center"
             }
           })
-          .on("mousout focusout", function(event) {
+          .on("mouseout focusout", function(event) {
             event.stopImmediatePropagation();
           })
           .tooltip("open");
