@@ -60,11 +60,14 @@ alert("twice");
         $(".edit").change(function(){
           var el = this;
           var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
+          var region_id = (this.id == "city") ? $("#region_id").val() : null;
+          var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
+          var continent_id = (this.id == "city" || this.id == "region") ? $("#continent_id").val() : null;
           if (el.id == "shortName") {
             $(el).val($(el).val().toUpperCase());
           } 
           showTooltip(el, "Updating the database...");
-          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value})
+          $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
           .done(function(data) {
             showTooltip(el, data.reason);
             if (data.valid) {
