@@ -56,12 +56,7 @@ alert("twice");
             $("#" + this.id.replace("_combobox", "")).change();
           }
         })
-        .keypress(function(event){
-          if (event.which == 13 && $("ul.ui-autocomplete").is(":visible")) {
-            var li = $("li.ui-menu-item:first")[0];
-            var item = $(li).data("item.autocomplete");
-            $(this).data("autocomplete").options.select(event, {item: item});
-          }
+        .autocomplete( "option", "autoFocus", true )
         });
         $(".edit").change(function(){
           var el = this;
