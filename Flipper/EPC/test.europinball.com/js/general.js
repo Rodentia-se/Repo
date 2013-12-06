@@ -16,12 +16,11 @@ function showTooltip(el, text, offset) {
       at: "right center"
     }
   })
-  .on("mouseout focusout", function(event) {
+  .on("mouseout mousein mouseover mouseleave focusin focusout", function(event) {
     event.stopImmediatePropagation();
   })
-  .tooltip("close")
   .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("close")
+    $(el).tooltip("close");
   }, 3000);
 }
