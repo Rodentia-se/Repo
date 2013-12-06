@@ -56,8 +56,8 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          if (this.id == "shortName") {
-            $(this).val($(this).val().toUpperCase());
+          if (input.id == "shortName") {
+            $(input).val($(input).val().toUpperCase());
           } 
           $(input).tooltip({content: "Updating the database..."})
           .off("mouseover mouseleave mouseout focusin focusout")
