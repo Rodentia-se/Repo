@@ -58,7 +58,8 @@
     }
     
     public function getDivision($type = NULL) {
-      foreach (divisions($this) as $division) {
+      $divisions = divisions($this);
+      foreach ($divisions as $division) {
         if ($division->{$type}) {
           debug($type);
           debug($division->{$type});
