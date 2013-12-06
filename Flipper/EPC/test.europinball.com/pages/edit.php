@@ -17,10 +17,10 @@
         $(".combobox").change(function(){
           var el = this;
           var combobox = document.getElementById(el.id + "_combobox");
-          showTooltip(combobox, "Updating the database...", 30);
+          showTooltip(combobox, "Updating the database...", 45);
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            showTooltip(combobox, data.reason, 30);
+            showTooltip(combobox, data.reason, 45);
             if (data.valid) {
               $(combobox).val($(el).children(":selected").text());
               if (data.parents) {
@@ -45,7 +45,7 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            showTooltip(combobox, "Fail: S: " + status + " E: " + error, 30); // Oh, no! Fail!
+            showTooltip(combobox, "Fail: S: " + status + " E: " + error, 45); // Oh, no! Fail!
           })
         })
         .combobox();
