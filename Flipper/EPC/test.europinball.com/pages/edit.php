@@ -59,7 +59,6 @@ alert("twice");
           if (input.id == "shortName") {
             $(input).val($(input).val().toUpperCase());
           } 
-          $(input).tooltip("destroy")
           $(input).tooltip({
             content: "Updating the database...",
             position: {
@@ -73,9 +72,6 @@ alert("twice");
           .done(function(data) {
             $(input).tooltip("option", "content", data.reason)
             .tooltip("open"); 
-            setTimeout(function(){
-              $(input).tooltip("destroy")
-            }, 3000);
             if (data.valid) {
               $(input).data("previous", $(input).val());
             } else {
@@ -85,9 +81,6 @@ alert("twice");
           .fail(function(jqHXR,status,error) {
             $(input).tooltip("option", "content", "Fail: S: " + status + " E: " + error)
             .tooltip("open");
-            setTimeout(function(){
-              $(input).tooltip("destroy")
-            }, 3000);
           });
         });
         $(".check").change(function(){
