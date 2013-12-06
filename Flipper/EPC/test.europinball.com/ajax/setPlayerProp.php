@@ -7,6 +7,9 @@
   $id = (isId($value)) ? $value : NULL;
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
   $person_id = (isId($_REQUEST['person_id'])) ? $_REQUEST['person_id'] : NULL;
+  $region_id = (isId($_REQUEST['region_id'])) ? $_REQUEST['region_id'] : NULL;
+  $country_id = (isId($_REQUEST['country_id'])) ? $_REQUEST['country_id'] : NULL;
+  $continent_id = (isId($_REQUEST['continent_id'])) ? $_REQUEST['continent_id'] : NULL;
   
   if ($id || $id == 0) {
     if ($prop) {
@@ -73,6 +76,30 @@
               $json = failure('Malformed value detected'); 
             }
           } else {
+            if ($prop == 'city' || $prop == 'region') {
+              $obj = $prop(array(
+                'name' => $value,
+                'region_id' => $region_id,
+                'country_id' => $country_id,
+                'continent_id' => $continent_id
+              ));
+              $id = $obj->save();
+              if (isId($id)) {
+                $obj = $prop($id);
+                if ($obj) {
+                  $change = $person->setProp($prop.'_id', $id);
+                  if ($change) {
+                    $json = success('Added '.$value.' as '.$prop.' for '.$person->name);
+                  } else {
+                    $json = failure('Property assignment failed');
+                  }
+                } else {
+                  $json = failure(ucfirst($prop).' creation failed');
+                }
+              } else {
+                $json = failure(ucfirst($prop).' creation failed');
+              }
+            }
             $validator = person::validate($prop, $value, TRUE);
             if ($validator->valid) {
               $change = $person->setProp($prop, $value);
