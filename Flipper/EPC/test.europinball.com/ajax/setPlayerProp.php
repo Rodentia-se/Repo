@@ -116,7 +116,7 @@
                       $player = player(array(
                         'person_id' => $person->id, 
                         'tournamentDivision_id' => $division->id
-                      ));
+                      ), TRUE);
                       if ($player) {
                         success('Added '.$person->name.' to the '.$division->name);
                       } else {
@@ -133,7 +133,7 @@
                         $player = player(array(
                           'person_id' => $person->id, 
                           'tournamentDivision_id' => $division->id
-                        ));
+                        ), TRUE);
                         if (!$player) {
                           success('Rmoved '.$person->name.' from the '.$division->name);
                         } else {
