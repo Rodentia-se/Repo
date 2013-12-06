@@ -66,7 +66,7 @@ alert("twice");
           .done(function(data) {
             showTooltip(el, data.reason);
             if (data.valid) {
-              $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val());
+              $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
             } else {
               if ($(el).is(":checkbox")) {
                 el.checked = ($(box).data("previous"));
