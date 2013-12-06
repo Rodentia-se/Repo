@@ -28,6 +28,6 @@ function showTooltip(el, text, offset) {
     .tooltip("open");
   }
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("destroy")
+    $(el).tooltip("close")
   }, 3000);
 }
