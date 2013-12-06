@@ -56,8 +56,7 @@ alert("twice");
             $("#" + this.id.replace("_combobox", "")).change();
           }
         })
-        .autocomplete( "option", "autoFocus", true )
-        });
+        .autocomplete("option", "autoFocus", true);
         $(".edit").change(function(){
           var el = this;
           var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
