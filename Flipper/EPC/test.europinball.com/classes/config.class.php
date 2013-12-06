@@ -13,6 +13,8 @@
     public static $parentDepth = 1;  // The depth for automatic population of parent objects.
     public static $activeTournament = 5;
  
+    public static $divisions = array('main', 'eighties');
+
     public static $main = TRUE;
     public static $mainDivision = 15;
     public static $mainQualLimit = FALSE;
@@ -41,6 +43,7 @@
     public static $debug = TRUE;
     
     public static $photoExts = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
+    public static $addables = array('city', 'region');
 
   }
 

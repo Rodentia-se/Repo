@@ -55,6 +55,15 @@
     
     public function getDivisions() {
       return divisions($this);
+    }´
+    
+    public function getDivision($type = NULL) {
+      foreach (divisions($this) as $division) {
+        if ($division->{$type}) {
+          return $divison;
+        }
+      }
+      return NULL;
     }
     
   }

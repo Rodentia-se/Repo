@@ -76,7 +76,7 @@
               $json = failure('Malformed value detected'); 
             }
           } else {
-            if ($prop == 'city' || $prop == 'region') {
+            if (in_array($prop, config::$addables)) {
               if ($value) {
                 $obj = $prop(array(
                   'name' => $value,
@@ -103,17 +103,51 @@
               } else {
                 $json = failure(ucfirst($prop).' creation failed');
               }
-            }
-            $validator = person::validate($prop, $value, TRUE);
-            if ($validator->valid) {
-              $change = $person->setProp($prop, $value);
-              if ($change) {
-                $json = success((($value) ? 'Changed '.$prop.' to '.$value : 'Removed '.$prop).' for '.$person->name);
+            } else if (in_array($prop, config::$divisions)) {
+              $tournament = tournament(config::$activeTournament);
+              if ($tournament) {
+                $division = $tournament->getDivision('main');
+                if ($division) {
+                  if ($value == 1) {
+                    $change = $person->addPlayer($division);
+                    if ($change) {
+                      success('Added '.$person->name.' to the '.$division->name);
+                    } else {
+                      failure('Could not add '.$person->name.' to the '.$division->name);
+                    }
+                  } else if ($value == 0) {
+                    $player = $person->getPlayer($division);
+                    if ($player) {
+                      $change = $player->delete();
+                      if ($change) {
+                        success('Removed '.$person->name.' from the '.$division->name);
+                      } else {
+                        failure('Could not remove '.$person->name.' from the '.$division->name);
+                      }
+                    } else {
+                      success($person->name.' is not registered for the '.$division->name);
+                    }
+                  } else {
+                    failure('Invalid request');
+                  }
+                } else {
+                  failure('Could not identify the division');
+                }
               } else {
-                $json = failure('Property assignment failed');
+                failure('Could not identify the tournament');
               }
             } else {
-              $json = failure($validator->reason);
+              $validator = person::validate($prop, $value, TRUE);
+              if ($validator->valid) {
+                $change = $person->setProp($prop, $value);
+                if ($change) {
+                  $json = success((($value) ? 'Changed '.$prop.' to '.$value : 'Removed '.$prop).' for '.$person->name);
+                } else {
+                  $json = failure('Property assignment failed');
+                }
+              } else {
+                $json = failure($validator->reason);
+              }
             }
           }
         } else {
