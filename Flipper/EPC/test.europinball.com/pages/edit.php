@@ -59,14 +59,19 @@ alert("twice");
           if (input.id == "shortName") {
             $(input).val($(input).val().toUpperCase());
           } 
-          $(input).tooltip({content: "Updating the database..."})
+          $(input).tooltip({
+            content: "Updating the database...",
+            position: {
+              my: "left+15 center",
+              at: "right center"
+            }
+          })
           .off("mouseover mouseenter mousemove mouseleave mouseout focusin focusout")
           .tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             $(input).tooltip("option", "content", data.reason)
             .tooltip("open"); 
-            alert($(input).tooltip("option", "position"));
             setTimeout(function(){
               $(input).tooltip("destroy")
             }, 3000);
