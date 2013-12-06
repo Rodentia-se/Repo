@@ -118,12 +118,12 @@
                         'tournamentDivision_id' => $division->id
                       ), TRUE);
                       if ($player) {
-                        success('Added '.$person->name.' to the '.$division->name);
+                        $json = success('Added '.$person->name.' to the '.$division->name);
                       } else {
-                        failure('Could not add '.$person->name.' to the '.$division->name);
+                        $json = failure('Could not add '.$person->name.' to the '.$division->name);
                       }
                     } else {
-                      failure('Could not add '.$person->name.' to the '.$division->name);
+                      $json = failure('Could not add '.$person->name.' to the '.$division->name);
                     }
                   } else if ($value == 0) {
                     $player = $person->getPlayer($division);
@@ -135,24 +135,24 @@
                           'tournamentDivision_id' => $division->id
                         ), TRUE);
                         if (!$player) {
-                          success('Rmoved '.$person->name.' from the '.$division->name);
+                          $json = success('Rmoved '.$person->name.' from the '.$division->name);
                         } else {
-                          failure('Could not remove '.$person->name.' from the '.$division->name);
+                          $json = failure('Could not remove '.$person->name.' from the '.$division->name);
                         }
                       } else {
-                        failure('Could not remove '.$person->name.' from the '.$division->name);
+                        $json = failure('Could not remove '.$person->name.' from the '.$division->name);
                       }
                     } else {
-                      success($person->name.' is not registered for the '.$division->name);
+                      $json = success($person->name.' is not registered for the '.$division->name);
                     }
                   } else {
-                    failure('Invalid request');
+                    $json = failure('Invalid request');
                   }
                 } else {
-                  failure('Could not identify the division');
+                  $json = failure('Could not identify the division');
                 }
               } else {
-                failure('Could not identify the tournament');
+                $json = failure('Could not identify the tournament');
               }
             } else {
               $validator = person::validate($prop, $value, TRUE);
