@@ -23,7 +23,7 @@
       case 'object':
       case 'array':
         $return = array(
-          'valid' => false, 
+          'valid' => $valid,
           'reason' => $text
         );
         if ($props) {
