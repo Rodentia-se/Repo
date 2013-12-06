@@ -108,7 +108,7 @@
               debug($tournament->id);
               if ($tournament) {
                 $division = $tournament->getDivision($prop);
-              debug($division->id);
+              debug($division);
                 if ($division) {
                   if ($value == 1) {
                     $change = $person->addPlayer($division);
