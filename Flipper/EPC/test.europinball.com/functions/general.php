@@ -35,6 +35,7 @@
         return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);
       break;
       case 'text':
+        $text = is_object($text) ? $text->reason : $text;
         return ($title) ? $title.': '.$text : $text;
       break;
       case 'bool':
@@ -43,6 +44,7 @@
       case 'dump':
       default:
         preDump($text, $title);
+        $text = is_object($text) ? $text->reason : $text;
         if ($die) {
           die(($title) ? $title.': '.$text.'. Abort requested.' : $text.'. Abort requested.');
         }
@@ -56,7 +58,7 @@
   }
 
   function error($text = NULL, $props = NULL, $json = FALSE, $die = FALSE) {
-    return output($test, 'ERROR', $props, FALSE, (($json) ? 'json' : 'dump'), $die);
+    return output($text, 'ERROR', $props, FALSE, (($json) ? 'json' : 'dump'), $die);
   }
 
   function failure($text = NULL, $props = NULL, $json = TRUE) {

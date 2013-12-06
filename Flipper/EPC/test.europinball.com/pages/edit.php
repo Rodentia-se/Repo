@@ -21,10 +21,10 @@
             content: "Updating the database...",
             disable: true
           });
-          tooltip.tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            tooltip.content = data.reason;
+            $(el).data("reason", data.reason);
+            tooltip.tooltip("open");
             if (data.success) {
               $("#" + el.id + "_combobox").val($(el).children(":selected").text());
               if (data.parents) {

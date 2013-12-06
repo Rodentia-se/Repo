@@ -49,10 +49,10 @@
                     }
                     $json = success((($id) ? 'Changed '.$prop.' to '.$id : 'Removed '.$prop).' for '.$person->name, $json);
                   } else {
-                    $json = error('Property assignment failed', FALSE, TRUE);
+                    $json = failure('Property assignment failed');
                   }
                 } else {
-                  $json = error('Could not find '.$prop.' ID '.$id, FALSE, TRUE);
+                  $json = failure('Could not find '.$prop.' ID '.$id);
                 }
               } else {
                 if ($person->setProp($prop, NULL)) {
@@ -63,11 +63,11 @@
                   }
                   $json = success((($id) ? 'Changed '.$prop.' to '.$id : 'Removed '.$prop).' for '.$person->name, $json);
                 } else {
-                  $json = error('Property assignment failed', FALSE, TRUE);
+                  $json = failure('Property assignment failed');
                 }
               }
             } else {
-              $json = error('Malformed value detected', FALSE, TRUE); 
+              $json = failure('Malformed value detected'); 
             }
           } else {
             $validator = person::validate($prop, $value, TRUE);
@@ -76,26 +76,26 @@
               if ($change) {
                 $json = success((($value) ? 'Changed '.$prop.' to '.$value : 'Removed '.$prop).' for '.$person->name);
               } else {
-                $json = error('Property assignment failed', FALSE, TRUE);
+                $json = failure('Property assignment failed');
               }
             } else {
-              $json = error($validator->reason, FALSE, TRUE);
+              $json = failure($validator->reason);
             }
           }
         } else {
-          $json = error('Authorization failed', FALSE, TRUE);
+          $json = failure('Authorization failed');
         }
       } else {
-        $json = error('Could not identify the target person', FALSE, TRUE);
+        $json = failure('Could not identify the target person');
       }
     } else {
-      $json = error('No property provided', FALSE, TRUE);
+      $json = failure('No property provided');
     }
   } else {
-      $json = error('No value provided', FALSE, TRUE);
+      $json = failure('No value provided');
   }
   
   header('Content-Type: application/json');
-  echo(json_encode($json));
+  echo($json);
 
 ?>
