@@ -59,7 +59,9 @@ alert("twice");
           if (input.id == "shortName") {
             $(input).val($(input).val().toUpperCase());
           } 
-          clearTimeout(tooltipClose);
+          if (tooltipClose) {
+            clearTimeout(tooltipClose);
+          }
           $(input).tooltip({
             content: "Updating the database...",
             position: {
