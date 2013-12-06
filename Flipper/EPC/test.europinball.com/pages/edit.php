@@ -60,7 +60,7 @@ alert("twice");
             $(input).val($(input).val().toUpperCase());
           } 
           $(input).tooltip({content: "Updating the database..."})
-          .off("mouseover mouseleave mouseout focusin focusout")
+          .off("mouseover mouseenter mousemove mouseleave mouseout focusin focusout")
           .tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
