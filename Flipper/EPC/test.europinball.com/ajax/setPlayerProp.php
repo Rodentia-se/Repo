@@ -63,8 +63,8 @@
                         $person->setProp($parent.'_id', NULL);
                       }
                     }
-                    $json = success((($id) ? 'Changed '.substr($prop, 0, -3).' to '.$obj->name : 'Removed '.substr($prop, 0, -3)).' for '.$person->name, $json);
                   }
+                  $json = success((($id) ? 'Changed '.substr($prop, 0, -3).' to '.$obj->name : 'Removed '.substr($prop, 0, -3)).' for '.$person->name, $json);
                 } else {
                   $json = failure('Property assignment failed');
                 }
