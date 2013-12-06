@@ -31,7 +31,6 @@
             $return[$prop] = $value;
           }
         }
-        debug((object) $return, TRUE);
         return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);
       break;
       case 'text':
