@@ -59,7 +59,7 @@ alert("twice");
           $(input).tooltip({
             content: "Updating the database..."
           })
-          .off("mouseover mouseleave focusin focusout")
+          .off("mouseover mouseleave mouseout focusin focusout")
           .tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
