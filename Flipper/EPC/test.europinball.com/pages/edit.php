@@ -56,11 +56,11 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          var tooltip = $(input).parent().tooltip({
+          $(input).parent().tooltip({
             items: "[data-reason]",
             content: "Updating the database..."
           });
-          tooltip.tooltip("open");
+          $(input).tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             $(input).data("reason", data.reason);
