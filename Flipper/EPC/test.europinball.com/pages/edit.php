@@ -56,11 +56,12 @@ alert("twice");
         });
         $(".edit").change(function(){
           var input = this;
-          var tooltip = $(input).parent().tooltip({
+          $(input).tooltip({
             item: "[data-reason]",
             content: "Updating the database..."
-          });
-          tooltip.tooltip("open");
+          })
+          .off("mouseover mouseleave focusin focusout");
+          $(input).tooltip("open");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: input.id, value: $(input).val()})
           .done(function(data) {
             $(input).data("reason", data.reason);
