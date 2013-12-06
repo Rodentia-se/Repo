@@ -14,15 +14,14 @@ function showTooltip(el, text, offset) {
     position: {
       my: "left+" + offset + " center",
       at: "right center"
+    },
+    events: {
+      input: null,
+      tooltip: null
     }
   })
-  .on("mouseover mouseleave focusin focusout", function(event) {
-    event.stopImmediatePropagation();
-  })
-  .tooltip("enable")
-  .data("tooltip").show();
+  .tooltip("open");
   tooltips[el.id] = setTimeout(function(){
-    $(el).tooltip("disable");
-    .data("tooltip").hide();
+    $(el).tooltip("close");
   }, 3000);
 }
