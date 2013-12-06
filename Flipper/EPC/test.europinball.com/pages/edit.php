@@ -58,7 +58,7 @@ alert("twice");
           var input = this;
           $(input).data("reason", "Updating the database...");
           $(this).parent().tooltip({
-            item: "[data-reason]"
+            items: "[data-reason]"
           });
 //          .off("mouseover mouseleave focusin focusout");
 //          $(this).parent().tooltip("open");
