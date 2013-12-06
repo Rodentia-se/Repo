@@ -144,7 +144,7 @@
   }
   
   function validateDate($date, $obj = FALSE) {
-    if ($date && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/')) {
+    if ($date && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
       return validated(FALSE, 'The date is invalid. Please use ISO format YYYY-MM-DD.', $obj);
     } else if (!$date || checkdate(preg_replace('/00/','01',substr($date, 5,2)), preg_replace('/00/','01',substr($date, 8,2)), substr($date, 0,4))) {
       return validated(TRUE, 'The date is valid.', $obj);
