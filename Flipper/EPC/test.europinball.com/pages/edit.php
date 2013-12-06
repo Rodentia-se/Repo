@@ -57,7 +57,7 @@ alert("twice");
         });
         $(".edit").change(function(){
           var el = this;
-          var value = ($(el).is(":checkbox")) ? ((el.checked ? 1 : 0) : $(el).val();
+          var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
           if (el.id == "shortName") {
             $(el).val($(el).val().toUpperCase());
           } 
