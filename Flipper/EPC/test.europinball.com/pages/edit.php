@@ -16,12 +16,13 @@
       $page->addScript('
         $(".combobox").change(function(){
           var el = this;
-          showTooltip(el, "Updating the database...");
+          var combobox = document.getElementById(el.id + "_combobox");
+          showTooltip(combobox, "Updating the database...");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            showTooltip(el, data.reason);
+            showTooltip(combobox, data.reason);
             if (data.valid) {
-              $("#" + el.id + "_combobox").val($(el).children(":selected").text());
+              $(combobox).val($(el).children(":selected").text());
               if (data.parents) {
                 $.each(data.parents, function(key, geo) {
                   if (!stop) {
@@ -44,7 +45,7 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            showTooltip("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            showTooltip(combobox, "Fail: S: " + status + " E: " + error); // Oh, no! Fail!
           })
         })
         .combobox();
@@ -76,7 +77,7 @@ alert("twice");
             }
           })
           .fail(function(jqHXR,status,error) {
-            showTooltip("Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            showTooltip(el, "Fail: S: " + status + " E: " + error); // Oh, no! Fail!
           })
         });
         $(".date").datepicker({
