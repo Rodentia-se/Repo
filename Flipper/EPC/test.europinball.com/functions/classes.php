@@ -255,6 +255,7 @@
   }
   
   function isId($id) {
+    debug($id);
     return preg_match('/^[0-9]+$/', $id);
   }
 

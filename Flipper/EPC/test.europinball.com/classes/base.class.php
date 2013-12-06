@@ -3,6 +3,9 @@
   abstract class base implements JsonSerializable {
     
     public static $_db;
+    public static $parents = array();
+    public static $children = array();
+    public static $cols = array();    
     public static $selfParent = FALSE;
     public static $parentDepth = 0;
     public static $validators = array();
