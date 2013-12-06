@@ -6,6 +6,7 @@ var tooltips = [];
 
 function showTooltip(el, text, offset) {
   alert(text);
+  alert(el.id);
   var offset = (offset) ? offset : 15;
   if (typeof tooltips[el.id] != "undefined") {
     clearTimeout(tooltips[el.id]);
