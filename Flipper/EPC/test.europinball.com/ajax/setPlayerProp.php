@@ -77,21 +77,25 @@
             }
           } else {
             if ($prop == 'city' || $prop == 'region') {
-              $obj = $prop(array(
-                'name' => $value,
-                'region_id' => $region_id,
-                'country_id' => $country_id,
-                'continent_id' => $continent_id
-              ));
-              $id = $obj->save();
-              if (isId($id)) {
-                $obj = $prop($id);
-                if ($obj) {
-                  $change = $person->setProp($prop.'_id', $id);
-                  if ($change) {
-                    $json = success('Added '.$value.' as '.$prop.' for '.$person->name);
+              if ($value) {
+                $obj = $prop(array(
+                  'name' => $value,
+                  'region_id' => (($region_id && isId($region_id)) ? $region_id : NULL),
+                  'country_id' => (($country_id && isId($country_id)) ? $country_id : NULL),
+                  'continent_id' => (($continent_id && isId($continent_id)) ? $continent_id : NULL)
+                ));
+                $id = $obj->save();
+                if (isId($id)) {
+                  $obj = $prop($id);
+                  if ($obj) {
+                    $change = $person->setProp($prop.'_id', $id);
+                    if ($change) {
+                      $json = success('Added '.$value.' as '.$prop.' for '.$person->name);
+                    } else {
+                      $json = failure('Property assignment failed');
+                    }
                   } else {
-                    $json = failure('Property assignment failed');
+                    $json = failure(ucfirst($prop).' creation failed');
                   }
                 } else {
                   $json = failure(ucfirst($prop).' creation failed');
