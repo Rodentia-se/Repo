@@ -102,6 +102,7 @@
             if ($division->{$type}) {
               debug($division->id);
               parent::__construct($division->id, NOSEARCH, $depth);
+              debug('dív');
               debug($this->id);
               $hit = TRUE;
             }
