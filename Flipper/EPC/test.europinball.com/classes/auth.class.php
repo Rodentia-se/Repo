@@ -184,10 +184,16 @@
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
-        $form .= (!$dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
-        $form .= page::getLabel(' ').page::getClickButton('I forgot all this!', $prefix.'forgot', 'inlineBlock');
+        $form .= page::getLabel(' ')
+        $form .= (!$dialog) ? page::getButton('Login', $prefix.'login') : '';
+        $form .= page::getButton('I forgot all this!', $prefix.'reset') : '';
+        $form .= page::getFormStart($prefix.'resetForm');
+          $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
+        $form .= page::getFormEnd();
         $form .= page::getScript('
-          $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
+          $("#'.$prefix.'resetButton").click(function() {
+            $("#'.$prefix.'resetForm").submit();
+          });
         ');
       $form .= page::getDivEnd();
       if ($dialog) {
@@ -219,6 +225,9 @@
               $("#'.$prefix.'loginForm").submit();
             }
           }
+        });
+        $("#'.$prefix.'loginButton").click(function() {
+          $("#'.$prefix.'loginForm").submit();
         });
       ');
       return $form;
