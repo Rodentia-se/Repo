@@ -124,14 +124,14 @@
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $constructors = array('current', 'active', 'login', 'auth');
       if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
-        $delagated = TRUE;
+        $delegated = TRUE;
         $login = new auth();
         $person = $login->person;
       } else if (is_object($data) &&(is_string($search) || $search == NOSEARCH)) {
         $delagated = TRUE;
         $person = (get_class($data) == 'person') ? $data : NULL;
       }
-      if ($delagated == TRUE) {
+      if ($delegated) {
         if ($person) {
           $type = ($search == NOSEARCH) ? 'main' : $search;
           $search = NOSEARCH;

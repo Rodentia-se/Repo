@@ -71,6 +71,7 @@
           if (config::$mainDivision) {
             $data = config::$mainDivision;
           } else {
+            $delegated = TRUE;
             $tournament = tournament(config::$activeTournament);
             $data = 'main';
           }
@@ -78,33 +79,61 @@
           if (config::${$data.'Division'}) {
             $data = config::${$data.'Division'};
           } else {
+            $delegated = TRUE;
             $tournament = tournament(config::$activeTournament);
           }
         } else if ($data != 'empty' && $data != 'new') {
+          $delegated = TRUE;
           $tournament = tournament(config::$activeTournament);
         }
       } else if (is_object($data) && get_class($data) == 'tournament' && (is_string($search) || $search == NOSEARCH)) {
+        $delegated = TRUE;
         $tournament = $data;
         $data = ($search == NOSEARCH) ? NULL : $search;
       }
-      if ($tournament) {
-        $divisions = divisions($tournament);
-        $type = ($data) ? $data : 'main';
-        foreach ($divisions as $division) {
-          if ($division->{$data}) {
-            $data = $division->id;
-            $search = NOSEARCH;
+      if ($delegated) {
+        if ($tournament) {
+          $divisions = divisions($tournament);
+          $type = ($data) ? $data : 'main';
+          while ($division = each($division) && !$hit) {
+            if ($division->{$data}) {
+              parent::__construct($division->id, NOSEARCH, $depth);
+              $hit = TRUE;
+            }
           }
-        }
-        if ($division && isId($division->id)) {
-          $data = $division->id;
-          $search = NOSEARCH;
+          if (!$hit) {
+            $this->failed = TRUE;
+          }
         } else {
           $this->failed = TRUE;
         }
+      } else {
+        parent::__construct($data, $search, $depth);
       }
-      parent::__construct($data, $search, $depth);
     }
+
+
+      if ($delagated == TRUE) {
+        if ($person) {
+          $type = ($search == NOSEARCH) ? 'main' : $search;
+          $search = NOSEARCH;
+          $division = ($tournament) ? division($tournament, $type) : division($type);
+          $player = player(array(
+            'person_id' => $person->id,
+            'tournamentDivision_id' => $division->id
+          ), TRUE);
+          if ($player && isId($player->id)) {
+            parent::__construct($player->id, NOSEARCH, $depth);
+          } else {
+            $this->failed == TRUE;
+          }
+        } else {
+          $this->failed == TRUE;
+        }
+      } else {
+        parent::__construct($data, $search, $depth);
+      }
+
 
     public function getPlayers() {
       return players($this);
