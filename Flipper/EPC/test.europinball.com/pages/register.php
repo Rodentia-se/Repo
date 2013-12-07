@@ -21,43 +21,17 @@
           if (config::$participationLimit && count($players) >= config::$participationLimit) {
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if there will come an opening for you.');
-            $page->addParagraph('
-              <form id="editForm" action="'.config::$baseHref.'/edit/" method="POST">
-                <input type="button" id="editButton" value="Update your info">
-              </form>');
-            $page->addScript('
-              $("#editButton").click(function() {
-                $("#editForm").submit();
-              });
-            ');
+            $page->addClickButton('update your info', 'update', NULL, TRUE, 'edit');
           } else {
             header('Location: '.config::$baseHref.'/edit/');
           }
         } else {
           $page->addParagraph('Something went wrong trying to add you to the tournament. You can either try again or contact us for assistance.');
-          $page->addParagraph('
-            <form id="tryForm" action="'.config::$baseHref.'/edit/" method="POST">
-              <input type="button" id="tryButton" value="Try again">
-            </form>');
-          $page->addScript('
-            $("#tryButton").click(function() {
-              $("#tryForm").submit();
-            });
-          ');
+          $page->addClickButton('try again');
         }
       } else {
         $tournament = tournament(config::$activeTournament);
-        $page->addParagraph('
-          <form id="registerForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-            You are logged in as '.$page->login->person->name.'. Press the button to register for '.$tournament->name.':
-            <input type="hidden" name="register" value="yes">
-            <input type="button" id="registerButton" value="Register">
-          </form>');
-        $page->addScript('
-          $("#registerButton").click(function() {
-            $("#registerForm").submit();
-          });
-        ');
+        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'You are logged in as '.$page->login->person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
       }
     }

@@ -462,7 +462,7 @@
       return $icon;
     }
     
-    public function static getCloseIcon($id = NULL, $class = NULL, $label = NULL) {
+    public static function getCloseIcon($id = NULL, $class = NULL, $label = NULL) {
       return self::getIcon(config::$baseHref.'images/cancel.png', $id, $class, $label);
     }
 
@@ -472,7 +472,7 @@
       return $icon;
     }
     
-    public function static getAddIcon($id = NULL, $class = NULL, $label = NULL) {
+    public static function getAddIcon($id = NULL, $class = NULL, $label = NULL) {
       return self::getIcon(config::$baseHref.'images/add_icon.gif', $id, $class, $label);
     }
 
@@ -487,25 +487,26 @@
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
     
-    public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL) {
-      return $this->addButton($url, $id, $class, $forms, $action, $ext, $script);
+    public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $header = NULL, $label = FALSE) {
+      return $this->addButton($url, $id, $class, $forms, $action, $ext, $script, $header, $label);
     }
     
-    public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL) {
-      return self::getButton($url, $id, $class, $forms, $action, $ext, $script);
+    public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $header = NULL, $label = FALSE) {
+      return self::getButton($url, $id, $class, $forms, $action, $ext, $script, $header, $label);
     }
 
-    public function addButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST') {
-      $button = self::getButton($url, $id, $class, $forms, $action, $ext, $script, $method);
+    public function addButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
+      $button = self::getButton($url, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
       $this->addContent($button);
       return $button;
     }
     
-    public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST') {
+    public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
       $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
       $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
-      $button .= self::getInput($text, $id.'Button', $class, 'button', FALSE);
+      $button .= ($header) ? $header : '';
+      $button .= self::getInput($text, $id.'Button', $class, 'button', $label);
       if (is_string($forms)) {
         $button .= self::getInput('yes', $form, NULL, 'hidden', FALSE);
       } else if (is_array($forms)) {
