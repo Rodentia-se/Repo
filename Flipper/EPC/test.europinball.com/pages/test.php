@@ -6,22 +6,31 @@
   $page = new page('Test', true);
 
   $tournament = tournament('active');
+  debug(1);
   debug($tournament->getFlat());
   $divisions = $tournament->getDivision();
+  debug(2);
   debug($divisions);
   $division = division($tournament, 'main');
+  debug(3);
   debug($division->getFlat());
   $division = division('current');
+  debug(4);
   debug($division->getFlat());
   $players = players($division);
+  debug(5);
   debug($players);
   $person = person('auth');
+  debug(6);
   debug($person);
   $players = players($person);
+  debug(7);
   debug($players);
   $player = player($person, 'eighties');
+  debug(8);
   debug($player);
   $player = player($person);
+  debug(9);
   debug($player);
   
   
