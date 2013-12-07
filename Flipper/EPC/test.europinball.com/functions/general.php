@@ -70,7 +70,7 @@
   
   function debug($text, $title = NULL, $die = FALSE) {
     if (config::$debug) {
-      return output($text, 'DEBUG:'.(($title) ? '.$title.' = ' : ''), NULL, NULL, 'dump', $die);
+      return output($text, 'DEBUG:'.(($title) ? ' '.$title.' = ' : ''), NULL, NULL, 'dump', $die);
     } else {
       return FALSE;
     }
