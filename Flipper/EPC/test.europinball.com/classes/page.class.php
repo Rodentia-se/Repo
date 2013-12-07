@@ -264,7 +264,6 @@
     }
     
     public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
-      debug($method, '1 method');
       return self::getElementStart('form', $id, $class, 'action="'.$action.'" method="'.$method.'"');
     }
     
@@ -278,6 +277,16 @@
       return self::getElementEnd('form');
     }
 
+    public function addLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
+      $label = self::getLabel($text, $id, $class, $close);
+      $this->addContent($h4);
+      return $h4;
+    }
+    
+    public static function getLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
+      return self::getElement($text, 'label', $id, $class, $close);
+    }
+    
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL, $extra = NULL) {
       return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').''.(($extra) ? ' '.$extra : '').'>';
     } 
@@ -427,6 +436,7 @@
     }
 
     public static function getInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
+      debug($label, '1 label');
       $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? ucfirst($id) : $label);
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
@@ -509,12 +519,12 @@
       $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
       $button .= ($header) ? $header : '';
-      $button .= self::getInput($text, $id.'Button', $class, 'button', $label);
+      $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', $class, $label);
       if (is_string($forms)) {
-        $button .= self::getInput('yes', $form, NULL, 'hidden');
+        $button .= self::getInput('yes', $form, $form, 'hidden');
       } else if (is_array($forms)) {
         foreach ($forms as $form => $value) {
-          $button.= (is_int($form)) ? self::getInput('yes', $value, NULL, 'hidden') : self::getInput($value, $form, NULL, 'hidden');
+          $button.= (is_int($form)) ? self::getInput('yes', $value, $value, 'hidden') : self::getInput($value, $form, $form, 'hidden');
         }
       }
       $button .= ($forms) ? '</form>' : '';

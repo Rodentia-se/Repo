@@ -139,10 +139,10 @@
       return false;
     }
     
-    public function getEdit($title = 'Edit profile', $tournament = NULL) {
+    public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
       foreach (config::$activeDivisions as $divisionType) {
         $player = $this->getPlayer($divisionType);
-        $checkboxes .= page::getInput($this->$divisionType, $divisionType, 'edit', 'checkbox', ucfirst($divisionType), FALSE, (($divisionType == 'main') ? TRUE : FALSE));
+        $checkboxes .= page::getInput($this->$divisionType, $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, (($divisionType == 'main') ? TRUE : FALSE));
       }
       $genders = genders('all');
       $cities = cities('all');
@@ -153,23 +153,23 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
-          <div>'.page::getInput($this->firstName, 'firstName', 'edit', 'text', 'First name').'</div>
-          <div>'.page::getInput($this->lastName, 'lastName', 'edit', 'text', 'Last name').'</div>
-          <div>'.page::getInput($this->shortName, 'shortName', 'edit', 'text', 'Tag').'</div>
+          <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
+          <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
+          <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
           <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-          <div>'.page::getInput($this->streetAddress, 'streetAddress', 'edit', 'text', 'Address').'</div>
-          <div>'.page::getInput($this->zipCode, 'zipCode', 'edit', 'text', 'ZIP').'</div>
-          <div id="cityDiv">'.page::getInput(NULL, 'city', 'edit', 'text', 'New city', TRUE).'</div>
+          <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
+          <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
+          <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
           <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-          <div id="regionDiv">'.page::getInput(NULL, 'region', 'edit', 'text', 'New region', TRUE).'</div>
+          <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
           <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
           <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
           <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-          <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
-          <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
-          <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
-          <div>'.page::getLabelStart('partLabel','label').'Divisions'.page::getLabelEnd().$checkboxes.'</div>
-          <div>'.page::getInput($this->birthDate, 'birthDate', 'edit date', 'text', 'Born').'</div>
+          <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
+          <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
+          <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
+          <div>'.page::getLabel('Divisions').$checkboxes.'</div>
+          <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
         </div>
       ';
     }
