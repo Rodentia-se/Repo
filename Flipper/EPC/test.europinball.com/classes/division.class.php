@@ -96,7 +96,7 @@
           $divisions = divisions($tournament);
           $type = ($data) ? $data : 'main';
           while ($division = each($divisions) && !$hit) {
-            if ($division->{$data}) {
+            if ($division->{$type}) {
               parent::__construct($division->id, NOSEARCH, $depth);
               $hit = TRUE;
             }
