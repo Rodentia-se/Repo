@@ -51,6 +51,7 @@
     public static $singleDivisions = array('main', 'classics', 'eighties');
     public static $teamDivisions = array('team', 'nationalTeam');
 
+    const NOSEARCH = 'noSearchCriteriaProvided';
   }
 
 ?>

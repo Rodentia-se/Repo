@@ -15,7 +15,7 @@
     public static $validators = array();
     public static $mandatory = array();
 
-    public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
+    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
@@ -24,7 +24,7 @@
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
-      if ($search === 'noSearchCriteriaProvided') {
+      if ($search !== NOSEARCH) {
         if (isAssoc($data)) {
           $obj = $this->db->getObjectByProps(get_class($this), $data);
         } else if ($data) {
