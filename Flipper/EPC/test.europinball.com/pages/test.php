@@ -5,32 +5,32 @@
 
   $page = new page('Test', true);
 
-  $tournament = tournament('active');
   debug(1);
+  $tournament = tournament('active');
   debug($tournament->getFlat());
-  $divisions = $tournament->getDivision();
   debug(2);
+  $divisions = $tournament->getDivision();
   debug($divisions);
-  $division = division($tournament, 'main');
   debug(3);
+  $division = division($tournament, 'main');
   debug($division->getFlat());
-  $division = division('current');
   debug(4);
+  $division = division('current');
   debug($division->getFlat());
-  $players = players($division);
   debug(5);
+  $players = players($division);
   debug($players);
-  $person = person('auth');
   debug(6);
+  $person = person('auth');
   debug($person);
-  $players = players($person);
   debug(7);
+  $players = players($person);
   debug($players);
-  $player = player($person, 'eighties');
   debug(8);
+  $player = player($person, 'eighties');
   debug($player);
-  $player = player($person);
   debug(9);
+  $player = player($person);
   debug($player);
   
   
