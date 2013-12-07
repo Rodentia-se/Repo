@@ -8,7 +8,7 @@
   
   function obj($obj) {
     if ($obj->huff) {
-      debug($obj, ¨'classes, obj');
+      debug($obj, 'classes, obj');
     }
     return ($obj->failed) ? FALSE : $obj;
   }
@@ -43,7 +43,7 @@
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new division($data, $search, $depth);
     if ($obj->huff) {
-      debug($obj, ¨'classes, div');
+      debug($obj, 'classes, div');
     }
     return obj($obj);
   }
