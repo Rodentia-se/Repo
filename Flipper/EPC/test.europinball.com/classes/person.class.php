@@ -104,7 +104,7 @@
     }
 
     public function getTeam($division = NULL) {
-      $division = getDivision($division);
+      $division = ($division) ? division($division) : division('active');
       $query = team::$select.'
         left join teamPerson tp on tp.team_id = o.id
         where tp.person_id = :id
