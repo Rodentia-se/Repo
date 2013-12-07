@@ -52,7 +52,7 @@
       'player' => array(
         'field' => 'tournamentDivision', 
         'delete' => true
-      ), 
+      ),
       'team' => array(
         'field' => 'tournamentDivision',
         'delete' => true
@@ -92,6 +92,8 @@
         if ($division && isId($division->id)) {
           $data = $division->id;
           $search = NOSEARCH;
+        } else {
+          $this->failed = TRUE;
         }
       }
       parent::__construct($data, $search, $depth);

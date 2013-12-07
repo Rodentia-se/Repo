@@ -139,6 +139,8 @@
         if ($player && isId($player->id)) {
           $data = $player->id;
           $search = NOSEARCH;
+        } else {
+          $this->failed == TRUE;
         }
       }
       parent::__construct($data, $search, $depth);
