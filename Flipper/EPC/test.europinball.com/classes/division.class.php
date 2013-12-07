@@ -88,7 +88,14 @@
         $data = ($search == NOSEARCH) ? NULL : $search;
       }
       if ($tournament) {
-        $division = $tournament->getDivision($data);
+        $divisions = divisions($tournament);
+        $type = ($data) ? $data : 'main';
+        foreach ($divisions as $division) {
+          if ($division->{$data}) {
+            $data = $division->id;
+            $search = NOSEARCH;
+          }
+        }
         if ($division && isId($division->id)) {
           $data = $division->id;
           $search = NOSEARCH;

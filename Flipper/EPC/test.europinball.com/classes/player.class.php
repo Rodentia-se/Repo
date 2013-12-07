@@ -131,7 +131,12 @@
         $data = ($search == NOSEARCH) ? NULL : $search;
       }
       if ($person) {
-        $player = $person->getPlayer($data);
+        $type = ($data) ? $data : 'current';
+        $division = division($type);
+        $player = player(array(
+          'person_id' => $this->id,
+          'tournamentDivision_id' => $division->id
+        ), TRUE);
         if ($player && isId($player->id)) {
           $data = $player->id;
           $search = NOSEARCH;
