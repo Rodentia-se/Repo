@@ -138,6 +138,8 @@
         } else {
           $this->failed == TRUE;
         }
+      } else {
+        $this->failed == TRUE;
       }
       parent::__construct($data, $search, $depth);
     }
