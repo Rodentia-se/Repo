@@ -179,13 +179,13 @@
             $form .= page::getDivStart($prefix.'passwordDiv');
               $form .= page::getInput('', $prefic.'password', 'password', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
-            $form .= page::getDivStart($prefix.'autologinDiv');
+            $form .= page::getLabel(' ').page::getDivStart($prefix.'autologinDiv');
               $form .= page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
             $form .= page::getDivEnd();
             $form .= ($dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
-        $form .= page::getClickButton('I forgot all this!', $prefix.'forgot');
+        $form .= page::getLabel(' ');.page::getClickButton('I forgot all this!', $prefix.'forgot');
         $form .= page::getScript('
           $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
         ');
