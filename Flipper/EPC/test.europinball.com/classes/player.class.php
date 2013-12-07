@@ -131,11 +131,11 @@
         $delagated = TRUE;
         $person = (get_class($data) == 'person') ? $data : NULL;
         $tournament = (get_class($data) == 'tournament') ? $data : NULL;
-        $data = ($search == NOSEARCH) ? NULL : $search;
-        $type = ($data) ? $data : 'main';
       }
       if ($delagated == TRUE) {
         if ($person || $tournament) {
+          $type = ($search == NOSEARCH) ? 'main' : $search;
+          $search = NOSEARCH;
           $division = ($tournament) ? division($tournament, $type) : division($type);
           $player = player(array(
             'person_id' => $this->id,
@@ -144,14 +144,18 @@
           if ($player && isId($player->id)) {
             $data = $player->id;
             $search = NOSEARCH;
+            parent::__construct($data, $search, $depth);
           } else {
             $this->failed == TRUE;
+            $data = NULL;
           }
         } else {
           $this->failed == TRUE;
+          $data = NULL;
         }
+      } else {
+        parent::__construct($data, $search, $depth);
       }
-      parent::__construct($data, $search, $depth);
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
