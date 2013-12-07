@@ -70,6 +70,7 @@
           $this->populate($depth);
         }
       }
+      debug($this->id, 'base ID');
     }
 
     protected function _set($data) {
