@@ -179,8 +179,8 @@
             $form .= page::getDivStart($prefix.'passwordDiv');
               $form .= page::getInput('', $prefic.'password', 'password', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
-            $form .= page::getLabel(' ').page::getDivStart($prefix.'autologinDiv');
-              $form .= page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
+            $form .= page::getDivStart($prefix.'autologinDiv');
+              $form .= page::getLabel(' ').page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
             $form .= page::getDivEnd();
             $form .= ($dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
           $form .= '</fieldset>';
