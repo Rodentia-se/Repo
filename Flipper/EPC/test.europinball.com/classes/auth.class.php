@@ -167,7 +167,7 @@
     }
 
     public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      $form = page::getDivStart($prefix.'loginDiv', $class, (($dialog) ? 'title="'.$title : NULL));
+      $form = page::getDivStart($prefix.'loginDiv', $class, (($dialog) ? $title : NULL));
         $form .= (!$dialog) ? page::getH4($title) : '';
         $form .= page::getFormStart($prefix.'loginForm');
           $form .= '<fieldset>';
