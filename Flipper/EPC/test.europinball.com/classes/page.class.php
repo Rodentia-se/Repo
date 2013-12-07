@@ -244,7 +244,7 @@
     }
     
     public static function getLabelStart($id = NULL, $class = NULL) {
-      return self::getElementStart('label', $id, $class);
+      return self::getElementStart('label', $id, $class.' label');
     }
     
     public function closeLabel() {
@@ -284,7 +284,7 @@
     }
     
     public static function getLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
-      return self::getElement($text, 'label', $id, $class, $close);
+      return self::getElement($text, 'label', $id, $class.' label', $close);
     }
     
     public static function getElementStart($type = 'p', $id = NULL, $class = NULL, $extra = NULL) {
