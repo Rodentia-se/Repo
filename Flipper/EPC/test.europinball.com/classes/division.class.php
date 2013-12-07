@@ -125,7 +125,7 @@
       } else {
         parent::__construct($data, $search, $depth);
       }
-          debug($this->id, 'div12, divid');
+          debug($this, 'div12, divid');
     }
 
     public function getPlayers() {
