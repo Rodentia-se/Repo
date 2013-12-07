@@ -66,8 +66,8 @@
     );
 
     public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
-      if (is_string($data) && ($data == 'current' || in_array($data, config::$activeDivisions)) && $search == 'noSearchCriteriaProvided') {
-        if ($data == 'current') {
+      if (is_string($data) && ($data == 'current' || $data == 'active' || in_array($data, config::$activeDivisions)) && $search == 'noSearchCriteriaProvided') {
+        if ($data == 'current' || $data == 'active') {
           if (config::$mainDivision) {
             $data = config::$mainDivision;
           } else {
