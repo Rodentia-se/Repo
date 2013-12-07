@@ -105,8 +105,9 @@
               debug($this->id, 'div5, thisid');
               $hit = TRUE;
             }
+            debug((($hit) ? 'hit' : 'nohit'), 'div6, hit');
           }
-          debug($this->id, 'div6, divid');
+          debug($this->id, 'div7, divid');
           if (!$hit) {
             $this->failed = TRUE;
           }
