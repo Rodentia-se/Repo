@@ -21,7 +21,7 @@
   $players = players($division);
   debug($players);
   debug(6);
-  $person = person('auth');
+  $person = person(2589);
   debug($person);
   debug(7);
   $players = players($person);
