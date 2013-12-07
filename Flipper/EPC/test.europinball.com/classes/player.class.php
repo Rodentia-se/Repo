@@ -126,10 +126,6 @@
       if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
         $login = new auth();
         $person = $login->person;
-        if ($person) {
-          $player = $person->getPlayer(((in_array($data, config::$activeDivisions)) ? $data : NULL));
-          $data = ($player) ? $player->id : $data; 
-        }
       } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
         $person = $data;
         $data = ($search == NOSEARCH) ? NULL : $search;
