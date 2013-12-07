@@ -98,7 +98,7 @@
       $division = getDivision($division);
       if ($division->main) {
         $players = players($division);
-        if (!config::$participationLimit || count($players) < config:;:$participationLimit) {
+        if (!config::$participationLimit || count($players) < config::$participationLimit) {
           $player = player($this->getFlat(), NULL, 0);
           unset($player->id);
           $player->tournamentDivision_id = $division->id;
