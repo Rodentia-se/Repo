@@ -183,7 +183,7 @@
         $form .= page::getScript('
           $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
         ');
-      $form = page::getDivEnd();
+      $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.'loginDiv").dialog({
