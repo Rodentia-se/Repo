@@ -38,6 +38,7 @@
           $objs = array($data);
         } else {
           $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
+          debug($prop, 'group, prop');
           $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
         }
       } else if ($data && is_string($prop)) {
