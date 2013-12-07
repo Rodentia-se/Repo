@@ -10,7 +10,7 @@
   debug($tournament->getFlat());
   debug('TEST 2');
   $division = division($tournament, 'main');
-  debug($divisions);
+  debug($division);
   debug('TEST 3');
   $division = division('current');
   debug($division->getFlat());
