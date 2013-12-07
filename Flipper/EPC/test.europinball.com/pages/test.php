@@ -13,7 +13,7 @@
   debug($division);
   debug('TEST 3');
   $players = players($tournament, 'eighties');
-  debug($division->getFlat());
+  debug($players);
   debug('TEST 4');
   $players = players($division);
   debug($players);
