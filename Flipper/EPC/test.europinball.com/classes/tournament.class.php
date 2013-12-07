@@ -60,17 +60,6 @@
       parent::__construct($data, $search, $depth);
     }
     
-    public function getDivision($type = NULL) {
-      $type = ($type) ? $type : 'main';
-      $divisions = divisions($this);
-      foreach ($divisions as $division) {
-        if ($division->{$type}) {
-          return $division;
-        }
-      }
-      return NULL;
-    }
-    
     public function isActive() {
       return ($this->id == config::$activeTournament);
     }
