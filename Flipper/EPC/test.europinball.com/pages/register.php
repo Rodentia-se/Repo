@@ -4,6 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Register');
+  $page->addH2('Register player');
 
   if ($page->checkLogin()) {
     $person = $page->login->person;
@@ -13,11 +14,39 @@
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes') {
-        $person->addPlayer();
-        header('Location: '.config::$baseHref.'/edit/');
+        $division = division('active');
+        $players = players($division);
+        $add = $person->addPlayer();
+        if ($add) {
+          if (config::$participationLimit && count($players) >= config::$participationLimit) {
+            $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
+            $page->addParagraph('We have added you to the waiting list, and we will contact you if there will come an opening for you.');
+            $page->addParagraph('
+              <form id="editForm" action="'.config::$baseHref.'/edit/" method="POST">
+                <input type="button" id="editButton" value="Update your info">
+              </form>');
+            $page->addScript('
+              $("#editButton").click(function() {
+                $("#editForm").submit();
+              });
+            ');
+          } else {
+            header('Location: '.config::$baseHref.'/edit/');
+          }
+        } else {
+          $page->addParagraph('Something went wrong trying to add you to the tournament. You can either try again or contact us for assistance.');
+          $page->addParagraph('
+            <form id="tryForm" action="'.config::$baseHref.'/edit/" method="POST">
+              <input type="button" id="tryButton" value="Try again">
+            </form>');
+          $page->addScript('
+            $("#tryButton").click(function() {
+              $("#tryForm").submit();
+            });
+          ');
+        }
       } else {
         $tournament = tournament(config::$activeTournament);
-        $page->addH2('Register player');
         $page->addParagraph('
           <form id="registerForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
             You are logged in as '.$page->login->person->name.'. Press the button to register for '.$tournament->name.':
@@ -39,7 +68,6 @@
         $person = person($person_id);
         if ($person) {
           if ($person->username) {
-            $page->addH2('Register player');
             $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:', TRUE);
           } else {
             $page->addH2('Register new user');

@@ -257,8 +257,28 @@
       return self::getElementEnd('label');
     }
 
-    public static function getElementStart($type = 'p', $id = NULL, $class = NULL) {
-      return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').'>';
+    public function startForm($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
+      $form = self::getFormStart($id, $class, $action, $method);
+      $this->addContent($form);
+      return $form;
+    }
+    
+    public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
+      return self::getElementStart('form', $id, $class, 'action="'.$action.'" method="'.$method.'"');
+    }
+    
+    public function closeForm() {
+      $form = self::getFormEnd();
+      $this->addContent($form);
+      return $form;
+    }
+
+    public static function getFormEnd() {
+      return self::getElementEnd('form');
+    }
+
+    public static function getElementStart($type = 'p', $id = NULL, $class = NULL, $extra = NULL) {
+      return '<'.$type.(($id) ? ' id="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').''.(($extra) ? ' '.$extra : '').'>';
     } 
 
     public static function getElementEnd($type = 'p') {
@@ -399,13 +419,13 @@
       return self::getElement($text, 'li', $id, $class, $close);
     }
 
-    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $disabled = FALSE) {
-      $input = self::getInput($value, $id, $class, $type, $label, $disabled);
+    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE, $disabled = FALSE) {
+      $input = self::getInput($value, $id, $class, $type, $label, $close, $disabled);
       $this->addContent($input);
       return $input;
     }
 
-    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $disabled = FALSE) {
+    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE, $disabled = FALSE) {
       $label = ($label === TRUE) ? $id : $label;
       $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
       if ($type == 'radio' || $type == 'checkbox') {
@@ -416,7 +436,7 @@
         ';
       }
       if ($close) {
-        $input .= self::getIcon('images/cancel.png', 'close_'.$id, 'closeIcon editIcon', 'Click to remove the new '.$id);
+        $input .= self::getCloseIcon($id);
       }
       return $input;
     }
@@ -436,8 +456,28 @@
       return $select;
     }
     
+    public function addCloseIcon($id = NULL, $class = NULL, $label = NULL) {
+      $icon = self::getCloseIcon('close_'.$id, 'closeIcon editIcon '.$class, 'Click to remove '.$label);
+      $this->addContent($icon);
+      return $icon;
+    }
+    
+    public function static getCloseIcon($id = NULL, $class = NULL, $label = NULL) {
+      return self::getIcon(config::$baseHref.'images/cancel.png', $id, $class, $label);
+    }
+
+    public function addAddIcon($id = NULL, $class = NULL, $label = NULL) {
+      $icon = self::getAddIcon('add_'.$id, 'addIcon editIcon '.$class, 'Click to add '.$label);
+      $this->addContent($icon);
+      return $icon;
+    }
+    
+    public function static getAddIcon($id = NULL, $class = NULL, $label = NULL) {
+      return self::getIcon(config::$baseHref.'images/add_icon.gif', $id, $class, $label);
+    }
+
     public function addIcon($url, $id = NULL, $class = NULL, $label = NULL) {
-      $icon = self::getSelect($url, $id, $class, $label);
+      $icon = self::getIcon($url, $id, $class, $label);
       $this->addContent($icon);
       return $icon;
     }
@@ -446,7 +486,41 @@
       $url = (preg_match('/^http/', $url)) ? $url : config::$baseHref.'/'.$url;
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
+    
+    public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL) {
+      return $this->addButton($url, $id, $class, $forms, $action, $ext, $script);
+    }
+    
+    public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL) {
+      return self::getButton($url, $id, $class, $forms, $action, $ext, $script);
+    }
 
+    public function addButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST') {
+      $button = self::getButton($url, $id, $class, $forms, $action, $ext, $script, $method);
+      $this->addContent($button);
+      return $button;
+    }
+    
+    public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST') {
+      $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
+      $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
+      $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
+      $button .= self::getInput($text, $id.'Button', $class, 'button', FALSE);
+      if (is_string($forms)) {
+        $button .= self::getInput('yes', $form, NULL, 'hidden', FALSE);
+      } else if (is_array($forms)) {
+        foreach ($forms as $form => $value) {
+          $button.= (is_int($form)) ? self::getInput('yes', $value, NULL, 'hidden', FALSE) : self::getInput($value, $form, NULL, 'hidden', FALSE);
+        }
+      }
+      $button .= ($forms) ? '</form>' : '';
+      $button .= ($script !== FALSE) ? self::getScript('
+        $("#'.$id.'Button").click(function() {
+          '.(($script) ? $script : '$("#'.$id.'Form").submit();').'
+        });
+      ') : '';
+    }
+    
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
         return ($add) ? NULL : TRUE;
