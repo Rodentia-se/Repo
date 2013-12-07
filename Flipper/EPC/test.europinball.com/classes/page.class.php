@@ -264,6 +264,7 @@
     }
     
     public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
+      debug($method, '1 method');
       return self::getElementStart('form', $id, $class, 'action="'.$action.'" method="'.$method.'"');
     }
     
@@ -429,11 +430,11 @@
       $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? ucfirst($id) : $label);
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
-      $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
+      $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">' : '';
       if ($type == 'radio' || $type == 'checkbox') {
-        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? ' name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? '</label>' : '');
+        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? ' name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? $label.'</label>' : '');
       } else {
-        $input .= (($label) ? '</label>' : '').'
+        $input .= (($label) ? $label.'</label>' : '').'
           <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? '" name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'" data-previous="'.$value.'"' : ' data-previous=""').(($disabled) ? ' disabled': '').'>
         ';
       }
