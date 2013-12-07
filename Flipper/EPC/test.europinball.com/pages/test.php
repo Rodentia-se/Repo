@@ -13,16 +13,16 @@
   debug($division->getFlat());
   $division = division('current');
   debug($division->getFlat());
-  $players = $division->getPlayers();
+  $players = players($division);
   debug($players);
   $person = person('auth');
   debug($person);
-  $players = $person->getPlayers();
-  debug($players);
   $players = players($person);
   debug($players);
-  $players = player($person, 'main');
-  debug($players);
+  $player = player($person, 'eighties');
+  debug($player);
+  $player = player($person);
+  debug($player);
   
   
 /*
