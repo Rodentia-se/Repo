@@ -99,15 +99,17 @@
           $divisions = divisions($tournament);
           $type = ($data) ? $data : 'main';
           while ($division = each($divisions) && !$hit) {
+             debug($type, 'div4, type');
+             debug($division->id, 'div5, divid');
             if ($division->{$type}) {
-              debug($division->id, 'div4, divid');
+              debug($division->id, 'div6, divid');
               parent::__construct($division->id, NOSEARCH, $depth);
-              debug($this->id, 'div5, thisid');
+              debug($this->id, 'div7, thisid');
               $hit = TRUE;
             }
-            debug((($hit) ? 'hit' : 'nohit'), 'div6, hit');
+            debug((($hit) ? 'hit' : 'nohit'), 'div8, hit');
           }
-          debug($this->id, 'div7, divid');
+          debug($this->id, 'div9, divid');
           if (!$hit) {
             $this->failed = TRUE;
           }
