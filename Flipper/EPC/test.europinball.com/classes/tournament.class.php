@@ -77,6 +77,10 @@
       return NULL;
     }
     
+    public function isActive() {
+      return ($this->id == config::$activeTournament);
+    }
+    
   }
 
 ?>
