@@ -122,6 +122,9 @@
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+      debug(get_class($this), 'player, class');
+      debug($data, 'player, data');
+      debug($search, 'player, search');
       $constructors = array('current', 'active', 'login', 'auth');
       if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
         $delegated = TRUE;
@@ -129,7 +132,7 @@
         $person = $login->person;
       } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
         $delagated = TRUE;
-        $person = (get_class($data) == 'person') ? $data : NULL;
+        $person = $data;
       }
       if ($delegated) {
         if ($person) {
