@@ -144,11 +144,11 @@
           $search = NOSEARCH;
           $division = division($type);
           if ($division && isId($division->id)) {
-            $playerArray = player(array(
+            $data = array(
               'person_id' => $person->id,
               'tournamentDivision_id' => $division->id
-            );
-            parent::__construct($playerArray, TRUE, $depth);
+            ):
+            parent::__construct($data, TRUE, $depth);
           } else {
             $this->failed == TRUE;
           }
