@@ -5,28 +5,28 @@
 
   $page = new page('Test', true);
 
-  debug(1);
+  debug('TEST 1');
   $tournament = tournament('active');
   debug($tournament->getFlat());
-  debug(2);
+  debug('TEST 2');
   $division = division($tournament, 'main');
   debug($divisions);
-  debug(3);
+  debug('TEST 3');
   $division = division('current');
   debug($division->getFlat());
-  debug(4);
+  debug('TEST 4');
   $players = players($division);
   debug($players);
-  debug(5);
+  debug('TEST 5');
   $person = person(2589);
   debug($person);
-  debug(6);
+  debug('TEST 6');
   $players = players($person);
   debug($players);
-  debug(7);
+  debug('TEST 7');
   $player = player($person, 'eighties');
   debug($player);
-  debug(8);
+  debug('TEST 8');
   $player = player($person);
   debug($player);
   

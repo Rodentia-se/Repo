@@ -100,9 +100,9 @@
           $type = ($data) ? $data : 'main';
           while ($division = each($divisions) && !$hit) {
             if ($division->{$type}) {
-              debug($division->id, 'div5, divid');
+              debug($division->id, 'div4, divid');
               parent::__construct($division->id, NOSEARCH, $depth);
-              debug($this->id, 'div4, thisid');
+              debug($this->id, 'div5, thisid');
               $hit = TRUE;
             }
           }
