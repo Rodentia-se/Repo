@@ -177,7 +177,7 @@
               $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'passwordDiv');
-              $form .= page::getInput('', $prefic.'password', 'password', 'password', 'enterSubmit');
+              $form .= page::getInput('', $prefix.'password', 'password', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'autologinDiv');
               $form .= page::getLabel(' ').page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
