@@ -91,7 +91,7 @@
         $division = $tournament->getDivision($data);
         if ($division && isId($division->id)) {
           $data = $division->id;
-          unset($search);
+          $search = NOSEARCH;
         }
       }
       parent::__construct($data, $search, $depth);

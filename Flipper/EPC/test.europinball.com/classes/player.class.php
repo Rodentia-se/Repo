@@ -138,7 +138,7 @@
         $player = $person->getPlayer($data);
         if ($player && isId($player->id)) {
           $data = $player->id;
-          unset($search);
+          $search = NOSEARCH;
         }
       }
       }
