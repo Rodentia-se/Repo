@@ -133,7 +133,7 @@
       } else if (is_object($data) && get_class($data) == 'person') {
         $delegated = TRUE;
         $person = $data;
-      } else if (is_object($data) && (get_class($data) == 'division' && get_class($data) == 'tournament') && $search != NOSEARCH && $search) {
+      } else if (is_object($data) && (get_class($data) == 'division' || get_class($data) == 'tournament') && $search != NOSEARCH && $search) {
         $delegated = TRUE;
         $person = person($search);
         $earch = $data;
