@@ -98,17 +98,18 @@
           debug($tournament->id, 'div3, tourn');
           $divisions = divisions($tournament);
           $type = ($data) ? $data : 'main';
-          while ($division = each($divisions) && !$hit) {
+          foreach($divisions as $division) {
              debug($type, 'div4, type');
              debug($division, 'div5, divid');
-             if ($division->id == 15) {
-               debug($division);
-             }
+            if ($division->id == 15) {
+              debug($division);
+            }
             if ($division->$type) {
               debug($division->id, 'div6, divid');
               parent::__construct($division->id, NOSEARCH, $depth);
               debug($this->id, 'div7, thisid');
               $hit = TRUE;
+              break;
             }
             debug((($hit) ? 'hit' : 'nohit'), 'div8, hit');
           }
