@@ -16,7 +16,7 @@
   }
 
   function cities($data = NULL, $search = NULL) {
-    return new cities($data, $search);
+    return ($data === FALSE) ? FALSE : new cities($data, $search);
   }
 
   function continent($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -25,7 +25,7 @@
   }
 
   function continents($data = NULL, $search = NULL) {
-    return new continents($data, $search);
+    return ($data === FALSE) ? FALSE : new continents($data, $search);
   }
 
   function country($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -34,7 +34,7 @@
   }
 
   function countries($data = NULL, $search = NULL) {
-    return new countries($data, $search);
+    return ($data === FALSE) ? FALSE : new countries($data, $search);
   }
 
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -43,7 +43,7 @@
   }
 
   function divisions($data = NULL, $prop = NULL) {
-    return new divisions($data, $prop);
+    return ($data === FALSE) ? FALSE : new divisions($data, $prop);
   }
 
   function entry($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -52,7 +52,7 @@
   }
 
   function entries($data = NULL, $prop = NULL) {
-    return new entries($data, $prop);
+    return ($data === FALSE) ? FALSE : new entries($data, $prop);
   }
 
   function game($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -61,7 +61,7 @@
   }
 
   function games($data = NULL, $search = NULL) {
-    return new games($data, $search);
+    return ($data === FALSE) ? FALSE : new games($data, $search);
   }
 
   function gender($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -70,7 +70,7 @@
   }
 
   function genders($data = NULL, $search = NULL) {
-    return new genders($data, $search);
+    return ($data === FALSE) ? FALSE : new genders($data, $search);
   }
 
   function location($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -79,7 +79,7 @@
   }
 
   function locations($data = NULL, $prop = NULL) {
-    return new locations($data, $prop);
+    return ($data === FALSE) ? FALSE : new locations($data, $prop);
   }
 
   function machine($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -88,7 +88,7 @@
   }
 
   function machines($data = NULL, $search = NULL) {
-    return new machines($data, $search);
+    return ($data === FALSE) ? FALSE : new machines($data, $search);
   }
 
   function manufacturer($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -97,7 +97,7 @@
   }
 
   function manufacturers($data = NULL, $search = NULL) {
-    return new manufacturers($data, $search);
+    return ($data === FALSE) ? FALSE : new manufacturers($data, $search);
   }
 
   function match($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -106,7 +106,7 @@
   }
 
   function matches($data = NULL, $search = NULL) {
-    return new matches($data, $search);
+    return ($data === FALSE) ? FALSE : new matches($data, $search);
   }
 
   function matchPlayer($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -115,7 +115,7 @@
   }
 
   function matchPlayers($data = NULL, $search = NULL) {
-    return new matchPlayers($data, $search);
+    return ($data === FALSE) ? FALSE : new matchPlayers($data, $search);
   }
 
   function owner($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -124,7 +124,7 @@
   }
   
   function owners($data = NULL, $search = NULL) {
-    return new owners($data, $search);
+    return ($data === FALSE) ? FALSE : new owners($data, $search);
   }
   
   function period($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -133,7 +133,7 @@
   }
 
   function periods($data = NULL, $search = NULL) {
-    return new periods($data, $search);
+    return ($data === FALSE) ? FALSE : new periods($data, $search);
   }
 
   function person($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -142,7 +142,7 @@
   }
 
   function persons($data = NULL, $search = NULL) {
-    return new persons($data, $search);
+    return ($data === FALSE) ? FALSE : new persons($data, $search);
   }
 
   function player($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -151,7 +151,7 @@
   }
 
   function players($data = NULL, $search = NULL) {
-    return new players($data, $search);
+    return ($data === FALSE) ? FALSE : new players($data, $search);
   }
 
   function qualGroup($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -160,7 +160,7 @@
   }
 
   function qualGroups($data = NULL, $search = NULL) {
-    return new qualGroups($data, $search);
+    return ($data === FALSE) ? FALSE : new qualGroups($data, $search);
   }
 
   function region($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -169,7 +169,7 @@
   }
 
   function regions($data = NULL, $search = NULL) {
-    return new regions($data, $search);
+    return ($data === FALSE) ? FALSE : new regions($data, $search);
   }
 
   function score($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -178,7 +178,7 @@
   }
 
   function scores($data = NULL, $search = NULL) {
-    return new scores($data, $search);
+    return ($data === FALSE) ? FALSE : new scores($data, $search);
   }
 
   function set($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -187,7 +187,7 @@
   }
 
   function sets($data = NULL, $search = NULL) {
-    return new sets($data, $search);
+    return ($data === FALSE) ? FALSE : new sets($data, $search);
   }
 
   function task($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -196,7 +196,7 @@
   }
 
   function tasks($data = NULL, $search = NULL) {
-    return new tasks($data, $search);
+    return ($data === FALSE) ? FALSE : new tasks($data, $search);
   }
 
   function team($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -205,7 +205,7 @@
   }
 
   function teams($data = NULL, $search = NULL) {
-    return new teams($data, $search);
+    return ($data === FALSE) ? FALSE : new teams($data, $search);
   }
 
   function tournament($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -214,7 +214,7 @@
   }
 
   function tournaments($data = NULL, $prop = NULL) {
-    return new tournaments($data, $prop);
+    return ($data === FALSE) ? FALSE : new tournaments($data, $prop);
   }
 
   function tshirt($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -223,7 +223,7 @@
   }
 
   function tshirts($data = NULL, $search = NULL) {
-    return new tshirts($data, $search);
+    return ($data === FALSE) ? FALSE : new tshirts($data, $search);
   }
 
   function volunteer($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -232,7 +232,7 @@
   }
 
   function volunteers($data = NULL, $search = NULL) {
-    return new volunteers($data, $search);
+    return ($data === FALSE) ? FALSE : new volunteers($data, $search);
   }
 
   function isGroup($group, $nostring = FALSE) {
