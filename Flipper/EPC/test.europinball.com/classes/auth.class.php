@@ -167,27 +167,23 @@
     }
 
     public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      $form = '
-        <div id="'.$prefix.'loginDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
-        	<h2>'.$title.'</h2>').'
-          <form id="'.$prefix.'loginForm" method="POST">
-            <fieldset>
-              <input type="hidden" name="action" value="login">
-              <input type="hidden" name="nonce" value="'.self::$nonce.'">
-              <label for="username">Username</label>
-              <input type="text" name="username" id="'.$prefix.'usernameLogin" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              <label for="password">Password</label>
-              <input type="password" name="password" id="'.$prefix.'passwordText" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              <label for="autologin">
-                <input type="checkbox" name="autologin" value="1" id="'.$prefix.'autologinCheckbox"> Remember me
-              </label><br />
-              '.(($dialog) ? '' : '<input type="submit" value="Log in">').'
-              <input type="button" id="'.$prefix.'forgotButton" value="I forgot all this!">
-            </fieldset>
-          </form>
-          <form id="'.$prefix.'forgotForm" method="POST"><input type="hidden" name="action" value="reset"></form>
-        </div>
-      ';
+      $form = page::getDivStart($prefix.'loginDiv', $class, (($dialog) ? 'title="'.$title : NULL));
+        $form .= (!$dialog) ? page::getH2($title) : '';
+        $form .= page::getFormStart($prefix.'loginForm');
+          $form .= '<fieldset>';
+            $form .= page::getInput('login', $prefix.'action', 'action', 'hidden');
+            $form .= page::getInput(self::$nonce, $prefic.'nonce', 'nonce', 'hidden');
+            $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
+            $form .= page::getInput('', $prefic.'password', 'password', 'password', 'enterSubmit');
+            $form .= page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
+            $form .= ($dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
+          $form .= '</fieldset>';
+        $form .= page::getFormEnd();
+        $form .= page::getClickButton('I forgot all this!', $prefix.'forgotButton');
+        $page->addScript('
+          $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
+        ');
+      $form = page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.'loginDiv").dialog({
@@ -196,7 +192,7 @@
             width: 400,
             buttons: {
               "Login": function() {
-                if ($.trim($("#'.$prefix.'usernameLogin").val()).length > 0 && $.trim($("#'.$prefix.'passwordText").val()).length > 0) {
+                if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
                   $("#'.$prefix.'loginForm").submit();
                 }
               },
@@ -207,7 +203,7 @@
           });
           $(".enterSubmit").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
-              if ($.trim($("#'.$prefix.'usernameLogin").val()).length > 0 && $.trim($("#'.$prefix.'passwordText").val()).length > 0) {
+              if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
                 $("#'.$prefix.'loginForm").submit();
               }
             }
@@ -216,7 +212,7 @@
             $("#'.$prefix.'loginDiv").dialog("close");
           });
           $("#'.$prefix.'forgotButton").click(function() {
-            $("#'.$prefix.'forgotForm").submit();
+            $("#'.$prefix.'forgotButtonForm").submit();
           });
         ');
       }

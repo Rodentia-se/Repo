@@ -197,14 +197,14 @@
       $this->addScript('$("#'.$id.'").focus()', TRUE);
     }
     
-    public function startDiv($id = NULL, $class = NULL) {
-      $div = self::getDivStart($id, $class);
+    public function startDiv($id = NULL, $class = NULL, $title = NULL) {
+      $div = self::getDivStart($id, $class, $title);
       $this->addContent($div);
       return $div;
     }
     
-    public static function getDivStart($id = NULL, $class = NULL) {
-      return self::getElementStart('div', $id, $class);
+    public static function getDivStart($id = NULL, $class = NULL, $title = NULL) {
+      return self::getElementStart('div', $id, $class, (($title) ? 'title="'.$title.'"' : ''));
     }
     
     public function closeDiv() {
@@ -419,20 +419,22 @@
       return self::getElement($text, 'li', $id, $class, $close);
     }
 
-    public function addInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE, $disabled = FALSE) {
-      $input = self::getInput($value, $id, $class, $type, $label, $close, $disabled);
+    public function addInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
+      $input = self::getInput($value, $id, $name, $type, $class, $label, $close, $disabled);
       $this->addContent($input);
       return $input;
     }
 
-    public static function getInput($value = NULL, $id = NULL, $class = NULL, $type = 'text', $label = TRUE, $close = FALSE, $disabled = FALSE) {
-      $label = ($label === TRUE) ? $id : $label;
-      $input = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
+    public static function getInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
+      $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? $id : $label);
+      $id = ($id) ? $id : (($name) ? $name : NULL);
+      $name = ($name) ? $name : (($id) ? $id : NULL);
+      $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
       if ($type == 'radio' || $type == 'checkbox') {
-        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? '</label>' : '');
+        $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? ' name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? '</label>' : '');
       } else {
         $input .= (($label) ? '</label>' : '').'
-          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'" data-previous="'.$value.'"' : ' data-previous=""').(($disabled) ? ' disabled': '').'>
+          <input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? '" name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' value="'.$value.'" data-previous="'.$value.'"' : ' data-previous=""').(($disabled) ? ' disabled': '').'>
         ';
       }
       if ($close) {
@@ -508,10 +510,10 @@
       $button .= ($header) ? $header : '';
       $button .= self::getInput($text, $id.'Button', $class, 'button', $label);
       if (is_string($forms)) {
-        $button .= self::getInput('yes', $form, NULL, 'hidden', FALSE);
+        $button .= self::getInput('yes', $form, NULL, 'hidden');
       } else if (is_array($forms)) {
         foreach ($forms as $form => $value) {
-          $button.= (is_int($form)) ? self::getInput('yes', $value, NULL, 'hidden', FALSE) : self::getInput($value, $form, NULL, 'hidden', FALSE);
+          $button.= (is_int($form)) ? self::getInput('yes', $value, NULL, 'hidden') : self::getInput($value, $form, NULL, 'hidden');
         }
       }
       $button .= ($forms) ? '</form>' : '';
