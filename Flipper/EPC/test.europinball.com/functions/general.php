@@ -68,7 +68,7 @@
     return output($text, 'SUCCESS', $props, TRUE, (($json) ? 'json' : 'dump'));
   }
   
-  function debug($text, $title == NULL, $die = FALSE) {
+  function debug($text, $title = NULL, $die = FALSE) {
     if (config::$debug) {
       return output($text, 'DEBUG: '.$title.' = ', NULL, NULL, 'dump', $die);
     } else {
