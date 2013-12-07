@@ -87,20 +87,25 @@
           $tournament = tournament(config::$activeTournament);
         }
       } else if (is_object($data) && get_class($data) == 'tournament' && (is_string($search) || $search == NOSEARCH)) {
+        debug($search);
         $delegated = TRUE;
         $tournament = $data;
         $data = ($search == NOSEARCH) ? NULL : $search;
+        debug($data);
       }
       if ($delegated) {
         if ($tournament) {
+          debug($tournament->id);
           $divisions = divisions($tournament);
           $type = ($data) ? $data : 'main';
           while ($division = each($divisions) && !$hit) {
             if ($division->{$type}) {
+              debug($division->id);
               parent::__construct($division->id, NOSEARCH, $depth);
               $hit = TRUE;
             }
           }
+          debug($this->id);
           if (!$hit) {
             $this->failed = TRUE;
           }
