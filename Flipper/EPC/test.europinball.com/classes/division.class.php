@@ -50,7 +50,7 @@
         'delete' => true
       ),
       'player' => array(
-        'field' => 'tournamentDivision',
+        'field' => 'tournamentDivision', 
         'delete' => true
       ),
       'team' => array(

@@ -43,9 +43,8 @@
   $page->submit(FALSE, TRUE);
   $obj = person(1);
 */
-  $tournament = tournament(config::$activeTournament);
-  $divisions = $tournament->getDivisions();
-  debug($divisions);
+      $division = division('active');
+  debug($division);
 /*
 echo 'hej';
 foreach($objs as $obj) {
