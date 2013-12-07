@@ -38,7 +38,6 @@
   }
 
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
-    debug($search);
     $obj = new division($data, $search, $depth);
     return obj($obj);
   }
