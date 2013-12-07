@@ -15,8 +15,8 @@
   $players = players($tournament, 'eighties');
   debug($players);
   debug('TEST 4');
-  $players = players($division);
-  debug($players);
+  $player = player($tournament, 'eighties');
+  debug($player);
   debug('TEST 5');
   $person = person(2589);
   debug($person);
