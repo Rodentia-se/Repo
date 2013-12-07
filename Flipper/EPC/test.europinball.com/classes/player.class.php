@@ -147,7 +147,7 @@
             $data = array(
               'person_id' => $person->id,
               'tournamentDivision_id' => $division->id
-            ):
+            );
             parent::__construct($data, TRUE, $depth);
           } else {
             $this->failed == TRUE;
