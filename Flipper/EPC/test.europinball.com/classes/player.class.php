@@ -131,7 +131,7 @@
         $login = new auth();
         $person = $login->person;
       } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
-        $delagated = TRUE;
+        $delegated = TRUE;
         $person = $data;
       }
       if ($delegated) {
