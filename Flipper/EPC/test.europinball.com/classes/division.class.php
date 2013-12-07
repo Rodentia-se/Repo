@@ -117,12 +117,15 @@
           if (!$hit) {
             $this->failed = TRUE;
           }
+          debug($this->id, 'div10, divid');
         } else {
           $this->failed = TRUE;
         }
+          debug($this->id, 'div11, divid');
       } else {
         parent::__construct($data, $search, $depth);
       }
+          debug($this->id, 'div12, divid');
     }
 
     public function getPlayers() {
