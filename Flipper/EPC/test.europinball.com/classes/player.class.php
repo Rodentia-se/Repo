@@ -121,6 +121,19 @@
       'username' => array('person', 'validateUsername')
     );
 
+    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+      $constructors = array('current', 'active', 'login', 'auth');
+      if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
+        $login = new auth();
+        $person = $login->person;
+        if ($person) {
+          $player = $person->getPlayer(((in_array($data, config::$activeDivisions)) ? $data : NULL));
+          $data = ($player) ? $player->id : $data; 
+        }
+      }
+      parent::__construct($data, $search, $depth);
+    }
+
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
       switch ($type) {
         case 'ifpa':
