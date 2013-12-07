@@ -52,8 +52,18 @@
       )
     )
     
-    public static $validators = array(
-    );
+    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+      $constructors = array('current', 'active', 'login', 'auth');
+      if (is_string($data) && in_array($data, $constructors) && $search == NOSEARCH) {
+        $login = new auth();
+        $person = $login->person;
+        if ($person) {
+          $team = $person->getTeam();
+          $data = ($team) ? $team->id : $data; 
+        }
+      }
+      parent::__construct($data, $search, $depth);
+    }
 
     public function getMembers($division = NULL) {
       $division = getDivision($division);

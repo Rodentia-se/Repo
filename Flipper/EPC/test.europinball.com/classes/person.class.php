@@ -103,6 +103,18 @@
       ), TRUE);
     }
 
+    public function getTeam($division = NULL) {
+      $division = getDivision($division);
+      $query = team::$select.'
+        left join teamPerson tp on tp.team_id = o.id
+        where tp.person_id = :id
+          and o.tournamentDivision_id = :division
+      ';
+      $values[':id'] = $this->id;
+      $values[':division'] = $division->id;
+      return $this->db->select($query, $values, 'team');
+    }
+
     public function addPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
       $player = player($this->getFlat(), NULL, 0);
@@ -238,18 +250,6 @@
       }
     }
     
-    public function getTeam($division = NULL) {
-      $division = getDivision($division);
-      $query = team::$select.'
-        left join teamPerson tp on tp.team_id = o.id
-        where tp.person_id = :id
-          and o.tournamentDivision_id = :division
-      ';
-      $values[':id'] = $this->id;
-      $values[':division'] = $division->id;
-      return $this->db->select($query, $values, 'team');
-    }
-
   }
 
 ?>
