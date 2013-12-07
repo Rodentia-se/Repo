@@ -127,7 +127,7 @@
         $delegated = TRUE;
         $login = new auth();
         $person = $login->person;
-      } else if (is_object($data) &&(is_string($search) || $search == NOSEARCH)) {
+      } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
         $delagated = TRUE;
         $person = (get_class($data) == 'person') ? $data : NULL;
       }

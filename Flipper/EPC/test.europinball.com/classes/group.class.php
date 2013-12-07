@@ -5,6 +5,9 @@
     public static $objClass = 'group';
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
+      debug(get_class($this), 'group, class');
+      debug($data, 'group, data');
+      debug($search, 'group, search');
       parent::__construct();
       if (!base::$_db) {
         base::$_db = new db();
