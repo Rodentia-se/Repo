@@ -130,7 +130,7 @@
           $player = $person->getPlayer(((in_array($data, config::$activeDivisions)) ? $data : NULL));
           $data = ($player) ? $player->id : $data; 
         }
-      } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH) {
+      } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
         $person = $data;
         $data = $search;
       }
