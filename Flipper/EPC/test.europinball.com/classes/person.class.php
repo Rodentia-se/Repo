@@ -86,6 +86,15 @@
       'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
     );
     
+    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+      $constructors = array('current', 'active', 'login', 'auth');
+      if (is_string($data) && in_array($data, $constructors) && $search == NOSEARCH) {
+        $login = new auth();
+        $data = ($login->person->id) : $login->person->id : $data;
+      }
+      parent::__construct($data, $search, $depth);
+    }
+
     public function getPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
       return player(array(
@@ -96,18 +105,18 @@
 
     public function addPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
-      if ($division->main) {
-        $players = players($division);
-        if (config::$participationLimit && count($players) >= config::$participationLimit) {
-          return FALSE;
-        }
-      }
       $player = player($this->getFlat(), NULL, 0);
       unset($player->id);
       $player->tournamentDivision_id = $division->id;
       $player->tournamentEdition_id = $division->tournamentEdition_id;
       $player->person_id = $this->id;
       $player->dateRegistered = date('Y-m-d');
+      if ($division->main) {
+        $players = players($division);
+        if (config::$participationLimit && count($players) >= config::$participationLimit) {
+          $player->waiting = TRUE;
+        }
+      }
       $id = $player->save();
       if (isId($id)) {
         $player = player($id);
@@ -210,7 +219,7 @@
         return validated(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
         $person = person('username', $username);
-        $currentPerson = getCurrentPerson();
+        $currentPerson = person('current');
         if ($person && $currentPerson && $currentPerson->id == $person->id) {
           return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {

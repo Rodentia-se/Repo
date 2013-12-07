@@ -49,6 +49,7 @@
         o.hereFinal as hereFinal,
         if(o.paid is not null, o.paid, 0) as paid,
         o.payDate as payDate,
+        o.waiting as o.waiting,
         p.ifpa_id as ifpa_id,
         coalesce(o.ifpaRank, p.ifpaRank) as ifpaRank,
         p.username as username,

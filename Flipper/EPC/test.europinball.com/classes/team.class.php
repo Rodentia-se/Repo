@@ -81,7 +81,7 @@
       } else {
         $team = team('name', $name);
         if ($team) {
-          $currentTeam = getCurrentTeam();
+          $currentTeam = team('current');
           if ($team->id == $currentTeam->id) {
             return validated(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
           } else {

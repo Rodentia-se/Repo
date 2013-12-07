@@ -66,11 +66,7 @@
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      debug($data);
-      debug($search);
-      debug($depth);
       if (is_string($data) && ($data == 'current' || $data == 'active' || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
-            debug(1);
         if ($data == 'current' || $data == 'active') {
           if (config::$mainDivision) {
             $data = config::$mainDivision;
