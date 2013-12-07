@@ -100,7 +100,7 @@
           $type = ($data) ? $data : 'main';
           while ($division = each($divisions) && !$hit) {
              debug($type, 'div4, type');
-             debug($division->id, 'div5, divid');
+             debug($division, 'div5, divid');
              if ($division->id == 15) {
                debug($division);
              }
