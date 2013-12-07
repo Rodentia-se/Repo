@@ -1,11 +1,11 @@
 #loginFooter {
   border-top: 1px solid #ddd;
+  padding-top: 15px;
 }
 
 #clearer {
   clear: both;
   padding-bottom: 15px;
-  padding-top: 15px;
 }
 #editDiv {
   float: left;
