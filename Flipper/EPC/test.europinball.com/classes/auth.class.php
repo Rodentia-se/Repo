@@ -184,7 +184,7 @@
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
-        $form .= page::getLabel(' ')
+        $form .= page::getLabel(' ');
         $form .= (!$dialog) ? page::getButton('Login', $prefix.'login') : '';
         $form .= page::getButton('I forgot all this!', $prefix.'reset') : '';
         $form .= page::getFormStart($prefix.'resetForm');
