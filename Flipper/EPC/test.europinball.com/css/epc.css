@@ -33,7 +33,7 @@
   margin-right: 10px;
 }
 
-input[type=text] { 
+input[type=text], input[type=password] { 
   color: #4F4F4F;
   width: 210px;
   height: 20px;
@@ -58,28 +58,8 @@ input[type=text] {
   max-width: 300px;
   -webkit-box-shadow: 0 0 5px #aaa;
   box-shadow: 0 0 5px #aaa
-}
-
-body .ui-tooltip {
   border-width: 2px
 }
-
-.tooltip {
-  background: black;
-  font-size:12px;
-  height:10px;
-  width:80px;
-  padding:10px;
-  color:#fff; 
-  z-index: 99;
-  bottom: 10px;
-  border: 2px solid white;
-  /* for IE */
-  filter:alpha(opacity=80);
-  /* CSS3 standard */
-  opacity:0.8;
-}
-
 
 .addIcon {
   position: relative;
