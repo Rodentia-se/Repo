@@ -177,6 +177,17 @@
       return ($alias && $alias != ':') ? $alias : FALSE;
     }
     
+    protected function getQueryArray($cols = NULL, $cond = 'or') {
+      $obj = get_object_vars($this);
+      $cols = ($cols) ? $cols : array_keys($obj);
+      foreach ($cols as $col) {
+        $prop = (static::$cols[$col]) ? static::$cols[$col] : $col;
+        $updates[] = $col .(($obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $values[db::getAlias($col)] = $obj[$prop];
+      }
+      return array('update' => implode($updates, $cond), 'values' => $values);
+    }
+    
     public function getRowCount() {
       return $this->query("SELECT FOUND_ROWS()")->fetchColumn();
     }

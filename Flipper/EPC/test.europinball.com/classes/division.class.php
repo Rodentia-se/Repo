@@ -80,7 +80,7 @@
           } else {
             $tournament = tournament(config::$activeTournament);
           }
-        } else {
+        } else if ($data != 'empty' && $data != 'new') {
           $tournament = tournament(config::$activeTournament);
         }
         if ($tournament) {
