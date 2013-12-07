@@ -24,44 +24,48 @@
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();
       }
-      if ($search !== NOSEARCH) {
-        if (isAssoc($data)) {
-          $obj = $this->db->getObjectByProps(get_class($this), $data);
-        } else if ($data) {
-          $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
-        }
-        if ($obj) {
-          $this->_set($obj);
-        } else {
-          $this->failed = TRUE;
-        }
+      if ($data === FALSE) {
+        $this->failed = TRUE;
       } else {
-        if ($data) {
-          if (isId($data)) {
-            if (is_object(static::$instances['ID'.$data])) {
-              $obj = static::$instances['ID'.$data];
-            } else {
-              $obj = $this->db->getObjectById(get_class($this), $data);
-            }
-            if ($obj) {
-              $this->_set($obj);
-            } else {
-              $this->failed = TRUE;
-            }
-          } else if (is_string($data) && is_object(json_decode($data))) {
-            $this->_set(json_decode($data));
-          } else if (is_array($data) || is_object($data)) {
-            $this->_set($data);
-          } else if (is_string($data)) {
-            if ($data != 'empty' && $data != 'new') {
-              $this->failed = TRUE;
+        if ($search !== NOSEARCH) {
+          if (isAssoc($data)) {
+            $obj = $this->db->getObjectByProps(get_class($this), $data);
+          } else if ($data) {
+            $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
+          }
+          if ($obj) {
+            $this->_set($obj);
+          } else {
+            $this->failed = TRUE;
+          }
+        } else {
+          if ($data) {
+            if (isId($data)) {
+              if (is_object(static::$instances['ID'.$data])) {
+                $obj = static::$instances['ID'.$data];
+              } else {
+                $obj = $this->db->getObjectById(get_class($this), $data);
+              }
+              if ($obj) {
+                $this->_set($obj);
+              } else {
+                $this->failed = TRUE;
+              }
+            } else if (is_string($data) && is_object(json_decode($data))) {
+              $this->_set(json_decode($data));
+            } else if (is_array($data) || is_object($data)) {
+              $this->_set($data);
+            } else if (is_string($data)) {
+              if ($data != 'empty' && $data != 'new') {
+                $this->failed = TRUE;
+              }
             }
           }
         }
-      }
-      if ($this->id) {
-        static::$instances['ID'.$this->id] = $this;
-        $this->populate($depth);
+        if ($this->id) {
+          static::$instances['ID'.$this->id] = $this;
+          $this->populate($depth);
+        }
       }
     }
 
