@@ -66,10 +66,10 @@
     );
 
     public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
+            debug(1);
       if (is_string($data) && ($data == 'current' || $data == 'active' || in_array($data, config::$activeDivisions)) && $search == 'noSearchCriteriaProvided') {
         if ($data == 'current' || $data == 'active') {
           if (config::$mainDivision) {
-            debug(1);
             $data = config::$mainDivision;
           } else {
             $tournament = tournament(config::$activeTournament);
