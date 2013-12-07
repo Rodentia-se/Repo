@@ -426,7 +426,7 @@
     }
 
     public static function getInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
-      $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? $id : $label);
+      $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? ucfirst($id) : $label);
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
       $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">'.$label : '';
