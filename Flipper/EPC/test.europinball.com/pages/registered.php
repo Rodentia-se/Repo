@@ -14,7 +14,7 @@
   if (!$tournament) {
     error('No tournament found!', TRUE);
   }
-  $divisions = $tournament->getDivisions();
+  $divisions = divisions($tournament);
   $divisions->filter('includeInStats');
   if (count($divisions) < 1) {
     error('No divisions found!', TRUE);

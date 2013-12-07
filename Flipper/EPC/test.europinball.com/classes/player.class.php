@@ -130,21 +130,21 @@
         $delegated = TRUE;
         $login = new auth();
         $person = $login->person;
-      } else if (is_object($data) && get_class($data) == 'person' && (is_string($search) || $search == NOSEARCH)) {
+      } else if (is_object($data) && get_class($data) == 'person') {
         $delegated = TRUE;
         $person = $data;
       }
       if ($delegated) {
-        if ($person) {
+        if ($person && isId($person->id)) {
           $type = ($search == NOSEARCH) ? 'main' : $search;
           $search = NOSEARCH;
-          $division = ($tournament) ? division($tournament, $type) : division($type);
-          $player = player(array(
-            'person_id' => $person->id,
-            'tournamentDivision_id' => $division->id
-          ), TRUE);
-          if ($player && isId($player->id)) {
-            parent::__construct($player->id, NOSEARCH, $depth);
+          $division = division($type);
+          if ($division && isId($division->id)) {
+            $playerArray = player(array(
+              'person_id' => $person->id,
+              'tournamentDivision_id' => $division->id
+            );
+            parent::__construct($playerArray, TRUE, $depth);
           } else {
             $this->failed == TRUE;
           }

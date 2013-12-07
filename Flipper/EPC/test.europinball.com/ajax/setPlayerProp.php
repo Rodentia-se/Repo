@@ -106,7 +106,7 @@
             } else if (in_array($prop, config::$divisions)) {
               $tournament = tournament(config::$activeTournament);
               if ($tournament) {
-                $division = $tournament->getDivision($prop);
+                $division = division($prop);
                 if ($division) {
                   if ($value == 1) {
                     $change = $person->addPlayer($division);
