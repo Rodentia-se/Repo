@@ -103,7 +103,7 @@
       foreach ($props as $key => $value) {
         $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
         if ($where) {
-          $query .= ' '.$cond.' '.$key.' = '.self::getAlias($key);
+          $query .= ' '.$cond.' '.$key.(($value === NULL) ? ' is ' : ' = ').self::getAlias($key);
           $values[self::getAlias($key)] = $value;
         } else {
           $query = $class::$select.' where '.$key.' = '.self::getAlias($key);

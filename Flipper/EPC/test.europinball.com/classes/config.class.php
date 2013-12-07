@@ -12,9 +12,12 @@
     // The below will not be used if $dbconfig is set to TRUE
     public static $parentDepth = 1;  // The depth for automatic population of parent objects.
     public static $activeTournament = 5;
+    public static $activeDivisions = array('main', 'eighties', 'nationalTeam');
+    public static $activeSingleDivisions = array('main', 'eighties');
+    public static $activeTeamDivisions = array('nationalTeam');
+    
+    public static $participationLimit = 128;
  
-    public static $divisions = array('main', 'eighties');
-
     public static $main = TRUE;
     public static $mainDivision = 15;
     public static $mainQualLimit = FALSE;
@@ -44,6 +47,9 @@
     
     public static $photoExts = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
     public static $addables = array('city', 'region');
+    public static $divisions = array('main', 'classics', 'eighties', 'team', 'nationalTeam');
+    public static $singleDivisions = array('main', 'classics', 'eighties');
+    public static $teamDivisions = array('team', 'nationalTeam');
 
   }
 

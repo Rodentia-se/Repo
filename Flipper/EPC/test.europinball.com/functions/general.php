@@ -80,69 +80,6 @@
     return output($reason, 'VALIDATION', NULL, $valid, (($obj) ? 'object' : 'bool'));
   }
   
-  function getCurrentPerson() {
-    $login = new auth();
-    return ($login->person) ? $login->person : NULL;
-  }
-
-  function getCurrentPlayer() {
-    $person = getCurrentPerson();
-    return ($person) ? $person->getPlayer() : NULL;
-  }
-  
-  function getCurrentTeam() {
-    $person = getCurrentPerson();
-    return ($person) ? $person->getTeam() : NULL;
-  }
-  
-  function getDivision($division) {
-    if (is_object($division) && $division->id) {
-      $division_id = $division->id;
-    } else if (is_int($division)) {
-      $division_id = $division;
-    } else {
-      switch ($division) {
-        case 'national':
-        case 'National':
-        case 'nationalteam':
-        case 'NationalTeam':
-        case 'Nationalteam':
-          $division_id = config::$nationalTeamDivision;
-        break;
-        case 'team':
-        case 'Team':
-          $division_id = config::$teamDivision;
-        break;
-        case '80s':
-        case 'eighties':
-        case 'Eighties':
-          $division_id = config::$eightiesDivision;
-        break;
-        case 'classics':
-        case 'Classics':
-          $division_id = config::$classicsDivision;
-        break;
-        case 'main':
-        case 'Main':
-        default:
-          $division_id = config::$mainDivision;
-        break;
-      }
-    }
-    return division($division_id);
-  }
-  
-  function getTournament($tournament) {
-    if (is_object($tournament) && $tournament->id) {
-      $tournament_id = $tournament->id;
-    } else if (isId($tournament)) {
-      $tournament_id = $tournament;
-    } else {
-      $tournament_id = config::$activeTournament;
-    }
-    return tournament($tournament_id);
-  }
-  
   function validateDate($date, $obj = FALSE) {
     if ($date && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
       return validated(FALSE, 'The date is invalid. Please use ISO format YYYY-MM-DD.', $obj);

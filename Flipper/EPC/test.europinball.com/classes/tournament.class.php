@@ -53,11 +53,21 @@
       )
     );
     
+    public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
+      if (is_string($data) && $data == 'current' && $search == 'noSearchCriteriaProvided') {
+        $data = config::$activeTournament;
+        parent::__construct(config::$activeTournament, $search, $depth);
+      } else {
+        parent::__construct($data, $search, $depth);
+      }
+    }
+    
     public function getDivisions() {
       return divisions($this);
     }
     
     public function getDivision($type = NULL) {
+      $type = ($type) ? $type : 'main';
       $divisions = divisions($this);
       foreach ($divisions as $division) {
         if ($division->{$type}) {

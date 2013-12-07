@@ -116,12 +116,12 @@
                         'tournamentDivision_id' => $division->id
                       ), TRUE);
                       if ($player) {
-                        $json = success('Added '.$person->name.' to the '.$division->name);
+                        $json = success('Added '.$person->name.' to the '.$division->divisionName);
                       } else {
-                        $json = failure('Could not add '.$person->name.' to the '.$division->name);
+                        $json = failure('Could not add '.$person->name.' to the '.$division->divisionName);
                       }
                     } else {
-                      $json = failure('Could not add '.$person->name.' to the '.$division->name);
+                      $json = failure('Could not add '.$person->name.' to the '.$division->divisionName);
                     }
                   } else if ($value == 0) {
                     $player = $person->getPlayer($division);
@@ -133,15 +133,15 @@
                           'tournamentDivision_id' => $division->id
                         ), TRUE);
                         if (!$player) {
-                          $json = success('Rmoved '.$person->name.' from the '.$division->name);
+                          $json = success('Rmoved '.$person->name.' from the '.$division->divisionName);
                         } else {
-                          $json = failure('Could not remove '.$person->name.' from the '.$division->name);
+                          $json = failure('Could not remove '.$person->name.' from the '.$division->divisionName);
                         }
                       } else {
-                        $json = failure('Could not remove '.$person->name.' from the '.$division->name);
+                        $json = failure('Could not remove '.$person->name.' from the '.$division->divisionName);
                       }
                     } else {
-                      $json = success($person->name.' is not registered for the '.$division->name);
+                      $json = success($person->name.' is not registered for the '.$division->divisionName);
                     }
                   } else {
                     $json = failure('Invalid request');

@@ -19,6 +19,7 @@
         d.main as main,
         d.team as team,
         d.national as national,
+        if(ifnull(d.national, 0) = 1 and ifnull(d.team, 0) = 1, 1, 0) as nationalTeam,
         d.secondary as decondary,
         d.side as dide,
         d.recreational as recreational,
@@ -63,6 +64,76 @@
       'entry' => 'tournamentDivision',
       'score' => 'tournamentDivision'
     );
+
+    public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
+      if (is_string($data) && ($data == 'current' || in_array(config::$activeDivisions)) && $search == 'noSearchCriteriaProvided') {
+        if ($data == 'current') {
+          if (config::$mainDivision) {
+            $data = config::$mainDivision;
+          } else {
+            $tournament = tournament(config::$activeTournament);
+            $data = 'main';
+          }
+        } else if (in_array($data, config::$activeDivisions)) {
+          if (config::${$data.'Division'}) {
+            $data = config::${$data.'Division'};
+          } else {
+            $tournament = tournament(config::$activeTournament);
+          }
+        } else {
+          $tournament = tournament(config::$activeTournament);
+        }
+        if ($tournament) {
+          $division = $tournament->getDivision($data);
+          if ($division && isId($division->id)) {
+            $data = $division->id;
+          }
+        }
+      }
+      parent::__construct($data, $search, $depth);
+    }
+     
+  function getDivision($division = NULL) {
+    if (is_object($division) && $division->id) {
+      $division_id = $division->id;
+    } else if (isId($division)) {
+      $division_id = $division;
+    } else if (is_string($division)){
+      switch ($division) {
+        case 'national':
+        case 'National':
+        case 'nationalteam':
+        case 'NationalTeam':
+        case 'Nationalteam':
+          $division_id = config::$nationalTeamDivision;
+        break;
+        case 'team':
+        case 'Team':
+          $division_id = config::$teamDivision;
+        break;
+        case '80s':
+        case 'eighties':
+        case 'Eighties':
+          $division_id = config::$eightiesDivision;
+        break;
+        case 'classics':
+        case 'Classics':
+          $division_id = config::$classicsDivision;
+        break;
+        case 'main':
+        case 'Main':
+        default:
+          $division_id = config::$mainDivision;
+        break;
+      }
+    }
+    if (!$division_id) {
+      if (is_string($division)) {
+        $tournament = tournament($division)
+      }
+    }
+    return division($division_id);
+  }
 
     public function getPlayers() {
       return players($this);

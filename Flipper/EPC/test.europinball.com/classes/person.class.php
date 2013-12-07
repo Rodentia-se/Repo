@@ -96,13 +96,25 @@
 
     public function addPlayer($division = NULL) {
       $division = getDivision($division);
-      $player = player($this->getFlat(), NULL, 0);
-      unset($player->id);
-      $player->tournamentDivision_id = $division->id;
-      $player->tournamentEdition_id = $division->tournamentEdition_id;
-      $player->person_id = $this->id;
-      $player->dateRegistered = date('Y-m-d');
-      $id = $player->save();
+      if ($division->main) {
+        $players = players($division);
+        if (!config::$participationLimit || count($players) < config:;:$participationLimit) {
+          $player = player($this->getFlat(), NULL, 0);
+          unset($player->id);
+          $player->tournamentDivision_id = $division->id;
+          $player->tournamentEdition_id = $division->tournamentEdition_id;
+          $player->person_id = $this->id;
+          $player->dateRegistered = date('Y-m-d');
+          $id = $player->save();
+          if (isId($id)) {
+            $player = player($id);
+            if ($player) {
+              return $id;
+            }
+          }
+        }
+      }
+      return false;
     }
     
     public function getEdit($title = 'Edit profile', $tournament = NULL) {
