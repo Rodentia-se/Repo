@@ -130,6 +130,16 @@
           $player = $person->getPlayer(((in_array($data, config::$activeDivisions)) ? $data : NULL));
           $data = ($player) ? $player->id : $data; 
         }
+      } else if (is_object($data) && get_class($data) == 'person') && is_string($search)) {
+        $person = $data;
+        $data = $search;
+      }
+      if ($person) {
+        $player = $person->getPlayer($data);
+        if ($player && isId($player->id)) {
+          $data = $player->id;
+        }
+      }
       }
       parent::__construct($data, $search, $depth);
     }

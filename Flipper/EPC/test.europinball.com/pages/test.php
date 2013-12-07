@@ -19,6 +19,10 @@
   debug($person);
   $players = $person->getPlayers();
   debug($players);
+  $players = players($person);
+  debug($players);
+  $players = player($person, 'main');
+  debug($players);
   
   
 /*
