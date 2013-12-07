@@ -92,48 +92,6 @@
       }
       parent::__construct($data, $search, $depth);
     }
-     
-  function getDivision($division = NULL) {
-    if (is_object($division) && $division->id) {
-      $division_id = $division->id;
-    } else if (isId($division)) {
-      $division_id = $division;
-    } else if (is_string($division)){
-      switch ($division) {
-        case 'national':
-        case 'National':
-        case 'nationalteam':
-        case 'NationalTeam':
-        case 'Nationalteam':
-          $division_id = config::$nationalTeamDivision;
-        break;
-        case 'team':
-        case 'Team':
-          $division_id = config::$teamDivision;
-        break;
-        case '80s':
-        case 'eighties':
-        case 'Eighties':
-          $division_id = config::$eightiesDivision;
-        break;
-        case 'classics':
-        case 'Classics':
-          $division_id = config::$classicsDivision;
-        break;
-        case 'main':
-        case 'Main':
-        default:
-          $division_id = config::$mainDivision;
-        break;
-      }
-    }
-    if (!$division_id) {
-      if (is_string($division)) {
-        $tournament = tournament($division)
-      }
-    }
-    return division($division_id);
-  }
 
     public function getPlayers() {
       return players($this);
