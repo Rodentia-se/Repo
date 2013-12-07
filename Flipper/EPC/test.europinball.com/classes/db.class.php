@@ -161,9 +161,9 @@
     }
     
     public function getObjectsByParent($class, $parent, $column = null) {
-      $parentClass = get_class($parent);
-      $column = ($column) ? $column : $parentClass.'_id';
-      $query = $class::$select.' where o.'.$column.' = :parentId'.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = :parentId' : '');
+      $parentTable = (property_exists($parent, 'table')) ? $parent::$table : get_class($parent);
+      $column = ($column) ? $column : $parentTable.'_id';
+      $query = $class::$select.' where o.'.$column.' = :parentId'.((get_class($parent)::$selfParent) ? ' or parent'.ucfirst($column).' = :parentId' : '');
       $values[':parentId'] = $parent->id;
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
