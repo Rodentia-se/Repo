@@ -133,6 +133,10 @@
       } else if (is_object($data) && get_class($data) == 'person') {
         $delegated = TRUE;
         $person = $data;
+      } else if (is_object($data) && get_class($data) == 'division' && $search != NOSEARCH && $search) {
+        $delegated = TRUE;
+        $person = person($search);
+        $earch = $data;
       }
       if ($delegated) {
         if ($person && isId($person->id)) {
