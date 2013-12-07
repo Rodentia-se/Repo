@@ -112,29 +112,6 @@
       }
     }
 
-
-      if ($delagated == TRUE) {
-        if ($person) {
-          $type = ($search == NOSEARCH) ? 'main' : $search;
-          $search = NOSEARCH;
-          $division = ($tournament) ? division($tournament, $type) : division($type);
-          $player = player(array(
-            'person_id' => $person->id,
-            'tournamentDivision_id' => $division->id
-          ), TRUE);
-          if ($player && isId($player->id)) {
-            parent::__construct($player->id, NOSEARCH, $depth);
-          } else {
-            $this->failed == TRUE;
-          }
-        } else {
-          $this->failed == TRUE;
-        }
-      } else {
-        parent::__construct($data, $search, $depth);
-      }
-
-
     public function getPlayers() {
       return players($this);
     }
