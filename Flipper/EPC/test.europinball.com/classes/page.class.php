@@ -490,12 +490,12 @@
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
     
-    public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $header = NULL, $label = FALSE) {
-      return $this->addButton($text, $id, $class, $forms, $action, $ext, $script, $header, $label);
+    public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
+      return $this->addButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
     }
     
-    public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $header = NULL, $label = FALSE) {
-      return self::getButton($text, $id, $class, $forms, $action, $ext, $script, $header, $label);
+    public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
+      return self::getButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
     }
 
     public function addButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
