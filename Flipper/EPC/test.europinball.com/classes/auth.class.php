@@ -180,7 +180,7 @@
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
         $form .= page::getClickButton('I forgot all this!', $prefix.'forgotButton');
-        $page->addScript('
+        $page::getScript('
           $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
         ');
       $form = page::getDivEnd();
