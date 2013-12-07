@@ -5,6 +5,22 @@
 
   $page = new page('Test', true);
 
+  $tournament = tournament('active');
+  debug($tournament->getFlat());
+  $divisions = $tournament->getDivision();
+  debug($divisions);
+  $division = division($tournament, 'main');
+  debug($division->getFlat());
+  $division = division('current');
+  debug($division->getFlat());
+  $players = $division->getPlayers();
+  debug($players);
+  $person = person('auth');
+  debug($person);
+  $players = $person->getPlayers();
+  debug($players);
+  
+  
 /*
   $obj = new city(1907);
 //  $obj = new country(188);
@@ -42,10 +58,8 @@
   }
   $page->submit(FALSE, TRUE);
   $obj = person(1);
-*/
       $division = division('active');
   debug($division);
-/*
 echo 'hej';
 foreach($objs as $obj) {
 /*

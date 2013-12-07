@@ -83,11 +83,14 @@
         } else if ($data != 'empty' && $data != 'new') {
           $tournament = tournament(config::$activeTournament);
         }
-        if ($tournament) {
-          $division = $tournament->getDivision($data);
-          if ($division && isId($division->id)) {
-            $data = $division->id;
-          }
+      } else if (is_object($data) && get_class($data) == 'tournament') && is_string($search)) {
+        $tournament = $data;
+        $data = $search;
+      }
+      if ($tournament) {
+        $division = $tournament->getDivision($data);
+        if ($division && isId($division->id)) {
+          $data = $division->id;
         }
       }
       parent::__construct($data, $search, $depth);

@@ -60,10 +60,6 @@
       parent::__construct($data, $search, $depth);
     }
     
-    public function getDivisions() {
-      return divisions($this);
-    }
-    
     public function getDivision($type = NULL) {
       $type = ($type) ? $type : 'main';
       $divisions = divisions($this);
