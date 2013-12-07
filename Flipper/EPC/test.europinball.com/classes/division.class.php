@@ -21,7 +21,7 @@
         d.national as national,
         if(ifnull(d.national, 0) = 1 and ifnull(d.team, 0) = 1, 1, 0) as nationalTeam,
         d.secondary as decondary,
-        d.side as dide,
+        d.side as side,
         d.recreational as recreational,
         d.modern as modern,
         d.classics as classics,
@@ -108,6 +108,7 @@
               debug($division->id, 'div6, divid');
               parent::__construct($division->id, NOSEARCH, $depth);
               debug($this->id, 'div7, thisid');
+              $this->huff = TRUE;
               $hit = TRUE;
               break;
             }
