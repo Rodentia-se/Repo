@@ -85,7 +85,7 @@
         }
       } else if (is_object($data) && get_class($data) == 'tournament' && (is_string($search) || $search == NOSEARCH)) {
         $tournament = $data;
-        $data = $search;
+        $data = ($search == NOSEARCH) ? NULL : $search;
       }
       if ($tournament) {
         $division = $tournament->getDivision($data);
