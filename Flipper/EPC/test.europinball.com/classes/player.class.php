@@ -141,7 +141,6 @@
           $search = NOSEARCH;
         }
       }
-      }
       parent::__construct($data, $search, $depth);
     }
 
