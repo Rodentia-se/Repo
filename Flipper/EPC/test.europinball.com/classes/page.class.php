@@ -522,6 +522,7 @@
           '.(($script) ? $script : '$("#'.$id.'Form").submit();').'
         });
       ') : '';
+      return $button;
     }
     
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {

@@ -207,21 +207,20 @@
               }
             }
           });
-          $(".enterSubmit").keypress(function(e) {
-            if (e.keyCode == $.ui.keyCode.ENTER) {
-              if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
-                $("#'.$prefix.'loginForm").submit();
-              }
-            }
-          });
           $(document).on("click", ".ui-widget-overlay", function() {
             $("#'.$prefix.'loginDiv").dialog("close");
           });
-          $("#'.$prefix.'forgotButton").click(function() {
-            $("#'.$prefix.'forgotButtonForm").submit();
-          });
         ');
       }
+      $form .= page::getScript('
+        $(".enterSubmit").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
+              $("#'.$prefix.'loginForm").submit();
+            }
+          }
+        });
+      ');
       return $form;
     }
 
