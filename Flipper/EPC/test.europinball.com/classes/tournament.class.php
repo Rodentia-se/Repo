@@ -54,7 +54,7 @@
     );
     
     public function __construct($data = NULL, $search = 'noSearchCriteriaProvided', $depth = NULL) {
-      if (is_string($data) && $data == 'current' && $search == 'noSearchCriteriaProvided') {
+      if (is_string($data) && ($data == 'current' || $data == 'active') && $search == 'noSearchCriteriaProvided') {
         $data = config::$activeTournament;
         parent::__construct(config::$activeTournament, $search, $depth);
       } else {

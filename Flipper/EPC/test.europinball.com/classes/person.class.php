@@ -87,7 +87,7 @@
     );
     
     public function getPlayer($division = NULL) {
-      $division = getDivision($division);
+      $division = ($division) ? division($division) : division('active');
       return player(array(
         'person_id' => $this->id,
         'tournamentDivision_id' => $division->id
@@ -95,51 +95,34 @@
     }
 
     public function addPlayer($division = NULL) {
-      $division = getDivision($division);
+      $division = ($division) ? division($division) : division('active');
       if ($division->main) {
         $players = players($division);
-        if (!config::$participationLimit || count($players) < config::$participationLimit) {
-          $player = player($this->getFlat(), NULL, 0);
-          unset($player->id);
-          $player->tournamentDivision_id = $division->id;
-          $player->tournamentEdition_id = $division->tournamentEdition_id;
-          $player->person_id = $this->id;
-          $player->dateRegistered = date('Y-m-d');
-          $id = $player->save();
-          if (isId($id)) {
-            $player = player($id);
-            if ($player) {
-              return $id;
-            }
-          }
+        if (config::$participationLimit && count($players) >= config::$participationLimit) {
+          return FALSE;
+        }
+      }
+      $player = player($this->getFlat(), NULL, 0);
+      unset($player->id);
+      $player->tournamentDivision_id = $division->id;
+      $player->tournamentEdition_id = $division->tournamentEdition_id;
+      $player->person_id = $this->id;
+      $player->dateRegistered = date('Y-m-d');
+      $id = $player->save();
+      if (isId($id)) {
+        $player = player($id);
+        if ($player) {
+          return $id;
         }
       }
       return false;
     }
     
     public function getEdit($title = 'Edit profile', $tournament = NULL) {
-      $tournament = getTournament($tournament);
-      $divisions = $tournament->getDivisions();
-      foreach ($divisions as $division) {
+      foreach (config::$activeDivisions as $divisionType) {
+        $division = division($divisionType);
         $player = $this->getPlayer($division);
-        if ($division->main) {
-          $main = TRUE;
-          if ($player) {
-            $this->main = TRUE;
-          }
-        }
-        if ($division->classics) {
-          $classics = TRUE;
-          if ($player) {
-            $this->classics = TRUE;
-          }
-        }
-        if ($division->eighties) {
-          $eighties = TRUE;
-          if ($player) {
-            $this->eighties = TRUE;
-          }
-        }
+        $checkboxes .= page::getInput($this->$divisionType, $divisionType, 'edit', 'checkbox', ucfirst($divisionType), (($divisionType == 'main') ? TRUE : FALSE));
       }
       $genders = genders('all');
       $cities = cities('all');
@@ -165,11 +148,7 @@
           <div>'.page::getInput($this->telephoneNumber, 'telephoneNumber', 'edit', 'text', 'Phone').'</div>
           <div>'.page::getInput($this->mobileNumber, 'mobileNumber', 'edit', 'text', 'Cell phone').'</div>
           <div>'.page::getInput($this->mailAddress, 'mailAddress', 'edit', 'text', 'Email').'</div>
-          <div>'.page::getLabelStart('partLabel','label').'Divisions'.page::getLabelEnd().'
-            '.(($main) ? page::getInput($this->main, 'main', 'edit', 'checkbox', 'Main', TRUE) : '').'
-            '.(($classics) ? page::getInput($this->classics, 'classics', 'edit', 'checkbox', 'Classics') : '').'
-            '.(($eighties) ? page::getInput($this->eighties, 'eighties', 'edit', 'checkbox', '80s') : '').'
-          </div>
+          <div>'.page::getLabelStart('partLabel','label').'Divisions'.page::getLabelEnd().$checkboxes.'</div>
           <div>'.page::getInput($this->birthDate, 'birthDate', 'edit date', 'text', 'Born').'</div>
         </div>
       ';
