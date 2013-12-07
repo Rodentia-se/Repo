@@ -185,7 +185,7 @@
             $form .= ($dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
-        $form .= page::getLabel(' ');.page::getClickButton('I forgot all this!', $prefix.'forgot');
+        $form .= page::getLabel(' ').page::getClickButton('I forgot all this!', $prefix.'forgot');
         $form .= page::getScript('
           $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
         ');
