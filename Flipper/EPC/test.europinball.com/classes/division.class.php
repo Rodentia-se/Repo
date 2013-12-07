@@ -101,7 +101,7 @@
           while ($division = each($divisions) && !$hit) {
              debug($type, 'div4, type');
              debug($division->id, 'div5, divid');
-            if ($division->{$type}) {
+            if ($division->$type) {
               debug($division->id, 'div6, divid');
               parent::__construct($division->id, NOSEARCH, $depth);
               debug($this->id, 'div7, thisid');
