@@ -12,7 +12,7 @@
   $division = division($tournament, 'main');
   debug($division);
   debug('TEST 3');
-  $division = division('current');
+  $players = players($tournament, 'eighties');
   debug($division->getFlat());
   debug('TEST 4');
   $players = players($division);

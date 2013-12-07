@@ -66,20 +66,22 @@
     }
 
     public function getMembers($division = NULL) {
-      $division = getDivision($division);
-      $query = person::$select.'
-        left join teamPerson tp on tp.person_id = o.id
-        left join team t on tp.team_id = t.id
-        where tp.team_id = :id
-          and t.tournamentDivision_id = :division
-      ';
-      $values[':id'] = $this->id;
-      $values[':division'] = $division->id;
-      $members = $this->db->select($query, $values, 'person');
-      if (count($members) > 0) {
-        return $members;
+      $division = ($division) ? division($division) : division('active');
+      if ($division && isId($division->id)) {
+        $query = person::$select.'
+          left join teamPerson tp on tp.person_id = o.id
+          left join team t on tp.team_id = t.id
+          where tp.team_id = :id
+            and t.tournamentDivision_id = :division
+        ';
+        $values[':id'] = $this->id;
+        $values[':division'] = $division->id;
+        $members = $this->db->select($query, $values, 'person');
+        if (count($members) > 0) {
+          return $members;
+        }
       }
-      return false;
+      return FALSE;
     }
     
     public static function validateName($name, $obj = FALSE) {

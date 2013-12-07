@@ -106,15 +106,12 @@
             } else if (in_array($prop, config::$divisions)) {
               $tournament = tournament(config::$activeTournament);
               if ($tournament) {
-                $division = division($prop);
+                $division = division($tournament, $prop);
                 if ($division) {
                   if ($value == 1) {
                     $change = $person->addPlayer($division);
                     if ($change) {
-                      $player = player(array(
-                        'person_id' => $person->id, 
-                        'tournamentDivision_id' => $division->id
-                      ), TRUE);
+                      $player = player($person, $division);
                       if ($player) {
                         $json = success('Added '.$person->name.' to the '.$division->divisionName);
                       } else {
@@ -124,14 +121,11 @@
                       $json = failure('Could not add '.$person->name.' to the '.$division->divisionName);
                     }
                   } else if ($value == 0) {
-                    $player = $person->getPlayer($division);
+                    $player = player($person, $division);
                     if ($player) {
                       $change = $player->delete();
                       if ($change) {
-                        $player = player(array(
-                          'person_id' => $person->id, 
-                          'tournamentDivision_id' => $division->id
-                        ), TRUE);
+                        $player = player($person, $division);
                         if (!$player) {
                           $json = success('Rmoved '.$person->name.' from the '.$division->divisionName);
                         } else {
