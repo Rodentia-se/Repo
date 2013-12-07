@@ -217,7 +217,7 @@
           if ($this->{$field.'_id'}) {
             $this->{$field.'ParentDepth'} = self::$parentDepth;
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
-              $this->$field = $class::$instances['ID'.$this->{$field.'_id'}];
+              $this->$field = $class::$instances['ID'.$this->{$field.'_id'}]->getFlat();
             } else {
               $this->$field = $class($this->{$field.'_id'}, NOSEARCH, $depth);
             }
