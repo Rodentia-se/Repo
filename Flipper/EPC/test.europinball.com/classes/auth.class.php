@@ -182,9 +182,9 @@
             $form .= page::getDivStart($prefix.'autologinDiv');
               $form .= page::getLabel(' ').page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
             $form .= page::getDivEnd();
-            $form .= (!$dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
+        $form .= (!$dialog) ? page::getButton('Login', $prefix.'loginButton') : '';
         $form .= page::getLabel(' ').page::getClickButton('I forgot all this!', $prefix.'forgot', 'inlineBlock');
         $form .= page::getScript('
           $("#'.$prefix.'forgotButtonForm").append("<input type=\"hidden\" name=\"action\" value=\"reset\">");
