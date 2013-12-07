@@ -16,7 +16,7 @@
     echo '</pre>';
   }
   
-  function output($text = NULL, $title = NULL, $props = NULL, $valid = TRUE, $type = FALSE, $die = FALSE) {
+  function output($msg = NULL, $title = NULL, $props = NULL, $valid = TRUE, $type = FALSE, $die = FALSE) {
     switch ($type) {
       case 'json':
       case 'obj':
@@ -24,7 +24,7 @@
       case 'array':
         $return = array(
           'valid' => $valid,
-          'reason' => $text
+          'reason' => $msg
         );
         if ($props) {
           foreach ($props as $prop => $value) {
@@ -34,7 +34,7 @@
         return ($type == 'array') ? $return : (($type == 'json') ? json_encode((object) $return) : (object) $return);
       break;
       case 'text':
-        $text = is_object($text) ? $text->reason : $text;
+        $text = is_object($msg) ? $msg->reason : $msg;
         return ($title) ? $title.': '.$text : $text;
       break;
       case 'bool':
@@ -42,8 +42,8 @@
       break;
       case 'dump':
       default:
-        preDump($text, $title);
-        $text = is_object($text) ? $text->reason : $text;
+        preDump($msg, $title);
+        $text = is_object($msg) ? $msg->reason : $msg;
         if ($die) {
           die(($title) ? $title.': '.$text.'. Abort requested.' : $text.'. Abort requested.');
         }
@@ -68,9 +68,19 @@
     return output($text, 'SUCCESS', $props, TRUE, (($json) ? 'json' : 'dump'));
   }
   
-  function debug($text, $title = NULL, $die = FALSE) {
+  function debug($msg, $title = NULL, $die = FALSE) {
     if (config::$debug) {
-      return output($text, 'DEBUG'.(($title) ? ': '.$title : ''), NULL, NULL, 'dump', $die);
+      return output($msg, 'DEBUG'.(($title) ? ': '.$title : ''), NULL, NULL, 'dump', $die);
+    } else {
+      return FALSE;
+    }
+  }
+  
+  function testRun($msg, $title = NULL) {
+    if (config::$debug) {
+      global $testNum;
+      $testNum++;
+      return debug($msg, '(Num: '.$testNum.') : '.$title);
     } else {
       return FALSE;
     }
