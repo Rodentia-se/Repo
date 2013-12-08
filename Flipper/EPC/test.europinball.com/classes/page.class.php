@@ -468,23 +468,23 @@
     }
     
     public function addCloseIcon($id = NULL, $class = NULL, $label = NULL) {
-      $icon = self::getCloseIcon('close_'.$id, 'closeIcon editIcon '.$class, 'Click to remove '.$label);
+      $icon = self::getCloseIcon($id, $class, $label);
       $this->addContent($icon);
       return $icon;
     }
     
     public static function getCloseIcon($id = NULL, $class = NULL, $label = NULL) {
-      return self::getIcon(config::$baseHref.'images/cancel.png', $id, $class, $label);
+      return self::getIcon(config::$baseHref.'images/cancel.png', 'close_'.$id, 'closeIcon editIcon '.$class, 'Click to remove '.$label);
     }
 
     public function addAddIcon($id = NULL, $class = NULL, $label = NULL) {
-      $icon = self::getAddIcon('add_'.$id, 'addIcon editIcon '.$class, 'Click to add '.$label);
+      $icon = self::getAddIcon($id, $class, $label);
       $this->addContent($icon);
       return $icon;
     }
     
     public static function getAddIcon($id = NULL, $class = NULL, $label = NULL) {
-      return self::getIcon(config::$baseHref.'images/add_icon.gif', $id, $class, $label);
+      return self::getIcon(config::$baseHref.'images/add_icon.gif', 'add_'.$id, 'addIcon editIcon '.$class, 'Click to add '.$label);
     }
 
     public function addIcon($url, $id = NULL, $class = NULL, $label = NULL) {
