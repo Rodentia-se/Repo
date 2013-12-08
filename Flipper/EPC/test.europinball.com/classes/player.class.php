@@ -125,30 +125,45 @@
       debug(get_class($this), 'player, class');
       debug($data, 'player, data');
       debug($search, 'player, search');
-      $constructors = array('current', 'active', 'login', 'auth');
-      if ((get_class($data) == 'tournament' || (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)))) && $search == NOSEARCH) {
-        $delegated = TRUE;
-        $login = new auth();
-        $person = $login->person;
-        if ($person && isId($person->id)) {
-          $type = ($search == NOSEARCH) ? 'main' : $search;
-          $search = NOSEARCH;
-          $division = division($type);
-          if ($division && isId($division->id)) {
-            $data = array(
-              'person_id' => $person->id,
-              'tournamentDivision_id' => $division->id
-            );
-            parent::__construct($data, TRUE, $depth);
-          } else {
-            $this->failed == TRUE;
-          }
-        } else {
-          $this->failed == TRUE;
+      $persons = array('current', 'active', 'login', 'auth');
+      $divisions = array_merge(array('current', 'active'), config::$activeDivisions);
+      if (get_class($data) == 'tournament' || (is_string($data) && in_array($data, $divisions))) {
+        $data = division($data);
+        if (!$data || !isId($data->id)) {
+          $this->failed = TRUE;
+          return FALSE;
         }
-      } else {
-        parent::__construct($data, $search, $depth);
+      } else if (get_class($data) == 'person' || (is_string($data) && in_array($data, $persons))) {
+        if (get_class($data) == 'person') {
+          $person = $data;
+        } else {
+          $login = new auth();
+          $person = $login->person;
+        }
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
       }
+      if (get_class($search) == 'tournament' || (is_string($search) && in_array($search, $divisions))) {
+        $search = division($search);
+        if (!$search || !isId($search->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if (get_class($search) == 'person' || (is_string($search) && in_array($search, $persons))) {
+        if (get_class($search) == 'person') {
+          $person = $search;
+        } else {
+          $login = new auth();
+          $person = $login->person;
+        }
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      parent::__construct($data, $search, $depth);
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
