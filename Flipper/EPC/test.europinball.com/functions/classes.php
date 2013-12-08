@@ -141,6 +141,7 @@
 
   function person($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new person($data, $search, $depth);
+    debug($obj, 'CLASES');
     return obj($obj);
   }
 
