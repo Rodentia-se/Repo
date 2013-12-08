@@ -36,11 +36,11 @@
           } else if (isObj($data) && isId($data->id)) {
             $dataClass = get_class($data);
             $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
-            $objSearch[$dataTable] = $data->id;
+            $objSearch[$dataTable.'_id'] = $data->id;
             if (isObj($search) && isId($search->id)) {
               $searchClass = get_class($search);
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
-              $objSearch[$searchTable] = $search->id;
+              $objSearch[$searchTable.'_id'] = $search->id;
             }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
             if ($obj) {
