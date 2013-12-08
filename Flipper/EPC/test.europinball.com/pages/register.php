@@ -116,7 +116,7 @@
             });
             $("#resultsTable").css("width", "");
           } else {
-            toolTip("searchBox", "Please enter a search term", true);
+            $("#searchBox").tooltipser("show");
           }
         });
         $("#searchBox").keypress(function(e) {
@@ -125,6 +125,14 @@
               $("#searchButton").click();
             }
           }
+        })
+        .tooltipster({
+          theme: ".tooltipster-light",
+          content: "Please enter a search term...",
+          interactiveAutoClose: false,
+          position: "right",
+          trigger: "custom",
+          timer: 3000
         });
       ');
     }
