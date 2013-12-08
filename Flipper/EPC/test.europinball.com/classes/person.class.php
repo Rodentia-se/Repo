@@ -89,16 +89,20 @@
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
       if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
-        debug(auth::$person,'LOGIN');
+        debug('LOGIN');
         if (!isObj(auth::$person) && isId(auth::$person->id)) {
+          debug('ISOBJ'):
           $this->_set(auth::$person);
           return TRUE;
         } else {
+          debug('!ISOBJ'):
           $login = new auth();
           if (!isObj(auth::$person) && isId(auth::$person->id)) {
+          debug('ISOBJ2'):
             $this->_set(auth::$person);
             return TRUE;
           } else {
+          debug('!ISOBJ2'):
             $this->failed = TRUE;
             return FALSE;
           }
