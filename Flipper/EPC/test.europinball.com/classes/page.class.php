@@ -436,7 +436,6 @@
     }
 
     public static function getInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
-      debug($label, '1 label');
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
       $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? ucfirst($name) : $label);
@@ -501,24 +500,20 @@
     }
     
     public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
-      debug($label, '2 label');
       return $this->addButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
     }
     
     public static function getClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
-      debug($label, '3 label');
       return self::getButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
     }
 
     public function addButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
-      debug($label, '4 label');
       $button = self::getButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
       $this->addContent($button);
       return $button;
     }
     
     public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
-      debug($label, '5 label');
       $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
       $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
