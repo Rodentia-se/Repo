@@ -88,7 +88,7 @@
         $search = TRUE;
       }
       if (isObj($data) && get_class($data) == 'tournament') {
-        $search = (is_string($search) && in_array($search, config::$divisions) ? $search : 'main';
+        $search = (is_string($search) && in_array($search, config::$divisions)) ? $search : 'main';
         $data = array(
           'tournamentEdition_id' => $data->id, 
           $search = 1
