@@ -97,7 +97,7 @@
               });
             ');
           } else {
-            $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Log in">', NULL, 'italic');
+            $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Login">', NULL, 'italic');
             $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
             $footer .= self::getScript('
               $("#footerLoginButton").click(function() {
