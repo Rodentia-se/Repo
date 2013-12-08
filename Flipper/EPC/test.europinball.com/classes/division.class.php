@@ -92,7 +92,7 @@
         $data = array(
           'tournamentEdition_id' => $data->id, 
           $search = 1
-        )
+        );
       }
       parent::__construct($data, $search, $depth);
     }
