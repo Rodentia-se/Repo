@@ -87,8 +87,8 @@
     );
     
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      $constructors = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && in_array($data, $constructors) && $search == NOSEARCH) {
+      $persons = array('current', 'active', 'login', 'auth');
+      if (is_string($data) && in_array($data, $persons) && $search == NOSEARCH) {
         $login = new auth();
         $data = ($login->person && isId($login->person->id)) ? $login->person->id : $data;
       }
