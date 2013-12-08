@@ -175,7 +175,14 @@
     }
     
     protected function getQueryArray($cols = NULL, $cond = 'or') {
-      return $this->db->getQueryArray($cols, $cond);
+      $obj = get_object_vars($this);
+      $cols = ($cols) ? $cols : array_keys($obj);
+      foreach ($cols as $col) {
+        $prop = (property_exists($this, 'table') && static::$cols[$col]) ? static::$cols[$col] : $col;
+        $updates[] = $col .(($obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $values[db::getAlias($col)] = $obj[$prop];
+      }
+      return array('update' => implode($updates, $cond), 'values' => $values);
     }
     
     public function getPhoto($thumbnail = FALSE, $anchor = FALSE) {
