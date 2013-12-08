@@ -118,7 +118,7 @@
 
     public function addPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
-      $player = player($this->getFlat(), NULL, 0);
+      $player = player($this->getFlat(), NOSEARCH, 0);
       unset($player->id);
       $player->tournamentDivision_id = $division->id;
       $player->tournamentEdition_id = $division->tournamentEdition_id;
