@@ -48,7 +48,6 @@
                       content: "Saving the image...",
                       trigger: "custom",
                       position: "right",
-                      offsetX: 38,
                       timer: 3000
                     })
                     .click(function() {
