@@ -5,9 +5,6 @@
     public static $objClass = 'group';
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
-      debug(get_class($this), 'group, class');
-      debug($data, 'group, data');
-      debug($search, 'group, search');
       parent::__construct();
       if (!base::$_db) {
         base::$_db = new db();
@@ -38,7 +35,6 @@
           $objs = array($data);
         } else {
           $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
-          debug($prop, 'group, prop');
           $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
         }
       } else if ($data && is_string($prop)) {
