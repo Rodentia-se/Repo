@@ -13,6 +13,8 @@
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'combobox' => 'contrib/jquery.combobox.js',
       'forms' => 'contrib/jquery.form.min.js',
+      'forms' => 'contrib/jquery.form.min.js',
+      'tooltipster' => 'contrib/jquery.tooltipster.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
       'ga' => 'contrib/ga.js'
