@@ -91,8 +91,8 @@
           $("#" + ((this.id == "view_login") ? "usernameLogin" : "searchBox")).focus();
         });
         $("#searchButton").click(function() {
-          $("#searchResults").show();
           if ($.trim($("#searchBox").val()).length > 0) {
+            $("#searchResults").show();
             $("#newGuy").show();
             $("#resultsTable").show();
             var tbl = $("#resultsTable").dataTable({
