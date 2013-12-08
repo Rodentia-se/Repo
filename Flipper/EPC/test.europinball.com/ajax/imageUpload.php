@@ -79,28 +79,31 @@
       } else {
         echo 'Please select image..!';
       }
-    } else if ($action == 'save') {
-      if (class_exists($obj)) {
-        $target = $obj($id);
-        if ($target) {
-          $save = $target->savePhoto((($previewPath) ? $previewPath : NULL));
-          if ($save) {
-            $json = success('Photo saved');
-          } else {
-            $json = failure('Could not save photo');
-          }
+    ] else {
+      echo 'Unkonwn error...';
+    }
+  } else if ($action == 'save') {
+    if (class_exists($obj)) {
+      $target = $obj($id);
+      if ($target) {
+        $save = $target->savePhoto((($previewPath) ? $previewPath : NULL));
+        if ($save) {
+          $json = success('Photo saved');
         } else {
-          $json = failure('Could not find the '.$obj);
+          $json = failure('Could not save photo');
         }
       } else {
-        $json = failure('Could not find the '.$obj.' object type');
+        $json = failure('Could not find the '.$obj);
       }
     } else {
-      $json = failure('Unknown action');
+      $json = failure('Could not find the '.$obj.' object type');
     }
-    if ($json) {
-      jsonEcho($json);
-    }
+  } else {
+    $json = failure('Unknown action');
+  }
+  if ($json) {
+    jsonEcho($json);
+  }
 
   }
 
