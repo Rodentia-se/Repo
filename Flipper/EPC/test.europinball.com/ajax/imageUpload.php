@@ -56,12 +56,11 @@
                       var el = this;
                       $(el).tooltipster("show");
                       $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: "'.$relPath.'/preview/'.$id.'.'.$ext.'"})
-                        .done(function(data) {
-                          $(el).tooltipster("update", data.reason).tooltipster("show");
-                        })
-                        .fail(function(jqHXR,status,error) {
-                          $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
-                        })
+                      .done(function(data) {
+                        $(el).tooltipster("update", data.reason).tooltipster("show");
+                      })
+                      .fail(function(jqHXR,status,error) {
+                        $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                       });
                     });
                   }); 
