@@ -87,6 +87,7 @@
   }
   
   function jsonEcho($obj) {
+    echo get_class($obj);
     if (isJson($obj)) {
       debug('json');
       $json = $obj;
