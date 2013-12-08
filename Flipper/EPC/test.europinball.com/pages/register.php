@@ -82,6 +82,7 @@
       $page->closeDiv();
       $page->focus('usernameLogin');
       $page->datatables = TRUE;
+      $page->tooltipster = TRUE;
       $page->addScript('
         $(".viewButton").click(function() {
           $("#login").hide();
