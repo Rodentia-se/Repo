@@ -81,7 +81,7 @@
           return FALSE;
         }
       }
-      if (isObj($person) {
+      if (isObj($person)) {
         if (isId($person->id) && isObj($division) && isId($division->id)) {
           $where = team::$select.'
             left join teamPerson tp on tp.team_id = o.id
