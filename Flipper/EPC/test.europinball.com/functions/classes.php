@@ -252,7 +252,7 @@
   }
   
   function isObj($obj, $nostring = FALSE) {
-    $obj = (is_string($obj) && !$nostring && $obj != NOSEARCH) ? new $obj() : $obj;
+    $obj = (is_string($obj) && !$nostring && class_exists($obj)) ? new $obj() : $obj;
     return $obj instanceof base;
   }
   
