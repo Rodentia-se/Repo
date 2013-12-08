@@ -352,10 +352,10 @@
         '.page::getDivStart($prefix.'imageDiv', $class).'
           <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php">
             <h2 id="regPlayerImgH2" class="entry-title">'.ucfirst(get_class($this)).' logo or picture</h2>
-            <input type="hidden" name="'.$prefix.'action" value="preview">
-            <input type="hidden" name="prefix" value="'.$prefix.'">
-            <input type="hidden" name="'.$prefix.'obj" value="'.get_class($this).'">
-            <input type="hidden" name="'.$prefix.'id" value="'.$this->id.'">
+            <input type="hidden" name="'.$prefix.'action" id="'.$prefix.'action" value="preview">
+            <input type="hidden" name="prefix" id="'.$prefix.'prefix" value="'.$prefix.'">
+            <input type="hidden" name="'.$prefix.'obj" id="'.$prefix.'obj" value="'.get_class($this).'">
+            <input type="hidden" name="'.$prefix.'id" id="'.$prefix.'id" value="'.$this->id.'">
       	    <div id="'.$prefix.'preview">
       		    <img src="'.$this->getPhoto().'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
               <div id="'.$prefix.'imageLoader"></div>
