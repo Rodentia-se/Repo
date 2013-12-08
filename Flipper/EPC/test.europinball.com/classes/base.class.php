@@ -67,7 +67,7 @@
             }
           }
         } else {
-            debug($data, 'nosearch');
+            debug($data, 'search');
           if (isAssoc($data)) {
             debug($data, 'assoc');
             $obj = $this->db->getObjectByProps(get_class($this), $data);
