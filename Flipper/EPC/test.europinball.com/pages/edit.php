@@ -8,9 +8,14 @@
   if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $person = person('login');
     if ($person) {
+      $page->jeditable = TRUE;
+      $page->combobox = TRUE;
+      $page->tooltipster = TRUE;
+      $page->forms = TRUE;
       $page->startDiv('tabs');
         $page->startUl();
           $page->addLi('<a href="#profile">Profile</a>');
+          $page->addLi('<a href="#photo">Photo</a>');
           $page->addLi('<a href="#login">Login</a>');
           if (in_array('team', config::$activeDivisions)) {
             $page->addLi('<a href="#team">Team</a>');
@@ -20,13 +25,7 @@
           $page->addLi('<a href="#tshirts">T-shirts</a>');
         $page->closeUl();
         $page->startDiv('profile');
-        $page->startDiv();
           $page->addContent($person->getEdit());
-          $page->addContent($person->getPhotoEdit(NULL, 'right')); 
-          $page->jeditable = TRUE;
-          $page->combobox = TRUE;
-          $page->tooltipster = TRUE;
-          $page->forms = TRUE;
           $page->addScript('
             $(".combobox").combobox()
             .change(function(){
@@ -132,7 +131,8 @@
             });
           ');
         $page->closeDiv();
-        $page->addContent('&nbsp;');
+        $page->startDiv('photo');
+          $page->addContent($person->getPhotoEdit());
         $page->closeDiv();
         $page->startDiv('login');
         $page->closeDiv();
