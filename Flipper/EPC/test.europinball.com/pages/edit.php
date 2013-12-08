@@ -15,7 +15,7 @@
       $page->startDiv('tabs');
         $page->startUl();
           foreach(config::$editSections as $section) {
-            $page->addLi('<a href="#'.preg_replace('/[^a-zA-Z0-9]/', '', $section).'">'.ucfirst($section).'</a>');
+            $page->addLi('<a href="#'.preg_replace('/[^a-zA-Z0-9]/', '', $section).'" id="'.preg_replace('/[^a-zA-Z0-9]/', '', $section).'tabLink">'.ucfirst($section).'</a>');
           }
         $page->closeUl();
         if (in_array('profile', config::$editSections)) {
@@ -167,6 +167,15 @@
             var newIndex = ui.newTab.parent().children().index(ui.newTab);
             dataStore.setItem(index, newIndex) 
           }
+        });
+        $("#profiletabLink").click(function() {
+          $("#firstName").focus();
+        });
+        $("#phototabLink").click(function() {
+          $("#preview").focus();
+        });
+        $("#securitytabLink").click(function() {
+          $("#newUsername").focus();
         });
       ');
     } else {
