@@ -366,7 +366,7 @@
                 $("#'.$prefix.'imageUpload").on("change", function() {
                   $("#'.$prefix.'preview").html("");
                   $("#'.$prefix.'imageLoader").html("<img src=\"'.config::$baseHref.'/images/loader.gif\" alt=\"Uploading....\"/>");
-                  $("#'.$prefix.'submitImg").attr("disabled", false);
+                  $("#'.$prefix.'submitImg").button("option", "disabled", false);
                   $("#'.$prefix.'imageForm").ajaxForm({
                     target: "#'.$prefix.'preview"
                   }).submit();

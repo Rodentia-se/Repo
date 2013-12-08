@@ -28,17 +28,17 @@
               <div id="'.$prefix.'imageLoader"></div>
               <script type="text/javascript">
                 $(document).ready(function() { 
-                  $(\'#'.$prefix.'imageUpload\').on(\'change\', function() {
-                    $(\'#'.$prefix.'preview\').html(\'\');
-                    $(\'#'.$prefix.'imageLoader\').html(\'<img src="'.config::$baseHref.'/images/loader.gif" alt="Uploading...."/>\');
-                    $(\'#'.$prefix.'submitImg\').attr(\'disabled\', false);
-                    $(\'#'.$prefix.'imageForm\').ajaxForm({
-                      target: \'#'.$prefix.'preview\'
+                  $("#'.$prefix.'imageUpload").on("change", function() {
+                    $("#'.$prefix.'preview").html("");
+                    $("#'.$prefix.'imageLoader").html("<img src=\"'.config::$baseHref.'/images/loader.gif\" alt=\"Uploading....\"/>");
+                    $("#'.$prefix.'submitImg").button("option", "disabled", false);
+                    $("#'.$prefix.'imageForm").ajaxForm({
+                      target: "#'.$prefix.'preview"
                     }).submit();
-                    $(\'#'.$prefix.'imageLoader\').html(\'\');
+                    $("#'.$prefix.'imageLoader").html("");
                   });
-                  $(\'#'.$prefix.'thumb\').on(\'click\', function() {
-                    $(\'#'.$prefix.'imageUpload\').trigger(\'click\');
+                  $("#'.$prefix.'thumb").on("click", function() {
+                    $("#'.$prefix.'imageUpload").trigger("click");
                   });
                 }); 
               </script>
