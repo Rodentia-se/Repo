@@ -37,7 +37,6 @@
         }
         self::$nonce = ulNonce::Create('login');
       }
-      debug(auth::$person);
     }
     
     public function getPerson() {

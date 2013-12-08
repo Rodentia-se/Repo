@@ -88,7 +88,7 @@
     
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && in_array($data, $persons) && $search == NOSEARCH) {
+      if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
         debug(auth::$person,'LOGIN');
         if (!isObj(auth::$person) && isId(auth::$person->id)) {
           $data = auth::$person->id;
