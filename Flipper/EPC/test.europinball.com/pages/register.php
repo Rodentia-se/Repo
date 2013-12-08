@@ -117,7 +117,7 @@
             });
             $("#resultsTable").css("width", "");
           } else {
-            $("#searchBox").tooltipser("show");
+            $("#searchBox").tooltipster("show");
           }
         });
         $("#searchBox").keypress(function(e) {
