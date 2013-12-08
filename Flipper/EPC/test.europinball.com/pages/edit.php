@@ -168,6 +168,10 @@
             dataStore.setItem(index, newIndex);
             var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
             firstField.focus();
+          },
+          create: function(event, ui) {
+            var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
+            firstField.focus();
           }
         });
       ');
