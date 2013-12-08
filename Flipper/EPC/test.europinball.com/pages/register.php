@@ -10,7 +10,6 @@
     $person = person('login');
     $player = player($person);
     if ($player) {
-      debug($player, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes') {

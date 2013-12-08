@@ -7,9 +7,6 @@
   });
   
   function obj($obj) {
-    if ($obj->huff) {
-      debug($obj, 'classes, obj');
-    }
     return ($obj->failed) ? FALSE : $obj;
   }
 
@@ -141,7 +138,6 @@
 
   function person($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new person($data, $search, $depth);
-    debug($obj, 'CLASES');
     return obj($obj);
   }
 
