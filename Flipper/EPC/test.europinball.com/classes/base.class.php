@@ -29,6 +29,7 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
+            debug($data, 'huff');
         if ($search == NOSEARCH) {
           if ($data) {
             if (isId($data)) {
