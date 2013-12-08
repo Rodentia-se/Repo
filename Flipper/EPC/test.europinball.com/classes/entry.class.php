@@ -38,7 +38,8 @@
       'score' => array(
         'field' => 'qualEntry',
         'delete' => TRUE
-      ),
+      )
+    );
 
 
     public function populate() {
