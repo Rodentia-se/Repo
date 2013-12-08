@@ -46,9 +46,7 @@
                     $("#'.$prefix.'submitImg").tooltipster({
                       theme: ".tooltipster-light",
                       content: "Saving the image...",
-                      interactive: true,
-                      interactiveTolerance: 3000,
-                      interactiveAutoClose: false,
+                      trigger: "custom",
                       position: "right",
                       offsetX: 38,
                       timer: 3000
