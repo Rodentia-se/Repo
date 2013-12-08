@@ -361,7 +361,7 @@
               <div id="'.$prefix.'imageLoader"></div>
       	    </div>
       	    <div id="'.$prefix.'uploadForm">
-              <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview</label>
+              <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview, click button to save change</label>
               <input type="file" name="'.$prefix.'imageUpload" id="'.$prefix.'imageUpload">
             </div>
             <button id="'.$prefix.'submitImg" type="button" value="Save image" disabled>Save image</button>
