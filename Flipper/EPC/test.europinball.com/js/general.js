@@ -3,15 +3,20 @@ function ucfirst(txt) {
 }
 
 var tooltips = [];
+var tooltipsTimers = [];
 
 function showTooltip(el, text, offset) {
   alert(el.id);
   var offset = (offset) ? offset : 15;
-  if (typeof tooltips[el.id] != "undefined") {
-    clearTimeout(tooltips[el.id]);
+  if (typeof tooltipsTimers[el.id] != "undefined") {
+    clearTimeout(tooltipsTimers[el.id]);
+    tooltipsTimers.splice(el.id, 1);
   }
-  $(el).tooltip("destroy");
-  $(el).tooltip({
+  if (typeof tooltips[el.id] != "undefined") {
+    $(el).tooltip("destroy");
+    tooltips.splice(el.id, 1);
+  }
+  $tooltips[el.id] = $(el).tooltip({
     content: text,
     position: {
       my: "left+" + offset + " center",
@@ -23,7 +28,7 @@ function showTooltip(el, text, offset) {
   })
   .tooltip("enable")
   .tooltip("open");
-  tooltips[el.id] = setTimeout(function(){
+  tooltipsTimers[el.id] = setTimeout(function(){
     $(el).tooltip("close")
     .tooltip("disable");
   }, 3000);
