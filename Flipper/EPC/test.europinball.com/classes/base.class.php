@@ -274,12 +274,14 @@
               } else {
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
-              if ($delete) {
-                $objs = new $class::$arrClass(array($field = $this->id));
-                $objs->delete();
-              } else {
-                $objs = new $class::$arrClass;
-                $objs->nullify(array($field.'_id' => $this->id));
+              if class_exists($class) {
+                if ($delete) {
+                  $objs = new $class::$arrClass(array($field = $this->id));
+                  $objs->delete();
+                } else {
+                  $objs = new $class::$arrClass;
+                  $objs->nullify(array($field.'_id' => $this->id));
+                }
               }
             }
           }
