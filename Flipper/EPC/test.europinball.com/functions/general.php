@@ -10,7 +10,7 @@
   }
   
   function isJson($string) {
-    if (is_string($json)) {
+    if (is_string($string)) {
       json_decode($string);
       debug(json_last_error(), 'isJson');
       return (json_last_error() == JSON_ERROR_NONE);
@@ -87,7 +87,6 @@
   }
   
   function jsonEcho($obj) {
-    echo get_class($obj);
     if (isJson($obj)) {
       debug('json');
       $json = $obj;
