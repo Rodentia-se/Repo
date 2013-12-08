@@ -16,7 +16,7 @@ function showTooltip(el, text, offset) {
     $(el).tooltip("destroy");
     tooltips.splice(el.id, 1);
   }
-  $tooltips[el.id] = $(el).tooltip({
+  tooltips[el.id] = $(el).tooltip({
     content: text,
     position: {
       my: "left+" + offset + " center",
