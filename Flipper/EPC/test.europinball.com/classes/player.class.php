@@ -127,7 +127,7 @@
       debug($search, 'player, search');
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$activeDivisions);
-      if (get_class($data) == 'tournament' || (is_string($data) && in_array($data, $divisions))) {
+      if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
         $data = division($data);
         if (!$data || !isId($data->id)) {
           $this->failed = TRUE;
@@ -151,7 +151,7 @@
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if (get_class($search) == 'person' || (is_string($search) && in_array($search, $persons))) {
+      } else if ((isObj($search) && get_class($search) == 'person') || (is_string($search) && in_array($search, $persons))) {
         if (get_class($search) == 'person') {
           $person = $search;
         } else {

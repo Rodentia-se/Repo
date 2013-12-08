@@ -252,7 +252,7 @@
   }
   
   function isObj($obj, $nostring = FALSE) {
-    $obj = (is_string($obj) && !$nostring) ? new $obj() : $obj;
+    $obj = (is_string($obj) && !$nostring) ? new ((class_exist($obj) ? $obj() : object()) : $obj;
     return $obj instanceof base;
   }
   
