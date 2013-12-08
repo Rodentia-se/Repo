@@ -97,6 +97,7 @@
           static::$instances['ID'.$this->id] = $this;
           $this->populate($depth);
         }
+        debug($this, 'THIS');
       }
     }
 
