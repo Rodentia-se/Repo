@@ -386,7 +386,7 @@
     }
     
     function savePhoto($path = NULL) {
-      
+      return FALSE;
     }
 
     public function jsonSerialize() {
