@@ -38,7 +38,7 @@
                         target: "#'.$prefix.'preview"
                       }).submit();
                       $("#'.$prefix.'imageLoader").html("");
-                      $("#'.$prefix.'imagePath").val("'.$relPath.'/preview/'.$id.'.'.$ext");
+                      $("#'.$prefix.'imagePath").val("'.$relPath.'/preview/'.$id.'.'.$ext.'");
                     });
                     $("#'.$prefix.'thumb").on("click", function() {
                       $("#'.$prefix.'imageUpload").trigger("click");
