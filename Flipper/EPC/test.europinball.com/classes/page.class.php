@@ -86,29 +86,31 @@
       $footer = self::getDivStart('clearer');
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
-        $footer .= self::getDivStart('loginFooter');
-          if ($this->loggedin()) {
-            $footer .= self::getParagraph('
-              <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-                You are logged in as '.$person->name.'. 
-                <input type="hidden" name="action" value="logout">
-                <input type="button" id="footerLogoutButton" value="Log out">
-              </form>', NULL, 'italic');
-            $footer .= self::getScript('
-              $("#footerLogoutButton").click(function() {
-                $("#footerLogoutForm").submit();
-              });
-            ');
-          } else {
-            $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Login">', NULL, 'italic');
-            $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
-            $footer .= self::getScript('
-              $("#footerLoginButton").click(function() {
-                $("#footerloginDiv").dialog("open");
-              });
-            ');
+        if ($this->loggedin()) {
+          $footer .= self::getDivStart('logoutFooter');
+          $footer .= self::getParagraph('
+            <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
+              You are logged in as '.$person->name.'. 
+              <input type="hidden" name="action" value="logout">
+              <input type="button" id="footerLogoutButton" value="Log out">
+            </form>', NULL, 'italic');
+          $footer .= self::getScript('
+            $("#footerLogoutButton").click(function() {
+              $("#footerLogoutForm").submit();
+            });
+          ');
+          $footer .= self::getDivEnd();
+        } else {
+          $footer .= self::getDivStart('loginFooter');
+          $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Login">', NULL, 'italic');
+          $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
+          $footer .= self::getScript('
+            $("#footerLoginButton").click(function() {
+              $("#footerloginDiv").dialog("open");
+            });
+          ');
+          $footer .= self::getDivEnd();
         }
-        $footer .= self::getDivEnd();
       }
       $footer .= self::getScript('
         $(":button").button();
