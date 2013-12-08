@@ -594,6 +594,16 @@
       return $obj->getPhotoEdit($prefix, $class);
     }
     
+    public function addUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      $form = self::getUserEdit($title, $prefix, $class, $dialog, $autoopen);
+      $this->addContent($form);
+      return $form;
+    }
+
+    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      return auth::getUserEdit($title, $prefix, $class, $dialog, $autoopen);
+    }
+
     public function submit($header = TRUE, $footer = TRUE, $div = TRUE) {
       echo $this->getContent($header, $footer, $div);
     }

@@ -238,6 +238,103 @@
       ');
       return $form;
     }
+    
+    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      $form = page::getDivStart($prefix.'changeUserDiv');
+        $form .= page::getFormStart($prefix.'changeUserForm');
+          $form .= page::getH2($title);
+          $form .= page::getParagraph('Changing username requires the password to be changed too.', NULL, 'italic');
+          $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
+          $form .= page::getInput('changeUser', $prefix.'action', 'action', 'hidden');
+          $form .= page::getDivStart($prefix.'changeUserDiv');
+            $form .= page::getInput(NULL, $prefix.'newUsername', 'newUsername', 'text', NULL, 'New username');
+          $form .= page::getDivEnd();
+          $form .= page::getDivStart($prefix.'changeUserDiv');
+            $form .= page::getInput(NULL, $prefix.'password', 'password', 'password', NULL, 'Current password');
+          $form .= page::getDivEnd();
+          $form .= page::getDivStart($prefix.'changeUserDiv');
+            $form .= page::getInput(NULL, $prefix.'newPassword', 'newPassword', 'password', NULL, 'New password');
+          $form .= page::getDivEnd();
+          $form .= page::getDivStart($prefix.'changeUserDiv');
+            $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
+          $form .= page::getDivEnd();
+          $form .= (!$dialog) ? page::getButton('Submit changes', $prefix.'changeUser') : '';
+        $form .= page::getFormEnd();
+      $form .= page::getDivEnd();
+      if ($dialog) {
+        $form .= page::getScript('
+          $("#'.$prefix.'newUserDiv").dialog({
+            autoOpen: '.(($autoopen) ? 'true' : 'false').',
+            modal: true,
+            width: 400,
+            buttons: {
+              "Register": function() {
+                if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+                  if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                    $("#'.$prefix.'newUserForm").submit();
+                  } else {
+                    $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                      theme: ".tooltipster-light",
+                      content: "The passwords do not match...",
+                      trigger: "custom",
+                      position: "right",
+                      timer: 3000
+                    })
+                    .tooltipster("show");
+                  }
+                }
+              },
+              "Cancel": function() {
+                $(this).dialog("close");
+              }
+            }
+          });
+          $(document).on("click", ".ui-widget-overlay", function() {
+            $("#'.$prefix.'newUserDiv").dialog("close");
+          });
+        ');
+      } else {
+        $form .= page::getScript('
+          $("'.$prefix.'registerButton").click(function() {
+            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                $("#'.$prefix.'newUserForm").submit();
+              } else {
+                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                  theme: ".tooltipster-light",
+                  content: "The passwords do not match...",
+                  trigger: "custom",
+                  position: "right",
+                  timer: 3000
+                })
+                .tooltipster("show");
+              }
+            }
+          });
+        ');
+      }
+      $form .= page::getScript('
+        $(".enterSubmit").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                $("#'.$prefix.'newUserForm").submit();
+              } else {
+                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                  theme: ".tooltipster-light",
+                  content: "The passwords do not match...",
+                  trigger: "custom",
+                  position: "right",
+                  timer: 3000
+                })
+                .tooltipster("show");
+              }
+            }
+          }
+        });
+      ');
+      return $form;
+    }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       $form = '
@@ -252,7 +349,9 @@
               <input type="text" name="username" id="'.$prefix.'usernameNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
               <label for="password">Password</label>
               <input type="password" name="password" id="'.$prefix.'passwordNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              '.(($dialog) ? '' : '<input type="submit" value="Register">').'
+              <label for="password">Verify password</label>
+              <input type="password" name="verifyPassword" id="'.$prefix.'verifyPasswordNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
+              '.(($dialog) ? '' : '<input type="button" id="'.$prefix.'registerButton" value="Register">').'
             </fieldset>
           </form>
         </div>
@@ -266,7 +365,18 @@
             buttons: {
               "Register": function() {
                 if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-                  $("#'.$prefix.'newUserForm").submit();
+                  if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                    $("#'.$prefix.'newUserForm").submit();
+                  } else {
+                    $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                      theme: ".tooltipster-light",
+                      content: "The passwords do not match...",
+                      trigger: "custom",
+                      position: "right",
+                      timer: 3000
+                    })
+                    .tooltipster("show");
+                  }
                 }
               },
               "Cancel": function() {
@@ -274,20 +384,53 @@
               }
             }
           });
-          $(".enterSubmit").keypress(function(e) {
-            if (e.keyCode == $.ui.keyCode.ENTER) {
-              if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-                $("#'.$prefix.'newUserForm").submit();
-              }
-            }
-          });
           $(document).on("click", ".ui-widget-overlay", function() {
             $("#'.$prefix.'newUserDiv").dialog("close");
           });
         ');
+      } else {
+        $form .= page::getScript('
+          $("'.$prefix.'registerButton").click(function() {
+            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                $("#'.$prefix.'newUserForm").submit();
+              } else {
+                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                  theme: ".tooltipster-light",
+                  content: "The passwords do not match...",
+                  trigger: "custom",
+                  position: "right",
+                  timer: 3000
+                })
+                .tooltipster("show");
+              }
+            }
+          });
+        ');
       }
+      $form .= page::getScript('
+        $(".enterSubmit").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
+              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
+                $("#'.$prefix.'newUserForm").submit();
+              } else {
+                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                  theme: ".tooltipster-light",
+                  content: "The passwords do not match...",
+                  trigger: "custom",
+                  position: "right",
+                  timer: 3000
+                })
+                .tooltipster("show");
+              }
+            }
+          }
+        });
+      ');
       return $form;
     }
+
   }
 
 ?>

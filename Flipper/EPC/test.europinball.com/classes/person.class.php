@@ -178,7 +178,7 @@
     public function setUsername($username) {
       return $this->setProp('username', $username);
     }
-
+    
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
       switch ($type) {
         case 'ifpa':

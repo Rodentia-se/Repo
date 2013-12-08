@@ -133,6 +133,7 @@
         }
         if (in_array('security', config::$editSections)) {
           $page->startDiv('security');
+            $page->addUserEdit();
           $page->closeDiv();
         }
         if (in_array('team', config::$editSections)) {
