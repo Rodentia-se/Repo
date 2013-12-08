@@ -131,7 +131,7 @@
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions)) {
+      } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
         $data = division($data, $search);
         if (!$data || !isId($data->id)) {
           $this->failed = TRUE;
