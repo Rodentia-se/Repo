@@ -54,8 +54,9 @@
                     })
                     .click(function() {
                       var el = this;
+                      var path = $("#'.$prefix.'previewPath").val();
                       $(el).tooltipster("show");
-                      $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: "'.$relPath.'/preview/'.$id.'.'.$ext.'"})
+                      $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: path})
                       .done(function(data) {
                         $(el).tooltipster("update", data.reason).tooltipster("show");
                       })
