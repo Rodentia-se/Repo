@@ -127,7 +127,7 @@
                       if ($change) {
                         $player = player($person, $division);
                         if (!$player) {
-                          $json = success('Rmoved '.$person->name.' from the '.$division->divisionName);
+                          $json = success('Removed '.$person->name.' from the '.$division->divisionName);
                         } else {
                           $json = failure('Could not remove '.$person->name.' from the '.$division->divisionName);
                         }
