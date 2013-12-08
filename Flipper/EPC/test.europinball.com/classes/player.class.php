@@ -125,8 +125,7 @@
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
       if (is_string($data) && in_array($data, $persons)) {
-        $login = new auth();
-        $data = $login->person;
+        $data = person($data);
         if (!$data || !isId($data->id)) {
           $this->failed = TRUE;
           return FALSE;
@@ -145,8 +144,7 @@
           return FALSE;
         }
       } else if (is_string($search) && in_array($search, $persons)) {
-        $login = new auth();
-        $search = $login->person;
+        $search = person($search);
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;

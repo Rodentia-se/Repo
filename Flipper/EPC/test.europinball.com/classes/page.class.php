@@ -33,13 +33,6 @@
       if ($login) {
         if (!self::$_login) {
           self::$_login = new auth();
-        } else {
-          if ($this->loggedin() && !$this->login->person) {
-            $this->login->person = $this->login->getPerson();
-            if ($this->login->person) {
-              $this->login->person_id = $this->login->person->id;
-            }
-          }
         }
         $this->login = self::$_login;
       }
