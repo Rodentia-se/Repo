@@ -243,7 +243,7 @@
       $form = page::getDivStart($prefix.'changeUserDiv');
         $form .= page::getFormStart($prefix.'changeUserForm');
           $form .= page::getH2($title);
-          $form .= page::getParagraph('Changing username requires the password to be changed too.', NULL, 'italic');
+          $form .= page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput('changeUser', $prefix.'action', 'action', 'hidden');
           $form .= page::getDivStart($prefix.'changeUserDiv');
