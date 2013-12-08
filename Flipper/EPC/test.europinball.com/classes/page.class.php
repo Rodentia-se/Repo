@@ -594,8 +594,8 @@
       return $this->login->loggedin();
     }
 
-    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $closeButton = FALSE) {
-      return auth::getLogin($title, $prefix, $class, $closeButton);
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
+      return auth::getLogin($title, $prefix, $class, $dialog);
     }
 
     public function addNewUser($title = 'Please provide your login credentials', $person_id) {

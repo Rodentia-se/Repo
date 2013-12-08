@@ -91,7 +91,7 @@
       unset($_SESSION['uid']);
       unset($_SESSION['username']);
       unset($_SESSION['loggedIn']);
-      unset(self::$person);
+      self::$person = NULL;
       return TRUE;
     }
 
