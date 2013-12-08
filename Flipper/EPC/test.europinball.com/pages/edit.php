@@ -99,7 +99,6 @@ alert("twice");
           interactiveAutoClose: false,
           position: "right",
           trigger: "custom",
-          offsetX: 15,
           timer: 3000
         });
         $(".date").datepicker({
