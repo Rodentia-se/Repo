@@ -193,23 +193,14 @@
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE) {
       switch ($type) {
         case 'photo':
-          if ($thumbnail) {
-            foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext;
-              }
-            }
-          } 
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext;
+            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/0.'.$ext;
             }
           }
-          if (get_class($this) == 'player') {
-            foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext;
-              }
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.'.$ext;
             }
           }
           if ($thumbnail) {
@@ -219,16 +210,25 @@
               }
             }
           }
-          foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.'.$ext;
+          if (get_class($this) == 'player' || get_class($this) == 'person') {
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/ifpa/'.$this->ifpa_id.'.'.$ext;
+              }
             }
           }
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/0.'.$ext;
+            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.'.$ext;
             }
           }
+          if ($thumbnail) {
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/'.$this->id.'.thumb.'.$ext;
+              }
+            }
+          } 
           if (!$url) {
             $url = NULL;
           }
