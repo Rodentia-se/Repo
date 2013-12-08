@@ -29,7 +29,7 @@
                 <script src="'.config::$baseHref.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
                 <img src="'.config::$baseHref.'/images/objects/'.$obj.'/preview/'.$id.'.'.$ext.'?nocache='.rand(10000,20000).'" class="preview" id="'.$prefix.'thumb" alt="Preview of image">
                 <div id="'.$prefix.'imageLoader"></div>
-                <input type="hidden" name="'.$prefix.'previewPath" value="'.$relPath.'/preview/'.$id.'.'.$ext.'">
+                <input type="hidden" name="'.$prefix.'previewPath" id="'.$prefix.'previewPath" value="'.$relPath.'/preview/'.$id.'.'.$ext.'">
                 <script type="text/javascript">
                   $(document).ready(function() { 
                     $("#'.$prefix.'imageUpload").on("change", function() {
