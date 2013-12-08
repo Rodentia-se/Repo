@@ -19,10 +19,10 @@
         .change(function(){
           var el = this;
           var combobox = document.getElementById(el.id + "_combobox");
-          $(el).tooltipster("update", "Updating the database...").tooltipster("show");
+          $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            $(el).tooltipster("update", data.reason).tooltipster("show");
+            $(combobox).tooltipster("update", data.reason).tooltipster("show");
             if (data.valid) {
               $(combobox).val($(el).children(":selected").text())
               if (data.parents) {
@@ -47,16 +47,8 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+            $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
           })
-        })
-        .tooltipster({
-          theme: ".tooltipster-light",
-          content: "Updating the database...",
-          interactiveAutoClose: false,
-          position: "right",
-          offsetX: 45,
-          timer: 3000
         });
         $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
           if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
@@ -65,7 +57,15 @@ alert("twice");
             $("#" + this.id.replace("_combobox", "")).change();
           }
         })
-        .autocomplete("option", "autoFocus", true);
+        .autocomplete("option", "autoFocus", true)
+        .tooltipster({
+          theme: ".tooltipster-light",
+          content: "Updating the database...",
+          interactiveAutoClose: false,
+          position: "right",
+          offsetX: 45,
+          timer: 3000
+        });
         $(".edit").change(function(){
           var el = this;
           if (el.id == "shortName") {
