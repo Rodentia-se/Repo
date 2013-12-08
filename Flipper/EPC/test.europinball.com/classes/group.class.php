@@ -225,6 +225,15 @@
       }
       return $return;
     }
+    
+    function delete() {
+      foreach ($this as $obj) {
+        if (!$obj->delete()) {
+          $fail = TRUE;
+        }
+      }
+      return ($fail) ? FALSE : TRUE;
+    }
 
   }
 ?>
