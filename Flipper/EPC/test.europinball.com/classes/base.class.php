@@ -16,9 +16,6 @@
     public static $mandatory = array();
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      debug(get_class($this), 'base');
-      debug($data, 'base');
-      debug($search, 'base');
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
@@ -30,10 +27,7 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-            debug($data, 'huff');
         if ($search === NOSEARCH) {
-            debug($search, 'nosearch');
-            debug($search, 'nosearch');
           if ($data) {
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
@@ -69,11 +63,9 @@
             }
           }
         } else {
-            debug($data, 'search');
           if (isAssoc($data)) {
             debug($data, 'assoc');
             $obj = $this->db->getObjectByProps(get_class($this), $data);
-            debug($obj);
           } else if (isObj($data) && isId($data->id)) {
             $dataClass = get_class($data);
             $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
@@ -97,7 +89,6 @@
           static::$instances['ID'.$this->id] = $this;
           $this->populate($depth);
         }
-        debug($this, 'THIS');
       }
     }
 

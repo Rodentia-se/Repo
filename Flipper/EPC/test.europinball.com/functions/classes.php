@@ -42,9 +42,6 @@
 
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new division($data, $search, $depth);
-    if ($obj->huff) {
-      debug($obj, 'classes, div');
-    }
     return obj($obj);
   }
 
