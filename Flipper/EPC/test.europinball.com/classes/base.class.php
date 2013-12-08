@@ -14,11 +14,6 @@
     public static $selfParent = FALSE;
     public static $validators = array();
     public static $mandatory = array();
-    public static $order = array(
-      'prop' => 'name',
-      'type' => 'string',
-      'dir' => 'asc'
-    );
 
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -365,7 +360,7 @@
               <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
               <input type="file" name="imageUpload" id="imageUpload">
             </div>
-            <button id="submitImg" type="button" value="Submit image!" class="formInput" disabled>Submit image!</button>
+            <button id="submitImg" type="button" value="Save image" disabled>Save image</button>
             <script type="text/javascript">
               $(document).ready(function() { 
                 $("#'.$prefix.'imageUpload").on("change", function() {

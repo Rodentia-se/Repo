@@ -7,7 +7,6 @@
 
   $prefix = $_REQUEST['prefix'];
   $obj = $_REQUEST['obj'];
-  $obj = ($obj == 'person') ? 'player' : $obj;
   $path = config::$baseDir.'/images/objects/'.$_REQUEST['obj'].'/';
 
   if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -55,7 +54,7 @@
       }
     } else {
       echo 'Please select image..!';
-    }				
+    }
     exit;
   }
 
