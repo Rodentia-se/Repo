@@ -130,15 +130,6 @@
         $delegated = TRUE;
         $login = new auth();
         $person = $login->person;
-      } else if (is_object($data) && get_class($data) == 'person') {
-        $delegated = TRUE;
-        $person = $data;
-      } else if (is_object($data) && (get_class($data) == 'division' || get_class($data) == 'tournament') && $search != NOSEARCH && $search) {
-        $delegated = TRUE;
-        $person = person($search);
-        $earch = $data;
-      }
-      if ($delegated) {
         if ($person && isId($person->id)) {
           $type = ($search == NOSEARCH) ? 'main' : $search;
           $search = NOSEARCH;
