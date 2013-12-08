@@ -1,5 +1,10 @@
+#logoutFooter {
+  border-top: 1px solid #ddd;
+}
+
 #loginFooter {
   border-top: 1px solid #ddd;
+  padding-top: 15px;
 }
 
 #clearer {
