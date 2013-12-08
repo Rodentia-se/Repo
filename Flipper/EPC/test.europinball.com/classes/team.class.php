@@ -50,16 +50,61 @@
         'field' => 'player',
         'delete' => TRUE
       )
-    )
+    );
     
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      $constructors = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
-        $login = new auth();
-        $person = $login->person;
-        if ($person) {
-          $team = $person->getPlayer(((in_array($data, config::$activeDivisions)) ? $data : NULL));
-          $data = ($team) ? $team->id : $data; 
+      $persons = array('current', 'active', 'login', 'auth');
+      $divisions = array_merge(array('current', 'active'), config::$divisions);
+      if (is_string($data) && in_array($data, $persons)) {
+        $person = person($data);
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
+        $division = division($data, $search);
+        if (!$division || !isId($division->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
+        $division = division($search);
+        if (!$division || !isId($division->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if (is_string($search) && in_array($search, $persons)) {
+        $person = person($search);
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if (isObj($person) {
+        if (isId($person->id) && isObj($division) && isId($division->id)) {
+          $where = team::$select.'
+            left join teamPerson tp on tp.team_id = o.id
+            where tp.person_id = :person_id
+              and o.tournamentDivision_id = :division_id
+          ';
+          $values[':person_id'] = $person->id;
+          $values[':division_id'] = $division->id;
+          $obj = $this->db->select($query, $values, 'team');
+          if ($obj) {
+            $this->_set($obj);
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
+          }
+          if ($this->id) {
+            static::$instances['ID'.$this->id] = $this;
+            $this->populate($depth);
+            return TRUE;
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
+          }
         }
       }
       parent::__construct($data, $search, $depth);
