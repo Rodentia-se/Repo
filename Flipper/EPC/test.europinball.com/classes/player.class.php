@@ -126,7 +126,7 @@
       debug($data, 'player, data');
       debug($search, 'player, search');
       $constructors = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
+      if ((get_class($data) == 'tournament' || ((is_string($data) && (in_array($data, $constructors) || in_array($data, config::$activeDivisions)))) && $search == NOSEARCH) {
         $delegated = TRUE;
         $login = new auth();
         $person = $login->person;
