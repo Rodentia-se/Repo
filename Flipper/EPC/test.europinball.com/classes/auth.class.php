@@ -32,10 +32,9 @@
       if ($this->loggedin() && !self::$person) {
         self::$person = $this->getPerson();
       } else {
-        if (ulNonce::Exists('login')) {
-          ulNonce::Verify('login', 'nonsense');
+        if (!ulNonce::Exists('login')) {
+          self::$nonce = ulNonce::Create('login');
         }
-        self::$nonce = ulNonce::Create('login');
       }
     }
     
@@ -179,7 +178,7 @@
         $form .= page::getFormStart($prefix.'loginForm');
           $form .= '<fieldset>';
             $form .= page::getInput('login', $prefix.'action', 'action', 'hidden');
-            $form .= page::getInput(self::$nonce, $prefic.'nonce', 'nonce', 'hidden');
+            $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
             $form .= page::getDivStart($prefix.'usernameDiv');
               $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
