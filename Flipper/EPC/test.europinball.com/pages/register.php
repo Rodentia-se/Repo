@@ -32,7 +32,7 @@
       } else {
         $tournament = tournament(config::$activeTournament);
         $page->addH2('Register player');
-        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
+        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'POST', 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
       }
     }
