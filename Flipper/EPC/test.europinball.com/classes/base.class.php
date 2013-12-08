@@ -379,25 +379,6 @@
                 $("#'.$prefix.'thumb").on("click", function() {
                   $("#'.$prefix.'imageUpload").trigger("click");
                 });
-                $("#'.$prefix.'submitImg").tooltipster({
-                  theme: ".tooltipster-light",
-                  content: "Saving the image...",
-                  interactiveAutoClose: false,
-                  position: "right",
-                  offsetX: 38,
-                  timer: 3000
-                })
-                .click(function() {
-                  var el = this;
-                  $(el).tooltipster("show");
-                  $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.get_class($this).'", id: '.$this->id.', previewPath: "'.preg_replace('!'.config::$baseHref.'!', '', $this->getPhoto(FALSE, FALSE)).'"})
-                  .done(function(data) {
-                    $(el).tooltipster("update", data.reason).tooltipster("show");
-                  })
-                  .fail(function(jqHXR,status,error) {
-                    $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
-                  });
-                });
               }); 
             </script>
           </form>
