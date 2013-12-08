@@ -15,7 +15,7 @@
       $page->startDiv('tabs');
         $page->startUl();
           foreach(config::$editSections as $section) {
-            $page->addLi('<a href="#'.preg_replace('/[^a-zA-Z0-9]/', '', $section).'">'.ucfirst($section.'</a>')
+            $page->addLi('<a href="#'.preg_replace('/[^a-zA-Z0-9]/', '', $section).'">'.ucfirst($section.'</a>');
           }
         $page->closeUl();
         if (in_array('profile', config::$editSections)) {
