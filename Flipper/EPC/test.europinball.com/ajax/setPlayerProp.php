@@ -122,6 +122,7 @@
                     }
                   } else if ($value == 0) {
                     $player = player($person, $division);
+                    debug($player);
                     if ($player) {
                       $change = $player->delete();
                       if ($change) {
