@@ -186,11 +186,12 @@
       return $select;
     }
     
-    public function order($prop = NULL, $type = NULL, $direction = NULL, $keepkeys = FALSE) {
+    public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
       $return = FALSE;
       $prop = ($prop) ? $prop : ((property_exists($this, 'order') && static::$order['prop']) ? static::$order['prop'] : (($this[0]->sortName) ? 'sortName' : 'name')) ;
       $type = ($type) ? $type : ((property_exists($this, 'order') && static::$order['type']) ? static::$order['type'] : 'string') ;
-      $dir = ($direction == 'desc') ? 'desc' : ((property_exists($this, 'dir') && static::$order['dir'] == 'desc') ? 'desc' : 'asc') ;
+      $direction = ($direction == 'desc') ? 'desc' : ((property_exists($this, 'order') && static::$order['dir'] == 'desc') ? 'desc' : 'asc') ;
+      $case = ($case) ? TRUE : ((property_exists($this, 'order') && static::$order['case']) ? TRUE : FALSE) ;
       if (count($this) > 0) {
         switch ($type) {
           case 'int':
@@ -200,28 +201,22 @@
           case 'num':
             if ($direction == 'asc') {
               $return = $this->uasort(function($a, $b) use ($prop) {
-                if ($a == $b) {
-                  return 0;
-                }
-                return ($a->$prop > $b->$prop) ? 1 : -1;
+                return ($š == $b) ? 0 : (($a->$prop > $b->$prop) ? 1 : -1);
               });
             } else if ($direction == 'desc') {
                $return = $this->uasort(function($a, $b) use ($prop) {
-                if ($a == $b) {
-                  return 0;
-                }
-                return ($a->$prop < $b->$prop) ? 1 : -1;
+                return ($š == $b) ? 0 : (($a->$prop < $b->$prop) ? 1 : -1);
               });
             }
           break;
           default:
             if ($direction == 'asc') {
-              $return = $this->uasort(function($a, $b) use ($prop) {
-                return strcmp($a->$prop, $b->$prop);
+              $return = $this->uasort(function($a, $b) use ($prop, $case) {
+                return ($case) ? strcasecmp($a->$prop, $b->$prop) : strcmp($a->$prop, $b->$prop);
               });
             } else if ($direction == 'desc') {
-               $return = $this->uasort(function($a, $b) use ($prop) {
-                return strcmp($b->$prop, $a->$prop);
+               $return = $this->uasort(function($a, $b) use ($prop, $case) {
+                return ($case) ? strcasecmp($b->$prop, $a->$prop) : strcmp($b->$prop, $a->$prop);
               });
             }
           break;
