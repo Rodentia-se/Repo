@@ -295,7 +295,7 @@
         ');
       } else {
         $form .= page::getScript('
-          $("'.$prefix.'registerButton").click(function() {
+          $("'.$prefix.'changeUser").click(function() {
             if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
               if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
                 $("#'.$prefix.'newUserForm").submit();
