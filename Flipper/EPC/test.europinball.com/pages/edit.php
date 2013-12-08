@@ -55,7 +55,7 @@
           content: "Updating the database...",
           interactiveAutoClose: false,
           position: "right",
-          offsetX: offset,
+          offsetX: 45,
           timer: 3000
         });
         $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
@@ -99,7 +99,7 @@ alert("twice");
           interactiveAutoClose: false,
           position: "right",
           trigger: "custom",
-          offsetX: offset,
+          offsetX: 15,
           timer: 3000
         });
         $(".date").datepicker({
