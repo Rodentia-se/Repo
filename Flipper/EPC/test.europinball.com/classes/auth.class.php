@@ -258,7 +258,7 @@
           $form .= page::getDivStart($prefix.'changeUserDiv');
             $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
           $form .= page::getDivEnd();
-          $form .= (!$dialog) ? page::getButton('Submit changes', $prefix.'changeUser') : '';
+          $form .= (!$dialog) ? page::getLabel().page::getButton('Submit changes', $prefix.'changeUser') : '';
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
