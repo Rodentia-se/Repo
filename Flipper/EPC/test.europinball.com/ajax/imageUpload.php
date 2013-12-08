@@ -84,18 +84,21 @@
         if ($target) {
           $save = $target->savePhoto();
           if ($save) {
-            success('Photo saved');
+            $json = success('Photo saved');
           } else {
-            failure('Could not save photo');
+            $json = failure('Could not save photo');
           }
         } else {
-          failure('Could not find the '.$obj);
+          $json = failure('Could not find the '.$obj);
         }
       } else {
-        failure('Could not find the '.$obj.' object type');
+        $json = failure('Could not find the '.$obj.' object type');
       }
     } else {
-      failure('Unknown action');
+      $json = failure('Unknown action');
+    }
+    if ($json) {
+      jsonEcho($json);
     }
 
   }
