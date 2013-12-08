@@ -133,7 +133,7 @@
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if (get_class($data) == 'person' || (is_string($data) && in_array($data, $persons))) {
+      } else if ((isObj($data) && get_class($data) == 'person') || (is_string($data) && in_array($data, $persons))) {
         if (get_class($data) == 'person') {
           $person = $data;
         } else {
@@ -145,7 +145,7 @@
           return FALSE;
         }
       }
-      if (get_class($search) == 'tournament' || (is_string($search) && in_array($search, $divisions))) {
+      if ((isObj($search) && get_class($search) == 'tournament') || (is_string($search) && in_array($search, $divisions))) {
         $search = division($search);
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
