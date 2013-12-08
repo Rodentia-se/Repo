@@ -107,7 +107,7 @@
         case 'logout':
           return $this->logoff();
         break;
-        case 'changeCredentials':
+        case 'changeUser':
           if ($_REQUEST['currentUsername'] && $_REQUEST['currentPassword']) {
             $this->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
             if ($this->IsAuthSuccess()) {
@@ -246,16 +246,16 @@
           $form .= page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput('changeUser', $prefix.'action', 'action', 'hidden');
-          $form .= page::getDivStart($prefix.'changeUserDiv');
+          $form .= page::getDivStart($prefix.'usernameDiv');
             $form .= page::getInput($_SESSION['username'], $prefix.'newUsername', 'newUsername', 'text', NULL, 'New username');
           $form .= page::getDivEnd();
-          $form .= page::getDivStart($prefix.'changeUserDiv');
+          $form .= page::getDivStart($prefix.'passwordDiv');
             $form .= page::getInput(NULL, $prefix.'password', 'password', 'password', NULL, 'Current password');
           $form .= page::getDivEnd();
-          $form .= page::getDivStart($prefix.'changeUserDiv');
+          $form .= page::getDivStart($prefix.'newPasswordDiv');
             $form .= page::getInput(NULL, $prefix.'newPassword', 'newPassword', 'password', NULL, 'New password');
           $form .= page::getDivEnd();
-          $form .= page::getDivStart($prefix.'changeUserDiv');
+          $form .= page::getDivStart($prefix.'verifyPasswordDiv');
             $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
           $form .= page::getDivEnd();
           $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Submit changes', $prefix.'changeUser') : '';
