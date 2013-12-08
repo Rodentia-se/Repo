@@ -107,6 +107,7 @@
     $json = failure('Unknown action');
   }
   if ($json) {
+  debug('echo');
     jsonEcho($json);
   }
 
