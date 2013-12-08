@@ -5,8 +5,8 @@
 
   $prefix = $_REQUEST['prefix'];
   $obj = $_REQUEST[$prefix.'obj'];
-  $id = (isId($_REQUEST[$prefix.''id'])) ? $_REQUEST[$prefix.'id'] : NULL;
-  $action = $_REQUEST[$prefix.''action'];
+  $id = (isId($_REQUEST[$prefix.'id'])) ? $_REQUEST[$prefix.'id'] : NULL;
+  $action = $_REQUEST[$prefix.'action'];
   $relPath = '/images/objects/'.$obj.'/';
   $path = config::$baseDir.$relPath;
 
