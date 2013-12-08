@@ -26,7 +26,7 @@
       'security',
       't-shirts',
       'volunteer'
-    )
+    );
     public static $editDivisions = array('eighties');
     
     public static $main = TRUE;
