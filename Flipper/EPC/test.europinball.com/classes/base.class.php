@@ -190,7 +190,7 @@
       return $this->getLink('photo', $anchor, $thumbnail);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE) {
       switch ($type) {
         case 'photo':
           if ($thumbnail) {
@@ -350,8 +350,13 @@
     public function getPhotoEdit($prefix = NULL, $class = NULL) {
       return '
         '.page::getDivStart($prefix.'imageDiv', $class).'
-          <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?prefix='.$prefix.'&obj='.get_class($this).'&id='.$this->id.'">
+          <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php">
             <h2 id="regPlayerImgH2" class="entry-title">'.ucfirst(get_class($this)).' logo or picture</h2>
+            <input type="hidden" name="'.$prefix.'action" value="preview">
+            <input type="hidden" name="'.$prefix.'imagePath" value="'.preg_replace('/^'.config::$baseHref.'/', '', $this->getPhoto(FALSE, FALSE)).'">
+            <input type="hidden" name="prefix" value="'.$prefix.'">
+            <input type="hidden" name="'.$prefix.'obj" value="'.get_class($this).'">
+            <input type="hidden" name="'.$prefix.'id" value="'.$this->id.'">
       	    <div id="'.$prefix.'preview">
       		    <img src="'.$this->getPhoto().'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
               <div id="'.$prefix.'imageLoader"></div>
@@ -380,6 +385,10 @@
           </form>
         '.page::getDivEnd().'
       ';
+    }
+    
+    function savePhoto($path = NULL) {
+      
     }
 
     public function jsonSerialize() {
