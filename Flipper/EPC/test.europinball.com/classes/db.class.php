@@ -178,7 +178,7 @@
       return ($alias && $alias != ':') ? $alias : FALSE;
     }
     
-    protected function getQueryArray($cols = NULL, $cond = 'or') {
+    public function getQueryArray($cols = NULL, $cond = 'or') {
       $obj = get_object_vars($this);
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
