@@ -106,7 +106,7 @@ alert("twice");
       error('Could not find you in the database?', TRUE);
     }
   } else {
-    $page->addLogin()
+    $page->addLogin();
   }
   
   $page->submit();
