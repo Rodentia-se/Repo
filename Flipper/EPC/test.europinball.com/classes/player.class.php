@@ -138,7 +138,7 @@
         }
       }
       if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
-        $search = division($search);
+        $search = division((($search !== NOSEARCH) ? $search : NULL));
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;
