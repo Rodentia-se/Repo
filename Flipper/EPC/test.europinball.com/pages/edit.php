@@ -166,7 +166,7 @@
           activate: function(event, ui) {
             var newIndex = ui.newTab.parent().children().index(ui.newTab);
             dataStore.setItem(index, newIndex);
-            var firstFIeld = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
+            var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
             firstField.focus();
           }
         });
