@@ -109,22 +109,12 @@
 
     public function getPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
-      return player(array(
-        'person_id' => $this->id,
-        'tournamentDivision_id' => $division->id
-      ), TRUE);
+      return player($this, $division);
     }
 
     public function getTeam($division = NULL) {
       $division = ($division) ? division($division) : division('active');
-      $query = team::$select.'
-        left join teamPerson tp on tp.team_id = o.id
-        where tp.person_id = :id
-          and o.tournamentDivision_id = :division
-      ';
-      $values[':id'] = $this->id;
-      $values[':division'] = $division->id;
-      return $this->db->select($query, $values, 'team');
+      return team($this, $division);
     }
 
     public function addPlayer($division = NULL) {
