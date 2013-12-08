@@ -15,13 +15,14 @@
       $page->tooltipster = TRUE;
       $page->forms = TRUE;
       $page->addScript('
-        $(".combobox").change(function(){
+        $(".combobox").combobox()
+        .change(function(){
           var el = this;
           var combobox = document.getElementById(el.id + "_combobox");
-          showTooltip(combobox, "Updating the database...", 45);
+          $(el).tooltipster("update", "Updating the database...").tooltipster("show");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
           .done(function(data) {
-            showTooltip(combobox, data.reason, 45);
+            $(el).tooltipster("update", data.reason).tooltipster("show");
             if (data.valid) {
               $(combobox).val($(el).children(":selected").text())
               if (data.parents) {
@@ -46,10 +47,17 @@
             }
           })
           .fail(function(jqHXR,status,error) {
-            showTooltip(combobox, "Fail: S: " + status + " E: " + error, 45); // Oh, no! Fail!
+            $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
           })
         })
-        .combobox();
+        .tooltipster({
+          theme: ".tooltipster-light",
+          content: text,
+          interactiveAutoClose: false,
+          position: "right",
+          offsetX: offset,
+          timer: 3000
+        });
         $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
           if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
 alert("twice");
@@ -67,10 +75,10 @@ alert("twice");
           var region_id = (this.id == "city") ? $("#region_id").val() : null;
           var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
           var continent_id = (this.id == "city" || this.id == "region") ? $("#continent_id").val() : null;
-          showTooltip(el, "Updating the database...");
+          $(el).tooltipster("update", "Updating the database...").tooltipster("show");
           $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
           .done(function(data) {
-            showTooltip(el, data.reason);
+            $(el).tooltipster("update", data.reason).tooltipster("show");
             if (data.valid) {
               $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
             } else {
@@ -82,8 +90,17 @@ alert("twice");
             }
           })
           .fail(function(jqHXR,status,error) {
-            showTooltip(el, "Fail: S: " + status + " E: " + error); // Oh, no! Fail!
+            $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
           })
+        })
+        .tooltipster({
+          theme: ".tooltipster-light",
+          content: text,
+          interactiveAutoClose: false,
+          position: "right",
+          trigger: "custom",
+          offsetX: offset,
+          timer: 3000
         });
         $(".date").datepicker({
           dateFormat: "yy-mm-dd",
