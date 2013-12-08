@@ -10,6 +10,7 @@
   class auth extends uLogin {
     
     private static $nonce;
+    public static $person;
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
 /*
       $backends = array(
@@ -28,11 +29,8 @@
       if ($_REQUEST['action']) {
         $this->action($_REQUEST['action']);
       }
-      if ($this->loggedin() && !$this->person) {
-        $this->person = $this->getPerson();
-        if ($this->person) {
-          $this->person_id = $this->person->id;
-        }
+      if ($this->loggedin() && !self::$person) {
+        self::$person = $this->getPerson();
       } else {
         if (ulNonce::Exists('login')) {
           ulNonce::Verify('login', 'nonsense');

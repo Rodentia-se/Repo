@@ -89,8 +89,20 @@
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       if (is_string($data) && in_array($data, $persons) && $search == NOSEARCH) {
-        $login = new auth();
-        $data = ($login->person && isId($login->person->id)) ? $login->person->id : $data;
+        if (!isObj(auth::$person) && isId(auth::$person->id)) {
+          $data = auth::$person->id;
+        } else {
+          $login = new auth();
+          if (!isObj(auth::$person) && isId(auth::$person->id)) {
+            $data = auth::$person->id;
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
+          }
+        } else {
+          $this->failed = TRUE;
+          return FALSE;
+        }
       }
       parent::__construct($data, $search, $depth);
     }
