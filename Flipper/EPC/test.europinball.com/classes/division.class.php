@@ -91,7 +91,7 @@
         $search = (is_string($search) && in_array($search, config::$divisions)) ? $search : 'main';
         $data = array(
           'tournamentEdition_id' => $data->id, 
-          $search => 1
+          'd.'.$search => 1
         );
       }
       parent::__construct($data, $search, $depth);
