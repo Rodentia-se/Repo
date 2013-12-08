@@ -91,11 +91,13 @@
       if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
         debug(auth::$person,'LOGIN');
         if (!isObj(auth::$person) && isId(auth::$person->id)) {
-          $data = auth::$person->id;
+          $this->_set(auth::$person);
+          return TRUE;
         } else {
           $login = new auth();
           if (!isObj(auth::$person) && isId(auth::$person->id)) {
-            $data = auth::$person->id;
+            $this->_set(auth::$person);
+            return TRUE;
           } else {
             $this->failed = TRUE;
             return FALSE;
