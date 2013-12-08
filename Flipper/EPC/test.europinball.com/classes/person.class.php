@@ -154,6 +154,7 @@
         <div id="editDiv">
         	<h2 class="entry-title">'.$title.'</h2>
           <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
+          '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
           <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
           <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
           <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>

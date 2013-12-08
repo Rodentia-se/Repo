@@ -13,13 +13,13 @@
     } else {
       if ($_REQUEST['register'] == 'yes') {
         $division = division('active');
-        $players = players($division);
         $add = $person->addPlayer();
+        $players = players($division);
         if ($add) {
-          if (config::$participationLimit && count($players) >= config::$participationLimit) {
+          if (config::$participationLimit && count($players) > config::$participationLimit) {
             $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
-            $page->addParagraph('We have added you to the waiting list, and we will contact you if there will come an opening for you.');
+            $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');
             $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
           } else {
             header('Location: '.config::$baseHref.'/edit/');
