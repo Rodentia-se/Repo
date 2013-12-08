@@ -122,9 +122,7 @@
         });
         $("#searchBox").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            if ($.trim($("#searchBox").val()).length > 0) {
-              $("#searchButton").click();
-            }
+            $("#searchButton").click();
           }
         })
         .tooltipster({
