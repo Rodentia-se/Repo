@@ -169,17 +169,17 @@
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->db->getColNames($table);
       $query = 'insert into '.$table.' set ';
-      $array = $this->getQueryArray($cols, ', ');
+      $array = $this->getQueryArray($cols, ', ', FALSE);
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
     }
     
-    protected function getQueryArray($cols = NULL, $cond = 'or') {
+    protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = TRUE) {
       $obj = get_object_vars($this);
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (property_exists($this, 'table') && static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = $col .(($obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $updates[] = $col .(($nuls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
         $values[db::getAlias($col)] = $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
