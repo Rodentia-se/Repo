@@ -351,13 +351,13 @@
       return '
         '.page::getDivStart($prefix.'imageDiv', $class).'
           <form id="'.$prefix.'imageForm" method="post" enctype="multipart/form-data" action="'.config::$baseHref.'/ajax/imageUpload.php?prefix='.$prefix.'&obj='.get_class($this).'&id='.$this->id.'">
-            <h2 id="regPlayerImgH2" class="entry-title">Player logo or picture</h2>
+            <h2 id="regPlayerImgH2" class="entry-title">'.ucfirst(get_class($this)).' logo or picture</h2>
       	    <div id="'.$prefix.'preview">
       		    <img src="'.$this->getPhoto().'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
               <div id="'.$prefix.'imageLoader"></div>
       	    </div>
       	    <div id="'.$prefix.'uploadForm">
-              <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview (save with submit button below)</label>
+              <label id="'.$prefix.'imageUploadLabel" class="italic">Click picture to change preview</label>
               <input type="file" name="imageUpload" id="imageUpload">
             </div>
             <button id="submitImg" type="button" value="Save image" disabled>Save image</button>
