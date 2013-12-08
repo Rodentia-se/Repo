@@ -10,7 +10,7 @@
   }
   
   function isJson($string) {
-    if (is_string($json))
+    if (is_string($json)) {
       json_decode($string);
       return (json_last_error() == JSON_ERROR_NONE);
     } else {
