@@ -16,8 +16,8 @@
     public static $mandatory = array();
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      debug($data);
-      debug($search);
+      debug($data, 'base');
+      debug($search, 'base');
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
