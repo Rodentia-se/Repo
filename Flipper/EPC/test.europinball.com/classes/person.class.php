@@ -94,8 +94,13 @@
         if (!isObj(auth::$person) && isId(auth::$person->id)) {
           $data = auth::$person->id;
         } else {
-          $this->failed = TRUE;
-          return FALSE;
+          $login = new auth();
+          if (!isObj(auth::$person) && isId(auth::$person->id)) {
+            $data = auth::$person->id;
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
+          }
         }
       }
       parent::__construct($data, $search, $depth);
