@@ -247,7 +247,7 @@
           $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput('changeUser', $prefix.'action', 'action', 'hidden');
           $form .= page::getDivStart($prefix.'changeUserDiv');
-            $form .= page::getInput(NULL, $prefix.'newUsername', 'newUsername', 'text', NULL, 'New username');
+            $form .= page::getInput($_SESSION['username'], $prefix.'newUsername', 'newUsername', 'text', NULL, 'New username');
           $form .= page::getDivEnd();
           $form .= page::getDivStart($prefix.'changeUserDiv');
             $form .= page::getInput(NULL, $prefix.'password', 'password', 'password', NULL, 'Current password');
