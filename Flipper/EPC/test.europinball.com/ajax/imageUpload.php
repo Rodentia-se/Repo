@@ -79,7 +79,7 @@
       } else {
         echo 'Please select image..!';
       }
-    ] else {
+    } else {
       echo 'Unkonwn error...';
     }
   } else if ($action == 'save') {
