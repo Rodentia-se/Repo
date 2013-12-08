@@ -87,10 +87,13 @@
   
   function jsonEcho($obj) {
     if (isJson($obj)) {
+      debug('json');
       $json = $obj;
     } else if (is_object($obj) || is_array($obj)) {
+      debug('obj');
       $json = json_encode($obj);
     } else {
+      debug('no');
       return FALSE;
     }
     header('Content-Type: application/json');
