@@ -6,6 +6,23 @@ var tooltips = [];
 var tooltipsTimers = [];
 
 function showTooltip(el, text, offset) {
+  $(el).tooltipster({
+    theme: '.tooltipster-light',
+    content: text,
+    interactiveAutoClose: false,
+    position: 'right',
+    offsetX: offset,
+    timer: 3000
+  })
+  .tooltipster('show');
+}
+/*
+
+
+
+  if (!$('#' + el.id + '_tooltip')) {
+    
+  }
   alert(el.id);
   var offset = (offset) ? offset : 15;
   if (typeof tooltipsTimers[el.id] != "undefined") {
@@ -34,4 +51,4 @@ function showTooltip(el, text, offset) {
     $(el).tooltip("close")
     .tooltip("disable");
   }, 3000);
-}
+  */

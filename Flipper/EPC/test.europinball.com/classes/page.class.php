@@ -66,6 +66,7 @@
             '.(($this->jqueryui) ? '<link href="'.config::$baseHref.'/css/contrib/aristo.css" rel="stylesheet" type="text/css" />' : '').'
             '.(($this->datatables) ? '<link href="'.config::$baseHref.'/css/contrib/jquery.dataTables_themeroller.css" rel="stylesheet" type="text/css" />' : '').'
             '.(($this->combobox) ? '<link href="'.config::$baseHref.'/css/contrib/jquery.combobox.css" rel="stylesheet" type="text/css" />' : '').'
+            '.(($this->tooltipster) ? '<link href="'.config::$baseHref.'/css/contrib/tooltipster.css" rel="stylesheet" type="text/css" />' : '').'
             <link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css" />
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
