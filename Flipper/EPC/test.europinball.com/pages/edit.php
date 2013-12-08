@@ -67,6 +67,8 @@
               .tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
+                interactive: true,
+                interactiveTolerance: 3000,
                 interactiveAutoClose: false,
                 position: "right",
                 offsetX: 38,
@@ -102,6 +104,8 @@
               .tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
+                interactive: true,
+                interactiveTolerance: 3000,
                 interactiveAutoClose: false,
                 position: "right",
                 trigger: "custom",
