@@ -79,6 +79,7 @@
     }
 
     public function getFooter() {
+      $person = person('login');
       $footer = self::getDivStart('clearer');
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
@@ -86,7 +87,7 @@
           if ($this->loggedin()) {
             $footer .= self::getParagraph('
               <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-                You are logged in as '.$this->login->person->name.'. 
+                You are logged in as '.$person->name.'. 
                 <input type="hidden" name="action" value="logout">
                 <input type="button" id="footerLogoutButton" value="Log out">
               </form>', NULL, 'italic');
@@ -581,10 +582,6 @@
       echo $this->getContent($header, $footer, $div);
     }
 
-    public function getAuthPerson() {
-      return $this->login->getPerson();
-    }
-    
     public function login($username, $password, $nonce) {
       return $this->login->login($username, $password, $nonce);
     }

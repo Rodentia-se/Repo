@@ -7,8 +7,8 @@
   $page->addH2('Register player');
 
   if ($page->checkLogin()) {
-    $person = $page->login->person;
-    $player = $person->getPlayer();
+    $person = person('login');
+    $player = player($person);
     if ($player) {
       debug($player, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
@@ -31,7 +31,7 @@
         }
       } else {
         $tournament = tournament(config::$activeTournament);
-        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'You are logged in as '.$page->login->person->name.'. Press the button to register for '.$tournament->name.'.');
+        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
       }
     }
