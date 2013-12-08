@@ -10,7 +10,6 @@
   $action = $_REQUEST[$prefix.'action'];
   $relPath = '/images/objects/'.$obj.'/';
   $path = config::$baseDir.$relPath;
-  debug($action);
   if ($action == 'preview') {
     if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == 'POST') {
       $name = $_FILES['imageUpload']['name'];
@@ -83,9 +82,12 @@
       echo 'Unkonwn error...';
     }
   } else if ($action == 'save') {
+  debug($action);
     if (class_exists($obj)) {
+  debug($obj);
       $target = $obj($id);
       if ($target) {
+  debug($target);
         $save = $target->savePhoto((($previewPath) ? $previewPath : NULL));
         if ($save) {
           $json = success('Photo saved');
