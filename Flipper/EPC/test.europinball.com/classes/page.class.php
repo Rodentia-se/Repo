@@ -554,7 +554,9 @@
     }
     
     public function addLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
-      return self::getLogin($title, $prefix = NULL, $class = NULL, $dialog = FALSE);
+      $login = self::getLogin($title, $prefix = NULL, $class = NULL, $dialog = FALSE);
+      $this->addContent($login);
+      return $login;
     }
 
     public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
