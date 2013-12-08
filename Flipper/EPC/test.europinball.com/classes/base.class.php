@@ -31,7 +31,7 @@
       } else {
             debug($data, 'huff');
         if ($search == NOSEARCH) {
-            debug($data, 'nosearch');
+            debug($search, 'nosearch');
           if ($data) {
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
