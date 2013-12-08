@@ -91,18 +91,18 @@
       if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
         debug('LOGIN');
         if (!isObj(auth::$person) && isId(auth::$person->id)) {
-          debug('ISOBJ'):
+          debug('ISOBJ');
           $this->_set(auth::$person);
           return TRUE;
         } else {
-          debug('!ISOBJ'):
+          debug('!ISOBJ');
           $login = new auth();
           if (!isObj(auth::$person) && isId(auth::$person->id)) {
-          debug('ISOBJ2'):
+          debug('ISOBJ2');
             $this->_set(auth::$person);
             return TRUE;
           } else {
-          debug('!ISOBJ2'):
+          debug('!ISOBJ2');
             $this->failed = TRUE;
             return FALSE;
           }
