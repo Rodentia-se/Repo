@@ -17,7 +17,18 @@
     public static $activeTeamDivisions = array('nationalTeam');
     
     public static $participationLimit = 128;
- 
+    public static $tshirts = TRUE;
+    public static $qualGroups = TRUE;
+    
+    public static $editSections = array(
+      'profile',
+      'photo',
+      'security',
+      't-shirts',
+      'volunteer'
+    )
+    public static $editDivisions = array('eighties');
+    
     public static $main = TRUE;
     public static $mainDivision = 15;
     public static $mainQualLimit = FALSE;
@@ -40,8 +51,6 @@
 
     public static $baseHref = 'https://test.europinball.org/';
     public static $baseDir = '/www/test.europinball.com/';
-    
-    public static $loginBackend = 'pdo';
     
     public static $debug = TRUE;
     
