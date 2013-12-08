@@ -9,10 +9,12 @@ function showTooltip(el, text, offset) {
   alert(el.id);
   var offset = (offset) ? offset : 15;
   if (typeof tooltipsTimers[el.id] != "undefined") {
+    alert('timer defined');
     clearTimeout(tooltipsTimers[el.id]);
     tooltipsTimers.splice(el.id, 1);
   }
   if (typeof tooltips[el.id] != "undefined") {
+    alert('tooltip defined');
     $(el).tooltip("destroy");
     tooltips.splice(el.id, 1);
   }
