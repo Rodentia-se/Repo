@@ -83,7 +83,7 @@
   
   function jsonEcho($obj) {
     if (isJson($obj)) {
-      $json = $obj
+      $json = $obj;
     } else if (is_object($obj) || is_array($obj)) {
       $json = json_encode($obj);
     } else {
