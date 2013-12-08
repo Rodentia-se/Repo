@@ -132,6 +132,7 @@
             });
           ');
         $page->closeDiv();
+        $page->addContent('&nbsp;');
         $page->closeDiv();
         $page->startDiv('login');
         $page->closeDiv();
