@@ -105,6 +105,4 @@
     jsonEcho($json);
   }
 
-  }
-
 ?>
