@@ -24,7 +24,7 @@
   margin-right: 10px;
 }
 
-input[type=text], input[type=password] { 
+input[type=text], input[type=password], select { 
   color: #4F4F4F;
   width: 210px;
   height: 20px;
