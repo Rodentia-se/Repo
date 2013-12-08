@@ -4,7 +4,6 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Register');
-  $page->addH2('Register player');
 
   if ($page->checkLogin()) {
     $person = person('login');
@@ -18,6 +17,7 @@
         $add = $person->addPlayer();
         if ($add) {
           if (config::$participationLimit && count($players) >= config::$participationLimit) {
+            $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if there will come an opening for you.');
             $page->addClickButton('update your info', 'update', NULL, TRUE, 'edit');
@@ -25,11 +25,13 @@
             header('Location: '.config::$baseHref.'/edit/');
           }
         } else {
+          $page->addH2('Register player');
           $page->addParagraph('Something went wrong trying to add you to the tournament. You can either try again or contact us for assistance.');
           $page->addClickButton('try again');
         }
       } else {
         $tournament = tournament(config::$activeTournament);
+        $page->addH2('Register player');
         $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
       }
@@ -41,6 +43,7 @@
         $person = person($person_id);
         if ($person) {
           if ($person->username) {
+            $page->addH2('Register player');
             $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:', TRUE);
           } else {
             $page->addH2('Register new user');
