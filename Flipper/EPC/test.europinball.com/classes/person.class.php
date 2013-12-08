@@ -90,7 +90,7 @@
       $constructors = array('current', 'active', 'login', 'auth');
       if (is_string($data) && in_array($data, $constructors) && $search == NOSEARCH) {
         $login = new auth();
-        $data = ($login->person->id) ? $login->person->id : $data;
+        $data = ($login->person && isId($login->person->id)) ? $login->person->id : $data;
       }
       parent::__construct($data, $search, $depth);
     }

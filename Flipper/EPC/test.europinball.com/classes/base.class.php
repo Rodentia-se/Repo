@@ -16,9 +16,6 @@
     public static $mandatory = array();
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      debug(get_class($this), 'base1, class');
-      debug($data, 'base2, data');
-      debug($search, 'base3, search');
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
@@ -30,7 +27,42 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-        if ($search !== NOSEARCH) {
+        if ($search == NOSEARCH) {
+          if ($data) {
+            if (isId($data)) {
+              if (is_object(static::$instances['ID'.$data])) {
+                $obj = static::$instances['ID'.$data];
+              } else {
+                $obj = $this->db->getObjectById(get_class($this), $data);
+              }
+              if ($obj) {
+                $this->_set($obj);
+              } else {
+                $this->failed = TRUE;
+              }
+            } else if (is_string($data) && is_object(json_decode($data))) {
+              $this->_set(json_decode($data));
+            } else if (isObj($data) && get_class($obj) == get_class($this)) {
+              $this->_set($data);
+            } else if (isObj($data) && isId($data->id)) {
+              $dataClass = get_class($data);
+              $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
+              $objSearch[$dataTable.'_id'] = $data->id;
+              $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
+              if ($obj) {
+                $this->_set($obj);
+              } else {
+                $this->failed = TRUE;
+              }
+            } else if (isAssoc($data) || is_object($data)) {
+              $this->_set($data);
+            } else if (is_string($data)) {
+              if ($data != 'empty' && $data != 'new') {
+                $this->failed = TRUE;
+              }
+            }
+          }
+        } else {
           if (isAssoc($data)) {
             $obj = $this->db->getObjectByProps(get_class($this), $data);
           } else if (isObj($data) && isId($data->id)) {
@@ -56,36 +88,12 @@
           } else {
             $this->failed = TRUE;
           }
-        } else {
-          if ($data) {
-            if (isId($data)) {
-              if (is_object(static::$instances['ID'.$data])) {
-                $obj = static::$instances['ID'.$data];
-              } else {
-                $obj = $this->db->getObjectById(get_class($this), $data);
-              }
-              if ($obj) {
-                $this->_set($obj);
-              } else {
-                $this->failed = TRUE;
-              }
-            } else if (is_string($data) && is_object(json_decode($data))) {
-              $this->_set(json_decode($data));
-            } else if (is_array($data) || is_object($data)) {
-              $this->_set($data);
-            } else if (is_string($data)) {
-              if ($data != 'empty' && $data != 'new') {
-                $this->failed = TRUE;
-              }
-            }
-          }
         }
         if ($this->id) {
           static::$instances['ID'.$this->id] = $this;
           $this->populate($depth);
         }
       }
-      debug($this->id, 'base ID');
     }
 
     protected function _set($data) {

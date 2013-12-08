@@ -122,43 +122,32 @@
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      debug(get_class($this), 'player, class');
-      debug($data, 'player, data');
-      debug($search, 'player, search');
       $persons = array('current', 'active', 'login', 'auth');
-      $divisions = array_merge(array('current', 'active'), config::$activeDivisions);
-      if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
-        $data = division($data);
+      $divisions = array_merge(array('current', 'active'), config::$divisions);
+      if (is_string($data) && in_array($data, $persons)) {
+        $login = new auth();
+        $data = $login->person;
         if (!$data || !isId($data->id)) {
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if ((isObj($data) && get_class($data) == 'person') || (is_string($data) && in_array($data, $persons))) {
-        if (get_class($data) == 'person') {
-          $person = $data;
-        } else {
-          $login = new auth();
-          $person = $login->person;
-        }
-        if (!$person || !isId($person->id)) {
+      } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions)) {
+        $data = division($data, $search);
+        if (!$data || !isId($data->id)) {
           $this->failed = TRUE;
           return FALSE;
         }
       }
-      if ((isObj($search) && get_class($search) == 'tournament') || (is_string($search) && in_array($search, $divisions))) {
+      if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
         $search = division($search);
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if ((isObj($search) && get_class($search) == 'person') || (is_string($search) && in_array($search, $persons))) {
-        if (get_class($search) == 'person') {
-          $person = $search;
-        } else {
-          $login = new auth();
-          $person = $login->person;
-        }
-        if (!$person || !isId($person->id)) {
+      } else if (is_string($search) && in_array($search, $persons)) {
+        $login = new auth();
+        $search = $login->person;
+        if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;
         }

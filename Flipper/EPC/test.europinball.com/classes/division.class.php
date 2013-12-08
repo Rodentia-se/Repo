@@ -66,67 +66,35 @@
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      if (is_string($data) && ($data == 'current' || $data == 'active' || in_array($data, config::$activeDivisions)) && $search == NOSEARCH) {
-        if ($data == 'current' || $data == 'active') {
-          if (config::$mainDivision) {
-            $data = config::$mainDivision;
-          } else {
-            $delegated = TRUE;
-            $tournament = tournament(config::$activeTournament);
-            $data = 'main';
-          }
-        } else if (in_array($data, config::$activeDivisions)) {
-          if (config::${$data.'Division'}) {
-            $data = config::${$data.'Division'};
-          } else {
-            $delegated = TRUE;
-            $tournament = tournament(config::$activeTournament);
-          }
-        } else if ($data != 'empty' && $data != 'new') {
-          $delegated = TRUE;
-          $tournament = tournament(config::$activeTournament);
+      $aliases = array('current' 'active');
+      $divisions = array_merge($aliases, config::$divisions)
+      if (is_string($data) && in_array($data, $aliases)) {
+        $data = tournament($data);
+        $search = ($search) ? $search : 'main';
+        if (!$data || !isId($data->id)) {
+          $this->failed = TRUE;
+          return FALSE;
         }
-      } else if (is_object($data) && get_class($data) == 'tournament' && (is_string($search) || $search == NOSEARCH)) {
-        debug($search, 'div1, search');
-        $delegated = TRUE;
-        $tournament = $data;
-        $data = ($search == NOSEARCH) ? NULL : $search;
-        debug($data, 'div2, data');
-      }
-      if ($delegated) {
-        if ($tournament) {
-          debug($tournament->id, 'div3, tourn');
-          $divisions = divisions($tournament);
-          $type = ($data) ? $data : 'main';
-          foreach($divisions as $division) {
-             debug($type, 'div4, type');
-             debug($division, 'div5, divid');
-            if ($division->id == 15) {
-              debug($division);
-            }
-            if ($division->$type) {
-              debug($division->id, 'div6, divid');
-              parent::__construct($division->id, NOSEARCH, $depth);
-              debug($this->id, 'div7, thisid');
-              $this->huff = TRUE;
-              $hit = TRUE;
-              break;
-            }
-            debug((($hit) ? 'hit' : 'nohit'), 'div8, hit');
-          }
-          debug($this->id, 'div9, divid');
-          if (!$hit) {
-            $this->failed = TRUE;
-          }
-          debug($this->id, 'div10, divid');
+      } else if (is_string($data) && in_array($data, config::$activeDivisions)) {
+        if (config::${$data.'Division'}) {
+          $data = config::${$data.'Division'};
+          $search = NOSEARCH;
         } else {
           $this->failed = TRUE;
+          return FALSE;
         }
-          debug($this->id, 'div11, divid');
-      } else {
-        parent::__construct($data, $search, $depth);
+      } else if (is_string($data) && in_array($data, config::$divisions)) {
+        $data = array($data => 1);
+        $search = TRUE;
       }
-          debug($this, 'div12, divid');
+      if (isObj($data) && get_class($data) == 'tournament') {
+        $search = (is_string($search) && in_array($search, config::$divisions) ? $search : 'main';
+        $data = array(
+          'tournamentEdition_id' => $data->id, 
+          $search = 1
+        )
+      }
+      parent::__construct($data, $search, $depth);
     }
 
     public function getPlayers() {
