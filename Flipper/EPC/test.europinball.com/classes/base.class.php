@@ -30,7 +30,8 @@
         $this->failed = TRUE;
       } else {
             debug($data, 'huff');
-        if ($search == NOSEARCH) {
+        if ($search === NOSEARCH) {
+            debug($search, 'nosearch');
             debug($search, 'nosearch');
           if ($data) {
             if (isId($data)) {
