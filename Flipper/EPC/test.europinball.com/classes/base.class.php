@@ -83,11 +83,6 @@
               $objSearch[$searchTable.'_id'] = $search->id;
             }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
-            if ($obj) {
-              $this->_set($obj);
-            } else {
-              $this->failed = TRUE;
-            }
           } else if ($data) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
           }
