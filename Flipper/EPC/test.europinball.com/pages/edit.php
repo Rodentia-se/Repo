@@ -20,6 +20,7 @@
           $page->addLi('<a href="#tshirts">T-shirts</a>');
         $page->closeUl();
         $page->startDiv('profile');
+        $page->startDiv();
           $page->addContent($person->getEdit());
           $page->addContent($person->getPhotoEdit(NULL, 'right')); 
           $page->jeditable = TRUE;
@@ -130,6 +131,7 @@
               $("#" + this.id.replace("close_", "")).val("");
             });
           ');
+        $page->closeDiv();
         $page->closeDiv();
         $page->startDiv('login');
         $page->closeDiv();
