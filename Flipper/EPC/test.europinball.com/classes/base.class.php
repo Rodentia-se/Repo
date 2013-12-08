@@ -42,11 +42,9 @@
               }
             } else if (is_string($data) && is_object(json_decode($data))) {
               $this->_set(json_decode($data));
-            } else if (isObj($data) && get_class($obj) == get_class($this)) {
+            } else if (isObj($data) && get_class($data) == get_class($this)) {
               $this->_set($data);
             } else if (isObj($data) && isId($data->id)) {
-              debug(get_class($obj),'objclass');
-              debug(get_class($this),'thisclass');
               $dataClass = get_class($data);
               $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
               $objSearch[$dataTable.'_id'] = $data->id;
