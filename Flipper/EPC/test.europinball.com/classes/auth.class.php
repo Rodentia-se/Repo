@@ -32,7 +32,7 @@
       if ($this->loggedin() && !self::$person) {
         self::$person = $this->getPerson();
       } else {
-        if (!ulNonce::Exists('login')) {
+        if (!self::$nonce || !ulNonce::Exists('login')) {
           self::$nonce = ulNonce::Create('login');
         }
       }
