@@ -56,7 +56,7 @@
                       var el = this;
                       var path = $("#'.$prefix.'previewPath").val();
                       $(el).tooltipster("show");
-                      $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: path})
+                      $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: path, action: "save"})
                       .done(function(data) {
                         $(el).tooltipster("update", data.reason).tooltipster("show");
                       })
@@ -83,7 +83,7 @@
       if (class_exists($obj)) {
         $target = $obj($id);
         if ($target) {
-          $save = $target->savePhoto();
+          $save = $target->savePhoto((($previewPath) ? $previewPath : NULL);
           if ($save) {
             $json = success('Photo saved');
           } else {
