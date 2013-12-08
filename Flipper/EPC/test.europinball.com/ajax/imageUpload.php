@@ -5,6 +5,7 @@
 
   $prefix = $_REQUEST['prefix'];
   $obj = $_REQUEST[$prefix.'obj'];
+  $previewPath = $_REQUEST[$prefix.'previewPath'];
   $id = (isId($_REQUEST[$prefix.'id'])) ? $_REQUEST[$prefix.'id'] : NULL;
   $action = $_REQUEST[$prefix.'action'];
   $relPath = '/images/objects/'.$obj.'/';
@@ -28,7 +29,7 @@
                 <script src="'.config::$baseHref.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
                 <img src="'.config::$baseHref.'/images/objects/'.$obj.'/preview/'.$id.'.'.$ext.'?nocache='.rand(10000,20000).'" class="preview" id="'.$prefix.'thumb" alt="Preview of image">
                 <div id="'.$prefix.'imageLoader"></div>
-                <input type="hidden" name="'.$prefix.'imagePath" value="'.$relPath.'/preview/'.$id.'.'.$ext.'">
+                <input type="hidden" name="'.$prefix.'previewPath" value="'.$relPath.'/preview/'.$id.'.'.$ext.'">
                 <script type="text/javascript">
                   $(document).ready(function() { 
                     $("#'.$prefix.'imageUpload").on("change", function() {
@@ -42,6 +43,26 @@
                     });
                     $("#'.$prefix.'thumb").on("click", function() {
                       $("#'.$prefix.'imageUpload").trigger("click");
+                    });
+                    $("#'.$prefix.'submitImg").tooltipster({
+                      theme: ".tooltipster-light",
+                      content: "Saving the image...",
+                      interactiveAutoClose: false,
+                      position: "right",
+                      offsetX: 38,
+                      timer: 3000
+                    })
+                    .click(function() {
+                      var el = this;
+                      $(el).tooltipster("show");
+                      $.post("'.config::$baseHref.'/ajax/imageUpload.php", {obj: "'.$obj.'", id: '.$id.', previewPath: "'.$relPath.'/preview/'.$id.'.'.$ext.'"})
+                        .done(function(data) {
+                          $(el).tooltipster("update", data.reason).tooltipster("show");
+                        })
+                        .fail(function(jqHXR,status,error) {
+                          $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+                        })
+                      });
                     });
                   }); 
                 </script>
