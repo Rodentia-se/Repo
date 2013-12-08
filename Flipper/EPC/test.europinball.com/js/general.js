@@ -10,6 +10,7 @@ function showTooltip(el, text, offset) {
   if (typeof tooltips[el.id] != "undefined") {
     clearTimeout(tooltips[el.id]);
   }
+  $(el).tooltip("destroy");
   $(el).tooltip({
     content: text,
     position: {
