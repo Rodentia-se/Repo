@@ -274,7 +274,7 @@
               } else {
                 $field = (is_string($target)) ? $target : get_class($parent);
               }
-              if class_exists($class) {
+              if (class_exists($class)) {
                 if ($delete) {
                   $objs = new $class::$arrClass(array($field = $this->id));
                   $objs->delete();
