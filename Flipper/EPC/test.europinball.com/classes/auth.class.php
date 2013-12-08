@@ -162,7 +162,15 @@
     }
 
     public function loggedin() {
-      return isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE);
+      if (isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
+        if (isObj(auth::$person) && isId(auth::$person->id)) {
+          return auth::$person;
+        } else {
+          return TRUE;
+        }
+      } else {
+        return FALSE;
+      }
     }
 
     public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {

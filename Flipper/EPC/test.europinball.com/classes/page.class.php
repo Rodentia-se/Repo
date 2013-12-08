@@ -544,12 +544,21 @@
       }
     }
 
-    public function reqLogin($title = 'Please provide your login credentials', $action = TRUE) {
-      return $this->checkLogin($action, FALSE, TRUE, $title);
+    public function reqLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
+      if ($this->loggedin() || ($_REQUEST['action'] == 'login' && $this->login->action('login'))) {
+        return TRUE;
+      } else {
+        $this->addLogin($title, $prefix, $class, FALSE);
+        return FALSE;
+      }
     }
     
-    public function addLogin($title = 'Please provide your login credentials', $action = TRUE) {
-      return $this->checkLogin($action, TRUE, FALSE, $title);
+    public function addLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
+      return self::getLogin($title, $prefix = NULL, $class = NULL, $dialog = FALSE);
+    }
+
+    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
+      return auth::getLogin($title, $prefix, $class, $dialog);
     }
 
     public function addContent($content) {
@@ -592,10 +601,6 @@
 
     public function loggedin() {
       return $this->login->loggedin();
-    }
-
-    public static function getLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL, $dialog = FALSE) {
-      return auth::getLogin($title, $prefix, $class, $dialog);
     }
 
     public function addNewUser($title = 'Please provide your login credentials', $person_id) {
