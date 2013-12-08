@@ -9,6 +9,9 @@
       select 
         o.id as id,
         o.name as name,
+        o.name as fullName,
+        o.name as shortName,
+        concat(tc.name, tz.name) as sortName,
         pt.number as number,
         pt.number as number_id,
         pt.person_id as person_id,

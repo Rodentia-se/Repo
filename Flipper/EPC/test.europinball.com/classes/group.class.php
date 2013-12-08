@@ -186,8 +186,11 @@
       return $select;
     }
     
-    public function order($prop = 'name', $type = 'string', $direction = 'asc', $keepkeys = FALSE) {
+    public function order($prop = NULL, $type = NULL, $direction = NULL, $keepkeys = FALSE) {
       $return = FALSE;
+      $prop = ($prop) ? $prop : ((property_exists($this, 'order') && static::$order['prop']) ? static::$order['prop'] : (($this[0]->sortName) ? 'sortName' : 'name')) ;
+      $type = ($type) ? $type : ((property_exists($this, 'order') && static::$order['type']) ? static::$order['type'] : 'string') ;
+      $dir = ($direction == 'desc') ? 'desc' : ((property_exists($this, 'dir') && static::$order['dir'] == 'desc') ? 'desc' : 'asc') ;
       if (count($this) > 0) {
         switch ($type) {
           case 'int':
