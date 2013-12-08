@@ -99,9 +99,6 @@
             $this->failed = TRUE;
             return FALSE;
           }
-        } else {
-          $this->failed = TRUE;
-          return FALSE;
         }
       }
       parent::__construct($data, $search, $depth);
