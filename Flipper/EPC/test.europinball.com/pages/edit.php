@@ -165,17 +165,10 @@
           active: oldIndex,
           activate: function(event, ui) {
             var newIndex = ui.newTab.parent().children().index(ui.newTab);
-            dataStore.setItem(index, newIndex) 
+            dataStore.setItem(index, newIndex);
+            var firstFIeld = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
+            firstField.focus();
           }
-        });
-        $("#profiletabLink").click(function() {
-          $("#firstName").focus();
-        });
-        $("#phototabLink").click(function() {
-          $("#preview").focus();
-        });
-        $("#securitytabLink").click(function() {
-          $("#newUsername").focus();
         });
       ');
     } else {
