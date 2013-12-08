@@ -20,19 +20,19 @@
             $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if there will come an opening for you.');
-            $page->addClickButton('update your info', 'update', NULL, TRUE, 'edit');
+            $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
           } else {
             header('Location: '.config::$baseHref.'/edit/');
           }
         } else {
           $page->addH2('Register player');
           $page->addParagraph('Something went wrong trying to add you to the tournament. You can either try again or contact us for assistance.');
-          $page->addClickButton('try again');
+          $page->addClickButton('Try again');
         }
       } else {
         $tournament = tournament(config::$activeTournament);
         $page->addH2('Register player');
-        $page->addClickButton('register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'POST', 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
+        $page->addClickButton('Register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'POST', 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
       }
     }
