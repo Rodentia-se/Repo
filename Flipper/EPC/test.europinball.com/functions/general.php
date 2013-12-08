@@ -12,7 +12,6 @@
   function isJson($string) {
     if (is_string($string)) {
       json_decode($string);
-      debug(json_last_error(), 'isJson');
       return (json_last_error() == JSON_ERROR_NONE);
     } else {
       return FALSE;
@@ -88,13 +87,10 @@
   
   function jsonEcho($obj) {
     if (isJson($obj)) {
-      debug('json');
       $json = $obj;
     } else if (is_object($obj) || is_array($obj)) {
-      debug('obj');
       $json = json_encode($obj);
     } else {
-      debug('no');
       return FALSE;
     }
     header('Content-Type: application/json');

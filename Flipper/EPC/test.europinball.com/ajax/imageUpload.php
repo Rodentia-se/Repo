@@ -82,20 +82,14 @@
       echo 'Unkonwn error...';
     }
   } else if ($action == 'save') {
-  debug($action);
     if (class_exists($obj)) {
-  debug($obj);
       $target = $obj($id);
       if ($target) {
-  debug($target);
         $save = $target->savePhoto((($previewPath) ? $previewPath : NULL));
-  debug($save);
         if ($save) {
           $json = success('Photo saved');
-  debug($json);
         } else {
           $json = failure('Could not save photo');
-  debug($json);
         }
       } else {
         $json = failure('Could not find the '.$obj);
@@ -107,7 +101,6 @@
     $json = failure('Unknown action');
   }
   if ($json) {
-  debug('echo');
     jsonEcho($json);
   }
 
