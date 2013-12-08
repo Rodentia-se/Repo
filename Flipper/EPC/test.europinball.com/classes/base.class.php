@@ -33,6 +33,21 @@
         if ($search !== NOSEARCH) {
           if (isAssoc($data)) {
             $obj = $this->db->getObjectByProps(get_class($this), $data);
+          } else if (isObj($data) && isId($data->id)) {
+            $dataClass = get_class($data);
+            $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
+            $objSearch[$dataTable] = $data->id;
+            if (isObj($search) && isId($search->id)) {
+              $searchClass = get_class($search);
+              $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
+              $objSearch[$searchTable] = $search->id;
+            }
+            $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
+            if ($obj) {
+              $this->_set($obj);
+            } else {
+              $this->failed = TRUE;
+            }
           } else if ($data) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
           }
@@ -56,23 +71,6 @@
               }
             } else if (is_string($data) && is_object(json_decode($data))) {
               $this->_set(json_decode($data));
-            } else if (isObj($data) && get_class($data) == get_class($this)) {
-              $this->_set($obj);
-            } else if (isObj($data) && isId($data->id)) {
-              $dataClass = get_class($data);
-              $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
-              $objSearch[$dataTable] = $data->id;
-              if (isObj($search) && isId($search->id)) {
-                $searchClass = get_class($search);
-                $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
-                $objSearch[$searchTable] = $search->id;
-              }
-              $obj = $this->db->getObjectByProps(get_class($this), $data);
-              if ($obj) {
-                $this->_set($obj);
-              } else {
-                $this->failed = TRUE;
-              }
             } else if (is_array($data) || is_object($data)) {
               $this->_set($data);
             } else if (is_string($data)) {
