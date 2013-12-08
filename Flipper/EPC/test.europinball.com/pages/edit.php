@@ -74,7 +74,7 @@ alert("twice");
               $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
             } else {
               if ($(el).is(":checkbox")) {
-                el.checked = ($(box).data("previous"));
+                el.checked = ($(el).data("previous"));
               } else {
                 $(el).val($(el).data("previous"));
               }
