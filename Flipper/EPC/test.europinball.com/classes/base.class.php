@@ -73,6 +73,7 @@
           if (isAssoc($data)) {
             debug($data, 'assoc');
             $obj = $this->db->getObjectByProps(get_class($this), $data);
+            debug($obj);
           } else if (isObj($data) && isId($data->id)) {
             $dataClass = get_class($data);
             $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
