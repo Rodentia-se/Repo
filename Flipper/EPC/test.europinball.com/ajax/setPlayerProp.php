@@ -173,7 +173,6 @@
       $json = failure('No value provided');
   }
   
-  header('Content-Type: application/json');
-  echo($json);
-
+  jsonEcho($json);
+  
 ?>

@@ -64,7 +64,7 @@
       'entry' => 'tournamentDivision',
       'score' => 'tournamentDivision'
     );
-
+    
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $aliases = array('current', 'active');
       $divisions = array_merge($aliases, config::$divisions);

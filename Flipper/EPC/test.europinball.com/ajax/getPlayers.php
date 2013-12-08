@@ -36,7 +36,7 @@
           $json->aaData[] = $player->getRegRow(TRUE);
         }
       }
-      echo json_encode($json);
+      jsonEcho($json);
     break;
     case 'regSearch':
       if ($search) {
@@ -74,7 +74,7 @@
           'aaData' => array()
         );
       }
-      echo json_encode($json);
+      jsonEcho($json);
     break;
   }
 

@@ -9,6 +9,11 @@
     }
   }
   
+  function isJson($string) {
+    json_decode($string);
+    return (json_last_error() == JSON_ERROR_NONE);
+  }
+  
   function preDump($obj, $title = NULL) {
     echo '<pre>';
     echo ($title) ? $title.': ' : '';
@@ -76,6 +81,19 @@
     }
   }
   
+  function jsonEcho($obj) {
+    if (isJson($obj)) {
+      $json = $obj
+    } else if (is_object($obj) || is_array($obj)) {
+      $json = json_encode($obj);
+    } else {
+      return FALSE;
+    }
+    header('Content-Type: application/json');
+    echo($json);
+    return TRUE;
+  }
+
   function testRun($msg, $title = NULL) {
     if (config::$debug) {
       global $testNum;

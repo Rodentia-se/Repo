@@ -14,6 +14,12 @@
     public static $selfParent = FALSE;
     public static $validators = array();
     public static $mandatory = array();
+    public static $order = array(
+      'prop' => 'name',
+      'type' => 'string',
+      'dir' => 'asc'
+    );
+
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
