@@ -63,7 +63,7 @@ alert("twice");
           content: "Updating the database...",
           interactiveAutoClose: false,
           position: "right",
-          offsetX: 40,
+          offsetX: 38,
           timer: 3000
         });
         $(".edit").change(function(){
