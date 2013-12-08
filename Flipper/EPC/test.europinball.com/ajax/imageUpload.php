@@ -10,7 +10,7 @@
   $action = $_REQUEST[$prefix.'action'];
   $relPath = '/images/objects/'.$obj.'/';
   $path = config::$baseDir.$relPath;
-
+  debug($action);
   if ($action == 'preview') {
     if(isset($_POST) and $_SERVER['REQUEST_METHOD'] == 'POST') {
       $name = $_FILES['imageUpload']['name'];
