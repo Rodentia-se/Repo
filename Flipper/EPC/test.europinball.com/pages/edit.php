@@ -52,7 +52,7 @@
         })
         .tooltipster({
           theme: ".tooltipster-light",
-          content: text,
+          content: "Updating the database...",
           interactiveAutoClose: false,
           position: "right",
           offsetX: offset,
@@ -95,7 +95,7 @@ alert("twice");
         })
         .tooltipster({
           theme: ".tooltipster-light",
-          content: text,
+          content: "Updating the database...",
           interactiveAutoClose: false,
           position: "right",
           trigger: "custom",
