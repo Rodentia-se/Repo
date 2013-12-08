@@ -106,7 +106,7 @@
           $query .= ' '.$cond.' '.$key.(($value === NULL) ? ' is ' : ' = ').self::getAlias($key);
           $values[self::getAlias($key)] = $value;
         } else {
-          $query = $class::$select.' where '.$key.' = '.self::getAlias($key);
+          $query = $class::$select.' where '.$key.(($value === NULL) ? ' is ' : ' = ').self::getAlias($key);
           $values = array(self::getAlias($key) => $value);
           $where = true;
         }
@@ -162,7 +162,7 @@
     
     public function getObjectsByParent($class, $parent, $column = null) {
       $parentClass = get_class($parent);
-      $parentTable = (property_exists($parent, 'table')) ? $parent::$table : $parentClass;
+      $parentTable = (property_exists($parent, 'table')) ? $parentClass::$table : $parentClass;
       $column = ($column) ? $column : $parentTable.'_id';
       $query = $class::$select.' where o.'.$column.' = :parentId'.(($parentClass::$selfParent) ? ' or parent'.ucfirst($column).' = :parentId' : '');
       $values[':parentId'] = $parent->id;
