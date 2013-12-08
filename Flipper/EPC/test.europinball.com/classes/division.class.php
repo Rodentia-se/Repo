@@ -67,7 +67,7 @@
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $aliases = array('current', 'active');
-      $divisions = array_merge($aliases, config::$divisions)
+      $divisions = array_merge($aliases, config::$divisions);
       if (is_string($data) && in_array($data, $aliases)) {
         $data = tournament($data);
         $search = ($search) ? $search : 'main';
