@@ -3,6 +3,7 @@
   abstract class base implements JsonSerializable {
     
     public static $_db;
+    public static $_login;
     public static $parentDepth = 0;
 
     public static $instances;
@@ -23,7 +24,7 @@
       }
       if (!self::$_login) {
         if (page::$_login) {
-          self::$_login = page::$_login
+          self::$_login = page::$_login;
         } else {
           self::$_login = new auth();
           page::$_login = self::$_login;

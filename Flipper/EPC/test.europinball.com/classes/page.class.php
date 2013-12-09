@@ -30,7 +30,7 @@
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
       if (!self::$_login) {
         if (base::$_login) {
-          self::$_login = base::$_login
+          self::$_login = base::$_login;
         } else {
           self::$_login = new auth();
           base::$_login = self::$_login;
