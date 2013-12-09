@@ -11,8 +11,12 @@
   
   config::$login->huff = 'huff';
   
-  if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
-    config::$login->verified = TRUE;
+  if (isset($_REQUEST['nonce'])) {
+    if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+      config::$login->verified = TRUE;
+    } else {
+      error('Invalid nonce');
+    }
   }
   
   if ($_REQUEST['action']) {
