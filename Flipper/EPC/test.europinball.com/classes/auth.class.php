@@ -62,7 +62,7 @@
         if ($this->IsAuthSuccess()) {
           $this->setLogin();
           if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === TRUE)) {
-            if (!$ulogin->SetAutologin($username, TRUE)) {
+            if (!$this->SetAutologin($username, TRUE)) {
               warning('Could not turn on autologin');
             }
             unset($_SESSION['appRememberMeRequested']);
@@ -84,7 +84,7 @@
           return FALSE;
         }
       } else {
-        error('Invalid nonce: '.$nonce.', please clean cache and cookies and try again.');
+        error('Invalid nonce:, please clean cache and cookies and try again.');
         return FALSE;
       }
     }
@@ -96,7 +96,7 @@
           if ($username == $_SESSION['username']) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
-              if ($ulogin->IsAuthSuccess()) {
+              if ($this->IsAuthSuccess()) {
                 $this->setLogin();
                 return TRUE;
               } else {
@@ -108,7 +108,7 @@
             }
           } else if ($this->addUser($username, $password, $person)) {
             $this->Authenticate($username, $password);
-            if ($ulogin->IsAuthSuccess()) {
+            if ($this->IsAuthSuccess()) {
               $this->setLogin();
               return TRUE;
             } else {
