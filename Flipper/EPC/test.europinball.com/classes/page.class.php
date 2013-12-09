@@ -22,11 +22,7 @@
     public $scripts = array();
     public $jquery = TRUE;
     public $jqueryui = TRUE;
-    public $datatables = FALSE;
-    public $datatablesReload = FALSE;
-    public $jeditable = FALSE;
-    public $forms = FALSE;
-    public $purl = TRUE;
+    public $tooltipster = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
     public $content;

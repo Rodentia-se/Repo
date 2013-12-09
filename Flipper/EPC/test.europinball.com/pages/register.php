@@ -48,7 +48,6 @@
             $page->addH2('Register player');
             $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:');
           } else {
-            $page->addH2('Register new user');
             if ($_REQUEST['action'] == 'newUser') {
               $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
             }
@@ -75,12 +74,14 @@
         $page->startDiv('searchResults', 'hidden');
           $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
           $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
+          $page->startForm('addForm');
+            $page->addInput('new', 'addRegister', 'register', 'hidden');
+          $page->closeForm();
           $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'));
         $page->closeDiv();
       $page->closeDiv();
       $page->focus('usernameLogin');
       $page->datatables = TRUE;
-      $page->tooltipster = TRUE;
       $page->addScript('
         $(".viewButton").click(function() {
           $("#login").hide();
@@ -132,6 +133,9 @@
           timer: 3000
         });
       ');
+      $("#addButton").click(function() {
+        $("#addForm").submit();
+      })
     }
   }
   
