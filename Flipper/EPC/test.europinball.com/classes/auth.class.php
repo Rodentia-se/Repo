@@ -71,7 +71,7 @@
               warning('Could not turn off autologin');
             }
           }
-          self::$person = $this->getPerson();
+          self::$person = person(array('username' => $username), TRUE);
           if (self::$person) {
             return TRUE;
           } else {
