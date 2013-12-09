@@ -622,8 +622,8 @@
       return $dialog;
     }
 
-    public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $closeButton = FALSE) {
-      return auth::getNewUser($title, $person_id, $prefix, $class, $closeButton);
+    public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      return auth::getNewUser($title, $person_id, $prefix, $class, $dialog, $autoopen);
     }
 
   }
