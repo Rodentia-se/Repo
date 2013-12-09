@@ -123,7 +123,7 @@
             } else {
               $("#searchBox").tooltipster("show");
             }
-            $("#searchBox")).focus();
+            $("#searchBox").focus();
           });
           $("#searchBox").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
