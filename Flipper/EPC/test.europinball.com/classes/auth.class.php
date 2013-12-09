@@ -30,6 +30,7 @@
       if (!self::$nonce || !ulNonce::Exists('login')) {
         self::$nonce = ulNonce::Create('login');
       }
+      debug($this);
     }
     
     public function setLogin($login = TRUE) {
