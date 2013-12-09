@@ -93,7 +93,7 @@
       if ($person) {
         $uid = $person->getUid();
         if ($uid) {
-          if ($username == $_SESSION['username']) {
+          if ($username == $person->username) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
               if ($this->IsAuthSuccess()) {
