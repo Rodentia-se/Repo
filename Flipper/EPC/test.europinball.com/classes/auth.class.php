@@ -158,7 +158,7 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
+          if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
             if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
               return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
             } else {
