@@ -196,7 +196,18 @@
         case 'newUser':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
             if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
-              $person = person($_REQUEST['person_id']);
+              if ($_REQUEST['person_id'] == 0) {
+                $person = person('new');
+                $person_id = $person->save();
+              } else {
+                if (isId($_REQUEST['person_id'])) {
+                  $person_id = $_REQUEST['person_id'];
+                } else {
+                  error('Not enough parameters provided');
+                  return FALSE;
+                }
+              }
+              $person = person($person_id);
               if ($person) {
                 if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
                   $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
@@ -211,7 +222,7 @@
                   error('Could not add the user');
                 }
               } else {
-                error('Could not find person ID '.$_REQUEST['person_id']);
+                error('Could not find person ID '.$person_id);
               }
             } else {
               error('Invalid nonce '.$_REQUEST['nonce'].', please clean cache and cookies and try again.');
