@@ -75,6 +75,7 @@
               $this->Authenticate($username, $password);
               if ($this->IsAuthSuccess()) {
                 $this->setLogin();
+                $this->msg = 'Password was changed successfully.';
                 return TRUE;
               } else {
                 $this->setLogin(FALSE);
@@ -87,6 +88,7 @@
             $this->Authenticate($username, $password);
             if ($this->IsAuthSuccess()) {
               $this->setLogin();
+              $this->msg = 'User and password were changed successfully.';
               if ($this->DeleteUser($uid)) {
                 return TRUE;
               } else {
@@ -331,6 +333,16 @@
           $form .= page::getDivEnd();
           $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
+        $form .= ($this->msg) ? page::getScript('
+          $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").tooltipster({
+            theme: ".tooltipster-light",
+            content: "'.$this->msg.'",
+            trigger: "custom",
+            position: "right",
+            timer: 3000
+          })
+          .tooltipster("show");
+        ') : '';
       $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
@@ -372,7 +384,7 @@
             trigger: "custom",
             position: "right",
             timer: 3000
-          })
+          });
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
