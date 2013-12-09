@@ -22,6 +22,7 @@
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');
             $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
+            $page->focus('updateButton');
           } else {
             debug($person, NULL, TRUE);
             header('Location: '.config::$baseHref.'/edit/');
@@ -30,6 +31,7 @@
           $page->addH2('Register player');
           $page->addParagraph('Something went wrong trying to add you to the tournament. You can either try again or contact us for assistance.');
           $page->addClickButton('Try again');
+          $page->focus('TryagainButton');
         }
       } else {
         $tournament = tournament('active');
@@ -54,6 +56,7 @@
           if ($person->username) {
             $page->addH2('Register player');
             $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:');
+            $page->focus('username');
           } else {
             if ($_REQUEST['action'] == 'newUser') {
               $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
@@ -63,11 +66,13 @@
             $page->addScript('
               $("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
             ');
+            $page->focus('usernameNew');
           }
         }
       } else {
         $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
         $page->addClickButton('Try again', 'tryagain2');
+        $page->focus('tryagain2Button');
       }
     } else {
       $page->startDiv('login');
@@ -79,7 +84,7 @@
             $("#login").hide();
             $("#search").hide();
             $("#" + this.id.replace("view_", "")).show();
-            $("#" + ((this.id == "view_login") ? "usernameLogin" : "searchBox")).focus();
+            $("#" + ((this.id == "view_login") ? "username" : "searchBox")).focus();
           });
         ');
       $page->closeDiv();
@@ -118,6 +123,7 @@
             } else {
               $("#searchBox").tooltipster("show");
             }
+            $("#searchBox")).focus();
           });
           $("#searchBox").keypress(function(e) {
             if (e.keyCode == $.ui.keyCode.ENTER) {
