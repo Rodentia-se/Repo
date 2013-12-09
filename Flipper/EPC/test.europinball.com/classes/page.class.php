@@ -527,6 +527,10 @@
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
         return ($add) ? NULL : TRUE;
+/*
+      } else if ($action && $_REQUEST['action'] == 'login' && config::$login->action('login')) {
+        return ($add) ? NULL : TRUE;
+*/
       } else {
         $login = self::getLogin($title);
         if ($add || $req) {
@@ -538,7 +542,8 @@
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
-      if ($this->loggedin() || ($_REQUEST['action'] == 'login' && config::$login->action('login'))) {
+      if ($this->loggedin()) {
+        // || ($_REQUEST['action'] == 'login' && config::$login->action('login'))) {
         return TRUE;
       } else {
         $this->addLogin($title, $prefix, $class, FALSE);
