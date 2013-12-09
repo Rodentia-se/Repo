@@ -28,15 +28,6 @@
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
-      if (!self::$_login) {
-        if (base::$_login) {
-          self::$_login = base::$_login;
-        } else {
-          self::$_login = new auth();
-          base::$_login = self::$_login;
-        }
-      }
-      $this->login = self::$_login;
       $this->title = $title;
       if ($header) {
         $this->addHeader($header);
@@ -536,11 +527,9 @@
     public function checkLogin($action = TRUE, $add = FALSE, $req = FALSE, $title = 'Please provide your login credentials') {
       if ($this->loggedin()) {
         return ($add) ? NULL : TRUE;
-/*
-      } else if ($action && $_REQUEST['action'] == 'login' && $this->login->action('login')) {
+      } else if ($action && $_REQUEST['action'] == 'login' && config::$login->action('login')) {
         return ($add) ? NULL : TRUE;
       } else {
-*/
         $login = self::getLogin($title);
         if ($add || $req) {
           $this->addContent($login);
@@ -551,8 +540,7 @@
     }
 
     public function reqLogin($title = 'Please provide your login credentials', $prefix = NULL, $class = NULL) {
-      if ($this->loggedin()) {
-//                 || ($_REQUEST['action'] == 'login' && $this->login->action('login'))) {
+      if ($this->loggedin() || ($_REQUEST['action'] == 'login' && config::$login->action('login'))) {
         return TRUE;
       } else {
         $this->addLogin($title, $prefix, $class, FALSE);
@@ -611,15 +599,15 @@
     }
 
     public function login($username, $password, $nonce) {
-      return $this->login->login($username, $password, $nonce);
+      return config::$login->login($username, $password, $nonce);
     }
     
     public function logoff() {
-      return $this->login->logoff();
+      return config::$login->logoff();
     }
 
     public function loggedin() {
-      return $this->login->loggedin();
+      return config::$login->loggedin();
     }
 
     public function addNewUser($title = 'Please provide your login credentials', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {

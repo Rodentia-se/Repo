@@ -89,18 +89,11 @@
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
       if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
-        if (isObj(auth::$person) && isId(auth::$person->id)) {
-          $this->_set(auth::$person);
+        if (isObj(config::$login->person) && isId(config::$login->person->id)) {
+          $this->_set(config::$login->person);
           return TRUE;
         } else {
-          $login = new auth();
-          if (isObj(auth::$person) && isId(auth::$person->id)) {
-            $this->_set(auth::$person);
-            return TRUE;
-          } else {
-            $this->failed = TRUE;
-            return FALSE;
-          }
+          return TRUE;
         }
       }
       parent::__construct($data, $search, $depth);
@@ -168,8 +161,7 @@
     
     public function getUid() {
       if ($this->username) {
-        $login = new auth();
-        $uid = $login->Uid($this->username);
+        $uid = config::$login->Uid($this->username);
         if ($uid) {
           return $uid;
         } else {
