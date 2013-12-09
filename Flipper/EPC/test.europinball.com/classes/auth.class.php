@@ -25,11 +25,11 @@
       $this->Backend = new $backend();
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
+      debug('huff');
       $this->AutoLogin();
       if ($_REQUEST['action']) {
         $this->action($_REQUEST['action']);
       }
-      debug('huff');
       if ($this->loggedin() && !self::$person) {
         if (isset($_SESSION['username']) && $_SESSION['username']) {
           self::$person = person(array('username' => $_SESSION['username']), TRUE);
