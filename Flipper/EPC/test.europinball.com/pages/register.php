@@ -148,7 +148,7 @@
           $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'));
         $page->closeDiv();
       $page->closeDiv();
-      $page->focus('usernameLogin');
+      $page->focus('username');
       $page->datatables = TRUE;
     }
   }
