@@ -171,7 +171,12 @@
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             if ($this->login($_SESSION['username'], $_REQUEST['password'], $_REQUEST['nonce'])) {
               if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
-                return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword']);
+                $person = person('username', $_SESSION['username']);
+                if ($person) {
+                  return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                } else {
+                  error('Could not identify you, please logout and login again.');
+                }
               } else {
                 error('The password did not match, please try again');
               }
