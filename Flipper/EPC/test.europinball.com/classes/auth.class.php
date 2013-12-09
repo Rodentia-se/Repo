@@ -56,35 +56,31 @@
       }
     }
 
-    public function login($username, $password, $nonce) {
-      if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
-        $this->Authenticate($username, $password);
-        if ($this->IsAuthSuccess()) {
-          $this->setLogin();
-          if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === TRUE)) {
-            if (!$this->SetAutologin($username, TRUE)) {
-              warning('Could not turn on autologin');
-            }
-            unset($_SESSION['appRememberMeRequested']);
-          } else {
-            if (!$this->SetAutologin($username, FALSE)) {
-              warning('Could not turn off autologin');
-            }
+    public function login($username, $password) {
+      $this->Authenticate($username, $password);
+      if ($this->IsAuthSuccess()) {
+        $this->setLogin();
+        if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === TRUE)) {
+          if (!$this->SetAutologin($username, TRUE)) {
+            warning('Could not turn on autologin');
           }
-          self::$person = person(array('username' => $username), TRUE);
-          if (self::$person) {
-            return TRUE;
-          } else {
-            error('Login successful, but could not find you in the database');
-            return FALSE;
-          }
+          unset($_SESSION['appRememberMeRequested']);
         } else {
-          $this->setLogin(FALSE);
-          error('Login failed');
+          if (!$this->SetAutologin($username, FALSE)) {
+            warning('Could not turn off autologin');
+          }
+        }
+        self::$person = person(array('username' => $username), TRUE);
+        if (self::$person) {
+          return TRUE;
+        } else {
+          error('Login successful, but could not find you in the database');
           return FALSE;
         }
       } else {
-        error('Invalid nonce 1, please clean cache and cookies and try again.');
+        $this->setLogin(FALSE);
+        echo $this->;
+        error('Login failed');
         return FALSE;
       }
     }
@@ -162,10 +158,15 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+          if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
+            if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
+              return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+            } else {
+              error('Could not log you in');
+              return FALSE;
+            }
           } else {
-            error('Could not log you in');
+            error('Invalid nonce 1, please clean cache and cookies and try again.');
             return FALSE;
           }
         break;
