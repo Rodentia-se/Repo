@@ -84,7 +84,7 @@
           return FALSE;
         }
       } else {
-        error('Invalid nonce:, please clean cache and cookies and try again.');
+        error('Invalid nonce 1, please clean cache and cookies and try again.');
         return FALSE;
       }
     }
@@ -191,7 +191,7 @@
                 error('Could not login with your current credentials.');
               }
             } else {
-              error('Invalid nonce:, please clean cache and cookies and try again.');
+              error('Invalid nonce 2, please clean cache and cookies and try again.');
             }
           } else {
             error('Login failed due to missing parameters.');
@@ -240,7 +240,7 @@
                 error('Could not find person ID '.$person_id);
               }
             } else {
-              error('Invalid nonce, please clean cache and cookies and try again.');
+              error('Invalid nonce 3, please clean cache and cookies and try again.');
             }
           } else {
             error('Not enough parameters provided');
