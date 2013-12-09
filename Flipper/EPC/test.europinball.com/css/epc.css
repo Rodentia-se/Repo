@@ -40,6 +40,7 @@ input[type=text], input[type=password] {
   height: 20px;
   border: 1px solid #B6B6B6;
   margin: 0;
+  padding: 0;
   background: #eeded url(images/bg_fallback.png) 0 0 repeat-x;
   background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%);
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4));
