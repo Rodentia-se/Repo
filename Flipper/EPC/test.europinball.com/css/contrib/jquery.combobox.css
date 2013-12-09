@@ -1,6 +1,7 @@
 .custom-combobox {
   position: relative;
   display: inline-block;
+  width: 174px;
 }
 
 .custom-combobox-toggle {
@@ -17,9 +18,5 @@
 .custom-combobox-input {
   margin: 0;
   padding: 0.3em;
-  width: 174px;
   height: 18px;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
 }
