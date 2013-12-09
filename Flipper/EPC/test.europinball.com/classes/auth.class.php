@@ -110,7 +110,12 @@
             $this->Authenticate($username, $password);
             if ($this->IsAuthSuccess()) {
               $this->setLogin();
-              return TRUE;
+              if ($this->DeleteUser($uid)) {
+                return TRUE;
+              } else {
+                error('Could not delete old user, but your login was changed anyway.');
+                return TRUE;
+              }
             } else {
               $this->setLogin(FALSE);
               error('User created, but could not log you in. Please try logging in.');
