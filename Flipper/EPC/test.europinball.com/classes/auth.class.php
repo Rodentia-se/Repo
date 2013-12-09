@@ -314,7 +314,7 @@
         $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
           $form .= page::getH2($title);
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
-          $form .= page::getInput($this->$nonce, $prefix.'nonce', 'nonce', 'hidden');
+          $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
           $form .= ($person_id) ? page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden') : '';
           $form .= page::getDivStart($prefix.'usernameDiv');
