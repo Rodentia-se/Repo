@@ -52,8 +52,8 @@
             warning('Could not turn off autologin');
           }
         }
-        self::$person = person(array('username' => $username), TRUE);
-        if (self::$person) {
+        $this->person = person(array('username' => $username), TRUE);
+        if ($this->person) {
           return TRUE;
         } else {
           error('Login successful, but could not find you in the database');
@@ -131,7 +131,7 @@
       unset($_SESSION['uid']);
       unset($_SESSION['username']);
       unset($_SESSION['loggedIn']);
-      self::$person = NULL;
+      $this->person = NULL;
       return TRUE;
     }
 
@@ -237,7 +237,7 @@
 
     public function loggedin() {
       if (isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
-        if (isObj($this->$person) && isId($this->person->id)) {
+        if (isObj($this->person) && isId($this->person->id)) {
           return $this->person;
         } else {
           return TRUE;
