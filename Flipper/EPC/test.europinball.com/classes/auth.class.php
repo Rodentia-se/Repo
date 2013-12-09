@@ -359,7 +359,7 @@
       } else {
         $form .= page::getScript('
           $("'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
-            if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'asswordNew").val()).length > 0) {
+            if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                 $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
               } else {
