@@ -412,13 +412,13 @@
             $form .= page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden');
             $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
             $form .= page::getDivStart($prefix.'usernameDiv');
-              $form .= page::getInput(NULL, $prefix.'usernameNew', 'username');
+              $form .= page::getInput(NULL, $prefix.'usernameNew', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'passwordDiv');
-              $form .= page::getInput(NULL, $prefix.'passwordNew', 'password', 'password');
+              $form .= page::getInput(NULL, $prefix.'passwordNew', 'password', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'verifyPasswordDiv');
-              $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password');
+              $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register') : '';
           $form .= page::getElementEnd('fieldset');
