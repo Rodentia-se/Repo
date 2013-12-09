@@ -9,9 +9,11 @@
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
   }
   
+  config::$login->huff = 'huff';
   if ($_REQUEST['action']) {
     config::$login->action($_REQUEST['action']);
   }
+  config::$login->huff = 'hepp';
   
   if (config::$login->loggedin() && !auth::$person) {
     if (isset($_SESSION['username']) && $_SESSION['username']) {
