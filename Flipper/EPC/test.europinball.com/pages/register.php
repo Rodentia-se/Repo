@@ -60,7 +60,7 @@
         }
       }
     } else if ($_REQUEST['register'] == 'new') {
-      $newGuy = person('new');
+      $person = person('new');
       $page->addContent($person->getEdit('Create profile', tournament('active')));
     } else {
       $page->startDiv('login');
