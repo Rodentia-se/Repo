@@ -143,6 +143,7 @@
 
     public function action($action = NULL) {
       $action = ($action) ? $action : $_REQUEST['action'];
+      debug(config::$login);
       switch ($action) {
         case 'login':
           if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
