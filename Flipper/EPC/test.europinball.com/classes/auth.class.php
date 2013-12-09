@@ -399,7 +399,8 @@
     }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      return seld::getEditUser(($title, $person_id, $prefix, $class, $dialog, $autoopen, TRUE);
+      return self::getEditUser(($title, $person_id, $prefix, $class, $dialog, $autoopen, TRUE);
+    }
 /*
       $form = page::getDivStart($prefix.'newUserDiv', $class, (($dialog) ? $title : NULL));
         $form .= ($daialog) ? '' : page::getH2($title);
