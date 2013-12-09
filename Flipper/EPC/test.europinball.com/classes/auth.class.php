@@ -25,12 +25,10 @@
       $this->Backend = new $backend();
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
-      debug('huff');
-      $this->AutoLogin();
       if (!self::$nonce || !ulNonce::Exists('login')) {
         self::$nonce = ulNonce::Create('login');
       }
-      debug($this);
+      $this->AutoLogin();
     }
     
     public function setLogin($login = TRUE) {
@@ -144,12 +142,11 @@
 
     public function action($action = NULL) {
       $action = ($action) ? $action : $_REQUEST['action'];
-      debug(config::$login);
       switch ($action) {
         case 'login':
           if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
-            if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-              return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
+            if ($_REQUEST['username'] && $_REQUEST['password']) {
+              return $this->login($_REQUEST['username'], $_REQUEST['password']);
             } else {
               error('Could not log you in');
               return FALSE;
