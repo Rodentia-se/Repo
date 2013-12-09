@@ -111,7 +111,7 @@
     }
 
     public function getMembers($division = NULL) {
-      $division = ($division) ? division($division) : division('active');
+      $division = ($division) ? division($division) : division('current');
       if ($division && isId($division->id)) {
         $query = person::$select.'
           left join teamPerson tp on tp.person_id = o.id

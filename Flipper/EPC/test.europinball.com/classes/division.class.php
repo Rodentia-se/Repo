@@ -97,10 +97,6 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getPlayers() {
-      return players($this);
-    }
-    
     public function isActive() {
       return in_array($this->id, config::$activeDivisions);
     }

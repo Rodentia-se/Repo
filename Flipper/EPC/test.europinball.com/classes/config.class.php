@@ -1,6 +1,18 @@
 <?php
 
   class config {
+    
+    public function __contruct($tournament) {
+      if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
+        $id =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
+        $tournament = tournament($id);
+        if ($tournament) {
+          self::$currentTournament = $id;
+        }
+      }
+    }
+    
+    public static $currentTournament = 1;
 
     public static $dbhost = 'localhost';
     public static $dbname = 'epc_test';

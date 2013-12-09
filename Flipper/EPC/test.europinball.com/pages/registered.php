@@ -29,7 +29,7 @@
       }
     $page->closeUl();
     foreach ($divisions as $division) {
-      $players = $division->getPlayers();
+      $players = $players($division);
       $rows = array();
       $page->startDiv($division->shortName);
         if (count($players) > 0) {

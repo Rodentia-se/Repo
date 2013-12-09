@@ -106,16 +106,6 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getPlayer($division = NULL) {
-      $division = ($division) ? division($division) : division('active');
-      return player($this, $division);
-    }
-
-    public function getTeam($division = NULL) {
-      $division = ($division) ? division($division) : division('active');
-      return team($this, $division);
-    }
-
     public function addPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
       $player = player((array) $this->getFlat(), NOSEARCH, 0);
@@ -142,7 +132,7 @@
     
     public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
       foreach (config::$activeSingleDivisions as $divisionType) {
-        $player = $this->getPlayer($divisionType);
+        $player = player($this, $divisionType);
         $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
       }
       $genders = genders('all');

@@ -30,24 +30,20 @@
         $this->action($_REQUEST['action']);
       }
       if ($this->loggedin() && !self::$person) {
+        if (isset($_SESSION['username']) && $_SESSION['username']) {
+          self::$person = person(array('username' => $_SESSION['username']), TRUE);
+        } else if ($this->Username($_SESSION['uid'])) {
+          $_SESSION['username'] = $this->Username($_SESSION['uid']);
+          if (isset($_SESSION['username']) && $_SESSION['username']) {
+            self::$person = person(array('username' => $_SESSION['username']), TRUE);
+          }
+        }
         self::$person = $this->getPerson();
       } else {
         if (!self::$nonce || !ulNonce::Exists('login')) {
           self::$nonce = ulNonce::Create('login');
         }
       }
-    }
-    
-    public function getPerson() {
-      if (isset($_SESSION['username']) && $_SESSION['username']) {
-        return person(array('username' => $_SESSION['username']), TRUE);
-      } else if ($this->Username($_SESSION['uid'])) {
-        $_SESSION['username'] = $this->Username($_SESSION['uid']);
-        if (isset($_SESSION['username']) && $_SESSION['username']) {
-          return person(array('username' => $_SESSION['username']), TRUE);
-        }
-      }
-      return FALSE;
     }
     
     public function setLogin($login = TRUE) {
