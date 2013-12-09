@@ -71,7 +71,7 @@
       }
     } else {
       $page->startDiv('login');
-        $page->addH2('Register existing player');
+        $page->addH2('Register player');
         $page->addLogin('If you participated in EPC 2013 or a any other tournament using this system, then please login here', TRUE);
         $page->addParagraph('If you are sure you do not have any user, please click this button to proceed: <input type="button" id="view_search" class="viewButton" value="Register a new player">');
         $page->addScript('
