@@ -7,7 +7,9 @@
 
   if ($page->loggedin()) {
     $person = person('login');
+    debug($person);
     $player = player($person);
+    debug($player, NULL, TRUE);
     if ($player) {
       header('Location: '.config::$baseHref.'/edit/');
     } else {
@@ -44,7 +46,7 @@
         if ($person) {
           if ($person->username) {
             $page->addH2('Register player');
-            $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:', TRUE);
+            $page->addLogin('Hello '.$person->name.'! You are '.(($_REQUEST['action'] == 'newUser') ? 'now' : 'already').' registered as a user. Please login here:');
           } else {
             $page->addH2('Register new user');
             if ($_REQUEST['action'] == 'newUser') {
