@@ -129,7 +129,7 @@
       return FALSE;
     }
     
-    protected function addUser($username, $password, $person = NULL);
+    protected function addUser($username, $password, $person = NULL) {
       if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
         if ($person) {
           if($person->setUsername($_REQUEST['username'])) {
