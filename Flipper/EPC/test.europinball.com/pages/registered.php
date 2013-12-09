@@ -12,12 +12,12 @@
     $tournament = tournament(config::$activeTournament);
   }
   if (!$tournament) {
-    error('No tournament found!', TRUE);
+    error('No tournament found!', NULL, FALSE, TRUE);
   }
   $divisions = divisions($tournament);
   $divisions->filter('includeInStats');
   if (count($divisions) < 1) {
-    error('No divisions found!', TRUE);
+    error('No divisions found!', NULL, FALSE, TRUE);
   }
   
 
@@ -29,7 +29,7 @@
       }
     $page->closeUl();
     foreach ($divisions as $division) {
-      $players = $players($division);
+      $players = players($division);
       $rows = array();
       $page->startDiv($division->shortName);
         if (count($players) > 0) {
