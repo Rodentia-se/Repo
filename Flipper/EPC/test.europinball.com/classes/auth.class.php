@@ -52,9 +52,9 @@
         $_SESSION['username'] = $this->Username($_SESSION['uid']);
         $_SESSION['loggedIn'] = TRUE;
       } else {
-        unset $_SESSION['uid'];
-        unset $_SESSION['username'];
-        unset $_SESSION['loggedIn'];
+        unset($_SESSION['uid']);
+        unset($_SESSION['username']);
+        unset($_SESSION['loggedIn']);
       }
     }
 
