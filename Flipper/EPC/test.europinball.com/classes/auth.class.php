@@ -258,16 +258,11 @@
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
         $form .= page::getLabel(' ');
-        $form .= (!$dialog) ? page::getButton('Login', $prefix.'login') : '';
+        $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getButton('I forgot all this!', $prefix.'reset');
         $form .= page::getFormStart($prefix.'resetForm');
           $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
         $form .= page::getFormEnd();
-        $form .= page::getScript('
-          $("#'.$prefix.'resetButton").click(function() {
-            $("#'.$prefix.'resetForm").submit();
-          });
-        ');
       $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
@@ -325,7 +320,7 @@
           $form .= page::getDivStart($prefix.'verifyPasswordDiv');
             $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
           $form .= page::getDivEnd();
-          $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Submit changes', $prefix.'changeUser') : '';
+          $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Submit changes', $prefix.'changeUser', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
@@ -420,7 +415,7 @@
             $form .= page::getDivStart($prefix.'verifyPasswordDiv');
               $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
-            $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register') : '';
+            $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register', $class, FALSE, NULL, NULL, FALSE) : '';
           $form .= page::getElementEnd('fieldset');
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
