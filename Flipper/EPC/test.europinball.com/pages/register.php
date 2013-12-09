@@ -7,10 +7,9 @@
 
   if ($page->loggedin()) {
     $person = person('login');
-    debug($person);
     $player = player($person);
-    debug($player, NULL, TRUE);
     if ($player) {
+      debug($player, NULL, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes') {
@@ -24,6 +23,7 @@
             $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');
             $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
           } else {
+            debug($person, NULL, TRUE);
             header('Location: '.config::$baseHref.'/edit/');
           }
         } else {
