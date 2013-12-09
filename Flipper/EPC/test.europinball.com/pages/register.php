@@ -134,7 +134,7 @@
         });
         $("#addButton").click(function() {
           $("#addForm").submit();
-        })
+        });
       ');
     }
   }
