@@ -358,34 +358,22 @@
         ');
       } else {
         $form .= page::getScript('
+          $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
+            theme: ".tooltipster-light",
+            content: "The passwords do not match...",
+            trigger: "custom",
+            position: "right",
+            timer: 3000
+          })
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
-            alert(1);
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
-            alert(2);
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-            alert(3);
                 $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
               } else {
-            alert(4);
-                $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-                  theme: ".tooltipster-light",
-                  content: "The passwords do not match...",
-                  trigger: "custom",
-                  position: "right",
-                  timer: 3000
-                })
-                .tooltipster("show");
+                $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The passwords do not match...").tooltipster("show");
               }
             } else {
-            alert(5);
-              $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-                theme: ".tooltipster-light",
-                content: "Mandatory fields are missing...",
-                trigger: "custom",
-                position: "right",
-                timer: 3000
-              })
-              .tooltipster("show");
+              $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "Mandatory fields are missing...").tooltipster("show");
             }
           });
         ');
