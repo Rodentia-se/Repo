@@ -387,6 +387,27 @@
     }
     
     function setPhoto($path = NULL) {
+      if ($this->id) {
+        if (!$path) {
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/preview/'.$this->id.'.'.$ext)) {
+              $path = 'images/objects/'.get_class($this).'/preview/'.$this->id.'.'.$ext;
+              break;
+            }
+          }
+        }
+        if ($path) {
+          if (rename(config::$baseDir.'/'.$path, config::$baseDir.'/'.preg_replace('/\/preview\//', '/', $path))) {
+            return TRUE;
+          } else {
+            error('Could not move file');
+          }
+        } else {
+          error('Could not find source file');
+        }
+      } else {
+        error('Can not add photos to unsaved objects');
+      }
       return FALSE;
     }
 
