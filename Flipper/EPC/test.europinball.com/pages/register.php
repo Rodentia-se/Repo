@@ -162,7 +162,7 @@
           ');
           $page->addParagraph('If you want to search again, click here: <input type="button" id="view_search_again" value="Search again">');
           $page->addScript('
-            $("#addButton").click(function() {
+            $("#view_search_again").click(function() {
               $("#addNewGuy").hide();
               $("#newGuy").show();
               $("#searchResults").show();
