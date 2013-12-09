@@ -43,10 +43,7 @@
       $person_id = $_REQUEST['person_id'];
       if (!isId($person_id)) {
         $person = person('new');
-        $person->firstName = 'New';
-        $person->lastName = 'Guy';
         $person_id = $person->save();
-        $person->name = 'a new guy';
       }
       if (isId($person_id)) {
         $person = person($person_id);
