@@ -170,7 +170,7 @@
         case 'changeUser':
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             if ($this->login($_SESSION['username'], $_REQUEST['password'], $_REQUEST['nonce'])) {
-              if ($_REQUEST['newPassword'] == $_REQUEST['verifyPassword']) {
+              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
                 return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword']);
               } else {
                 error('The password did not match, please try again');
@@ -325,7 +325,7 @@
       $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
-          $("#'.$prefix.(($new) ? 'new' : 'change')'UserDiv").dialog({
+          $("#'.$prefix.(($new) ? 'new' : 'change').'UserDiv").dialog({
             autoOpen: '.(($autoopen) ? 'true' : 'false').',
             modal: true,
             width: 400,
