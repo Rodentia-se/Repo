@@ -60,7 +60,6 @@
           }
         }
       }
-      $page->submit();
     } else {
       $page->startDiv('login');
         $page->addH2('Register existing player');
