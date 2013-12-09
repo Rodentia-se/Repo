@@ -301,41 +301,41 @@
       return $form;
     }
     
-    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      $form = page::getDivStart($prefix.'changeUserDiv');
-        $form .= page::getFormStart($prefix.'changeUserForm');
+    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE, $new = FALSE) {
+      $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv');
+        $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
           $form .= page::getH2($title);
-          $form .= page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
+          $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
-          $form .= page::getInput('changeUser', $prefix.'action', 'action', 'hidden');
+          $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
           $form .= page::getDivStart($prefix.'usernameDiv');
-            $form .= page::getInput($_SESSION['username'], $prefix.'newUsername', 'newUsername', 'text', NULL, 'New username');
+            $form .= page::getInput((($new) ? '' : $_SESSION['username']), $prefix.(($new) ? 'u' : 'newU').'sername', (($new) ? 'u' : 'newU').'sername', 'text', NULL, (($new) ? 'Username' : 'New username'));
           $form .= page::getDivEnd();
-          $form .= page::getDivStart($prefix.'passwordDiv');
-            $form .= page::getInput(NULL, $prefix.'password', 'password', 'password', NULL, 'Current password');
-          $form .= page::getDivEnd();
+          $form .= ($new) ? '' : page::getDivStart($prefix.'passwordDiv');
+            $form .= ($new) ? '' : page::getInput(NULL, $prefix.'password', 'password', 'password', NULL, 'Current password');
+          $form .= ($new) ? '' : page::getDivEnd();
           $form .= page::getDivStart($prefix.'newPasswordDiv');
-            $form .= page::getInput(NULL, $prefix.'newPassword', 'newPassword', 'password', NULL, 'New password');
+            $form .= page::getInput(NULL, $prefix.(($new) ? 'p' : 'newP').'assword', (($new) ? 'p' : 'newP').'assword', 'password', NULL, (($new) ? 'Password' : 'New password'));
           $form .= page::getDivEnd();
           $form .= page::getDivStart($prefix.'verifyPasswordDiv');
-            $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
+            $form .= page::getInput(NULL, $prefix.'verify'.(($new) ? '' : 'New').'Password', 'verify'.(($new) ? '' : 'New').'Password', 'password', NULL, 'Verify'.(($new) ? '' : ' new').' password');
           $form .= page::getDivEnd();
-          $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Submit changes', $prefix.'changeUser', $class, FALSE, NULL, NULL, FALSE) : '';
+          $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
-          $("#'.$prefix.'newUserDiv").dialog({
+          $("#'.$prefix.(($new) ? 'new' : 'change')'UserDiv").dialog({
             autoOpen: '.(($autoopen) ? 'true' : 'false').',
             modal: true,
             width: 400,
             buttons: {
-              "Register": function() {
-                if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-                  if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                    $("#'.$prefix.'newUserForm").submit();
+              "'.(($new) ? 'Register' : 'Submit changes').'": function() {
+                if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
+                  if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
+                    $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
                   } else {
-                    $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
                       theme: ".tooltipster-light",
                       content: "The passwords do not match...",
                       trigger: "custom",
@@ -352,17 +352,17 @@
             }
           });
           $(document).on("click", ".ui-widget-overlay", function() {
-            $("#'.$prefix.'newUserDiv").dialog("close");
+            $("#'.$prefix.(($new) ? 'new' : 'change').'UserDiv").dialog("close");
           });
         ');
       } else {
         $form .= page::getScript('
-          $("'.$prefix.'changeUserButton").click(function() {
-            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                $("#'.$prefix.'newUserForm").submit();
+          $("'.$prefix.(($new) ? 'u' : 'newU').'serButton").click(function() {
+            if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'asswordNew").val()).length > 0) {
+              if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
+                $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
               } else {
-                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
                   theme: ".tooltipster-light",
                   content: "The passwords do not match...",
                   trigger: "custom",
@@ -378,11 +378,11 @@
       $form .= page::getScript('
         $(".enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                $("#'.$prefix.'newUserForm").submit();
+            if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'asswordNew").val()).length > 0) {
+              if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
+                $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
               } else {
-                $("#'.$prefix.'verifyPasswordNew").tooltipster({
+                $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
                   theme: ".tooltipster-light",
                   content: "The passwords do not match...",
                   trigger: "custom",
@@ -399,6 +399,8 @@
     }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      return seld::getEditUser(($title, $person_id, $prefix, $class, $dialog, $autoopen, TRUE);
+/*
       $form = page::getDivStart($prefix.'newUserDiv', $class, (($dialog) ? $title : NULL));
         $form .= ($daialog) ? '' : page::getH2($title);
         $form .= page::getFormStart($prefix.'newUserForm');
@@ -414,6 +416,7 @@
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'verifyPasswordDiv');
               $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password', 'enterSubmit');
+            $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
             $form .= page::getDivEnd();
             $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register', $class, FALSE, NULL, NULL, FALSE) : '';
           $form .= page::getElementEnd('fieldset');
@@ -493,7 +496,7 @@
       ');
       return $form;
     }
-
+*/
   }
 
 ?>
