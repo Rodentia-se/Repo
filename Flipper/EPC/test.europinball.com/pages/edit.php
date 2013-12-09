@@ -116,11 +116,11 @@
               $("#regionDiv").hide();
               $(".addIcon").click(function() {
                 $("#" + this.id.replace("add_", "") + "_idDiv").hide();
-                $("#" + this.id.replace("add_", "") + "Div").show().focus();
+                $("#" + this.id.replace("add_", "") + "Div").show().find("input":first).focus();
               });
               $(".closeIcon").click(function() {
                 $("#" + this.id.replace("close_", "") + "Div").hide();
-                $("#" + this.id.replace("close_", "") + "_idDiv").show().focus();
+                $("#" + this.id.replace("close_", "") + "_idDiv").show().find("input":first).focus();
                 $("#" + this.id.replace("close_", "")).val("");
               });
             ');
