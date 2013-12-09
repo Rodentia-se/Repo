@@ -84,7 +84,7 @@
     if (class_exists($obj)) {
       $target = $obj($id);
       if ($target) {
-        $save = $target->savePhoto((($previewPath) ? $previewPath : NULL));
+        $save = $target->setPhoto((($previewPath) ? $previewPath : NULL));
         if ($save) {
           $json = success('Photo saved');
         } else {

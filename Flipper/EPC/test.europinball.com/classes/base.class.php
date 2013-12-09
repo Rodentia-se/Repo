@@ -386,7 +386,7 @@
       ';
     }
     
-    function savePhoto($path = NULL) {
+    function setPhoto($path = NULL) {
       return FALSE;
     }
 
