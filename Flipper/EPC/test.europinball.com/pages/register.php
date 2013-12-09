@@ -157,7 +157,10 @@
           $page->addParagraph('If you want to search again, click here: <input type="button" id="view_search_again" value="Search again">');
           $page->addNewUser('Register a new user', $person_id, 'newUser');
           $page->addScript('
-            $("#newUsernewUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
+            $("#newUsernewUserForm").append("
+              <input type=\"hidden\" name=\"register\" value=\"isMe\">
+              <input type=\"hidden\" name=\"person_id\" value=\"0\">
+            ");
           ');
           $page->addScript('
             $("#view_search_again").click(function() {
