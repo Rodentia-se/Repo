@@ -21,7 +21,7 @@
     config::$login->action($_REQUEST['action']);
   }
 
-  if (!auth::nonce) {
+  if (!config::$login->nonce) {
     $nonce = ulNonce::Create('login');
     config::$login->nonce = $nonce;
   }
