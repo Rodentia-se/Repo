@@ -333,10 +333,10 @@
           $form .= page::getDivEnd();
           $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
-        $form .= ($this->msg) ? page::getScript('
+        $form .= (config::$login->msg) ? page::getScript('
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").tooltipster({
             theme: ".tooltipster-light",
-            content: "'.$this->msg.'",
+            content: "'.config::$login->msg.'",
             trigger: "custom",
             position: "right",
             timer: 3000
