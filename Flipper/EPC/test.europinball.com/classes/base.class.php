@@ -21,6 +21,15 @@
       if (!self::$_db) {
         self::$_db = new db();
       }
+      if (!self::$_login) {
+        if (page::$_login) {
+          self::$_login = page::$_login
+        } else {
+          self::$_login = new auth();
+          page::$_login = self::$_login;
+        }
+      }
+      $this->login = self::$_login;
       $this->db = self::$_db;
       if (!static::$instances)  {
         static::$instances = (property_exists($this, 'arrClass')) ? new static::$arrClass : array();

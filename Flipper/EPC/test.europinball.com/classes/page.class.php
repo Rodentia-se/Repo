@@ -28,12 +28,15 @@
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
-      if ($login) {
-        if (!self::$_login) {
+      if (!self::$_login) {
+        if (base::$_login) {
+          self::$_login = base::$_login
+        } else {
           self::$_login = new auth();
+          base::$_login = self::$_login;
         }
-        $this->login = self::$_login;
       }
+      $this->login = self::$_login;
       $this->title = $title;
       if ($header) {
         $this->addHeader($header);
