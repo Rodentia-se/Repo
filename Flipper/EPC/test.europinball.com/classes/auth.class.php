@@ -73,8 +73,8 @@
               warning('Could not turn off autologin');
             }
           }
-          self::person = $this->getPerson();
-          if (self::person) {
+          self::$person = $this->getPerson();
+          if (self::$person) {
             return TRUE;
           } else {
             error('Login successful, but could not find you in the database');
