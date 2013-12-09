@@ -21,7 +21,7 @@
     $players = players($search);
   }
   if ($player) {
-    $players[] = players($player);
+    $players = players($player);
   }
   
   switch ($type) {
