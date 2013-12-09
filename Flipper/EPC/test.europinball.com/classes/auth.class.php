@@ -79,7 +79,6 @@
         }
       } else {
         $this->setLogin(FALSE);
-        echo $this->;
         error('Login failed');
         return FALSE;
       }
