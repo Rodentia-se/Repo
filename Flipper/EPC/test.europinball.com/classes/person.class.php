@@ -132,7 +132,7 @@
     
     public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
       foreach (config::$activeSingleDivisions as $divisionType) {
-        $player = player($this, $divisionType);
+        $player = ($this->is) ? player($this, $divisionType) : NULL;
         $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
       }
       $genders = genders('all');
