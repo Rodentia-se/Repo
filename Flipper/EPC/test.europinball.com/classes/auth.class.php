@@ -26,7 +26,7 @@
       $this->Backend = new $backend();
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
-      if (!self::$nonce || !ulNonce::Exists('login')) {
+      if (!self::$nonce) {
         self::$nonce = ulNonce::Create('login');
       }
       $this->AutoLogin();
