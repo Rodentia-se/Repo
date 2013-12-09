@@ -372,6 +372,15 @@
                 })
                 .tooltipster("show");
               }
+            } else {
+              $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
+                theme: ".tooltipster-light",
+                content: "Mandatory fields are missing...",
+                trigger: "custom",
+                position: "right",
+                timer: 3000
+              })
+              .tooltipster("show");
             }
           });
         ');
