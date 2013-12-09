@@ -41,6 +41,13 @@
   } else {
     if ($_REQUEST['register'] == 'isMe') {
       $person_id = $_REQUEST['person_id'];
+      if (!isId($person_id)) {
+        $person = person('new');
+        $person->firstName = 'New';
+        $person->lastName = 'Guy';
+        $person_id = $person->save();
+        $person->name = 'a new guy';
+      }
       if (isId($person_id)) {
         $person = person($person_id);
         if ($person) {
@@ -51,17 +58,17 @@
             if ($_REQUEST['action'] == 'newUser') {
               $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
             }
-            $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName.'. Make sure this is correct, and then choose a username and password below.');
+            $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. Make sure this is correct, and then choose a username and password below.');
             $page->addNewUser('Register a new user', $person_id);
             $page->addScript('
               $("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
             ');
           }
         }
+      } else {
+        $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
+        $page->addClickButton('Try again', 'tryagain2');
       }
-    } else if ($_REQUEST['register'] == 'new') {
-      $person = person('new');
-      $page->addContent($person->getEdit('Create profile', tournament('active')));
     } else {
       $page->startDiv('login');
         $page->addH2('Register existing player');
@@ -78,7 +85,7 @@
           $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
           $page->addParagraph('<p id="newGuy" style="display: none">If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">');
           $page->startForm('addForm');
-            $page->addInput('new', 'addRegister', 'register', 'hidden');
+            $page->addInput('isMe', 'addRegister', 'register', 'hidden');
           $page->closeForm();
           $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'));
         $page->closeDiv();
