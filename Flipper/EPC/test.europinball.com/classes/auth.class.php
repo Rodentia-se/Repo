@@ -49,14 +49,24 @@
       }
       return FALSE;
     }
+    
+    public function setLogin($login = TRUE) {
+      if ($login) {
+        $_SESSION['uid'] = $this->AuthResult;
+        $_SESSION['username'] = $this->Username($_SESSION['uid']);
+        $_SESSION['loggedIn'] = TRUE;
+      } else {
+        unset $_SESSION['uid'];
+        unset $_SESSION['username'];
+        unset $_SESSION['loggedIn'];
+      }
+    }
 
     public function login($username, $password, $nonce) {
       if (isset($nonce) && ulNonce::Verify('login', $nonce)) {
         $this->Authenticate($username, $password);
         if ($this->IsAuthSuccess()) {
-          $_SESSION['uid'] = $this->AuthResult;
-          $_SESSION['username'] = $this->Username($_SESSION['uid']);
-          $_SESSION['loggedIn'] = TRUE;
+          $this->setLogin();
           if (isset($_SESSION['appRememberMeRequested']) && ($_SESSION['appRememberMeRequested'] === TRUE)) {
             if (!$ulogin->SetAutologin($username, TRUE)) {
               warning('Could not turn on autologin');
@@ -67,15 +77,15 @@
               warning('Could not turn off autologin');
             }
           }
-          $this->person = $this->getPerson();
-          if ($this->person) {
-            $this->person_id = $this->person->id;
+          self::person = $this->getPerson();
+          if (self::person) {
             return TRUE;
           } else {
             error('Login successful, but could not find you in the database');
             return FALSE;
           }
         } else {
+          $this->setLogin(FALSE);
           error('Login failed');
           return FALSE;
         }
@@ -83,6 +93,61 @@
         error('Invalid nonce: '.$nonce.', please clean cache and cookies and try again.');
         return FALSE;
       }
+    }
+    
+    protected function changeUser($username, $password, $person) {
+      if ($person) {
+        $uid = $person->getUid();
+        if ($uid) {
+          if ($username == $_SESSION['username']) {
+            if ($this->SetPassword($uid, $password)) {
+              $this->Authenticate($username, $password);
+              if ($ulogin->IsAuthSuccess()) {
+                $this->setLogin();
+                return TRUE;
+              } else {
+                $this->setLogin(FALSE);
+                error('Password changed, but could not log you in. Please try logging in.');
+              }
+            } else {
+              error('Could not change password for '.$username.', your login has not been changed.');
+            }
+          } else if ($this->addUser($username, $password, $person)) {
+            $this->Authenticate($username, $password);
+            if ($ulogin->IsAuthSuccess()) {
+              $this->setLogin();
+              return TRUE;
+            } else {
+              $this->setLogin(FALSE);
+              error('User created, but could not log you in. Please try logging in.');
+            }
+          } else {
+            error('Could not add the user');
+          }
+        } else {
+          error('Could not identify you, please logout and login again.');
+        }
+      } else {
+        error('Could not identify you, please logout and login again.');
+      }
+      return FALSE;
+    }
+    
+    protected function addUser($username, $password, $person = NULL);
+      if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
+        if ($person) {
+          if($person->setUsername($_REQUEST['username'])) {
+            return TRUE;
+          } else {
+            error('User created, but could not associate the user with the person');
+          }
+        } else {
+          return TRUE;
+        }
+      } else {
+        error('Could not create user '.$_REQUEST['username']);
+      }
+      return  FALSE;
     }
 
     public function logoff() {
@@ -101,6 +166,7 @@
           if ($_REQUEST['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             return $this->login($_REQUEST['username'], $_REQUEST['password'], $_REQUEST['nonce']);
           } else {
+            error('Could not log you in');
             return FALSE;
           }
         break;
@@ -108,24 +174,28 @@
           return $this->logoff();
         break;
         case 'changeUser':
-          if ($_REQUEST['currentUsername'] && $_REQUEST['currentPassword']) {
-            $this->Authenticate($_REQUEST['currentUsername'], $_REQUEST['currentPassword']);
-            if ($this->IsAuthSuccess()) {
-              return $this->changeUser($_REQUEST['username'], $_REQUEST['newPassword']);
+          if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
+            if ($this->login($_SESSION['username'], $_REQUEST['password'], $_REQUEST['nonce'])) {
+              if ($_REQUEST['newPassword'] == $_REQUEST['verifyPassword']) {
+                return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword']);
+              } else {
+                error('The password did not match, please try again');
+              }
             } else {
               error('Could not login with your current credentials');
-              return FALSE;
             }
           } else {
             error('Could not login with your current credentials');
-            return FALSE;
           }
+          return FALSE;
         break;
         case 'autologin':
           if (!$this->IsAuthSuccess()) {
+            $this->setLogin(FALSE);
             warning('Autologin failed');
             return FALSE;
           } else {
+            $this->setLogin();
             return TRUE;
           }
         break;
@@ -134,14 +204,17 @@
             if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
               $person = person($_REQUEST['person_id']);
               if ($person) {
-                if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
-                  if($person->setUsername($_REQUEST['username'])) {
+                if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
+                  $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
+                  if ($ulogin->IsAuthSuccess()) {
+                    $this->setLogin();
                     return TRUE;
                   } else {
-                    error('User created, but could not associate the user with the person');
+                    $this->setLogin(FALSE);
+                    error('User created, but could not log you in. Please try logging in.');
                   }
                 } else {
-                  error('Could not create user '.$_REQUEST['username']);
+                  error('Could not add the user');
                 }
               } else {
                 error('Could not find person ID '.$_REQUEST['person_id']);

@@ -175,6 +175,21 @@
         </div>
       ';
     }
+    
+    public function getUid() {
+      if ($this->username) {
+        $login = new auth();
+        $uid = $login->Uid($this->username);
+        if ($uid) {
+          return $uid;
+        } else {
+          error('Person username is invalid.');
+        }
+      } else {
+        error('This person has no user.');
+      }
+      return FALSE;
+    }
 
     public function setUsername($username) {
       return $this->setProp('username', $username);
