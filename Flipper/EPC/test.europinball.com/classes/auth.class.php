@@ -194,7 +194,7 @@
           }
         break;
         case 'newUser':
-          if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
+          if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce'])) {
             if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
               if ($_REQUEST['person_id'] == 0) {
                 $person = person('new');
