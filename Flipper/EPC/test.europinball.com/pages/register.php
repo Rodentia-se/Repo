@@ -11,7 +11,7 @@
     if ($player) {
       header('Location: '.config::$baseHref.'/edit/');
     } else {
-      if ($_REQUEST['register'] == 'yes') {
+      if ($_REQUEST['register'] == 'yes' || $_REQUEST['action'] == 'newUser') {
         $division = division('active');
         $add = $person->addPlayer();
         $players = players($division);

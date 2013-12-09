@@ -200,7 +200,7 @@
               if ($person) {
                 if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
                   $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
-                  if ($ulogin->IsAuthSuccess()) {
+                  if ($this->IsAuthSuccess()) {
                     $this->setLogin();
                     return TRUE;
                   } else {
