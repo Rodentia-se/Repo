@@ -109,6 +109,7 @@
               $(".date").datepicker({
                 dateFormat: "yy-mm-dd",
                 yearRange: "-100:-0",
+                defaultDate: "-30y",
                 changeYear: true, 
                 changeMonth: true 
               });
