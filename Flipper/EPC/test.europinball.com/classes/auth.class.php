@@ -301,13 +301,14 @@
       return $form;
     }
     
-    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE, $new = FALSE) {
+    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE, $new = FALSE, $person_id = NULL) {
       $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv');
         $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
           $form .= page::getH2($title);
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
+          $form .= ($person_id) ? page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden') : '';
           $form .= page::getDivStart($prefix.'usernameDiv');
             $form .= page::getInput((($new) ? '' : $_SESSION['username']), $prefix.(($new) ? 'u' : 'newU').'sername', (($new) ? 'u' : 'newU').'sername', 'text', NULL, (($new) ? 'Username' : 'New username'));
           $form .= page::getDivEnd();
@@ -399,7 +400,7 @@
     }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      return self::getUserEdit($title, $person_id, $prefix, $class, $dialog, $autoopen, TRUE);
+      return self::getUserEdit($title, $prefix, $class, $dialog, $autoopen, TRUE, $person_id);
     }
 /*
       $form = page::getDivStart($prefix.'newUserDiv', $class, (($dialog) ? $title : NULL));
