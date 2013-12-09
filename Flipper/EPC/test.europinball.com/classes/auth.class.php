@@ -225,7 +225,7 @@
                 error('Could not find person ID '.$person_id);
               }
             } else {
-              error('Invalid nonce '.$_REQUEST['nonce'].', please clean cache and cookies and try again.');
+              error('Invalid nonce, please clean cache and cookies and try again.');
             }
           } else {
             error('Not enough parameters provided');
