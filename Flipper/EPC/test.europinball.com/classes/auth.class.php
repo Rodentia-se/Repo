@@ -358,7 +358,7 @@
         ');
       } else {
         $form .= page::getScript('
-          $("'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
+          $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
             alert(1);
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
             alert(2);
@@ -393,7 +393,7 @@
       $form .= page::getScript('
         $(".enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            $("'.$prefix.(($new) ? 'new' : 'change').'UserButton").click();
+            $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click();
           }
         });
       ');
