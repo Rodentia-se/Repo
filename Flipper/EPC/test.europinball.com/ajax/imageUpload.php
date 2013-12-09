@@ -66,19 +66,19 @@
                 </script>
               ';
             } else {
-              echo 'File move failed';
+              echo 'File move failed. Reload page to try again.';
             }
           } else {
-            echo 'Image file is too big (size is max 1 MB) or the file was corrupt.';
+            echo 'Image file is too big (size is max 1 MB) or the file was corrupt. Reload page to try again.';
           }
         } else {
-          echo 'Invalid file format..';	
+          echo 'Invalid file format. Reload page to try again.';	
         }
       } else {
-        echo 'Please select image..!';
+        echo 'Please select image! Reload page to try again.';
       }
     } else {
-      echo 'Unkonwn error...';
+      echo 'Unkonwn error... Reload page to try again.';
     }
   } else if ($action == 'save') {
     if (class_exists($obj)) {
