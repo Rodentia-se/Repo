@@ -404,25 +404,20 @@
     }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
-      $form = '
-        <div id="'.$prefix.'newUserDiv" '.(($dialog) ? 'title="'.$title.'">' : '>
-        	<h2>'.$title.'</h2>').'
-          <form id="'.$prefix.'newUserForm" method="POST">
-            <fieldset>
-              <input type="hidden" name="action" value="newUser">
-              <input type="hidden" name="person_id" value="'.$person_id.'">
-              <input type="hidden" name="nonce" value="'.self::$nonce.'">
-              <label for="username">Username</label>
-              <input type="text" name="username" id="'.$prefix.'usernameNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              <label for="password">Password</label>
-              <input type="password" name="password" id="'.$prefix.'passwordNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              <label for="password">Verify password</label>
-              <input type="password" name="verifyPassword" id="'.$prefix.'verifyPasswordNew" class="text ui-widget-content ui-corner-all enterSubmit"><br />
-              '.(($dialog) ? '' : '<input type="button" id="'.$prefix.'registerButton" value="Register">').'
-            </fieldset>
-          </form>
-        </div>
-      ';
+      $form = page::getDivStart($prefix.'newUserDiv', $class, (($dialog) ? $title : NULL));
+        $form .= ($daialog) ? '' : page::getH2($title);
+        $form .= page::getFormStart($prefix.'newUserForm');
+          $form .= page::getElementStart('fieldset');
+            $form .= page::getInput('newUser', $prefix.'action', 'action', 'hidden');
+            $form .= page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden');
+            $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
+            $form .= page::getInput(NULL, $prefix.'usernameNew', 'username');
+            $form .= page::getInput(NULL, $prefix.'passwordNew', 'password', 'password');
+            $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password');
+            $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register') : '';
+          $form .= page::getElementEnd('fieldset');
+        $form .= page::getFormEnd();
+      $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.'newUserDiv").dialog({
