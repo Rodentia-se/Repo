@@ -5,7 +5,7 @@
 
   $page = new page('Register');
 
-  if ($page->checkLogin()) {
+  if ($page->loggedin()) {
     $person = person('login');
     $player = player($person);
     if ($player) {
@@ -30,7 +30,7 @@
           $page->addClickButton('Try again');
         }
       } else {
-        $tournament = tournament(config::$activeTournament);
+        $tournament = tournament('active');
         $page->addH2('Register player');
         $page->addClickButton('Register', NULL, NULL, array('register' => 'yes'), NULL, NULL, NULL, 'POST', 'You are logged in as '.$person->name.'. Press the button to register for '.$tournament->name.'.');
         $page->focus('registerButton');
