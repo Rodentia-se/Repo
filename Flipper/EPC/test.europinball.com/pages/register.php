@@ -9,7 +9,6 @@
     $person = person('login');
     $player = player($person);
     if ($player) {
-      debug($player, NULL, TRUE);
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes') {
@@ -24,7 +23,6 @@
             $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
             $page->focus('updateButton');
           } else {
-            debug($person, NULL, TRUE);
             header('Location: '.config::$baseHref.'/edit/');
           }
         } else {
@@ -66,7 +64,7 @@
             $page->addScript('
               $("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
             ');
-            $page->focus('usernameNew');
+            $page->focus('username');
           }
         }
       } else {
