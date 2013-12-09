@@ -28,7 +28,8 @@
       'photo',
       'security',
       't-shirts',
-      'volunteer'
+      'volunteer',
+      'payment'
     );
     public static $editDivisions = array('eighties');
     

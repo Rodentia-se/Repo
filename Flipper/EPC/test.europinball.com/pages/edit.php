@@ -145,12 +145,16 @@
           $page->startDiv('qualGroup');
           $page->closeDiv();
         }
+        if (in_array('t-shirts', config::$editSections)) {
+          $page->startDiv('tshirts');
+          $page->closeDiv();
+        }
         if (in_array('volunteer', config::$editSections)) {
           $page->startDiv('volunteer');
           $page->closeDiv();
         }
-        if (in_array('t-shirts', config::$editSections)) {
-          $page->startDiv('tshirts');
+        if (in_array('volunteer', config::$editSections)) {
+          $page->startDiv('payment');
           $page->closeDiv();
         }
       $page->closeDiv();
