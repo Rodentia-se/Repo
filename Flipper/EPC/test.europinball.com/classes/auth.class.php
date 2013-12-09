@@ -358,7 +358,7 @@
         ');
       } else {
         $form .= page::getScript('
-          $("'.$prefix.(($new) ? 'u' : 'newU').'serButton").click(function() {
+          $("'.$prefix.(($new) ? 'new' : 'change').'serButton").click(function() {
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'asswordNew").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                 $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
@@ -379,20 +379,7 @@
       $form .= page::getScript('
         $(".enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'asswordNew").val()).length > 0) {
-              if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-                $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
-              } else {
-                $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-                  theme: ".tooltipster-light",
-                  content: "The passwords do not match...",
-                  trigger: "custom",
-                  position: "right",
-                  timer: 3000
-                })
-                .tooltipster("show");
-              }
-            }
+            $("'.$prefix.(($new) ? 'new' : 'change').'serButton").click();
           }
         });
       ');
