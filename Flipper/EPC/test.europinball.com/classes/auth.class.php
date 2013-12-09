@@ -11,6 +11,7 @@
     
     private static $nonce;
     public static $person;
+    public static $verified;
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
 /*
       $backends = array(
@@ -144,7 +145,7 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
+          if (config::$login->verified) {
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               return $this->login($_REQUEST['username'], $_REQUEST['password']);
             } else {
@@ -161,7 +162,7 @@
         break;
         case 'changeUser':
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+            if (config::$login->verified) {
               $this->Authenticate($_SESSION['username'], $_REQUEST['password']);
               if ($this->IsAuthSuccess()) {
                 if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
@@ -197,7 +198,7 @@
         break;
         case 'newUser':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
-            if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+            if (config::$login->verified) {
               if ($_REQUEST['person_id'] == 0) {
                 $person = person('new');
                 $person_id = $person->save();

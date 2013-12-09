@@ -10,6 +10,11 @@
   }
   
   config::$login->huff = 'huff';
+  
+  if (isset($_REQUEST['nonce']) && ulNonce::Verify('login', $_REQUEST['nonce'])) {
+    config::$login->verified = TRUE;
+  }
+  
   if ($_REQUEST['action']) {
     config::$login->action($_REQUEST['action']);
   }
