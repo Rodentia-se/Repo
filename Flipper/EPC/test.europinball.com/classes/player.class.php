@@ -38,7 +38,7 @@
         coalesce(o.telephoneNumber, p.telephoneNumber) as telephoneNumber,
         coalesce(o.mobileNumber, p.mobileNumber) as mobileNumber,
         coalesce(o.mailAddress, p.mailAddress) as mailAddress,
-        p.birthDate as birthDate,
+        if(p.birthDate = "0000-00-00", NULL, p.birthDate) as birthDate,
         o.qualGroup_id as qualGroup_id,
         o.qualChangeReq as qualChangeReq,
         o.qualPlace as qualPlace,
