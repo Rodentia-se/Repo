@@ -61,7 +61,7 @@
         }
       }
       $page->submit();
-      debug('huff', true);
+      debug('huff', NULL, TRUE);
       $person->addPlayer();
       header('Location: '.config::$baseHref.'/edit/');
     } else {
