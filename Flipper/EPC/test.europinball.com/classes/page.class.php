@@ -601,14 +601,6 @@
       echo $this->getContent($header, $footer, $div);
     }
 
-    public function login($username, $password, $nonce) {
-      return config::$login->login($username, $password, $nonce);
-    }
-    
-    public function logoff() {
-      return config::$login->logoff();
-    }
-
     public function loggedin() {
       return config::$login->loggedin();
     }

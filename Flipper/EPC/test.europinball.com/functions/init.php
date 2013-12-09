@@ -9,11 +9,9 @@
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
   }
   
-  config::$login->huff = 'huff';
-  
   if (isset($_REQUEST['nonce'])) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
-      config::$login->verified = TRUE;
+      auth::$verified = TRUE;
     } else {
       error('Invalid nonce');
     }
@@ -22,8 +20,12 @@
   if ($_REQUEST['action']) {
     config::$login->action($_REQUEST['action']);
   }
-  config::$login->huff = 'hepp';
-  
+
+  if (!auth::nonce) {
+    $nonce = ulNonce::Create('login');
+    config::$login->nonce = auth::$nonce
+  }
+
   if (config::$login->loggedin() && !auth::$person) {
     if (isset($_SESSION['username']) && $_SESSION['username']) {
       auth::$person = person(array('username' => $_SESSION['username']), TRUE);

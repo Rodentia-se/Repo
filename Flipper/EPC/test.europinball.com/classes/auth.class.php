@@ -9,9 +9,6 @@
 
   class auth extends uLogin {
     
-    private static $nonce;
-    public static $person;
-    public static $verified;
     public function __construct($loginCallback = NULL, $loginFailCallback = NULL, $backend = NULL) {
 /*
       $backends = array(
@@ -26,9 +23,6 @@
       $this->Backend = new $backend();
 */
       parent::__construct($loginCallback, $loginFailCallback, $backend);
-      if (!self::$nonce) {
-        self::$nonce = ulNonce::Create('login');
-      }
       $this->AutoLogin();
     }
     
@@ -145,7 +139,7 @@
       $action = ($action) ? $action : $_REQUEST['action'];
       switch ($action) {
         case 'login':
-          if (config::$login->verified) {
+          if ($this->verified) {
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               return $this->login($_REQUEST['username'], $_REQUEST['password']);
             } else {
@@ -162,7 +156,7 @@
         break;
         case 'changeUser':
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            if (config::$login->verified) {
+            if ($this->verified) {
               $this->Authenticate($_SESSION['username'], $_REQUEST['password']);
               if ($this->IsAuthSuccess()) {
                 if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
@@ -198,7 +192,7 @@
         break;
         case 'newUser':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
-            if (config::$login->verified) {
+            if ($this->verified) {
               if ($_REQUEST['person_id'] == 0) {
                 $person = person('new');
                 $person_id = $person->save();
@@ -243,8 +237,8 @@
 
     public function loggedin() {
       if (isset($_SESSION['uid']) && isset($_SESSION['username']) && isset($_SESSION['loggedIn']) && ($_SESSION['loggedIn'] === TRUE)) {
-        if (isObj(auth::$person) && isId(auth::$person->id)) {
-          return auth::$person;
+        if (isObj($this->$person) && isId($this->person->id)) {
+          return $this->person;
         } else {
           return TRUE;
         }
@@ -259,7 +253,7 @@
         $form .= page::getFormStart($prefix.'loginForm');
           $form .= '<fieldset>';
             $form .= page::getInput('login', $prefix.'action', 'action', 'hidden');
-            $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
+            $form .= page::getInput($this->nonce, $prefix.'nonce', 'nonce', 'hidden');
             $form .= page::getDivStart($prefix.'usernameDiv');
               $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
@@ -320,7 +314,7 @@
         $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
           $form .= page::getH2($title);
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
-          $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
+          $form .= page::getInput($this->$nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
           $form .= ($person_id) ? page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden') : '';
           $form .= page::getDivStart($prefix.'usernameDiv');
