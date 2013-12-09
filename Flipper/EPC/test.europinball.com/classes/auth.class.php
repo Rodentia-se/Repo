@@ -169,22 +169,27 @@
         break;
         case 'changeUser':
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            if ($this->login($_SESSION['username'], $_REQUEST['password'], $_REQUEST['nonce'])) {
-              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
-                $person = person($_SESSION['username'], 'username');
-                if ($person) {
-                  return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+            if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+              $this->Authenticate($_SESSION['username'], $_REQUEST['password']);
+              if ($this->IsAuthSuccess()) {
+                if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
+                  $person = person($_SESSION['username'], 'username');
+                  if ($person) {
+                    return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                  } else {
+                    error('Could not identify you, please logout and login again.');
+                  }
                 } else {
-                  error('Could not identify you, please logout and login again.');
+                  error('The password did not match, please try again.');
                 }
               } else {
-                error('The password did not match, please try again');
+                error('Could not login with your current credentials.');
               }
             } else {
-              error('Could not login with your current credentials');
+              error('Invalid nonce:, please clean cache and cookies and try again.');
             }
           } else {
-            error('Could not login with your current credentials');
+            error('Login failed due to missing parameters.');
           }
           return FALSE;
         break;
