@@ -253,7 +253,7 @@
         $form .= page::getFormStart($prefix.'loginForm');
           $form .= '<fieldset>';
             $form .= page::getInput('login', $prefix.'action', 'action', 'hidden');
-            $form .= page::getInput($this->nonce, $prefix.'nonce', 'nonce', 'hidden');
+            $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
             $form .= page::getDivStart($prefix.'usernameDiv');
               $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
