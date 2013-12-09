@@ -339,7 +339,7 @@
             content: "'.config::$login->msg.'",
             trigger: "custom",
             position: "right",
-            timer: 3000
+            timer: 10000
           })
           .tooltipster("show");
         ') : '';
