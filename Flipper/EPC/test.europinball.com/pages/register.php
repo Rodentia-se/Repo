@@ -132,10 +132,10 @@
           trigger: "custom",
           timer: 3000
         });
+        $("#addButton").click(function() {
+          $("#addForm").submit();
+        })
       ');
-      $("#addButton").click(function() {
-        $("#addForm").submit();
-      })
     }
   }
   
