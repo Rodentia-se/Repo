@@ -171,7 +171,7 @@
           if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
             if ($this->login($_SESSION['username'], $_REQUEST['password'], $_REQUEST['nonce'])) {
               if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
-                $person = person('username', $_SESSION['username']);
+                $person = person($_SESSION['username'], 'username');
                 if ($person) {
                   return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
                 } else {
