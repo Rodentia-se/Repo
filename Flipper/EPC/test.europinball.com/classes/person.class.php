@@ -160,6 +160,7 @@
     }
     
     public function getUid() {
+      debug(config::$login);
       if ($this->username) {
         $uid = config::$login->Uid($this->username);
         if ($uid) {
