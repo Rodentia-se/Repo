@@ -11,7 +11,7 @@
   
   if (isset($_REQUEST['nonce'])) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
-      auth::$verified = TRUE;
+      config::$login->verified = TRUE;
     } else {
       error('Invalid nonce');
     }
@@ -23,16 +23,16 @@
 
   if (!auth::nonce) {
     $nonce = ulNonce::Create('login');
-    config::$login->nonce = auth::$nonce
+    config::$login->nonce = $nonce;
   }
 
-  if (config::$login->loggedin() && !auth::$person) {
+  if (config::$login->loggedin() && !config::$login->person) {
     if (isset($_SESSION['username']) && $_SESSION['username']) {
-      auth::$person = person(array('username' => $_SESSION['username']), TRUE);
-    } else if ($this->Username($_SESSION['uid'])) {
-      $_SESSION['username'] = $this->Username($_SESSION['uid']);
+      config::$login->person = person(array('username' => $_SESSION['username']), TRUE);
+    } else if (config::$login->Username($_SESSION['uid'])) {
+      $_SESSION['username'] = config::$login->Username($_SESSION['uid']);
       if (isset($_SESSION['username']) && $_SESSION['username']) {
-        auth::$person = person(array('username' => $_SESSION['username']), TRUE);
+        config::$login->person = person(array('username' => $_SESSION['username']), TRUE);
       }
     }
   }
