@@ -616,8 +616,8 @@
       return $this->login->loggedin();
     }
 
-    public function addNewUser($title = 'Please provide your login credentials', $person_id) {
-      $dialog = self::getNewUser($title, $person_id);
+    public function addNewUser($title = 'Please provide your login credentials', $person_id, $prefis = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+      $dialog = self::getNewUser($title, $person_id, $prefix, $class, $dialog, $autoopen);
       $this->addContent($dialog);
       return $dialog;
     }

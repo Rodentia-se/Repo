@@ -150,22 +150,23 @@
               $("#searchResults").hide();
               $("#newGuy").hide();
               $("#addNewGuy").show();
+              $("#newUserusername").focus();
             });
           ');
           $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'));
         $page->closeDiv();
         $page->startDiv('addNewGuy', 'hidden');
-          $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. Make sure this is correct, and then choose a username and password below.');
-          $page->addNewUser('Register a new user', $person_id);
-          $page->addScript('
-            $("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
-          ');
+          $page->addParagraph('You have identified yourself as a new guy. Make sure this is correct, and then choose a username and password below.');
           $page->addParagraph('If you want to search again, click here: <input type="button" id="view_search_again" value="Search again">');
+          $page->addNewUser('Register a new user', $person_id, 'newUser');
+          $page->addScript('
+            $("#newUsernewUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");
+          ');
           $page->addScript('
             $("#view_search_again").click(function() {
               $("#addNewGuy").hide();
               $("#newGuy").show();
-              $("#searchResults").show();
+              $("#searchBox").focus();
             });
           ');
         $page->closeDiv();
