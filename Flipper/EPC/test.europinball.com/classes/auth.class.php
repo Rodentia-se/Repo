@@ -38,11 +38,9 @@
             self::$person = person(array('username' => $_SESSION['username']), TRUE);
           }
         }
-        self::$person = $this->getPerson();
-      } else {
-        if (!self::$nonce || !ulNonce::Exists('login')) {
-          self::$nonce = ulNonce::Create('login');
-        }
+      }
+      if (!self::$nonce || !ulNonce::Exists('login')) {
+        self::$nonce = ulNonce::Create('login');
       }
     }
     
