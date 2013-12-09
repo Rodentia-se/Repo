@@ -27,16 +27,6 @@
       parent::__construct($loginCallback, $loginFailCallback, $backend);
       debug('huff');
       $this->AutoLogin();
-      if ($this->loggedin() && !self::$person) {
-        if (isset($_SESSION['username']) && $_SESSION['username']) {
-          self::$person = person(array('username' => $_SESSION['username']), TRUE);
-        } else if ($this->Username($_SESSION['uid'])) {
-          $_SESSION['username'] = $this->Username($_SESSION['uid']);
-          if (isset($_SESSION['username']) && $_SESSION['username']) {
-            self::$person = person(array('username' => $_SESSION['username']), TRUE);
-          }
-        }
-      }
       if (!self::$nonce || !ulNonce::Exists('login')) {
         self::$nonce = ulNonce::Create('login');
       }
