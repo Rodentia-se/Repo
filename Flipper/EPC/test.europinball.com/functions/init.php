@@ -4,6 +4,12 @@
   require_once('general.php');
   
   config::$login = new auth();
+
+  if (isset($_REQUEST['debug'])) {
+    config::$debug = TRUE;
+    config::$showWarnings = TRUE;
+    config::$showErrors = TRUE;
+  }
   
   if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
