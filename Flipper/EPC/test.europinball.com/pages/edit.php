@@ -169,7 +169,7 @@
                   var el = this;
                   var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
                   var format = $("#" + $(el).children(":selected").text() + "Format").text();
-                  alert(format);
+                  showMsg(format); 
                   var newSum = sum.toMoney(2, ".", " ", "", format);
                   $(el).html(newSum);
                 });
