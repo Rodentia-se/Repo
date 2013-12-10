@@ -171,6 +171,7 @@
                 $(".currency").each(function () {
                   var el = this;
                   var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
+                  alert(sum);
                   var newSum = sum.toMoney();
                   $(el).html(newSum);
                 });
