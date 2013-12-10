@@ -236,10 +236,14 @@ $num = 1;
                   var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
                   $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
                   var costs = 0;
+                  var payMsg = $("#person_name").val() + " (ID: " + $("#person_id").val() + ") is paying for ";
+                  var payMsgs = [];
                   $(".each").each(function() {
-                    var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
+                    var id = this.id.replace("Each", "");
+                    var num = parseInt($("#" + id + "Num").val().replace(/[^0-9]/g, ""));
+                    payMsgs[] = id + ': ' + num;
                     costs += parseInt($(this).val()) * num;
-                  }); 
+                  });
                   var paid = parseInt($("#paid").val());
                   var subTotal = costs * rate;
                   $("#subTotal").html(subTotal.toMoney(0, ".", " ", "", format));
@@ -251,10 +255,13 @@ $num = 1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
 //                  var paidText = paidCur * -1;
 //                  $("#paidText").html("Paid: " + paidText.toMoney(0, ".", " ", "", format));
-                })
+                  payMsg += payMsgs.join(", ") + ", total: " + subTotal.toMoney(0, ".", " ", "", format) + ", already paid: " + paidCur.toMoney(0, ".", " ", "", format)";
+                  $("#payPalMsg").val(payMsg.replace(/"/g, ""));
                 .change();
               ');
             $page->closeDiv();
+            $page->addInput($person->id, 'person_id', NULL, 'hidden');
+            $page->addInput($person->name, 'person_name', NULL, 'hidden');
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
