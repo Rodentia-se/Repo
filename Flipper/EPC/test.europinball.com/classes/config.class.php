@@ -20,7 +20,7 @@
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
     public static $defaultCurrency = "EUR";
-    public static $acceptedCurrencies = array("EUR", "USD", "SEK");
+    public static $acceptedCurrencies = array('EUR', 'USD', 'SEK');
     public static $currencies = array(
       'EUR' => array(
         'name' => 'euro',
@@ -28,7 +28,7 @@
         'shortName' => 'EUR',
         'symbol' => '€',
         'format' => '€ §',
-        'value' => 1
+        'rate' => 1
       ), 
       'USD' => array(
         'name' => 'dollar',
@@ -36,7 +36,7 @@
         'shortName' => 'USD',
         'symbol' => '$',
         'format' => '$ §',
-        'value' => 0.6
+        'rate' => 1.7
       ),
       'GBP' => array(
         'name' => 'pund',
@@ -44,7 +44,7 @@
         'shortName' => 'GBP',
         'symbol' => '£',
         'format' => '£ §',
-        'value' => 1.1
+        'rate' => 10
       ),
       'SEK' => array(
         'name' => 'krona',
@@ -52,7 +52,7 @@
         'shortName' => 'SEK',
         'symbol' => 'kr',
         'format' => '§ kr',
-        'value' => 0.1
+        'rate' => 0.9
       )
     );
     

@@ -161,7 +161,7 @@
             $page->closeDiv();
             foreach(config::$acceptedCurrencies as $currency) {
               $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-              $page->addInput(config::$currencies[$currency]['value'], config::$currencies[$currency]['shortName'].'Value',  config::$currencies[$currency]['shortName'].'Value', 'hidden');
+              $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
             }
             $page->addScript('
               $("#currency").combobox()
@@ -194,7 +194,7 @@
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
               var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-              var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
+              var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
               var cost = num * each * rate;
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
