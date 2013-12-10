@@ -280,7 +280,7 @@ $num = 1;
                     $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
                     $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                   $page->closeForm();
-                  $page->addParagraph('We are using PayPal for credit card payments. To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the following pages.');
+                  $page->addParagraph('We are using PayPal for credit card payments. To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the following pages. We accept Visa, Mastercard, Discover and American Express.');
                 $page->closeDiv();
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
