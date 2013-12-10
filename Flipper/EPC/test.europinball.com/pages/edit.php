@@ -159,8 +159,9 @@
             $divisions = divisions('active');
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost')) {
-                $page->startDiv();
-                  $page->addInput($person->getCost($division), ucfirst($division->type). 'division');
+                $page->startDiv($division->type.'CostDiv');
+                  $page->addInput($person->getCost($division), camelCaseToSpace($division->type, TRUE));
+                  $page->addSpan($person->getCost($division), $division->type.'Cost')
                 $page->closeDiv();
               }
             }

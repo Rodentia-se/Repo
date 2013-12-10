@@ -18,6 +18,13 @@
     }
   }
   
+  function camelCaseToSpace($txt, $ucfirst = FALSE) {
+    $regexp = '/#(?<=[a-z])(?=[A-Z])/x';
+    $array = preg_split($regexp, $txt);
+    $return = implode($array, ' ');
+    return ($ucfirst) ? ucfirst($return) : $return;
+  }
+  
   function preDump($obj, $title = NULL) {
     echo '<pre>';
     echo ($title) ? $title.': ' : '';
