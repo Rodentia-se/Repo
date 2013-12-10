@@ -181,7 +181,7 @@
                   $costs += $cost;
                   $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost', 'Main');
                   $page->addSpan($cost, $division->type.'Cost', 'currency');
-                  $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden');
+                  $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
                 $page->closeDiv();
               }
             }
@@ -203,6 +203,12 @@
               showMsg(cost + " " + num + " " + each + " " + rate);
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
+              var costs = 0
+              $(".each").each(function() {
+                costs += $(this).val();
+              }));
+              var total = costs * rate;
+              $("#total").html(total.toMoney(0, ".", " ", "", format));
             });
           ');
         }
