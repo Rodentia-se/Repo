@@ -167,7 +167,7 @@
               $("#currency").combobox()
               .change(function(){
                 var format = $("#" + $(this).text() + "Format").val();
-                var rate = parseInt($("#" + $(this).text() + "Value").val());
+                var rate = $("#" + $(this).text() + "Value").val();
                 $(".currency").each(function () {
                   var num = parseInt($("#" + this.id.replace("Cost", "Num")).val().replace(/[^0-9]/g, ""));
                   var each = parseInt($("#" + this.id.replace("Cost", "Each")).val().replace(/[^0-9]/g, ""));
@@ -202,7 +202,7 @@
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
               var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-              var rate = parseInt($("#" + $("#currency").children(":selected").text() + "Value").val());
+              var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
               var cost = num * each * rate;
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
