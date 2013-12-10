@@ -115,7 +115,7 @@
           timer: 10000
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
-      ') : '';
+      ');
       $footer .= '
           </body>
         </html>
