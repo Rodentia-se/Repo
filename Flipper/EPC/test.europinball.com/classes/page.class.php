@@ -437,7 +437,7 @@
     public static function getInput($value = NULL, $id = NULL, $name = NULL, $type = 'text', $class = NULL, $label = TRUE, $close = FALSE, $disabled = FALSE) {
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
-      $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? ucfirst($name) : $label);
+      $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? camelCaseToSpace($name, TRUE) : $label);
       $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">' : '';
       if ($type == 'radio' || $type == 'checkbox') {
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? ' name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? $label.'</label>' : '');
@@ -450,6 +450,33 @@
         $input .= self::getCloseIcon($id);
       }
       return $input;
+    }
+    
+    public function addSimpleSelect($array, $id = NULL, $name = NULL, $class = NULL, $label = TRUE, $selected = NULL, $choice = FALSE) {
+      $select = self::getSimpleSelect($objs, $id, $name, $class, $label, $selected, $choice);
+      $this->addContent($select);
+      return $select;
+    }
+
+    public static getSimpleSelect($array, $id = NULL, $name = NULL, $class = NULL, $label = TRUE, $selected = NULL, $choice = FALSE) {
+      if (is_object($array)) {
+        $array = (array) $array;
+      }
+      if (is_array($array) && count($array) > 0) {
+        $id = ($id) ? $id : (($name) ? $name : NULL);
+        $name = ($name) ? $name : (($id) ? $id : NULL);
+        $label = ($label === TRUE) ? camelCaseToSpace($name, TRUE) : $label;
+        $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
+        $select .= '<select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">';
+        $select .= ($choice) ? '<option value="0">'.(($choice === TRUE) ? 'Choose '.camelCaseToSpace($name) : $choice).'</option>' : '';
+        foreach ($array as $value => $text) {
+          $select .= '<option value="'.$value.'"'.(($value == $selected) ? ' selected' : '').'>'.$text.'</option>';
+        }
+        $select .= '</select>';
+        return $select;
+      } else {
+        return FALSE;
+      }
     }
 
     public function addSelect($objs = NULL, $id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {

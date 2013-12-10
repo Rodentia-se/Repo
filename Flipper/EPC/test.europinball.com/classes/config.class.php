@@ -19,7 +19,42 @@
     public static $activeDivisions = array('main', 'eighties', 'nationalTeam');
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
-    public static $currency = "EUR";
+    public static $defaultCurrency = "EUR";
+    public static $acceptedCurrencies = array("EUR", "USD");
+    public static $currencies = array(
+      'EUR' => array(
+        'name' => 'euro',
+        'plural' => 'euro',
+        'shortName' => 'EUR',
+        'symbol' => '€',
+        'format' => '€ §',
+        'value' => 1
+      ), 
+      'USD' => array(
+        'name' => 'dollar',
+        'plural' => 'dollar',
+        'shortName' => 'USD',
+        'symbol' => '$',
+        'format' => '$ §',
+        'value' => 1
+      ),
+      'GBP' => array(
+        'name' => 'pund',
+        'plural' => 'pounds',
+        'shortName' => 'GBP',
+        'symbol' => '£',
+        'format' => '£ §',
+        'value' => 1
+      ),
+      'SEK' => array(
+        'name' => 'krona',
+        'plural' => 'kronor',
+        'shortName' => 'SEK',
+        'symbol' => 'kr',
+        'format' => '§ kr',
+        'value' => 1
+      )
+    )
     
     public static $participationLimit = 128;
     public static $tshirts = TRUE;
