@@ -175,14 +175,13 @@
                   $cost = $person->getCost($division);
                   $costs += $cost;
                   $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost', camelCaseToSpace($division->type, TRUE));
-                  $page->addLabel('Total');
-                  $page->addSpan('&nbsp;', 'totalSpan');
                   $page->addSpan($cost, $division->type.'Cost', 'currency');
                   $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
                 $page->closeDiv();
               }
             }
-          $page->addLabel('Total');  
+          $page->addLabel('Total');
+          $page->addSpan('&nbsp;', 'totalSpan');
           $page->addSpan($costs, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
