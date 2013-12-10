@@ -163,6 +163,7 @@
               }
             $page->closeDiv();
             $page->addScript('
+              var curVal = 0;
               try {
                 var curVal = dataStore.getItem("curVal");
               } catch(e) {
