@@ -302,6 +302,7 @@ $num = 1;
               } catch(e) {
                 var payIndex = 0;
               };
+              payIndex = (parseInt(payIndex)) ? parseInt(payIndex) : 0;
               $("#payTabs").tabs({
                 active: payIndex,
                 activate: function(event, ui) {
@@ -325,6 +326,7 @@ $num = 1;
         } catch(e) {
           var tabIndex = 0;
         };
+        tabIndex = (parseInt(tabIndex)) ? parseInt(tabIndex) : 0;
         $("#tabs").tabs({
           active: tabIndex,
           activate: function(event, ui) {
