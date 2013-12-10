@@ -165,9 +165,9 @@
             $page->addScript('
               var curVal = 0;
               try {
-                var curVal = dataStore.getItem("curVal");
+                curVal = dataStore.getItem("curVal");
               } catch(e) {
-                var curVal = 0;
+                curVal = 0;
               };
               showMsg(curVal);
               $("#currency").val(curVal)
