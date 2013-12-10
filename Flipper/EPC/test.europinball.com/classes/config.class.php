@@ -44,7 +44,7 @@
         'shortName' => 'GBP',
         'symbol' => '£',
         'format' => '£ §',
-        'rate' => 10
+        'rate' => 0.9
       ),
       'SEK' => array(
         'name' => 'krona',
@@ -52,7 +52,7 @@
         'shortName' => 'SEK',
         'symbol' => 'kr',
         'format' => '§ kr',
-        'rate' => 0.9
+        'rate' => 10
       )
     );
     
