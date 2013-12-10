@@ -177,7 +177,6 @@
           <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
           <div>'.page::getLabel('Divisions').$checkboxes.'</div>
           <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-          <div>'.page::getSimpleSelect(config::$acceptedCurrencies, 'qdasd', 'asd', 'combobox').'</div>
         </div>
       ';
     }
