@@ -216,7 +216,7 @@ $num = 1;
               $page->startDiv('paidDiv');
                 $page->addLabel('&nbsp;');
                 $page->addLabel('Already paid', 'paidText', 'short');
-//                $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', '&nbsp;', FALSE, TRUE);
+                $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', '&nbsp;', FALSE, TRUE);
                 $page->addSpan($person->paid * -1, 'paidCur', 'currency');
                 $page->addInput($person->paid, 'paid', 'paid', 'hidden');
                 $payMsg .= ', already paid: '.$person->paid;
