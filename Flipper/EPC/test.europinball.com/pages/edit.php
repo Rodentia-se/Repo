@@ -168,9 +168,9 @@
                 $(".currency").each(function () {
                   var el = this;
                   var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
-                  var format = $("#" + $(el).children(":selected").text() + "Format").text();
-                  showMsg(format); 
-                  var newSum = sum.toMoney(2, ".", " ", "", format);
+                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+                  showMsg($("#currency").children(":selected").text()); 
+                  var newSum = sum.toMoney(0, ".", " ", "", format);
                   $(el).html(newSum);
                 });
               });
