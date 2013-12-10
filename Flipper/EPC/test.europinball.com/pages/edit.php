@@ -163,12 +163,12 @@
               }
             $page->closeDiv();
             $page->addScript('
-              var curVal = 0;
               try {
-                curVal = dataStore.getItem("curVal");
+                var curVal = dataStore.getItem("curVal");
               } catch(e) {
-                curVal = 0;
+                var curVal = 0;
               };
+              var curVal = (curVal) ? curVal : 0;
               showMsg(curVal);
               $("#currency").val(curVal)
               .combobox()
