@@ -50,13 +50,21 @@
         $class = static::$objClass;
         $query = $class::$select;
         $objs = $this->db->getObjects($query, $class);
+      } else if (in_array($data, array('login', 'auth')) {
+        $person = person($data);
+        if ($person) {
+          $objs = $this->db->getObjectsByProp(static::$objClass, 'person_id', $person->id);
+        }
       } else if (in_array($data, array('active', 'current')) {
-        $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentEdition_id', config::${$data}Tournament);
-      } else if (in_array($data, config::$activeDivisions) {
-        $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', config::${$data}Division);
+        $tournament = tournament($data);
+        if ($tournament) {
+          $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentEdition_id', $tournament->id);
+        }
       } else if (in_array($data, config::$divisions) {
         $division = division($data);
-        $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
+        if ($division) {
+          $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
+        }
       }
       if ($objs) {
         $objs = $objs->array_unique(SORT_REGULAR);
