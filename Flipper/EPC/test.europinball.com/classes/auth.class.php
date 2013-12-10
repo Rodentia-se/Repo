@@ -141,19 +141,25 @@
         case 'login':
           if ($this->verified) {
             if ($_REQUEST['username'] && $_REQUEST['password']) {
-              return $this->login($_REQUEST['username'], $_REQUEST['password']);
+              if ($this->login($_REQUEST['username'], $_REQUEST['password'])) {
+                config::$msg = 'You have been logged in.';
+                return TRUE
+              } else {
+                config::$msg = 'Login failed.';
+                error('Could not log you in');
+              }
             } else {
               config::$msg = 'Login failed.';
               error('Could not log you in');
-              return FALSE;
             }
           } else {
             config::$msg = 'Invalid nonce. Did you login to an old window? Please try again.';
             error('Invalid nonce 1, please clean cache and cookies and try again.');
-            return FALSE;
           }
+          return FALSE;
         break;
         case 'logout':
+          config::$msg = 'You have been logged out.';
           return $this->logoff();
         break;
         case 'changeUser':
