@@ -158,7 +158,7 @@
             $page->addH2('Payment options');
             $divisions = divisions('active');
             foreach ($divisions as $division) {
-              if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost') {
+              if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
                 $page->startDiv($division->type.'CostDiv');
                   $page->addInput($person->getCost($division), camelCaseToSpace($division->type, TRUE));
                   $page->addSpan($person->getCost($division), $division->type.'Cost');
