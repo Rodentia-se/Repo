@@ -143,7 +143,7 @@
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               return $this->login($_REQUEST['username'], $_REQUEST['password']);
             } else {
-              $this->msg = 'Login failed.';
+              config::$msg = 'Login failed.';
               error('Could not log you in');
               return FALSE;
             }
@@ -165,10 +165,10 @@
                   if ($person) {
                     $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
                     if ($change) {
-                      $this->msg = 'Credential changes were successful.';
+                      config::$msg = 'Credentials were successfully changed.';
                       return TRUE;
                     } else {
-                      $this->msg = 'Credential changes failed.';
+                      config::$msg = 'Credential changes failed.';
                       return FALSE;
                     }
                   } else {
@@ -273,16 +273,6 @@
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
-        $form .= (config::$login->msg) ? page::getScript('
-          $("#'.$prefix.'loginForm").tooltipster({
-            theme: ".tooltipster-light",
-            content: "'.config::$login->msg.'",
-            trigger: "custom",
-            position: "right",
-            timer: 10000
-          })
-          .tooltipster("show");
-        ') : '';
         $form .= page::getLabel(' ');
         $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getButton('I forgot all this!', $prefix.'reset');
@@ -349,16 +339,6 @@
           $form .= page::getDivEnd();
           $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
-        $form .= (config::$login->msg) ? page::getScript('
-          $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").tooltipster({
-            theme: ".tooltipster-light",
-            content: "'.config::$login->msg.'",
-            trigger: "custom",
-            position: "right",
-            timer: 10000
-          })
-          .tooltipster("show");
-        ') : '';
       $form .= page::getDivEnd();
       if ($dialog) {
         $form .= page::getScript('

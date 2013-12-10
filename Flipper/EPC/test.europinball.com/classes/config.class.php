@@ -3,6 +3,7 @@
   class config {
     
     public static $login;
+    public static $msg;
     public static $currentTournament = 1;
 
     public static $dbhost = 'localhost';
