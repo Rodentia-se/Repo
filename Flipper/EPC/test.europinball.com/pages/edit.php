@@ -182,13 +182,14 @@
                   $cost = $person->getCost($division);
                   $costs += $cost;
                   $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost short', camelCaseToSpace($division->type, TRUE));
-                  $page->addSpan($cost, $division->type.'Cost', 'currency');
+                  $page->addSpan($cost, $division->type.'Cost');
                   $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
                 $page->closeDiv();
               }
             }
           $page->startDiv('paidDiv');
-            $page->addInput('Paid: '.$person->paid * -1, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
+            $page->addInput('Paid: '.$person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
+            $page->addSpan($person->paid * -1, 'paidCur');
             $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->closeDiv();
           $page->addLabel('Total');
@@ -210,7 +211,8 @@
               });
               var paid = parseInt($("#paid").val());
               var total = (costs - paid) * rate;
-              var paidCur = paid * rate;
+              var paidCur = paid * rate * -1;
+              $("#paidText").html(paidCur.toMoney(0, ".", " ", "", format));
               var paidText = paidCur * -1;
               $("#total").html(total.toMoney(0, ".", " ", "", format));
               $("#paidText").val("Paid: " + paidText.toMoney(0, ".", " ", "", format));
