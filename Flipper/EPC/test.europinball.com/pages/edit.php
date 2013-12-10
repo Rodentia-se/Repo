@@ -188,7 +188,7 @@
               }
             }
           $page->startDiv('paidDiv');
-            $page->addInput('Paid: '.$person->paid * -1, 'paidText', 'paidText', 'text', short, 'Paid', FALSE, TRUE);
+            $page->addInput('Paid: '.$person->paid * -1, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
             $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->closeDiv();
           $page->addLabel('Total');
