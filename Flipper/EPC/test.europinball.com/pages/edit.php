@@ -283,7 +283,7 @@ $num = 1;
               } catch(e) {
                 var payIndex = 0;
               };
-              $("#tabs").tabs({
+              $("#payTabs").tabs({
                 active: payIndex,
                 activate: function(event, ui) {
                   dataStore.setItem("payIndex", ui.newTab.parent().children().index(ui.newTab));
