@@ -342,7 +342,7 @@
     return ($data === FALSE) ? FALSE : new sets($data, $search);
   }
 
-  function isSet($set) {
+  function isMatchSet($set) {
     return (isObj($set) && get_class($set) == 'set');
   }
 
