@@ -217,32 +217,6 @@ $num = 1;
                 $page->addSpan($costs - $person->paid, 'total', 'currency');
                 $payMsg .= ', total: '.$costs;
               $page->closeDiv();
-              $page->addScript('
-                $(".cost").change(function() {
-                  var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
-                  alert(this.id);
-                  var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-                  var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
-                  var cost = num * each * rate;
-                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-                  $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
-                  var costs = 0;
-                  $(".each").each(function() {
-                    var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
-                    costs += parseInt($(this).val()) * num;
-                  }); 
-                  var paid = parseInt($("#paid").val());
-                  var total = (costs - paid) * rate;
-                  $(".totals").val(total);
-                  $(".totalSpans").html(total);
-                  $("#total").html(total.toMoney(0, ".", " ", "", format));
-                  var paidCur = paid * rate * -1;
-                  $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
-                  var paidText = paidCur * -1;
-                  $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
-                })
-                .change();
-              ');
             $page->closeDiv();
             $page->startDiv('payTabs');
               $page->startUl();
@@ -279,6 +253,32 @@ $num = 1;
                 $page->startDiv('Domestic');
                 $page->closeDiv();
               }
+              $page->addScript('
+                $(".cost").change(function() {
+                  var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
+                  alert(this.id);
+                  var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
+                  var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
+                  var cost = num * each * rate;
+                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+                  $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
+                  var costs = 0;
+                  $(".each").each(function() {
+                    var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
+                    costs += parseInt($(this).val()) * num;
+                  }); 
+                  var paid = parseInt($("#paid").val());
+                  var total = (costs - paid) * rate;
+                  $(".totals").val(total);
+                  $(".totalSpans").html(total);
+                  $("#total").html(total.toMoney(0, ".", " ", "", format));
+                  var paidCur = paid * rate * -1;
+                  $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
+                  var paidText = paidCur * -1;
+                  $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
+                })
+                .change();
+              ');
             $page->closeDiv();
             $page->addScript('
               try {
