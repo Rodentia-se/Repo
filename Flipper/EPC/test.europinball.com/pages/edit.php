@@ -168,7 +168,7 @@
               } catch(e) {
                 var curVal = 0;
               };
-              curVal = (curVal && typeof curVal != "string") ? curVal : 0;
+              curVal = parseInt(curVal);
               alert(typeof curVal);
               $("#currency").val(curVal)
               .combobox()
