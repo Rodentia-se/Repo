@@ -312,7 +312,6 @@ $num = 1;
                 }
               });
             ');
-          $page->addParagraph('&nbsp;');
           $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.');
           $page->closeDiv();
         }
