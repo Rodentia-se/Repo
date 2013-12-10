@@ -115,9 +115,9 @@
           }
         }
       }
-      $tshirts = tshirts($person);
       if (!$type || $type == 'all' || $type == 'tshirts') {
-        $cost += count($tshirts) * config::$tshirtCost;
+//        $cost += count(tshirts($person)) * config::$tshirtCost;
+        $cost += 1 * config::$tshirtCost;
       }
       return $cost;
     }

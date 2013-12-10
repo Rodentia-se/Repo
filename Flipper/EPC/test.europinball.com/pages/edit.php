@@ -194,7 +194,8 @@
               $payMsg .= implode($payMsgs, ', ');
               if (config::$tshirts && config::$tshirtCost > 0) {
                 $page->startDiv('TshirtDiv');
-                  $num = count(tshirts($person));
+//                  $num = count(tshirts($person));
+$num = 1;
                   $cost = $person->getCost('tshirt');
                   $costs += $cost;
                   $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');
