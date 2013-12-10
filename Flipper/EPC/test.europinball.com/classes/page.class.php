@@ -257,7 +257,7 @@
     }
 
     public function startForm($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
-      $form = self::getFormStart($id, $class, $action, $method);
+      $form = self::getFormStart($id, $class, $action, $method, $ext);
       $this->addContent($form);
       return $form;
     }
