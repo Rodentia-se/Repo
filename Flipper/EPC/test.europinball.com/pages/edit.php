@@ -157,7 +157,7 @@
             $page->addH2('Payment options');
             $divisions = divisions('active');
             $page->startDiv('currencyDiv');
-              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency');
+              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox');
             $page->closeDiv();
             foreach(config::$acceptedCurrencies as $currency) {
               $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
