@@ -26,6 +26,7 @@
 span.currency {
   width: 30px;
   text-align: justify;
+  display: inline-block;
 }
 
 .preview {

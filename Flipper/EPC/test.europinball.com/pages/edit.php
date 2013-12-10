@@ -188,7 +188,7 @@
               }
             }
           $page->startDiv('paidDiv');
-            $page->addInput('Paid: '.$person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
+            $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
             $page->addSpan($person->paid * -1, 'paidCur', 'currency');
             $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->closeDiv();
@@ -215,7 +215,7 @@
               var paidCur = paid * rate * -1;
               $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
               var paidText = paidCur * -1;
-              $("#paidText").val("Paid: " + paidText.toMoney(0, ".", " ", "", format));
+              $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
             })
             .change();
           ');
