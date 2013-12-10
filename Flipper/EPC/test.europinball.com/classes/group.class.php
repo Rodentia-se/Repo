@@ -63,10 +63,11 @@
       } else if (in_array($data, config::$divisions)) {
         $division = division($data);
         if ($division) {
-          $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
+          $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
         }
       }
       if ($objs) {
+        debug($objs);
         $objs = $objs->array_unique(SORT_REGULAR);
         foreach ($objs as $obj) {
           $this[] = $obj;
