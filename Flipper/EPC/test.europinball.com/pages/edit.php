@@ -254,31 +254,35 @@ $num = 1;
               $page->closeUl();
               if (in_array('Credit card', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'Credit card'));
-                  $page->startForm('payPalForm', NULL, 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
-                  $page->addInput('_xclick', NULL, 'cmd', 'hidden');
-                  $page->addInput(config::$payPalAccount, NULL, 'business', 'hidden');
-                  $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
-                  $page->addInput(config::$payPalItem, NULL, 'item_name', 'hidden');
-                  $page->addInput('1', NULL, 'item_number', 'hidden');
-                  $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
-                  $page->addInput(config::$payPalPageStyle, NULL, 'page_style', 'hidden');
-                  $page->addInput('1', NULL, 'no_shipping', 'hidden');
-                  $page->addInput(config::$baseHref.'/pages/paymentok.php', NULL, 'return', 'hidden');
-                  $page->addInput(config::$baseHref.'/pages/paymentcancel.php', NULL, 'cancel_return', 'hidden');
-                  $page->addInput('What you are paying for', NULL, 'cn', 'hidden');
-                  $page->addInput('Pay for', NULL, 'on0', 'hidden');
-                  $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden');
-                  $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
-                  $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
+                  $page->startForm('payPalForm', 'left', 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
+                    $page->addInput('_xclick', NULL, 'cmd', 'hidden');
+                    $page->addInput(config::$payPalAccount, NULL, 'business', 'hidden');
+                    $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
+                    $page->addInput(config::$payPalItem, NULL, 'item_name', 'hidden');
+                    $page->addInput('1', NULL, 'item_number', 'hidden');
+                    $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
+                    $page->addInput(config::$payPalPageStyle, NULL, 'page_style', 'hidden');
+                    $page->addInput('1', NULL, 'no_shipping', 'hidden');
+                    $page->addInput(config::$baseHref.'/pages/paymentok.php', NULL, 'return', 'hidden');
+                    $page->addInput(config::$baseHref.'/pages/paymentcancel.php', NULL, 'cancel_return', 'hidden');
+                    $page->addInput('What you are paying for', NULL, 'cn', 'hidden');
+                    $page->addInput('Pay for', NULL, 'on0', 'hidden');
+                    $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden');
+                    $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
+                    $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
+                  $page->closeForm();
+                  $page->addParagraph('To pay using a credit card, click the button and choose "I have no PayPal account".')
                 $page->closeDiv();
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
                   $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
+                  $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
               if (in_array('Domestic bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'Domestic bank transfer'));
+                  $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
             $page->closeDiv();
