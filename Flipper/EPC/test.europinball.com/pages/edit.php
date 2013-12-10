@@ -203,10 +203,10 @@
               showMsg(cost + " " + num + " " + each + " " + rate);
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
-              var costs = 0
+              var costs = 0;
               $(".each").each(function() {
                 costs += $(this).val();
-              }));
+              });
               var total = costs * rate;
               $("#total").html(total.toMoney(0, ".", " ", "", format));
             });
