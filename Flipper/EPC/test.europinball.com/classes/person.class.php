@@ -102,6 +102,8 @@
     public function getCost($type = NULL) {
       if (!$type || isTournament($type) || in_array($type, array_merge(array('active', 'current'), config::$divisions))) {
         $divisions = divisions((($type) ? $type : 'active'));
+      } else {
+        $divisions = divisions($type);
       }
       $cost = 0;
       if ($divisions && count($divisions) > 0) {
