@@ -177,11 +177,13 @@
                 $page->startDiv($division->type.'CostDiv');
                   $cost = $person->getCost($division);
                   $costs += $cost;
+                  $page->addInput(1, $division->type.'Num');
                   $page->addSpan($cost, $division->type.'Cost', 'currency');
                 $page->closeDiv();
               }
             }
-          $page->addSpan($costs, 'Total', 'currency');
+          $page->addLabel('Total');
+          $page->addSpan($costs, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
             $(".currency").each(function () {
