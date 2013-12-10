@@ -241,7 +241,7 @@ $num = 1;
                   $(".each").each(function() {
                     var id = this.id.replace("Each", "");
                     var num = parseInt($("#" + id + "Num").val().replace(/[^0-9]/g, ""));
-                    payMsgs[] = id + ': ' + num;
+                    payMsgs[] = id + ": " + num;
                     costs += parseInt($(this).val()) * num;
                   });
                   var paid = parseInt($("#paid").val());
