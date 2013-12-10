@@ -182,7 +182,7 @@
                 $page->closeDiv();
               }
             }
-          $page->addLabel('Total');
+          $page->addLabel('Total');  
           $page->addSpan($costs, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
