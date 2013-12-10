@@ -204,7 +204,8 @@
               $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
               var costs = 0;
               $(".each").each(function() {
-                costs += parseInt($(this).val());
+                var num = parseInt($("#" + $(this).attr("id").replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
+                costs += parseInt($(this).val()) * num;
               });
               var total = costs * rate;
               showMsg(total + " " + costs + " " + rate);
