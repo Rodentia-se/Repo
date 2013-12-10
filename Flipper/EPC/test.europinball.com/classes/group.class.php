@@ -69,7 +69,6 @@
         }
       }
       if ($objs) {
-        debug($objs);
         $objs = $objs->array_unique(SORT_REGULAR);
         foreach ($objs as $obj) {
           $this[] = $obj;
