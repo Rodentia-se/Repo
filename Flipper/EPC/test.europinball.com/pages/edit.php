@@ -157,11 +157,11 @@
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency');
+              foreach(config::$acceptedCurrencies as $currency) {
+                $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
+                $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
+              }
             $page->closeDiv();
-            foreach(config::$acceptedCurrencies as $currency) {
-              $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-              $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
-            }
             $page->addScript('
               try {
                 var curVal = dataStore.getItem("curVal");
@@ -187,14 +187,16 @@
                 $page->closeDiv();
               }
             }
-          $page->startDiv('paidDiv');
-            $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
-            $page->addSpan($person->paid * -1, 'paidCur', 'currency');
-            $page->addInput($person->paid, 'paid', 'paid', 'hidden');
-          $page->closeDiv();
-          $page->addLabel('Total');
-          $page->addSpan('&nbsp;', 'paidFiller', 'short');
-          $page->addSpan($costs - $person->paid, 'total', 'currency');
+            $page->startDiv('paidDiv');
+              $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
+              $page->addSpan($person->paid * -1, 'paidCur', 'currency');
+              $page->addInput($person->paid, 'paid', 'paid', 'hidden');
+            $page->closeDiv();
+            $page->startDiv('totalDiv');
+              $page->addLabel('Total');
+              $page->addSpan('&nbsp;', 'paidFiller', 'short');
+              $page->addSpan($costs - $person->paid, 'total', 'currency');
+            $page->closeDiv();
           $page->closeDiv();
           $page->addScript('
             $(".cost").change(function() {
