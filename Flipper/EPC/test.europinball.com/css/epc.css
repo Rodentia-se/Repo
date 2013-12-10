@@ -23,10 +23,6 @@
   width: 50px;
 }
 
-input.cost {
-  width: 86px;
-}
-
 .preview {
   max-width: 450px;
   max-heigth: 900px;
@@ -58,6 +54,10 @@ input[type=text], input[type=password] {
   -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
   -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+
+input.cost {
+  width: 86px;
 }
 
 .addIcon {
