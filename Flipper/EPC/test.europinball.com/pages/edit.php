@@ -177,7 +177,7 @@
                 $page->startDiv($division->type.'CostDiv');
                   $cost = $person->getCost($division);
                   $costs += $cost;
-                  $page->addInput(1, $division->type);
+                  $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', NULL, 'Main');
 //                  $page->addSpan($cost, $division->type.'Cost', 'currency');
                 $page->closeDiv();
               }
