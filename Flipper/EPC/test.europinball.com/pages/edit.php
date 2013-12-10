@@ -158,10 +158,10 @@
             $divisions = divisions('active');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency');
-              foreach(config::$acceptedCurrencies as $currency) {
-                $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-              }
             $page->closeDiv();
+            foreach(config::$acceptedCurrencies as $currency) {
+              $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
+            }
             $page->addScript('
               $("#currency").combobox()
               .change(function(){
@@ -177,7 +177,7 @@
                 $page->startDiv($division->type.'CostDiv');
                   $cost = $person->getCost($division);
                   $costs += $cost;
-                  $page->addInput(1, $division->type.'Num');
+                  $page->addInput(1, $division->type);
 //                  $page->addSpan($cost, $division->type.'Cost', 'currency');
                 $page->closeDiv();
               }
