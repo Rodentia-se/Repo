@@ -153,8 +153,13 @@
           $page->startDiv('volunteer');
           $page->closeDiv();
         }
-        if (in_array('volunteer', config::$editSections)) {
+        if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
+            $page->addH2('Payment options');
+            $divisions = divisions('active');
+            foreach ($divisions as $division) {
+              $page->addInput($person->getCost($division), $division->type.'Cost');
+            }
           $page->closeDiv();
         }
       $page->closeDiv();

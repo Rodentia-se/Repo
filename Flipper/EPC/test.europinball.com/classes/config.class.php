@@ -19,9 +19,11 @@
     public static $activeDivisions = array('main', 'eighties', 'nationalTeam');
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
+    public static $currency = "EUR";
     
     public static $participationLimit = 128;
     public static $tshirts = TRUE;
+    public static $tshirtCost = 15;
     public static $qualGroups = TRUE;
     
     public static $editSections = array(
@@ -36,23 +38,28 @@
     
     public static $main = TRUE;
     public static $mainDivision = 15;
-    public static $mainQualLimit = FALSE;
+    public static $mainQualGroupLimit = FALSE;
+    public static $mainCost = 30;
  
     public static $classics = FALSE;
     public static $classicsDivision = FALSE;
-    public static $classicsQualLimit = FALSE;
+    public static $classicsQualGroupLimit = FALSE;
+    public static $classicsCost = 0;
  
     public static $eighties = TRUE;
     public static $eightiesDivision = 16;
-    public static $eightiesQualLimit = FALSE;
+    public static $eightiesQualGroupLimit = FALSE;
+    public static $eightiesCost = 0;
  
     public static $team = FALSE;
     public static $teamDivision = FALSE;
-    public static $teamQualLimit = FALSE;
- 
+    public static $teamQualGroupLimit = FALSE;
+    public static $teamCost = 0;
+
     public static $nationalTeam = TRUE;
     public static $nationalTeamDivision = 17;
-    public static $nationalTeamQualLimit = FALSE;
+    public static $nationalTeamQualGroupLimit = FALSE;
+    public static $nationalTeamCost = 0;
 
     public static $baseHref = 'https://test.europinball.org/';
     public static $baseDir = '/www/test.europinball.com/';

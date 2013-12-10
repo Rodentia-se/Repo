@@ -98,6 +98,26 @@
       }
       parent::__construct($data, $search, $depth);
     }
+    
+    public function getCost($type = NULL) {
+      if (!$type || isTournament($type) || in_array($type, array_merge(array('active', 'current'), config::$divisions))) {
+        $divisions = divisions((($type) ? $type : 'active'));
+      }
+      $cost = 0;
+      if ($divisions && count($divisions) > 0) {
+        foreach ($divisions as $division) {
+          $player = player($this, $division);
+          if ($player) {
+            $cost += config::${$division->type.'Cost'}
+          }
+        }
+      }
+      $tshirts = tshirts($person);
+      if (!$type || $type == 'all' || $type == 'tshirts') {
+        $cost += count($tshirts) * config::$tshirtCost;
+      }
+      return $cost;
+    }
 
     public function addPlayer($division = NULL) {
       $division = ($division) ? division($division) : division('active');
