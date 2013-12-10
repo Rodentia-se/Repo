@@ -21,6 +21,11 @@
     public static $activeTeamDivisions = array('nationalTeam');
     
     public static $paymentOptions = array('PayPal', 'International');
+    public static $payPalAccount = 'pay@pal.pp.se';
+    public static $payPalItem = 'EPC Entrance Fee';
+    public static $payPalPageStyle= 'EPC';
+    public static $swiftAddress = 'SWEDSESS';
+    public static $ibanAccount = 'SE2280000832799031920490';
     public static $defaultCurrency = 'EUR';
     public static $acceptedCurrencies = array('EUR', 'USD', 'SEK');
     public static $currencies = array(

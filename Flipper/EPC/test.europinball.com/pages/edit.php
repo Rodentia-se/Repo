@@ -173,6 +173,7 @@
               .change(function(){
                 dataStore.setItem("curVal", $(this).val());
                 $(".curCodes").val($(this).children(":selected").text())
+                $(".curCodeSpans").html($(this).children(":selected").text())
                 $(".cost").change();
               });
             ');
@@ -233,6 +234,7 @@ $num = 1;
                   var paid = parseInt($("#paid").val());
                   var total = (costs - paid) * rate;
                   $(".totals").val(total);
+                  $(".totalSpans").html(total);
                   $("#total").html(total.toMoney(0, ".", " ", "", format));
                   var paidCur = paid * rate * -1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
@@ -252,12 +254,12 @@ $num = 1;
                 $page->startDiv('PayPal');
                   $page->startForm('payPalForm', NULL, 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
                   $page->addInput('_xclick', NULL, 'cmd', 'hidden');
-                  $page->addInput('pay@pal.pp.se', NULL, 'business', 'hidden');
+                  $page->addInput(config::$payPalAccount, NULL, 'business', 'hidden');
                   $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
-                  $page->addInput('EPC Entrance Fee', NULL, 'item_name', 'hidden');
+                  $page->addInput(config::$payPalItem, NULL, 'item_name', 'hidden');
                   $page->addInput('1', NULL, 'item_number', 'hidden');
                   $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
-                  $page->addInput('EPC', NULL, 'page_style', 'hidden');
+                  $page->addInput(config::$payPalPageStyle, NULL, 'page_style', 'hidden');
                   $page->addInput('1', NULL, 'no_shipping', 'hidden');
                   $page->addInput(config::$baseHref.'/pages/paymentok.php', NULL, 'return', 'hidden');
                   $page->addInput(config::$baseHref.'/pages/paymentcancel.php', NULL, 'cancel_return', 'hidden');
@@ -270,6 +272,7 @@ $num = 1;
               }
               if (in_array('International', config::$paymentOptions)) {
                 $page->startDiv('International');
+                  $page->addParagraph('Pay <span class="curCodeSpans">'.config::$defaultCurrency.'</span> <span class="totalSpans">'.$costs - $person->paid.'</span>to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
                 $page->closeDiv();
               }
               if (in_array('Domestic', config::$paymentOptions)) {
