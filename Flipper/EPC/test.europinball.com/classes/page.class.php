@@ -438,7 +438,7 @@
       $id = ($id) ? $id : (($name) ? $name : NULL);
       $name = ($name) ? $name : (($id) ? $id : NULL);
       $label = ($type == 'hidden') ? FALSE : (($label === TRUE) ? camelCaseToSpace($name, TRUE) : $label);
-      $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($class) ? $class.'Label' : '').(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">' : '';
+      $input = ($label) ? '<label for="'.$name.'" id="'.$id.'Label" class="'.(($type == 'radio' || $type == 'checkbox') ? '' :  ' label').'">' : '';
       if ($type == 'radio' || $type == 'checkbox') {
         $input .= '<input'.(($type) ? ' type="'.$type.'"' : '').(($id) ? ' id="'.$id.'"' : '').(($name) ? ' name="'.$name.'"' : '').(($class) ? ' class="'.$class.'"' : '').(($value) ? ' checked data-previous="1"' : ' data-previous="0"').(($disabled) ? ' disabled': '').'>'.(($label) ? $label.'</label>' : '');
       } else {
@@ -466,7 +466,7 @@
         $id = ($id) ? $id : (($name) ? $name : NULL);
         $name = ($name) ? $name : (($id) ? $id : NULL);
         $label = ($label === TRUE) ? camelCaseToSpace($name, TRUE) : $label;
-        $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label> ' : '';
+        $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="label">'.$label.'</label> ' : '';
         $select .= '<select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">';
         $select .= ($choice) ? '<option value="0">'.(($choice === TRUE) ? 'Choose '.camelCaseToSpace($name) : $choice).'</option>' : '';
         foreach ($array as $value => $text) {
