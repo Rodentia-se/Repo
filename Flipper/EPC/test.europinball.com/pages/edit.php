@@ -163,8 +163,15 @@
               $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
             }
             $page->addScript('
-              $("#currency").combobox()
+              try {
+                var curVal = dataStore.getItem("curVal");
+              } catch(e) {
+                var curVal = 0;
+              };
+              $("#currency").val(curVal)
+              .combobox()
               .change(function(){
+                dataStore.setItem(curVal, $(this).val());
                 $(".cost").change();
               });
             ');
@@ -209,18 +216,16 @@
         }
       $page->closeDiv();
       $page->addScript('
-        var index = "key";
-        var dataStore = window.sessionStorage;
         try {
-          var oldIndex = dataStore.getItem(index);
+          var tabIndex = dataStore.getItem("tabIndex");
         } catch(e) {
-          var oldIndex = 0;
-        }
+          var tabIndex = 0;
+        };
         $("#tabs").tabs({
-          active: oldIndex,
+          active: tabIndex,
           activate: function(event, ui) {
-            var newIndex = ui.newTab.parent().children().index(ui.newTab);
-            dataStore.setItem(index, newIndex);
+            var newTabIndex = ui.newTab.parent().children().index(ui.newTab);
+            dataStore.setItem(tabIndex, newTabIndex);
             var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
             firstField.focus();
           },
