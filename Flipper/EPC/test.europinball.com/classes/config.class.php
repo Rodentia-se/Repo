@@ -19,7 +19,9 @@
     public static $activeDivisions = array('main', 'eighties', 'nationalTeam');
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
-    public static $defaultCurrency = "EUR";
+    
+    public static $paymentOptions = array('PayPal', 'International');
+    public static $defaultCurrency = 'EUR';
     public static $acceptedCurrencies = array('EUR', 'USD', 'SEK');
     public static $currencies = array(
       'EUR' => array(

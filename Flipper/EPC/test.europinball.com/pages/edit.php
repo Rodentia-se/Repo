@@ -156,7 +156,7 @@
           $page->startDiv('payment');
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
-              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency');
+              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', NULL, 'Currency', config::$defaultCurrency);
               foreach(config::$acceptedCurrencies as $currency) {
                 $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
                 $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
@@ -172,56 +172,130 @@
               .combobox()
               .change(function(){
                 dataStore.setItem("curVal", $(this).val());
+                $(".curCodes").val($(this).children(":selected").text())
                 $(".cost").change();
               });
             ');
-            $divisions = divisions('active');
-            foreach ($divisions as $division) {
-              if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
-                $page->startDiv($division->type.'CostDiv');
-                  $cost = $person->getCost($division);
+            $page->startDiv('itemsDiv');
+              $divisions = divisions('active');
+              foreach ($divisions as $division) {
+                if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
+                  $payMsg = $person->name.' (ID: '.$person->id.') has ordered ';
+                  $page->startDiv($division->type.'CostDiv');
+                    $cost = $person->getCost($division);
+                    $costs += $cost;
+                    $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost short', camelCaseToSpace($division->type, TRUE));
+                    $page->addSpan($cost, $division->type.'Cost', 'currency');
+                    $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
+                    $payMsgs[] = $division->type.': 1';
+                  $page->closeDiv();
+                }
+              }
+              $payMsg .= implode($payMsgs, ', ');
+              if (config::$tshirts && config::$tshirtCost > 0) {
+                $page->startDiv('TshirtDiv');
+                  $num = count(tshirts($person));
+                  $cost = $person->getCost('tshirt');
                   $costs += $cost;
-                  $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost short', camelCaseToSpace($division->type, TRUE));
-                  $page->addSpan($cost, $division->type.'Cost', 'currency');
-                  $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
+                  $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');
+                  $page->addSpan($cost, 'tshirtCost', 'currency');
+                  $page->addInput($cost, 'tshirtEach', 'tshirtEach', 'hidden', 'each');
+                  $payMsg .= ', T-shirts: '.$num;
                 $page->closeDiv();
               }
-            }
-            $page->startDiv('paidDiv');
-              $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
-              $page->addSpan($person->paid * -1, 'paidCur', 'currency');
-              $page->addInput($person->paid, 'paid', 'paid', 'hidden');
+              $page->startDiv('paidDiv');
+                $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
+                $page->addSpan($person->paid * -1, 'paidCur', 'currency');
+                $page->addInput($person->paid, 'paid', 'paid', 'hidden');
+                $payMsg .= ', already paid: '.$person->paid;
+              $page->closeDiv();
+              $page->startDiv('totalDiv');
+                $page->addLabel('&nbsp;');
+                $page->addSpan('&nbsp;', 'paidFiller', 'short');
+                $page->addSpan($costs - $person->paid, 'total', 'currency');
+                $payMsg .= ', total: '.$costs;
+              $page->closeDiv();
+              $page->addScript('
+                $(".cost").change(function() {
+                  var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
+                  alert(this.id);
+                  var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
+                  var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
+                  var cost = num * each * rate;
+                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+                  $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
+                  var costs = 0;
+                  $(".each").each(function() {
+                    var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
+                    costs += parseInt($(this).val()) * num;
+                  }); 
+                  var paid = parseInt($("#paid").val());
+                  var total = (costs - paid) * rate;
+                  $(".totals").val(total);
+                  $("#total").html(total.toMoney(0, ".", " ", "", format));
+                  var paidCur = paid * rate * -1;
+                  $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
+                  var paidText = paidCur * -1;
+                  $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
+                })
+                .change();
+              ');
             $page->closeDiv();
-            $page->startDiv('totalDiv', 'noInput');
-              $page->addLabel('Total');
-              $page->addSpan('&nbsp;', 'paidFiller', 'short');
-              $page->addSpan($costs - $person->paid, 'total', 'currency');
+            $page->startDiv('payTabs');
+              $page->startUl();
+                foreach(config::$paymentOptions as $paymentOption) {
+                  $page->addLi('<a href="#'.$paymentOption.'" id="'.$paymentOption.'tabLink">'.$paymentOption.'</a>');
+                }
+              $page->closeUl();
+              if (in_array('PayPal', config::$paymentOptions)) {
+                $page->startDiv('PayPal');
+                  $page->startForm('payPalForm', NULL, 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
+                  $page->addInput('_xclick', NULL, 'cmd', 'hidden');
+                  $page->addInput('pay@pal.pp.se', NULL, 'business', 'hidden');
+                  $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
+                  $page->addInput('EPC Entrance Fee', NULL, 'item_name', 'hidden');
+                  $page->addInput('1', NULL, 'item_number', 'hidden');
+                  $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
+                  $page->addInput('EPC', NULL, 'page_style', 'hidden');
+                  $page->addInput('1', NULL, 'no_shipping', 'hidden');
+                  $page->addInput(config::$baseHref.'/pages/paymentok.php', NULL, 'return', 'hidden');
+                  $page->addInput(config::$baseHref.'/pages/paymentcancel.php', NULL, 'cancel_return', 'hidden');
+                  $page->addInput('What you are paying for', NULL, 'cn', 'hidden');
+                  $page->addInput('Pay for', NULL, 'on0', 'hidden');
+                  $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden');
+                  $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
+                  $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
+                $page->closeDiv();
+              }
+              if (in_array('International', config::$paymentOptions)) {
+                $page->startDiv('International');
+                $page->closeDiv();
+              }
+              if (in_array('Domestic', config::$paymentOptions)) {
+                $page->startDiv('Domestic');
+                $page->closeDiv();
+              }
             $page->closeDiv();
+            $page->addScript('
+              try {
+                var payIndex = dataStore.getItem("payIndex");
+              } catch(e) {
+                var payIndex = 0;
+              };
+              $("#tabs").tabs({
+                active: payIndex,
+                activate: function(event, ui) {
+                  dataStore.setItem("payIndex", ui.newTab.parent().children().index(ui.newTab));
+                  var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
+                  firstField.focus();
+                },
+                create: function(event, ui) {
+                  var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
+                  firstField.focus();
+                }
+              });
+            ');
           $page->closeDiv();
-          $page->addScript('
-            $(".cost").change(function() {
-              var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
-              alert(this.id);
-              var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-              var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
-              var cost = num * each * rate;
-              var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-              $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
-              var costs = 0;
-              $(".each").each(function() {
-                var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
-                costs += parseInt($(this).val()) * num;
-              }); 
-              var paid = parseInt($("#paid").val());
-              var total = (costs - paid) * rate;
-              $("#total").html(total.toMoney(0, ".", " ", "", format));
-              var paidCur = paid * rate * -1;
-              $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
-              var paidText = paidCur * -1;
-              $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
-            })
-            .change();
-          ');
         }
       $page->closeDiv();
       $page->addScript('
@@ -233,8 +307,7 @@
         $("#tabs").tabs({
           active: tabIndex,
           activate: function(event, ui) {
-            var newTabIndex = ui.newTab.parent().children().index(ui.newTab);
-            dataStore.setItem("tabIndex", newTabIndex);
+            dataStore.setItem("tabIndex", ui.newTab.parent().children().index(ui.newTab));
             var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
             firstField.focus();
           },

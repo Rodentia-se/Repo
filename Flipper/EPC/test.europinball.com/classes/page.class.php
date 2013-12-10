@@ -256,14 +256,14 @@
       return self::getElementEnd('label');
     }
 
-    public function startForm($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
+    public function startForm($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
       $form = self::getFormStart($id, $class, $action, $method);
       $this->addContent($form);
       return $form;
     }
     
-    public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST') {
-      return self::getElementStart('form', $id, $class, 'action="'.$action.'" method="'.$method.'"');
+    public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
+      return self::getElementStart('form', $id, $class, 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" method="'.$method.'"');
     }
     
     public function closeForm() {
@@ -470,7 +470,7 @@
         $select .= '<select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">';
         $select .= ($choice) ? '<option value="0">'.(($choice === TRUE) ? 'Choose '.camelCaseToSpace($name) : $choice).'</option>' : '';
         foreach ($array as $value => $text) {
-          $select .= '<option value="'.$value.'"'.(($value == $selected) ? ' selected' : '').'>'.$text.'</option>';
+          $select .= '<option value="'.$value.'"'.(($value == $selected || $text == $selected) ? ' selected' : '').'>'.$text.'</option>';
         }
         $select .= '</select>';
         return $select;
