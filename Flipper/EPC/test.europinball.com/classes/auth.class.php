@@ -148,6 +148,7 @@
               return FALSE;
             }
           } else {
+            config::$msg = 'Invalid nonce. Did you login to an old window? Please try again.';
             error('Invalid nonce 1, please clean cache and cookies and try again.');
             return FALSE;
           }
@@ -165,25 +166,30 @@
                   if ($person) {
                     $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
                     if ($change) {
-                      config::$msg = 'Credentials were successfully changed.';
+                      config::$msg = 'Your username and/or password was successfully changed.';
                       return TRUE;
                     } else {
-                      config::$msg = 'Credential changes failed.';
+                      config::$msg = 'Could not commit the changes. Your username and passwords stay the same as before. Please try again.';
                       return FALSE;
                     }
                   } else {
+                    config::$msg = 'Could not identify you. Your login has not been changed. Please try again.';
                     error('Could not identify you, please logout and login again.');
                   }
                 } else {
+                  config::$msg = 'The password did not match. Your login has not been changed. Please try again.';
                   error('The password did not match, please try again.');
                 }
               } else {
+                config::$msg = 'Could not login with the current password. Your login has not been changed. Please try again.';
                 error('Could not login with your current credentials.');
               }
             } else {
+              config::$msg = 'Invalid nonce. Did you use an old window? Your login has not been changed. Please try again.';
               error('Invalid nonce 2, please clean cache and cookies and try again.');
             }
           } else {
+            config::$msg = 'Could not login. Your login has not been changed. Please try again.';
             error('Login failed due to missing parameters.');
           }
           return FALSE;
@@ -208,6 +214,7 @@
                 if (isId($_REQUEST['person_id'])) {
                   $person_id = $_REQUEST['person_id'];
                 } else {
+                      config::$msg = 'Credential changes failed.';
                   error('Not enough parameters provided');
                   return FALSE;
                 }
@@ -221,18 +228,23 @@
                     return TRUE;
                   } else {
                     $this->setLogin(FALSE);
+                    config::$msg = 'User created, but could not log you in. Please try logging in.';
                     error('User created, but could not log you in. Please try logging in.');
                   }
                 } else {
+                      config::$msg = 'Could not add the user. Please try again.';
                   error('Could not add the user');
                 }
               } else {
+                config::$msg = 'Could not identify you. Please try again.';
                 error('Could not find person ID '.$person_id);
               }
             } else {
+              config::$msg = 'Invalid nonce. Did you use an old window? Please try again.';
               error('Invalid nonce 3, please clean cache and cookies and try again.');
             }
           } else {
+            config::$msg = 'Something went wrong. Please try again.';
             error('Not enough parameters provided');
           }
           return FALSE;
