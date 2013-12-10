@@ -157,7 +157,7 @@
             $page->addH2('Payment options');
           $page->startDiv('hugg');
             $page->startDiv('currencyDiv');
-              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox');
+              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency');
             $page->closeDiv();
             foreach(config::$acceptedCurrencies as $currency) {
               $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
@@ -200,6 +200,7 @@
               var each = parseInt($("#" + $(this).attr("id").replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
               var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
               var cost = num * each * rate;
+              showMsg(cost + " " + num + " " + each + " " + rate);
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
             });
