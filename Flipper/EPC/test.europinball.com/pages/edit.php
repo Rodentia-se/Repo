@@ -166,11 +166,12 @@
             $page->addScript('
               $("#currency").combobox()
               .change(function(){
+                var format = $("#" + $(this).text() + "Format").val();
+                var rate = parseInt($("#" + $(this).text() + "Value").val());
                 $(".currency").each(function () {
-                  var sum = parseInt($(this).html().replace(/[^0-9]/g, ""));
-                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-                  var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
-                  var total = sum * rate;
+                  var num = parseInt($("#" + this.id.replace("Cost", "Num")).val().replace(/[^0-9]/g, ""));
+                  var each = parseInt($("#" + this.id.replace("Cost", "Each")).val().replace(/[^0-9]/g, ""));
+                  var total = num * each * rate;
                   showMsg(total + " " + sum + " " + rate);
                   $(this).html(total.toMoney(0, ".", " ", "", format));
                 });
@@ -200,14 +201,14 @@
             });
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
-              var each = parseInt($("#" + $(this).attr("id").replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-              var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
+              var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
+              var rate = parseInt($("#" + $("#currency").children(":selected").text() + "Value").val());
               var cost = num * each * rate;
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-              $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
+              $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
               var costs = 0;
               $(".each").each(function() {
-                var num = parseInt($("#" + $(this).attr("id").replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
+                var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
                 costs += parseInt($(this).val()) * num;
               });
               var total = costs * rate;
