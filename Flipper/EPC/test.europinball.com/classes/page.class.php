@@ -105,6 +105,8 @@
       $footer .= self::getScript('
         $(":button").button();
         $("input[type=submit]").button();
+      ');
+      $footer .= (config::$msg) ? self::getScript('
         $("#log'.(($this->loggedin()) ? 'out' : 'in').'Footer").tooltipster({
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
@@ -113,7 +115,7 @@
           timer: 10000
         })
         .tooltipster("show");
-      ');
+      ') : '';
       $footer .= '
           </body>
         </html>
