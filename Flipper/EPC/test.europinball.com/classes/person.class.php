@@ -27,6 +27,7 @@
         if(o.birthDate = "0000-00-00", NULL, o.birthDate) as birthDate,
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
+        o.paid as paid,
         o.comment as comment,
         o.nonce as nonce,
         o.username as username

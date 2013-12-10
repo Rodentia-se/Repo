@@ -187,8 +187,9 @@
                 $page->closeDiv();
               }
             }
+          $page->addInput('Paid: '.$person->paid * -1, 'paidText', 'paidText', 'text', NULL, 'Paid', FALSE, TRUE);
+          $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->addLabel('Total');
-          $page->addSpan('&nbsp;', 'totalSpan');
           $page->addSpan($costs, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
@@ -204,8 +205,12 @@
                 var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
                 costs += parseInt($(this).val()) * num;
               });
-              var total = costs * rate;
+              var paid = parseInt($("#paid").val());
+              var total = (costs - paid) * rate;
+              var paidCur = paid * rate;
+              var paidText = paidCur * -1;
               $("#total").html(total.toMoney(0, ".", " ", "", format));
+              $("#paidText").val("Paid: " + paidText.toMoney(0, ".", " ", "", format));
             })
             .change();
           ');
