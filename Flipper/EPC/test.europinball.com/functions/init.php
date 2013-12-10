@@ -6,9 +6,9 @@
   config::$login = new auth();
 
   if (isset($_REQUEST['debug'])) {
-    config::$debug = TRUE;
-    config::$showWarnings = TRUE;
-    config::$showErrors = TRUE;
+    config::$debug = ($_REQUEST['debug']);
+    config::$showWarnings = ($_REQUEST['debug']);
+    config::$showErrors = ($_REQUEST['debug']);
   }
   
   if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
