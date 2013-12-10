@@ -62,7 +62,7 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
-input.short {
+input.short, span.short {
   width: 86px;
 }
 
