@@ -193,7 +193,9 @@
             $(".currency").each(function () {
               var sum = parseInt($(this).html().replace(/[^0-9]/g, ""));
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-              $(this).html(sum.toMoney(0, ".", " ", "", format));
+              var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
+              var total = sum * rate;
+              $(this).html(total.toMoney(0, ".", " ", "", format));
             });
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
