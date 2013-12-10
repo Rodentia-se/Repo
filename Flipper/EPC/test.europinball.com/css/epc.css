@@ -53,6 +53,10 @@ span.sum {
   margin-right: 10px;
 }
 
+label.short {
+  width: 86px;
+}
+
 input[type=text], input[type=password] { 
   color: #4F4F4F;
   width: 210px;
