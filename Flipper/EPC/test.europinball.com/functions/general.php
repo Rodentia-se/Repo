@@ -19,7 +19,10 @@
   }
   
   function camelCaseToSpace($txt, $ucfirst = FALSE) {
-    $regexp = '/#(?<=[a-z])(?=[A-Z])/x';
+    $regexp = '/#
+      (?<=[a-z])
+      (?=[A-Z])
+      /x';
     $array = preg_split($regexp, $txt);
     $return = implode($array, ' ');
     return ($ucfirst) ? ucfirst($return) : $return;
