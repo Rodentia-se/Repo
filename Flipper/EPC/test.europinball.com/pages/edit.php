@@ -193,6 +193,7 @@
             $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->closeDiv();
           $page->addLabel('Total');
+          $page->addSpan('&nbsp;', 'paidFiller', 'short');
           $page->addSpan($costs - $person->paid, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
