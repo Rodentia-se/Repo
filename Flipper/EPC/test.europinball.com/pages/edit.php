@@ -189,7 +189,7 @@
                   $page->startDiv($division->type.'CostDiv');
                     $cost = $person->getCost($division);
                     $costs += $cost;
-                    $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost short', camelCaseToSpace($division->type, TRUE));
+//                    $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost short', camelCaseToSpace($division->type, TRUE));
                     $page->addSpan($cost, $division->type.'Cost', 'currency');
                     $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
                     $payMsgs[] = $division->type.': 1';
