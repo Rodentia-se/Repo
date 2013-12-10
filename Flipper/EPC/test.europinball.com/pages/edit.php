@@ -278,7 +278,7 @@ $num = 1;
                     $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
                     $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                   $page->closeForm();
-                  $page->addParagraph('To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the next page.');
+                  $page->addParagraph('To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the following pages.');
                 $page->closeDiv();
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
@@ -312,6 +312,7 @@ $num = 1;
                 }
               });
             ');
+          $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.');
           $page->closeDiv();
         }
       $page->closeDiv();
