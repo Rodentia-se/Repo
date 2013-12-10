@@ -106,7 +106,7 @@
         $(":button").button();
         $("input[type=submit]").button();
       ');
-      $footer .= (config::$msg) ? self::getScript('
+      $footer .= self::getScript('
         $("#mainContent").tooltipster({
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
@@ -114,7 +114,7 @@
           trigger: "custom",
           timer: 10000
         })
-        .tooltipster("show");
+        '.((config::$msg) ? '.tooltipster("show");' :'').'
       ') : '';
       $footer .= '
           </body>
