@@ -394,7 +394,6 @@
   }
 
   function isTournament($tournament) {
-    debug($tournament);
     return (isObj($tournament) && get_class($tournament) == 'tournament');
   }
 
