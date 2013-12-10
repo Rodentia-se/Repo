@@ -197,7 +197,7 @@
                 $page->startDiv('TshirtDiv');
 //                  $num = count(tshirts($person));
 $num = 1;
-                  $cost = $person->getCost('tshirt');
+                  $cost = $person->getCost('tshirts');
                   $costs += $cost;
                   $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');
                   $page->addSpan($cost, 'tshirtCost', 'currency');

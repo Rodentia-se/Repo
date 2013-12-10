@@ -107,7 +107,7 @@
         $divisions = divisions(($type && $type != 'all') ? $type : 'active');
       }
       $cost = 0;
-      if ($divisions && count($divisions) > 0) {
+      if ($type != 'tshirts' && $divisions && count($divisions) > 0) {
         foreach ($divisions as $division) {
           $player = player($this, $division);
           if ($player) {
