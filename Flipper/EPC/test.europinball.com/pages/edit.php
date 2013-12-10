@@ -63,7 +63,6 @@
                   $("#" + this.id.replace("_combobox", "")).change();
                 }
               })
-              .autocomplete("option", "autoFocus", true)
               .tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
@@ -159,7 +158,22 @@
             $divisions = divisions('active');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency');
+              foreach(config::$acceptedCurrencies as $currency) {
+                $page->addInput($currency['format'], $currency['shortName'].'Format',  $currency['shortName'].'Format', 'hidden');
+              }
             $page->closeDiv();
+            $page->addScript('
+              $("#currency").combobox()
+              .change(function(){
+                $(".currency").each(function () {
+                  var el = this;
+                  var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
+                  var format = $("#" + $(el).children(":selected").text() + "Format").text();
+                  var newSum = sum.toMoney(2, ".", " ", "", format);
+                  $(el).html(newSum);
+                });
+              });
+            ');
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
                 $page->startDiv($division->type.'CostDiv');
@@ -203,6 +217,7 @@
             firstField.focus();
           }
         });
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
     } else {
       error('Could not find you in the database?', TRUE);
