@@ -23,6 +23,10 @@
   width: 50px;
 }
 
+#payPalForm {
+  margin-right: 15px;
+}
+
 span.currency {
   width: 50px;
   text-align: right;
