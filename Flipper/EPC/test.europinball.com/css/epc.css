@@ -23,6 +23,11 @@
   width: 50px;
 }
 
+span.currency {
+  width: 30px;
+  text-align: justify;
+}
+
 .preview {
   max-width: 450px;
   max-heigth: 900px;
