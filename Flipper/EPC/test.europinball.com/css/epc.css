@@ -19,6 +19,14 @@
   z-index: -1;
 }
 
+#currency_combobox {
+  width: 50px;
+}
+
+input.cost {
+  width: 86px;
+}
+
 .preview {
   max-width: 450px;
   max-heigth: 900px;

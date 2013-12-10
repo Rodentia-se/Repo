@@ -204,7 +204,6 @@
                 costs += parseInt($(this).val()) * num;
               });
               var total = costs * rate;
-              showMsg(total + " " + cost + " " + each + " " + num + " " + rate);
               $("#total").html(total.toMoney(0, ".", " ", "", format));
             });
           ');
