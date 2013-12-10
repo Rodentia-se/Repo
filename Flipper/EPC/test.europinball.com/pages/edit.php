@@ -255,8 +255,6 @@ $num = 1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
 //                  var paidText = paidCur * -1;
 //                  $("#paidText").html("Paid: " + paidText.toMoney(0, ".", " ", "", format));
-                  payMsg += payMsgs.join(", ") + ", total: " + subTotal.toMoney(0, ".", " ", "", format) + ", already paid: " + paidCur.toMoney(0, ".", " ", "", format);
-                  $("#payPalMsg").val(payMsg.replace(/"/g,"""));
                 })
                 .change();
               ');
