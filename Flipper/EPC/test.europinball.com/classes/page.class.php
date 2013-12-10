@@ -278,7 +278,7 @@
 
     public function addLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
       $label = self::getLabel($text, $id, $class, $close);
-      $this->addContent($h4);
+      $this->addContent($label);
       return $h4;
     }
     
