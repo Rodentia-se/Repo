@@ -192,11 +192,12 @@
             $page->addInput($person->paid, 'paid', 'paid', 'hidden');
           $page->closeDiv();
           $page->addLabel('Total');
-          $page->addSpan($costs, 'total', 'currency');
+          $page->addSpan($costs - $person->paid, 'total', 'currency');
           $page->closeDiv();
           $page->addScript('
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
+              alert(this.id);
               var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
               var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
               var cost = num * each * rate;
