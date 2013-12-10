@@ -20,7 +20,7 @@
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
     
-    public static $paymentOptions = array('PayPal', 'International');
+    public static $paymentOptions = array('Credit card', 'International bank transfer');
     public static $payPalAccount = 'pay@pal.pp.se';
     public static $payPalItem = 'EPC Entrance Fee';
     public static $payPalPageStyle= 'EPC';

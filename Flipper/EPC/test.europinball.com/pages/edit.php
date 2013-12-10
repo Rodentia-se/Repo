@@ -249,11 +249,11 @@ $num = 1;
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
-                  $page->addLi('<a href="#'.$paymentOption.'" id="'.$paymentOption.'tabLink">'.$paymentOption.'</a>');
+                  $page->addLi('<a href="#'.preg_replace('/[^a-zA-Z0-9]/', '', $paymentOption).'" id="'.preg_replace('/[^a-zA-Z0-9]/', '', $paymentOption).'tabLink">'.$paymentOption.'</a>');
                 }
               $page->closeUl();
-              if (in_array('PayPal', config::$paymentOptions)) {
-                $page->startDiv('PayPal');
+              if (in_array('Credit card', config::$paymentOptions)) {
+                $page->startDiv('Credit card');
                   $page->startForm('payPalForm', NULL, 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
                   $page->addInput('_xclick', NULL, 'cmd', 'hidden');
                   $page->addInput(config::$payPalAccount, NULL, 'business', 'hidden');
@@ -272,12 +272,12 @@ $num = 1;
                   $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                 $page->closeDiv();
               }
-              if (in_array('International', config::$paymentOptions)) {
+              if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv('International');
                   $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
                 $page->closeDiv();
               }
-              if (in_array('Domestic', config::$paymentOptions)) {
+              if (in_array('Domestic bank transfer', config::$paymentOptions)) {
                 $page->startDiv('Domestic');
                 $page->closeDiv();
               }
