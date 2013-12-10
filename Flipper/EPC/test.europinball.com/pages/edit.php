@@ -172,7 +172,7 @@
                   var num = parseInt($("#" + this.id.replace("Cost", "Num")).val().replace(/[^0-9]/g, ""));
                   var each = parseInt($("#" + this.id.replace("Cost", "Each")).val().replace(/[^0-9]/g, ""));
                   var total = num * each * rate;
-                  showMsg(total + " " + num + " " + each + " " + rate);
+                  showMsg(total + " " + num + " " + each + " " + rate + " " + this.id);
                   $(this).html(total.toMoney(0, ".", " ", "", format));
                 });
               });
