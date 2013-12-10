@@ -192,7 +192,7 @@
               $page->addSpan($person->paid * -1, 'paidCur', 'currency');
               $page->addInput($person->paid, 'paid', 'paid', 'hidden');
             $page->closeDiv();
-            $page->startDiv('totalDiv');
+            $page->startDiv('totalDiv', 'noInput');
               $page->addLabel('Total');
               $page->addSpan('&nbsp;', 'paidFiller', 'short');
               $page->addSpan($costs - $person->paid, 'total', 'currency');

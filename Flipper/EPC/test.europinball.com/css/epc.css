@@ -25,9 +25,14 @@
 
 span.currency {
   width: 50px;
-  text-align: justify;
+  text-align: right;
   display: inline-block;
+  margin-left: 10px;
 }
+
+#total.currency {
+  border-top: 1px #4F4F4F solid;
+} 
 
 .preview {
   max-width: 450px;
@@ -64,6 +69,10 @@ input[type=text], input[type=password] {
 
 input.short {
   width: 86px;
+}
+
+div.noInput {
+  padding-top: 5px;
 }
 
 span.short {
