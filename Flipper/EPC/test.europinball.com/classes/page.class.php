@@ -61,7 +61,7 @@
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
-          <body>
+          <body id = "innerBody">
       ';
       return $header;
     }
@@ -107,7 +107,7 @@
         $("input[type=submit]").button();
       ');
       $footer .= (config::$msg) ? self::getScript('
-        $("#log'.(($this->loggedin()) ? 'out' : 'in').'Footer").tooltipster({
+        $("#innerBody").tooltipster({
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
           arrow: false,
