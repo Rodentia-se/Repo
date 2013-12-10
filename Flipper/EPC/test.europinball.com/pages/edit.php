@@ -215,7 +215,7 @@ $num = 1;
               $page->closeDiv();
               $page->startDiv('paidDiv');
                 $page->addLabel('&nbsp;');
-                $page->addSpan('Already paid: $person->paid', 'paidText', 'short');
+                $page->addSpan('Paid: $person->paid', 'paidText', 'short');
 //                $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', '&nbsp;', FALSE, TRUE);
                 $page->addSpan($person->paid * -1, 'paidCur', 'currency');
                 $page->addInput($person->paid, 'paid', 'paid', 'hidden');
@@ -250,7 +250,7 @@ $num = 1;
                   var paidCur = paid * rate * -1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
                   var paidText = paidCur * -1;
-                  $("#paidText").html("Already paid: " + paidText.toMoney(0, ".", " ", "", format));
+                  $("#paidText").html("Paid: " + paidText.toMoney(0, ".", " ", "", format));
                 })
                 .change();
               ');
