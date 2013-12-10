@@ -158,7 +158,7 @@
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
             $page->addH2('Payment options');
-            $divisions = divisions('active');
+          $page->startDiv('hugg');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox');
             $page->closeDiv();
@@ -175,6 +175,7 @@
                 });
               });
             ');
+            $divisions = divisions('active');
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
                 $page->startDiv($division->type.'CostDiv');
@@ -187,6 +188,7 @@
             }
           $page->addLabel('Total');
           $page->addSpan($costs, 'total', 'currency');
+          $page->closeDiv();
           $page->closeDiv();
           $page->addScript('
             $(".currency").each(function () {
