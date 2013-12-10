@@ -158,9 +158,11 @@
             $page->addH2('Payment options');
             $divisions = divisions('active');
             foreach ($divisions as $division) {
-              $page->startDiv();
-                $page->addInput($person->getCost($division), $division->type.'Cost');
-              $page->closeDiv();
+              if (config::${$division->type.'Cost'})) {
+                $page->startDiv();
+                  $page->addInput($person->getCost($division), config::${$division->type.'Cost'});
+                $page->closeDiv();
+              }
             }
           $page->closeDiv();
         }
