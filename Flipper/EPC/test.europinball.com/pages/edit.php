@@ -163,21 +163,23 @@
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
                 $page->startDiv($division->type.'CostDiv');
-                  $page->addInput($person->getCost($division), camelCaseToSpace($division->type, TRUE));
-                  $page->addSpan($person->getCost($division), $division->type.'Cost', 'currency');
+                  $cost = $person->getCost($division);
+                  $costs += $cost;
+                  $page->addSpan($cost, $division->type.'Cost', 'currency');
                 $page->closeDiv();
               }
-              $page->addScript('
-                $(".currency").each(function () {
-                  var el = this;
-                  var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
-                  alert(sum);
-                  var newSum = sum.toMoney();
-                  $(el).html(newSum);
-                });
-              ');
             }
+          $page->addSpan($costs, 'Total', 'currency');
           $page->closeDiv();
+          $page->addScript('
+            $(".currency").each(function () {
+              var el = this;
+              var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
+              alert(sum);
+              var newSum = sum.toMoney();
+              $(el).html(newSum);
+            });
+          ');
         }
       $page->closeDiv();
       $page->addScript('
