@@ -50,6 +50,13 @@
         $class = static::$objClass;
         $query = $class::$select;
         $objs = $this->db->getObjects($query, $class);
+      } else if (in_array($data, array('active', 'current')) {
+        $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentEdition_id', config::${$data}Tournament);
+      } else if (in_array($data, config::$activeDivisions) {
+        $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', config::${$data}Division);
+      } else if (in_array($data, config::$divisions) {
+        $division = division($data);
+        $obj = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
       }
       if ($objs) {
         $objs = $objs->array_unique(SORT_REGULAR);
