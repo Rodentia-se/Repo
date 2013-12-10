@@ -62,9 +62,14 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
-input.short, span.short {
-  float: left;
+input.short {
   width: 86px;
+}
+
+span.short {
+  display: inline-block;
+  width: 86px;
+  
 }
 
 .addIcon {
