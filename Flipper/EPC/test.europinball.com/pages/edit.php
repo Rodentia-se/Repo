@@ -166,12 +166,9 @@
               $("#currency").combobox()
               .change(function(){
                 $(".currency").each(function () {
-                  var el = this;
-                  var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
+                  var sum = parseInt($(this).html().replace(/[^0-9]/g, ""));
                   var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-                  showMsg($("#currency").children(":selected").text()); 
-                  var newSum = sum.toMoney(0, ".", " ", "", format);
-                  $(el).html(newSum);
+                  $(this).html(sum.toMoney(0, ".", " ", "", format));
                 });
               });
             ');
@@ -188,11 +185,9 @@
           $page->closeDiv();
           $page->addScript('
             $(".currency").each(function () {
-              var el = this;
-              var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
-              var format = $("#" + $(el).children(":selected").text() + "Format").text();
-              var newSum = sum.toMoney(2, ".", " ", "", format);
-              $(el).html(newSum);
+              var sum = parseInt($(this).html().replace(/[^0-9]/g, ""));
+              var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+              $(this).html(sum.toMoney(0, ".", " ", "", format));
             });
           ');
         }
