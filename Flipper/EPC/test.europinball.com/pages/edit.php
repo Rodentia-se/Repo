@@ -208,11 +208,11 @@
               $(".each").each(function() {
                 var num = parseInt($("#" + this.id.replace("Each", "Num")).val().replace(/[^0-9]/g, ""));
                 costs += parseInt($(this).val()) * num;
-              });
+              }); 
               var paid = parseInt($("#paid").val());
               var total = (costs - paid) * rate;
               var paidCur = paid * rate * -1;
-              $("#paidText").html(paidCur.toMoney(0, ".", " ", "", format));
+              $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
               var paidText = paidCur * -1;
               $("#total").html(total.toMoney(0, ".", " ", "", format));
               $("#paidText").val("Paid: " + paidText.toMoney(0, ".", " ", "", format));
