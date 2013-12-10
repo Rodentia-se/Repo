@@ -75,7 +75,6 @@
               $this->Authenticate($username, $password);
               if ($this->IsAuthSuccess()) {
                 $this->setLogin();
-                $this->msg = 'Password was changed successfully.';
                 return TRUE;
               } else {
                 $this->setLogin(FALSE);
@@ -88,7 +87,6 @@
             $this->Authenticate($username, $password);
             if ($this->IsAuthSuccess()) {
               $this->setLogin();
-              $this->msg = 'User and password were changed successfully.';
               if ($this->DeleteUser($uid)) {
                 return TRUE;
               } else {
@@ -145,6 +143,7 @@
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               return $this->login($_REQUEST['username'], $_REQUEST['password']);
             } else {
+              $this->msg = 'Login failed.';
               error('Could not log you in');
               return FALSE;
             }
@@ -164,7 +163,14 @@
                 if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
                   $person = person($_SESSION['username'], 'username');
                   if ($person) {
-                    return $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                    $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                    if ($change) {
+                      $this->msg = 'Credential changes were successful.';
+                      return TRUE;
+                    } else {
+                      $this->msg = 'Credential changes failed.';
+                      return FALSE;
+                    }
                   } else {
                     error('Could not identify you, please logout and login again.');
                   }
@@ -267,6 +273,16 @@
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
         $form .= page::getFormEnd();
+        $form .= (config::$login->msg) ? page::getScript('
+          $("#'.$prefix.'loginForm").tooltipster({
+            theme: ".tooltipster-light",
+            content: "'.config::$login->msg.'",
+            trigger: "custom",
+            position: "right",
+            timer: 10000
+          })
+          .tooltipster("show");
+        ') : '';
         $form .= page::getLabel(' ');
         $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getButton('I forgot all this!', $prefix.'reset');
