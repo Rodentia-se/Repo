@@ -250,7 +250,7 @@ $num = 1;
                   var paidCur = paid * rate * -1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
                   var paidText = paidCur * -1;
-                  $("#paidText").html("Already pain: " + paidText.toMoney(0, ".", " ", "", format));
+                  $("#paidText").html("Already paid: " + paidText.toMoney(0, ".", " ", "", format));
                 })
                 .change();
               ');
