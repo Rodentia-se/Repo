@@ -453,7 +453,7 @@
     }
     
     public function addSimpleSelect($array, $id = NULL, $name = NULL, $class = NULL, $label = TRUE, $selected = NULL, $choice = FALSE) {
-      $select = self::getSimpleSelect($objs, $id, $name, $class, $label, $selected, $choice);
+      $select = self::getSimpleSelect($array, $id, $name, $class, $label, $selected, $choice);
       $this->addContent($select);
       return $select;
     }
