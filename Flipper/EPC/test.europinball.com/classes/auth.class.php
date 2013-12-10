@@ -143,7 +143,7 @@
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               if ($this->login($_REQUEST['username'], $_REQUEST['password'])) {
                 config::$msg = 'You have been logged in.';
-                return TRUE
+                return TRUE;
               } else {
                 config::$msg = 'Login failed.';
                 error('Could not log you in');
