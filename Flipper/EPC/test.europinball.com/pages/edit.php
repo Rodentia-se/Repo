@@ -168,6 +168,7 @@
               } catch(e) {
                 var curVal = 0;
               };
+              curVal = (curVal && curVal != null) ? curVal : 0;
               $("#currency").val(curVal)
               .combobox()
               .change(function(){
