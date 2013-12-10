@@ -36,7 +36,7 @@
         'shortName' => 'USD',
         'symbol' => '$',
         'format' => '$ §',
-        'rate' => 1.7
+        'rate' => 1.5
       ),
       'GBP' => array(
         'name' => 'pund',
