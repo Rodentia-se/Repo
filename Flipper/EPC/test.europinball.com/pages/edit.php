@@ -195,6 +195,7 @@
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
               var total = sum * rate;
+              showMsg(total + " " + sum + " " + rate);
               $(this).html(total.toMoney(0, ".", " ", "", format));
             });
             $(".cost").change(function() {
