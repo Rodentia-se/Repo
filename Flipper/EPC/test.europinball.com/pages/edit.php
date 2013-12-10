@@ -168,6 +168,7 @@
               } catch(e) {
                 var curVal = 0;
               };
+              showMsg(curVal);
               $("#currency").val(curVal)
               .combobox()
               .change(function(){
@@ -229,7 +230,6 @@ $num = 1;
               $page->addScript('
                 $(".cost").change(function() {
                   var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
-                  alert(this.id);
                   var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
                   var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
                   var cost = num * each * rate;
