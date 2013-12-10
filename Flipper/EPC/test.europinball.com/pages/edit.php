@@ -169,7 +169,7 @@
                 var curVal = 0;
               };
               curVal = (curVal && typeof curVal != "object") ? curVal : 0;
-              alert(curVal);
+              alert(typeof curVal);
               $("#currency").val(curVal)
               .combobox()
               .change(function(){
