@@ -253,7 +253,7 @@ $num = 1;
                 }
               $page->closeUl();
               if (in_array('Credit card', config::$paymentOptions)) {
-                $page->startDiv('Credit card');
+                $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'Credit card'));
                   $page->startForm('payPalForm', NULL, 'https://www.paypal.com/cgi-bin/webscr', 'POST', TRUE);
                   $page->addInput('_xclick', NULL, 'cmd', 'hidden');
                   $page->addInput(config::$payPalAccount, NULL, 'business', 'hidden');
@@ -273,12 +273,12 @@ $num = 1;
                 $page->closeDiv();
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
-                $page->startDiv('International');
+                $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
                   $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
                 $page->closeDiv();
               }
               if (in_array('Domestic bank transfer', config::$paymentOptions)) {
-                $page->startDiv('Domestic');
+                $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'Domestic bank transfer'));
                 $page->closeDiv();
               }
             $page->closeDiv();
