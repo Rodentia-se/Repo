@@ -168,7 +168,7 @@
               } catch(e) {
                 var curVal = 0;
               };
-              curVal = (curVal && curVal != null) ? curVal : 0;
+              curVal = (curVal && typeof curVal != 'object') ? curVal : 0;
               alert(curVal);
               $("#currency").val(curVal)
               .combobox()
