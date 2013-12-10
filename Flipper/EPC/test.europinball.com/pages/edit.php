@@ -160,7 +160,7 @@
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost')) {
                 $page->startDiv();
-                  $page->addInput($person->getCost($division), config::${$division->type.'Cost'});
+                  $page->addInput($person->getCost($division), ucfirst($division->type). 'division'));
                 $page->closeDiv();
               }
             }
