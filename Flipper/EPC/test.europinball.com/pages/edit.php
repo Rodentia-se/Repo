@@ -171,7 +171,7 @@
               $("#currency").val(curVal)
               .combobox()
               .change(function(){
-                dataStore.setItem(curVal, $(this).val());
+                dataStore.setItem("curVal", $(this).val());
                 $(".cost").change();
               });
             ');
@@ -225,7 +225,7 @@
           active: tabIndex,
           activate: function(event, ui) {
             var newTabIndex = ui.newTab.parent().children().index(ui.newTab);
-            dataStore.setItem(tabIndex, newTabIndex);
+            dataStore.setItem("tabIndex", newTabIndex);
             var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
             firstField.focus();
           },
