@@ -37,7 +37,8 @@
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (is_object($data) && $data->id) {
         if (get_class($data) == static::$objClass) {
-          $objs = new get_class($this);
+          $class = get_class($this)
+          $objs = new $class;
           $objs[] = $data;
         } else {
           $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
