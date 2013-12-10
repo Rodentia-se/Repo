@@ -236,7 +236,7 @@ $num = 1;
                   var paid = parseInt($("#paid").val());
                   var total = (costs - paid) * rate;
                   $(".totals").val(total);
-                  $(".totalSpans").html(total);
+                  $(".totalSpans").html(total.toMoney(0, ".", " ", "", format));
                   $("#total").html(total.toMoney(0, ".", " ", "", format));
                   var paidCur = paid * rate * -1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
