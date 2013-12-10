@@ -85,7 +85,7 @@ define('UL_LOGIN_DELAY', 5);
 
 // Generated nonces will expire after this many
 // seconds by default.
-define('UL_NONCE_EXPIRE', 900);
+define('UL_NONCE_EXPIRE', 36000);
 
 // How many seconds should autologin be valid for a user.
 define('UL_AUTOLOGIN_EXPIRE', 5356800);
