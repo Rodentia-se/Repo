@@ -155,7 +155,6 @@
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
             $page->addH2('Payment options');
-          $page->startDiv('hugg');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency');
             $page->closeDiv();
@@ -176,6 +175,8 @@
                   $cost = $person->getCost($division);
                   $costs += $cost;
                   $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost', camelCaseToSpace($division->type, TRUE));
+                  $page->addLabel('Total');
+                  $page->addSpan('&nbsp;', 'totalSpan');
                   $page->addSpan($cost, $division->type.'Cost', 'currency');
                   $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden', 'each');
                 $page->closeDiv();
@@ -183,7 +184,6 @@
             }
           $page->addLabel('Total');
           $page->addSpan($costs, 'total', 'currency');
-          $page->closeDiv();
           $page->closeDiv();
           $page->addScript('
             $(".currency").each(function () {
