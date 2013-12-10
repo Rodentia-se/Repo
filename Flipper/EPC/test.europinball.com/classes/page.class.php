@@ -111,7 +111,6 @@
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
           arrow: false,
-          offsetY: -30,
           trigger: "custom",
           timer: 10000
         })
