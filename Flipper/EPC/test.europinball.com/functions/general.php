@@ -62,11 +62,19 @@
   }
   
   function warning($text) {
-    return output($text, 'WARNING');
+    if (config::$showWarnings) {
+      return output($text, 'WARNING');
+    } else {
+      return FALSE;
+    }
   }
 
   function error($text = NULL, $props = NULL, $json = FALSE, $die = FALSE) {
-    return output($text, 'ERROR', $props, FALSE, (($json) ? 'json' : 'dump'), $die);
+    if (config::$showErrors) {
+      return output($text, 'ERROR', $props, FALSE, (($json) ? 'json' : 'dump'), $die);
+    } else {
+      return FALSE;
+    }
   }
 
   function failure($text = NULL, $props = NULL, $json = TRUE) {

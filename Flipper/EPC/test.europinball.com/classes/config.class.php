@@ -58,6 +58,8 @@
     public static $baseDir = '/www/test.europinball.com/';
     
     public static $debug = TRUE;
+    public static $showErrors = TRUE;
+    public static $showWarnings = TRUE;
     
     public static $photoExts = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
     public static $addables = array('city', 'region');
