@@ -254,7 +254,7 @@ $num = 1;
                   var paidCur = paid * rate * -1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
                   payMsg += payMsgs.join(", ") + ", total: " + subTotal.toMoney(0, ".", " ", "", format) + ", already paid: " + paidCur.toMoney(0, ".", " ", "", format);
-                  $("#payPalMsg").val(payMsg.replace(/"/g,"""));
+                  $("#payPalMsg").val(payMsg.replace(/\"/g,"""));
 //                  var paidText = paidCur * -1;
 //                  $("#paidText").html("Paid: " + paidText.toMoney(0, ".", " ", "", format));
                 })
