@@ -108,7 +108,7 @@
         foreach ($divisions as $division) {
           $player = player($this, $division);
           if ($player) {
-            $cost += config::${$division->type.'Cost'}
+            $cost += config::${$division->type.'Cost'};
           }
         }
       }
