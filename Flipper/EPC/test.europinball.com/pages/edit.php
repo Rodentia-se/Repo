@@ -223,7 +223,6 @@ $num = 1;
                 $page->addLabel('&nbsp;');
                 $page->addSpan('&nbsp;', NULL, 'short');
                 $page->addSpan($costs - $person->paid, 'total', 'currency');
-                $page->addSpan(' (sum may vary due to decimals)', NULL, 'inline-block');
               $page->closeDiv();
               $page->addScript('
                 $(".cost").change(function() {
