@@ -177,9 +177,7 @@
           <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
           <div>'.page::getLabel('Divisions').$checkboxes.'</div>
           <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-          '.page::getDivStart('currencyDiv').
-              page::getSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox').
-            page::getDivEnd().'
+          <div>'.page::getSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox').'</div>
         </div>
       ';
     }
