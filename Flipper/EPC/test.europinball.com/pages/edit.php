@@ -272,7 +272,7 @@ $num = 1;
               }
               if (in_array('International', config::$paymentOptions)) {
                 $page->startDiv('International');
-                  $page->addParagraph('Pay <span class="bold">'.config::$defaultCurrency.'</span> '.$costs - $person->paid.' to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
+                  $page->addParagraph('Pay <span class="bold">'.config::$defaultCurrency.'</span> '.(+$costs - $person->paid).' to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
                 $page->closeDiv();
               }
               if (in_array('Domestic', config::$paymentOptions)) {
