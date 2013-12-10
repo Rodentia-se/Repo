@@ -467,7 +467,7 @@
         $name = ($name) ? $name : (($id) ? $id : NULL);
         $label = ($label === TRUE) ? camelCaseToSpace($name, TRUE) : $label;
         $select = ($label) ? '<label'.(($id) ? ' for="'.$id.'" id="'.$id.'Label"' : '').' class="'.(($class) ? $class.'Label ' : '').'label">'.$label.'</label>' : '';
-        $select .= ' <select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">';
+        $select .= '<select'.(($id) ? ' id="'.$id.'" name="'.$id.'"' : '').(($class) ? ' class="'.$class.'"' : '').' data-previous="'.$selectedId.'">';
         $select .= ($choice) ? '<option value="0">'.(($choice === TRUE) ? 'Choose '.camelCaseToSpace($name) : $choice).'</option>' : '';
         foreach ($array as $value => $text) {
           $select .= '<option value="'.$value.'"'.(($value == $selected) ? ' selected' : '').'>'.$text.'</option>';
