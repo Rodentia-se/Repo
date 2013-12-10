@@ -21,6 +21,9 @@
         if (in_array('profile', config::$editSections)) {
           $page->startDiv('profile');
             $page->addContent($person->getEdit());
+            $page->startDiv('currencyDiv');
+              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', 'combobox');
+            $page->closeDiv();
             $page->addScript('
               $(".combobox").combobox()
               .change(function(){
