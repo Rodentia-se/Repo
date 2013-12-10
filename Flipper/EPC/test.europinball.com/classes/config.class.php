@@ -54,7 +54,7 @@
         'format' => '§ kr',
         'value' => 1
       )
-    )
+    );
     
     public static $participationLimit = 128;
     public static $tshirts = TRUE;
