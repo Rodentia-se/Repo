@@ -212,7 +212,7 @@
                 costs += parseInt($(this).val()) * num;
               });
               var total = costs * rate;
-              showMsg(total + " " + costs + " " + rate);
+              showMsg(total + " " + each + " " + " " + rate);
               $("#total").html(total.toMoney(0, ".", " ", "", format));
             });
           ');
