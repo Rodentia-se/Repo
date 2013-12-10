@@ -312,7 +312,7 @@ $num = 1;
                 }
               });
             ');
-          $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.');
+          $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
           $page->closeDiv();
         }
       $page->closeDiv();
