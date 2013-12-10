@@ -210,7 +210,7 @@ $num = 1;
               $page->startDiv('subTotalDiv');
                 $page->addLabel('&nbsp;');
                 $page->addSpan('&nbsp;', NULL, 'short');
-                $page->addSpan($costs, 'subTotal', 'currency');
+                $page->addSpan($costs, 'subTotal', 'currency sum');
                 $payMsg .= ', total: '.$costs;
               $page->closeDiv();
               $page->startDiv('paidDiv');
@@ -222,7 +222,7 @@ $num = 1;
               $page->startDiv('totalDiv');
                 $page->addLabel('&nbsp;');
                 $page->addSpan('&nbsp;', NULL, 'short');
-                $page->addSpan($costs - $person->paid, 'total', 'currency');
+                $page->addSpan($costs - $person->paid, 'total', 'currency sum');
               $page->closeDiv();
               $page->addScript('
                 $(".cost").change(function() {

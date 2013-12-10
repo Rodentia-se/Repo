@@ -34,7 +34,7 @@ span.currency {
   margin-left: 10px;
 }
 
-#total.currency {
+span.sum {
   border-top: 1px #4F4F4F solid;
 } 
 
