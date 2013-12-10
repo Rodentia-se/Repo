@@ -241,7 +241,8 @@ $num = 1;
                   $("#paidCur").html(paidCur.toMoney(0, ".", " ", "", format));
                   var paidText = paidCur * -1;
                   $("#paidText").val(paidText.toMoney(0, ".", " ", "", format));
-                });
+                })
+                .change();
               ');
             $page->closeDiv();
             $page->startDiv('payTabs');
