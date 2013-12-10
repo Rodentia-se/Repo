@@ -36,7 +36,7 @@
         'shortName' => 'USD',
         'symbol' => '$',
         'format' => '$ §',
-        'value' => 1
+        'value' => 0.6
       ),
       'GBP' => array(
         'name' => 'pund',
@@ -44,7 +44,7 @@
         'shortName' => 'GBP',
         'symbol' => '£',
         'format' => '£ §',
-        'value' => 1
+        'value' => 1.1
       ),
       'SEK' => array(
         'name' => 'krona',
@@ -52,7 +52,7 @@
         'shortName' => 'SEK',
         'symbol' => 'kr',
         'format' => '§ kr',
-        'value' => 1
+        'value' => 0.1
       )
     );
     

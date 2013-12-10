@@ -161,6 +161,7 @@
             $page->closeDiv();
             foreach(config::$acceptedCurrencies as $currency) {
               $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
+              $page->addInput(config::$currencies[$currency]['value'], config::$currencies[$currency]['shortName'].'Value',  config::$currencies[$currency]['shortName'].'Value', 'hidden');
             }
             $page->addScript('
               $("#currency").combobox()
@@ -178,8 +179,9 @@
                 $page->startDiv($division->type.'CostDiv');
                   $cost = $person->getCost($division);
                   $costs += $cost;
-                  $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', NULL, 'Main');
+                  $page->addInput(1, $division->type.'Num', $division->type.'Num', 'text', 'cost', 'Main');
                   $page->addSpan($cost, $division->type.'Cost', 'currency');
+                  $page->addInput($cost, $division->type.'Each', $division->type.'Each', 'hidden');
                 $page->closeDiv();
               }
             }
@@ -192,6 +194,14 @@
               var sum = parseInt($(this).html().replace(/[^0-9]/g, ""));
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
               $(this).html(sum.toMoney(0, ".", " ", "", format));
+            });
+            $(".cost").change(function() {
+              var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
+              var each = parseInt($("#" + $(this).attr(id).replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
+              var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
+              var cost = num * each * rate;
+              var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+              $("#" + $(this).attr(id).replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
             });
           ');
         }
