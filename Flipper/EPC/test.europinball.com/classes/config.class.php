@@ -20,7 +20,7 @@
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
     public static $defaultCurrency = "EUR";
-    public static $acceptedCurrencies = array("EUR", "USD");
+    public static $acceptedCurrencies = array("EUR", "USD", "SEK");
     public static $currencies = array(
       'EUR' => array(
         'name' => 'euro',
