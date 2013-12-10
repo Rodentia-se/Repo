@@ -257,7 +257,7 @@ $num = 1;
                   $("#payPalMsg").val(htmlspecialchars(payMsg));
 //                  var paidText = paidCur * -1;
 //                  $("#paidText").html("Paid: " + paidText.toMoney(0, ".", " ", "", format));
-                })
+                }) 
                 .change();
               ');
             $page->closeDiv();
