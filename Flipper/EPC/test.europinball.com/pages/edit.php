@@ -166,8 +166,8 @@
             $page->addScript('
               $("#currency").combobox()
               .change(function(){
-                var format = $("#" + $(this).text() + "Format").val();
-                var rate = $("#" + $(this).text() + "Value").val();
+                var format = $("#" + $(this).children(":selected").text() + "Format").val();
+                var rate = $("#" + $(this).children(":selected").text() + "Value").val();
                 $(".currency").each(function () {
                   var num = parseInt($("#" + this.id.replace("Cost", "Num")).val().replace(/[^0-9]/g, ""));
                   var each = parseInt($("#" + this.id.replace("Cost", "Each")).val().replace(/[^0-9]/g, ""));
