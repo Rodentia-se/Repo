@@ -197,7 +197,7 @@
             });
             $(".cost").change(function() {
               var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
-              var each = parseInt($("#" + $(this).attr(id).replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
+              var each = parseInt($("#" + $(this).attr("id").replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
               var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
               var cost = num * each * rate;
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
