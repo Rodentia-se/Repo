@@ -159,7 +159,7 @@
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency');
               foreach(config::$acceptedCurrencies as $currency) {
-                $page->addInput($currency['format'], $currency['shortName'].'Format',  $currency['shortName'].'Format', 'hidden');
+                $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
               }
             $page->closeDiv();
             $page->addScript('
@@ -189,8 +189,8 @@
             $(".currency").each(function () {
               var el = this;
               var sum = parseInt($(el).html().replace(/[^0-9]/g, ""));
-              alert(sum);
-              var newSum = sum.toMoney();
+              var format = $("#" + $(el).children(":selected").text() + "Format").text();
+              var newSum = sum.toMoney(2, ".", " ", "", format);
               $(el).html(newSum);
             });
           ');
