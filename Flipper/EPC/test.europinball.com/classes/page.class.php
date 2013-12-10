@@ -458,7 +458,7 @@
       return $select;
     }
 
-    public static getSimpleSelect($array, $id = NULL, $name = NULL, $class = NULL, $label = TRUE, $selected = NULL, $choice = FALSE) {
+    public static function getSimpleSelect($array, $id = NULL, $name = NULL, $class = NULL, $label = TRUE, $selected = NULL, $choice = FALSE) {
       if (is_object($array)) {
         $array = (array) $array;
       }
