@@ -174,6 +174,7 @@
                 dataStore.setItem("curVal", $(this).val());
                 $(".curCodes").val($(this).children(":selected").text())
                 $(".curCodeSpans").html($(this).children(":selected").text())
+                $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
                 $(".cost").change();
               })
               .change();
@@ -273,7 +274,7 @@ $num = 1;
               }
               if (in_array('International', config::$paymentOptions)) {
                 $page->startDiv('International');
-                  $page->addParagraph('Pay <span class="curCodeSpans">'.config::$defaultCurrency.'</span> <span class="totalSpans">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
+                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>.');
                 $page->closeDiv();
               }
               if (in_array('Domestic', config::$paymentOptions)) {
