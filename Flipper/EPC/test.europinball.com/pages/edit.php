@@ -207,6 +207,12 @@ $num = 1;
                   $payMsg .= ', T-shirts: '.$num;
                 $page->closeDiv();
               }
+              $page->startDiv('subTotalDiv');
+                $page->addLabel('&nbsp;');
+                $page->addSpan('&nbsp;', NULL, 'short');
+                $page->addSpan($costs, 'subTotal', 'currency');
+                $payMsg .= ', total: '.$costs;
+              $page->closeDiv();
               $page->startDiv('paidDiv');
                 $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', 'Paid', FALSE, TRUE);
                 $page->addSpan($person->paid * -1, 'paidCur', 'currency');
@@ -215,9 +221,8 @@ $num = 1;
               $page->closeDiv();
               $page->startDiv('totalDiv');
                 $page->addLabel('&nbsp;');
-                $page->addSpan('&nbsp;', 'paidFiller', 'short');
+                $page->addSpan('&nbsp;', NULL, 'short');
                 $page->addSpan($costs - $person->paid, 'total', 'currency');
-                $payMsg .= ', total: '.$costs;
               $page->closeDiv();
               $page->addScript('
                 $(".cost").change(function() {
@@ -234,6 +239,8 @@ $num = 1;
                     costs += parseInt($(this).val()) * num;
                   }); 
                   var paid = parseInt($("#paid").val());
+                  var subTotal = costs * rate;
+                  $("#subTotal").html(subTotal.toMoney(0, ".", " ", "", format));
                   var total = (costs - paid) * rate;
                   $(".totals").val(total);
                   $(".totalSpans").html(total.toMoney(0, ".", " ", "", format));
