@@ -169,6 +169,7 @@
                 var curVal = 0;
               };
               curVal = (curVal) ? curVal : 0;
+              curVal = 0;
               showMsg(curVal);
               $("#currency").val(curVal)
               .combobox()
