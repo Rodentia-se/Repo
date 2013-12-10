@@ -201,7 +201,7 @@
               var rate = $("#" + $("#currency").children(":selected").text() + "Value").val();
               var cost = num * each * rate;
               var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
-              $("#" + $(this).attr(id).replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
+              $("#" + $(this).attr("id").replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
             });
           ');
         }
