@@ -45,8 +45,7 @@ $person = person(1);
               $("#resetnewUserButton").val("Submit");
             ');
           } else {
-            $page->addParagraph('You don\'t have any user in the system. Please go to the '.page::getButton('Registration').' page to create one.');
-            $page->addForm('resetLogout', array('register' => 'isMe', 'person_id' => $person->id));
+            $page->addParagraph('You don\'t have any user in the system. Please go to the '.page::getButtonLink(config::$baseHref.'/registration/', 'Registration').' page to create one.');
           }
         }
 

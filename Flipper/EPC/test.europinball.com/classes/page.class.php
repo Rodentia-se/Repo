@@ -543,6 +543,10 @@
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
     
+    public static function getButtonLink($url, $text = NULL, $title = NULL) {
+      return '<a href="'.$url.'"'.(($title) ? ' title="'.$title.'" alt="'.$title.'"' : '').' class="buttonLink">'.(($text) ? $text : 'link').'</a>';
+    }
+    
     public function addClickButton($text = 'submit', $id = NULL, $class = NULL, $forms = TRUE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
       return $this->addButton($text, $id, $class, $forms, $action, $ext, $script, $method, $header, $label);
     }
