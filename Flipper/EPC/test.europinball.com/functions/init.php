@@ -15,7 +15,7 @@
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
   }
   
-  if (isset($_REQUEST['nonce'])) {
+  if (isset($_REQUEST['nonce']) && (!$ajax || $checkNonce)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
     } else {
