@@ -290,6 +290,7 @@
           $form .= (is_int($field)) ? self::getInput('yes', $value, $value, 'hidden') : self::getInput($value, $field, $field, 'hidden');
         }
       }
+      $form .= self::getFormEnd();
       return $form;
     }
 
@@ -664,7 +665,7 @@
       return config::$login->loggedin();
     }
 
-    public function addNewUser($title = 'Please provide your login credentials', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
+    public function addNewUser($title = 'Please provide your login credentials', $person_id = 0, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       $dialog = self::getNewUser($title, $person_id, $prefix, $class, $dialog, $autoopen);
       $this->addContent($dialog);
       return $dialog;
