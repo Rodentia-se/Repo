@@ -347,7 +347,7 @@
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
           $form .= page::getLabel(' ');
-          $form .= page::getButton('Login', $prefix.'login', (($dialog) ? 'hidden ' : '').'enterButton', FALSE, NULL, NULL, FALSE) : '';
+          $form .= page::getButton('Login', $prefix.'login', (($dialog) ? 'hidden ' : '').'enterButton', FALSE, NULL, NULL, FALSE);
           $form .= page::getButton('I forgot all this!', $prefix.'reset');
         $form .= page::getFormEnd();
         $form .= page::getFormStart($prefix.'resetForm');
