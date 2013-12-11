@@ -208,13 +208,13 @@ $num = 1;
                   $payMsg .= ', T-shirts: '.$num;
                 $page->closeDiv();
               }
-              $page->startDiv('subTotalDiv');
+              $page->startDiv('subTotalDiv', (($person->paid) ? '' : 'hidden'));
                 $page->addLabel('&nbsp;');
                 $page->addSpan('&nbsp;', NULL, 'short');
                 $page->addSpan($costs, 'subTotal', 'currency sum');
                 $payMsg .= ', total: '.$costs;
               $page->closeDiv();
-              $page->startDiv('paidDiv');
+              $page->startDiv('paidDiv', (($person->paid) ? '' : 'hidden'));
                 $page->addLabel('&nbsp;');
                 $page->addLabel('Already paid', 'paidText', 'short');
 //                $page->addInput($person->paid, 'paidText', 'paidText', 'text', 'short', '&nbsp;', FALSE, TRUE);
