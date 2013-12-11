@@ -55,7 +55,7 @@
               $person->cityName,
               $person->countryName,
               $person->getLink('ifpa'),
-              (($person->getPhoto(FALSE, TRUE, FALSE) ? '<img src="'.config::$baseHref.'/images/person.png" title="Click to view photo"><div id="'.$person->id.'" class="hidden photodiv"><img src="'.$person->getPhoto(FALSE, TRUE, FALSE).'"></div>' : ''),
+              (($person->getPhoto(FALSE, TRUE, FALSE)) ? '<img src="'.config::$baseHref.'/images/person.png" title="Click to view photo"><div id="'.$person->id.'" class="hidden photodiv"><img src="'.$person->getPhoto(FALSE, TRUE, FALSE).'"></div>' : ''),
               '<form id="'.$person->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="isMe"><input type="hidden" name="person_id" value="'.$person->id.'"><input type="button" id="'.$person->id.'_isMe" class="isMe" value="This is me!"></form>'
             );
           } 
