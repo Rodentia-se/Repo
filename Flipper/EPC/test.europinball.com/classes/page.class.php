@@ -543,6 +543,12 @@
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
     
+    public function getButtonLink($url, $text = NULL, $title = NULL) {
+      $link = self::getIcon($url, $text, $title);
+      $this->addContent($link);
+      return $link;
+    }
+
     public static function getButtonLink($url, $text = NULL, $title = NULL) {
       return '<a href="'.$url.'"'.(($title) ? ' title="'.$title.'" alt="'.$title.'"' : '').' class="buttonLink">'.(($text) ? $text : 'link').'</a>';
     }
