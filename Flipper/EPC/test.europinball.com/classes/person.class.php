@@ -200,7 +200,7 @@
       return $this->setProp('username', $username);
     }
     
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $defaults = TRUE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
       switch ($type) {
         case 'ifpa':
           if ($this->ifpa_id) {
@@ -210,7 +210,7 @@
           }
         break;
         default:
-          return parent::getLink($type, $anchor, $thumbnail, $defaults);
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
       }
     }
