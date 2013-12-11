@@ -127,7 +127,7 @@
                     var photoDiv = $(this).data("photodiv");
                     $("#" + photoDiv).dialog("open");
                     $(document).on("click", ".ui-widget-overlay", function() {
-                      $("#" + photoDiv).data("photodiv")).dialog("close");
+                      $("#" + photoDiv).dialog("close");
                     });
                   });
                   return true;
