@@ -200,6 +200,10 @@
       return $this->setProp('username', $username);
     }
     
+    public function setNonce($nonce) {
+      return $this->setProp('username', $nonce);
+    }
+
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
       switch ($type) {
         case 'ifpa':

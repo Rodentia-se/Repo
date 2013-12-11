@@ -284,13 +284,13 @@
       return self::getElementEnd('form');
     }
     
-    public function addForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
-      $form = self::getForm($id, $fields, $action, $methid, $ext);
+    public function addForm($id = NULL, $fields = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
+      $form = self::getForm($id, $fields, $action, $method, $ext);
       $this->addContent($form);
       return $form;
     }
 
-    public static function getForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
+    public static function getForm($id = NULL, $fields = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
       $form = self::getFormStart($id.'Form', NULL, $action, $method, $ext);
       if (is_string($fields)) {
         $form .= self::getInput('yes', $fields, $fields, 'hidden');

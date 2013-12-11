@@ -409,6 +409,33 @@
       }
       return $form;
     }
+    
+    function sendResetEmail($person) {
+      if ($person->validate('mailAddress', $person->mailAddress)) {
+        $nonce = ulNonce::Create('resetReq');
+        $person->setNonce($nonce);
+        $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: '.config::$supportEmail);
+        $msg = 'Hello!
+          
+          You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
+        
+          If you want to reset your password, please click on this link or paste the address into your browser.
+          
+          '.config::$baseHref.'/resetpassword/?nonce='.urlencode($nonce).'
+          
+          The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
+          
+          If you encounter any problems, email us at '.config::$supportEmail.' for assistance.
+          
+          Regards
+          /EPC 2014 organizers
+        ';
+        if (mail($person->mailAddress, 'EPC password reset', $msg, $headers))
+          return TRUE;
+        }
+      }
+      return FALSE;
+    }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       return self::getUserEdit($title, $prefix, $class, $dialog, $autoopen, TRUE, $person_id);

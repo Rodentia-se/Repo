@@ -105,6 +105,7 @@
 
     public static $baseHref = 'https://test.europinball.org/';
     public static $baseDir = '/www/test.europinball.com/';
+    public static $supportEmail = 'support@europinball.org';
     
     public static $debug = TRUE;
     public static $showErrors = TRUE;
