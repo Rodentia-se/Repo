@@ -321,15 +321,15 @@
         ');
       }
       $form .= page::getScript('
-        $(".enterSubmit").keypress(function(e) {
+        $("'.$prefix.'loginForm > .enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
-              $("#'.$prefix.'loginForm").submit();
-            }
+            $("#'.$prefix.'loginButton").click();
           }
         });
         $("#'.$prefix.'loginButton").click(function() {
-          $("#'.$prefix.'loginForm").submit();
+          if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
+            $("#'.$prefix.'loginForm").submit();
+          }
         });
       ');
       return $form;
@@ -413,7 +413,7 @@
         ');
       }
       $form .= page::getScript('
-        $(".enterSubmit").keypress(function(e) {
+        $("'.$prefix.(($new) ? 'new' : 'change').'UserForm > .enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
             $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click();
           }
