@@ -262,7 +262,7 @@
     }
     
     public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
-      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.$_SERVER['REQUEST_URI'])[0].'" ').'method="'.$method.'"');
+      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.explode("?", $_SERVER['REQUEST_URI'])[0].'" ').'method="'.$method.'"');
     }
     
     public function closeForm() {
