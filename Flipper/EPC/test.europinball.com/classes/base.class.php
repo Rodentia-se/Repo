@@ -37,6 +37,7 @@
               } else {
                 $obj = $this->db->getObjectById(get_class($this), $data);
               }
+              debug($obj);
               if ($obj) {
                 $this->_set($obj);
               } else {
