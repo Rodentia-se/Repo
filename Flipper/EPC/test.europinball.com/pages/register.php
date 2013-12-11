@@ -159,8 +159,8 @@
         $page->startDiv('addNewGuy', 'hidden');
           $page->addParagraph('You have identified yourself as a new guy. Make sure this is correct, and then choose a username and password below.');
           $page->addParagraph('If you want to search again, click here: <input type="button" id="view_search_again" value="Search again">');
-          $page->addNewUser('Register a new user', $person_id, 'newUser');
-          $page->addScript('$("#newUsernewUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\"><input type=\"hidden\" name=\"person_id\" value=\"0\">");');
+          $page->addNewUser('Register a new user', 0, 'addNewGuy');
+          $page->addScript('$("#newUsernewUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
           $page->addScript('
             $("#view_search_again").click(function() {
               $("#addNewGuy").hide();
