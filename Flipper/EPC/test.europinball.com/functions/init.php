@@ -18,6 +18,7 @@
   if (isset($_REQUEST['nonce']) && (!$ajax || $checkNonce)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
+      debug('nonce checked');
     } else {
       error('Invalid nonce');
     }
