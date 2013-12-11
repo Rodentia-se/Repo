@@ -11,10 +11,6 @@
     config::$showErrors = ($_REQUEST['debug']);
   }
   
-  if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
-    config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
-  }
-  
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
@@ -23,6 +19,11 @@
     }
     debug('nonce checked');
   }
+
+  if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
+    config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
+  }
+  
   
   if ($_REQUEST['action']) {
     config::$login->action($_REQUEST['action']);
