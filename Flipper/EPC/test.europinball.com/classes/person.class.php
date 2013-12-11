@@ -262,15 +262,21 @@
           return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {
           return validated(FALSE, 'Username is already taken.', $obj);
-        } else {
+        } else if (config::$login->ValidateUsername($username)) {
           return validated(TRUE, 'Username is up for grabs.', $obj);
+        } else {
+          return validated(FALSE, 'Username not accepted by system', $obj);
         }
       }
     }
     
     public static function validatePassword($password, $obj = FALSE) {
       if (preg_match('/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$])[0-9A-Za-z!@#$]{6,50}$/', $password)) {
-        return validated(TRUE, 'Password is valid', $obj);
+        if (ulPassword::IsValid($password)) {
+          return validated(TRUE, 'Password is valid', $obj);
+        } else {
+          return validated(FALSE, 'Password not accepted by system', $obj);
+        }
       } else {
         return validated(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
       }

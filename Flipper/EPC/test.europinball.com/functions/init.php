@@ -23,6 +23,9 @@
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
   }
   
+  if ($_REQUEST['msg']) {
+    config::$msg = $_REQUEST['msg'];
+  }
   
   if ($_REQUEST['action']) {
     config::$login->action($_REQUEST['action']);

@@ -8,6 +8,10 @@
   $page->addH2('Password reset');
 
   if ($page->loggedin()) {
+    if ($_REQUEST['newUser']) {
+      $page->addForm('Done', array('msg' => 'Password reset succesfully completed'), '/edit/');
+      $page->addScript('$("#Done").submit();');
+    }
     $person = person('login');
     $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
     $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Log out', 'resetLogout').' first.');
