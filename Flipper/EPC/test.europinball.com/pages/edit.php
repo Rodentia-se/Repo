@@ -350,7 +350,7 @@ $num = 1;
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
     } else {
-      error('Could not find you in the database?', TRUE);
+      error('Could not find you in the database? Please <a href="'.config::$baseHref.'/contact-us">contact</a> an administrator.', TRUE);
     }
   }
   
