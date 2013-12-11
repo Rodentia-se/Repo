@@ -10,10 +10,8 @@
   if ($page->loggedin()) {
     $person = person('login');
     $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
-    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Logout', 'resetLogout').' first.');
-    $page->startForm('resetLogoutForm');
-      $page->addInput('logout', 'resetAction', 'action', 'hidden');
-    $page->closeForm();
+    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Log out', 'resetLogout').' first.');
+    $page->addForm('resetLogout', array('action' => 'logout'));
   } else {
     $nonce = $_REQUEST['nonce'];
     if ($nonce) {

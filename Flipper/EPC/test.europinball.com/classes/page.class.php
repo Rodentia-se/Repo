@@ -279,6 +279,23 @@
     public static function getFormEnd() {
       return self::getElementEnd('form');
     }
+    
+    public function addForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
+      $form = self::getForm($id, $fields, $action, $methid, $ext) {
+      $this->addContent($form);
+      return $form;
+    }
+
+    public static function getForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
+      $form = self::getFormStart($id.'Form', NULL, $action, $method, $ext);
+      if (is_string($fields)) {
+        $button .= self::getInput('yes', $fields, $fields, 'hidden');
+      } else if (is_array($fields)) {
+        foreach ($fields as $field => $value) {
+          $button.= (is_int($field)) ? self::getInput('yes', $value, $value, 'hidden') : self::getInput($value, $field, $field, 'hidden');
+        }
+      }
+    }
 
     public function addLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
       $label = self::getLabel($text, $id, $class, $close);
@@ -546,7 +563,7 @@
     public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
       $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
       $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
-      $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
+      $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method, $ext) : '';
       $button .= ($header) ? $header : '';
       $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', (($script !== FALSE) ? 'buttonSubmit ' : '').$class, $label);
       if (is_string($forms)) {
