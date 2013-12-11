@@ -255,6 +255,8 @@
           }
           return FALSE;
         break;
+        case 'reset':
+        break;
         default:
           return FALSE;
         break;
@@ -412,8 +414,8 @@
     
     function sendResetEmail($person) {
       if ($person->validate('mailAddress', $person->mailAddress)) {
-        $nonce = ulNonce::Create('resetReq');
-        $person->setNonce($nonce);
+        $reqNonce = ulNonce::Create('reqNonce');
+        $person->setNonce($reqNonce);
         $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: '.config::$supportEmail);
         $msg = 'Hello!
           
@@ -421,7 +423,7 @@
         
           If you want to reset your password, please click on this link or paste the address into your browser.
           
-          '.config::$baseHref.'/resetpassword/?resetNonce='.urlencode($nonce).'
+          '.config::$baseHref.'/resetpassword/?resetNonce='.urlencode($reqNonce).'
           
           The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
           
