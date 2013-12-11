@@ -22,7 +22,7 @@
         if ($person) {
           $page->addParagraph('You have been identified as '.$person->name.
           (($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) 
-          ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. If this is not corret, please <a href=""
+          ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. If this is not corret, please <a href=""');
         }
       }
     }
