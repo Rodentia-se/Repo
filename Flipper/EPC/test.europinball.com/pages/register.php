@@ -123,7 +123,7 @@
                       modal: true
                     });
                   });
-                  $("#photoIcon").click(function() {
+                  $(".photoIcon").click(function() {
                     $("#" + $(this).data("photoDiv")).dialog("open");
                   });
                   return true;
