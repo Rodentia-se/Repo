@@ -225,7 +225,7 @@ $num = 1;
               $page->startDiv('totalDiv');
                 $page->addLabel('&nbsp;');
                 $page->addSpan('&nbsp;', NULL, 'short');
-                $page->addSpan($costs - $person->paid, 'total', 'currency sum');
+                $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
               $page->closeDiv();
               $page->addScript('
                 $(".cost").change(function() {
