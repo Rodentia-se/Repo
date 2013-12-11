@@ -151,7 +151,7 @@
               $("#searchResults").hide();
               $("#newGuy").hide();
               $("#addNewGuy").show();
-              $("#3newUserusername").focus();
+              $("#addNewGuyusername").focus();
             });
           ');
           $page->addTable('resultsTable', array('Name', 'Tag', 'City', 'Country', 'IFPA', 'Picture', 'Me?'));
