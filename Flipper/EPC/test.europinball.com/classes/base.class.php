@@ -187,27 +187,29 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
     
-    public function getPhoto($thumbnail = FALSE, $anchor = FALSE) {
-      return $this->getLink('photo', $anchor, $thumbnail);
+    public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
       switch ($type) {
         case 'photo':
-          foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/0.'.$ext;
-            }
-          }
-          foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.'.$ext;
-            }
-          }
-          if ($thumbnail) {
+          if ($defaults) {
             foreach (config::$photoExts as $ext) {
-              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.thumb.'.$ext)) {
-                $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.thumb.'.$ext;
+              if (file_exists(config::$baseDir.'/images/objects/0.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/0.'.$ext;
+              }
+            }
+            foreach (config::$photoExts as $ext) {
+              if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.'.$ext)) {
+                $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.'.$ext;
+              }
+            }
+            if ($thumbnail) {
+              foreach (config::$photoExts as $ext) {
+                if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.thumb.'.$ext)) {
+                  $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.thumb.'.$ext;
+                }
               }
             }
           }
