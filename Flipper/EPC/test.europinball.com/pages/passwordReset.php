@@ -31,7 +31,10 @@ $person = person(1);
           $page->startDiv('security');
             $page->addNewUser('Provide new credentials', $person->id, 'reset');
           $page->closeDiv();
-          $page->addScript();
+          $page->addScript('
+            $("#resetaction").val("reset");
+            $("#resetnewUserButton").val("Submit");
+          ');
         }
 
   $page->submit();
