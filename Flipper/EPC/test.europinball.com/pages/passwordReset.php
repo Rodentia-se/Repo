@@ -13,7 +13,7 @@
     $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Log out', 'resetLogout').' first.');
     $page->addForm('resetLogout', array('action' => 'logout'));
   } else {
-    $nonce = $_REQUEST['nonce'];
+    $nonce = $_REQUEST['resetNonce'];
     if ($nonce) {
       if (ulNonce::Verify('resetReq', $nonce)) {
         $person = person(array('nonce' => $nonce));
@@ -26,7 +26,11 @@
 $person = person(1);
         if ($person && isId($person->id)) {
           $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. If this is not corret, please '.page::getButton('reload').' this page and try again.');
-          $page->addForm('reload', NULL, explode("?", $_SERVER['REQUEST_URI'])[0]);
+          $page->addForm('reload');
+          $resetDone = ulNonce::Create('resetDone');
+          $page->startDiv('security');
+            $page->addUserEdit();
+          $page->closeDiv();
           debug( explode("?", $_SERVER['REQUEST_URI'])[0]);
         }
 

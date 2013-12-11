@@ -421,7 +421,7 @@
         
           If you want to reset your password, please click on this link or paste the address into your browser.
           
-          '.config::$baseHref.'/resetpassword/?nonce='.urlencode($nonce).'
+          '.config::$baseHref.'/resetpassword/?resetNonce='.urlencode($nonce).'
           
           The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
           

@@ -77,17 +77,8 @@
       if (!$this->loginAdded) {
         if ($this->loggedin()) {
           $footer .= self::getDivStart('logoutFooter');
-          $footer .= self::getParagraph('
-            <form id="footerLogoutForm" action="'.$_SERVER['REQUEST_URI'].'" method="POST">
-              You are logged in as '.$person->name.'. 
-              <input type="hidden" name="action" value="logout">
-              <input type="button" id="footerLogoutButton" value="Log out">
-            </form>', NULL, 'italic');
-          $footer .= self::getScript('
-            $("#footerLogoutButton").click(function() {
-              $("#footerLogoutForm").submit();
-            });
-          ');
+          $footer .= self::getParagraph('You are logged in as '.$person->name.'. '.self::getButton('Log out', 'footerLogout'), NULL, 'italic');
+          $footer .= self::getForm('resetLogout', array('action' => 'logout'));
           $footer .= self::getDivEnd();
         } else {
           $footer .= self::getDivStart('loginFooter');
@@ -271,7 +262,7 @@
     }
     
     public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
-      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.$_SERVER['REQUEST_URI'].'" ').'method="'.$method.'"');
+      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.$_SERVER['REQUEST_URI'])[0].'" ').'method="'.$method.'"');
     }
     
     public function closeForm() {
@@ -567,7 +558,7 @@
     
     public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
       $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
-      $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
+      $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : explode("?", $_SERVER['REQUEST_URI'])[0]; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method, $ext) : '';
       $button .= ($header) ? $header : '';
       $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', (($script !== FALSE) ? 'buttonSubmit ' : '').$class, $label);
