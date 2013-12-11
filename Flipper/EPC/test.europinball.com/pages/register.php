@@ -124,7 +124,7 @@
                     });
                   });
                   $(".photoIcon").click(function() {
-                    $("#" + $(this).data("photoDiv")).dialog("open");
+                    $("#" + $(this).data("photodiv")).dialog("open");
                   });
                   return true;
                 },
