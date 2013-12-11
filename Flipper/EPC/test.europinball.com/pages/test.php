@@ -5,6 +5,10 @@
 
   $page = new page('Test', true);
 
+
+  $person = person(0);
+  debug($person);
+/*
   debug('TEST 1');
   $tournament = tournament('active');
   debug($tournament->getFlat());
