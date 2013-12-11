@@ -29,9 +29,9 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-        debug($data);
         if ($search === NOSEARCH) {
           if ($data) {
+        debug($data);
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
                 $obj = static::$instances['ID'.$data];
