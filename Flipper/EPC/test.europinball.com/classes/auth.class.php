@@ -173,7 +173,6 @@
                     $uid = $this->Uid($_SESSION['username']);
                     $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
                     if ($change) {
-                      $this->DeleteUser($uid);
                       config::$msg = 'Your username and/or password was successfully changed.';
                       return TRUE;
                     } else {
@@ -215,41 +214,92 @@
         case 'newUser':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
             if ($this->verified) {
-              if ($_REQUEST['person_id'] == 0) {
-                $person = person('new');
-                $person_id = $person->save();
-              } else {
-                if (isId($_REQUEST['person_id'])) {
-                  $person_id = $_REQUEST['person_id'];
-                  $uid = ($person->username) ? $this->Uid($person->username) : NULL;
+              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
+                if ($_REQUEST['person_id'] == 0) {
+                  $person = person('new');
+                  $person_id = $person->save();
                 } else {
-                  config::$msg = 'Credential changes failed.';
-                  error('Not enough parameters provided');
-                  return FALSE;
-                }
-              }
-              $person = person($person_id);
-              if ($person) {
-                if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
-                  $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
-                  if ($this->IsAuthSuccess()) {
-                    $this->setLogin();
-                    if ($uid) {
-                      $this->DeleteUser($uid);
-                    }
-                    return TRUE;
+                  if (isId($_REQUEST['person_id'])) {
+                    $person_id = $_REQUEST['person_id'];
+                    $uid = ($person->username) ? $this->Uid($person->username) : NULL;
                   } else {
-                    $this->setLogin(FALSE);
-                    config::$msg = 'User created, but could not log you in. Please try logging in.';
-                    error('User created, but could not log you in. Please try logging in.');
+                    config::$msg = 'Credential changes failed.';
+                    error('Not enough parameters provided');
+                    return FALSE;
+                  }
+                }
+                $person = person($person_id);
+                if ($person) {
+                  if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
+                    $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
+                    if ($this->IsAuthSuccess()) {
+                      $this->setLogin();
+                      if ($uid) {
+                        $this->DeleteUser($uid);
+                      }
+                      return TRUE;
+                    } else {
+                      $this->setLogin(FALSE);
+                      config::$msg = 'User created, but could not log you in. Please try logging in.';
+                      error('User created, but could not log you in. Please try logging in.');
+                    }
+                  } else {
+                    config::$msg = 'Could not add the user. Please try again.';
+                    error('Could not add the user');
                   }
                 } else {
-                  config::$msg = 'Could not add the user. Please try again.';
-                  error('Could not add the user');
+                  config::$msg = 'Could not identify you. Please try again.';
+                  error('Could not find person ID '.$person_id);
                 }
               } else {
-                config::$msg = 'Could not identify you. Please try again.';
-                error('Could not find person ID '.$person_id);
+                config::$msg = 'The password did not match. Your login has not been changed. Please try again.';
+                error('The password did not match, please try again.');
+              }
+            } else {
+              config::$msg = 'Invalid nonce. Did you use an old window? Please try again.';
+              error('Invalid nonce 3, please clean cache and cookies and try again.');
+            }
+          } else {
+            config::$msg = 'Something went wrong. Please try again.';
+            error('Not enough parameters provided');
+          }
+          return FALSE;
+        break;
+        case 'reset':
+          if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
+            if ($this->verified) {
+              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
+                if ($_REQUEST['person_id'] == 0) {
+                  $person = person('new');
+                  $person_id = $person->save();
+                } else {
+                  if (isId($_REQUEST['person_id'])) {
+                    $person_id = $_REQUEST['person_id'];
+                    $uid = ($person->username) ? $this->Uid($person->username) : NULL;
+                  } else {
+                    config::$msg = 'Credential changes failed.';
+                    error('Not enough parameters provided');
+                    return FALSE;
+                  }
+                }
+                $person = person($person_id);
+                if ($person) {
+                  $uid = $this->Uid($_SESSION['username']);
+                  $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                  if ($change) {
+                    config::$msg = 'Your username and/or password was successfully changed.';
+                    return TRUE;
+                  } else {
+                    config::$msg = 'Could not commit the changes. Your username and passwords stay the same as before. Please try again.';
+                    return FALSE;
+                  }
+                } else {
+                  config::$msg = 'Could not identify you. Please try again.';
+                  error('Could not find person ID '.$person_id);
+                }
+              } else {
+                config::$msg = 'The password did not match. Your login has not been changed. Please try again.';
+                error('The password did not match, please try again.');
               }
             } else {
               config::$msg = 'Invalid nonce. Did you use an old window? Please try again.';
