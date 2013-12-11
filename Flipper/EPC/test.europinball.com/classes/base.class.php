@@ -29,19 +29,14 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-        debug($data);
-        debug($search);
         if ($search === NOSEARCH) {
           if ($data) {
-        debug($data);
             if (isId($data)) {
-        debug($data);
               if (is_object(static::$instances['ID'.$data])) {
                 $obj = static::$instances['ID'.$data];
               } else {
                 $obj = $this->db->getObjectById(get_class($this), $data);
               }
-              debug($obj);
               if ($obj) {
                 $this->_set($obj);
               } else {

@@ -61,6 +61,14 @@
             $page->addScript('$("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
             $page->focus('username');
           }
+        } else {
+          if ($_REQUEST['action'] == 'newUser') {
+            $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
+          }
+          $page->addParagraph('You have identified yourself as a new guy. Make sure this is correct, and then choose a username and password below.');
+          $page->addNewUser('Register a new user', $person_id);
+          $page->addScript('$("#newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
+          $page->focus('username');
         }
       } else {
         $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');

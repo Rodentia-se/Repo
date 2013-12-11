@@ -342,7 +342,7 @@
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
-          $form .= ($person_id) ? page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden') : '';
+          $form .= ($person_id || $person_id == 0) ? page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden') : '';
           $form .= page::getDivStart($prefix.'usernameDiv');
             $form .= page::getInput((($new) ? '' : $_SESSION['username']), $prefix.(($new) ? 'u' : 'newU').'sername', (($new) ? 'u' : 'newU').'sername', 'text', 'enterSubmit', (($new) ? 'Username' : 'New username'));
           $form .= page::getDivEnd();
