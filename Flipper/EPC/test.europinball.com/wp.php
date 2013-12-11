@@ -11,8 +11,8 @@ function customTemplate($page) {
 		case 'editplayer':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/edit.php');
 	  break;
-		case 'login':
-			include($_SERVER['DOCUMENT_ROOT'].'/pages/login.php');
+		case 'resetpassword':
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/passwordReset.php');
 	  break;
 		case 'admin-tools':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/test.php');
