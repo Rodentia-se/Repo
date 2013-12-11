@@ -96,6 +96,7 @@
           $this->populate($depth);
         }
       }
+      debug(count($this));
     }
 
     protected function _set($data) {

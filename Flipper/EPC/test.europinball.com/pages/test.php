@@ -8,6 +8,7 @@
 
   $person = person(0);
   debug($person);
+  debug(count($person));
 /*
   debug('TEST 1');
   $tournament = tournament('active');
