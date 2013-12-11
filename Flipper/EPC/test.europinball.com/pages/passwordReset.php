@@ -29,7 +29,7 @@ $person = person(1);
           $page->addForm('reload');
           $resetDone = ulNonce::Create('resetDone');
           $page->startDiv('security');
-            $page->addNewUser();
+            $page->addNewUser('Provide new credentials', $person->id);
           $page->closeDiv();
           debug( explode("?", $_SERVER['REQUEST_URI'])[0]);
         }
