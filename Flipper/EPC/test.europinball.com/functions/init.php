@@ -46,6 +46,5 @@
       }
     }
   }
-  debug(config::$login->person);
 
 ?>
