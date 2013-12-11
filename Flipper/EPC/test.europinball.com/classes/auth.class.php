@@ -293,7 +293,7 @@
         $form .= page::getFormEnd();
         $form .= page::getLabel(' ');
         $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
-        $form .= page::getButton('I forgot all this!', $prefix.'reset');
+        $form .= page::getButton('I forgot all this!', $prefix.'reset', 'enterButton');
         $form .= page::getFormStart($prefix.'resetForm');
           $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
         $form .= page::getFormEnd();
@@ -321,11 +321,6 @@
         ');
       }
       $form .= page::getScript('
-        $("'.$prefix.'loginForm > .enterSubmit").keypress(function(e) {
-          if (e.keyCode == $.ui.keyCode.ENTER) {
-            $("#'.$prefix.'loginButton").click();
-          }
-        });
         $("#'.$prefix.'loginButton").click(function() {
           if ($.trim($("#'.$prefix.'username").val()).length > 0 && $.trim($("#'.$prefix.'password").val()).length > 0) {
             $("#'.$prefix.'loginForm").submit();

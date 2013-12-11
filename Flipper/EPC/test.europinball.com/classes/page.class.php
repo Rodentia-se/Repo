@@ -109,6 +109,11 @@
         $(".buttonSubmit").click(function() {
           $("#" + this.id.replace("Button", "Form")).submit();
         });
+        $("'.$prefix.'loginForm > .enterSubmit").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            $(this.form + " input.enterButton").click();
+          }
+        });
       ');
       $footer .= self::getScript('
         $("#mainContent").tooltipster({
