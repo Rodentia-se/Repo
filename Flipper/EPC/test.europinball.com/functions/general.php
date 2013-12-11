@@ -18,6 +18,10 @@
     }
   }
   
+  function is($string) {
+    return ($string || $string == 0);
+  }
+  
   function camelCaseToSpace($txt, $ucfirst = FALSE) {
     $regexp = '/#
       (?<=[a-z])
