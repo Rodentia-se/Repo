@@ -109,7 +109,7 @@
                   $(".isMe").click(function() {
                     $("#" + this.id.split("_")[0] + "_isMeForm").submit();
                   });
-                  $( "#dialog" ).dialog({
+                  $(".photoPopup").dialog({
                     autoOpen: false,
                     show: {
                       effect: "blind",
@@ -119,6 +119,9 @@
                       effect: "blind",
                       duration: 1000
                     }
+                  });
+                  $("#photoIcon").click(functionm() {
+                    $("#" + $(this).data("photoDiv")).dialog("open");
                   });
                   return true;
                 },
