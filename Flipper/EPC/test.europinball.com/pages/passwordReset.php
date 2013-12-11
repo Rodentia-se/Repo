@@ -6,6 +6,8 @@
   $page = new page('Register');
   
   $page->addH2('Password reset');
+  
+  debug($_SESSION);
 
   if ($page->loggedin()) {
     if ($_REQUEST['action'] == 'newUser') {
