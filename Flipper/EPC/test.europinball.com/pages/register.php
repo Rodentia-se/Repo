@@ -120,7 +120,7 @@
                       duration: 1000
                     }
                   });
-                  $("#photoIcon").click(functionm() {
+                  $("#photoIcon").click(function() {
                     $("#" + $(this).data("photoDiv")).dialog("open");
                   });
                   return true;
