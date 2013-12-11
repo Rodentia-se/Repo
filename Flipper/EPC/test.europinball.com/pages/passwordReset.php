@@ -31,8 +31,7 @@ $person = person(1);
           $page->startDiv('security');
             $page->addNewUser('Provide new credentials', $person->id, 'reset');
           $page->closeDiv();
-          $page->addScript()
-          debug( explode("?", $_SERVER['REQUEST_URI'])[0]);
+          $page->addScript();
         }
 
   $page->submit();
