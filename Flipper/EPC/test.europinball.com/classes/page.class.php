@@ -548,7 +548,7 @@
       $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : $_SERVER['REQUEST_URI']; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method) : '';
       $button .= ($header) ? $header : '';
-      $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', (($forms && $script !== FALSE) ? 'buttonSubmit ' : '').$class, $label);
+      $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', (($script !== FALSE) ? 'buttonSubmit ' : '').$class, $label);
       if (is_string($forms)) {
         $button .= self::getInput('yes', $form, $form, 'hidden');
       } else if (is_array($forms)) {
