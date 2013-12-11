@@ -349,7 +349,9 @@ $num = 1;
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
     } else {
-      $page->addParagraph('Could not find you in the database? Please <a href="'.config::$baseHref.'/contact-us">contact</a> an administrator.');
+      $page->startDiv();
+        $page->addParagraph('Could not find you in the database? Please <a href="'.config::$baseHref.'/contact-us">contact</a> an administrator.');
+      $page->closeDiv();
     }
   }
   
