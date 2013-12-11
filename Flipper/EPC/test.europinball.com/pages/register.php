@@ -137,9 +137,7 @@
         $page->startDiv('searchResults', 'hidden');
           $page->addParagraph('Find yourself in the table below, and click the <input type="button" value="This is me!"> button. If you can\'t find yourself, just try another search.');
           $page->addParagraph('If you really can\'t find yourself in the database, click this button to register as a new person: <input type="button" id="addButton" value="I\'m a new guy!">', 'newGuy', 'hidden');
-          $page->startForm('addForm');
-            $page->addInput('isMe', 'addRegister', 'register', 'hidden');
-          $page->closeForm();
+          $page->addForm('add', array('register', 'isMe'));
           $page->addScript('
             $("#addButton").click(function() {
               $("#searchResults").hide();

@@ -281,7 +281,7 @@
     }
     
     public function addForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
-      $form = self::getForm($id, $fields, $action, $methid, $ext) {
+      $form = self::getForm($id, $fields, $action, $methid, $ext);
       $this->addContent($form);
       return $form;
     }
