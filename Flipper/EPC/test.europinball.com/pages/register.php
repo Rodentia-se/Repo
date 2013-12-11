@@ -109,16 +109,19 @@
                   $(".isMe").click(function() {
                     $("#" + this.id.split("_")[0] + "_isMeForm").submit();
                   });
-                  $(".photoPopup").dialog({
-                    autoOpen: false,
-                    show: {
-                      effect: "blind",
-                      duration: 1000
-                    },
-                    hide: {
-                      effect: "blind",
-                      duration: 1000
-                    }
+                  $(".photoPopup").each(function() {
+                    $(this).dialog({
+                      autoOpen: false,
+                      show: {
+                        effect: "blind",
+                        duration: 1000,
+                      },
+                      hide: {
+                        effect: "blind",
+                        duration: 1000
+                      },
+                      modal: true
+                    });
                   });
                   $("#photoIcon").click(function() {
                     $("#" + $(this).data("photoDiv")).dialog("open");
