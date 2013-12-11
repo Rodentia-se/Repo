@@ -29,6 +29,8 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
+        debug($data);
+        debug($search);
         if ($search === NOSEARCH) {
           if ($data) {
         debug($data);
