@@ -209,7 +209,7 @@
               foreach (config::$photoExts as $ext) {
                 if (file_exists(config::$baseDir.'/images/objects/'.get_class($this).'/0.thumb.'.$ext)) {
                   $url = config::$baseHref.'/images/objects/'.get_class($this).'/0.thumb.'.$ext;
-                }
+                } 
               }
             }
           }
