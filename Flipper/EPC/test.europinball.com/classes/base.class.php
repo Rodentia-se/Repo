@@ -91,7 +91,7 @@
           $this->populate($depth);
         }
       }
-      if (count($this) <= 1) {
+      if (count($this) <= 1 && $data != 'empty' && $data != 'new') {
         $this->failed = TRUE;
       }
     }
