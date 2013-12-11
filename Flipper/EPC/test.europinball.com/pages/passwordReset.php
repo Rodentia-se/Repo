@@ -10,7 +10,7 @@
   if ($page->loggedin()) {
     $person = person('login');
     $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit">Profile editor</a> to change your login');
-    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getClickButton('Logout').' first.');
+    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Logout').' first.');
   }
 
 
