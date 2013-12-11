@@ -15,13 +15,13 @@
     config::$currentTournament =(isId($_REQUEST['tournament'])) ? $_REQUEST['tournament'] : $_REQUEST['t'];
   }
   
-  if (isset($_REQUEST['nonce']) && (!$ajax || $checkNonce)) {
+  if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
-      debug('nonce checked');
     } else {
       error('Invalid nonce');
     }
+    debug('nonce checked');
   }
   
   if ($_REQUEST['action']) {
