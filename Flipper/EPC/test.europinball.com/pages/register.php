@@ -120,7 +120,9 @@
                         effect: "blind",
                         duration: 1000
                       },
-                      modal: true
+                      modal: true, 
+                      width: "auto",
+                      height: "auto"
                     });
                   });
                   $(".photoIcon").click(function() {
