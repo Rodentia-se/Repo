@@ -26,6 +26,7 @@
 $person = person(1);
         if ($person && isId($person->id)) {
           $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. If this is not corret, please '.page::getButton('reload').' this page.');
+          $page->addForm('reload');
         }
 
   $page->submit();
