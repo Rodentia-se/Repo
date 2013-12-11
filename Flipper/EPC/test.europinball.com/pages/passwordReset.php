@@ -9,19 +9,20 @@
 
   if ($page->loggedin()) {
     $person = person('login');
-    $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" id="editLink">Profile editor</a> to change your login');
-    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('Logout', 'resetLogoutButton').' first.');
-    $page->startForm('resetLogoutForm');
-      $page->addInput('logout', 'resetAction', 'action', 'hidden');
-    $page->closeForm();
+    $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
+    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getClickButton('Logout', NULL, 'inline-block', array('action' => 'logout')).' first.');
     $page->addScript('
-      $("#resetLogoutButton").click(function() {
-        $("#resetLogoutForm").submit();
-      });
-      $("#editLink").button();
     ');
   } else {
-    
+    $nonce = $_REQUEST['nonce'];
+    if ($nonce) {
+      if (config::$login->verified) {
+        $person = person(array('nonce' => $nonce));
+        if ($person) {
+          $page->addParagraph('You have been identified as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. If this is not corret, please <a href=""
+        }
+      }
+    }
   }
 
 
