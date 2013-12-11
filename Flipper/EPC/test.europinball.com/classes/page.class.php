@@ -655,8 +655,6 @@
     public static function getUserReset($person, $title = FALSE, $prefix = 'reset', $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       return auth::getUserEdit($title, $prefix, $class, $dialog, $autoopen, 'reset', $person_id);
     }
-    public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, 
-    $dialog = FALSE, $autoopen = FALSE, $new = FALSE, $person_id = NULL) {
 
     public function submit($header = TRUE, $footer = TRUE, $div = TRUE) {
       echo $this->getContent($header, $footer, $div);
