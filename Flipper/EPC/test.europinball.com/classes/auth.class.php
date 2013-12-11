@@ -290,9 +290,9 @@
               $form .= page::getLabel(' ').page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
             $form .= page::getDivEnd();
           $form .= '</fieldset>';
+          $form .= page::getLabel(' ');
+          $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
-        $form .= page::getLabel(' ');
-        $form .= (!$dialog) ? page::getButton('Login', $prefix.'login', $class, FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getButton('I forgot all this!', $prefix.'reset', 'enterButton');
         $form .= page::getFormStart($prefix.'resetForm');
           $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
