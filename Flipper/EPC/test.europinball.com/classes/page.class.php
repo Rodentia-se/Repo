@@ -78,7 +78,7 @@
         if ($this->loggedin()) {
           $footer .= self::getDivStart('logoutFooter');
           $footer .= self::getParagraph('You are logged in as '.$person->name.'. '.self::getButton('Log out', 'footerLogout'), NULL, 'italic');
-          $footer .= self::getForm('resetLogout', array('action' => 'logout'));
+          $footer .= self::getForm('footerLogout', array('action' => 'logout'));
           $footer .= self::getDivEnd();
         } else {
           $footer .= self::getDivStart('loginFooter');
