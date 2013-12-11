@@ -543,7 +543,7 @@
       return '<img'.(($id) ? ' id="'.$id.'"' : '').' src="'.$url.'" class="icon'.(($class) ? ' '.$class : '').'"'.(($label) ? ' alt="'.$label.'" title="'.$label.'"' : '').'>';
     }
     
-    public function getButtonLink($url, $text = NULL, $title = NULL) {
+    public function addButtonLink($url, $text = NULL, $title = NULL) {
       $link = self::getIcon($url, $text, $title);
       $this->addContent($link);
       return $link;
