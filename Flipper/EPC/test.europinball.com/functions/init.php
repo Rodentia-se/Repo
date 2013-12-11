@@ -12,13 +12,11 @@
   }
   
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
-    debug('checking nonce');
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
     } else {
-      error('Invalid nonce');
+      config::$login->verified = TRUE;
     }
-    debug('nonce checked');
   }
 
   if (isId($_REQUEST['tournament']) || isId($_REQUEST['t'])) {
