@@ -407,116 +407,13 @@
           });
         ');
       }
-      $form .= page::getScript('
-        $("'.$prefix.(($new) ? 'new' : 'change').'UserForm > .enterSubmit").keypress(function(e) {
-          if (e.keyCode == $.ui.keyCode.ENTER) {
-            $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click();
-          }
-        });
-      ');
       return $form;
     }
 
     public static function getNewUser($title = 'Please choose a new username and password', $person_id, $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE) {
       return self::getUserEdit($title, $prefix, $class, $dialog, $autoopen, TRUE, $person_id);
     }
-/*
-      $form = page::getDivStart($prefix.'newUserDiv', $class, (($dialog) ? $title : NULL));
-        $form .= ($daialog) ? '' : page::getH2($title);
-        $form .= page::getFormStart($prefix.'newUserForm');
-          $form .= page::getElementStart('fieldset');
-            $form .= page::getInput('newUser', $prefix.'action', 'action', 'hidden');
-            $form .= page::getInput($person_id, $prefix.'person_id', 'person_id', 'hidden');
-            $form .= page::getInput(self::$nonce, $prefix.'nonce', 'nonce', 'hidden');
-            $form .= page::getDivStart($prefix.'usernameDiv');
-              $form .= page::getInput(NULL, $prefix.'usernameNew', 'username', 'text', 'enterSubmit');
-            $form .= page::getDivEnd();
-            $form .= page::getDivStart($prefix.'passwordDiv');
-              $form .= page::getInput(NULL, $prefix.'passwordNew', 'password', 'password', 'enterSubmit');
-            $form .= page::getDivEnd();
-            $form .= page::getDivStart($prefix.'verifyPasswordDiv');
-              $form .= page::getInput(NULL, $prefix.'verifyPasswordNew', 'verifyPassword', 'password', 'enterSubmit');
-            $form .= page::getInput(NULL, $prefix.'verifyPassword', 'verifyPassword', 'password', NULL, 'Verify new password');
-            $form .= page::getDivEnd();
-            $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton('Register', $prefix.'register', $class, FALSE, NULL, NULL, FALSE) : '';
-          $form .= page::getElementEnd('fieldset');
-        $form .= page::getFormEnd();
-      $form .= page::getDivEnd();
-      if ($dialog) {
-        $form .= page::getScript('
-          $("#'.$prefix.'newUserDiv").dialog({
-            autoOpen: '.(($autoopen) ? 'true' : 'false').',
-            modal: true,
-            width: 400,
-            buttons: {
-              "Register": function() {
-                if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-                  if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                    $("#'.$prefix.'newUserForm").submit();
-                  } else {
-                    $("#'.$prefix.'verifyPasswordNew").tooltipster({
-                      theme: ".tooltipster-light",
-                      content: "The passwords do not match...",
-                      trigger: "custom",
-                      position: "right",
-                      timer: 3000
-                    })
-                    .tooltipster("show");
-                  }
-                }
-              },
-              "Cancel": function() {
-                $(this).dialog("close");
-              }
-            }
-          });
-          $(document).on("click", ".ui-widget-overlay", function() {
-            $("#'.$prefix.'newUserDiv").dialog("close");
-          });
-        ');
-      } else {
-        $form .= page::getScript('
-          $("'.$prefix.'registerButton").click(function() {
-            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                $("#'.$prefix.'newUserForm").submit();
-              } else {
-                $("#'.$prefix.'verifyPasswordNew").tooltipster({
-                  theme: ".tooltipster-light",
-                  content: "The passwords do not match...",
-                  trigger: "custom",
-                  position: "right",
-                  timer: 3000
-                })
-                .tooltipster("show");
-              }
-            }
-          });
-        ');
-      }
-      $form .= page::getScript('
-        $(".enterSubmit").keypress(function(e) {
-          if (e.keyCode == $.ui.keyCode.ENTER) {
-            if ($.trim($("#'.$prefix.'usernameNew").val()).length > 0 && $.trim($("#'.$prefix.'passwordNew").val()).length > 0) {
-              if ($("#'.$prefix.'passwordNew").val() == $("#'.$prefix.'verifyPasswordNew").val()) {
-                $("#'.$prefix.'newUserForm").submit();
-              } else {
-                $("#'.$prefix.'verifyPasswordNew").tooltipster({
-                  theme: ".tooltipster-light",
-                  content: "The passwords do not match...",
-                  trigger: "custom",
-                  position: "right",
-                  timer: 3000
-                })
-                .tooltipster("show");
-              }
-            }
-          }
-        });
-      ');
-      return $form;
-    }
-*/
+
   }
 
 ?>

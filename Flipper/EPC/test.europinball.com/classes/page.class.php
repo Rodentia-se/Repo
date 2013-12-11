@@ -293,12 +293,13 @@
     public static function getForm($id = NULL, $fields = NULL, $action = NULL, $methid = 'POST', $ext = FALSE) {
       $form = self::getFormStart($id.'Form', NULL, $action, $method, $ext);
       if (is_string($fields)) {
-        $button .= self::getInput('yes', $fields, $fields, 'hidden');
+        $form .= self::getInput('yes', $fields, $fields, 'hidden');
       } else if (is_array($fields)) {
         foreach ($fields as $field => $value) {
-          $button.= (is_int($field)) ? self::getInput('yes', $value, $value, 'hidden') : self::getInput($value, $field, $field, 'hidden');
+          $form .= (is_int($field)) ? self::getInput('yes', $value, $value, 'hidden') : self::getInput($value, $field, $field, 'hidden');
         }
       }
+      return $form;
     }
 
     public function addLabel($text, $id = NULL, $class = NULL, $close = TRUE) {
