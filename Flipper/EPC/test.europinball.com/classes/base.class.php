@@ -30,7 +30,7 @@
         $this->failed = TRUE;
       } else {
         if ($search === NOSEARCH) {
-          if ($data) {
+          if ($data || $data == 0) {
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
                 $obj = static::$instances['ID'.$data];
@@ -77,7 +77,7 @@
               $objSearch[$searchTable.'_id'] = $search->id;
             }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
-          } else if ($data) {
+          } else if ($data || $data == 0) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
           }
           if ($obj) {
@@ -90,9 +90,6 @@
           static::$instances['ID'.$this->id] = $this;
           $this->populate($depth);
         }
-      }
-      if (count($this) <= 1 && $data != 'empty' && $data != 'new') {
-        $this->failed = TRUE;
       }
     }
 
