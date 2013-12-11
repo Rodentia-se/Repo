@@ -94,7 +94,8 @@
           $this->_set(config::$login->person);
           return TRUE;
         } else {
-          return TRUE;
+          $this->failed = TRUE;
+          return FALSE;
         }
       }
       parent::__construct($data, $search, $depth);
