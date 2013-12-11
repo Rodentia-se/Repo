@@ -5,7 +5,7 @@
 
   $page = new page('Register');
   
-  $page->addH2('Password reset')
+  $page->addH2('Password reset');
 
   if ($page->loggedin()) {
     $person = person('login');
