@@ -33,6 +33,7 @@
           if ($data) {
         debug($data);
             if (isId($data)) {
+        debug($data);
               if (is_object(static::$instances['ID'.$data])) {
                 $obj = static::$instances['ID'.$data];
               } else {
