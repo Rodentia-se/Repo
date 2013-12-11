@@ -9,8 +9,6 @@
 
   if ($page->loggedin()) {
     if ($_REQUEST['action'] == 'newUser') {
-      
-      $page->addForm('Done', array('msg' => 'Password reset succesfully completed'), config::$baseHref'/edit/');
     }
     $person = person('login');
     $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
