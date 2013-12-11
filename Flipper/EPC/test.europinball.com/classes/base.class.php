@@ -96,7 +96,9 @@
           $this->populate($depth);
         }
       }
-      debug(count($this));
+      if (count($this) <= 1) {
+        $this->failed = TRUE;
+      }
     }
 
     protected function _set($data) {
