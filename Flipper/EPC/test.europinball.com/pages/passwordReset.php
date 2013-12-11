@@ -15,7 +15,7 @@
     $person = person('login');
     $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
     $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
-    $page->addForm('resetLogout', array('action' => 'logout'));
+    $page->addForm('log out', array('action' => 'logout'));
   } else {
     $reqNonce = $_REQUEST['reqnonce'];
     if ($reqNonce) {
