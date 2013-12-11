@@ -29,8 +29,9 @@ $person = person(1);
           $page->addForm('reload');
           $resetDone = ulNonce::Create('resetDone');
           $page->startDiv('security');
-            $page->addNewUser('Provide new credentials', $person->id);
+            $page->addNewUser('Provide new credentials', $person->id, 'reset');
           $page->closeDiv();
+          $page->addScript()
           debug( explode("?", $_SERVER['REQUEST_URI'])[0]);
         }
 
