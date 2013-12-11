@@ -406,7 +406,7 @@
           $form .= page::getDivStart($prefix.'verifyPasswordDiv');
             $form .= page::getInput(NULL, $prefix.'verify'.(($new) ? '' : 'New').'Password', 'verify'.(($new) ? '' : 'New').'Password', 'password', 'enterSubmit', 'Verify'.(($new) ? '' : ' new').' password');
           $form .= page::getDivEnd();
-          $form .= page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', (($dialog) ? 'hidden' : ''),' submitButton', FALSE, NULL, NULL, FALSE) : '';
+          $form .= page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', (($dialog) ? 'hidden' : '').' submitButton', FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
