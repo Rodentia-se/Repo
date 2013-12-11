@@ -124,9 +124,10 @@
                     });
                   });
                   $(".photoIcon").click(function() {
-                    $("#" + $(this).data("photodiv")).dialog("open");
+                    var photoDiv = $(this).data("photodiv");
+                    $("#" + photoDiv).dialog("open");
                     $(document).on("click", ".ui-widget-overlay", function() {
-                      $("#" + $(this).data("photodiv")).dialog("close");
+                      $("#" + $("#" + photoDiv).data("photodiv")).dialog("close");
                     });
                   });
                   return true;
