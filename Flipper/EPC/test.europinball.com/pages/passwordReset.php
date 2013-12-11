@@ -8,7 +8,7 @@
   $page->addH2('Password reset');
 
   if ($page->loggedin()) {
-    if ($_REQUEST['newUser']) {
+    if ($_REQUEST['action'] == 'newUser') {
       $page->addForm('Done', array('msg' => 'Password reset succesfully completed'), '/edit/');
       $page->addScript('$("#Done").submit();');
     }
