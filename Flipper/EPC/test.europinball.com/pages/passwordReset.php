@@ -41,7 +41,6 @@ $person = person(1);
             $page->addForm('reload');
             $page->addNewUser('Provide new credentials', $person->id, 'reset');
             $page->addScript('
-              $("#resetaction").val("reset");
               $("#resetnewUserButton").val("Submit");
             ');
           } else {

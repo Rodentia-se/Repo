@@ -170,8 +170,10 @@
                 if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
                   $person = person($_SESSION['username'], 'username');
                   if ($person) {
+                    $uid = $this->Uid($_SESSION['username']);
                     $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
                     if ($change) {
+                      $this->DeleteUser($uid);
                       config::$msg = 'Your username and/or password was successfully changed.';
                       return TRUE;
                     } else {
@@ -219,8 +221,9 @@
               } else {
                 if (isId($_REQUEST['person_id'])) {
                   $person_id = $_REQUEST['person_id'];
+                  $uid = ($person->username) ? $this->Uid($person->username) : NULL;
                 } else {
-                      config::$msg = 'Credential changes failed.';
+                  config::$msg = 'Credential changes failed.';
                   error('Not enough parameters provided');
                   return FALSE;
                 }
@@ -231,6 +234,9 @@
                   $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
                   if ($this->IsAuthSuccess()) {
                     $this->setLogin();
+                    if ($uid) {
+                      $this->DeleteUser($uid);
+                    }
                     return TRUE;
                   } else {
                     $this->setLogin(FALSE);
@@ -238,7 +244,7 @@
                     error('User created, but could not log you in. Please try logging in.');
                   }
                 } else {
-                      config::$msg = 'Could not add the user. Please try again.';
+                  config::$msg = 'Could not add the user. Please try again.';
                   error('Could not add the user');
                 }
               } else {
@@ -254,37 +260,6 @@
             error('Not enough parameters provided');
           }
           return FALSE;
-        break;
-        case 'reset':
-          if ($_SESSION['username'] && $_REQUEST['password'] && $_REQUEST['nonce']) {
-            if ($this->verified) {
-              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
-                $person = person($_SESSION['username'], 'username');
-                if ($person) {
-                  $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
-                  if ($change) {
-                    config::$msg = 'Your username and/or password was successfully changed.';
-                    return TRUE;
-                  } else {
-                    config::$msg = 'Could not commit the changes. Your username and passwords stay the same as before. Please try again.';
-                    return FALSE;
-                  }
-                } else {
-                  config::$msg = 'Could not identify you. Your login has not been changed. Please try again.';
-                  error('Could not identify you, please logout and login again.');
-                }
-              } else {
-                config::$msg = 'The password did not match. Your login has not been changed. Please try again.';
-                error('The password did not match, please try again.');
-              }
-            } else {
-              config::$msg = 'Invalid nonce. Did you use an old window? Your login has not been changed. Please try again.';
-              error('Invalid nonce 2, please clean cache and cookies and try again.');
-            }
-          } else {
-            config::$msg = 'Could not login. Your login has not been changed. Please try again.';
-            error('Login failed due to missing parameters.');
-          }
         break;
         default:
           return FALSE;
