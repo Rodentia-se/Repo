@@ -337,10 +337,10 @@
             $form .= page::getInput('login', $prefix.'action', 'action', 'hidden');
             $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
             $form .= page::getDivStart($prefix.'usernameDiv');
-              $form .= page::getInput('', $prefix.'username', 'username', 'text', (($dialog) ? '' : 'enterSubmit'));
+              $form .= page::getInput('', $prefix.'username', 'username', 'text', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'passwordDiv');
-              $form .= page::getInput('', $prefix.'password', 'password', 'password', (($dialog) ? '' : 'enterSubmit'));
+              $form .= page::getInput('', $prefix.'password', 'password', 'password', 'enterSubmit');
             $form .= page::getDivEnd();
             $form .= page::getDivStart($prefix.'autologinDiv');
               $form .= page::getLabel(' ').page::getInput(TRUE, $prefix.'autologin', 'autologin', 'checkbox', NULL, 'Remember me');
@@ -398,15 +398,15 @@
             $form .= page::getInput((($new) ? '' : $_SESSION['username']), $prefix.(($new) ? 'u' : 'newU').'sername', (($new) ? 'u' : 'newU').'sername', 'text', (($dialog) ? '' : 'enterSubmit'), (($new) ? 'Username' : 'New username'));
           $form .= page::getDivEnd();
           $form .= ($new) ? '' : page::getDivStart($prefix.'passwordDiv');
-            $form .= ($new) ? '' : page::getInput(NULL, $prefix.'password', 'password', 'password', (($dialog) ? '' : 'enterSubmit'), 'Current password');
+            $form .= ($new) ? '' : page::getInput(NULL, $prefix.'password', 'password', 'password', 'enterSubmit', 'Current password');
           $form .= ($new) ? '' : page::getDivEnd();
           $form .= page::getDivStart($prefix.'newPasswordDiv');
-            $form .= page::getInput(NULL, $prefix.(($new) ? 'p' : 'newP').'assword', (($new) ? 'p' : 'newP').'assword', 'password', (($dialog) ? '' : 'enterSubmit'), (($new) ? 'Password' : 'New password'));
+            $form .= page::getInput(NULL, $prefix.(($new) ? 'p' : 'newP').'assword', (($new) ? 'p' : 'newP').'assword', 'password', 'enterSubmit', (($new) ? 'Password' : 'New password'));
           $form .= page::getDivEnd();
           $form .= page::getDivStart($prefix.'verifyPasswordDiv');
-            $form .= page::getInput(NULL, $prefix.'verify'.(($new) ? '' : 'New').'Password', 'verify'.(($new) ? '' : 'New').'Password', 'password', (($dialog) ? '' : 'enterSubmit'), 'Verify'.(($new) ? '' : ' new').' password');
+            $form .= page::getInput(NULL, $prefix.'verify'.(($new) ? '' : 'New').'Password', 'verify'.(($new) ? '' : 'New').'Password', 'password', 'enterSubmit', 'Verify'.(($new) ? '' : ' new').' password');
           $form .= page::getDivEnd();
-          $form .= (!$dialog) ? page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', $class, FALSE, NULL, NULL, FALSE) : '';
+          $form .= page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', (($dialog) ? 'hidden' : ''),' submitButton', FALSE, NULL, NULL, FALSE) : '';
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
