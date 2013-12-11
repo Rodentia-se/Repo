@@ -430,7 +430,7 @@
           Regards
           /EPC 2014 organizers
         ';
-        if (mail($person->mailAddress, 'EPC password reset', $msg, $headers))
+        if (mail($person->mailAddress, 'EPC password reset', $msg, $headers)) {
           return TRUE;
         }
       }
