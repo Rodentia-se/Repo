@@ -55,7 +55,7 @@
               $person->cityName,
               $person->countryName,
               $person->getLink('ifpa'),
-              $person->getPhoto(FALSE),
+              $person->getPhoto(FALSE, TRUE, TRUE),
               '<form id="'.$person->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="isMe"><input type="hidden" name="person_id" value="'.$person->id.'"><input type="button" id="'.$person->id.'_isMe" class="isMe" value="This is me!"></form>'
             );
           } 
