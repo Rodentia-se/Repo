@@ -32,18 +32,22 @@
       }
     }
   }
-$person = person(1);
+$person = person(1231231);
         if ($person && isId($person->id)) {
-          $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'.');
-          $page->addParagraph('If this is not corret, please '.page::getButton('reload').' this page and try again.');
-          $page->addForm('reload');
-          $resetNonce = ulNonce::Create('resetNonce');
-          $page->addNewUser('Provide new credentials', $person->id, 'reset');
-          $page->addScript('
-            $("#resetaction").val("reset");
-            $("#resetnewUserButton").val("Submit");
-            $("#resetnonce").val("'.$resetNonce.'");
-          ');
+          if ($person->username) {
+            $_SESSION['username'] = $person->username;
+            $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'.');
+            $page->addParagraph('If this is not correct, please '.page::getButton('reload').' this page and try again.');
+            $page->addForm('reload');
+            $page->addNewUser('Provide new credentials', $person->id, 'reset');
+            $page->addScript('
+              $("#resetaction").val("reset");
+              $("#resetnewUserButton").val("Submit");
+            ');
+          } else {
+            $page->addParagraph('You don\'t have any user in the system. Please go to the '.page::getButton('Registration').' page to create one.');
+            $page->addForm('resetLogout', array('register' => 'isMe', 'person_id' => $person->id));
+          }
         }
 
   $page->submit();
