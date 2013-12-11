@@ -32,7 +32,7 @@
       }
     }
   }
-$person = person(1);
+$person = person(20661);
         if ($person && isId($person->id)) {
           if ($person->username) {
             $_SESSION['username'] = $person->username;
