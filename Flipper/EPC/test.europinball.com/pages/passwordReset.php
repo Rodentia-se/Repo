@@ -34,6 +34,7 @@ $person = person(1);
           $page->addScript('
             $("#resetaction").val("reset");
             $("#resetnewUserButton").val("Submit");
+            $("#resetnonce").remove();
             $("#resetnewUserForm").append("<input name=\"resetNonce\" value=\"'.$resetNonce.'\" type=\"hidden\">");
           ');
         }
