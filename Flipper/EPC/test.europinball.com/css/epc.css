@@ -27,6 +27,10 @@
   margin-right: 15px;
 }
 
+.photoPopup {
+  display: none;
+}
+
 span.currency {
   width: 60px;
   text-align: right;
@@ -89,15 +93,21 @@ span.short {
 }
 
 .addIcon {
+  cursor: pointer;
   position: relative;
   top: 3px;
   left: 40px;
 }
 
 .closeIcon {
+  cursor: pointer;
   position: relative;
   top: 3px;
   left: 2px;
+}
+
+.icon {
+  cursor: pointer;
 }
 
 .italic {

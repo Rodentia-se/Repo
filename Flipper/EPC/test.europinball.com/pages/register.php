@@ -109,6 +109,7 @@
                   $(".isMe").click(function() {
                     $("#" + this.id.split("_")[0] + "_isMeForm").submit();
                   });
+                  $(".photoPopup").dialog();
                   return true;
                 },
                 "bJQueryUI": true,
