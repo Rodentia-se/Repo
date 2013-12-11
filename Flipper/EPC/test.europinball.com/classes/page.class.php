@@ -111,7 +111,7 @@
         });
         $("'.$prefix.'loginForm > .enterSubmit").keypress(function(e) {
           if (e.keyCode == $.ui.keyCode.ENTER) {
-            $(this.form + " input.enterButton").click();
+            $("#" + this.form.id.replace("Form", "Button")).click();
           }
         });
       ');
