@@ -7,6 +7,7 @@
 
   $el = new htmlElement('div', 'Ytterdiv!', NULL, 'id', 'hidden', array('color' => 'red'));
   debug($el);
+  debug(get_class_methods('htmlElement'));
   $el.addElement('div', 'Innerdiv!', array('href' => 'nlah', 'src' => 'asas'), 'id3', 'hidden');
   $el2.addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'id2');
   
