@@ -1,5 +1,7 @@
 <?php
 
+  namespace html;
+
   class html {
     
     protected $params = array();
@@ -12,11 +14,16 @@
     public static $srcrs = array('img', 'script');
     public static $indenter = '  ';
     public static $indents = 0;
-    public $crlf = "\n";
     public $element = 'span';
+    public $selfClose = FALSE;
+    public $crlf = "\n";
+    public $contentParam = NULL;
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
+      $this->selfClose = (isset($this->selfClose)) ? $this->selfClose : ((in_array($this->element, static::$selfClosers)) ? TRUE : FALSE);
+      $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
+      $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
       if (is($id)) {
         $params['id'] = $id;
@@ -54,20 +61,9 @@
      
     public function __set($prop, $value) {
       switch ($prop) {
-        case 'src':
-          if (in_array($this->element, static::$srcrs)) {
-            return $this->addContent($value, TRUE);
-          }
-          return $this->params[$prop] = $value;
-        break;
-        case 'value':
-          if (in_array($this->element, static::$valuers)) {
-            return $this->addContent($value, TRUE);
-          }
-          return $this->params[$prop] = $value;
-        break;
         case 'content':
         case 'contents':
+        case $this->contentParam:
           return $this->addContent($value, TRUE);
         break;
         case 'class': 
@@ -81,8 +77,6 @@
           return FALSE;
         break;
         default:
-          debug($prop, 'prop');
-          debug($value, 'val');
           return $this->params[$prop] = $value;
         break;
       }
@@ -92,12 +86,11 @@
       switch ($prop) { 
         case 'content':
         case 'contents':
-          if (in_array($this->element, static::$srcrs)) {
-            return (array_key_exists('src', $this->params)) ? isset($this->params['src']) : FALSE;
-          } else if (in_array($this->element, static::$valuers)) {
-            return (array_key_exists('value', $this->params)) ? isset($this->params['value']) : FALSE;
+          if ($this->contentParam) {
+            return (array_key_exists($this->contentParam, $this->params)) ? isset($this->params[$this->contentParam]) : FALSE;
+          } else {
+            return (count($this->contents) > 0) ? TRUE : FALSE;
           }
-          return (count($this->contents) > 0) ? TRUE : FALSE;
         break;
         case 'class': 
         case 'classes': 
@@ -117,20 +110,9 @@
     
     public function __unset($prop) {
       switch ($prop) {
-        case 'src':
-          if (in_array($this->element, static::$srcrs)) {
-            $this->addContent(NULL, TRUE);
-          }
-          unset($this->params['src']);
-        break;
-        case 'value':
-          if (in_array($this->element, static::$valuers)) {
-            $this->addContent(NULL, TRUE);
-          }
-          unset($this->params['value']);
-        break;
         case 'content':
         case 'contents':
+        case $this->contentParam:
           $this->addContent(NULL, TRUE);
         break;
         case 'class': 
@@ -150,7 +132,9 @@
     }
     
     public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
-      $el = new html($element, $contents, $params, $id, $class, $css);
+      if (!isHtml($el)) {
+        $el = new html($element, $contents, $params, $id, $class, $css);
+      }
       $this->addContent($el);
       return $el;
     }
@@ -158,21 +142,11 @@
     public function addContent($content = NULL, $replace = FALSE) {
       if ($replace) {
         unset($this->contents);
-        if (in_array($this->element, static::$srcrs)) {
-          unset($this->src);
-        }
-        if (in_array($this->element, static::$valuers)) {
-          unset($this->value);
-        }
       }
       if ($content !== NULL) {
         $this->contents[] = $content;
-        if (in_array($this->element, static::$srcrs)) {
-          $this->src = $content;
-        }
-        if (in_array($this->element, static::$valuers)) {
-          $this->value = $content;
-        }
+      } else {
+        unset($this->contents);
       }
       return TRUE;
     }
@@ -184,8 +158,8 @@
       $this->classes = mergeToArray($this->classes, $classes);
       if (count($this->classes) > 0) {
         $this->class = implode($this->classes, ' ');
-        debug($this->class);
       } else {
+        unset($this->classes);
         unset($this->class);
       }
       return $this->getClasses();
@@ -314,30 +288,25 @@
     }
 
     protected function getHtml() {
-      $crlf = (in_array($this->element, static::$noCrlfs)) ? NULL : $this->crlf;
-      if ($crlf) {
+      if ($this->crlf) {
         while ($i < static::$indents) {
           $indents .= static::$indenter;
           $i++;
         }
       }
-      if (in_array($this->element, static::$selfClosers)) {
-        if (in_array($this->element, static::$valuers)) {
-          if (!$this->value && is_scalar($this->contents[0])) {
-            $this->value = $this->contents[0];
+      if (in_array($this->selfClose)) {
+        if ($this->contentParam) {
+          $param = $this->contentParam;
+          if (!$this->$param && is_scalar($this->contents[0])) {
+            $this->$param = $this->contents[0];
           }
         } 
-        if (in_array($this->element, static::$srcrs)) {
-          if (!$this->src && is_scalar($this->contents[0])) {
-            $this->src = $this->contents[0];
-          }
-        } 
-        $end = ' />'.$crlf;
+        $end = ' />'.$this->crlf;
       } else {
-        $start = '>'.$crlf;
-        $end = $crlf.$indents.'</'.$this->element.'>';
+        $start = '>'.$this->crlf;
+        $end = $this->crlf.$indents.'</'.$this->element.'>';
       }
-      $html = $crlf.$indents.'<'.$this->element.' '.$this->getParams().$start;
+      $html = $this->crlf.$indents.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
         $html .= $this->getContent();
       }
