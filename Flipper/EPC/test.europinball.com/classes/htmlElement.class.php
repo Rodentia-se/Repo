@@ -115,7 +115,7 @@
         $start = ">\n";
         $end = $indent."\n</".$this->elemenet.">\n";
       }
-      $html = $indent.'<'.$this->element.$this->getParamsHtml().$start;
+      $html = $indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
         $html .= $this->getContentHtml();
       }
