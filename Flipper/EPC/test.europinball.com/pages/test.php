@@ -28,9 +28,8 @@
   $img = $el2->addELement('img', 'imageSrc', array('src' => 'another_src', 'title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
-  debug($el);
+  $img->src = 'a_third_src';
   $page->addContent($el);
-  $page->addContent($img->src);
 /*
   debug('TEST 1');
   $tournament = tournament('active');
