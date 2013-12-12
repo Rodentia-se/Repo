@@ -209,6 +209,8 @@
           }
         }
         foreach ($props as $prop => $val) {
+          debug($prop, 'prop');
+          debug($val, 'val');
           $this->addParams($prop, $val);
         }
       } else {
