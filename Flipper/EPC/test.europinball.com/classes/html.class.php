@@ -195,12 +195,14 @@
       return $this->getClasses();
     }
 
-    public function addCss($prop = NULL, $value = NULL, $replace = FALSE) {
+    public function addCss($props = NULL, $value = NULL, $replace = FALSE) {
       if ($replace) {
         unset($this->css);
       }
-      if (isAssoc($prop)) {
-        $this->css = $prop
+      if (isAssoc($props)) {
+        foreach ($props as $prop => $value) {
+          $this->addCss($prop, $value);
+        }
       } else {
         $this->css[$prop] = $value;
       }
