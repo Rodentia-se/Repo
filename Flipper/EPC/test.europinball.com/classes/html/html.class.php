@@ -293,6 +293,12 @@
         }
       }
       if ($this->selfClose) {
+        if ($this->contentParam) {
+          $param = $this->contentParam;
+          if (!$this->$param && is_scalar($this->contents[0])) {
+            $this->$param = $this->contents[0];
+          }
+        } 
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
