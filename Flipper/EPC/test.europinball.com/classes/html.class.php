@@ -285,7 +285,7 @@
     
     protected function getCss($param = NULL, $string = TRUE) {
       if ($param) {
-        return (array_key_exists($this->css, $param)) ? ((string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
+        return (array_key_exists($this->css, $param)) ? (($string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
       } else {
         if (count($this->css) > 0) {
           if ($string) {
