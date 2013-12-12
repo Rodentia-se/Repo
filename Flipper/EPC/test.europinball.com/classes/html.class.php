@@ -97,9 +97,9 @@
         case 'content':
         case 'contents':
           if (in_array($this->element, static::$srcrs)) {
-            return array_key_exists('src', $this->params)) ? isset($this->params['src']) : FALSE;
+            return (array_key_exists('src', $this->params)) ? isset($this->params['src']) : FALSE;
           } else if (in_array($this->element, static::$valuers)) {
-            return array_key_exists('value', $this->params)) ? isset($this->params['value']) : FALSE;
+            return (array_key_exists('value', $this->params)) ? isset($this->params['value']) : FALSE;
           }
           return (count($this->contents) > 0) ? TRUE : FALSE;
         break;
