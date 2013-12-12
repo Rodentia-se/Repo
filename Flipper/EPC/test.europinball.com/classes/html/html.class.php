@@ -261,7 +261,7 @@
             }
             return implode($params, ' ');
           } else {
-            $params = $this->params
+            $params = $this->params;
             $params[$this->contentParam] = $this->contents[0];
             return $params;
           }
