@@ -492,7 +492,7 @@
       if ($this->selfClose) {
         $end = ' />'.$this->crlf;
       } else {
-        $start = '>'.$this->crlf;
+        $start = '>';
         $end = $this->crlf.$indent.'</'.$this->element.'>';
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
