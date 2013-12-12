@@ -54,11 +54,9 @@
         $html = $content->getHtml();
         self::$indent--;
       } else if (is_array($content)) {
-        self::$indent++;
         foreach ($content as $part) {
           $html .= self::contentToHtml($part)."\n";
         }
-        self::$indent--;
       } else {
         $html = htmlspecialchars($content);
       }
@@ -68,14 +66,13 @@
     public function getContentHtml($index = NULL) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $content = array($this->content[$index]);
+          $html .= self::contentToHtml($this->content[$index]);
         } else {
-          $content = $this->content;
-        }
-        if (count($content) > 0) {
-          foreach ($content as $part) {
-            $html .= self::contentToHtml($part);
-            debug($html, 'html');
+          if (count($content) > 0) {
+            foreach ($content as $part) {
+              $html .= self::contentToHtml($part);
+              debug($html, 'html');
+            }
           }
         }
       }
