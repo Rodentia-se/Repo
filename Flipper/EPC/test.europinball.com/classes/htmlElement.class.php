@@ -107,7 +107,7 @@
       for ($i = 0; $i <= static::$indent; $i++) {
         $indent .= static::$indenter;
       }
-      $crlf = (in_array($this->element, self::$noCrlf)) '' : "\n";
+      $crlf = (in_array($this->element, self::$noCrlf)) ? '' : "\n";
       if (in_array($this->element, self::$selfClosers)) {
         if (!$this->value && is_scalar($this->content[0])) {
           $this->value .= $this->content[0];
