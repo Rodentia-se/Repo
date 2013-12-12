@@ -68,8 +68,8 @@
         if(is($index)) {
           $html .= self::contentToHtml($this->content[$index]);
         } else {
-          if (count($content) > 0) {
-            foreach ($content as $part) {
+          if (count($this->content) > 0) {
+            foreach ($this->content as $part) {
               $html .= self::contentToHtml($part);
               debug($html, 'html');
             }
