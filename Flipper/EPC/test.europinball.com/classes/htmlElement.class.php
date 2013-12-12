@@ -62,7 +62,7 @@
       if (count($content) > 0) {
         foreach ($content as $part) {
           $html = self::toHtml($part);
-      debug($html, 'part');
+      debug($part, 'part');
         }
       }
       return $html;
