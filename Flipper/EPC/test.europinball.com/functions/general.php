@@ -27,13 +27,13 @@
       if (is_array($obj2) || is_object($obj2)) {
         return array_unique(array_merge((array) $obj1, (array) $obj2));
       } else {
-        return array_unique(array_merge((array) $obj1, explode(' ', (string) $obj2)));
+        return array_unique(array_merge((array) $obj1, explode(' ', trim((string) $obj2))));
       }
     } else {
       if (is_array($obj2) || is_object($obj2)) {
-        return array_unique(array_merge(explode(' ', (string) $obj1), (array) $obj2));
+        return array_unique(array_merge(explode(' ', trim((string) $obj1)), (array) $obj2));
       } else {
-        return array_unique(array_merge(explode(' ', (string) $obj1), explode(' ', (string) $obj2)));
+        return array_unique(array_merge(explode(' ', trim((string) $obj1)), explode(' ', trim((string) $obj2))));
       }
     }
   }
