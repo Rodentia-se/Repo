@@ -28,6 +28,7 @@
       $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
+      unset($this->localIndents);
       if (is($id)) {
         $params['id'] = $id;
       }
