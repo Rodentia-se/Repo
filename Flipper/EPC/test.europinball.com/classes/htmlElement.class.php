@@ -119,7 +119,7 @@
       if (count($this->content) > 0) {
         $html .= $this->getContentHtml();
       }
-      return $html.$close;
+      return $html.$end;
     }
     
     public function __toString() {
