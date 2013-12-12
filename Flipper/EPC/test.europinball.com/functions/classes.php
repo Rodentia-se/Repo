@@ -437,23 +437,23 @@
     return (isObj($volunteers) && get_class($volunteers) == 'volunteers');
   }
   
-  function isGroup($group, $nostring = FALSE) {
-    $group = (is_string($group) && class_exists($group) && !$nostring) ? new $group() : $group;
+  function isGroup($group, $string = FALSE) {
+    $group = (is_string($group) && class_exists($group) && !$string) ? new $group() : $group;
     return $group instanceof group;
   }
 
-  function isGeo($obj, $nostring = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$nostring) ? new $obj() : $obj;
+  function isGeo($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && !$string) ? new $obj() : $obj;
     return $obj instanceof geography;
   }
   
-  function isObj($obj, $nostring = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$nostring && class_exists($obj)) ? new $obj() : $obj;
+  function isObj($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && !$string && class_exists($obj)) ? new $obj() : $obj;
     return $obj instanceof base;
   }
   
-  function isHtml($obj, $nostring = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$nostring && class_exists($obj)) ? new $obj() : $obj;
+  function isHtml($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && !$string && class_exists($obj)) ? new $obj() : $obj;
     return $obj instanceof html;
   }
   
