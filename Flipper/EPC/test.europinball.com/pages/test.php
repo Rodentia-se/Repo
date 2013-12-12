@@ -5,11 +5,10 @@
 
   $page = new page('Test', true);
 
-  $el3 = new htmlElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'id2');
-  $el2 = new htmlElement('div', 'Innerdiv!', array('href' => 'nlah', 'src' => 'asas'), 'id3', 'hidden');
-  $el2->addContent($el3);
   $el = new htmlElement('div', 'Ytterdiv!', NULL, 'id', 'hidden', array('color' => 'red'));
-  $el->addContent($el2);
+  $el2 = $el.addElement('div', 'Innerdiv!', array('href' => 'nlah', 'src' => 'asas'), 'id3', 'hidden');
+  $el2.addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'id2');
+  
   $page->addContent($el);
 /*
   debug('TEST 1');
