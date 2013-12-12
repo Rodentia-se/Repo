@@ -7,6 +7,7 @@
 
   $el = new htmlElement('span', 'Hej!', array('data-hepp' => 'huff'), 'id');
   $page->addContent($el);
+  echo $el;
 /*
   debug('TEST 1');
   $tournament = tournament('active');
