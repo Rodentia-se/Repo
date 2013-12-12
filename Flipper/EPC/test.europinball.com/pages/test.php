@@ -30,8 +30,8 @@
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
   $div->addContent($img);
-  $img->src = 'a_third_src';
   debug($img, 'HUFF');
+  $img->src = 'a_third_src';
   $page->addContent($el);
 /*
 
