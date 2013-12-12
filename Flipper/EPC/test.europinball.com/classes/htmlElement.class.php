@@ -3,7 +3,7 @@
   class htmlElement {
     
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
-    public static $noCrlf = array('img', 'span',);
+    public static $noCrlf = array('img', 'span');
     public static $indenter = '  ';
     public static $crlf = "\n";
     public static $indent = 0;
