@@ -45,7 +45,7 @@
       return TRUE;
     }
     
-    public static function toHtml($content) {
+    public static function contentToHtml($content) {
       if (isHtmlElement($content)) {
         self::$indent++;
         $html = $content->getHtml();
@@ -70,7 +70,7 @@
       }
       if (count($content) > 0) {
         foreach ($content as $part) {
-          $html .= self::toHtml($part);
+          $html .= self::contentToHtml($part);
         }
       }
       return $html;
