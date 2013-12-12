@@ -140,13 +140,13 @@
       if (in_array($this->element, static::$selfClosers)) {
         if (in_array($this->element, static::$valueContent)) {
           if (!$this->value && is_scalar($this->content[0])) {
-            $this->value .= $this->content[0];
+            $this->value = $this->content[0];
             $this->params['value'] = $this->content[0];
           }
         } 
         if (in_array($this->element, static::$srcContent)) {
           if (!$this->src && is_scalar($this->content[0])) {
-            $this->src .= $this->content[0];
+            $this->src = $this->content[0];
             $this->params['src'] = $this->content[0];
           }
         } 
