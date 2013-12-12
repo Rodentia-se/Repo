@@ -5,18 +5,16 @@
 
   class input extends html {
     
-    public function __construct($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
+    public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
       $this->block = true;
       $this->selfClose = true;
       if ($name) {
         $params['name'] = $name;
       }
-      if (is($label)) {
+      if ($label === TRUE) {
+        $this->label = new label(ucfirst($name), $name, $name.'Label');
+      } else if (is($label)) {
         $this->label = (isHtml($label)) ? $label : new label($label, $name);
-      } else {
-        if ($label !== FALSE) {
-          $this->label = new label(ucfirst($name), $name.'Label');
-        }
       }
       parent::__construct('input', $value, $params, $name, $class, $css);
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {

@@ -163,7 +163,7 @@
         break;
       }
     }
-    
+        
     public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       if (!isHtml($element)) {
         $element = new html($element, $contents, $params, $id, $class, $css);
@@ -420,6 +420,42 @@
       return FALSE;
     }
     
+    public function addDiv($id = NULL, $class = NULL, array $params = NULL) {
+      $element = new div($id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addSpan($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new span($contents, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addForm($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
+      $element = new form($id, $action, $method, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
+      $element = new input($name, $value, $type, $label, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addButton($value = 'submit', $name = NULL, array $params = NULL) {
+      $element = new button($value, $name, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addLabel($contents = NULL, $for = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new label($contents, $for, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+  
     public function hide($hidden = TRUE) {
       if ($hidden) {
         $this->addCss('display', 'none');
