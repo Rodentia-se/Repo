@@ -31,7 +31,6 @@
         $params['id'] = $id;
       }
       $this->addParams($params);
-      debug($this->params);
       $this->addClasses($class);
       $this->addCss($css);
       $this->addContent($contents, TRUE);
