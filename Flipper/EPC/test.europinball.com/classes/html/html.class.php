@@ -251,7 +251,7 @@
     
     function delParams($params = NULL) {
       if ($params == $this->contentParam) {
-        $this->contents[0] = array();¨
+        $this->contents[0] = array();
         return TRUE;
       } else {
         if (count($this->params) > 0) {
