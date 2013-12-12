@@ -11,11 +11,13 @@
   $el2->addELement('img', 'imageSrc', array('src' => 'newSrc', 'title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addContent('Hej på er!');
   $input = new htmlElement('input', 'hupp', array('name' => 'heff'), 'inputId');
+  $input2 = new htmlElement('input', 'hupp', array('name' => 'heff', 'type' => 'hidden'), 'inputId');
   unset($input->crlf);
   $array = array(
     $input,
     'jepp!',
-    1000
+    1000,
+    $input2
   );
   $el2->addContent($array);
   debug($el);
