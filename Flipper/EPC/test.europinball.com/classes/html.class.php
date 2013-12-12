@@ -122,13 +122,13 @@
     public function __unset($prop) {
       switch ($prop) {
         case 'src':
-          if (in_array($this->element, static::$srcrs) && isset($this->params['src']) {
+          if (in_array($this->element, static::$srcrs) && isset($this->params['src'])) {
             return $this->addContent(NULL, TRUE);
           }
           return unset($this->params['src']);
         break;
         case 'value':
-          if (in_array($this->element, static::$valuers) && isset($this->params['value']) {
+          if (in_array($this->element, static::$valuers) && isset($this->params['value'])) {
             return $this->addContent(NULL, TRUE);
           }
           return unset($this->params['value']);
