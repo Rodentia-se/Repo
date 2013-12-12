@@ -91,8 +91,8 @@
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
             $this->style = trim($this->style);
-            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.'; ' : $this->style;
-            return 'style="'.$this->style.$this->getCssHtml().'"';
+            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+            return 'style="'.trim($this->style.' '.$this->getCssHtml()).'"';
           } else if ($param == 'class') {
             return 'class="'.$this->getClasses(TRUE).'"';
           } else {
