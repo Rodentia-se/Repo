@@ -127,7 +127,7 @@
         $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
       }
       $html = $crlf.$indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
-              debug($html, 'start');
+              debug($start, 'start');
       if (count($this->content) > 0) {
         $html .= $this->getContentHtml();
               debug($html, 'html');
