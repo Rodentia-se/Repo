@@ -17,23 +17,18 @@
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
-      if (is($id)) {
-        $params['id'] = $id;
-      }
-      $this->classes = mergeToArray($class, $params['class']);
       $this->params['class'] = implode($this->classes, ' ');
-      if (isAssoc($css) && count($css) > 0) {
-        foreach ($css as $param => $value) {
-          $this->css[$param] = $value;
-          $params['style'] = ($params['style']) ? $params['style'] : ' ';
-        }
-      }
       if (isAssoc($params) && count($params) > 0) {
         foreach ($params as $param => $value) {
           $this->params[$param] = $value;
         }
       }
       $this->indents = $indents;
+      if (is($id)) {
+        $params['id'] = $id;
+      }
+      $this->addClasses($class);
+      $this->addCss($css);
       $this->addContent($contents);
     }
     
@@ -41,14 +36,14 @@
       switch ($prop) {
         case 'content':
         case 'contents':
-          return $this->getContentHtml();
+          return $this->getContent();
         break;
         case 'class': 
         case 'classes': 
           return $this->getClasses();
         break;
         case 'css':
-          return $this->getCssHtml();
+          return $this->getCss();
         break;
         case 'html':
           return $this->getHtml();
@@ -207,7 +202,7 @@
       } else {
         $this->css[$prop] = $value;
       }
-      return $this->getClasses();
+      return $this->getCss();
     }
 
     protected static function contentToHtml($content) {
@@ -222,18 +217,21 @@
       } else {
         $html = htmlspecialchars($content);
       }
-              debug($html, 'html');
       return $html;
     }
     
-    protected function getContentHtml($index = NULL) {
+    protected function getContent($index = NULL, $string = TRUE) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= static::contentToHtml($this->contents[$index]);
+          $html .= ($string) ? static::contentToHtml($this->contents[$index]) : $this->contents[$index];
         } else {
           if (count($this->contents) > 0) {
-            foreach ($this->contents as $part) {
-              $html .= static::contentToHtml($part);
+            if ($string) {
+              foreach ($this->contents as $part) {
+                $html .= static::contentToHtml($part);
+              }
+            } else {
+              return $this->contents;
             }
           }
         }
@@ -241,7 +239,10 @@
       return $html;
     }
     
-    protected function getClasses($string = FALSE) {
+    protected function getClasses($class = NULL, $string = TRUE) {
+      if ($class) {
+        return (in_array($class, $this->classes)) ? (($string) ? 'true' : TRUE) : (($string) ? 'false' : FALSE);
+      }
       $this->classes = mergeToArray($this->classes, $this->params['class']);
       if (count($this->classes) > 0) {
         $this->params['class'] = implode($this->classes, ' ');
@@ -251,15 +252,15 @@
       return ($string) ? $this->params['class'] : $this->classes;
     }
     
-    protected function getParamsHtml($param = NULL) {
+    protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
             $this->params['style'] = trim($this->params['style']);
             $this->params['style'] = ($this->params['style'] && substr($this->params['style'], -1) != ';') ? $this->params['style'].';' : $this->params['style'];
-            return 'style="'.trim($this->params['style'].' '.$this->getCssHtml()).'"';
+            return ($string) 'style="'.trim($this->params['style'].' '.$this->getCss()).'"' : array($param = trim($this->params['style'].' '.$this->getCss()));
           } else if ($param == 'class') {
-            return 'class="'.$this->getClasses(TRUE).'"';
+            return ($string) ? 'class="'.$this->getClasses(TRUE).'"' : array($this->getClasses());
           } else {
             return $param.'="'.$this->params[$param].'"';
           }
@@ -268,25 +269,33 @@
         }
       } else {
         if (count($this->params) > 0 ) {
-          foreach ($this->params as $param => $value) {
-            $params[] = $this->getParamsHtml($param);
+          if ($string) {
+            foreach ($this->params as $param => $value) {
+              $params[] = $this->getParams($param);
+            }
+            return implode($params, ' ');
+          } else {
+            return $this->params;
           }
-          return implode($params, ' ');
         } else {
           return NULL;
         }
       }
     }
     
-    protected function getCssHtml($param = NULL) {
+    protected function getCss($param = NULL, $string = TRUE) {
       if ($param) {
-        return (array_key_exists($this->css, $param)) ? $param.': '.$this->css[$param].';' : FALSE;
+        return (array_key_exists($this->css, $param)) ? ((string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
       } else {
         if (count($this->css) > 0) {
-          foreach ($this->css as $param => $value) {
-            $css[] .= $param.': '.$value.';';
+          if ($string) {
+            foreach ($this->css as $param => $value) {
+              $css[] .= $param.': '.$value.';';
+            }
+            return (implode($css, ' '));
+          } else {
+            return $this->css;
           }
-          return (implode($css, ' '));
         } else {
           return NULL;
         }
@@ -317,9 +326,9 @@
         $start = '>'.$crlf;
         $end = $crlf.$indents.'</'.$this->element.'>'.$crlf;
       }
-      $html = $crlf.$indents.'<'.$this->element.' '.$this->getParamsHtml().$start;
+      $html = $crlf.$indents.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $this->getContentHtml();
+        $html .= $this->getContent();
       }
       return $html.$end;
     }
