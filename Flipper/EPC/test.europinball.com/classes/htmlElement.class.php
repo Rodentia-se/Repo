@@ -55,7 +55,7 @@
         self::$indent--;
       } else if (is_array($content)) {
         foreach ($content as $part) {
-          $html .= self::contentToHtml($part)."\n";
+          $html .= self::contentToHtml($part);
         }
       } else {
         $html = htmlspecialchars($content);
