@@ -17,7 +17,7 @@
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
-      $this->indents = $indents;
+      static::indents = $indents;
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -35,6 +35,8 @@
           return $this->getContent();
         break;
         case 'class': 
+          return $this->getClasses(NULL, TRUE);
+        break;
         case 'classes': 
           return $this->getClasses();
         break;
@@ -179,12 +181,12 @@
       if ($replace) {
         unset($this->classes);
       }
-      if (is_array($classes)) {
-        foreach ($classes as $class) {
-          $this->addClasses($class);
-        }
+      $this->classes = mergeToArray($this->classes, $classes);
+      if (count($this->classes) > 0) {
+        $this->class = implode($this->classes, ' ');
+        debug($this->class)
       } else {
-        $this->classes[] = $classes;
+        unset($this->class);
       }
       return $this->getClasses();
     }
@@ -256,14 +258,9 @@
     protected function getClasses($class = NULL, $string = TRUE) {
       if ($class) {
         return (in_array($class, $this->classes)) ? (($string) ? 'true' : TRUE) : (($string) ? 'false' : FALSE);
-      }
-      $this->classes = mergeToArray($this->classes, $this->class);
-      if (count($this->classes) > 0) {
-        $this->class = implode($this->classes, ' ');
       } else {
-        unset($this->class);
+        return ($string) ? $this->class : $this->classes;
       }
-      return ($string) ? $this->class : $this->classes;
     }
     
     protected function getParams($param = NULL, $string = TRUE) {

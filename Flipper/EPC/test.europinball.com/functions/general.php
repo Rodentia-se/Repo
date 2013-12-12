@@ -22,7 +22,9 @@
     return ($string || $string === 0 || $string === "0") ? TRUE : FALSE;
   }
   
-  function mergeToArray($obj1, $obj2 = NULL, $delimiter = ' ') {
+  function mergeToArray($obj1 = NULL, $obj2 = NULL, $delimiter = ' ') {
+    $obj1 = (is($obj1)) ? $obj1 : '';
+    $obj2 = (is($obj2)) ? $obj2 : '';
     if (is_array($obj1) || is_object($obj1)) {
       if (is_array($obj2) || is_object($obj2)) {
         return array_filter(array_unique(array_merge((array) $obj1, (array) $obj2)));
