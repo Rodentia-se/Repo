@@ -204,7 +204,7 @@
       if (isAssoc($props)) {
         if ($replace) {
           foreach ($this->params as $prop => $val) {
-            $this->__unset($props);
+            $this->__unset($prop);
           }
         }
         foreach ($props as $prop => $val) {
