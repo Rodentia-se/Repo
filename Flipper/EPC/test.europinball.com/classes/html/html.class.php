@@ -204,7 +204,6 @@
     }
     
     protected function getContent($index = NULL, $string = TRUE) {
-        debug(debug_backtrace());
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
           $html .= ($string) ? static::contentToHtml($this->contents[$index]) : $this->contents[$index];
