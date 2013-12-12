@@ -8,6 +8,8 @@
     protected $contents = array();
     protected $classes = array();
     protected $css = array();
+    protected $display = 'block';
+    protected $hidden = FALSE;
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlfs = array('img', 'span');
     public static $valuers = array('input');
@@ -37,6 +39,10 @@
     
     public function __get($prop) {
       switch ($prop) {
+        case 'block':
+        case 'inline':
+          return ($this->display == $prop);
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -62,6 +68,24 @@
      
     public function __set($prop, $value) {
       switch ($prop) {
+        case 'block':
+          if ($value) {
+            $this->display = 'block';
+            $this->crlf = "\n";
+          } else {
+            $this->display = 'inline';
+            unset($this->crlf);
+          }
+        break;
+        case 'inline':
+          if ($value) {
+            $this->display = 'inline';
+            unset($this->crlf);
+          } else {
+            $this->display = 'block';
+            $this->crlf = "\n";
+          }
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -85,6 +109,10 @@
     
     public function __isset($prop) {
       switch ($prop) { 
+        case 'block':
+        case 'inline':
+          return ($this->display == $prop);
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -108,6 +136,14 @@
     
     public function __unset($prop) {
       switch ($prop) {
+        case 'block':
+          $this->display = 'inline';
+          unset($this->crlf);
+        break;
+        case 'inline':
+          $this->display = 'block';
+          $this->crlf = "\n";
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -146,12 +182,22 @@
       return FALSE;
     }
 
-    public function addContent($content = NULL, $replace = FALSE) {
+    public function addContent($content = NULL, $replace = FALSE, $before = FALSE) {
       if ($replace) {
         $this->delContent($replace);
       }
       if ($content !== NULL) {
-        $this->contents = mergeToArray($this->contents, $content);
+        if (is_array($content)) {
+          foreach($content as $part) {
+            $this->addContent($part, FALSE, $before);
+          }
+        } else {
+          if ($before) {
+            array_unshift($this->contents, $content);
+          } else {
+            $this->contents[] = $content;
+          }
+        }
       } else {
         $this->delContent();
       }
@@ -249,18 +295,15 @@
       }
     }
     
-    function delParams($params = NULL) {
-      if ($params == $this->contentParam) {
-        $this->contents[0] = array();
-        return TRUE;
+    function delParams($params = NULL, $value = NULL) {
+      if ($params == $this->contentParam && (!is($value) || $this->contents[0] == $value)) {
+          $this->contents = array();
+          return TRUE;
       } else {
         if (count($this->params) > 0) {
           if (is($params)) {
-            if (array_key_exists($params, $this->params)) {
+            if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
               unset($this->params[$params]);
-            } else {
-              $params = (is_array($params)) ? $params : explode(' ', $params);
-              $this->params = array_diff($this->params, $params);
             }
           } else {
             $this->params = array();
@@ -353,15 +396,19 @@
       }
     }
 
-    public function delCss($css = NULL) {
+    public function delCss($props = NULL, $value = NULL) {
       if (count($this->css) > 0) {
-        if (is($css)) {
-          if (array_key_exists($css, $this->css)) {
-            unset($this->css[$css]);
+        if (is($props)) {
+          if (!is($value) && array_key_exists($props, $this->css)) {
+            unset($this->css[$props]);
             return TRUE;
           } else {
-            foreach ($this->css as $param => $value) {
-              if ($css == $param.': '.$value.';') {
+            foreach ($this->css as $param => $val) {
+              if (is($value)) {
+                if ($props.': '.$value.';' == $param.': '.$val.';') {
+                  $this->delCss($param);
+                } 
+              } else if ($props == $param.': '.$val.';') {
                 $this->delCss($param);
               }
             }
@@ -372,6 +419,15 @@
         return TRUE;
       }
       return FALSE;
+    }
+    
+    public function hide($hidden = TRUE) {
+      if ($hidden) {
+        $this->addCss('display', 'none');
+      } else {
+        $this->delCss('display', 'none');
+      }
+        $this->hidden = $hidden;
     }
 
     protected static function contentToHtml($content) {
