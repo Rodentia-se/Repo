@@ -75,6 +75,7 @@
         if (count($content) > 0) {
           foreach ($content as $part) {
             $html .= self::contentToHtml($part);
+            debug($html, 'html');
           }
         }
       }
