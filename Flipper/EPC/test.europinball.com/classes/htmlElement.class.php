@@ -29,7 +29,6 @@
       }
       if (isAssoc($params) && count($params) > 0) {
         foreach ($params as $param => $value) {
-          $this->$param = $value;
           $this->params[$param] = $value;
         }
       }
@@ -61,6 +60,18 @@
      
     public function __set($prop, $data) {
       switch ($prop) {
+        case 'src':
+          if (in_array($this->element, static::$srcrs)) {
+            return $this->addContent($data, TRUE);
+          }
+          return $this->params[$prop];
+        break;
+        case 'value':
+          if (in_array($this->element, static::$valuers)) {
+            return $this->addContent($data, TRUE);
+          }
+          return $this->params[$prop];
+        break;
         case 'content':
         case 'contents':
           return $this->addContent($data, TRUE);
@@ -85,6 +96,11 @@
       switch ($prop) {
         case 'content':
         case 'contents':
+          if (in_array($this->element, static::$srcrs)) {
+            return isset($this->params['src'];
+          } else if (in_array($this->element, static::$valuers)) {
+            return isset($this->params['value'];
+          }
           return (count($this->contents) > 0) ? TRUE : FALSE;
         break;
         case 'class': 
@@ -105,27 +121,37 @@
     
     public function __unset($prop) {
       switch ($prop) {
+        case 'src':
+          if (in_array($this->element, static::$srcrs) && isset($this->params['src']) {
+            return $this->addContent(NULL, TRUE);
+          }
+          return unset($this->params['src']);
+        break;
+        case 'value':
+          if (in_array($this->element, static::$valuers) && isset($this->params['value']) {
+            return $this->addContent(NULL, TRUE);
+          }
+          return unset($this->params['value']);
+        break;
         case 'content':
         case 'contents':
-          return unset($this->contents);
+          return $this->addContent(NULL, TRUE);
         break;
         case 'class': 
         case 'classes': 
-          return $this->addClass($data, TRUE);
+          return $this->addClass(NULL, TRUE);
         break;
         case 'css':
-          return $this->addCss($data, NULL, TRUE);
+          return $this->addCss(NULL, NULL, TRUE);
         break;
         case 'html':
           return FALSE;
         break;
         default:
-          return $this->params[$prop];
+          return unset($this->params[$prop]);
         break;
       }
     }
-    
-    
     
     public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       $el = new html($element, $contents, $params, $id, $class, $css);
@@ -133,7 +159,7 @@
       return $el;
     }
 
-    public function addContent($contents = NULL, $replace = FALSE) {
+    public function addContent($content = NULL, $replace = FALSE) {
       if ($replace) {
         unset($this->contents);
         if (in_array($this->element, static::$srcrs)) {
@@ -143,7 +169,15 @@
           unset($this->params['value']);
         }
       }
-      $this->contents[] = $contents;
+      if ($contents !== NULL) {
+        $this->contents[] = $content;
+        if (in_array($this->element, static::$srcrs)) {
+          $this->params['src'] = $content;
+        }
+        if (in_array($this->element, static::$valuers)) {
+          $this->params['value'] = $content;
+        }
+      }
       return TRUE;
     }
     
@@ -218,9 +252,9 @@
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
-            $this->style = trim($this->style);
-            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
-            return 'style="'.trim($this->style.' '.$this->getCssHtml()).'"';
+            $this->params['style'] = trim($this->params['style']);
+            $this->params['style'] = ($this->params['style'] && substr($this->params['style'], -1) != ';') ? $this->params['style'].';' : $this->params['style'];
+            return 'style="'.trim($this->params['style'].' '.$this->getCssHtml()).'"';
           } else if ($param == 'class') {
             return 'class="'.$this->getClasses(TRUE).'"';
           } else {
@@ -266,13 +300,12 @@
       }
       if (in_array($this->element, static::$selfClosers)) {
         if (in_array($this->element, static::$valuers)) {
-          if (!$this->value && is_scalar($this->contents[0])) {
-            $this->value = $this->contents[0];
+          if (!$this->params['value'] && is_scalar($this->contents[0])) {
+            $this->params['value'] = $this->contents[0];
           }
         } 
         if (in_array($this->element, static::$srcrs)) {
-          if (!$this->src && is_scalar($this->contents[0])) {
-            $this->src = $this->contents[0];
+          if (!$this->params['src'] && is_scalar($this->contents[0])) {
             $this->params['src'] = $this->contents[0];
           }
         } 
