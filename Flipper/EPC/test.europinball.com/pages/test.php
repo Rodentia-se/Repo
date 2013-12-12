@@ -5,7 +5,7 @@
 
   $page = new page('Test', true);
 
-  $el = new htmlElement('span','Hej!', array('data-hepp' => 'huff', 'id');
+  $el = new htmlElement('span', 'Hej!', array('data-hepp' => 'huff'), 'id');
   $page->addContent($el);
 /*
   debug('TEST 1');
