@@ -9,6 +9,7 @@
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'spanId');
   $el2->addELement('img', 'imageSrc', array('title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
+  $el2->addContent('Hej på er!');
   debug($el);
   $page->addContent($el);
 /*
