@@ -7,23 +7,28 @@
     public static $indenter = '  ';
     public static $crlf = "\n";
     public static $indent = 0;
+    protected $params = array();
     protected $content = array();
-    public $css = array();
+    protected $classes = array();
+    protected $css = array();
     
     public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       $this->element = strtolower($element);
-      if (isAssoc($params)) {
-        foreach ($params as $param => $value) {
-          $this->$param = $value;
-          $this->params[] = $param;
-        }
+      if (is($id)) {
+        $params['id'] = $id;
       }
-      $this->id = ($id) ? $id : (($params['id']) ? $params['id'] : NULL);
-      $this->class = (is_array($class)) ? $class : explode(' ', $class);
+      $this->classes = mergeToArray($class, $params['class']);
+      $this->params['class'] = implode($this->classes, ' ');
       if (isAssoc($css) && count($css) > 0) {
-        $this->params[] = 'style';
         foreach ($css as $param => $value) {
           $this->css[$param] = $value;
+          $params['style'] = ($params['style']) ? $params['style'] : TRUE;
+        }
+      }
+      if (isAssoc($params) && count($params) > 0) {
+        foreach ($params as $param => $value) {
+          $this->$param = $value;
+          $this->params[$param] = $value;
         }
       }
       $this->addContent($content);
@@ -77,20 +82,29 @@
       return $html;
     }
     
+    public function getClasses($string = FALSE) {
+      $this->classes = mergeToArray($this->classes, $this->params['class']);
+      $this->params['class'] = implode($this->classes, ' ');
+      return ($string) ? $this->params['class'] : $this->classes;
+    }
+    
     public function getParamsHtml($param = NULL) {
       if ($param) {
-        if (in_array($param, $this->params) && property_exists($this, $param)) {
-          if ($name == 'style' && count($this->css) > 0) {
+        if (in_array($param, array_keys($this->params))) {
+          if ($param == 'style' && count($this->css) > 0) {
             return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
+          } else if ($param == 'class') {
+            return 'class="'$this->getClasses(TRUE).'"';
+          }
           } else {
-            return $param.'="'.$this->$param.'"';
+            return $param.'="'.$this->params[$param].'"';
           }
         } else {
           return FALSE;
         }
       } else {
         if (count($this->params) > 0 ) {
-          foreach ($this->params as $param) {
+          foreach ($this->params as $param => $value) {
             $params[] = $this->getParamsHtml($param);
           }
           return implode($params, ' ');
@@ -115,7 +129,7 @@
       }
     }
 
-    public function getHtml($close = TRUE) {
+    public function getHtml() {
       $crlf = (in_array($this->element, self::$noCrlf)) ? NULL : "\n";
       if ($crlf) {
         for ($i = 0; $i <= static::$indent; $i++) {
