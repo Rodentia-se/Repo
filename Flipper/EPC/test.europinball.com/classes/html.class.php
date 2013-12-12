@@ -17,17 +17,12 @@
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
-      $this->params['class'] = implode($this->classes, ' ');
-      if (isAssoc($params) && count($params) > 0) {
-        foreach ($params as $param => $value) {
-          $this->params[$param] = $value;
-        }
-      }
       $this->indents = $indents;
       if (is($id)) {
         $params['id'] = $id;
       }
-      $this->addClass($class);
+      $this->addParams($params);
+      $this->addClasses($class);
       $this->addCss($css);
       $this->addContent($contents);
     }
@@ -74,7 +69,7 @@
         break;
         case 'class': 
         case 'classes': 
-          return $this->addClass($data, TRUE);
+          return $this->addClasses($data, TRUE);
         break;
         case 'css':
           return $this->addCss($data, NULL, TRUE);
@@ -135,7 +130,7 @@
         break;
         case 'class': 
         case 'classes': 
-          $this->addClass(NULL, TRUE);
+          $this->addClasses(NULL, TRUE);
         break;
         case 'css':
           $this->addCss(NULL, NULL, TRUE);
@@ -177,13 +172,13 @@
       return TRUE;
     }
     
-    public function addClass($classes = NULL, $replace = FALSE) {
+    public function addClasses($classes = NULL, $replace = FALSE) {
       if ($replace) {
         unset($this->classes);
       }
       if (is_array($classes)) {
         foreach ($classes as $class) {
-          $this->addClass($class);
+          $this->addClasses($class);
         }
       } else {
         $this->classes[] = $classes;
@@ -196,13 +191,29 @@
         unset($this->css);
       }
       if (isAssoc($props)) {
-        foreach ($props as $prop => $value) {
-          $this->addCss($prop, $value);
+        foreach ($props as $prop => $val) {
+          $this->addCss($prop, $val);
         }
       } else {
-        $this->css[$prop] = $value;
+        $this->css[$props] = $value;
       }
       return $this->getCss();
+    }
+
+    public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
+      if (isAssoc($props)) {
+        if ($replace) {
+          foreach ($this->params as $prop => $val) {
+            $this->__unset($props);
+          }
+        }
+        foreach ($props as $prop => $val) {
+          $this->addParams($prop, $val);
+        }
+      } else {
+        $this->__set($props, $value);
+      }
+      return $this->getParams();
     }
 
     protected static function contentToHtml($content) {
