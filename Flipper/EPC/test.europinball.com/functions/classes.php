@@ -5,6 +5,7 @@
       include __ROOT__.'/classes/'.$class.'.class.php';
     } else if (is_file(__ROOT__.'/classes/html/'.$class.'.class.php')) {
       include __ROOT__.'/classes/html/'.$class.'.class.php';
+      echo "found";
     }
   });
   
