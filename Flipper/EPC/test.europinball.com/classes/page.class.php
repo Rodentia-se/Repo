@@ -35,7 +35,7 @@
         $this->addFooter($footer);
       }
     }
-
+    
     public function addHeader($title = NULL, $src = FALSE) {
       $title = ($title) ? $title : $thie->title;
       $this->header = ($src && $src !== TRUE) ? $src : $this->getHeader($title);

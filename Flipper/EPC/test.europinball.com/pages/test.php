@@ -7,7 +7,7 @@
 
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
-  $el2->addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'spanId');
+  $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
   $el2->addELement('img', 'imageSrc', array('src' => 'newSrc', 'title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addContent('Hej på er!');
   $input = new html('input', 'hupp', array('name' => 'heff'), 'inputId');
@@ -16,11 +16,13 @@
   $array = array(
     $input,
     'jepp!',
-    1000,
+    1000, 
     $input2
   );
   $el2->addContent($array);
-  $el2 = $el->addElement('div', 'Innerdiv2!', array('class' => 'nlah', 'src' => 'asas'), 'innerId2', 'innerKlass', array('color' => 'black'));
+  $el2->addElement('span', 'Innerst också!', array('class' => 'bold'), 'spanId2');
+  $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
+  $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   debug($el);
   $page->addContent($el);
 /*
