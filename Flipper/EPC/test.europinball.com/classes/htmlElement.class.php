@@ -14,7 +14,7 @@
     protected $classes = array();
     protected $css = array();
     
-    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
+    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indent = 0) {
       $this->element = strtolower($element);
       if (is($id)) {
         $params['id'] = $id;
@@ -33,6 +33,7 @@
           $this->params[$param] = $value;
         }
       }
+      $this->indent = $indent;
       $this->addContent($content);
     }
      
@@ -135,7 +136,7 @@
     public function getHtml() {
       $crlf = (in_array($this->element, self::$noCrlf)) ? NULL : "\n";
       if ($crlf) {
-        for ($i = 0; $i <= static::$indent; $i++) {
+        while ($i = 0; $i <= static::$indent; $i++) {
           $indent .= static::$indenter;
         }
       }
@@ -155,7 +156,7 @@
         $end = ' />'.$crlf;
       } else {
         $start = '>'.$crlf;
-        $end = $crlf.$indent.'</'.$this->element.'>';
+        $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
       }
       $html = $crlf.$indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
