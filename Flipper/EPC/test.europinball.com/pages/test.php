@@ -31,7 +31,7 @@
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
   $div->addContent($img);
   debug($img, 'HUFF');
-  $img->src = 'a_third_src';
+  $img->src = 'a_src';
   $page->addContent($el);
 /*
 
