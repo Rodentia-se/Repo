@@ -22,7 +22,7 @@
       if (isAssoc($css) && count($css) > 0) {
         foreach ($css as $param => $value) {
           $this->css[$param] = $value;
-          $params['style'] = ($params['style']) ? $params['style'] : TRUE;
+          $params['style'] = ($params['style']) ? $params['style'] : ' ';
         }
       }
       if (isAssoc($params) && count($params) > 0) {
@@ -78,7 +78,11 @@
     
     public function getClasses($string = FALSE) {
       $this->classes = mergeToArray($this->classes, $this->params['class']);
-      $this->params['class'] = implode($this->classes, ' ');
+      if (count($this->classes) > 0) {
+        $this->params['class'] = implode($this->classes, ' ');
+      } else {
+        unset($this->params['class']);
+      }
       return ($string) ? $this->params['class'] : $this->classes;
     }
     
@@ -86,7 +90,7 @@
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
-            return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
+            return 'style="'.trim($this->style).(($this->style && $this->style != ' ' && substr($this->style, -1) != ';') ? '; ' : '').$this->getCssHtml().'"';
           } else if ($param == 'class') {
             return 'class="'.$this->getClasses(TRUE).'"';
           } else {
