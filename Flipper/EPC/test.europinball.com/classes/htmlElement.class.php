@@ -60,6 +60,7 @@
       } else {
         $html = htmlspecialchars($content);
       }
+              debug($html, 'html');
       return $html;
     }
     
@@ -71,7 +72,6 @@
           if (count($this->content) > 0) {
             foreach ($this->content as $part) {
               $html .= self::contentToHtml($part);
-              debug($html, 'html');
             }
           }
         }
