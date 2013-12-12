@@ -110,9 +110,11 @@
     }
 
     public function getHtml($close = TRUE) {
-      $crlf = (in_array($this->element, self::$noCrlf)) ? '' : "\n";
-      for ($i = 0; $i <= static::$indent; $i++) {
-        $indent .= static::$indenter;
+      $crlf = (in_array($this->element, self::$noCrlf)) ? NULL : "\n";
+      if ($crlf) {
+        for ($i = 0; $i <= static::$indent; $i++) {
+          $indent .= static::$indenter;
+        }
       }
       if (in_array($this->element, self::$selfClosers)) {
         if (!$this->value && is_scalar($this->content[0])) {
@@ -122,7 +124,7 @@
         }
       } else {
         $start = '>'.$crlf;
-        $end = $indent.'</'.$this->element.'>'.$crlf;
+        $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
       }
       $html = $indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
