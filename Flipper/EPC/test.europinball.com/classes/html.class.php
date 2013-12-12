@@ -181,16 +181,16 @@
       return TRUE;
     }
     
-    public function addClass($class = NULL, $replace = FALSE) {
+    public function addClass($classes = NULL, $replace = FALSE) {
       if ($replace) {
         unset($this->classes);
       }
-      if (is_array($class)) {
-        foreach ($class as $className) {
-          $this->addClass($className);
+      if (is_array($classes)) {
+        foreach ($classes as $class) {
+          $this->addClass($class);
         }
       } else {
-        $this->classes[] = $class;
+        $this->classes[] = $classes;
       }
       return $this->getClasses();
     }
