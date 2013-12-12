@@ -42,7 +42,6 @@
 
     public function addContent($content = NULL) {
       $this->content[] = $content;
-      debug($this->content, 'cont');
       return TRUE;
     }
     
@@ -59,24 +58,19 @@
         self::$indent--;
       } else {
         $html = htmlspecialchars($content);
-      debug($html, 'spec');
       }
       return $html;
     }
     
     public function getContentHtml($index = NULL) {
-      debug($index, 'index');
       if(is($index)) {
         $content = array($this->content[$index]);
-      debug($content, 'part1');
       } else {
         $content = $this->content;
-      debug($content, 'part2');
       }
       if (count($content) > 0) {
         foreach ($content as $part) {
           $html = self::toHtml($part);
-      debug($part, 'part');
         }
       }
       return $html;
@@ -146,10 +140,8 @@
         $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
       }
       $html = $crlf.$indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
-              debug($start, 'start');
       if (count($this->content) > 0) {
         $html .= $this->getContentHtml();
-              debug($html, 'html');
       }
       return $html.$end;
     }
