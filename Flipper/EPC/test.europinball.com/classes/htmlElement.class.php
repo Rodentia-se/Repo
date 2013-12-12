@@ -133,10 +133,10 @@
       }
       return $html.$end;
     }
-    
-//    public function __toString() {
-//      return $this->getHtml();
-//    }
+
+    public function __toString() {
+      return $this->getHtml();
+    }
     
   }
   
