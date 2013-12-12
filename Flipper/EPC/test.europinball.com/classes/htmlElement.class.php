@@ -68,7 +68,7 @@
     public function getParamsHtml($param = NULL) {
       if ($param) {
         if (in_array($param, $this->params) && property_exists($this, $param)) {
-          if ($name == 'style' <&& count($this->css) > 0) {
+          if ($name == 'style' && count($this->css) > 0) {
             return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
           } else {
             return $param.'="'.$this->$param.'"';
