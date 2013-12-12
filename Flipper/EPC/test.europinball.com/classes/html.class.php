@@ -50,39 +50,38 @@
       }
     }
      
-    public function __set($prop, $data) {
+    public function __set($prop, $value) {
       switch ($prop) {
         case 'src':
           if (in_array($this->element, static::$srcrs)) {
-            return $this->addContent($data, TRUE);
+            return $this->addContent($value, TRUE);
           }
-          return $this->params[$prop];
+          return $this->params[$prop] = $value;
         break;
         case 'value':
           if (in_array($this->element, static::$valuers)) {
-            return $this->addContent($data, TRUE);
+            return $this->addContent($value, TRUE);
           }
-          return $this->params[$prop];
+          return $this->params[$prop] = $value;
         break;
         case 'content':
         case 'contents':
-          return $this->addContent($data, TRUE);
+          return $this->addContent($value, TRUE);
         break;
         case 'class': 
         case 'classes': 
-          return $this->addClasses($data, TRUE);
+          return $this->addClasses($value, TRUE);
         break;
         case 'css':
-          return $this->addCss($data, NULL, TRUE);
+          return $this->addCss($value, NULL, TRUE);
         break;
         case 'html':
           return FALSE;
         break;
         default:
           debug($prop, 'prop');
-          debug($data, 'val');
-          return $this->params[$prop];
-          debug($this->params);
+          debug($value, 'val');
+          return $this->params[$prop] = $value;
         break;
       }
     }
