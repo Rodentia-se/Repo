@@ -28,7 +28,7 @@
       }
       $this->addContent($content);
     }
-    
+     
     public function addElement($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       $el = new htmlElement($element, $content, $params, $id, $class, $css);
       $this->addContent($el);
