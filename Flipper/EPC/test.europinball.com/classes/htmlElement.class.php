@@ -66,7 +66,7 @@
     public function getParamsHtml($param = NULL) {
       if ($param) {
         if (in_array($param, $this->params) && property_exists($this, $param)) {
-          if ($name == 'style' && count($this->css) > 0) {
+          if ($name == 'style' <&& count($this->css) > 0) {
             return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
           } else {
             return $param.'="'.$this->$param.'"';
@@ -113,7 +113,7 @@
         }
       } else {
         $start = ">\n";
-        $end = $indent."\n</".$this->elemenet.">\n";
+        $end = $indent."\n</".$this->element.">\n";
       }
       $html = $indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
