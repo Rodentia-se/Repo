@@ -169,7 +169,7 @@
           unset($this->params['value']);
         }
       }
-      if ($contents !== NULL) {
+      if ($content !== NULL) {
         $this->contents[] = $content;
         if (in_array($this->element, static::$srcrs)) {
           $this->params['src'] = $content;
