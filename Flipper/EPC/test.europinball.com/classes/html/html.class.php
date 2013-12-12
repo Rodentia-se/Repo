@@ -181,7 +181,7 @@
       if (isAssoc($props)) {
         if ($replace) {
           if ($this->contentParam) {
-            unset $thia->contents;
+            unset $this->contents;
           } else {
             unset $this->params;
           }
