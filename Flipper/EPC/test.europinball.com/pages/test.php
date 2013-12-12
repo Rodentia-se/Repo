@@ -16,12 +16,15 @@
   debug($input->crlf, 'CRLF');
   $array = array(
     $input,
-    'jepp!',
-    1000, 
-    $input2
+    'Det här ska komma direkt efter en input, utan crlf',
+    1000,
+    'Efter det här kommer det en input med $clrf satt till true'
   );
   $el2->addContent($array);
+  $el2->addContent($input2);
+  $el2->addContent('Det här ska komma efter en input och en crlf');
   $el2->addElement('span', 'Innerst också!', array('class' => 'bold'), 'spanId2');
+  $el2->addContent('Lite konstiga tecken som ska funka i html: &"<>\'');
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   debug($el);
