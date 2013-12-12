@@ -157,10 +157,10 @@
       }
       $this->classes = mergeToArray($this->classes, $classes);
       if (count($this->classes) > 0) {
-        $this->class = implode($this->classes, ' ');
+        $this->params['class'] = implode($this->classes, ' ');
       } else {
         unset($this->classes);
-        unset($this->class);
+        unset($this->params['class']);
       }
       return $this->getClasses();
     }
@@ -233,7 +233,7 @@
       if ($class) {
         return (in_array($class, $this->classes)) ? (($string) ? 'true' : TRUE) : (($string) ? 'false' : FALSE);
       } else {
-        return ($string) ? $this->class : $this->classes;
+        return ($string) ? $this->params['class'] : $this->classes;
       }
     }
     
