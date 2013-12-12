@@ -27,7 +27,7 @@
       if (is($id)) {
         $params['id'] = $id;
       }
-      $this->addClasses($class);
+      $this->addClass($class);
       $this->addCss($css);
       $this->addContent($contents);
     }
