@@ -4,8 +4,8 @@
     
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlf = array('img', 'span');
-    public static $valueContent = array('input');
-    public static $srcContent = array('img', 'script');
+    public static $valuers = array('input');
+    public static $srcrs = array('img', 'script');
     public static $indenter = '  ';
     public static $crlf = "\n";
     public static $indent = 0;
@@ -65,14 +65,16 @@
     }
     
     public function getContentHtml($index = NULL) {
-      if(is($index)) {
-        $content = array($this->content[$index]);
-      } else {
-        $content = $this->content;
-      }
-      if (count($content) > 0) {
-        foreach ($content as $part) {
-          $html .= self::contentToHtml($part);
+      if (!in_array($this->element, static::$selfClosers)) {
+        if(is($index)) {
+          $content = array($this->content[$index]);
+        } else {
+          $content = $this->content;
+        }
+        if (count($content) > 0) {
+          foreach ($content as $part) {
+            $html .= self::contentToHtml($part);
+          }
         }
       }
       return $html;
@@ -138,13 +140,13 @@
         }
       }
       if (in_array($this->element, static::$selfClosers)) {
-        if (in_array($this->element, static::$valueContent)) {
+        if (in_array($this->element, static::$valuers)) {
           if (!$this->value && is_scalar($this->content[0])) {
             $this->value = $this->content[0];
             $this->params['value'] = $this->content[0];
           }
         } 
-        if (in_array($this->element, static::$srcContent)) {
+        if (in_array($this->element, static::$srcrs)) {
           if (!$this->src && is_scalar($this->content[0])) {
             $this->src = $this->content[0];
             $this->params['src'] = $this->content[0];
