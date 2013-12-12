@@ -180,15 +180,21 @@
     public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
       if (isAssoc($props)) {
         if ($replace) {
-          foreach ($this->params as $prop => $val) {
-            $this->__unset($prop);
+          if ($this->contentParam) {
+            unset $thia->contents;
+          } else {
+            unset $this->params;
           }
         }
         foreach ($props as $prop => $val) {
           $this->addParams($prop, $val);
         }
       } else {
-        $this->__set($props, $value);
+        if ($props == $this->contentParam) {
+          $this->contents[0] = $value;
+        } else {
+          $this->params[$props] = $value;
+        }
       }
       return $this->getParams();
     }
