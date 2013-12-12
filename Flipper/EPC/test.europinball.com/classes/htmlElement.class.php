@@ -63,25 +63,21 @@
       return $html;
     }
     
-    public function getParamHtml($param) {
-      if (in_array($this->params, $param)) {
-        if ($name == 'style' count($this->css) > 0) {
-          return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
-        } else {
-          return $param.'="'.$this->$param.'"';
-        }
-      } else {
-        return FALSE;
-      }
-    }
-    
     public function getParamsHtml($param = NULL) {
       if ($param) {
-        return (property_exists($this, $param)) ? $this->getParamHtml($param) : FALSE;
+        if (in_array($this->params, $param) && property_exists($this, $param)) {
+          if ($name == 'style' && count($this->css) > 0) {
+            return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
+          } else {
+            return $param.'="'.$this->$param.'"';
+          }
+        } else {
+          return FALSE;
+        }
       } else {
         if (count($this->params) > 0 ) {
           foreach ($this->params as $name) {
-            $params[] = $this->getParamHtml($param);
+            $params[] = $this->getParamsHtml($param);
           }
           return implode($params, ' ');
         } else {
