@@ -6,8 +6,8 @@
   $page = new page('Test', true);
 
   $el = new htmlElement('span', 'Hej!', array('data-hepp' => 'huff'), 'id');
-  $page->addContent($el);
-  $el = new htmlElement('div', 'Hej!', array('data-hepp' => 'huff'), 'id', 'hidden', array('color' => 'red'));
+  $el2 = new htmlElement('div', 'Hej!', array('data-hepp' => 'huff'), 'id', 'hidden', array('color' => 'red'));
+  $el->addContent($el2);
   $page->addContent($el);
 /*
   debug('TEST 1');
