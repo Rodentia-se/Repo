@@ -206,7 +206,7 @@
     protected function getContent($index = NULL, $string = TRUE) {
         debug($this->contents);
       if (!in_array($this->element, static::$selfClosers)) {
-        if(is($index)) {0
+        if(is($index)) {
           $html .= ($string) ? static::contentToHtml($this->contents[$index]) : $this->contents[$index];
         } else {
           if (count($this->contents) > 0) {
