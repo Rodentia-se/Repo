@@ -82,6 +82,7 @@
           debug($prop, 'prop');
           debug($data, 'val');
           return $this->params[$prop];
+          debug($this->params);
         break;
       }
     }
