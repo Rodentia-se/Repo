@@ -123,26 +123,26 @@
       switch ($prop) {
         case 'src':
           if (in_array($this->element, static::$srcrs)) {
-            return $this->addContent(NULL, TRUE);
+            $this->addContent(NULL, TRUE);
           }
           unset($this->params['src']);
         break;
         case 'value':
           if (in_array($this->element, static::$valuers)) {
-            return $this->addContent(NULL, TRUE);
+            $this->addContent(NULL, TRUE);
           }
           unset($this->params['value']);
         break;
         case 'content':
         case 'contents':
-          return $this->addContent(NULL, TRUE);
+          $this->addContent(NULL, TRUE);
         break;
         case 'class': 
         case 'classes': 
-          return $this->addClass(NULL, TRUE);
+          $this->addClass(NULL, TRUE);
         break;
         case 'css':
-          return $this->addCss(NULL, NULL, TRUE);
+          $this->addCss(NULL, NULL, TRUE);
         break;
         case 'html':
           return FALSE;
@@ -187,7 +187,7 @@
       }
       if (is_array($class)) {
         foreach ($class as $className) {
-          $this->addClass($className)
+          $this->addClass($className);
         }
       } else {
         $this->classes[] = $class;
