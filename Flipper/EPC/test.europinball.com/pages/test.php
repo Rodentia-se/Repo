@@ -8,8 +8,8 @@
   $el2 = new htmlElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'id2');
   $el2 = new htmlElement('div', 'Innerdiv!', array('href' => 'nlah', 'src' => 'asas'), 'id3', 'hidden');
   $el = new htmlElement('div', 'Ytterdiv!', NULL, 'id', 'hidden', array('color' => 'red'));
-  $el->addContent($el2);
   $el2->addContent($el3);
+  $el->addContent($el2);
   $page->addContent($el);
 /*
   debug('TEST 1');
