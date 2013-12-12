@@ -15,9 +15,9 @@
     public static $indenter = '  ';
     public static $indents = 0;
     public $element = 'span';
-    public $selfClose = FALSE;
-    public $crlf = "\n";
-    public $contentParam = NULL;
+    public $selfClose;
+    public $crlf;
+    public $contentParam;
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
@@ -294,7 +294,7 @@
           $i++;
         }
       }
-      if (in_array($this->selfClose)) {
+      if ($this->selfClose) {
         if ($this->contentParam) {
           $param = $this->contentParam;
           if (!$this->$param && is_scalar($this->contents[0])) {
