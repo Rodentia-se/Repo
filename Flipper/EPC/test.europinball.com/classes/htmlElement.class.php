@@ -54,6 +54,7 @@
     }
     
     public function getContentHtml($index = NULL) {
+      debug($index, 'index');
       if(is($index)) {
         $content = array($this->content[$index]);
       debug($content, 'part1');
