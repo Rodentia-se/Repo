@@ -256,9 +256,14 @@
             foreach ($this->params as $param => $value) {
               $params[] = $this->getParams($param);
             }
+            if ($this->contentParam) {
+              $params[] = $this->contentParam.'='.$this->contents[0];
+            }
             return implode($params, ' ');
           } else {
-            return $this->params;
+            $params = $this->params
+            $params[$this->contentParam] = $this->contents[0];
+            return $params;
           }
         } else {
           return NULL;
@@ -293,12 +298,6 @@
         }
       }
       if ($this->selfClose) {
-        if ($this->contentParam) {
-          $param = $this->contentParam;
-          if (!$this->$param && is_scalar($this->contents[0])) {
-            $this->$param = $this->contents[0];
-          }
-        } 
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
