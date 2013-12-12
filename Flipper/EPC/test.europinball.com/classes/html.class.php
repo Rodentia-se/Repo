@@ -79,6 +79,8 @@
           return FALSE;
         break;
         default:
+          debug($prop, 'prop');
+          debug($data, 'val');
           return $this->params[$prop];
         break;
       }
@@ -209,8 +211,6 @@
           }
         }
         foreach ($props as $prop => $val) {
-          debug($prop, 'prop');
-          debug($val, 'val');
           $this->addParams($prop, $val);
         }
       } else {
