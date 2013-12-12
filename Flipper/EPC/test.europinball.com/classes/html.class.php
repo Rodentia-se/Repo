@@ -125,13 +125,13 @@
           if (in_array($this->element, static::$srcrs)) {
             return $this->addContent(NULL, TRUE);
           }
-          return unset($this->params['src']);
+          unset($this->params['src']);
         break;
         case 'value':
           if (in_array($this->element, static::$valuers)) {
             return $this->addContent(NULL, TRUE);
           }
-          return unset($this->params['value']);
+          unset($this->params['value']);
         break;
         case 'content':
         case 'contents':
@@ -148,7 +148,7 @@
           return FALSE;
         break;
         default:
-          return unset($this->params[$prop]);
+          unset($this->params[$prop]);
         break;
       }
     }
