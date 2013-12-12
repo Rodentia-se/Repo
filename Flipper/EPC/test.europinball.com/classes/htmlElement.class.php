@@ -3,11 +3,11 @@
   class htmlElement {
     
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
-    public static $noCrlf = array('img', 'span');
+    public static $noCrlfs = array('img', 'span');
     public static $valuers = array('input');
     public static $srcrs = array('img', 'script');
     public static $indenter = '  ';
-    public static $crlf = "\n";
+    public $crlf = "\n";
     public static $indent = 0;
     protected $params = array();
     protected $content = array();
@@ -132,7 +132,7 @@
     }
 
     public function getHtml() {
-      $crlf = (in_array($this->element, self::$noCrlf)) ? NULL : "\n";
+      $crlf = (in_array($this->element, self::$noCrlfs)) ? NULL : $this->crlf;
       if ($crlf) {
         while ($i < static::$indent) {
           $indent .= static::$indenter;
