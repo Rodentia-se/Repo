@@ -484,7 +484,7 @@
     
     protected function getHtml() {
       if ($this->crlf) {
-        $indents = (is($this->localIndents)) ? static::$indents : static::$indents;
+        $indents = static::$indents;
         while ($i < $indents) {
           $indent .= $indenter;
           $i++;
