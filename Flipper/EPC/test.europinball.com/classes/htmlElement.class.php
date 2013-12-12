@@ -6,11 +6,11 @@
     public static $indenter = '  ';
     public static $indent = 0;
     protected $content = array();
-    protected $params = array();
+    public $css = array();
     
-    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL) {
+    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       $this->element = strtolower($element);
-      if ($params) {
+      if (iasAssoc($params)) {
         foreach ($params as $param => $value) {
           $this->$param = $value;
           $this->params[] = $param;
@@ -18,6 +18,12 @@
       }
       $this->id = ($id) ? $id : (($params['id']) ? $params['id'] : NULL);
       $this->class = (is_array($class)) ? $class : explode(' ', $class);
+      if (isAssoc($css) && count($css) > 0) {
+        $this->params[] = 'style';
+        foreach ($css as $param => $value) {
+          $this->css[$param] = $value;
+        }
+      }
       $this->addContent($content);
     }
     
@@ -57,17 +63,25 @@
       return $html;
     }
     
+    public function getParamHtml($param) {
+      if (in_array($this->params, $param)) {
+        if ($name == 'style' count($this->css) > 0) {
+          return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
+        } else {
+          return $param.'="'.$this->$param.'"';
+        }
+      } else {
+        return FALSE;
+      }
+    }
+    
     public function getParamsHtml($param = NULL) {
       if ($param) {
-        if (in_array($this->params, $param)) {
-          return $param.'="'.$this->$param.'"';
-        } else {
-          return FALSE;
-        }
+        return (property_exists($this, $param)) ? $this->getParamHtml($param) : FALSE;
       } else {
         if (count($this->params) > 0 ) {
           foreach ($this->params as $name) {
-            $params[] = $name.'="'.$this->$name.'"';
+            $params[] = $this->getParamHtml($param);
           }
           return implode($params, ' ');
         } else {
@@ -76,6 +90,21 @@
       }
     }
     
+    public function getCssHtml($param = NULL) {
+      if ($param) {
+        return (array_key_exists($this->css, $param)) ? $param.': '.$this->css[$param].';' : FALSE;
+      } else {
+        if (count($this->css) > 0) {
+          foreach ($this->css as $param => $value) {
+            $css[] .= $param.': '.$value.';';
+          }
+          return (implode($css, ' '));
+        } else {
+          return NULL;
+        }
+      }
+    }
+
     public function getHtml($close = TRUE) {
       for ($i = 0; $i <= static::indent; $i++) {
         $indent .= static::indenter;
@@ -100,3 +129,7 @@
     public function __toString() {
       return $this->getHtml();
     }
+    
+  }
+  
+?>
