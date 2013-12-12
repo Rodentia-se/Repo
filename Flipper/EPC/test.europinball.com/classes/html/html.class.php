@@ -39,6 +39,7 @@
       switch ($prop) {
         case 'content':
         case 'contents':
+        case $this->contentParam:
           return $this->getContent();
         break;
         case 'class': 
@@ -86,11 +87,8 @@
       switch ($prop) { 
         case 'content':
         case 'contents':
-          if ($this->contentParam) {
-            return (array_key_exists($this->contentParam, $this->params)) ? isset($this->params[$this->contentParam]) : FALSE;
-          } else {
-            return (count($this->contents) > 0) ? TRUE : FALSE;
-          }
+        case $this->contentParam:
+          return (count($this->contents) > 0) ? TRUE : FALSE;
         break;
         case 'class': 
         case 'classes': 
@@ -295,12 +293,6 @@
         }
       }
       if ($this->selfClose) {
-        if ($this->contentParam) {
-          $param = $this->contentParam;
-          if (!$this->$param && is_scalar($this->contents[0])) {
-            $this->$param = $this->contents[0];
-          }
-        } 
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
