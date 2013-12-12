@@ -225,7 +225,7 @@
     public function delContent($items = NULL) {
       if (count($this->contents) > 0) {
         if (is($item) && $item !== TRUE) {
-          if (array_key_exists($item, $this->content)) {
+          if (array_key_exists($item, $this->contents)) {
             unset($this->contents[$item]);
             return TRUE;
           } else {
@@ -234,8 +234,7 @@
             return TRUE;
           }
         } else {
-          $this->content = array();
-          debug($items, 'huffabuffa');
+          $this->contents = array();
         }
       }
       return FALSE;
