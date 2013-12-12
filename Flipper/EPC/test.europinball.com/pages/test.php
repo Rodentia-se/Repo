@@ -20,6 +20,7 @@
     $input2
   );
   $el2->addContent($array);
+  $el2 = $el->addElement('div', 'Innerdiv2!', array('class' => 'nlah', 'src' => 'asas'), 'innerId2', 'innerKlass', array('color' => 'black'));
   debug($el);
   $page->addContent($el);
 /*
