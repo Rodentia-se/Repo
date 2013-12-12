@@ -231,7 +231,7 @@
     
     protected function getClasses($class = NULL, $string = TRUE) {
       if ($class) {
-        return (in_array($class, $this->classes)) ? (($string) ? $class : TRUE) : FALSE);
+        return (in_array($class, $this->classes)) ? (($string) ? $class : TRUE) : FALSE;
       } else {
         return ($string) ? $this->params['class'] : $this->classes;
       }
