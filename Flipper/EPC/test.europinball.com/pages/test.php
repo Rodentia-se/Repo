@@ -14,7 +14,7 @@
     new htmlElement('input', 'hupp', array('name' => 'heff'), 'inputId'),
     'jepp!',
     1000
-  ):
+  );
   $el2->addContent($array);
   debug($el);
   $page->addContent($el);
