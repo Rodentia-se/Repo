@@ -136,7 +136,8 @@
     public function getHtml() {
       $crlf = (in_array($this->element, self::$noCrlf)) ? NULL : "\n";
       if ($crlf) {
-        while ($i = 0; $i <= static::$indent; $i++) {
+        for ($i <= static::$indent) {
+          $i++;
           $indent .= static::$indenter;
         }
       }
