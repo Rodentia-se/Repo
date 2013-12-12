@@ -1,20 +1,20 @@
 <?php
 
-  class htmlElement {
+  class html {
     
+    protected $params = array();
+    protected $content = array();
+    protected $classes = array();
+    protected $css = array();
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlfs = array('img', 'span');
     public static $valuers = array('input');
     public static $srcrs = array('img', 'script');
     public static $indenter = '  ';
+    public static $indents = 0;
     public $crlf = "\n";
-    public static $indent = 0;
-    protected $params = array();
-    protected $content = array();
-    protected $classes = array();
-    protected $css = array();
     
-    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indent = 0) {
+    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
       if (is($id)) {
         $params['id'] = $id;
@@ -33,29 +33,130 @@
           $this->params[$param] = $value;
         }
       }
-      $this->indent = $indent;
+      $this->indents = $indents;
       $this->addContent($content);
     }
+    
+    public function __get($prop) {
+      switch ($prop) {
+        case 'content':
+        case 'contents':
+          return $this->getContentHtml();
+        break;
+        case 'class': 
+        case 'classes': 
+          return $this->getClasses();
+        break;
+        case 'css':
+          return $this->getCssHtml();
+        break;
+        case 'html':
+          return $this->getHtml();
+        break;
+        default:
+          return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : NULL;
+        break;
+      }
+    }
      
+    public function __set($prop, $data) {
+      switch ($prop) {
+        case 'content':
+        case 'contents':
+          return $this->addContent($data, TRUE);
+        break;
+        case 'class': 
+        case 'classes': 
+          return $this->addClass($data, TRUE);
+        break;
+        case 'css':
+          return $this->addCss($data, NULL, TRUE);
+        break;
+        case 'html':
+          return FALSE;
+        break;
+        default:
+          return $this->params[$prop];
+        break;
+      }
+    }
+    
+    public __isset($prop) {
+      switch ($prop) {
+        case 'content':
+        case 'contents':
+          return (count($this->contents) > 0) ? TRUE : FALSE;
+        break;
+        case 'class': 
+        case 'classes': 
+          return (count($this->classes) > 0) ? TRUE : FALSE;
+        break;
+        case 'css':
+          return (count($this->css) > 0) ? TRUE : FALSE;
+        break;
+        case 'html':
+          return TRUE;
+        break;
+        default:
+          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : FALSE;
+        break;
+      }
+    }
+    
     public function addElement($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
-      $el = new htmlElement($element, $content, $params, $id, $class, $css);
+      $el = new html($element, $content, $params, $id, $class, $css);
       $this->addContent($el);
       return $el;
     }
 
-    public function addContent($content = NULL) {
+    public function addContent($content = NULL, $replace = FALSE) {
+      if ($replace) {
+        unset($this->content);
+        if (in_array($this->element, static::$srcrs)) {
+          unset($this->params['src']);
+        }
+        if (in_array($this->element, static::$valuers)) {
+          unset($this->params['value']);
+        }
+      }
       $this->content[] = $content;
       return TRUE;
     }
     
-    public static function contentToHtml($content) {
-      if (isHtmlElement($content)) {
-        self::$indent++;
+    public function addClass($class = NULL, $replace = FALSE) {
+      if ($replace) {
+        unset($this->classes);
+      }
+      if (is_array($class)) {
+        foreach ($class as $className) {
+          $this->addClass($className)
+        }
+      } else {
+        $this->classes[] = $class;
+      }
+      return $this->getClasses();
+    }
+
+    public function addCss($prop = NULL, $value = NULL, $replace = FALSE) {
+      if ($replace) {
+        unset($this->css);
+      }
+      if (isAssoc($prop)) {
+        $this->css = $prop
+      } else {
+        $this->css[$prop] = $value;
+      }
+      return $this->getClasses();
+    }
+
+    protected static function contentToHtml($content) {
+      if (isHtml($content)) {
+        self::$indents++;
         $html = $content->getHtml();
-        self::$indent--;
+        self::$indents--;
       } else if (is_array($content)) {
         foreach ($content as $part) {
-          $html .= self::contentToHtml($part);
+          $html .= static::contentToHtml($part);
         }
       } else {
         $html = htmlspecialchars($content);
@@ -64,14 +165,14 @@
       return $html;
     }
     
-    public function getContentHtml($index = NULL) {
+    protected function getContentHtml($index = NULL) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= self::contentToHtml($this->content[$index]);
+          $html .= static::contentToHtml($this->content[$index]);
         } else {
           if (count($this->content) > 0) {
             foreach ($this->content as $part) {
-              $html .= self::contentToHtml($part);
+              $html .= static::contentToHtml($part);
             }
           }
         }
@@ -79,7 +180,7 @@
       return $html;
     }
     
-    public function getClasses($string = FALSE) {
+    protected function getClasses($string = FALSE) {
       $this->classes = mergeToArray($this->classes, $this->params['class']);
       if (count($this->classes) > 0) {
         $this->params['class'] = implode($this->classes, ' ');
@@ -89,7 +190,7 @@
       return ($string) ? $this->params['class'] : $this->classes;
     }
     
-    public function getParamsHtml($param = NULL) {
+    protected function getParamsHtml($param = NULL) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
@@ -116,7 +217,7 @@
       }
     }
     
-    public function getCssHtml($param = NULL) {
+    protected function getCssHtml($param = NULL) {
       if ($param) {
         return (array_key_exists($this->css, $param)) ? $param.': '.$this->css[$param].';' : FALSE;
       } else {
@@ -131,11 +232,11 @@
       }
     }
 
-    public function getHtml() {
-      $crlf = (in_array($this->element, self::$noCrlfs)) ? NULL : $this->crlf;
+    protected function getHtml() {
+      $crlf = (in_array($this->element, static::$noCrlfs)) ? NULL : $this->crlf;
       if ($crlf) {
-        while ($i < static::$indent) {
-          $indent .= static::$indenter;
+        while ($i < static::$indents) {
+          $indents .= static::$indenter;
           $i++;
         }
       }
@@ -155,9 +256,9 @@
         $end = ' />'.$crlf;
       } else {
         $start = '>'.$crlf;
-        $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
+        $end = $crlf.$indents.'</'.$this->element.'>'.$crlf;
       }
-      $html = $crlf.$indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
+      $html = $crlf.$indents.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
         $html .= $this->getContentHtml();
       }

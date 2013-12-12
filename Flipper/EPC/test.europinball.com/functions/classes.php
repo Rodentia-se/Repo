@@ -450,9 +450,9 @@
     return $obj instanceof base;
   }
   
-  function isHtmlElement($obj, $nostring = FALSE) {
+  function isHtml($obj, $nostring = FALSE) {
     $obj = (is_string($obj) && class_exists($obj) && !$nostring && class_exists($obj)) ? new $obj() : $obj;
-    return $obj instanceof htmlElement;
+    return $obj instanceof html;
   }
   
   function isId($id) {
