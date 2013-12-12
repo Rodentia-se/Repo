@@ -5,7 +5,9 @@
 
   $page = new page('Test', true);
 
-  $el = new htmlElement('div', 'Hej!', array('data-hepp' => 'huff'), 'id');
+  $el = new htmlElement('spen', 'Hej!', array('data-hepp' => 'huff'), 'id');
+  $page->addContent($el);
+  $el = new htmlElement('div', 'Hej!', array('data-hepp' => 'huff'), 'id', 'hidden', array('color' => 'red'));
   $page->addContent($el);
 /*
   debug('TEST 1');
