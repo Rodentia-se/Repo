@@ -433,6 +433,7 @@
     protected static function contentToHtml($content) {
       if (isHtml($content)) {
         self::$indents++;
+        debug($content, 'HEPP');
         $html = $content->getHtml();
         self::$indents--;
       } else if (is_array($content)) {
