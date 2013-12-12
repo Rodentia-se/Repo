@@ -450,6 +450,11 @@
     return $obj instanceof base;
   }
   
+  function isHtmlElement($obj, $nostring = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && !$nostring && class_exists($obj)) ? new $obj() : $obj;
+    return $obj instanceof htmlElement;
+  }
+  
   function isId($id) {
     return ((is_int($id) || is_string($id))) ? preg_match('/^[0-9]+$/', $id) : FALSE;
   }
