@@ -28,11 +28,13 @@
   $img = $el2->addELement('img', 'imageSrc', array('src' => 'another_src', 'title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
-  $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
+  $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
+  $div->addContent($img);
   $img->src = 'a_third_src';
   debug($img, 'HUFF');
   $page->addContent($el);
 /*
+
   debug('TEST 1');
   $tournament = tournament('active');
   debug($tournament->getFlat());
