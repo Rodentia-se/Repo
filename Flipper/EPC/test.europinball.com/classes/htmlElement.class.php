@@ -155,7 +155,7 @@
         $end = ' />'.$crlf;
       } else {
         $start = '>'.$crlf;
-        $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
+        $end = $crlf.$indent.'</'.$this->element.'>';
       }
       $html = $crlf.$indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
