@@ -70,7 +70,7 @@
       }
       if (count($content) > 0) {
         foreach ($content as $part) {
-          $html = self::toHtml($part);
+          $html .= self::toHtml($part);
         }
       }
       return $html;
