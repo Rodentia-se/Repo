@@ -30,7 +30,7 @@
     }
     
     public function addContent($content = NULL) {
-      $this->content[] .= $content;
+      $this->content[] = $content;
       debug($this->content, 'cont');
       return TRUE;
     }
