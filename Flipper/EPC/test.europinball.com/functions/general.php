@@ -19,7 +19,7 @@
   }
   
   function is($string ) {
-    return ($string || $string == 0) ? TRUE : FALSE;
+    return ($string || $string === 0) ? TRUE : FALSE;
   }
   
   function camelCaseToSpace($txt, $ucfirst = FALSE) {
