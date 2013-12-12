@@ -29,7 +29,7 @@
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   $img->src = 'a_third_src';
-  debug($img);
+  debug($img, 'HUFF');
   $page->addContent($el);
 /*
   debug('TEST 1');
