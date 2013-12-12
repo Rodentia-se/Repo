@@ -438,22 +438,22 @@
   }
   
   function isGroup($group, $string = FALSE) {
-    $group = (is_string($group) && class_exists($group) && !$string) ? new $group() : $group;
+    $group = (is_string($group) && class_exists($group) && $string) ? new $group() : $group;
     return $group instanceof group;
   }
 
   function isGeo($obj, $string = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$string) ? new $obj() : $obj;
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
     return $obj instanceof geography;
   }
   
   function isObj($obj, $string = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$string && class_exists($obj)) ? new $obj() : $obj;
+    $obj = (is_string($obj) && class_exists($obj) && $string && class_exists($obj)) ? new $obj() : $obj;
     return $obj instanceof base;
   }
   
   function isHtml($obj, $string = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && !$string && class_exists($obj)) ? new $obj() : $obj;
+    $obj = (is_string($obj) && class_exists($obj) && $string && class_exists($obj)) ? new $obj() : $obj;
     return $obj instanceof html;
   }
   
