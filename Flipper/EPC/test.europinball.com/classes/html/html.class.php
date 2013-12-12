@@ -130,88 +130,32 @@
     }
     
     public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
-      if (!isHtml($el)) {
-        $el = new html($element, $contents, $params, $id, $class, $css);
+      if (!isHtml($element)) {
+        $element = new html($element, $contents, $params, $id, $class, $css);
       }
-      $this->addContent($el);
-      return $el;
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public function delElement($elements) {
+      if (count($this->contents) > 0) {
+        $elements = (is_array($elements)) ? $elements : array($elements);
+        $this->contents = array_diff($this->contents, $elements);
+        return TRUE;
+      }
+      return FALSE;
     }
 
     public function addContent($content = NULL, $replace = FALSE) {
       if ($replace) {
-        unset($this->contents);
+        $this->delContent($replace);
       }
       if ($content !== NULL) {
-        $this->contents[] = $content;
+        $this->contents = mergeToArray($this->contents, $content);
       } else {
-        unset($this->contents);
+        $this->delContent();
       }
-      return TRUE;
-    }
-    
-    public function addClasses($classes = NULL, $replace = FALSE) {
-      if ($replace) {
-        unset($this->classes);
-      }
-      $this->classes = mergeToArray($this->classes, $classes);
-      if (count($this->classes) > 0) {
-        $this->params['class'] = implode($this->classes, ' ');
-      } else {
-        unset($this->classes);
-        unset($this->params['class']);
-      }
-      return $this->getClasses();
-    }
-
-    public function addCss($props = NULL, $value = NULL, $replace = FALSE) {
-      if ($replace) {
-        unset($this->css);
-      }
-      if (isAssoc($props)) {
-        foreach ($props as $prop => $val) {
-          $this->addCss($prop, $val);
-        }
-      } else {
-        $this->css[$props] = $value;
-      }
-      return $this->getCss();
-    }
-
-    public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
-      if (isAssoc($props)) {
-        if ($replace) {
-          if ($this->contentParam) {
-            unset($this->contents);
-          } else {
-            unset($this->params);
-          }
-        }
-        foreach ($props as $prop => $val) {
-          $this->addParams($prop, $val);
-        }
-      } else {
-        if ($props == $this->contentParam) {
-          $this->contents[0] = $value;
-        } else {
-          $this->params[$props] = $value;
-        }
-      }
-      return $this->getParams();
-    }
-
-    protected static function contentToHtml($content) {
-      if (isHtml($content)) {
-        self::$indents++;
-        $html = $content->getHtml();
-        self::$indents--;
-      } else if (is_array($content)) {
-        foreach ($content as $part) {
-          $html .= static::contentToHtml($part);
-        }
-      } else {
-        $html = htmlspecialchars($content);
-      }
-      return $html;
+      return $this->getContent();
     }
     
     protected function getContent($index = NULL, $string = TRUE) {
@@ -233,14 +177,42 @@
       return $html;
     }
     
-    protected function getClasses($class = NULL, $string = TRUE) {
-      if ($class) {
-        return (in_array($class, $this->classes)) ? (($string) ? $class : TRUE) : FALSE;
-      } else {
-        return ($string) ? $this->params['class'] : $this->classes;
+    public function delContent($items = NULL) {
+      if (count($this->contents) > 0) {
+        if (is($item)) {
+          if (array_key_exists($item, $this->content)) {
+            unset($this->contents[$item]);
+            return TRUE;
+          } else {
+            $items = (is_array($items)) ? $items : array($items);
+            $this->contents = array_diff($this->contents, $items);
+            return TRUE;
+          }
+        } else {
+          $this->content = array();
+        }
       }
+      return FALSE;
     }
     
+    public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
+      if ($replace) {
+        $this->delParams($replace);
+      }
+      if (isAssoc($props)) {
+        foreach ($props as $prop => $val) {
+          $this->addParams($prop, $val);
+        }
+      } else {
+        if ($props == $this->contentParam) {
+          $this->contents[0] = $value;
+        } else {
+          $this->params[$props] = $value;
+        }
+      }
+      return $this->getParams();
+    }
+
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
@@ -277,6 +249,91 @@
       }
     }
     
+    function delParams($params = NULL) {
+      if ($params == $this->contentParam) {
+        $this->contents[0] = array();¨
+        return TRUE;
+      } else {
+        if (count($this->params) > 0) {
+          if (is($params)) {
+            if (array_key_exists($params, $this->params)) {
+              unset($this->params[$params]);
+            } else {
+              $params = (is_array($params)) ? $params : explode(' ', $params);
+              $this->params = array_diff($this->params, $params);
+            }
+          } else {
+            $this->params = array();
+            if ($this->contentParam) {
+              $this->contents[0] = array();
+            }
+          }
+          return TRUE;
+        }
+      }
+      return FALSE;
+    }
+
+    public function addClasses($classes = NULL, $replace = FALSE) {
+      if ($replace) {
+        $this->delClasses($replace);
+      }
+      if ($classes !== NULL) {
+        $this->classes = mergeToArray($this->classes, $classes);
+      } else {
+        $this->delClasses();
+      }
+      if (count($this->classes) > 0) {
+        $this->params['class'] = implode($this->classes, ' ');
+      } else {
+        unset($this->params['class']);
+      }
+      return $this->getClasses();
+    }
+    
+    protected function getClasses($class = NULL, $string = TRUE) {
+      if ($class) {
+        return (in_array($class, $this->classes)) ? (($string) ? $class : TRUE) : FALSE;
+      } else {
+        return ($string) ? $this->params['class'] : $this->classes;
+      }
+    }
+    
+    function delClasses($classes = NULL) {
+      if (count($this->classes) > 0) {
+        if (is($classes)) {
+          if (array_key_exists($classes, $this->classes)) {
+            unset($this->classes[$classes]);
+          } else {
+            $classes = (is_array($classes)) ? $classes : explode(' ', $classes);
+            $this->classes = array_diff($this->classes, $classes);
+          }
+        } else {
+          $this->classes = array();
+        }
+        if (count($this->classes) > 0) {
+          $this->params['class'] = implode($this->classes, ' ');
+        } else {
+          unset($this->params['class']);
+        }
+      }
+      return FALSE;
+    }
+
+    public function addCss($props = NULL, $value = NULL, $replace = FALSE) {
+      if ($replace) {
+        $this->delCss($replace);
+      }
+      if (isAssoc($props)) {
+        foreach ($props as $prop => $val) {
+          $this->addCss($prop, $val);
+        }
+      } else {
+        $this->css[$props] = $value;
+      }
+      return $this->getCss();
+    }
+
     protected function getCss($param = NULL, $string = TRUE) {
       if ($param) {
         return (array_key_exists($this->css, $param)) ? (($string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
@@ -296,6 +353,42 @@
       }
     }
 
+    public function delCss($css = NULL) {
+      if (count($this->css) > 0) {
+        if (is($css)) {
+          if (array_key_exists($css, $this->css)) {
+            unset($this->css[$css]);
+            return TRUE;
+          } else {
+            foreach ($this->css as $param => $value) {
+              if ($css == $param.': '.$value.';') {
+                $this->delCss($param);
+              }
+            }
+          }
+        } else {
+          $this->css = array();
+        }
+        return TRUE;
+      }
+      return FALSE;
+    }
+
+    protected static function contentToHtml($content) {
+      if (isHtml($content)) {
+        self::$indents++;
+        $html = $content->getHtml();
+        self::$indents--;
+      } else if (is_array($content)) {
+        foreach ($content as $part) {
+          $html .= static::contentToHtml($part);
+        }
+      } else {
+        $html = htmlspecialchars($content);
+      }
+      return $html;
+    }
+    
     protected function getHtml() {
       if ($this->crlf) {
         while ($i < static::$indents) {
