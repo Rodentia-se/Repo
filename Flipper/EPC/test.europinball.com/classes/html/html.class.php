@@ -181,9 +181,9 @@
       if (isAssoc($props)) {
         if ($replace) {
           if ($this->contentParam) {
-            unset $this->contents;
+            unset($this->contents);
           } else {
-            unset $this->params;
+            unset($this->params);
           }
         }
         foreach ($props as $prop => $val) {
