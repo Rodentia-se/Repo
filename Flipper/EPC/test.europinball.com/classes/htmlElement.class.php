@@ -4,6 +4,8 @@
     
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlf = array('img', 'span');
+    public static $valueContent = array('input');
+    public static $srcContent = array('img', 'script');
     public static $indenter = '  ';
     public static $crlf = "\n";
     public static $indent = 0;
@@ -135,11 +137,19 @@
           $indent .= static::$indenter;
         }
       }
-      if (in_array($this->element, self::$selfClosers)) {
-        if (!$this->value && is_scalar($this->content[0])) {
-          $this->value .= $this->content[0];
-          $this->params[] = 'value';
-        }
+      if (in_array($this->element, static::$selfClosers)) {
+        if (in_array($this->element, static::$valueContent)) {
+          if (!$this->value && is_scalar($this->content[0])) {
+            $this->value .= $this->content[0];
+            $this->params['value'] = $this->content[0];
+          }
+        } 
+        if (in_array($this->element, static::$srcContent)) {
+          if (!$this->src && is_scalar($this->content[0])) {
+            $this->src .= $this->content[0];
+            $this->params['src'] = $this->content[0];
+          }
+        } 
         $end = ' />'.$crlf;
       } else {
         $start = '>'.$crlf;
