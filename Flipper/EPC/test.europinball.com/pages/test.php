@@ -13,7 +13,7 @@
   $input = new html('input', 'hupp', array('name' => 'heff'), 'inputId');
   $input2 = new html('input', 'hupp', array('name' => 'heff', 'type' => 'hidden'), 'inputId');
   unset($input->crlf);
-  echo $input->crlf;
+  debug($input->crlf, 'CRLF');
   $array = array(
     $input,
     'jepp!',
