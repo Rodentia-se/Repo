@@ -56,8 +56,10 @@
     public function getContentHtml($index = NULL) {
       if(is($index)) {
         $content = array($this->content[$index]);
+      debug($content, 'part1');
       } else {
         $content = $this->content;
+      debug($content, 'part2');
       }
       if (count($content) > 0) {
         foreach ($content as $part) {
