@@ -25,10 +25,12 @@
   $el2->addContent('Det här ska komma efter en input och en crlf');
   $el2->addElement('span', 'Innerst också!', array('class' => 'bold'), 'spanId2');
   $el2->addContent('Lite konstiga tecken som ska funka i html: &"<>\'');
+  $img = $el2->addELement('img', 'imageSrc', array('src' => 'another_src', 'title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   debug($el);
   $page->addContent($el);
+  $page->addContent($img->src);
 /*
   debug('TEST 1');
   $tournament = tournament('active');
