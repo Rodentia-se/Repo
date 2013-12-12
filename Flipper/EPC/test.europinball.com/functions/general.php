@@ -9,7 +9,7 @@
     }
   }
   
-  function isJson($string) {
+  function isJson($string = NULL) {
     if (is_string($string)) {
       json_decode($string);
       return (json_last_error() == JSON_ERROR_NONE);
@@ -18,8 +18,8 @@
     }
   }
   
-  function is($string) {
-    return ($string || $string == 0);
+  function is($string ) {
+    return ($string || $string == 0) ? TRUE : FALSE;
   }
   
   function camelCaseToSpace($txt, $ucfirst = FALSE) {
