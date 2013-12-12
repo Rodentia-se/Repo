@@ -486,7 +486,7 @@
       if ($this->crlf) {
         $indents = static::$indents;
         while ($i < $indents) {
-          $indent .= $indenter;
+          $indent .= static::$indenter;
           $i++;
         }
       }
