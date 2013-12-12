@@ -206,6 +206,7 @@
     protected function getContent($index = NULL, $string = TRUE) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
+        debug($this->contents);
           $html .= ($string) ? static::contentToHtml($this->contents[$index]) : $this->contents[$index];
         } else {
           if (count($this->contents) > 0) {
@@ -433,7 +434,6 @@
       if (isHtml($content)) {
         self::$indents++;
         debug($content, 'HEPP');
-        debug($this->contents);
         $html = $content->getHtml();
         self::$indents--;
       } else if (is_array($content)) {
