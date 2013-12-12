@@ -56,7 +56,7 @@
       } else if (is_array($content)) {
         self::$indent++;
         foreach ($content as $part) {
-          $html .= self::toHtml($part)."\n";
+          $html .= self::contentToHtml($part)."\n";
         }
         self::$indent--;
       } else {
