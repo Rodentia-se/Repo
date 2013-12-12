@@ -139,8 +139,8 @@
         if (!$this->value && is_scalar($this->content[0])) {
           $this->value .= $this->content[0];
           $this->params[] = 'value';
-          $end = ' />'.$crlf;
         }
+        $end = ' />'.$crlf;
       } else {
         $start = '>'.$crlf;
         $end = $crlf.$indent.'</'.$this->element.'>'.$crlf;
