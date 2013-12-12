@@ -245,7 +245,7 @@
             $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
             return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
           } else if ($param == 'class') {
-            return ($string) ? 'class="'.$this->getClasses(TRUE).'"' : array($this->getClasses());
+            return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
           } else {
             return $param.'="'.$this->$param.'"';
           }
