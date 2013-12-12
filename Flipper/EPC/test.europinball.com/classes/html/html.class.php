@@ -1,6 +1,6 @@
 <?php
 
-  namespace html;
+//  namespace html;
 
   class html {
     
