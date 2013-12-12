@@ -77,7 +77,7 @@
       } else {
         if (count($this->params) > 0 ) {
           foreach ($this->params as $name) {
-            $params[] = $this->getParamsHtml($param);
+            $params[] = $this->getParamsHtml($name);
           }
           return implode($params, ' ');
         } else {
