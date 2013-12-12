@@ -32,7 +32,7 @@
       debug($this->params);
       $this->addClasses($class);
       $this->addCss($css);
-      $this->addContent($contents);
+      $this->addContent($contents, TRUE);
     }
     
     public function __get($prop) {
