@@ -10,7 +10,7 @@
     
     public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       $this->element = strtolower($element);
-      if (iasAssoc($params)) {
+      if (isAssoc($params)) {
         foreach ($params as $param => $value) {
           $this->$param = $value;
           $this->params[] = $param;
