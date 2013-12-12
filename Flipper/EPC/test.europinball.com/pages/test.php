@@ -10,6 +10,12 @@
   $el2->addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'spanId');
   $el2->addELement('img', 'imageSrc', array('title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addContent('Hej på er!');
+  $array = array(
+    new htmlElement('input', 'hupp', array('name' => 'heff'), 'inputId'),
+    'jepp!',
+    1000
+  ):
+  $el2->addContent($array);
   debug($el);
   $page->addContent($el);
 /*
