@@ -300,7 +300,7 @@
           return TRUE;
       } else {
         if (count($this->params) > 0) {
-          if (is($params)) {
+          if (is($params) && $param !== TRUE) {
             if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
               unset($this->params[$params]);
             }
@@ -343,7 +343,7 @@
     
     function delClasses($classes = NULL) {
       if (count($this->classes) > 0) {
-        if (is($classes)) {
+        if (is($classes) && $classes !== TRUE) {
           if (array_key_exists($classes, $this->classes)) {
             unset($this->classes[$classes]);
           } else {
@@ -397,7 +397,7 @@
 
     public function delCss($props = NULL, $value = NULL) {
       if (count($this->css) > 0) {
-        if (is($props)) {
+        if (is($props) && $props !== TRUE) {
           if (!is($value) && array_key_exists($props, $this->css)) {
             unset($this->css[$props]);
             return TRUE;
