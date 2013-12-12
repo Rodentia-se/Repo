@@ -5,9 +5,7 @@
 
   $page = new page('Test', true);
 
-  $el = new htmlElement('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'Block'));
-  debug($el);
-  debug(get_class_methods('htmlElement'));
+  $el = new htmlElement('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass');
   $el2->addElement('span', 'Innerstj!', array('data-hepp' => 'huff'), 'spanId');
   debug($el);
