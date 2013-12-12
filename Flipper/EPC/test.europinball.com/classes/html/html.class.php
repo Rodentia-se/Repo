@@ -16,6 +16,7 @@
     public static $srcrs = array('img', 'script');
     public static $indenter = '  ';
     public static $indents = 0;
+    public $localIndents;
     public $element = 'span';
     public $selfClose;
     public $crlf;
@@ -482,8 +483,9 @@
     
     protected function getHtml() {
       if ($this->crlf) {
-        while ($i < static::$indents) {
-          $indents .= static::$indenter;
+        $intents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
+        while ($i < $indents) {
+          $indent .= $indenter;
           $i++;
         }
       }
@@ -491,11 +493,11 @@
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
-        $end = $this->crlf.$indents.'</'.$this->element.'>';
+        $end = $this->crlf.$indent.'</'.$this->element.'>';
       }
-      $html = $this->crlf.$indents.'<'.$this->element.' '.$this->getParams().$start;
+      $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $this->getContent();
+        $html .= $this->crlf.$indent.$this->getContent();
       }
       return $html.$end;
     }
