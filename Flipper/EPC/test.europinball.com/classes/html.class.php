@@ -184,7 +184,7 @@
       $this->classes = mergeToArray($this->classes, $classes);
       if (count($this->classes) > 0) {
         $this->class = implode($this->classes, ' ');
-        debug($this->class)
+        debug($this->class);
       } else {
         unset($this->class);
       }
