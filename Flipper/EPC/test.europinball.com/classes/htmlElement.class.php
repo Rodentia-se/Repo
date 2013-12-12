@@ -3,7 +3,7 @@
   class html {
     
     protected $params = array();
-    protected $content = array();
+    protected $contents = array();
     protected $classes = array();
     protected $css = array();
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
@@ -14,7 +14,7 @@
     public static $indents = 0;
     public $crlf = "\n";
     
-    public function __construct($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
+    public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
       if (is($id)) {
         $params['id'] = $id;
@@ -34,7 +34,7 @@
         }
       }
       $this->indents = $indents;
-      $this->addContent($content);
+      $this->addContent($contents);
     }
     
     public function __get($prop) {
@@ -81,7 +81,7 @@
       }
     }
     
-    public __isset($prop) {
+    public function __isset($prop) {
       switch ($prop) {
         case 'content':
         case 'contents':
@@ -103,15 +103,39 @@
       }
     }
     
-    public function addElement($element = 'span', $content = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
-      $el = new html($element, $content, $params, $id, $class, $css);
+    public function __unset($prop) {
+      switch ($prop) {
+        case 'content':
+        case 'contents':
+          return unset($this->contents);
+        break;
+        case 'class': 
+        case 'classes': 
+          return $this->addClass($data, TRUE);
+        break;
+        case 'css':
+          return $this->addCss($data, NULL, TRUE);
+        break;
+        case 'html':
+          return FALSE;
+        break;
+        default:
+          return $this->params[$prop];
+        break;
+      }
+    }
+    
+    
+    
+    public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
+      $el = new html($element, $contents, $params, $id, $class, $css);
       $this->addContent($el);
       return $el;
     }
 
-    public function addContent($content = NULL, $replace = FALSE) {
+    public function addContent($contents = NULL, $replace = FALSE) {
       if ($replace) {
-        unset($this->content);
+        unset($this->contents);
         if (in_array($this->element, static::$srcrs)) {
           unset($this->params['src']);
         }
@@ -119,7 +143,7 @@
           unset($this->params['value']);
         }
       }
-      $this->content[] = $content;
+      $this->contents[] = $contents;
       return TRUE;
     }
     
@@ -168,10 +192,10 @@
     protected function getContentHtml($index = NULL) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= static::contentToHtml($this->content[$index]);
+          $html .= static::contentToHtml($this->contents[$index]);
         } else {
-          if (count($this->content) > 0) {
-            foreach ($this->content as $part) {
+          if (count($this->contents) > 0) {
+            foreach ($this->contents as $part) {
               $html .= static::contentToHtml($part);
             }
           }
@@ -242,15 +266,14 @@
       }
       if (in_array($this->element, static::$selfClosers)) {
         if (in_array($this->element, static::$valuers)) {
-          if (!$this->value && is_scalar($this->content[0])) {
-            $this->value = $this->content[0];
-            $this->params['value'] = $this->content[0];
+          if (!$this->value && is_scalar($this->contents[0])) {
+            $this->value = $this->contents[0];
           }
         } 
         if (in_array($this->element, static::$srcrs)) {
-          if (!$this->src && is_scalar($this->content[0])) {
-            $this->src = $this->content[0];
-            $this->params['src'] = $this->content[0];
+          if (!$this->src && is_scalar($this->contents[0])) {
+            $this->src = $this->contents[0];
+            $this->params['src'] = $this->contents[0];
           }
         } 
         $end = ' />'.$crlf;
@@ -259,7 +282,7 @@
         $end = $crlf.$indents.'</'.$this->element.'>'.$crlf;
       }
       $html = $crlf.$indents.'<'.$this->element.' '.$this->getParamsHtml().$start;
-      if (count($this->content) > 0) {
+      if (count($this->contents) > 0) {
         $html .= $this->getContentHtml();
       }
       return $html.$end;
