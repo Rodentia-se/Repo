@@ -95,7 +95,6 @@
             return 'style="'.$this->style.(($this->style && substr($this->style, -1) != ';') ? ';' : '').$this->getCssHtml().'"';
           } else if ($param == 'class') {
             return 'class="'.$this->getClasses(TRUE).'"';
-          }
           } else {
             return $param.'="'.$this->params[$param].'"';
           }
