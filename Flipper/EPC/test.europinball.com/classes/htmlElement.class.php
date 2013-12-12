@@ -102,8 +102,8 @@
     }
 
     public function getHtml($close = TRUE) {
-      for ($i = 0; $i <= static::indent; $i++) {
-        $indent .= static::indenter;
+      for ($i = 0; $i <= static::$indent; $i++) {
+        $indent .= static::$indenter;
       }
       if (in_array($this->element, self::$selfClosers)) {
         if (!$this->value && is_scalar($this->content[0])) {
