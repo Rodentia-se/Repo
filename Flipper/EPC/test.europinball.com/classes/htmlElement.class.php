@@ -3,7 +3,9 @@
   class htmlElement {
     
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
+    public static $noCrlf = array('img', 'span',);
     public static $indenter = '  ';
+    public static $crlf = "\n";
     public static $indent = 0;
     protected $content = array();
     public $css = array();
@@ -105,15 +107,16 @@
       for ($i = 0; $i <= static::$indent; $i++) {
         $indent .= static::$indenter;
       }
+      $crlf = (in_array($this->element, self::$noCrlf)) '' : "\n";
       if (in_array($this->element, self::$selfClosers)) {
         if (!$this->value && is_scalar($this->content[0])) {
           $this->value .= $this->content[0];
           $this->params[] = 'value';
-          $end = " />\n";
+          $end = ' />'.$crlf;
         }
       } else {
-        $start = ">\n";
-        $end = $indent."\n</".$this->element.">\n";
+        $start = '>'.$crlf;
+        $end = $indent.$crlf.'</'.$this->element.'>'.$crlf;
       }
       $html = $indent.'<'.$this->element.' '.$this->getParamsHtml().$start;
       if (count($this->content) > 0) {
