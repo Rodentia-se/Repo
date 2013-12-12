@@ -157,19 +157,19 @@
       if ($replace) {
         unset($this->contents);
         if (in_array($this->element, static::$srcrs)) {
-          unset($this->params['src']);
+          unset($this->src);
         }
         if (in_array($this->element, static::$valuers)) {
-          unset($this->params['value']);
+          unset($this->value);
         }
       }
       if ($content !== NULL) {
         $this->contents[] = $content;
         if (in_array($this->element, static::$srcrs)) {
-          $this->params['src'] = $content;
+          $this->src = $content;
         }
         if (in_array($this->element, static::$valuers)) {
-          $this->params['value'] = $content;
+          $this->value = $content;
         }
       }
       return TRUE;
@@ -257,26 +257,26 @@
       if ($class) {
         return (in_array($class, $this->classes)) ? (($string) ? 'true' : TRUE) : (($string) ? 'false' : FALSE);
       }
-      $this->classes = mergeToArray($this->classes, $this->params['class']);
+      $this->classes = mergeToArray($this->classes, $this->class);
       if (count($this->classes) > 0) {
-        $this->params['class'] = implode($this->classes, ' ');
+        $this->class = implode($this->classes, ' ');
       } else {
-        unset($this->params['class']);
+        unset($this->class);
       }
-      return ($string) ? $this->params['class'] : $this->classes;
+      return ($string) ? $this->class : $this->classes;
     }
     
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style' && count($this->css) > 0) {
-            $this->params['style'] = trim($this->params['style']);
-            $this->params['style'] = ($this->params['style'] && substr($this->params['style'], -1) != ';') ? $this->params['style'].';' : $this->params['style'];
-            return ($string) ? 'style="'.trim($this->params['style'].' '.$this->getCss()).'"' : array($param = trim($this->params['style'].' '.$this->getCss()));
+            $this->style = trim($this->style);
+            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+            return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses(TRUE).'"' : array($this->getClasses());
           } else {
-            return $param.'="'.$this->params[$param].'"';
+            return $param.'="'.$this->$param.'"';
           }
         } else {
           return FALSE;
@@ -326,13 +326,13 @@
       }
       if (in_array($this->element, static::$selfClosers)) {
         if (in_array($this->element, static::$valuers)) {
-          if (!$this->params['value'] && is_scalar($this->contents[0])) {
-            $this->params['value'] = $this->contents[0];
+          if (!$this->value && is_scalar($this->contents[0])) {
+            $this->value = $this->contents[0];
           }
         } 
         if (in_array($this->element, static::$srcrs)) {
-          if (!$this->params['src'] && is_scalar($this->contents[0])) {
-            $this->params['src'] = $this->contents[0];
+          if (!$this->src && is_scalar($this->contents[0])) {
+            $this->src = $this->contents[0];
           }
         } 
         $end = ' />'.$crlf;
