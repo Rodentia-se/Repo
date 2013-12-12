@@ -258,7 +258,7 @@
           if ($param == 'style' && count($this->css) > 0) {
             $this->params['style'] = trim($this->params['style']);
             $this->params['style'] = ($this->params['style'] && substr($this->params['style'], -1) != ';') ? $this->params['style'].';' : $this->params['style'];
-            return ($string) 'style="'.trim($this->params['style'].' '.$this->getCss()).'"' : array($param = trim($this->params['style'].' '.$this->getCss()));
+            return ($string) ? 'style="'.trim($this->params['style'].' '.$this->getCss()).'"' : array($param = trim($this->params['style'].' '.$this->getCss()));
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses(TRUE).'"' : array($this->getClasses());
           } else {
