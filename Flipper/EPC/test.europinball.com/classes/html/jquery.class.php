@@ -32,9 +32,9 @@
         $jsbeautifier = new JSBeautifier();
         $contents = parent::getContent($index, $string);
         if ($this->jquery['function']) {
-          $code = '$('.$this->jquery['selector'].').'.$this->jquery['object']."(function() {\n".$contents."\n});";
+          $code = '$("'.$this->jquery['selector'].'").'.$this->jquery['object']."(function() {\n".$contents."\n});";
         } else {
-          $code = '$('.$this->jquery['selector'].')';
+          $code = '$("'.$this->jquery['selector'].'")';
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
               $code .= '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
