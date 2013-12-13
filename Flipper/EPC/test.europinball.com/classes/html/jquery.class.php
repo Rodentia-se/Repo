@@ -34,7 +34,7 @@
           $code .= '$('.$this->jquery['selector'].')';
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
-              $code = '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '';
+              $code = '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
             }
           } else {
             $code = '.'.$this->jquery['object'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
