@@ -609,7 +609,7 @@
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $mid.$this->getContent();
+        $html .= $this->getContent();
       }
       return $html.$end;
     }
