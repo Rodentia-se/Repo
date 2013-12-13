@@ -11,7 +11,6 @@
   $input = new html('input', 'hupp', array('name' => 'heff'), 'input_utan_crlf');
   $input2 = new html('input', 'hupp', array('name' => 'heff', 'type' => 'hidden'), 'input_med_crlf');
   unset($input->crlf);
-  debug($input->crlf, 'CRLF');
   $array = array(
     $input,
     'Det här ska komma direkt efter en input, utan crlf',
