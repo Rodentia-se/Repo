@@ -34,6 +34,7 @@
   $div2 = $div1->addDiv('2');
   $div3 = $div2->addDiv('3');
   $div4 = $div3->addDiv('4');
+  debug($div4);
   $div4->addJquery('
     $(".edit").change(function(){
            var el = this;
