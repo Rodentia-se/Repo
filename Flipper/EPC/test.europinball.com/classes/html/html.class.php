@@ -635,10 +635,10 @@
       }
       $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
       if (count($this->contents) > 0) {
-        $html = static::$indenter.$this->getContent();
+        $html = $this->getContent();
       }
       $html .= ($this->crlf && $close && substr($close, 0, strlen($this->crlf)) != $this->crlf && substr(trim($html), strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
-      $open .= ($this->crlf && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf : '';
+//      $open .= ($this->crlf && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf : '';
       return $open.$html.$close;
     }
 
