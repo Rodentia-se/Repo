@@ -28,7 +28,7 @@
       $options = new BeautifierOptions();
       $options->indent_size = strlen(static::$indenter);
       $options->indent_char = substr(static::$indenter, 0, 1);
-      $class = __CLASS__;
+      $class = get_called_class();
       debug($class::$indents, "INDENTOR");
       debug($class, "INDENTOR");
       $options->indent_level = $class::$indents + 1;
