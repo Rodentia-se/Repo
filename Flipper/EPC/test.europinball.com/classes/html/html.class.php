@@ -603,12 +603,13 @@
       if ($this->selfClose) {
         $end = ' />'.$this->crlf;
       } else {
-        $start = '>'.$this->crlf.$indent;
+        $start = '>';
+        $mid = $this->crlf.$indent;
         $end = $this->crlf.$indent.'</'.$this->element.'>';
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $this->getContent();
+        $html .= $mid.$this->getContent();
       }
       return $html.$end;
     }
