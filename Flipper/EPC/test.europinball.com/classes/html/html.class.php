@@ -631,11 +631,11 @@
         $closeEnd = ' />'.$this->crlf;
       } else {
         $openEnd = '>';
-        $closeStart = $indent.'</';
+        $closeStart = $indent.'</'.$this->element;
         $closeEnd = '>';
       }
       $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
-      $close = $closeStart.$this->element.$closeEnd;
+      $close = $closeStart.$closeEnd;
       if (count($this->contents) > 0) {
         $html = $this->getContent();
       } 
