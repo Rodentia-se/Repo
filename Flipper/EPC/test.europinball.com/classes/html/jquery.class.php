@@ -38,7 +38,7 @@
               $code .= '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
             }
           } else { 
-            $code = '.'.$this->jquery['object'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
+            $code .= '.'.$this->jquery['object'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
           }
           $code .= ';';
         }
