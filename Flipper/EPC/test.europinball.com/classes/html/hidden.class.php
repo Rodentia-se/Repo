@@ -1,6 +1,6 @@
 <?php
 
-  class button extends input {
+  class hidden extends input {
     
     public function __construct($name = NULL, $value = 'yes', array $params = NULL) {
       parent::__construct($name, $value, 'hidden', FALSE, $params);
