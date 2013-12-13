@@ -502,6 +502,48 @@
       return $element;
     }
   
+    public function addHidden($name = NULL, $value = 'yes', array $params = NULL) {
+      $element = new hidden($name, $value, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addScript($source = NULL, array $params = NULL) {
+      $element = new script($source, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addScriptFile($file = NULL, array $params = NULL) {
+      $element = new scriptFile($file, $params);
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public function addScriptCode($code = NULL, array $params = NULL) {
+      $element = new scriptCode($code, $params);
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public function addJquery($code = NULL, array $params = NULL) {
+      $element = new jquery($code, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTooltip($selector = NULL, $content = NULL, array $settings = NULL) {
+      $element = new tooltip($selector, $content, $settings);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addCssFile($file = NULL, array $params = NULL) {
+      $element = new cssFile($code, $params);
+      $this->addContent($element);
+      return $element;
+    }
+    
     public function hide($hidden = TRUE) {
       if ($hidden) {
         $this->addCss('display', 'none');
