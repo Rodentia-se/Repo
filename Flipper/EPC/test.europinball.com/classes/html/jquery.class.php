@@ -48,38 +48,6 @@
       }
     }
 
-    public function __get($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        return $this->jquery[$prop];
-      } else {
-        return parent::__get($prop);
-      }
-    }
-
-    public function __set($prop, $value) {
-      if (array_key_exists($prop, $this->jquery)) {
-        $this->jquery[$prop] = $value;
-      } else {
-        parent::__set($prop, $value);
-      }
-    }
-    
-    public function __isset($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        return isset($this->jquery[$prop]);
-      } else {
-        return parent::__isset($prop);
-      }
-    }
-
-    public function __unset($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        unset($this->jquery[$prop]);
-      } else {
-        parent::__unset($prop);
-      }
-    }
-
   }
   
 ?>
