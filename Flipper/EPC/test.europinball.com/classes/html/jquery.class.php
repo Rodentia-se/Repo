@@ -2,11 +2,11 @@
 
   class jquery extends scriptCode {
     
-    public function __construct($code = NULL, array $params = NULL) {
-      parent::__construct($code, $params);
+    public function __construct($code = NULL, array $params = NULL, $indents = 0) {
+      parent::__construct($code, $params, $indents);
       $this->settings['onReady'] = TRUE;
     }
-//    public function __construct($source = NULL, array $params = NULL) {
+//    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     protected function getContent($index = NULL, $string = TRUE) {

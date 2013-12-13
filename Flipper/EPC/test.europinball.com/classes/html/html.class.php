@@ -546,14 +546,16 @@
       return $element;
     }
     
-    public function addJquery($code = NULL, array $params = NULL) {
-      $element = new jquery($code, $params);
+    public function addJquery($code = NULL, array $params = NULL, $indents = NULL) {
+      $indents = ($indents) ? $indents : static::$indents;
+      $element = new jquery($code, $params, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addTooltip($selector = NULL, $content = NULL, array $settings = NULL) {
-      $element = new tooltip($selector, $content, $settings);
+    public function addTooltip($selector = NULL, $content = NULL, array $settings = NULL, $indents = NULL) {
+      $indents = ($indents) ? $indents : static::$indents;
+      $element = new tooltip($selector, $content, $settings, $indents);
       $this->addContent($element);
       return $element;
     }
