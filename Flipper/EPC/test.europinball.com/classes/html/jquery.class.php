@@ -10,7 +10,7 @@
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     protected function getContent($index = NULL, $string = TRUE) {
-      return (($this->settings['onReady']) ? '$(document).ready(function() {\n' : '').parent::get('contents', $index, $string).(($this->settings['onReady']) ? '});' : '');
+      return (($this->settings['onReady']) ? '$(document).ready(function() {' : '').parent::get('contents', $index, $string).(($this->settings['onReady']) ? '});' : '');
     }
 
 
