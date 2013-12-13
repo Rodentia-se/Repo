@@ -43,38 +43,7 @@
   $span2->entities = TRUE;
   debug($span2);
   $div4 = $div3->addDiv('4');
-  $div4->addJquery('
-    $(".edit").change(function(){
-           var el = this;
-               if (el.id == "shortName") 
-               
-               
-               
-               {
-             $(el).val($(el).val().toUpperCase());   } 
-             var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
-          var region_id = (this.id == "city") ? $("#region_id").val() : null;
-           var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
-             var continent_id = (this.id == "city" || this.id == "region") ? $("#continent_id").val() : null;
-             $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-             $.post("https://test.europinball.org//ajax/setPlayerProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
-           .done(function(data) {
-              $(el).tooltipster("update", data.reason).tooltipster("show");
-              if (data.valid) {
-           $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
-               } else {
-         if ($(el).is(":checkbox")) {
-            el.checked = ($(el).data("previous"));
-   } else {
-            $(el).val($(el).data("previous"));
-     }
-             }
-     })
-.fail(function(jqHXR,status,error) {
-    $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
-             })
- })
-  ');
+  $div4->addTooltip('Hej!');
   $img->src = 'a_src';
   $div4->addElement($input2);
   $div4->addElement($input2);
