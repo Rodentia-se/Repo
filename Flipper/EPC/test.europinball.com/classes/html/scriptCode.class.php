@@ -30,11 +30,12 @@
       $options->indent_char = substr(static::$indenter, 0, 1);
       $class = __CLASS__;
       debug($class::$indents, "INDENTOR");
+      debug($class, "INDENTOR");
       $options->indent_level = $class::$indents + 1;
       $options->max_preserve_newlines = 1;
       $jsbeautifier = new JSBeautifier();
       return $jsbeautifier->beautify($html, $options);
     }
   }
-
+ 
 ?>
