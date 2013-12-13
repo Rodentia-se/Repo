@@ -3,8 +3,6 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Test', true);
-
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
@@ -67,7 +65,6 @@
              })
  })
   ');
-  debug($img, 'HUFF');
   $img->src = 'a_src';
   $div4->addElement($input2);
   $div4->addElement($input2);
@@ -76,7 +73,7 @@
   $div4->addElement($input2);
   $div4->addElement($input2);
   $el->indents = 5;
-  $page->addContent($el);
+  echo($el);
 /*
 
   debug('TEST 1');
@@ -161,6 +158,5 @@ foreach($objs as $obj) {
   preDump($obj);
 }
 */
-  $page->submit();
 
 ?> 
