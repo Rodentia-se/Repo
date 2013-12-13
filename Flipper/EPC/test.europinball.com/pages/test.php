@@ -35,7 +35,7 @@
   $div1 = $el->addDiv('1');
   $div2 = $div1->addDiv('2');
   $div3 = $div2->addDiv('3');
-  $span2 = $div3->addSpan('Här är en hög med täcken söm kömmër att blî entities! " € & < > ¢ £ ¥ § © ® ™ ¡ ¤ ± ¿');
+  $span2 = $div3->addParagraph('Här är en hög med täcken söm kömmër att blî entities! " € & < > ¢ £ ¥ § © ® ™ ¡ ¤ ± ¿');
   $span2->entities = TRUE;
   debug($span2);
   $div4 = $div3->addDiv('4');
