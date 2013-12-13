@@ -21,7 +21,7 @@
           'trigger' => 'custom',
           'position' => 'right',
           'timer' => 3000
-        )
+        );
         foreach ($defaultSettings as $setting => $value) {
           $settings[$setting] = ($settings[$ßetting]) ? $settings[$setting] : $defaultSettings[$ßetting];
         }
