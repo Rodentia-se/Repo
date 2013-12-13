@@ -46,7 +46,7 @@
   $tooltip = $div4->addTooltip('                $("#Clickme").click(function() {
                   $("#ClickmeForm").submit();
                 });
-'');
+');
 //  debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($js);
