@@ -25,10 +25,11 @@
         foreach ($defaultSettings as $setting => $value) {
           $settings[$setting] = ($settings[$ßetting]) ? $settings[$setting] : $defaultSettings[$ßetting];
         }
-      } else {
+      } else {1
         $settings['function'] = FALSE;
         $settings['command'] = array('update', 'show');
-        $contents = array($contents, FALSE);
+        $this->contents = array($contents, FALSE);
+        $contents = NULL;
       }
       parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
       $this->jquery = mergeToArray($this->jquery, $settings);
