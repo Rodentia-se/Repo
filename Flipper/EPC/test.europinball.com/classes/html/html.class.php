@@ -614,7 +614,7 @@
         $html = $indent.static::$indenter.$this->getContent();
       }
       $html .= ($this->crlf && substr($close, 0, strlen($this->crlf)) != $this->crlf && substr(trim($html), strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
-      $open .= ($this->crlf && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf : '';
+//      $open .= ($this->crlf && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf : '';
       return $open.$html.$close;
     }
 
