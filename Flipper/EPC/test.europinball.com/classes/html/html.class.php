@@ -604,7 +604,7 @@
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
-        $mid = $indent;
+        $mid = $indent.static::$indenter;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
