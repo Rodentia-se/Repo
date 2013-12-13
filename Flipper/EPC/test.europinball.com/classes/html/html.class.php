@@ -554,9 +554,6 @@
     }
 
     protected static function contentToHtml($content, $escape = TRUE) {
-      if (get_class($this) == 'scriptCode') {
-      debug($this);
-      }
       if (isHtml($content)) {
         self::$indents++;
         $html = $content->getHtml();
@@ -572,6 +569,9 @@
     }
     
     protected function getHtml() {
+      if (get_class($this) == 'scriptCode') {
+      debug($this);
+      }
       if ($this->crlf) {
         $indents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
         while ($i < $indents) {
