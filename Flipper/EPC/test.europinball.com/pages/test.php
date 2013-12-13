@@ -14,8 +14,11 @@
   $array = array(
     $input,
     'Det här ska komma direkt efter en input, utan crlf',
-    1000,
-    'Efter det här kommer det en input med $clrf satt till true'
+    'Det här är en array, med text',
+    'Det blir inga mellanslag emellan, eftersom array-värdena inte innehåller mellanslag',
+    'Funderar på att lägga till det och kanske även en punkt (om det inte redan finns), så att man kan lagra meningar på varnandra, men förstör man nåt då?',
+    'Den kommer ju att lägga dit mellanslag även för andra pryttlar... men jag kan ju kolla att content inte är ett HTML-obj och inte Javascript?'
+    'Nu är det slut på arrayen, och efter det här kommer det en input med $clrf satt till true'
   );
   $el2->addContent($array);
   $el2->addContent($input2);
