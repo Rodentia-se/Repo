@@ -19,7 +19,7 @@
     
     protected function getContent($index = NULL, $string = TRUE) {
       if (is($index)) {
-        return parent::getContent($index, $string));
+        return parent::getContent($index, $string);
       } else {
         $options = new BeautifierOptions();
         $options->indent_size = strlen(static::$indenter);
