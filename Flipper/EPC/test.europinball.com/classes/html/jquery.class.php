@@ -14,6 +14,7 @@
         $indent .= static::$indenter;
         $i++;
       }
+      
       return (($onReady) ? $this->crlf.$indent.'$(document).ready(function() {' : '').parent::getHtml().(($onReady) ? $this->crlf.$indent.'});' : '');
     }
 

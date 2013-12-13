@@ -10,7 +10,8 @@
       $this->block = TRUE;
       $this->selfClose = FALSE;
       $this->settings['type'] == 'code';
-      $this->settings['escape'] == TRUE;
+      $this->settings['escape'] == FALSE;
+      unset($this->contentParam);
     }
 //    public function __construct($code = NULL, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
