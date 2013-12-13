@@ -604,12 +604,11 @@
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
-        $mid = $indent;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $mid.$this->getContent();
+        $html .= $indent.$this->getContent();
       }
       if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
         $html .= $this->crlf;
