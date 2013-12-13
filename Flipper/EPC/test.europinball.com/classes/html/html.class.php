@@ -569,7 +569,7 @@
     }
     
     protected function getHtml() {
-      if (get_class($this) == 'scriptCode') {
+      if (get_class($this) == 'jquery') {
       debug($this);
       }
       if ($this->crlf) {
