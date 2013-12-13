@@ -174,7 +174,7 @@
       }
     }
     
-    public function getIndents($type = 'indent') {
+    protected static function getIndent($type = 'indent') {
       switch ($type) {
         case 'indenter':
           return static::$indenter;
