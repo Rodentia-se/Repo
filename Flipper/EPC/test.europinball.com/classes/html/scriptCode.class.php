@@ -17,6 +17,7 @@
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     protected static function contentToHtml($content, $escape = FALSE) {
+      debug($this);
       if (is_array($content)) {
         foreach ($content as $part) {
           $html .= static::contentToHtml($part, $escape);
