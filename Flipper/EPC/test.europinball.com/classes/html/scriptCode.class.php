@@ -26,6 +26,7 @@
       $jsbeautifier = new JSBeautifier();
       return $jsbeautifier->beautify($this->get('contents', $index, $string), $options);
     }
+    
+  }
 
- 
 ?>
