@@ -2,8 +2,16 @@
 
   class jquery extends scriptCode {
     
-    public function __construct($code = NULL, array $params = NULL, $indents = 0) {
-      parent::__construct($code, $params, $indents);
+    public $jquery = array();
+    
+    public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
+      $this->jquery = array(
+        'selector' => $selector,
+        'object' => $object,
+        'function' => $function,
+        'command' => $command
+      );
+      parent::__construct($contents, $indents);
       $this->settings['onReady'] = TRUE;
     }
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
@@ -19,10 +27,79 @@
         $options->indent_level = static::$indents;
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
-        return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').parent::getContent($index, $string).(($this->settings['onReady']) ? "\n});" : ''), $options));
+        $contents = parent::getContent($index, $string);
+        $code = ;
+        if ($this->jquery['function']) {
+          $code .= '$('.$this->jquery['selector'].').'.$this->jquery['object']."(function() {\n".$contents."\n});";
+        } else {
+          $code .= '$('.$this->jquery['selector'].')';
+          if (is_array($this->jquery['command']) && count($this->jquery['command']) ! 0) {
+            foreach ($this->jquery['command'] as $key => $command) {
+              $code = '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->content[$key].'")' : '';
+            }
+          } else {
+            $code = '.'.$this->jquery['object'].'("'.$this->jquery['command'].'", "'.$this->content[0].'")';
+          }
+          $code .= ';';
+        }
+        return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').$code.(($this->settings['onReady']) ? "\n});" : ''), $options));
       }
     }
 
+    public function __get($prop) {
+      switch($prop) {
+        case 'selector':
+        case 'object':
+        case 'function':
+        case 'command':
+          return $this->jquery[$prop];
+        break;
+        default:
+          return parent::__get($prop);
+        break;
+      }
+    }
+
+    public function __set($prop, $value) {
+      switch($prop) {
+        case 'selector':
+        case 'object':
+        case 'function':
+        case 'command':
+          $this->jquery[$prop] = $value;
+        break;
+        default:
+          parent::__set($prop, $value);
+        break;
+      }
+    }
+    
+    public function __isset($prop) {
+      switch($prop) {
+        case 'selector':
+        case 'object':
+        case 'function':
+        case 'command':
+          return isset($this->jquery[$prop]);
+        break;
+        default:
+          return parent::__isset($prop);
+        break;
+      }
+    }
+
+    public function __unset($prop) {
+        case 'selector':
+        case 'object':
+        case 'function':
+        case 'command':
+          unset($this->jquery[$prop]);
+        break;
+        default:
+          parent::__unset($prop);
+        break;
+      }
+    }
 
   }
   

@@ -584,16 +584,17 @@
       return $element;
     }
     
-    public function addJquery($code = NULL, array $params = NULL, $indents = NULL) {
+    public function addJquery($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $code = NULL, $indents = 0) {
       $indents = ($indents) ? $indents : static::$indents;
-      $element = new jquery($code, $params, $indents);
+      $element = new jquery($selector, $object, $function, $comamnd, $code, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addTooltip($selector = NULL, $content = NULL, array $settings = NULL, $indents = NULL) {
+    public function addTooltip($contents = NULL, $new = TRUE, $indents = 0) {
       $indents = ($indents) ? $indents : static::$indents;
-      $element = new tooltip($selector, $content, $settings, $indents);
+      $selector = '#'.$this->id;
+      $element = new tooltip($selector, $new, $indents);
       $this->addContent($element);
       return $element;
     }
