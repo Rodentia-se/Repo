@@ -4,7 +4,7 @@
     
     protected $jquery = array();
     
-    public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $object = NULL, $function = NULL, $command = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
       debug($command);
       $this->jquery = array(
         'selector' => $selector,
