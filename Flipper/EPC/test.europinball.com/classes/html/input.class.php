@@ -44,11 +44,10 @@
         case 'insideLabel':
           $this->settings['insideLabel'] = ($value);
           if ($value) {
-            if ($this->label) {
+            if (!$this->label) {
               $this->label = new label(ucfirst($name), $name.'Label');
             }
             $this->label->addContent($this, $this, $this->settings['beforeLabel']);
-            }
           } else {
             $this->label->delContent($this);
           }
