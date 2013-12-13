@@ -18,7 +18,7 @@
       }
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
       parent::__construct('input', $value, $params, $name, $class, $css);
-      $this->settings = mergeToArray(parent->$settings, array('insideLabel' => FALSE, 'beforeLabel' => FALSE));
+      $this->settings = mergeToArray($this->$settings, array('insideLabel' => FALSE, 'beforeLabel' => FALSE));
       $this->selfClose = true;
       $this->block = true;
     }
