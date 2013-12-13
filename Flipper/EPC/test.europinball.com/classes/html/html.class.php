@@ -607,7 +607,7 @@
         $mid = $indent;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
-      $html = $indent.'<'.$this->element.' '.$this->getParams().$start;
+      $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
         $html .= $mid.$this->getContent();
       }
