@@ -594,7 +594,7 @@
     public function addTooltip($contents = NULL, $new = TRUE, $indents = 0) {
       $indents = ($indents) ? $indents : static::$indents;
       $selector = '#'.$this->id;
-      $element = new tooltip($selector, $new, $indents);
+      $element = new tooltip($selector, $contents, $new, $indents);
       $this->addContent($element);
       return $element;
     }
