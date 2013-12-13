@@ -29,20 +29,20 @@
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
-    public function getHtml($form = TRUE, $button = TRUE) {
+    public function getHtml($form = TRUE, $button = TRUE, $script = TRUE) {
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
             $this->form->addContent($this, $this);
-            return $this->form->getHtml();
+            return ($script) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml();
           } else {
-            return $this->form->getHtml().parent::getHtml();
+            return ($script) ? $this->form->getHtml().parent::getHtml().$this->script->getHtml() : $this->form->getHtml().parent::getHtml();
           }
         } else {
           return parent::getHtml();
         }
       } else {
-        return ($form && $this->form) ? $this->form->getHtml() : NULL;
+        return ($form && $this->form) ? (($this->script) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml()) : NULL;
       }
     }
     
