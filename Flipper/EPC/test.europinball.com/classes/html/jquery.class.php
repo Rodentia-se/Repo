@@ -3,7 +3,7 @@
   class jquery extends scriptCode {
     
     public function __construct($code = NULL, array $params = NULL) {
-      parent::__construct($code, $params) {
+      parent::__construct($code, $params);
     }
 //    public function __construct($source = NULL, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {

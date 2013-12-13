@@ -6,7 +6,7 @@
     
     public function __construct($code = NULL, array $params = NULL) {
       $params['type'] = ($params['type') ? $params['type'] : 'text/javascript';
-      parent::__construct($code, $params) {
+      parent::__construct($code, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
       $this->settings['type'] == 'code';

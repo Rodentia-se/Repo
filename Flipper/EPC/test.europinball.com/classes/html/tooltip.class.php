@@ -3,7 +3,7 @@
   class tooltip extends jquery {
 
     public function __construct($selector = NULL, $content = NULL, array $settings = NULL) {
-      parent::__construct($source) {
+      parent::__construct($source);
       $defaultSettings = array(
         'theme' => '.tooltipster-light',
         'content' => 'No message defined...',

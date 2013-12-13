@@ -6,7 +6,7 @@
       $file = ($file) ? $file : $params['src'];
       $params['type'] = ($params['type') ? $params['type'] : 'text/javascript';
       $this->contentParam = 'src';
-      parent::__construct($file, $params) {
+      parent::__construct($file, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
       $this->settings['type'] == 'file';
