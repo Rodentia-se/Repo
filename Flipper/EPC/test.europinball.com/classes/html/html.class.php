@@ -204,7 +204,7 @@
           if ($index) {
             arrray_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
           } else {
-            $this->$section[] = $content;
+            array_push($this->$section, $content);
           }
         }
       } else {
