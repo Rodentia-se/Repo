@@ -584,9 +584,9 @@
       return $element;
     }
     
-    public function addJquery($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $code = NULL, $indents = 0) {
+    public function addJquery($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $code = NULL, array $settings = NULL, $indents = 0) {
       $indents = ($indents) ? $indents : static::$indents;
-      $element = new jquery($selector, $object, $function, $comamnd, $code, $indents);
+      $element = new jquery($selector, $object, $function, $comamnd, $code, $settings, $indents);
       $this->addContent($element);
       return $element;
     }

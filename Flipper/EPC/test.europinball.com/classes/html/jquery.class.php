@@ -4,14 +4,15 @@
     
     public $jquery = array();
     
-    public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
       debug($this->jquery);
-      $this->jquery = mergeToArray($this->jquery, array(
+      $this->jquery = array(
         'selector' => $selector,
         'object' => $object,
         'function' => $function,
-        'command' => $command
-      ));
+        'command' => $command, 
+        'settings' => $settings
+      );
       $this->contents = (is_array($contents)) ? $contents : array($contents);
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;

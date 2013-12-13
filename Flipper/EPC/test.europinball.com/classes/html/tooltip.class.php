@@ -12,28 +12,23 @@
     );
 
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
+      $object = 'tooltipster';
       if ($new) {
-        $this->jquery = array(
-          'selector' => $selector,
-          'object' => 'tooltipster',
-          'function' => TRUE,
+      $function = TRUE;
+      $settings = array(
           'theme' => '.tooltipster-light',
           'trigger' => 'custom',
           'position' => 'right',
           'timer' => 3000
         );
       } else {
-        $this->jquery = array(
-          'selector' => $selector,
-          'object' => 'tooltipster',
-          'function' => FALSE,
-          'command' => array('update', 'show')
-        );
+        $function = FALSE;
+        $command = array('update', 'show');
         $contents = array($contents, FALSE);
       }
-      parent::__construct($selector, $this->jquery['tooltipster'], $this->jquery['function'], $this->jquery['command'], $contents, $indents);
+      parent::__construct($selector, $this->jquery['tooltipster'], $this->jquery['function'], $this->jquery['command'], $contents, $settings, $indents);
     }
-//    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
+//    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
