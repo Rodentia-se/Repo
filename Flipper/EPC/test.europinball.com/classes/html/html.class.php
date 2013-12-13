@@ -626,7 +626,7 @@
       }
       $openStart = $this->crlf.$indent.'<';
       if ($this->selfClose) {
-        $closeEnd = ' />'.$this->crlf;
+        $closeEnd = ' />';
       } else {
         $openEnd = '>';
         $closeStart = $indent.'</';
