@@ -15,7 +15,7 @@
       }
       if ($params['id'] && $this->form && $this->form->id) {
         $this->form->inline = TRUE;
-        $this->script = new jquery('#'.$params['id'], 'click', TRUE, NULL, '$("#'.$this->form->id.'").submit();', static::$indents);
+        $this->script = new jquery('#'.$params['id'], 'click', TRUE, NULL, '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
       }
       parent::__construct($value, $name, $params);
       $this->inline = true;
