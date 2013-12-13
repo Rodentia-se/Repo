@@ -604,16 +604,16 @@
       $openEnd = '>'.$this->crlf;
       $closeStart = $indent.'</';
       $closeEnd = '>'.$this->crlf;
-      $close = $closeStart.$this->element.$closeEnd;
       if ($this->selfClose) {
         $openEnd = ' />'.$this->crlf;
-        unset($close);
+      } else {
+        $close = $closeStart.$this->element.$closeEnd;
       }
       $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
       if (count($this->contents) > 0) {
         $html = $this->getContent();
       }
-      $html .= ($this->crlf && $closeStart && substr($html, strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
+ //     $html .= ($this->crlf && $closeStart && substr($html, strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
       return $open.$html.$close;
     }
 
