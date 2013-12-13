@@ -4,37 +4,27 @@
   
   class scriptCode extends script {
     
-    public function __construct($code = NULL, array $params = NULL) {
+    public function __construct($code = NULL, array $params = NULL, $indents = 0) {
       $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       parent::__construct($code, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
+      $this->localIndents = ($indents) ? $indents : static::$indents;
       unset($this->contentParam);
     }
 //    public function __construct($code = NULL, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     protected static function contentToHtml($content, $escape = FALSE) {
-      debug($this);
-      if (is_array($content)) {
-        foreach ($content as $part) {
-          $html .= static::contentToHtml($part, $escape);
-        }
-      } else {
-        $html = ($escape) ? htmlspecialchars($content) : $content;
-      }
       $options = new BeautifierOptions();
       $options->indent_size = strlen(static::$indenter);
       $options->indent_char = substr(static::$indenter, 0, 1);
-      $class = get_called_class();
-      debug($class::getIndent('indents'), "INDENTOR");
-      debug($class, "INDENTOR");
-      $options->indent_level = $class::$indents + 1;
+      $options->indent_level = $indents;
       $options->max_preserve_newlines = 1;
       $jsbeautifier = new JSBeautifier();
-      return $jsbeautifier->beautify($html, $options);
+      return $jsbeautifier->beautify(parent::contentToHtml($content, $escape), $options);
     }
   }
  

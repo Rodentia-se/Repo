@@ -539,8 +539,9 @@
       return $element;
     }
     
-    public function addScriptCode($code = NULL, array $params = NULL) {
-      $element = new scriptCode($code, $params);
+    public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
+      $indents = ($indents) ? $indents : static::$indents;
+      $element = new scriptCode($code, $params, $indents);
       $this->addContent($element);
       return $element;
     }
