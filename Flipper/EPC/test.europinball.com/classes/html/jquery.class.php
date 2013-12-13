@@ -5,7 +5,6 @@
     protected $jquery = array();
     
     public function __construct($selector = NULL, $object = NULL, $function = NULL, $command = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
-      debug($command);
       $this->jquery = array(
         'selector' => $selector,
         'object' => $object,
@@ -13,10 +12,10 @@
         'command' => $command, 
         'settings' => $settings
       );
-      debug($this->jquery);
       $this->contents = (is_array($contents)) ? $contents : array($contents);
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;
+      debug($this);
     }
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
