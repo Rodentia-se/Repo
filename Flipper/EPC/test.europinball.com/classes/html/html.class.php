@@ -264,7 +264,7 @@
             if ($string) {
               foreach ($this->$section as $part) {
                 $content = static::contentToHtml($part, $this->settings['escape']);
-                if ($html && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) == $this->crlf) && $content && substr($content, 0, strlen($this->crlf)) == $this->crlf) {
+                if ($html && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) == $this->crlf && $content && substr($content, 0, strlen($this->crlf)) == $this->crlf) {
                   $html .= substr($content, 0, strlen($content) - strlen($this->crlf));
                 } else {
                   $html .= $content;
