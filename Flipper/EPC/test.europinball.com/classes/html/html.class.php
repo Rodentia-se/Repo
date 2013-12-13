@@ -36,7 +36,7 @@
       $this->addParams($params);
       $this->addClasses($class);
       $this->addCss($css);
-      if ($contents) {
+      if (is($contents)) {
         $this->addContent($contents, TRUE);
       };
     }
