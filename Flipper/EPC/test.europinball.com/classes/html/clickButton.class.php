@@ -9,11 +9,12 @@
       $params['name'] = ($name) ? $name : $value;
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       if ($form === TRUE) {
-        $this->form = new form($name.'Form', $url);
+        $this->form = new form($params['id'].'Form', $url);
       } else if (is($form)) {
         $this->form = (isHtml($form)) ? $form : new form($form);
       }
       if ($params['id'] && $this->form && $this->form->id) {
+        $this->form->inline = TRUE;
         $this->script = new scriptCode('
           $("#'.$params['id'].'").click(function() {
             $("#'.$this->form->id.'").submit();

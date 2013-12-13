@@ -7,7 +7,7 @@
         $params['action'] = $action;
       }
       if ($method) {
-        $params['method'] = $action;
+        $params['method'] = $method;
       }
       parent::__construct('form', $content, $params, $id, $class, $css);
       $this->block = true;
