@@ -43,7 +43,7 @@
   $span2->entities = TRUE;
   debug($span2);
   $div4 = $div3->addDiv('4');
-  $tooltip = $div4->addTooltip('Hej!', FALSE);
+  $tooltip = $div4->addTooltip('Hej!');
   debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($input2);
