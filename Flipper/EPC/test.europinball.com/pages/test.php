@@ -37,9 +37,12 @@
   $div4->addJquery('
     $(".edit").change(function(){
            var el = this;
-               if (el.id == "shortName") {
-             $(el).val($(el).val().toUpperCase());
-               } 
+               if (el.id == "shortName") 
+               
+               
+               
+               {
+             $(el).val($(el).val().toUpperCase());   } 
              var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
           var region_id = (this.id == "city") ? $("#region_id").val() : null;
            var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
