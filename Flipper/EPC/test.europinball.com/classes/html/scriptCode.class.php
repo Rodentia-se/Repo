@@ -23,7 +23,7 @@
           $html .= static::contentToHtml($part, $escape);
         }
       } else {
-        $html = ($escape) ? htmlspecialchars($content) : $contect;
+        $html = ($escape) ? htmlspecialchars($content) : $content;
       }
       $options = new BeautifierOptions();
       $options->indent_size = strlen(static::$indenter);
