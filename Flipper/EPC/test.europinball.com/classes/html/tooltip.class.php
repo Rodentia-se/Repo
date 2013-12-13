@@ -48,10 +48,10 @@
             }
           }
           $code .= 'content: "'.$this->contents[0].'"';
+          return $code."\n";
         } else {
           return parent::getContent($index, $string);
         }
-        return $code."\n";
       }
     }
 
