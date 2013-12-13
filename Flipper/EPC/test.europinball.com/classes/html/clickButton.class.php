@@ -35,8 +35,7 @@
             $this->form->addContent($this, $this);
             return $this->form->getHtml();
           } else {
-              return $this->form->getHtml().parent::getHtml();
-            }
+            return $this->form->getHtml().parent::getHtml();
           }
         } else {
           return parent::getHtml();
