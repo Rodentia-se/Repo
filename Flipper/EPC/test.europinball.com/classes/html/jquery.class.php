@@ -11,7 +11,7 @@
         'function' => $function,
         'command' => $command
       );
-      parent::__construct($contents, $indents);
+      parent::__construct($contents, NULL, $indents);
       $this->settings['onReady'] = TRUE;
     }
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
