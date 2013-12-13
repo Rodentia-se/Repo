@@ -11,7 +11,6 @@
     protected $classes = array();
     protected $css = array();
     protected $settings = array();
-    protected $hidden = FALSE;
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlfs = array('img', 'span');
     public static $valuers = array('input');
@@ -585,7 +584,7 @@
           $html .= static::contentToHtml($part, $escape);
         }
       } else {
-        $html = ($escape) ? htmlspecialchars($content) : $contect;
+        $html = ($escape) ? htmlspecialchars($content) : $content;
       }
       return $html;
     }
