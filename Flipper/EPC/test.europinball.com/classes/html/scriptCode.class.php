@@ -17,7 +17,6 @@
 //    public function __construct($code = NULL, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
-    /*
     protected function getContent($index = NULL, $string = TRUE) {
       if (is($index)) {
         return parent::getContent($index, $string);
@@ -32,7 +31,7 @@
         return $jsbeautifier->beautify(parent::getContent($index, $string), $options);
       }
     }
-    */
+
   }
 
 ?>
