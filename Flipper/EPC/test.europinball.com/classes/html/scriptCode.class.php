@@ -29,7 +29,8 @@
       $options->indent_size = strlen(static::$indenter);
       $options->indent_char = substr(static::$indenter, 0, 1);
       debug(static::$indents, "INDENTOR");
-      $options->indent_level = get_called_class()::$indents + 1;
+      $class = __CLASS__;
+      $options->indent_level = $class::$indents + 1;
       $options->max_preserve_newlines = 1;
       $jsbeautifier = new JSBeautifier();
       return $jsbeautifier->beautify($html, $options);
