@@ -29,7 +29,7 @@
       $options->indent_size = strlen(static::$indenter);
       $options->indent_char = substr(static::$indenter, 0, 1);
       $class = get_called_class();
-      debug($class::$indents, "INDENTOR");
+      debug($this->getIndent('indents'), "INDENTOR");
       debug($class, "INDENTOR");
       $options->indent_level = $class::$indents + 1;
       $options->max_preserve_newlines = 1;
