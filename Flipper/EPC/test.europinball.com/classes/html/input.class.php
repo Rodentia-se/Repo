@@ -97,7 +97,7 @@
       }
     }
 
-    public function $this->getHtml($label = TRUE, $input = TRUE) {
+    public function getHtml($label = TRUE, $input = TRUE) {
       if ($input) {
         if ($label && $this->label) {
           if ($this->insideLabel) {
