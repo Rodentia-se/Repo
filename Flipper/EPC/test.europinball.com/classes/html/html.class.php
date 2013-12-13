@@ -576,9 +576,9 @@
 
     protected static function contentToHtml($content, $escape = TRUE) {
       if (isHtml($content)) {
-        self::$indents++;
+        static::$indents++;
         $html = $content->getHtml();
-        self::$indents--;
+        static::$indents--;
       } else if (is_array($content)) {
         foreach ($content as $part) {
           $html .= static::contentToHtml($part, $escape);
@@ -604,14 +604,14 @@
         $end = ' />'.$this->crlf;
       } else {
         $start = '>'.$this->crlf;
-        $mid = $indent.static::$indenter;
+        $mid = $indent;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        self::$indents++;
+        static::$indents++;
         $html .= $mid.$this->getContent();
-        self::$indents--;
+        static::$indents--;
       }
       if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
         $html .= $this->crlf;
