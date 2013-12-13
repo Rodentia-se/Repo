@@ -611,7 +611,7 @@
       }
       $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
       if (count($this->contents) > 0) {
-        $indent.$html = $this->getContent();
+        $html = $indent.$this->getContent();
       }
       $html .= ($this->crlf && $closeStart && substr($html, strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
       return $open.$html.$close;
