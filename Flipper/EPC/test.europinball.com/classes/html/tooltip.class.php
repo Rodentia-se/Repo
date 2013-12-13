@@ -42,7 +42,7 @@
         return parent::getContent($index, $string);
       } else {
         if ($this->jquery['function']) {
-          foreach ($this->$tooltipSettings as $option) {
+          foreach ($this->tooltipSettings as $option) {
             if (array_key_exists($this->jquery[$option])) {
               $code .= $option.': '.$this->jquery[$option].",\n";
             }
