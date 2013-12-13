@@ -43,7 +43,7 @@
       } else {
         if ($this->jquery['function']) {
           foreach ($this->tooltipSettings as $option) {
-            if (array_key_exists($this->jquery[$option])) {
+            if (array_key_exists($option, $this->jquery)) {
               $code .= $option.': '.$this->jquery[$option].",\n";
             }
           }
