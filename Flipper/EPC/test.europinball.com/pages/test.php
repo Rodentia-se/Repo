@@ -32,7 +32,7 @@
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
   $h = new hidden('action', 'login');
-  $b = new button('Click me!');
+  $b = new clickButton('Click me!');
   $el->addContent($h);
   $el->addContent($b);
   $div->addContent($img);
