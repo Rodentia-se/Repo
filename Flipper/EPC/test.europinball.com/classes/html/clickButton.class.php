@@ -15,7 +15,7 @@
       }
       if ($params['id'] && $this->form && $this->form->id) {
         $this->form->inline = TRUE;
-        $this->script = new scriptCode('
+        $this->script = new jquery('
           $("#'.$params['id'].'").click(function() {
             $("#'.$this->form->id.'").submit();
           });
