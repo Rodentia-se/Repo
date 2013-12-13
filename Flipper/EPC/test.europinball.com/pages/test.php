@@ -31,7 +31,7 @@
   $el2->addElement('div', 'Innerdiv3!', array('class' => 'nlah', 'src' => 'asas'), 'innerId3', 'innerKlass', array('color' => 'black'));
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
-  $h = new hidden('action' => 'login');
+  $h = new hidden('action', 'login');
   $el->addContent($h);
   $div->addContent($img);
   $div1 = $el->addDiv('1');
