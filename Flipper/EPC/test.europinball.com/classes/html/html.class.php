@@ -36,7 +36,9 @@
       $this->addParams($params);
       $this->addClasses($class);
       $this->addCss($css);
-      $this->addContent($contents, TRUE);
+      if ($contents) {
+        $this->addContent($contents, TRUE);
+      };
     }
     
     public function __get($prop) {
