@@ -11,6 +11,7 @@
       $this->selfClose = FALSE;
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
+      $this->settings['entities'] = FALSE;
       static::$indents = ($indents) ? $indents : static::$indents;
       unset($this->contentParam);
     }

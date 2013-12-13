@@ -29,7 +29,7 @@
       $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
-      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' => TRUE);
+      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' => TRUE, 'entities' => FALSE);
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -258,12 +258,12 @@
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape']) : $this->$section[$index];
+          $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape'], $this->settings['entities']) : $this->$section[$index];
         } else {
           if (count($this->$section) > 0) {
             if ($string) {
               foreach ($this->$section as $part) {
-                $content = static::contentToHtml($part, $this->settings['escape']);
+                $content = static::contentToHtml($part, $this->settings['escape'], $this->settings['entities']);
                 if ($html && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) == $this->crlf && $content && substr($content, 0, strlen($this->crlf)) == $this->crlf) {
                   $html .= substr($content, strlen($this->crlf));
                 } else {
@@ -603,17 +603,17 @@
         $this->settings['hidden'] = $hidden;
     }
 
-    protected static function contentToHtml($content, $escape = TRUE) {
+    protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
       if (isHtml($content)) {
         static::$indents++;
         $html = $content->getHtml();
         static::$indents--;
       } else if (is_array($content)) {
         foreach ($content as $part) {
-          $html .= static::contentToHtml($part, $escape);
+          $html .= static::contentToHtml($part, $escape, $entities);
         }
       } else {
-        $html = ($escape) ? htmlspecialchars($content) : $content;
+        $html = ($entities) ? htmlentities($content) : (($escape) ? htmlspecialchars($content) : $content);
       }
       return $html;
     }
