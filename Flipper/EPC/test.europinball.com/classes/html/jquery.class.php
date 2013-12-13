@@ -19,7 +19,7 @@
         $options->indent_level = static::$indents + 1;
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
-        return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').parent::getContent($index, $string).(($this->settings['onReady']) ? "\n});" : ''), $options));
+        return static::$indenter.($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').parent::getContent($index, $string).(($this->settings['onReady']) ? "\n});" : ''), $options));
       }
     }
 
