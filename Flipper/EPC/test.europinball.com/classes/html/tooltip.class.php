@@ -47,7 +47,7 @@
               $code .= $option.': '.$this->jquery[$option].",\n";
             }
           }
-          $code .= 'content: "'.parent::getContent($index, $string).'"';
+          $code .= 'content: "'.$this->contents[0].'"';
         } else {
           return parent::getContent($index, $string);
         }
