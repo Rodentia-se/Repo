@@ -5,13 +5,13 @@
     public $jquery = array();
     
     public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
-      $this->jquery = array(
+      $this->jquery = mergeToArray($this->jquery, array(
         'selector' => $selector,
         'object' => $object,
         'function' => $function,
         'command' => $command
-      );
-      $this->contents = (is_array($contents)) ? $contents : array($comamnd);
+      ));
+      $this->contents = (is_array($contents)) ? $contents : array($contents);
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;
     }

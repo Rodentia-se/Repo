@@ -14,7 +14,6 @@
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
       $settings['selector'] = $selector;
       $settings['object'] = 'tooltipster';
-      parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
       if ($new) {
         $settings['function'] = TRUE;
         $defaultSettings = array(
@@ -29,9 +28,9 @@
       } else {
         $settings['function'] = FALSE;
         $settings['command'] = array('update', 'show');
-        $this->contents = array($contents, FALSE);
-        $contents = NULL;
+        $contents = array($contents, FALSE);
       }
+      parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
