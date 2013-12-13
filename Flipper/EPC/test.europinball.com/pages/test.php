@@ -69,6 +69,12 @@
   ');
   debug($img, 'HUFF');
   $img->src = 'a_src';
+  $div4->addElement($img);
+  $div4->addElement($img);
+  $div4->addElement($img);
+  $div4->addElement($img);
+  $div4->addElement($img);
+  $div4->addElement($img);
   $page->addContent($el);
 /*
 
