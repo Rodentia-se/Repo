@@ -2,7 +2,7 @@
 
   class jquery extends scriptCode {
     
-    public $jquery = array();
+    protected $jquery = array();
     
     public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
       $this->jquery = array(
@@ -45,6 +45,38 @@
           $code .= ';';
         }
         return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').$code.(($this->settings['onReady']) ? "\n});" : ''), $options));
+      }
+    }
+
+    public function __get($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        return $this->jquery[$prop];
+      } else {
+        return parent::__get($prop);
+      }
+    }
+
+    public function __set($prop, $value) {
+      if (array_key_exists($prop, $this->jquery)) {
+        $this->jquery[$prop] = $value;
+      } else {
+        parent::__set($prop, $value);
+      }
+    }
+    
+    public function __isset($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        return isset($this->jquery[$prop]);
+      } else {
+        return parent::__isset($prop);
+      }
+    }
+
+    public function __unset($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        unset($this->jquery[$prop]);
+      } else {
+        parent::__unset($prop);
       }
     }
 
