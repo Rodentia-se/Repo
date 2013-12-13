@@ -625,15 +625,15 @@
         }
       }
       $openStart = $this->crlf.$indent.'<';
-      $openEnd = '>';
-      $closeStart = $indent.'</';
-      $closeEnd = '>';
       if ($this->selfClose) {
-        $openEnd = ' />';
+        $closeEnd = ' />'.$this->crlf;
       } else {
-        $close = $closeStart.$this->element.$closeEnd;
+        $openEnd = '>';
+        $closeStart = $indent.'</';
+        $closeEnd = '>';
       }
       $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
+      $close = $closeStart.$this->element.$closeEnd;
       if (count($this->contents) > 0) {
         $html = $this->getContent();
       } 
