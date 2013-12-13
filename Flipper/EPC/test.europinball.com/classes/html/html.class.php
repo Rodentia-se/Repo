@@ -30,8 +30,7 @@
       $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
-      $this->settings = array('display' => 'block', 'hidden' => FALSE);
-      $this->settings['meta'] = array('http-equiv' => 'Content-Type', 'content' => array('text/html', 'charset' => 'utf8'));
+      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' = TRUE);
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -522,7 +521,7 @@
           $html .= static::contentToHtml($part);
         }
       } else {
-        $html = htmlspecialchars($content);
+        $html = ($this->settings['escape']) ? htmlspecialchars($content) : $contect;
       }
       return $html;
     }

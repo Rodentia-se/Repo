@@ -16,6 +16,7 @@
       } else if (is($label)) {
         $this->label = (isHtml($label)) ? $label : new label($label, $name);
       }
+      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
       parent::__construct('input', $value, $params, $name, $class, $css);
       $this->settings = mergeToArray(parent::$settings, array('insideLabel' = FALSE, 'beforeLabel' = FALSE));
       $this->selfClose = true;
@@ -28,6 +29,9 @@
         case 'insideLabel':
         case 'beforeLabel':
           return $this->settings[$prop];
+        break;
+        case 'previous':
+          return $this->params['data-previous'];
         break;
         default:
           return parent::__get($prop);
@@ -55,6 +59,9 @@
             $this->label->addContent($this, $this, ($value));
           }
         break;
+        case 'previous':
+          $this->params['data-previous'] = $value;
+        break;
         default:
           parent::__set($prop, $value);
         break;
@@ -66,6 +73,9 @@
         case 'insideLabel':
         case 'beforeLabel':
           return isset($this->settings[$prop]);
+        break;
+        case 'previous':
+          return isset($this->params['data-previous']);
         break;
         default:
           return parent::__isset($prop);
@@ -79,6 +89,9 @@
         case 'beforeLabel':
           $this->__set($prop, FALSE);
         break;
+        case 'previous':
+          unset($this->params['data-previous']);
+        break;
         default:
           parent::__unset($prop);
         break;
@@ -86,36 +99,24 @@
     }
 
     public function $this->getHtml($label = TRUE, $input = TRUE) {
-      if ($this->insideLabel) {
-          $this->label->addContent($this, $this, $this->beforeLabel);
+      if ($input) {
+        if ($label && $this->label) {
+          if ($this->insideLabel) {
+            $this->label->addContent($this, $this, $this->beforeLabel);
+            return $this->label->getHtml();
+          } else {
+            if ($this->beforeLabel) {
+              return parent::getHtml().$this->label->getHtml();
+            } else {
+              return $this->label->getHtml().parent::getHtml();
+            }
+          }
         } else {
-          
-          
+          return parent::getHtml();
         }
-      }
-      $html = ($label) ? $label->getHtml() : '';
-      $html .= ($input) ? parent::getHtml() : '';
-      return $html;
-    }
-addContent($content = NULL, $replace = FALSE, $before = FALSE) {
-    protected function getHtml() {
-      if ($this->crlf) {
-        while ($i < static::$indents) {
-          $indents .= static::$indenter;
-          $i++;
-        }
-      }
-      if ($this->selfClose) {
-        $end = ' />'.$this->crlf;
       } else {
-        $start = '>'.$this->crlf;
-        $end = $this->crlf.$indents.'</'.$this->element.'>';
+        return ($label && $this->label) ? $this->label->getHtml() : NULL;
       }
-      $html = $this->crlf.$indents.'<'.$this->element.' '.$this->getParams().$start;
-      if (count($this->contents) > 0) {
-        $html .= $this->getContent();
-      }
-      return $html.$end;
     }
     
   }
