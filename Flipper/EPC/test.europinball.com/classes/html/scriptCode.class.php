@@ -1,6 +1,6 @@
 <?php
 
-  require_once(config::$baseDir'/contrib/jsbeautifier.php');
+  require_once(config::$baseDir.'/contrib/jsbeautifier.php');
   
   class scriptCode extends script {
     
