@@ -611,7 +611,7 @@
       if (count($this->contents) > 0) {
         $html .= $mid.$this->getContent();
       }
-      if ($this->crlf && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
+      if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
         $html .= $this->crlf;
       }
       return $html.$end;
