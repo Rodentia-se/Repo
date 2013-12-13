@@ -58,6 +58,12 @@
         case 'html':
           return $this->getHtml();
         break;
+        case 'indents':
+          return static::$indents;
+        break;
+        case 'indenter':
+          return static::$indenter;
+        break;
         default:
           return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
         break;
@@ -102,6 +108,12 @@
         case 'html':
           return FALSE;
         break;
+        case 'indents':
+          return static::$indents = $value;
+        break;
+        case 'indenter':
+          return static::$indenter = $value;
+        break;
         default:
           return $this->params[$prop] = $value;
         break;
@@ -128,6 +140,12 @@
         break;
         case 'html':
           return TRUE;
+        break;
+        case 'indents':
+          return isset(static::$indents);
+        break;
+        case 'indenter':
+          return isset(static::$indenter);
         break;
         default:
           return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]) : FALSE);
@@ -162,6 +180,12 @@
         break;
         case 'html':
           return FALSE;
+        break;
+        case 'indents':
+          unset(static::$indents);
+        break;
+        case 'indenter':
+          unset(static::$indenter);
         break;
         default:
           if (array_key_exists($prop, $this->params)) {
