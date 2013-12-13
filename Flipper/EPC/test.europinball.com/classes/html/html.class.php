@@ -600,21 +600,21 @@
           $i++;
         }
       }
+      $openStart = $this->crlf.$indent.'<';
+      $openEnd = '>'.$this->crlf;
+      $closeStart = $indent.'</';
+      $closeEnd = '>'.$this->crlf;
+      $close = $closeStart.$this->element.$closeEnd;
       if ($this->selfClose) {
-        $end = ' />'.$this->crlf;
-      } else {
-        $start = '>'.$this->crlf;
-        $mid = $indent;
-        $end = $indent.'</'.$this->element.'>'.$this->crlf;
+        $openEnd = ' />'.$this->crlf;
+        unset($close);
       }
-      $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
+      $open = $openStart.$this->element.' '.$this->getParams().$openEnd;
       if (count($this->contents) > 0) {
-        $html .= $mid.$this->getContent();
+        $html = $this->getContent();
       }
-      if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
-        $html .= $this->crlf;
-      }
-      return $html.$end;
+      $html .= ($this->crlf && $closeStart && substr($html, strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
+      return $open.$html.$close;
     }
 
     public function __toString() {
