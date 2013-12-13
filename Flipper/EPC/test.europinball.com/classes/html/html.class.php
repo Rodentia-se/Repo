@@ -609,9 +609,7 @@
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        static::$indents++;
         $html .= $mid.$this->getContent();
-        static::$indents--;
       }
       if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
         $html .= $this->crlf;
