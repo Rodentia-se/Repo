@@ -47,7 +47,7 @@
             if ($this->label) {
               $this->label = new label(ucfirst($name), $name.'Label');
             }
-            $this->label->addContent($this, $this, $this->settings['beforeLabel');
+            $this->label->addContent($this, $this, $this->settings['beforeLabel']);
             }
           } else {
             $this->label->delContent($this);
