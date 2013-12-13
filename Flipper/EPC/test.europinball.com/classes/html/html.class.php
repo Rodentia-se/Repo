@@ -644,7 +644,7 @@
         $closeStart = $indent.'</'.$this->element;
         $closeEnd = '>';
       }
-      $open = $openStart.$this->element.
+      $open = $openStart.$this->element;
       $params = $this->getParams();
       $open .= (($params) ? ' ' : '').$params.$openEnd;
       $close = $closeStart.$closeEnd;
