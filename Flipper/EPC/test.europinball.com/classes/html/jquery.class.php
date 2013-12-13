@@ -88,6 +88,7 @@
     }
 
     public function __unset($prop) {
+      switch($prop) {
         case 'selector':
         case 'object':
         case 'function':
