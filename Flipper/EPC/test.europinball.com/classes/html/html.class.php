@@ -30,7 +30,7 @@
       $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
-      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' = TRUE);
+      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' => TRUE);
       if (is($id)) {
         $params['id'] = $id;
       }
