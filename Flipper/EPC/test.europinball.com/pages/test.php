@@ -43,7 +43,7 @@
   $span2->entities = TRUE;
   $js = new scriptCode('var scriptcode = true;');
   $div4 = $div3->addDiv('4');
-  $tooltip = $div4->addTooltip('Hej!');
+  $tooltip = $div4->addTooltip('Hej!', FALSE);
 //  debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($js);
