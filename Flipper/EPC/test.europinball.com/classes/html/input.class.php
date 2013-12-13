@@ -1,15 +1,15 @@
 <?php
 
-  protected $label;
-  protected $labelSettings = array('insideLabel' = FALSE, 'beforeLabel' = FALSE);
-
   class input extends html {
     
+    protected $label;
+
     public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
-      $this->block = true;
-      $this->selfClose = true;
       if ($name) {
         $params['name'] = $name;
+      }
+      if ($type) {
+        $params['type'] = $type;
       }
       if ($label === TRUE) {
         $this->label = new label(ucfirst($name), $name, $name.'Label');
@@ -17,14 +17,17 @@
         $this->label = (isHtml($label)) ? $label : new label($label, $name);
       }
       parent::__construct('input', $value, $params, $name, $class, $css);
-//    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
+      $this->settings = mergeToArray(parent::$settings, array('insideLabel' = FALSE, 'beforeLabel' = FALSE));
+      $this->selfClose = true;
+      $this->block = true;
     }
+//    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     public function __get($prop) {
       switch($prop) {
         case 'insideLabel':
         case 'beforeLabel':
-          return $this->labelSettings[$prop];
+          return $this->settings[$prop];
         break;
         default:
           return parent::__get($prop);
@@ -35,20 +38,20 @@
     public function __set($prop, $value) {
       switch($prop) {
         case 'insideLabel':
-          $this->labelSettings['insideLabel'] = ($value);
+          $this->settings['insideLabel'] = ($value);
           if ($value) {
             if ($this->!label) {
               $this->label = new label(ucfirst($name), $name.'Label');
             }
-            $this->label->addContent($this, $this, $this->labelSettings['beforeLabel');
+            $this->label->addContent($this, $this, $this->settings['beforeLabel');
             }
           } else {
             $this->label->delContent($this);
           }
         break;
         case 'beforeLabel':
-          $this->labelSettings['beforeLabel'] = ($value);
-          if ($this->labelSettings['insideLabel']) {
+          $this->settings['beforeLabel'] = ($value);
+          if ($this->settings['insideLabel']) {
             $this->label->addContent($this, $this, ($value));
           }
         break;
@@ -62,7 +65,7 @@
       switch($prop) {
         case 'insideLabel':
         case 'beforeLabel':
-          return isset($this->labelSettings[$prop]);
+          return isset($this->settings[$prop]);
         break;
         default:
           return parent::__isset($prop);

@@ -8,7 +8,7 @@
     protected $contents = array();
     protected $classes = array();
     protected $css = array();
-    protected $display = 'block';
+    protected $settings = array();
     protected $hidden = FALSE;
     public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
     public static $noCrlfs = array('img', 'span');
@@ -28,7 +28,7 @@
       $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
-      unset($this->localIndents);
+      $this->settings = array('display' => 'block', 'hidden' => FALSE);
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -40,10 +40,6 @@
     
     public function __get($prop) {
       switch ($prop) {
-        case 'block':
-        case 'inline':
-          return ($this->display == $prop);
-        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -62,7 +58,7 @@
           return $this->getHtml();
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : NULL;
+          return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
         break;
       }
     }
@@ -71,21 +67,24 @@
       switch ($prop) {
         case 'block':
           if ($value) {
-            $this->display = 'block';
+            $this->settings['display'] = 'block';
             $this->crlf = "\n";
           } else {
-            $this->display = 'inline';
+            $this->settings['display'] = 'inline';
             unset($this->crlf);
           }
         break;
         case 'inline':
           if ($value) {
-            $this->display = 'inline';
+            $this->settings['display'] = 'inline';
             unset($this->crlf);
           } else {
-            $this->display = 'block';
+            $this->settings['display'] = 'block';
             $this->crlf = "\n";
           }
+        break;
+        case 'hidden':
+          return $this->hide($value);
         break;
         case 'content':
         case 'contents':
@@ -112,7 +111,7 @@
       switch ($prop) { 
         case 'block':
         case 'inline':
-          return ($this->display == $prop);
+          return ($this->settings['display'] == $prop);
         break;
         case 'content':
         case 'contents':
@@ -130,7 +129,7 @@
           return TRUE;
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : FALSE;
+          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : (((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop])));
         break;
       }
     }
@@ -138,12 +137,15 @@
     public function __unset($prop) {
       switch ($prop) {
         case 'block':
-          $this->display = 'inline';
+          $this->settings['display'] = 'inline';
           unset($this->crlf);
         break;
         case 'inline':
-          $this->display = 'block';
+          $this->settings['display'] = 'block';
           $this->crlf = "\n";
+        break;
+        case 'hidden':
+          $this->hide(FALSE);
         break;
         case 'content':
         case 'contents':
@@ -161,7 +163,11 @@
           return FALSE;
         break;
         default:
-          unset($this->params[$prop]);
+          if (array_key_exists($prop, $this->params)) {
+            unset($this->params[$prop]);
+          } else if (array_key_exists($prop, $this->settings)) {
+            unset($this->settings[$prop]);
+          }
         break;
       }
     }
@@ -183,7 +189,7 @@
       return FALSE;
     }
 
-    public function addContent($content = NULL, $replace = FALSE, $before = FALSE) {
+    public function addContent($content = NULL, $replace = FALSE, $index = FALSE) {
       if ($replace) {
         $this->delContent($replace);
       }
@@ -193,8 +199,8 @@
             $this->addContent($part, FALSE, $before);
           }
         } else {
-          if ($before) {
-            array_unshift($this->contents, $content);
+          if ($index) {
+            arrray_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($content));
           } else {
             $this->contents[] = $content;
           }
@@ -464,7 +470,7 @@
       } else {
         $this->delCss('display', 'none');
       }
-        $this->hidden = $hidden;
+        $this->settings['hidden'] = $hidden;
     }
 
     protected static function contentToHtml($content) {
