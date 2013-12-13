@@ -600,7 +600,7 @@
           $i++;
         }
       }
-      $openStart = $this->crlf.$indent.'<';
+      $openStart = $indent.'<';
       $openEnd = '>';
       $closeStart = $indent.'</';
       $closeEnd = '>'.$this->crlf;
