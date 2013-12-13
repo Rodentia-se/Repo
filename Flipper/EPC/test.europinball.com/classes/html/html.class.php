@@ -602,9 +602,9 @@
       }
       if ($this->selfClose) {
         $end = ' />'.$this->crlf;
-        $mid = $indent;
       } else {
         $start = '>'.$this->crlf;
+        $mid = $indent;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
