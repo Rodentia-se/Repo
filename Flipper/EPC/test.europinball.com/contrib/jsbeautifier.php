@@ -205,7 +205,8 @@ class JSBeautifier
 				? "\t" : str_repeat($this->options->indent_char, $this->options->indent_size);
 
 		$this->preindent_string = $this->options->indent_with_tabs
-				? "\t" : str_repeat($this->options->indent_char, $this->options->indent_level * $this->options->indent_size);
+				? str_repeat("\t", $this->options->indent_level)
+        : str_repeat($this->options->indent_char, $this->options->indent_level * $this->options->indent_size);
 		$this->last_word = '';
 		$this->last_type = static::TK_START_EXPR;
 		$this->last_text = '';
