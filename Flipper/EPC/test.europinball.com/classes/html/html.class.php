@@ -115,9 +115,9 @@
           static::$indenter = $value;
         break;
         default:
-          if (array_key_exists($prop, $this->params) {
+          if (array_key_exists($prop, $this->params)) {
             $this->params[$prop] = $value;
-          } else if (array_key_exists($prop, $this->settings) {
+          } else if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           }
         break;
