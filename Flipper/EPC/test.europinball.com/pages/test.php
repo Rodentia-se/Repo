@@ -42,10 +42,9 @@
   $span2 = $div3->addParagraph('Här är en hög med täcken söm kömmër att blî entities! " € & < > ¢ £ ¥ § © ® ™ ¡ ¤ ± ¿');
   $span2->entities = TRUE;
   $js = new scriptCode('var scriptcode = true;');
-  debug($js);
   $div4 = $div3->addDiv('4');
   $tooltip = $div4->addTooltip('Hej!');
-  debug($tooltip);
+//  debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($js);
   $div4->addElement($input2);
