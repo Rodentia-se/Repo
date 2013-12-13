@@ -41,6 +41,7 @@
   $div3 = $div2->addDiv('3');
   $span2 = $div3->addParagraph('Här är en hög med täcken söm kömmër att blî entities! " € & < > ¢ £ ¥ § © ® ™ ¡ ¤ ± ¿');
   $span2->entities = TRUE;
+  $js = new scriptCode('var scriptcode = true;');
   debug($span2);
   $div4 = $div3->addDiv('4');
   $tooltip = $div4->addTooltip('Hej!');
