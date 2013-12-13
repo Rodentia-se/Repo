@@ -579,12 +579,12 @@
       if ($this->selfClose) {
         $end = ' />'.$this->crlf;
       } else {
-        $start = '>';
+        $start = '>'.$this->crlf.$indent;
         $end = $this->crlf.$indent.'</'.$this->element.'>';
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $this->crlf.$indent.$this->getContent();
+        $html .= $this->getContent();
       }
       return $html.$end;
     }
