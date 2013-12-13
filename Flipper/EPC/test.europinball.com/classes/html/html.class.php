@@ -603,7 +603,7 @@
       $openStart = $indent.'<';
       $openEnd = '>';
       $closeStart = $indent.'</';
-      $closeEnd = '>'.$this->crlf;
+      $closeEnd = '>';
       if ($this->selfClose) {
         $openEnd = ' />';
       } else {
