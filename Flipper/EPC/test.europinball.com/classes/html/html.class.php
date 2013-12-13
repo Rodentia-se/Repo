@@ -216,12 +216,12 @@
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= ($string) ? static::contentToHtml($this->$section[$index]) : $this->$section[$index];
+          $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape']) : $this->$section[$index];
         } else {
           if (count($this->$section) > 0) {
             if ($string) {
               foreach ($this->$section as $part) {
-                $html .= static::contentToHtml($part);
+                $html .= static::contentToHtml($part, $this->settings['escape']);
               }
             } else {
               return $this->$section;
@@ -553,17 +553,17 @@
         $this->settings['hidden'] = $hidden;
     }
 
-    protected static function contentToHtml($content) {
+    protected static function contentToHtml($content, $escape = TRUE) {
       if (isHtml($content)) {
         self::$indents++;
         $html = $content->getHtml();
         self::$indents--;
       } else if (is_array($content)) {
         foreach ($content as $part) {
-          $html .= static::contentToHtml($part);
+          $html .= static::contentToHtml($part, $escape);
         }
       } else {
-        $html = ($this->settings['escape']) ? htmlspecialchars($content) : $contect;
+        $html = ($escape) ? htmlspecialchars($content) : $contect;
       }
       return $html;
     }

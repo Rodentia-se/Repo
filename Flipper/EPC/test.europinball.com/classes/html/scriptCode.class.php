@@ -15,13 +15,13 @@
 //    public function __construct($code = NULL, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
-    protected static function contentToHtml($content) {
+    protected static function contentToHtml($content, $escape = FALSE) {
       if (is_array($content)) {
         foreach ($content as $part) {
-          $html .= static::contentToHtml($part);
+          $html .= static::contentToHtml($part, $escape);
         }
       } else {
-        $html = htmlspecialchars($content);
+        $html = ($escape) ? htmlspecialchars($content) : $contect;
       }
       $options = new BeautifierOptions();
       $options->indent_size = strlen(static::$indenter);
