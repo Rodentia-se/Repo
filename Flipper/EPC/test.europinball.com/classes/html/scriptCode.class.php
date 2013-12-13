@@ -11,7 +11,7 @@
       $this->selfClose = FALSE;
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
-      $this->localIndents = ($indents) ? $indents : static::$indents;
+      static::$indents = ($indents) ? $indents : static::$indents;
       unset($this->contentParam);
     }
 //    public function __construct($code = NULL, array $params = NULL) {
@@ -29,7 +29,7 @@
       $options = new BeautifierOptions();
       $options->indent_size = strlen(static::$indenter);
       $options->indent_char = substr(static::$indenter, 0, 1);
-      $options->indent_level = $this->localIndents + 1;
+      $options->indent_level = static::$indents + 1;
       $options->max_preserve_newlines = 1;
       $jsbeautifier = new JSBeautifier();
       return $jsbeautifier->beautify($html, $options);
