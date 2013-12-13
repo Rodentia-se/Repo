@@ -529,6 +529,12 @@
       return $element;
     }
 
+    public function addParagraph($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new paragraph($contents, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
     public function addForm($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
       $element = new form($id, $action, $method, $params);
       $this->addContent($element);
