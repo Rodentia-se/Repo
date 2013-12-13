@@ -91,31 +91,35 @@
           }
         break;
         case 'hidden':
-          return $this->hide($value);
+          $this->hide($value);
         break;
         case 'content':
         case 'contents':
         case $this->contentParam:
-          return $this->addContent($value, TRUE);
+          $this->addContent($value, TRUE);
         break;
         case 'class': 
         case 'classes': 
-          return $this->addClasses($value, TRUE);
+          $this->addClasses($value, TRUE);
         break;
         case 'css':
-          return $this->addCss($value, NULL, TRUE);
+          $this->addCss($value, NULL, TRUE);
         break;
         case 'html':
           return FALSE;
         break;
         case 'indents':
-          return static::$indents = $value;
+          static::$indents = $value;
         break;
         case 'indenter':
-          return static::$indenter = $value;
+          static::$indenter = $value;
         break;
         default:
-          return $this->params[$prop] = $value;
+          if (array_key_exists($prop, $this->params) {
+            $this->params[$prop] = $value;
+          } else if (array_key_exists($prop, $this->settings) {
+            $this->settings[$prop] = $value;
+          }
         break;
       }
     }
