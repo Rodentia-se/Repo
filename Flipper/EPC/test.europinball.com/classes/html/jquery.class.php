@@ -13,7 +13,7 @@
       if (is($index)) {
         return parent::getContent($index, $string);
       } else {
-        return (($this->settings['onReady']) ? "$(document).ready(function() {\n" : '').parent::getContent($index, $string).(($this->settings['onReady']) ? "\n});" : '');
+        return (($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').parent::getContent($index, $string).(($this->settings['onReady']) ? static::$indenter."\n});" : '');
       }
     }
 
