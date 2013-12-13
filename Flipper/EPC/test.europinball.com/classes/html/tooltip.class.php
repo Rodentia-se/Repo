@@ -26,12 +26,12 @@
         $this->jquery = array(
           'selector' => $selector,
           'object' => 'tooltipster',
-          'function' => TRUE,
+          'function' => FALSE,
           'command' => array('update', 'show')
         );
         $contents = array($contents, FALSE);
       }
-      parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
+      parent::__construct($selector, $this->jquery['tooltipster'], $this->jquery['function'], $this->jquery['command'], $contents, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
