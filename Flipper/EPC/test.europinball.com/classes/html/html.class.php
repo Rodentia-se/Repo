@@ -131,7 +131,7 @@
           return TRUE;
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : (((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop])));
+          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]));
         break;
       }
     }
