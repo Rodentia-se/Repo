@@ -28,10 +28,10 @@
       } else {
         $settings['function'] = FALSE;
         $settings['command'] = array('update', 'show');
-        $this->content = array($contents, FALSE);
+        $contents = array($contents, FALSE);
       }
       $this->jquery = mergeToArray($this->jquery, $settings);
-      parent::__construct($selector, $object, $function, $comamnd, $contents = NULL, $indents);
+      parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
