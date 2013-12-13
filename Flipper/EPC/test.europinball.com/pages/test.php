@@ -36,7 +36,7 @@
   $div2 = $div1->addDiv('2');
   $div3 = $div2->addDiv('3');
   $span2 = $div3->addSpan('Här är en hög med täcken söm kömmër att blî entities! !"#€%&/()=');
-  $span1->entities = true;
+  $span2->entities = TRUE;
   $div4 = $div3->addDiv('4');
   $div4->addJquery('
     $(".edit").change(function(){
