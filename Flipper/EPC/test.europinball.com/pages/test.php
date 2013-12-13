@@ -17,7 +17,7 @@
     'Det här är en array, med text',
     'Det blir inga mellanslag emellan, eftersom array-värdena inte innehåller mellanslag',
     'Funderar på att lägga till det och kanske även en punkt (om det inte redan finns), så att man kan lagra meningar på varnandra, men förstör man nåt då?',
-    'Den kommer ju att lägga dit mellanslag även för andra pryttlar... men jag kan ju kolla att content inte är ett HTML-obj och inte Javascript?'
+    'Den kommer ju att lägga dit mellanslag även för andra pryttlar... men jag kan ju kolla att content inte är ett HTML-obj och inte Javascript?',
     'Nu är det slut på arrayen, och efter det här kommer det en input med $clrf satt till true'
   );
   $el2->addContent($array);
