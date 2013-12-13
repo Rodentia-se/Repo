@@ -5,7 +5,7 @@
   class scriptCode extends script {
     
     public function __construct($code = NULL, array $params = NULL) {
-      $params['type'] = ($params['type') ? $params['type'] : 'text/javascript';
+      $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       parent::__construct($code, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
