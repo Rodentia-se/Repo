@@ -9,8 +9,8 @@
       parent::__construct($code, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
-      $this->settings['type'] == 'code';
-      $this->settings['escape'] == FALSE;
+      $this->settings['type'] = 'code';
+      $this->settings['escape'] = FALSE;
       unset($this->contentParam);
     }
 //    public function __construct($code = NULL, array $params = NULL) {
