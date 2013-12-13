@@ -30,10 +30,10 @@
   $el->addElement('div', 'Innerdiv4!', array('class' => 'nlah', 'src' => 'asas'), 'innerId4', 'innerKlass', array('color' => 'black'));
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
   $div->addContent($img);
-  $el->addDiv('1');
-  $el->addDiv('2');
-  $el->addDiv('3');
-  $div4 = $el->addDiv('4');
+  $div1 = $el->addDiv('1');
+  $div2 = $div1->addDiv('2');
+  $div3 = $div2->addDiv('3');
+  $div4 = $div3->addDiv('4');
   $div4->addJquery('
     $(".edit").change(function(){
                 var el = this;
