@@ -12,22 +12,23 @@
     );
 
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
-      $settings['selector'] = $selector;
-      $settings['object'] = 'tooltipster';
       if ($new) {
-        $settings['function'] = TRUE;
-        $defaultSettings = array(
+        $this->jquery = array(
+          'selector' => $selector,
+          'object' => 'tooltipster'
+          'function' => TRUE,
           'theme' => '.tooltipster-light',
           'trigger' => 'custom',
           'position' => 'right',
           'timer' => 3000
         );
-        foreach ($defaultSettings as $setting => $value) {
-          $settings[$setting] = ($settings[$ßetting]) ? $settings[$setting] : $defaultSettings[$ßetting];
-        }
       } else {
-        $settings['function'] = FALSE;
-        $settings['command'] = array('update', 'show');
+        $this->jquery = array(
+          'selector' => $selector,
+          'object' => 'tooltipster'
+          'function' => TRUE,
+          'command' => array('update', 'show'
+        );
         $contents = array($contents, FALSE);
       }
       parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
