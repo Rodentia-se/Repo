@@ -30,8 +30,8 @@
         $settings['command'] = array('update', 'show');
         $contents = array($contents, FALSE);
       }
-      $this->jquery = mergeToArray($this->jquery, $settings);
       parent::__construct($selector, $settings['object'], $settings['function'], $settings['command'], $contents, $indents);
+      $this->jquery = mergeToArray($this->jquery, $settings);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
