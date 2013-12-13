@@ -2,15 +2,6 @@
 
   class tooltip extends jquery {
     
-    public $tooltipSettings = array(
-      'theme',
-      'trigger',
-      'position',
-      'offsetx',
-      'offsety',
-      'timer'
-    );
-
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
       $object = 'tooltipster';
       if ($new) {
@@ -37,9 +28,9 @@
         return parent::getContent($index, $string);
       } else {
         if ($this->jquery['function']) {
-          foreach ($this->tooltipSettings as $option) {
+          foreach ($this->jquery->settings as $option => $value) {
             if (array_key_exists($option, $this->jquery)) {
-              $code .= $option.': '.$this->jquery[$option].",\n";
+              $code .= $option.': '.$value.",\n";
             }
           }
           $code .= 'content: "'.parent::getContent($index, $string).'"';
