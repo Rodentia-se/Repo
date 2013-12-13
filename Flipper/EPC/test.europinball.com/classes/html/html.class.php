@@ -645,7 +645,7 @@
         $closeEnd = '>';
       }
       $open = $openStart.$this->element.
-      $params = $this->getParams()
+      $params = $this->getParams();
       $open .= (($params) ? ' ' : '').$params.$openEnd;
       $close = $closeStart.$closeEnd;
       if (count($this->contents) > 0) {
