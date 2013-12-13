@@ -46,58 +46,34 @@
     }
 
     public function __get($prop) {
-      switch($prop) {
-        case 'selector':
-        case 'object':
-        case 'function':
-        case 'command':
-          return $this->jquery[$prop];
-        break;
-        default:
-          return parent::__get($prop);
-        break;
+      if (array_key_exists($prop, $this->jquery)) {
+        return $this->jquery[$prop];
+      } else {
+        return parent::__get($prop);
       }
     }
 
     public function __set($prop, $value) {
-      switch($prop) {
-        case 'selector':
-        case 'object':
-        case 'function':
-        case 'command':
-          $this->jquery[$prop] = $value;
-        break;
-        default:
-          parent::__set($prop, $value);
-        break;
+      if (array_key_exists($prop, $this->jquery)) {
+        $this->jquery[$prop] = $value;
+      } else {
+        parent::__set($prop, $value);
       }
     }
     
     public function __isset($prop) {
-      switch($prop) {
-        case 'selector':
-        case 'object':
-        case 'function':
-        case 'command':
-          return isset($this->jquery[$prop]);
-        break;
-        default:
-          return parent::__isset($prop);
-        break;
+      if (array_key_exists($prop, $this->jquery)) {
+        return isset($this->jquery[$prop]);
+      } else {
+        return parent::__isset($prop);
       }
     }
 
     public function __unset($prop) {
-      switch($prop) {
-        case 'selector':
-        case 'object':
-        case 'function':
-        case 'command':
-          unset($this->jquery[$prop]);
-        break;
-        default:
-          parent::__unset($prop);
-        break;
+      if (array_key_exists($prop, $this->jquery)) {
+        unset($this->jquery[$prop]);
+      } else {
+        parent::__unset($prop);
       }
     }
 
