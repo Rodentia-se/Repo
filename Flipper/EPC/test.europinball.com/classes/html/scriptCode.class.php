@@ -24,7 +24,7 @@
         $options = new BeautifierOptions();
         $options->indent_size = strlen(static::$indenter);
         $options->indent_char = substr(static::$indenter, 0, 1);
-        $options->indentation_level = static::$indents + 1;
+        $options->indentation_level = 5;
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
         return $jsbeautifier->beautify(parent::getContent($index, $string), $options);
