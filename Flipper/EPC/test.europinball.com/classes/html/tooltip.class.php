@@ -25,7 +25,7 @@
         foreach ($defaultSettings as $setting => $value) {
           $settings[$setting] = ($settings[$ßetting]) ? $settings[$setting] : $defaultSettings[$ßetting];
         }
-      } else {1
+      } else {
         $settings['function'] = FALSE;
         $settings['command'] = array('update', 'show');
         $this->contents = array($contents, FALSE);
