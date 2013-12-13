@@ -2,7 +2,7 @@
 
   class tooltip extends jquery {
     
-    public static $tooltipSettings = array(
+    public $tooltipSettings = array(
       'theme',
       'trigger',
       'position',
