@@ -602,13 +602,14 @@
       }
       if ($this->selfClose) {
         $end = ' />'.$this->crlf;
+        $mid = $indent;
       } else {
         $start = '>'.$this->crlf;
         $end = $indent.'</'.$this->element.'>'.$this->crlf;
       }
       $html = $this->crlf.$indent.'<'.$this->element.' '.$this->getParams().$start;
       if (count($this->contents) > 0) {
-        $html .= $indent.$this->getContent();
+        $html .= $mid.$this->getContent();
       }
       if ($this->crlf && !$this->selfClose && substr($html, strlen($this->crlf) * -1) != $this->crlf) {
         $html .= $this->crlf;
