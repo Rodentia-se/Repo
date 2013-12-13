@@ -10,7 +10,7 @@
       } else {
         $this->settings['type'] == 'code';
       }
-      $params['type'] = ($params['type') ? $params['type'] : 'text/javascript';
+      $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       parent::__construct('script', $source, $params);
       $this->block = TRUE;
       $this->selfClose = FALSE;
