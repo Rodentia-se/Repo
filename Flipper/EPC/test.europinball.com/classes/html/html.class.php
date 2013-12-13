@@ -5,7 +5,9 @@
   class html {
     
     protected $params = array();
+    protected $headers = array();
     protected $contents = array();
+    protected $footers = array();
     protected $classes = array();
     protected $css = array();
     protected $settings = array();
@@ -29,6 +31,7 @@
       $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
       $this->settings = array('display' => 'block', 'hidden' => FALSE);
+      $this->settings['meta'] = array('http-equiv' => 'Content-Type', 'content' => array('text/html', 'charset' => 'utf8'));
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -188,66 +191,102 @@
       }
       return FALSE;
     }
-
-    public function addContent($content = NULL, $replace = FALSE, $index = FALSE) {
+    
+    protected function add($section = 'contents', $content = NULL, $replace = FALSE, $index = FALSE) {
       if ($replace) {
-        $this->delContent($replace);
+        $this->del($section, $replace);
       }
       if ($content !== NULL) {
         if (is_array($content)) {
           foreach($content as $part) {
-            $this->addContent($part, FALSE, $before);
+            $this->add($section, $part, FALSE, $before);
           }
         } else {
           if ($index) {
-            arrray_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($content));
+            arrray_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
           } else {
-            $this->contents[] = $content;
+            $this->$section[] = $content;
           }
         }
       } else {
-        $this->delContent();
+        $this->del($section);
       }
-      return $this->getContent();
+      return $this->get($section);
     }
-    
-    protected function getContent($index = NULL, $string = TRUE) {
+
+    protected function get($section = 'contents', $index = NULL, $string = TRUE) {
       if (!in_array($this->element, static::$selfClosers)) {
         if(is($index)) {
-          $html .= ($string) ? static::contentToHtml($this->contents[$index]) : $this->contents[$index];
+          $html .= ($string) ? static::contentToHtml($this->$section[$index]) : $this->$section[$index];
         } else {
-          if (count($this->contents) > 0) {
+          if (count($this->$section) > 0) {
             if ($string) {
-              foreach ($this->contents as $part) {
+              foreach ($this->$section as $part) {
                 $html .= static::contentToHtml($part);
               }
             } else {
-              return $this->contents;
+              return $this->$section;
             }
           }
         }
       }
       return $html;
     }
-    
-    public function delContent($items = NULL) {
-      if (count($this->contents) > 0) {
+
+    protected function del($section = 'contents', $items = NULL) {
+      if (count($this->$section) > 0) {
         if (is($item) && $item !== TRUE) {
-          if (array_key_exists($item, $this->contents)) {
-            unset($this->contents[$item]);
+          if (array_key_exists($item, $this->$section)) {
+            unset($this->$section[$item]);
             return TRUE;
           } else {
             $items = (is_array($items)) ? $items : array($items);
-            $this->contents = array_diff($this->contents, $items);
+            $this->$section = array_diff($this->$section, $items);
             return TRUE;
           }
         } else {
-          $this->contents = array();
+          $this->$section = array();
         }
       }
       return FALSE;
     }
+
+    public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
+      return $this->add('headers', $content, $replace, $index);
+    }
+
+    protected function getHeader($index = NULL, $string = TRUE) {
+      return $this->get('headers', $index, $string);
+    }
+
+    public function delHeader($items = NULL) {
+      return $this->del('headers', $items);
+    }
+
+    public function addContent($content = NULL, $replace = FALSE, $index = FALSE) {
+      return $this->add('contents', $content, $replace, $index);
+    }
     
+    protected function getContent($index = NULL, $string = TRUE) {
+      return $this->get('contents', $index, $string);
+    }
+    
+    public function delContent($items = NULL) {
+      return $this->del('contents', $items);
+    }
+    
+    public function addFooter($content = NULL, $replace = FALSE, $index = FALSE) {
+      return $this->add('footers', $content, $replace, $index);
+    }
+
+    protected function getFooter($index = NULL, $string = TRUE) {
+      return $this->get('footers', $index, $string);
+    }
+
+    public function delFooter($items = NULL) {
+      return $this->del('footers', $items);
+    }
+      
     public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
       if ($replace) {
         $this->delParams($replace);
