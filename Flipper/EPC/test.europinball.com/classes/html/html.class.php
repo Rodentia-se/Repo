@@ -637,7 +637,7 @@
       if (count($this->contents) > 0) {
         $html = $this->getContent();
       } 
-      $html .= ($this->crlf && $html && $close && substr($close, 0, strlen($this->crlf)) != $this->crlf && substr(trim($html), strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
+      $html .= ($this->crlf && $html && $close && substr($close, 0, strlen($this->crlf)) != $this->crlf && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
       $open .= ($this->crlf && $html && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html, static::$indenter), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf.$indent.static::$indenter : '';
       return $open.$html.$close;
     }
