@@ -3,9 +3,7 @@
   class tooltip extends jquery {
     
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
-      $object = 'tooltipster';
       if ($new) {
-      $function = TRUE;
       $settings = array(
           'theme' => '.tooltipster-light',
           'trigger' => 'custom',
@@ -13,11 +11,10 @@
           'timer' => 3000
         );
       } else {
-        $function = FALSE;
         $command = array('update', 'show');
         $contents = array($contents, FALSE);
       }
-      parent::__construct($selector, $this->jquery['tooltipster'], $this->jquery['function'], $this->jquery['command'], $contents, $settings, $indents);
+      parent::__construct($selector, 'tooltipster', $new, $command, $contents, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
@@ -35,7 +32,7 @@
           }
           $code .= 'content: "'.parent::getContent($index, $string).'"';
           return $code."\n";
-        } else {
+        } else { 
           return parent::getContent($index, $string);
         }
       }
