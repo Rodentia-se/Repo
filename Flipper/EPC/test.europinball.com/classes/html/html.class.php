@@ -619,9 +619,6 @@
     }
     
     protected function getHtml() {
-      if (get_class($this) == 'jquery') {
-      debug($this);
-      }
       if ($this->crlf) {
         $indents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
         while ($i < $indents) {
