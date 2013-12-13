@@ -173,6 +173,25 @@
         break;
       }
     }
+    
+    public function getIndents($type = 'indent') {
+      switch ($type) {
+        case 'indenter':
+          return static::$indenter;
+        break;
+        case 'indents':
+          return static::$indents;
+        break;
+        case 'indent':
+        default:
+          while ($i < static::$indents) {
+            $indent .= static::$indenter;
+            $i++;
+          }
+          return $indent;
+        break;
+      }
+    }
         
     public function addElement($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL) {
       if (!isHtml($element)) {
