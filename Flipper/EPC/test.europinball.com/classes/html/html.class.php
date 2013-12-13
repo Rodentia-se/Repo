@@ -554,6 +554,9 @@
     }
 
     protected static function contentToHtml($content, $escape = TRUE) {
+      if (get_class($this) == 'scriptCode') {
+      debug($this);
+      }
       if (isHtml($content)) {
         self::$indents++;
         $html = $content->getHtml();
