@@ -69,12 +69,12 @@
   ');
   debug($img, 'HUFF');
   $img->src = 'a_src';
-  $div4->addElement($img);
-  $div4->addElement($img);
-  $div4->addElement($img);
-  $div4->addElement($img);
-  $div4->addElement($img);
-  $div4->addElement($img);
+  $div4->addElement($input2);
+  $div4->addElement($input2);
+  $div4->addElement($input2);
+  $div4->addElement($input2);
+  $div4->addElement($input2);
+  $div4->addElement($input2);
   $page->addContent($el);
 /*
 
