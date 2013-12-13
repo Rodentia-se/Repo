@@ -15,7 +15,7 @@
       if ($new) {
         $this->jquery = array(
           'selector' => $selector,
-          'object' => 'tooltipster'
+          'object' => 'tooltipster',
           'function' => TRUE,
           'theme' => '.tooltipster-light',
           'trigger' => 'custom',
@@ -25,9 +25,9 @@
       } else {
         $this->jquery = array(
           'selector' => $selector,
-          'object' => 'tooltipster'
+          'object' => 'tooltipster',
           'function' => TRUE,
-          'command' => array('update', 'show'
+          'command' => array('update', 'show')
         );
         $contents = array($contents, FALSE);
       }
