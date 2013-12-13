@@ -47,6 +47,7 @@
   $tooltip = $div4->addTooltip('Hej!');
   debug($tooltip);
   $img->src = 'a_src';
+  $div4->addElement($js);
   $div4->addElement($input2);
   $div4->addElement($input2);
   $div4->addElement($input2);
