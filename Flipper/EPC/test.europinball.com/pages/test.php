@@ -75,6 +75,7 @@
   $div4->addElement($input2);
   $div4->addElement($input2);
   $div4->addElement($input2);
+  $el->indents = 5;
   $page->addContent($el);
 /*
 
