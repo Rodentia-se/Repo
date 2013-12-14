@@ -5,8 +5,6 @@
 
   $page = new page('Register');
   
-  $page->addH2('Password reset');
-  
   $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
 
   function getPersonFromNonce($regNonce) {
