@@ -146,7 +146,7 @@
         }
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
-          $tshirtDiv->$indents = 3;
+          $tshirtDiv->indents = 3;
           $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
           $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
           $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
