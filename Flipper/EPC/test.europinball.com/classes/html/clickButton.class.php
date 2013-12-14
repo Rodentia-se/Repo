@@ -6,7 +6,6 @@
       $params['name'] = ($name) ? $name : $value;
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       $this->params['id'] = $params['id'];
-      debug($this->id, "THISID");
       $this->form($form, $url);
       $this->script($script);
       $this->inline = true;
