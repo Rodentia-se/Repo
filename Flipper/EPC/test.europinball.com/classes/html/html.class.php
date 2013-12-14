@@ -473,7 +473,7 @@
       } else {
         unset($this->params['class']);
       }
-      return $this->getClasses();
+      return TRUE;
     }
     
     protected function getClasses($class = NULL, $string = TRUE) {
@@ -516,7 +516,7 @@
       } else {
         $this->css[$props] = $value;
       }
-      return $this->getCss();
+      return TRUE;
     }
 
     protected function getCss($param = NULL, $string = TRUE) {
