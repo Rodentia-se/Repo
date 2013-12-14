@@ -3,6 +3,7 @@
   class tooltip extends jquery {
     
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
+      debug($new, "NEWBEF");
       $new = ($new === 'update') ? FALSE : $new;
       debug($new, "NEW");
       if ($new) {
