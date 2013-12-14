@@ -288,7 +288,6 @@
                 } else {
                   $html .= $content;
                 }
-                debug($html);
               }
             } else {
               return $this->$section;
