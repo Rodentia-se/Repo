@@ -147,7 +147,7 @@
     
     public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
       if ($button) {
-        if ($form && $this->form]) {
+        if ($form && $this->form) {
           if ($this->insideForm) {
             $this-form->addContent($this, $this);
             return ($script) ? $this->form->getHtml().$this->accessories['click']->getHtml() : $this->form->getHtml();
