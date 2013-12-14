@@ -103,6 +103,7 @@ debug($options, 'OPTION');
           }
           return $return;
         } else {
+        debug('!ISARR');
           if (!isHtml($options)) {
         debug('!HTML');
             if (is_array($options)) {
