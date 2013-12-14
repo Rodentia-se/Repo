@@ -62,7 +62,7 @@
   $el->indents = 5;
   echo 'HÄRSTARTARDET';
   $huff = TRUE;
-      if ($huff == 'hej') {
+      if ($hutt == 'hej') {
         $huff = FALSE;
       } else {
         $huff = $huff;
