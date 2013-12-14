@@ -73,7 +73,7 @@
       }
     }
   
-    
+    debug($person);
       if ($person) {
         if ($person->mailAddress) {
           if (person::validateMailAddress($player->mailAddress)) {
