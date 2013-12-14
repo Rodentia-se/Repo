@@ -6,11 +6,11 @@
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
-/*
-
   $span = new span ('Man kan ju ävan stoppa in mina HTML-obj i arrayen!', NULL, 'spanKlass', array('parameter' => 'random parameter'));
   $el2->addELement('img', 'imageSrc', array('title' => 'imageTitle'), 'imageId', 'imageKlass', array('width' => '30px'));
   $el2->addContent('Hej på er!');
+/*
+
   $input = new html('input', 'hupp', array('name' => 'heff'), 'input_utan_crlf');
   $input2 = new html('input', 'hupp', array('name' => 'heff', 'type' => 'hidden'), 'input_med_crlf');
   unset($input->crlf);
