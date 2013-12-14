@@ -5,6 +5,11 @@
   
   config::$login = new auth();
 
+    if ($_SESSION['msg']) {
+      config::$msg = $_SESSION['msg'];
+      unset($_SESSION['msg']);
+    }
+
   if (isset($_REQUEST['debug'])) {
     config::$debug = ($_REQUEST['debug']);
     config::$showWarnings = ($_REQUEST['debug']);

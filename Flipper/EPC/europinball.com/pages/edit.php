@@ -5,6 +5,8 @@
 
   $page = new page('Edit profile');
   
+  debug($_SESSION);
+  
   if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $person = person('login');
     if ($person) {
@@ -12,15 +14,6 @@
       $page->combobox = TRUE;
       $page->tooltipster = TRUE;
       $page->forms = TRUE;
-      if ($_SESSION['msg']) {
-        $msg = new scriptCode('
-          $(document).ready(function() {
-            showMsg("'.$_SESSION['msg'].'");
-          });
-        ');
-        $page->addContent($msg);
-        unset($_SESSION['msg']);
-      }
       $page->startDiv('tabs');
         $page->startUl();
           foreach(config::$editSections as $section) {
