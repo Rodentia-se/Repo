@@ -188,9 +188,7 @@
     }
     
     public function getPhotoIcon() {
-      debug($this);
       $photo = $this->getPhoto(FALSE, TRUE, FALSE);
-      debug($photo);
       return ($photo) ? '
         <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$thisn->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
         <div id="'.$thisn->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
