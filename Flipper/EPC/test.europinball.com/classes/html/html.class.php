@@ -305,7 +305,7 @@
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
-      if (!$this->selfClose) {
+      if (!$this->selfClose && !$this->contentParam) {
         if(is($index)) {
           $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape'], $this->settings['entities']) : $this->$section[$index];
         } else {
