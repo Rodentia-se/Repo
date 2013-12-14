@@ -4,14 +4,14 @@
     
     protected $jquery = array();
     
-    public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
       $this->jquery = array(
         'selector' => $selector,
         'tool' => $tool,
-        'type' => $type,
+        'jqtype' => $jqtype,
         'props' => $props
       );
-      switch ($type) {
+      switch ($jqtype) {
         case 'command':
           if (is_array($contents)) {
             foreach ($contents as $command => $param) {
@@ -52,9 +52,9 @@
         $jsbeautifier = new JSBeautifier();
         $contents = parent::getContent($index, $string);
         $code = '$("'.$this->jquery['selector'].'")';
-        if ($this->jquery['type'] == 'function') {
+        if ($this->jquery['jqtype'] == 'function') {
           $code .= '.'.$this->jquery['tool']."(function() {\n".$contents."\n});";
-        } else if ($this->jquery['type'] == 'object') {
+        } else if ($this->jquery['jqtype'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['props']) {
             foreach ($this->jquery['props'] as $prop => $val) {
@@ -73,7 +73,7 @@
             $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
           }
           $code = rtrim($code, ',')."\n});";
-        } else if ($this->jquery['type'] == 'command') {
+        } else if ($this->jquery['jqtype'] == 'command') {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
               $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
