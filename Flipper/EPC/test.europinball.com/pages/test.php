@@ -45,7 +45,8 @@
   debug($js);
   $div4 = $div3->addDiv('4');
   $tooltip = $div4->addTooltip('Hej!');
-  $tooltip = $div4->addTooltip('Hej!', $false);
+  $tooltip = $div4->addTooltip('Hej!', FALSE);
+  $tooltip = $div4->addTooltip('Hej!', 'update');
   debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($js);
