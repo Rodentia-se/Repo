@@ -12,6 +12,7 @@
         'command' => $command, 
         'settings' => $settings
       );
+      debug($settings);
       $this->contents = (is_array($contents)) ? $contents : array($contents);
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;

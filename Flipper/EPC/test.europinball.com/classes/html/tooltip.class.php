@@ -14,6 +14,7 @@
         $command = array('update', 'show');
         $contents = array($contents, FALSE);
       }
+      debug($settings);
       parent::__construct($selector, 'tooltipster', $new, $command, $contents, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings, $indents = 0) {
