@@ -3,6 +3,7 @@
   class select extends input {
     
     public function __construct($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
+      $this->name = $name;
       $this->addOptions($options);
       $this->selectOption($selected);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $selected);
@@ -134,7 +135,7 @@
     
     function selectOption($selected = NULL) {
       $chosen = FALSE;
-        debug($selected, "SELINASEL");
+        debug($this->name.': '.$selected, "SELINASEL");
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
           if (!$chosen && $selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected)) {
