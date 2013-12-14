@@ -412,7 +412,7 @@
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
           } else if (($param == 'selected' || $param == 'checked') && $this->params[$param]) {
             return $param;
-          } else if ($this->params[$param] != '') {
+          } else if ($this->params[$param] !== '') {
             return $param.'="'.$this->$param.'"';
           } else {
             return FALSE;
