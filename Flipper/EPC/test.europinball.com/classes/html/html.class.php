@@ -604,7 +604,7 @@
       return $element;
     }
     
-    public function addJquery($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = NULL) {
+    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
@@ -612,7 +612,7 @@
       return $element;
     }
 
-    public function addTooltip($selector = NULL, $contents = NULL, $new = TRUE, $indents = NULL) {
+    public function addTooltip($contents = NULL, $new = TRUE, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new tooltip($selector, $contents, $new, $indents);
@@ -620,7 +620,7 @@
       return $element;
     }
 
-    public function addClick($selector = NULL, $code = NULL, $indents = NULL) {
+    public function addClick($code = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new click($selector, $code, $indents);
