@@ -428,10 +428,10 @@
         if (count($this->params) > 0 ) {
           if ($string) {
             foreach ($this->params as $param => $value) {
-              $params[] = $this->getParams($param);
+              $params[] = trim($this->getParams($param));
             }
             if ($this->contentParam) {
-              $params[] = trim($this->contentParam.'="'.$this->contents[0].'"');
+              $params[] = $this->contentParam.'="'.$this->contents[0].'"';
             }
             return implode($params, ' ');
           } else {
