@@ -134,7 +134,7 @@
     function selectOption($selected = NULL) {
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
-debug($option, 'CONTENT');
+/*debug($option, 'CONTENT');
 debug((($option == $selected) ? 'true' : 'false'), 'OPTSEL');
 debug((($option->value == $selected) ? 'true' : 'false'), 'VALSEL');
 debug((($option->getContent() == $selected) ? 'true' : 'false'), 'GETSEL');
