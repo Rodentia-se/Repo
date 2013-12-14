@@ -1,6 +1,6 @@
 <?php
 
-  class tooltip extends jquery {
+  class click extends jquery {
     
     public function __construct($selector = NULL, $code = NULL, $indents = 0) {
       parent::__construct($selector, 'click', (($code) ? 'function' : 'command'), $code, NULL, static::$indents);
