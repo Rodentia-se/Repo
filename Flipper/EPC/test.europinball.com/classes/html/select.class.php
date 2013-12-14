@@ -133,15 +133,28 @@
     }
     
     function selectOption($selected = NULL) {
+      $chosen = FALSE;
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
-          if ($selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected)) {
+          if (!$chosen && $selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
+            $chosen = TRUE;
           } else {
             $option->selected = FALSE;
           }
         }
+        if (!$chosen) {
+          foreach ($this->contents as $key => $option) {
+            if (!$chosen && $ley == $selected) {
+              $option->selected = TRUE;
+              $chosen = TRUE;
+            } else {
+              $option->selected = FALSE;
+            }
+          }
+        }
       }
+      return $chosen;
     }
     
   }
