@@ -5,12 +5,12 @@
 
   $page = new page('Register');
   
-  $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
+  $reqNonce = (isset($_REQUEST['resetNonce'])) ? $_REQUEST['resetNonce'] : false;
 
   function getPersonFromNonce($regNonce) {
-    $person = person(array('nonce' => $reqNonce));
+    $person = person(array('nonce' => $reqNonce), TRUE);
     if ($person) {
-      if (ulNonce::Verify('reqNonce', $nonce)) {
+      if (ulNonce::Verify('reqNonce', $reqNonce)) {
         $person->valid = true;
       } else {
         $person->valid = false;
@@ -31,7 +31,7 @@
     $page->addForm('log out', array('action' => 'logout'));
   } else {
     if ($nonce) {
-      $person = person(array('nonce' => $reqNonce));
+      $person = getPersonFromNonce($reqNonce);
       if ($person) {
         if ($person->valid) {
           $resetNonce = ulNonce::Create('resetNonce');
@@ -63,18 +63,18 @@
     } else {
       $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
       if ($username) {
-        $person = person(array('username' => $username));
+        $person = person(array('username' => $username), TRUE);
       }
       if (!$person) {
         $email = (isset($_REQUEST['email'])) ? $_REQUEST['email'] : false;
         if ($email) {
-        $person = person(array('mailAddress' => $email));
+        $person = person(array('mailAddress' => $email), TRUE);
         }    
       }
     }
   
     debug($person);
-      if ($person) {
+      if ($person && isId($person->id)) {
         if ($person->mailAddress) {
           if (person::validateMailAddress($player->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
