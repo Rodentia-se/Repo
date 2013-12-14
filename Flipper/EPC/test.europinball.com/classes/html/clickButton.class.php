@@ -7,7 +7,6 @@
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       $this->form($form, $url);
       $this->script($script);
-      debug($this->script);
       $this->inline = true;
       $this->settings['insideForm'] = TRUE;
       parent::__construct($value, $name, $params);
@@ -146,7 +145,6 @@
     }
     
     public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
-      echo $this->script->getHtml();
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
