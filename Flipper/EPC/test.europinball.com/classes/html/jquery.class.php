@@ -25,7 +25,7 @@
       } else {
         $this->contents = (is_array($contents)) ? $contents : array($contents);
       }
-      if ($object) {
+      if ($this->jquery['object']) {
         $this->jquery['contentProp'] = $props['contentProp'];
         unset($this->jquery['props']['contentProp']);
       }
