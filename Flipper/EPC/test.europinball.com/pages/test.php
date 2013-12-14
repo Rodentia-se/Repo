@@ -4,6 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
+/*
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
   $span = new span ('Man kan ju ävan stoppa in mina HTML-obj i arrayen!', NULL, 'spanKlass', array('parameter' => 'random parameter'));
@@ -57,6 +58,7 @@
   $div4->addElement($input2);
   $div4->addElement($input2);
   $el->indents = 5;
+  */
   echo($el);
 /*
 
