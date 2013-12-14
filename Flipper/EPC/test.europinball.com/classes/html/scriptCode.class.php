@@ -28,7 +28,8 @@
         $options->indent_level = static::$indents + 1;
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
-        return $jsbeautifier->beautify(ltrim(parent::getContent($index, $string)), $options);
+        $content = parent::getContent($index, $string);
+        return $jsbeautifier->beautify(ltrim($content), $options);
       }
     }
 
