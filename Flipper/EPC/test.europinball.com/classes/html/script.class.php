@@ -7,6 +7,7 @@
         $this->settings['type'] == 'file';
         $source = ($source) ? $source : $params['src'];
         $this->contentParam = 'src';
+        $this->inlineBlock = TRUE;
       } else {
         $this->settings['type'] == 'code';
         $this->settings['escape'] = FALSE;
