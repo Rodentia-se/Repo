@@ -76,7 +76,7 @@
         } else if ($this->jquery['jqtype'] == 'command') {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
-              $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
+              $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($this->contents[$key]) ? ', "'.$this->contents[$key].'")' : '');
             }
           } else { 
             $code .= '.'.$this->jquery['tool'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
