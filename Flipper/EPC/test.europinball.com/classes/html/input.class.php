@@ -13,6 +13,7 @@
       $this->label($label);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
       $this->settings['insideLabel'] = ($this instanceof check) ? TRUE : FALSE;
+      $this->settings['insideLabel'] = FALSE;
       $this->settings['beforeLabel'] = ($this instanceof check) ? TRUE : FALSE;
       if ($this instanceof select) {
         $this->selfClose = FALSE;
