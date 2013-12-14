@@ -271,7 +271,7 @@
       } else {
         $return = $this->del($section);
       }
-      return $return
+      return $return;
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
