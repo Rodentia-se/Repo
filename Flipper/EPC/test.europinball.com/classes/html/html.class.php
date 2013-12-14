@@ -30,12 +30,6 @@
       if (is($id)) {
         $params['id'] = $id;
       }
-      $this->addParams($params);
-      $this->addClasses($class);
-      $this->addCss($css);
-      if (is($contents)) {
-        $this->addContent($contents, TRUE);
-      };
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('img', 'span', 'label'))) ? NULL : "\n";
@@ -48,6 +42,12 @@
           $this->contentParam = 'value';
         }
       }
+      $this->addParams($params);
+      $this->addClasses($class);
+      $this->addCss($css);
+      if (is($contents)) {
+        $this->addContent($contents, TRUE);
+      };
     }
     
     public function __get($prop) {
