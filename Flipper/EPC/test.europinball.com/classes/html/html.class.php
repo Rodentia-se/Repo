@@ -762,7 +762,7 @@
     }
 
     public function addCssFile($file = NULL, array $params = NULL) {
-      $element = new cssFile($code, $params);
+      $element = new cssFile($file, $params);
       $this->addContent($element);
       return $element;
     }
