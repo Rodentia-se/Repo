@@ -121,6 +121,7 @@
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
         }
+        debug($this->accessories['form']);
         $this->accessories['form']->inline = TRUE;
         $this->accessories['form']->hide();
         return isHtml($this->accessories['form']);
