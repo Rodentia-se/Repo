@@ -38,8 +38,9 @@
   $el->addContent($b);
   debug($b);
   $form = new form('Form', NULL);
+  $click = new click('#click', '$("#FORM").submit();');
   echo 'HÄRSTARTARDET';
-  echo $form;
+  echo $click;
 /*
   $div->addContent($img);
   $div1 = $el->addDiv('1');
