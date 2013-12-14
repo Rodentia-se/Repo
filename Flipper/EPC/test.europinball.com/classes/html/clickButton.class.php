@@ -15,12 +15,14 @@
       }
       if ($params['id'] && $this->form && $this->form->id) {
         $this->form->inline = TRUE;
-        $this->script = new jquery('#'.$params['id'], 'click', TRUE, NULL, '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
+        $this->script = new jquery('#'.$params['id'], 'click', 'function', '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
       }
       parent::__construct($value, $name, $params);
       $this->inline = true;
       $this->settings = mergeToArray($this->$settings, array('insideForm' => FALSE));
     }
+//    form public function __construct($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
+//    jquery public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    button public function __construct($value = 'submit', $name = NULL, array $params = NULL) {
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
