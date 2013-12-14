@@ -158,7 +158,7 @@
           return parent::getHtml();
         }
       } else {
-        return ($form && $this->accessories['form']) ? (($script && $this->accessories['click']) ? .$this->accessories['click']->getHtml() : $this->accessories['form']->getHtml()) : NULL;
+        return ($form && $this->accessories['form']) ? (($script && $this->accessories['click']) ? $this->accessories['form']->getHtml().$this->accessories['click']->getHtml() : $this->accessories['form']->getHtml()) : NULL;
       }
     }
     
