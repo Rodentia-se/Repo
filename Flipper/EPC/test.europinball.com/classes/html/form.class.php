@@ -7,7 +7,7 @@
         $params['action'] = $action;
       }
       if ($method) {
-        $params['method'] = $method;
+        $params['method'] = $method; 
       }
       parent::__construct('form', NULL, $params, $id);
     }

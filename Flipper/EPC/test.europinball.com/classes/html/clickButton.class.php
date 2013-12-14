@@ -104,8 +104,7 @@
         return $this->accessories['form'];
       } else if (is($form)) {
         if ($form === TRUE) {
-          debug($this->params['id'], "CLICKID");
-          $this->accessories['form'] = new form($this->params['id'].'Form', $url);
+          $this->accessories['form'] = new form($this->id.'Form', $url);
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
         }
@@ -126,7 +125,7 @@
           if (!$this->form) {
             $this->form(TRUE);
           }
-          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
+          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
         } else {
           $this->accessories['script'] = (isHtml($script)) ? $script : new click($script);
         }
