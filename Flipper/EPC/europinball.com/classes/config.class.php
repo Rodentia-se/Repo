@@ -91,7 +91,7 @@
     public static $eighties = TRUE;
     public static $eightiesDivision = 16;
     public static $eightiesQualGroupLimit = FALSE;
-    public static $eightiesCost = 10;
+    public static $eightiesCost = 0;
  
     public static $team = FALSE;
     public static $teamDivision = FALSE;
