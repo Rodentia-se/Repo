@@ -350,7 +350,7 @@
           $form .= page::getButton('Login', $prefix.'login', (($dialog) ? 'hidden ' : '').'enterButton', FALSE, NULL, NULL, FALSE);
           $form .= page::getButton('I forgot all this!', $prefix.'reset');
         $form .= page::getFormEnd();
-        $form .= page::getFormStart($prefix.'resetForm');
+        $form .= page::getFormStart($prefix.'resetForm', NULL, '/password-reset');
           $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
