@@ -138,7 +138,7 @@
       if ($this->contents) {
         foreach ($this->contents as $key => $option) {
         debug($this->name.': '.$selected.' - '.$option->value, "SELINASEL");
-          if (!$chosen && $selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected)) {
+          if (!$chosen && $selected && ($option === $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
             $chosen = TRUE;
           } else {
