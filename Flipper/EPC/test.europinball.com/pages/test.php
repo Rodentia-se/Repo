@@ -12,7 +12,6 @@
 
   $input = new html('input', 'hupp', array('name' => 'heff'), 'input_utan_crlf');
   $input2 = new html('input', 'hupp', array('name' => 'heff', 'type' => 'hidden'), 'input_med_crlf');
-/*
   unset($input->crlf);
   $array = array(
     $input,
@@ -26,6 +25,7 @@
   );
   $el2->addContent($array);
   $el2->addContent($input2);
+/*
   $el2->addContent('Det här ska komma efter en input och en crlf');
   $el2->addElement('span', 'Innerst också!', array('class' => 'bold'), 'spanId2');
   $el2->addContent('Lite konstiga tecken som ska funka i html: &"<>\'');
