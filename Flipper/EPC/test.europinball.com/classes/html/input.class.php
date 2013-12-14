@@ -16,17 +16,18 @@
       $this->settings['insideLabel'] = ($this instanceof check) ? TRUE : FALSE;
       $this->settings['insideLabel'] = FALSE;
       $this->settings['beforeLabel'] = ($this instanceof check) ? TRUE : FALSE;
+      if (!$this->inline) {
+        $this->inlineBlock = TRUE;
+      }
       if ($this instanceof select) {
         $this->selfClose = FALSE;
+        $this->block = TRUE;
       } else {
         $this->selfClose = TRUE;
         $this->contentParam = 'value';
       }
       if ($this instanceof checkbox) {
         unset($this->contentParam);
-      }
-      if (!$this->inline) {
-        $this->inlineBlock = TRUE;
       }
       parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
     }
