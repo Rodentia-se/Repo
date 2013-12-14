@@ -9,6 +9,7 @@
     $person = person('login');
     $player = player($person);
     if ($player) {
+      $_SESSION['msg'] = 'You are logged in and already registered.';
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes' || $_REQUEST['action'] == 'newUser') {

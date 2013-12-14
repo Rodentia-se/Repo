@@ -12,6 +12,14 @@
       $page->combobox = TRUE;
       $page->tooltipster = TRUE;
       $page->forms = TRUE;
+      if ($_SESSION['msg']) {
+        $msg = new scriptCode('
+          $(document).ready(function() {
+            showMsg("'.$_SESSION['msg'].'");
+          });
+        ');
+        $page->addContent($msg);
+      }
       $page->startDiv('tabs');
         $page->startUl();
           foreach(config::$editSections as $section) {
