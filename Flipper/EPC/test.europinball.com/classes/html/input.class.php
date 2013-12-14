@@ -34,7 +34,7 @@
           return $this->params['data-previous'];
         break;
         case 'label':
-          return $this->$prop();
+          return $this->accessories['$prop'];
         break;
         default:
           return parent::__get($prop);
@@ -65,7 +65,7 @@
           $this->params['data-previous'] = $value;
         break;
         case 'label':
-          $this->$prop($value);
+          return isset($this->accessories[$prop]);
         break;
         default:
           parent::__set($prop, $value);

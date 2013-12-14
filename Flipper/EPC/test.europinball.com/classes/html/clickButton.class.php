@@ -23,7 +23,96 @@
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
-    protected function form($form, $url) {
+    public function __get($prop) {
+      switch($prop) {
+        case 'insideLabel':
+        case 'beforeLabel':
+          return $this->settings[$prop];
+        break;
+        case 'previous':
+          return $this->params['data-previous'];
+        break;
+        case 'form':
+        case 'script':
+          return $this->accessories['$prop'];
+        break;
+        default:
+          return parent::__get($prop);
+        break;
+      }
+    }
+
+    public function __set($prop, $value) {
+      switch($prop) {
+        case 'insideLabel':
+          $this->settings['insideLabel'] = ($value);
+          if ($value) {
+            if (!$this->accessories['label']) {
+              $this->accessories['label'] = new label(ucfirst($name), $name.'Label');
+            }
+            $this->accessories['label']->addContent($this, $this, $this->settings['beforeLabel']);
+          } else {
+            $this->accessories['label']->delContent($this);
+          }
+        break;
+        case 'beforeLabel':
+          $this->settings['beforeLabel'] = ($value);
+          if ($this->settings['insideLabel']) {
+            $this->accessories['label']->addContent($this, $this, ($value));
+          }
+        break;
+        case 'previous':
+          $this->params['data-previous'] = $value;
+        break;
+        case 'script':
+        case 'form':
+          $this->$prop($value);
+        break;
+        default:
+          parent::__set($prop, $value);
+        break;
+      }
+    }
+    
+    public function __isset($prop) {
+      switch($prop) {
+        case 'insideLabel':
+        case 'beforeLabel':
+          return isset($this->settings[$prop]);
+        break;
+        case 'previous':
+          return isset($this->params['data-previous']);
+        break;
+        case 'script':
+        case 'form':
+          return isset($this->accessories[$prop]);
+        break;
+        default:
+          return parent::__isset($prop);
+        break;
+      }
+    }
+
+    public function __unset($prop) {
+      switch($prop) {
+        case 'insideLabel':
+        case 'beforeLabel':
+          $this->__set($prop, FALSE);
+        break;
+        case 'previous':
+          unset($this->params['data-previous']);
+        break;
+        case 'script':
+        case 'form':
+          $this->$prop(FALSE);
+        break;
+        default:
+          parent::__unset($prop);
+        break;
+      }
+    }
+
+    protected function form($form, $url = NULL) {
       if (!isset($form)) {
         return $this->accessories['form'];
       } else if (is($form)) {
