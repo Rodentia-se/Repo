@@ -92,9 +92,7 @@
         $replaced = $this->delOptions($replace);
       }
       if ($options !== NULL) {
-        debug('NOT NULL');
         if (is_array($options) && count($options) > 1) {
-          debug('ISARR');
           $return = TRUE;
           foreach($options as $key => $option) {
             if (isHtml($option)) {
@@ -108,9 +106,7 @@
           }
           return $return;
         } else {
-        debug('!ISARR');
           if (!isHtml($options)) {
-        debug('!HTML');
             if (is_array($options)) {
               foreach ($options as $key => $val) {
                 $option = new option($val, $key);
@@ -122,7 +118,6 @@
             $option = $options;
           }
           if (isHtml($option)) {
-        debug('HTML');
             if ($index || ($replaced && $replaced !== TRUE)) {
               $index = ($index) ? $index : $replaced;
               $return = array_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($option));
@@ -141,7 +136,6 @@
       $chosen = FALSE;
       if ($this->contents) {
         foreach ($this->contents as $key => $option) {
-        debug($this->name.': '.$selected.' - '.$option->value, "SELINASEL");
           if (!$chosen && $selected && ($option === $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
             $chosen = TRUE;
