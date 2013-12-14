@@ -75,6 +75,7 @@
       }
     }
   
+    
       if ($person) {
         if ($person->mailAddress) {
           if (person::validateMailAddress($player->mailAddress)) {
@@ -89,9 +90,6 @@
         } else {
           $content .= 'You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
         }
-      } else {
-        $content .= 'We could not not identify you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
-      }
     } else if (!$success) {
       $content .= '
         <p>Please specify either username or email address used for your registration:</p>
