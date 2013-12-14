@@ -23,6 +23,7 @@
     public $element = 'span';
     public $selfClose = FALSE;
     public $crlf = "\n";
+    public $contentCrlf = "\n";
     public $contentParam = FALSE;
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
@@ -772,8 +773,8 @@
       if (count($this->contents) > 0) {
         $html = $this->getContent();
       } 
-      $html .= ($this->crlf && $html && substr($close, 0, strlen($this->crlf)) != $this->crlf && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) != $this->crlf) ? $this->crlf : '';
-      $open .= ($this->crlf && $html && substr($open, strlen($this->crlf) * -1) != $this->crlf && substr(trim($html, static::$indenter), 0, strlen($this->crlf)) != $this->crlf) ? $this->crlf.$indent.static::$indenter : '';
+      $html .= ($this->contentCrlf && $html && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
+      $open .= ($this->contentCrlf && $html && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
       return $open.$html.$close;
     }
 
