@@ -781,7 +781,7 @@
     }
     
     public function getHtml() {
-     $this->debug(get_class($this), 'CLASS', NULL, 20);
+     $this->debug(get_class($this), 'CLASS', NULL, 50);
      if ($this->crlf) {
         $indents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
         while ($i < $indents) {
