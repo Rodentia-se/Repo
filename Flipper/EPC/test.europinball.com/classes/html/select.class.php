@@ -5,7 +5,7 @@
     public function __construct($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
       $this->addOptions($options, $selected, TRUE);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $selected);
-      parent::__construct($name, NULL, 'select', $label, $params) {
+      parent::__construct($name, NULL, 'select', $label, $params);
     }
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
