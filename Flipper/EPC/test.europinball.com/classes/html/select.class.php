@@ -93,7 +93,7 @@
         if (is_array($options) && count($options > 1)) {
           $return = TRUE;
           foreach($options as $key => $option) {
-            $result = $this->addOptions(array($key, $option), $selected, FALSE, $index));
+            $result = $this->addOptions(array($key, $option), $selected, FALSE, $index);
             if (!$result) {
               $return = FALSE;
             }
