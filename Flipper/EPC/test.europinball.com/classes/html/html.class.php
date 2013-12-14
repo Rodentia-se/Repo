@@ -431,7 +431,7 @@
               $params[] = $this->getParams($param);
             }
             if ($this->contentParam) {
-              $params[] = $this->contentParam.'="'.$this->contents[0].'"';
+              $params[] = trim($this->contentParam.'="'.$this->contents[0].'"');
             }
             return implode($params, ' ');
           } else {
