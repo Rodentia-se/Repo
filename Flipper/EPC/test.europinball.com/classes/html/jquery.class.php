@@ -67,7 +67,7 @@
             }
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
-                $contents .= parent::getContent($key, $string);
+                $contents .= trim(parent::getContent($key, $string));
               }
             }
             $code .= $this->jquery['contentProp'].': "'.$contents.'"';
