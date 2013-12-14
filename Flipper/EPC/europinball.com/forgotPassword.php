@@ -65,7 +65,7 @@
     } else {
       $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
       if ($username) {
-        $person = person(array(('username' => $username));
+        $person = person(array('username' => $username));
       }
       if (!$person) {
         $email = (isset($_REQUEST['email'])) ? $_REQUEST['email'] : false;
