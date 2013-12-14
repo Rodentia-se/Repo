@@ -117,8 +117,12 @@
         return $this->accessories['form'];
       } else if (is($form)) {
         if ($form === TRUE) {
+          $hepp = new form($this->params['id'].'Form', $url);
+          debug($hepp, 'HEPP');
           $this->accessories['form'] = new form($this->params['id'].'Form', $url);
           debug($this->accessories['form'], 'TRUE');
+          $this->accessories['form'] = $hepp;
+          debug($this->accessories['form'], 'HUFF');
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
           debug($this->accessories['form']);
@@ -137,7 +141,7 @@
         return $this->accessories['click'];
       } else if (is($script)) {
         if ($script === TRUE) {
-          $this->accessories['click'] = new click('#'.$params['id'], '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
+          $this->accessories['click'] = new click('#'.$this->params['id'], '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
         } else {
           $this->accessories['click'] = (isHtml($script)) ? $script : new click($script);
         }
