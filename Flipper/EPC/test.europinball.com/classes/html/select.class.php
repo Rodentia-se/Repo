@@ -114,6 +114,7 @@
               $option = new option($options);
             }
           }
+          debug($options, "OPTIONS");
           if (isHtml($options)) {
             if ($index || ($replaced && $replaced !== TRUE)) {
               $index = ($index) ? $index : $replaced;
