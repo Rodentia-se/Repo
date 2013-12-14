@@ -579,7 +579,7 @@
       return $element;
     }
     
-    public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL);
+    public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL) {
       $element = new clickButton($value, $name, $url, $form, $script, $params);
       $this->addContent($element);
       return $element;
