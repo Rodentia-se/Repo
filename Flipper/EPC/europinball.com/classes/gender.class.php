@@ -24,7 +24,7 @@
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      parent::__construct($datam, $search, $depth);
+      parent::__construct($data, $search, $depth);
       $this->name = ucfirst($this->name);
       $this->fullName = ucfirst($this->fullName);
     }

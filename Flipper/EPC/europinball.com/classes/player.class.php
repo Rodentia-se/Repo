@@ -153,7 +153,7 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
+    public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
         case 'ifpa':
           if ($this->ifpa_id) {

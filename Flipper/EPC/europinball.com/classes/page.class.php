@@ -21,6 +21,7 @@
     public $scripts = array();
     public $jquery = TRUE;
     public $jqueryui = TRUE;
+    public $datatables = FALSE;
     public $tooltipster = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
