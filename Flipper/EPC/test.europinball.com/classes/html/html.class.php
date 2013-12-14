@@ -819,7 +819,7 @@
       return $this->getHtml();
     }
     
-    protected function debug($text, $title, $die, $stop) {
+    protected function debug($obj, $title, $die, $stop) {
       static::$debugCounter++;
       if ($stop && static::$debugCounter > $stop) {
         $die = TRUE;
