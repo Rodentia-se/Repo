@@ -187,7 +187,17 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
     
+    public function getPhotoIcon() {
+      return (($this->getPhoto(FALSE, TRUE, FALSE)) ? '
+        <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$thisn->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
+        <div id="'.$thisn->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
+          <img src="'.$this->getPhoto(FALSE, TRUE, FALSE).'">
+        </div>
+      ' : NULL);
+    }
+    
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 
