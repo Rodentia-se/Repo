@@ -544,8 +544,74 @@
       return $element;
     }
 
+    public function addImg($src = NULL, $title = NULL, array $params = NULL) {
+      $element = new img($src, $title, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addLink($url = NULL, $contents = 'link', array $params = NULL) {
+      $element = new link($url, $contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
     public function addParagraph($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new paragraph($contents, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addH1($contents = NULL, array $params = NULL) {
+      $element = new h1($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addH2($contents = NULL, array $params = NULL) {
+      $element = new h2($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addH3($contents = NULL, array $params = NULL) {
+      $element = new h3($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addH4($contents = NULL, array $params = NULL) {
+      $element = new h4($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addBr($id = NULL, $class = NULL, array $params = NULL) {
+      $element = new br($id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addHr($id = NULL, $class = NULL, array $params = NULL) {
+      $element = new hr($id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addUl($id = NULL, $class = NULL, array $params = NULL) {
+      $element = new ul($id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addOl($id = NULL, $class = NULL, array $params = NULL) {
+      $element = new ol($id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addLi($contents, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new li($contents, $id, $class, $params);
       $this->addContent($element);
       return $element;
     }
@@ -562,6 +628,18 @@
       return $element;
     }
   
+    public function addSelect($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
+      $element = new select($name, $options, $selected, $label, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addOption($text = NULL, $value = NULL, $selected = FALSE, array $params = NULL) {
+      $element = new option($text, $value, $selected, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
       $this->addContent($element);
@@ -574,7 +652,7 @@
       return $element;
     }
 
-    public function addCheckbox($name = NULL, $value = 'yes', array $params = NULL) {
+    public function addCheckbox($name = NULL, $value = NULL, array $params = NULL) {
       $element = new checkbox($name, $value, $params);
       $this->addContent($element);
       return $element;

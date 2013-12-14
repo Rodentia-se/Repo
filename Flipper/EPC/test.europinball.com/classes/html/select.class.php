@@ -93,7 +93,7 @@
         if (is_array($options) && count($options > 1)) {
           $return = TRUE;
           foreach($options as $key => $option) {
-            $result = $this->addOptions(array($key, $option, FALSE, $index));
+            $result = $this->addOptions(array($key, $option), $selected, FALSE, $index));
             if (!$result) {
               $return = FALSE;
             }
@@ -119,12 +119,15 @@
           }
         }
       }
+      if ($selected) {
+        $this->selectOption($selected);
+      }
     }
     
     function selectOption($selected = NULL) {
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
-          if ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected) {
+          if ($selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected)) {
             $option->selected = TRUE;
           } else {
             $option->selected = FALSE;
