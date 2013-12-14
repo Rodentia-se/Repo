@@ -313,6 +313,9 @@
             if ($string) {
               foreach ($this->$section as $part) {
                 $content = static::contentToHtml($part, $this->settings['escape'], $this->settings['entities']);
+                if ($part->crlf && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) != $this->crlf) {
+                  $html .= $part->crlf;
+                }
                 if ($html && substr(trim($html, static::$indenter), strlen($this->crlf) * -1) == $this->crlf && $content && substr($content, 0, strlen($this->crlf)) == $this->crlf) {
                   $html .= substr($content, strlen($this->crlf));
                 } else {
