@@ -91,7 +91,7 @@
       }
       if ($options !== NULL) {
         if (is_array($options) && count($options > 1)) {
-          static::$indents++
+          static::$indents++;
           if (static::$indents > 5) {
             debug($options, 'OPTIONS', TRUE);
           }
