@@ -206,6 +206,7 @@
         }
       } else {
         $person = person($this->person_id);
+        debug($person);
         $return = array(
           $this->getLink(),
           $this->shortName,
