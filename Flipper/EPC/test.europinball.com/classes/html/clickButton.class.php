@@ -104,7 +104,7 @@
         return $this->accessories['form'];
       } else if (is($form)) {
         if ($form === TRUE) {
-          $this->accessories['form'] = new form($this->id.'Form', $url);
+          $this->accessories['form'] = new form($this->params['id'].'Form', $url);
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
         }
