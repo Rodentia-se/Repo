@@ -8,7 +8,7 @@ function customTemplate($page) {
 		case 'players':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
 	  break;
-		case 'editplayer':
+		case 'edit':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/edit.php');
 	  break;
 		case 'resetpassword':
