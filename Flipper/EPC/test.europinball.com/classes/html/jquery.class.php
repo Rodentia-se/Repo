@@ -70,9 +70,9 @@
                 $contents .= parent::getContent($key, $string);
               }
             }
-            $code .= $this->jquery['contentProp'].': "'.$contents."\"\n";
+            $code .= $this->jquery['contentProp'].': "'.$contents;
           }
-          $code = rtrim($code, ',');
+          $code = rtrim($code, ',')."\n});\n";
         } else if ($this->jquery['type'] == 'command') {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
