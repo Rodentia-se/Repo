@@ -25,13 +25,23 @@
         return parent::getContent($index, $string);
       } else {
         if ($this->jquery['function']) {
+          if ($this->jquery->settings) {
           foreach ($this->jquery->settings as $option => $value) {
             if (array_key_exists($option, $this->jquery)) {
               $code .= $option.': '.$value.",\n";
             }
           }
-          $code .= 'content: "'.parent::getContent($index, $string).'"';
-          return $code."\n";
+          $code .= 'content: "';
+          if (count($this->contents) > 0) {
+            foreach ($this->contents as $index => $content) {
+              $contents .= parent::getContent($index, $string);
+            }
+          }
+          $code .= 'content: "'.$contents.'"';
+          $this->content[0] = $code;
+          $return = parent::getContent($index, $string);
+          $this->content[0] = $contents;
+          return $return;
         } else {
           return parent::getContent($index, $string);
         }
