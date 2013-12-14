@@ -29,6 +29,7 @@
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
         $content = parent::getContent($index, $string);
+        debug ($content, "CONT");
         return $jsbeautifier->beautify(ltrim($content), $options);
       }
     }
