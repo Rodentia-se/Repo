@@ -7,6 +7,7 @@
       $params['rel'] = ($params['rel']) ? $params['rel'] : 'stylesheet';
       $file = ($file) ? $file : $params['href'];
       $this->contentParam = 'href';
+      $this->inlineBlock = TRUE;
       $this->selfClose = TRUE;
       parent::__construct('link', $file, $params);
     }
