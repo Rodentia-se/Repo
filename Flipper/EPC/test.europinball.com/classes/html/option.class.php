@@ -9,7 +9,7 @@
         $params['selected'] = 'selected';
       }
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
-      $this->inline-block = TRUE;
+      $this->inlineBlock = TRUE;
       parent::__construct('option', $text, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {

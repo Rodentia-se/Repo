@@ -54,7 +54,7 @@
       switch ($prop) {
         case 'block':
         case 'inline':
-        case 'inline-block':
+        case 'inlineBlock':
           return ($this->settings['display'] == $prop) ? TRUE : FALSE;
         break;
         case 'content':
@@ -110,7 +110,7 @@
             $this->contentCrlf = "\n";
           }
         break;
-        case 'inline-block':
+        case 'inlineBlock':
           if ($value) {
             $this->settings['display'] = 'inline-block';
             $this->crlf = "\n";
@@ -159,7 +159,7 @@
       switch ($prop) { 
         case 'block':
         case 'inline':
-        case 'inline-block':
+        case 'inlineBlock':
           return ($this->settings['display'] == $prop) ? TRUE : FALSE;
         break;
         case 'content':
@@ -201,7 +201,7 @@
           $this->crlf = "\n";
           $this->contentCrlf = "\n";
         break;
-        case 'inline-block':
+        case 'inlineBlock':
           $this->settings['display'] = 'block';
           $this->crlf = "\n";
           unset($this->contentCrlf);
