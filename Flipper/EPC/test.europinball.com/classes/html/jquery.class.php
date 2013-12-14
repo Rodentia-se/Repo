@@ -70,7 +70,7 @@
                 $contents .= trim(parent::getContent($key, $string));
               }
             }
-            $code .= $this->jquery['contentProp'].': "'.$contents.'"';
+            $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
           }
           $code = rtrim($code, ',')."\n});";
         } else if ($this->jquery['type'] == 'command') {
