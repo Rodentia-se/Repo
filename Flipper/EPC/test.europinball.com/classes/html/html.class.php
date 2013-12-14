@@ -398,7 +398,7 @@
           $this->params[$props] = $value;
         }
       }
-      return $this->getParams();
+      return TRUE;
     }
 
     protected function getParams($param = NULL, $string = TRUE) {
