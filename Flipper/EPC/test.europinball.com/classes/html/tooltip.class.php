@@ -14,7 +14,6 @@
         $command = array('update', 'show');
         $contents = array($contents, FALSE);
       }
-      debug($settings);
       parent::__construct($selector, 'tooltipster', $new, $command, $contents, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $contents = NULL, array $settings, $indents = 0) {
@@ -31,9 +30,9 @@
               $code .= $option.': '.$value.",\n";
             }
           }
-          $code .= 'content: "'.parent::get('content', $index, $string).'"';
+          $code .= 'content: "'.parent::getContent($index, $string).'"';
           return $code."\n";
-        } else { 
+        } else {
           return parent::getContent($index, $string);
         }
       }
