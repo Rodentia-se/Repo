@@ -38,6 +38,7 @@
   $el->addContent($b);
   debug($b);
   $form = new form('Form', NULL);
+  echo 'HÄRSTARTARDET';
   echo $form;
 /*
   $div->addContent($img);
