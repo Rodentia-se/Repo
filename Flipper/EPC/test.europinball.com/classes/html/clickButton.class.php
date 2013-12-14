@@ -29,7 +29,7 @@
         break;
         case 'form':
         case 'script':
-          return $this->accessories['$prop'];
+          return $this->accessories[$prop];
         break;
         default:
           return parent::__get($prop);
@@ -115,7 +115,6 @@
           $this->accessories['form'] = new form($this->params['id'].'Form', $url);
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
-          debug($this->accessories['form']);
         }
         $this->accessories['form']->inline = TRUE;
         $this->accessories['form']->hide();
@@ -134,7 +133,7 @@
           if (!$this->form) {
             $this->form(TRUE);
           }
-          $this->accessories['click'] = new click('#'.$this->params['id'], '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
+          $this->accessories['click'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
         } else {
           $this->accessories['click'] = (isHtml($script)) ? $script : new click($script);
         }
@@ -150,9 +149,9 @@
         if ($form && $this->form) {
           if ($this->insideForm) {
             $this->form->addContent($this, $this);
-            return ($script) ? $this->form->getHtml().$this->accessories['click']->getHtml() : $this->form->getHtml();
+            return ($script) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml();
           } else {
-            return ($script) ? $this->form->getHtml().parent::getHtml().$this->accessories['click']->getHtml() : $this->form->getHtml().parent::getHtml();
+            return ($script) ? $this->form->getHtml().parent::getHtml().$this->script->getHtml() : $this->form->getHtml().parent::getHtml();
           }
         } else {
           return parent::getHtml();
