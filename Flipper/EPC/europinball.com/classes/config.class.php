@@ -27,7 +27,7 @@
     public static $swiftAddress = 'SWEDSESS';
     public static $ibanAccount = 'SE2280000832799031920490';
     public static $defaultCurrency = 'EUR';
-    public static $acceptedCurrencies = array('EUR', 'USD', 'SEK');
+    public static $acceptedCurrencies = array('EUR', 'USD', 'GBP', 'SEK', 'DKK');
     public static $currencies = array(
       'EUR' => array(
         'name' => 'euro',
@@ -60,6 +60,14 @@
         'symbol' => 'kr',
         'format' => '§ kr',
         'rate' => 10
+      ),
+      'DKK' => array(
+        'name' => 'krone',
+        'plural' => 'kroner',
+        'shortName' => 'DKK',
+        'symbol' => 'kr',
+        'format' => '§ kr',
+        'rate' => 7.6
       )
     );
     
@@ -73,7 +81,6 @@
       'photo',
       'security',
       't-shirts',
-      'volunteer',
       'payment'
     );
     public static $editDivisions = array('eighties');

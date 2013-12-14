@@ -146,17 +146,19 @@
         }
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
-          $tshirtDiv->indents = 3;
-          $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
-          $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
-          $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
-          $tshirtDiv->addContent($jquery);
-          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
+            $tshirtDiv->indents = 3;
+            $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
+              $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
+            $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
+            $tshirtDiv->addContent($jquery);
+            $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
-          $page->startDiv('volunteer');
-          $page->closeDiv();
+          $volDiv = new div('volunteer');
+            $tshirtDiv->indents = 3;
+            $paragraph = $tshirtDiv->addParagraph('Volunteer registration will open in short.');
+          $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
