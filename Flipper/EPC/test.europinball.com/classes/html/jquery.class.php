@@ -59,7 +59,7 @@
           if ($this->jquery['props']) {
             foreach ($this->jquery['props'] as $prop => $val) {
               if (is_string($val) && substr($val, 0, 8) != 'function') {
-                $delmiter = '"';
+                $delimiter = '"';
               } else {
                 $delimiter = '';
               }
