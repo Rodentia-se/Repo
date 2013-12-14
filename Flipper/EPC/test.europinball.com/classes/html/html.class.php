@@ -28,9 +28,7 @@
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
       static::$indents = $indents;
-      if (is($id)) {
-        $params['id'] = $id;
-      }
+      $params['id'] = (is($id)) ? $id : $params['id'];
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('img', 'span', 'label'))) ? NULL : "\n";
