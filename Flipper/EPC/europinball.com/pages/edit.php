@@ -147,7 +147,7 @@
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addParagraph('You will soon be able to order this T-shirt:');
-          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jp');
+          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
