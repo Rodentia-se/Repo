@@ -70,7 +70,7 @@
       if (!$person) {
         $email = (isset($_REQUEST['email'])) ? $_REQUEST['email'] : false;
         if ($email) {
-        $person = person(array('mailAddress' => $email);
+        $person = person(array('mailAddress' => $email));
         }    
       }
     }
