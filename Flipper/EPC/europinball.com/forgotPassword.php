@@ -77,7 +77,7 @@
   
       if ($person) {
         if ($person->mailAddress) {
-          if (person::validateMailAddress(($player->mailAddress)) {
+          if (person::validateMailAddress($player->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
               $content .= '<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.</p>';
             } else {
