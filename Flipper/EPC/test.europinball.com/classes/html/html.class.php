@@ -414,6 +414,10 @@
             return $param;
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
+          } else if ($this->params[$param] === FALSE) {
+            return $param.'="0"';
+          } else if ($this->params[$param] === TRUE) {
+            return $param.'="1"';
           } else {
             return FALSE;
           }
