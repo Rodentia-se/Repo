@@ -9,6 +9,7 @@
       $this->contentParam = 'href';
       $this->inlineBlock = TRUE;
       $this->selfClose = TRUE;
+      debug($file, 'FILECSS');
       parent::__construct('link', $file, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
