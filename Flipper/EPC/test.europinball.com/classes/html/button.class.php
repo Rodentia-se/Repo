@@ -2,8 +2,6 @@
 
   class button extends input {
     
-    protected $script;
-    
     public function __construct($value = 'submit', $name = NULL, array $params = NULL) {
       $params['name'] = ($name) ? $name : $value;
       $params['id'] = ($params['id']) ? $params['id'] : $name;
