@@ -4,16 +4,31 @@
     
     protected $jquery = array();
     
-    public function __construct($selector = NULL, $object = NULL, $function = NULL, $command = NULL, $contents = NULL, array $settings = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
       $this->jquery = array(
         'selector' => $selector,
-        'object' => $object,
-        'function' => $function,
-        'command' => $command, 
-        'settings' => $settings
+        'tool' => $tool,
+        'function' => (($type == 'function') ? TRUE : FALSE),
+        'object' => (($type == 'object') ? TRUE : FALSE),
+        'props' => $props
       );
-      debug($settings);
-      $this->contents = (is_array($contents)) ? $contents : array($contents);
+      if ($type == 'command') {
+        if (is_array($contents)) {
+          foreach ($contents as $command => $param) {
+            $this->jquery->command[] = $command;
+            $this->contents[] = $param;
+          }
+        } else {
+          $this->jquery->command[] = $contents;
+          $this->contents[] = FALSE;
+        }
+      } else {
+        $this->contents = (is_array($contents)) ? $contents : array($contents);
+      }
+      if ($object) {
+        $this->jquery['contentProp'] = $props['contentProp'];
+        unset($this->jquery['props']['contentProp']);
+      }
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;
       debug($this);
@@ -32,22 +47,42 @@
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
         $contents = parent::getContent($index, $string);
+        $code = '$("'.$this->jquery['selector'].'")';
         if ($this->jquery['function']) {
-          $code = '$("'.$this->jquery['selector'].'").'.$this->jquery['object']."(function() {\n".$contents."\n});";
+          $code .= '.'.$this->jquery['tool']."(function() {\n".$contents."\n});";
+        } else if ($this->jquery['object']) {
+          $code .= '.'.$this->jquery['tool']."({\n";
+          if ($this->jquery['settings']) {
+            foreach ($this->jquery['settings'] as $prop => $val) {
+              if (is_string($val) && substr($val, 0, 8) != 'function') {
+                $delmiter = '"';
+              } else {
+                $delimiter = '';
+              }
+              $code.= $prop.': '.$delimiter.$val.$delimiter.",\n";
+            }
+            if ($this->jquery['contentProp'] && count($this->contents) > 0) {
+              foreach ($this->contents as $key => $content) {
+                $contents .= parent::getContent($key, $string);
+              }
+            }
+            $code .= $this->jquery['contentProp'].': "'.$contents."\"\n";
+          }
+          $code = rtrim($code, ',');
         } else {
-          $code = '$("'.$this->jquery['selector'].'")';
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
-              $code .= '.'.$this->jquery['object'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
+              $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
             }
           } else { 
-            $code .= '.'.$this->jquery['object'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
+            $code .= '.'.$this->jquery['tool'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
           }
           $code .= ';';
         }
         return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').$code.(($this->settings['onReady']) ? "\n});" : ''), $options));
       }
     }
+
 
     public function __get($prop) {
       if (array_key_exists($prop, $this->jquery)) {
