@@ -188,6 +188,7 @@
     }
     
     public function getPhotoIcon() {
+      debuig($this);
       $photo = $this->getPhoto(FALSE, TRUE, FALSE);
       debug($photo);
       return ($photo) ? '
