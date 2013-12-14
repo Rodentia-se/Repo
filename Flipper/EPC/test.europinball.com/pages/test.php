@@ -37,6 +37,7 @@
   $el->addContent($h);
   $el->addContent($b);
   debug($b);
+  echo $b;
 /*
   $div->addContent($img);
   $div1 = $el->addDiv('1');
