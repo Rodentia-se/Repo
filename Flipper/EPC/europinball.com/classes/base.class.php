@@ -195,7 +195,7 @@
         <div id="'.$thisn->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
           <img src="'.$photo.'">
         </div>
-      ' : NULL);
+      ';
     }
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
