@@ -27,7 +27,7 @@
     public static $swiftAddress = 'SWEDSESS';
     public static $ibanAccount = 'SE2280000832799031920490';
     public static $defaultCurrency = 'EUR';
-    public static $acceptedCurrencies = array('EUR', 'USD', 'GBP', 'SEK', 'DKK');
+    public static $acceptedCurrencies = array('EUR', 'USD', 'GBP', 'CHF', 'SEK', 'DKK');
     public static $currencies = array(
       'EUR' => array(
         'name' => 'euro',
