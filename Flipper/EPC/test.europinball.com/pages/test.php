@@ -61,6 +61,13 @@
   $div3->addSelect('selina', array(0 => 'Choose...', 1 => 'Huff'), 1);
   $el->indents = 5;
   echo 'HÄRSTARTARDET';
+  $huff = TRUE;
+      if ($huff == 'hej') {
+        $huff = FALSE;
+      } else {
+        $huff = $huff;
+      }
+  debug($huff, 'HUFF');  
   echo($el);
 /*
 
