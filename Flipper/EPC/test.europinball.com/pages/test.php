@@ -77,8 +77,8 @@ $div3->addForm('ID', 'http://www.action', 'GET', array('sampleparam' => 'huff'))
 $div3->addLabel('Some content', 'forName', 'ID', 'klasses', array('sampleparam' => 'huff'));
 $sel = $div3->addSelect('Namnet', NULL, NULL, TRUE, array('sampleparam' => 'huff'));
 $opt = $sel->addOption('Välj mig!', 'vald', 'vald', array('sampleparam' => 'huff'));
-debug(NULL, 'die', TRUE);
 $sel2 = $div3->addSelect('Namnet', $opt, $opt, TRUE, array('sampleparam' => 'huff'));
+debug(NULL, 'die', TRUE);
 $opt2 = $sel->addOption('Välj inte mig!', 'ejvald', FALSE, array('sampleparam' => 'huff'));
 $opts = array($opt, $opt2);
 $div3->addSelect('Namnet', $opts, $opt2, FALSE, array('sampleparam' => 'huff'));
