@@ -67,7 +67,7 @@
       } else {
         $huff = $huff;
       }
-  debug($huff, 'HUFF');  
+  var_dump($huff);  
   echo($el);
 /*
 
