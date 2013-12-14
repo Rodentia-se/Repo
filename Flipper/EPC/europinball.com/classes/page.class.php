@@ -142,7 +142,7 @@
           '.(($onload) ? '$(document).ready(function() {' : '').'
             '.$script.'
           '.(($onload) ? '});' : '').'
-        </script>
+        </script> 
       ';
     }
     
