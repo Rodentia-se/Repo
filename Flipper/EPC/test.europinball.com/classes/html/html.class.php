@@ -410,6 +410,8 @@
             return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
+          } else if (($param == 'selected' || $param == 'checked') && $this->params[$param]) {
+            return $param;
           } else {
             return $param.'="'.$this->$param.'"';
           }
