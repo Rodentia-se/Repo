@@ -37,7 +37,8 @@
   $el->addContent($h);
   $el->addContent($b);
   debug($b);
-  echo $b;
+  $form = new form('Form', NULL);
+  echo $form;
 /*
   $div->addContent($img);
   $div1 = $el->addDiv('1');
