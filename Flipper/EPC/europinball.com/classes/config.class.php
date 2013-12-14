@@ -53,6 +53,14 @@
         'format' => '£ §',
         'rate' => 0.9
       ),
+      'CHF' => array(
+        'name' => 'franc',
+        'plural' => 'francs',
+        'shortName' => 'CHF',
+        'symbol' => 'Fr',
+        'format' => '§ Fr',
+        'rate' => 1.3
+      ),
       'SEK' => array(
         'name' => 'krona',
         'plural' => 'kronor',
