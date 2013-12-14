@@ -9,7 +9,7 @@
       if ($method) {
         $params['method'] = $method;
       }
-      parent::__construct('form', NULL, $params, $id, $class, $css);
+      parent::__construct('form', NULL, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
