@@ -794,6 +794,10 @@
         $closeStart = $indent.'</'.$this->element;
         $closeEnd = '>';
       }
+      if ($this->element == 'span') {
+        debug($this->settings['display'], "DISPLAY");
+        debug($this->contentCrlf, "CCRLF");
+      }
       $open = $openStart.$this->element;
       $params = $this->getParams();
       $open .= (($params) ? ' ' : '').$params.$openEnd;
