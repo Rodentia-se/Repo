@@ -147,7 +147,7 @@
     }
     
     public function getHtml($form = FALSE, $button = FALSE, $script = FALSE) {
-      return parent::getHtml().$this->form->getHtml().$this->script->getHtml();
+      return parent::getHtml().(($this->form) ? $this->form->getHtml().(($this->script) ? $this->script->getHtml() : '') : '');
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
