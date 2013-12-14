@@ -1,69 +1,46 @@
 <?php
 
-  define('__ROOT__', dirname(__FILE__)); 
-  require_once(__ROOT__.'/functions/general.php');
+  define('__ROOT__', dirname(dirname(__FILE__))); 
+  require_once(__ROOT__.'/functions/init.php');
+
+  $page = new page('Register');
   
-  printHeader('EPC 2013', __baseHref__);
-  printTopper();
+  $page->addH2('Password reset');
   
   $nonce = (isset($_REQUEST['nonce'])) ? $_REQUEST['nonce'] : false;
 
-  function getPlayerFromNonce($dbh, $nonce) {
-    $objs = getPlayers($dbh, 'where m.nonce = "'.$nonce.'" and m.tournamentDivision_id = 1');
-    if ($objs && count($objs) == 1) {
-      $player = $objs[0];
-      if (ulNonce::Verify('reset', $nonce)) {
-        $player->valid = true;
+  function getPersonFromNonce($regNonce) {
+    $person = person(array('nonce' => $reqNonce));
+    if ($person) {
+      if (ulNonce::Verify('reqNonce', $nonce)) {
+        $person->valid = true;
       } else {
-        $player->valid = false;
+        $person->valid = false;
       }
-      return $player;
+      return $person;
     } else {
       return false;
     }
   }
   
-  function sendResetEmail($dbh, $player) {
-    if (validEmail($player->mailAddress)) {
-      $nonce = ulNonce::Create('reset');
-      $player->setNonce($dbh, $nonce);
-      $msg = 'Hello!
-        
-        You (or someone) has requested your password at Europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
-      
-        If you want to reset your password, please click on this link or paste the address into your browser.
-        
-        '.__baseHref__.'/your-pages/password-reset/?nonce='.urlencode($nonce).'
-        
-        The link will expire in 15 minutes, and can only be used once.
-        
-        If you encounter any problems, email us at support@europinball.org for assistance.
-        
-        Regards
-        /EPC 2013 organizers
-      ';
-      mail($player->mailAddress, 'Europinball.org password reset', $msg, 'From: support@europinball.org');
-      return true;
-    } else {
-      return false;
-    }
-  }
   
-  $content = '<h2 class="entry-title">Password reset '.$nonce.'</h2>';
+  $content = '<h2 class="entry-title">Password reset</h2>';
 
-  $player = getCurrentPlayer($dbh, $ulogin);
-  if ($player) {
-    $content .= 'You are already logged in as '.$player->firstName.' '.$player->lastName.'! If you intended to reset the password for another user, please <a href="'.__baseHref__.'/your-pages/logout/">logout</a> and then go to this page again.';
+  if ($page->loggedin()) {
+    $person = person('login');
+    $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
+    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
+    $page->addForm('log out', array('action' => 'logout'));
   } else {
     if ($nonce) {
-      $player = getPlayerFromNonce($dbh, $nonce);
-      if ($player) {
-        if ($player->valid) {
+      $person = person(array('nonce' => $reqNonce));
+      if ($person) {
+        if ($person->valid) {
           $resetNonce = ulNonce::Create('resetNonce');
           $content .= '
-            <input type="hidden" name="person_id" id="personId" value="'.$player->id.'">
+            <input type="hidden" name="person_id" id="personId" value="'.$person->id.'">
             <input type="hidden" name="resetNonce" id="resetNonce" value="'.$resetNonce.'">
-            <p>Your identity as '.$player->firstName.' '.$player->lastName.' has been confirmed. Your username is '.$player->username.'.</p>
+            <p>Your identity as '.$person->firstName.' '.$person->lastName.' has been confirmed. Your username is '.$person->username.'.</p>
             <table>
               <tr>
                 <td class="labelTd"><label>Please set a new password:</label><td><input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span></td>
@@ -75,12 +52,12 @@
             </table>
           ';
           $success = true;
-          $player->setNonce($dbh, null);
+          $person->setNonce(null);
           // set password with ajax
           // Redirect to login when successful
         } else {
           $content .= '<p>Your identity code has expired or is invalid.</p>';
-          $playerId = $player->id;
+          $playerId = $person->id;
         }
       } else {
         $content .= 'We could not not identify you, or you have already used this identity code. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
@@ -88,40 +65,21 @@
     } else {
       $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
       if ($username) {
-        $id = getIdFromUser($dbh, $username);
-        if ($id) {
-          $player = getPlayerById($dbh, $id);
-          if ($player) {
-            $playerId = $player->id;
-          } else {
-            // No player
-          }
-        } else {
-          // No ID
-        }
+        $person = person(array(('username' => $username));
       }
-      if (!$playerId) {
+      if (!$person) {
         $email = (isset($_REQUEST['email'])) ? $_REQUEST['email'] : false;
         if ($email) {
-          $player = getPlayerByEmail($dbh, $email);
-          if ($player) {
-            $playerId = $player->id;
-          } else {
-            // No player
-          }
-        } else {
-          // No email
+        $person = person(array(('mailAddress' => $email));
         }    
       }
     }
   
-    if ($playerId) {
-      $player = getPlayerById($dbh, $playerId);
-      if ($player) {
-        if ($player->mailAddress) {
-          if (validEmail($player->mailAddress)) {
-            if (sendResetEmail($dbh, $player)) {
-              $content .= '<p>We have sent a new email to the registered address for user '.$player->username.' - please click the link in that email.</p>';
+      if ($person) {
+        if ($person->mailAddress) {
+          if (person::validateMailAddress(($player->mailAddress)) {
+            if (config::$login->sendResetEmail($person)) {
+              $content .= '<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.</p>';
             } else {
               $content .= '<p>Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
             }

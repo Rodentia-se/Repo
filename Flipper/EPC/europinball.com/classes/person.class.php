@@ -203,7 +203,7 @@
     }
     
     public function setNonce($nonce) {
-      return $this->setProp('username', $nonce);
+      return $this->setProp('nonce', $nonce);
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
