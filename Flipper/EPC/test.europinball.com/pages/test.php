@@ -38,9 +38,6 @@
   $el->addContent($b);
   $form = new form('Form', NULL);
   $click = new click('#click', '$("#FORM").submit();');
-  echo 'HÄRSTARTARDET';
-  echo $b;
-/*
   $div->addContent($img);
   $div1 = $el->addDiv('1');
   $div2 = $div1->addDiv('2');
@@ -63,8 +60,8 @@
   $div4->addElement($input2);
   $div4->addElement($input2);
   $el->indents = 5;
-  */
-//  echo($el);
+  echo 'HÄRSTARTARDET';
+  echo($el);
 /*
 
   debug('TEST 1');
