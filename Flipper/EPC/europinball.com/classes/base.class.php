@@ -188,10 +188,12 @@
     }
     
     public function getPhotoIcon() {
-      return (($this->getPhoto(FALSE, TRUE, FALSE)) ? '
+      $photo = $this->getPhoto(FALSE, TRUE, FALSE)
+      debug($photo);
+      return (($photo)) ? '
         <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$thisn->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
         <div id="'.$thisn->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
-          <img src="'.$this->getPhoto(FALSE, TRUE, FALSE).'">
+          <img src="'.$photo.'">
         </div>
       ' : NULL);
     }
