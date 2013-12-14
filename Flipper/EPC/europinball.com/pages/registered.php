@@ -25,13 +25,13 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.'">'.$division->divisionName.'</a>');
+        $page->addLi('<a href="#'.$division->shortName.'Players">'.$division->divisionName.'</a>');
       }
     $page->closeUl();
     foreach ($divisions as $division) {
       $players = players($division);
       $rows = array();
-      $page->startDiv($division->shortName."PlayersDiv");
+      $page->startDiv($division->shortName."Players");
         if (count($players) > 0) {
           if ($division->team) { 
             if ($division->national) {
