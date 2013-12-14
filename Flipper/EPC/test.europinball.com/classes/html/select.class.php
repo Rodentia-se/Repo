@@ -133,8 +133,8 @@
     
     function selectOption($selected = NULL) {
       if ($this->contents && count($this->contents) > 0) {
-debug($this->contents, 'CONTENT');
         foreach ($this->contents as $key => $option) {
+debug($option, 'CONTENT');
           if ($selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected)) {
             $option->selected = TRUE;
           } else {
