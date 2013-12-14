@@ -19,6 +19,7 @@
           });
         ');
         $page->addContent($msg);
+        unset($_SESSION['msg'])
       }
       $page->startDiv('tabs');
         $page->startUl();
