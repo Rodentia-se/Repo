@@ -26,7 +26,7 @@
     $page->startUl();
       foreach ($divisions as $division) {
         $page->addLi('<a href="#'.$division->shortName.'Players">'.$division->divisionName.'</a>');
-      }
+      } 
     $page->closeUl();
     foreach ($divisions as $division) {
       $players = players($division);
