@@ -205,6 +205,7 @@
           return ($array) ? $return : (object) $return;
         }
       } else {
+        $person = person($this->person_id);
         $return = array(
           $this->getLink(),
           $this->shortName,
@@ -213,7 +214,7 @@
           (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
           (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
           $this->getLink('ifpa'),
-            $this->person->getPhotoIcon()
+          $person->getPhotoIcon()
         );
         return ($array) ? $return : (object) $return;
       }
