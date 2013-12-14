@@ -115,12 +115,12 @@
             }
           }
           debug($options, "OPTIONS");
-          if (isHtml($options)) {
+          if (isHtml($option)) {
             if ($index || ($replaced && $replaced !== TRUE)) {
               $index = ($index) ? $index : $replaced;
-              $return = array_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($options));
+              $return = array_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($option));
             } else {
-              $return = array_push($this->contents, $options);
+              $return = array_push($this->contents, $option);
             }
           }
         }
