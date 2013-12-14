@@ -145,7 +145,6 @@
     }
     
     public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
-      debug($this->accessories['script']);
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
