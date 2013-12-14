@@ -52,6 +52,11 @@
     
     public function __get($prop) {
       switch ($prop) {
+        case 'block':
+        case 'inline':
+        case 'inline-block':
+          return ($this->settings['display'] == $prop) ? TRUE : FALSE;
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
@@ -87,18 +92,33 @@
           if ($value) {
             $this->settings['display'] = 'block';
             $this->crlf = "\n";
+            $this->contentCrlf = "\n";
           } else {
             $this->settings['display'] = 'inline';
             unset($this->crlf);
+            unset($this->contentCrlf);
           }
         break;
         case 'inline':
           if ($value) {
             $this->settings['display'] = 'inline';
             unset($this->crlf);
+            unset($this->contentCrlf);
           } else {
             $this->settings['display'] = 'block';
             $this->crlf = "\n";
+            $this->contentCrlf = "\n";
+          }
+        break;
+        case 'inline-block':
+          if ($value) {
+            $this->settings['display'] = 'inline-block';
+            $this->crlf = "\n";
+            unset($this->contentCrlf);
+          } else {
+            $this->settings['display'] = 'block';
+            $this->crlf = "\n";
+            $this->contentCrlf = "\n";
           }
         break;
         case 'hidden':
@@ -139,7 +159,8 @@
       switch ($prop) { 
         case 'block':
         case 'inline':
-          return ($this->settings['display'] == $prop);
+        case 'inline-block':
+          return ($this->settings['display'] == $prop) ? TRUE : FALSE;
         break;
         case 'content':
         case 'contents':
@@ -173,10 +194,17 @@
         case 'block':
           $this->settings['display'] = 'inline';
           unset($this->crlf);
+          unset($this->contentCrlf);
         break;
         case 'inline':
           $this->settings['display'] = 'block';
           $this->crlf = "\n";
+          $this->contentCrlf = "\n";
+        break;
+        case 'inline-block':
+          $this->settings['display'] = 'block';
+          $this->crlf = "\n";
+          unset($this->contentCrlf);
         break;
         case 'hidden':
           $this->hide(FALSE);
