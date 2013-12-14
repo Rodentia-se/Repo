@@ -98,7 +98,7 @@
           debug($options, 'OPTIONS');
           $return = TRUE;
           foreach($options as $key => $option) {
-            $result = $this->addOptions(array($key, $option), $selected, FALSE, $index);
+            $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
             if (!$result) {
               $return = FALSE;
             }
