@@ -26,7 +26,7 @@
     public $contentCrlf = "\n";
     public $contentParam = FALSE;
     
-    public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
+    public function __construct($element = 'html', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
@@ -799,9 +799,15 @@
       $params = $this->getParams();
       $open .= (($params) ? ' ' : '').$params.$openEnd;
       $close = $closeStart.$closeEnd;
-      if (count($this->contents) > 0) {
-        $html = $this->getContent();
+      if ($this->headers) {
+        $html .= $this->getHeader();
+      }
+      if ($this->contents) {
+        $html .= $this->getContent();
       } 
+      if ($this->footers) {
+        $html .= $this->getFooter();
+      }
       $html .= ($this->contentCrlf && $html && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && $html && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
       return $open.$html.$close;
