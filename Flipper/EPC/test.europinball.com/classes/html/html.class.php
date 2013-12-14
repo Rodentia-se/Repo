@@ -433,7 +433,7 @@
             if ($this->contentParam) {
               $params[] = $this->contentParam.'="'.$this->contents[0].'"';
             }
-            return implode($params, ' ');
+            return implode(array_filter($params), ' ');
           } else {
             $params = $this->params;
             $params[$this->contentParam] = $this->contents[0];
