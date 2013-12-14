@@ -145,8 +145,10 @@
           $page->closeDiv();
         }
         if (in_array('t-shirts', config::$editSections)) {
-          $page->startDiv('tshirts');
-          $page->closeDiv();
+          $tshirtDiv = new div('tshirts');
+          $tshirtDiv->addParagraph('You will soon be able to order this T-shirt:');
+          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jp');
+          $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
           $page->startDiv('volunteer');
