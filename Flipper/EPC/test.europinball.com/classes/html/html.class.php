@@ -10,6 +10,7 @@
     protected $footers = array();
     protected $classes = array();
     protected $css = array();
+    protected $accessories = array();
     protected $settings = array(
       'display' => 'block',
       'hidden' => FALSE,
