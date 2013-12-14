@@ -26,7 +26,7 @@
         unset($this->contentParam);
       }
       if (!$this->inline) {
-        $this->inlineBlock;
+        $this->inlineBlock = TRUE;
       }
       parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
     }
