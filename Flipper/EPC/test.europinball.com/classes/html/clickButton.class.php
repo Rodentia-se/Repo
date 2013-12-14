@@ -126,7 +126,7 @@
           if (!$this->form) {
             $this->form(TRUE);
           }
-          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
+          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
         } else {
           $this->accessories['script'] = (isHtml($script)) ? $script : new click($script);
         }
