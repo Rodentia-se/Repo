@@ -5,7 +5,7 @@
     protected $form;
     protected $script;
     
-    public function __construct($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, array $params = NULL) {
+    public function __construct($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script == TRUE, array $params = NULL) {
       $params['name'] = ($name) ? $name : $value;
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       if ($form === TRUE) {
@@ -15,8 +15,12 @@
       }
       if ($params['id'] && $this->form && $this->form->id) {
         $this->form->inline = TRUE;
+      }
+      if ($script == TRUE) {
         $this->script = new click('#'.$params['id'], '$("#'.$this->form->id.'").submit();', static::$indents);
 //        $this->script = new jquery('#'.$params['id'], 'click', 'function', '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
+      } else if (is($script)) {
+        $this->script = (isHtml($script)) ? $script : new click($script);
       }
       parent::__construct($value, $name, $params);
       $this->inline = true;
