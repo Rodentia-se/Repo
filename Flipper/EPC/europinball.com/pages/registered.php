@@ -4,8 +4,6 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Register');
-          $page->datatables = TRUE;
-          $page->datatablesReload = TRUE;
   
   if (isId($_REQUEST['tournament_id'])) {
     $tournament = tournament($_REQUEST['tournament_id']);
@@ -27,15 +25,15 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.'Players">'.$division->divisionName.'</a>');
-      } 
+        $page->addLi('<a href="#'.$division->shortName.'">'.$division->divisionName.'</a>');
+      }
     $page->closeUl();
     foreach ($divisions as $division) {
       $players = players($division);
       $rows = array();
-      $page->startDiv($division->shortName."Players");
+      $page->startDiv($division->shortName);
         if (count($players) > 0) {
-          if ($division->team) { 
+          if ($division->team) {
             if ($division->national) {
               $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
             } else {
@@ -49,6 +47,8 @@
           }
           $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
+          $page->datatables = TRUE;
+          $page->datatablesReload = TRUE;
           $page->addScript('
             var tbl = [];
             tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({

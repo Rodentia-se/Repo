@@ -21,7 +21,6 @@
     public $scripts = array();
     public $jquery = TRUE;
     public $jqueryui = TRUE;
-    public $datatables = FALSE;
     public $tooltipster = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
@@ -143,7 +142,7 @@
           '.(($onload) ? '$(document).ready(function() {' : '').'
             '.$script.'
           '.(($onload) ? '});' : '').'
-        </script> 
+        </script>
       ';
     }
     
@@ -606,7 +605,7 @@
       if ($this->loggedin()) {
         // || ($_REQUEST['action'] == 'login' && config::$login->action('login'))) {
         return TRUE;
-      } else { 
+      } else {
         $this->addLogin($title, $prefix, $class, FALSE);
         return FALSE;
       }
