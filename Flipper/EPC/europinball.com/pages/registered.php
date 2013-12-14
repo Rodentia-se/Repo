@@ -31,7 +31,7 @@
     foreach ($divisions as $division) {
       $players = players($division);
       $rows = array();
-      $page->startDiv($division->shortName);
+      $page->startDiv($division->shortName."PlayersDiv");
         if (count($players) > 0) {
           if ($division->team) {
             if ($division->national) {
