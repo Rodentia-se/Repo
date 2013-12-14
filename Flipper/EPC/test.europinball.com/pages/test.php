@@ -36,11 +36,11 @@
   $b = new clickButton('Click me!');
   $el->addContent($h);
   $el->addContent($b);
-  debug($b);
   $form = new form('Form', NULL);
   $click = new click('#click', '$("#FORM").submit();');
+  debug($b);
   echo 'HÄRSTARTARDET';
-  echo $click;
+  echo $b;
 /*
   $div->addContent($img);
   $div1 = $el->addDiv('1');
