@@ -67,7 +67,7 @@
           $this->contents = array();
           return TRUE;
         } else if (array_key_exists($option, $this->contents)) {
-          unset($this->contents[$option])
+          unset($this->contents[$option]);
           return $option;
         } else {
           if (count($this->contents) > 0) {
