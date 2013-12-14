@@ -93,6 +93,7 @@
         debug('NOT NULL');
         if (is_array($options) && count($options) > 1) {
           debug('ISARR');
+debug($options, 'OPTION');
           $return = TRUE;
           foreach($options as $key => $option) { 
             $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
