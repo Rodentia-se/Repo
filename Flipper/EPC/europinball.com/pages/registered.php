@@ -56,6 +56,32 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
+              "fnDrawCallback": function() {
+                $(".photoPopup").each(function() {
+                  $(this).dialog({
+                    autoOpen: false,
+                    show: {
+                      effect: "blind",
+                      duration: 1000,
+                    },
+                    hide: {
+                      effect: "blind",
+                      duration: 1000
+                    },
+                    modal: true, 
+                    width: "auto",
+                    height: "auto"
+                  });
+                });
+                $(".photoIcon").click(function() {
+                  var photoDiv = $(this).data("photodiv");
+                  $("#" + photoDiv).dialog("open");
+                  $(document).on("click", ".ui-widget-overlay", function() {
+                    $("#" + photoDiv).dialog("close");
+                  });
+                });
+                return true;
+              },
               "oLanguage": {
                 "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
               },
