@@ -27,7 +27,7 @@
         $this->contentParam = 'value';
       }
       if ($this instanceof checkbox) {
-        unset($this->contentParam);
+        $this->contentParam = FALSE;
       }
       parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
     }

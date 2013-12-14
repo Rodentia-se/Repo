@@ -8,7 +8,7 @@
       $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
-      unset($this->contentParam);
+      $this->contentParam = FALSE;
       static::$indents = ($indents) ? $indents : static::$indents;
       parent::__construct($code, $params);
     }

@@ -97,15 +97,15 @@
             $this->contentCrlf = "\n";
           } else {
             $this->settings['display'] = 'inline';
-            unset($this->crlf);
-            unset($this->contentCrlf);
+            $this->crlf = '';
+            $this->contentCrlf = '';
           }
         break;
         case 'inline':
           if ($value) {
             $this->settings['display'] = 'inline';
-            unset($this->crlf);
-            unset($this->contentCrlf);
+            $this->crlf = '';
+            $this->contentCrlf = '';
           } else {
             $this->settings['display'] = 'block';
             $this->crlf = "\n";
@@ -116,7 +116,7 @@
           if ($value) {
             $this->settings['display'] = 'inline-block';
             $this->crlf = "\n";
-            unset($this->contentCrlf);
+            $this->contentCrlf = '';
           } else {
             $this->settings['display'] = 'block';
             $this->crlf = "\n";
@@ -195,8 +195,8 @@
       switch ($prop) {
         case 'block':
           $this->settings['display'] = 'inline';
-          unset($this->crlf);
-          unset($this->contentCrlf);
+          $this->crlf = '';
+          $this->contentCrlf = '';
         break;
         case 'inline':
           $this->settings['display'] = 'block';
@@ -206,7 +206,7 @@
         case 'inlineBlock':
           $this->settings['display'] = 'block';
           $this->crlf = "\n";
-          unset($this->contentCrlf);
+          $this->contentCrlf = '';
         break;
         case 'hidden':
           $this->hide(FALSE);
