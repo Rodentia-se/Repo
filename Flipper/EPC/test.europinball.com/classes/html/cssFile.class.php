@@ -3,6 +3,7 @@
   class cssFile extends html {
     
     public function __construct($file = NULL, array $params = NULL) {
+      debug($file, 'FILECSS');
       $params['type'] = ($params['type']) ? $params['type'] : 'text/css';
       $params['rel'] = ($params['rel']) ? $params['rel'] : 'stylesheet';
       $file = ($file) ? $file : $params['href'];
