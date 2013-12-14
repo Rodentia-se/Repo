@@ -34,8 +34,8 @@
           }
           $code .= 'content: "';
           if (count($this->contents) > 0) {
-            foreach ($this->contents as $index => $content) {
-              $contents .= parent::getContent($index, $string);
+            foreach ($this->contents as $key => $content) {
+              $contents .= parent::getContent($key, $string);
             }
           }
           $code .= 'content: "'.$contents.'"';
