@@ -1,29 +1,42 @@
 <?php
 
-  class continent extends geography {
+  class continent extends country {
+
+    public static $instances;
+    public static $arrClass = 'continents';
+
+    public static $select = '
+      select 
+        o.id as id,
+        o.name as name,
+        o.name as fullName,
+        o.name as shortName,
+        o.altName as altName,
+        o.latitude as latitude,
+        o.longitude as longitude,
+        o.comment as comment
+      from continent o
+    ';
     
-    public $class = 'continent';
+    public static $parents = array(
+    );
     
-    public function getNoOfCountries($dbh, $tournament = 1) {
-      return $this->getNoOfItems($dbh, 'country', $tournament);
+    public static $children = array(
+      'location' => 'continent',
+      'city' => 'continent',
+      'region' => 'continent',
+      'country' => 'continent',
+      'owner' => 'continent',
+      'player' => 'continent',
+      'team' => 'continent',
+      'volunteer' => 'continent',
+      'person' => 'continent'
+    );
+
+    public function getCountries() {
+      return $this->db->getObjectsByParent('country', $this);
     }
-    
-    public function getNoOfRegions($dbh, $tournament = 1) {
-      return $this->getNoOfItems($dbh, 'region', $tournament);
-    }
-    
-    public function getNoOfCities($dbh, $tournament = 1) {
-      return $this->getNoOfItems($dbh, 'city', $tournament);
-    }
-    
-    public function getStats($dbh, $tournament = 1) {
-      $stats = parent::getStats($dbh, $tournament);
-      $stats['country'] = $this->getNoOfCountries($dbh, $tournament);
-      $stats['region'] = $this->getNoOfRegions($dbh, $tournament);
-      $stats['city'] = $this->getNoOfCities($dbh, $tournament);
-      $stats['team'] = $this->getNoOfTeams($dbh, $tournament);
-      return $stats;
-    }
-        
+
   }
+
 ?>

@@ -1,205 +1,154 @@
 <?php
-  
-  class team extends base {
+
+  class team extends player {
+        
+    public static $instances;
+    public static $arrClass = 'teams';
+
+    public static $select = '
+      select 
+        o.id as id,
+        o.name as name,
+        o.name as fullName,
+        o.initials as shortName,
+        o.national as national,
+        o.contactPlayer_id as contactPlayer_id,
+        o.city_id as city_id,
+        o.region_id as region_id,
+        o.parentRegion_id as parentRegion_id,
+        o.country_id as country_id,
+        o.parentCountry_id as parentCountry_id,
+        o.continent_id as continent_id,
+        o.tournamentDivision_id as tournamentDivision_id,
+        o.tournamentEdition_id as tournamentEdition_id,
+        o.dateRegistered as dateRegistered,
+        o.registerPerson_id as registerPerson_id,
+        o.comment as comment
+      from team o
+    ';
     
-    public $initials;
-    public $player_ids = [];
-    public $players = [];
-    public $contactPlayer_id;
-    public $registerPerson_id;
-    public $contactPlayer_name;
-    public $tournamentDivision;
-    public $tournamentDivision_id;
-    public $tournamentEdition;
-    public $tournamentEdition_id;
-    public $country_id;
-    public $country;
-    public $dateRegistered;
-    public $class = 'team';
+    public static $parents = array(
+      'contactPlayer' => 'player',
+      'registerPerson_id' => 'person',
+      'tournamentEdition' => 'tournament',
+      'tournamentDivision' => 'division',
+      'city' => 'city',
+      'region' => 'region',
+      'parentRegion' => 'region',
+      'country' => 'country',
+      'parentCountry' => 'country',
+      'continent' => 'continent'
+    );
+
+    public static $children = array(
+      'player' => array(
+        'field' => 'team',
+        'delete' => TRUE
+      ),
+      'teamPlayer' => array(
+        'table' => 'teamPlayer',
+        'field' => 'player',
+        'delete' => TRUE
+      )
+    );
     
-    public function __construct($data = null, $type = 'array') {
-      switch ($type) {
-        case 'json':
-          if ($data) {
-            $this->set(json_decode($json, true));
+    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+      $persons = array('current', 'active', 'login', 'auth');
+      $divisions = array_merge(array('current', 'active'), config::$divisions);
+      if (is_string($data) && in_array($data, $persons)) {
+        $person = person($data);
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
+        $division = division($data, (($search !== NOSEARCH) ? $search : 'main'));
+        if (!$division || !isId($division->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
+        $division = division((($search !== NOSEARCH) ? $search : 'main'));
+        if (!$division || !isId($division->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if (is_string($search) && in_array($search, $persons)) {
+        $person = person($search);
+        if (!$person || !isId($person->id)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if (isObj($person)) {
+        if (isId($person->id) && isObj($division) && isId($division->id)) {
+          $where = team::$select.'
+            left join teamPerson tp on tp.team_id = o.id
+            where tp.person_id = :person_id
+              and o.tournamentDivision_id = :division_id
+          ';
+          $values[':person_id'] = $person->id;
+          $values[':division_id'] = $division->id;
+          $obj = $this->db->select($query, $values, 'team');
+          if ($obj) {
+            $this->_set($obj);
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
           }
-        break;
-        case 'array':
-          if ($data) {
-            $this->set($data);
+          if ($this->id) {
+            static::$instances['ID'.$this->id] = $this;
+            $this->populate($depth);
+            return TRUE;
+          } else {
+            $this->failed = TRUE;
+            return FALSE;
           }
-        break;
+        }
       }
+      parent::__construct($data, $search, $depth);
     }
-    
-    public function set($data) {
-      foreach ($data as $key => $value) {
-        $this->{$key} = $value;
-      }
-    }
-    
-    public function setCaptain($dbh, $player) {
-      $query = 'update team
-        set contactPlayer_id=:contactPlayer_id,
-        contactPlayer_name=:contactPlayer_name
-        where id = '.$this->id.'
-      ';
-      $update[':contactPlayer_id'] = $player->mainPlayerId;
-      $update[':contactPlayer_name'] = $player->name;
-      $sth = $dbh->prepare($query);
-      if ($sth->execute($update)) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-    
-    function addPlayer($dbh, $player) {
-      if ($player) {
-        $this->removePlayer($dbh, $player);
-        $query = '
-          insert into teamPlayer set
-            teamPlayer.name=:name,
-            teamPlayer.team_id=:teamId,
-            teamPlayer.player_id=(
-              select pl.id from player pl
-              where pl.person_id=:playerId
-              and pl.tournamentDivision_id=:tournamentDivision_id
-            )
+
+    public function getMembers($division = NULL) {
+      $division = ($division) ? division($division) : division('current');
+      if ($division && isId($division->id)) {
+        $query = person::$select.'
+          left join teamPerson tp on tp.person_id = o.id
+          left join team t on tp.team_id = t.id
+          where tp.team_id = :id
+            and t.tournamentDivision_id = :division
         ';
-        $insert[':name'] = $this->name.' member '.$player->initials;
-        $insert[':teamId'] = $this->id;
-        $insert[':playerId'] = $player->id;
-        $insert[':tournamentDivision_id'] = '1';
-        $sth = $dbh->prepare($query);
-        $sth->execute($insert);
-        return $dbh->lastInsertId();
-      } else {
-        return false;
-      }
-    }
-    
-    function addPlayers($dbh, $players) {
-      if ($players) {
-        foreach ($players as $player) {
-          $this->addPlayer($dbh, $player);
-        }
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    function removePlayer($dbh, $player) {
-      $query = '
-        delete teamPlayer from teamPlayer
-        left join player
-          on teamPlayer.player_id = player.id
-        where teamPlayer.team_id=:teamId and player.person_id=:playerId
-          and player.tournamentDivision_id=:tournamentDivision_id
-      ';
-      $delete[':teamId'] = $this->id;
-      $delete[':playerId'] = $player->id;
-      $delete[':tournamentDivision_id'] = '1';
-      $sth = $dbh->prepare($query);
-      $sth->execute($delete);
-      $rowCount = $sth->rowCount();
-      if (count($this->getMembers($dbh)) < 1) {
-        $this->delete($dbh);
-      }
-      $query = '
-        update team
-          set contactPlayer_id = null
-        where id = :teamId and contactPlayer_id = :contactPlayer_id
-      ';
-      $update[':teamId'] = $this->id;
-      $update[':contactPlayer_id'] = $player->mainPlayerId;
-      $sth = $dbh->prepare($query);
-      $sth->execute($update);
-      return $rowCount;
-    }
-
-    function removePlayers($dbh, $players = 'all') {
-      if ($players == 'all') {
-        $query = 'delete from teamPlayer where team_id=:teamId';
-        $delete[':teamId'] = $this->id;
-        $sth = $dbh->prepare($query);
-        $sth->execute($delete);
-        return $sth->rowCount();
-      } else {
-        foreach ($players as $player) {
-          $this->removePlayer($dbh, $player);
-        }
-        return true;
-      }
-    }
-    
-    function getMembers($dbh) {
-      $query = getPlayerSelect();
-      $query .= '
-        left join teamPlayer tp on tp.player_id = m.id
-        where tp.team_id = '.$this->id;  
-      if($sth = $dbh->query($query)){
-        unset($this->players);
-        while ($obj = $sth->fetchObject('player')) {
-          $objs[] = $obj;
+        $values[':id'] = $this->id;
+        $values[':division'] = $division->id;
+        $members = $this->db->select($query, $values, 'person');
+        if (count($members) > 0) {
+          return $members;
         }
       }
-      if ($objs) {
-        $this->players = $objs;
-        return $objs;
-      }
-      return false;
+      return FALSE;
     }
     
-    function delete($dbh) {
-      $this->removePlayers($dbh, 'all');
-      $query = 'delete from team where id=:teamId';
-      $delete[':teamId'] = $this->id;
-      $sth = $dbh->prepare($query);
-      return $sth->execute($delete);
-    }
-    
-      function getAllEntries ($dbh, $groupBy = false, $tournament = 3) {
-    $query = '
-      select
-        qe.person_id as id,
-        qs.id as qualScoreId,
-        qe.id as qualEntryId,
-        qs.place as place,
-        qe.place as entryPlace,
-        qs.points as points,
-        qe.points as entryPoints,
-        qs.score as score,
-        qe.realPlayer_id as playerId,
-        qe.firstName as firstName,
-        qe.lastName as lastName,
-        qe.country_id as countryId,
-        qe.country as country,
-        qs.machine_id as machineId,
-        qs.game_id as gameId,
-        qs.gameAcronym as gameAcronym,
-        ';
-      $query .= ($groupBy) ? '
-        max(qs.score) as maxScore,
-        max(qs.points) as maxPoints,
-        min(qs.place) as bestPlace,
-      ' : '';
-      $query .='
-        qs.game as game
-      from qualScore qs
-        left join qualEntry qe
-          on qs.qualEntry_id = qe.id
-      where qe.player_id = '.$this->id.'
-        and qe.tournamentDivision_id = '.$tournament.' ';
-      $query .= ($groupBy) ? $groupBy : '';
-      $sth = $dbh->query($query);
-      while ($obj = $sth->fetchObject('entry')) {
-        $objs[] = $obj;
+    public static function validateName($name, $obj = FALSE) {
+      if (!$name) {
+        return validated(TRUE, 'Nothing to validate.', $obj);
       }
-      return $objs;
+      if (!preg_match('/^[a-zA-ZåäöÅÄÖüÛïÎëÊÿŸçßéÉæøÆØáÁóÓàÀČčŁłĳŠšŮ0-9 \-_#\$]{3,32}$/', $name)) {
+        return validated(FALSE, 'The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores.', $obj);
+      } else {
+        $team = team('name', $name);
+        if ($team) {
+          $currentTeam = team('current');
+          if ($team->id == $currentTeam->id) {
+            return validated(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
+          } else {
+            return validated(FALSE, 'That name is already taken.', $obj);
+          }
+        }
+      }
+      return validated(TRUE, 'That name is up for grabs.', $obj);
     }
 
-    
   }
+
 ?>

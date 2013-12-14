@@ -1,63 +1,115 @@
-div #topper {
+#logoutFooter {
+  border-top: 1px solid #ddd;
+}
+
+#loginFooter {
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+}
+
+#clearer {
+  clear: both;
+  padding-bottom: 15px;
+}
+
+#imageUpload {
+  height: 1px;
+  width: 1px;
   position: relative;
-  width: 100%;
-  height: 170px;
+  z-index: -1;
 }
 
-div #topperLeft {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 170px;
-  height: 170px;
-  background: url('../images/topperLeft.png') no-repeat left top;
+#currency_combobox {
+  width: 50px;
 }
 
-div #topperRight {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 200px;
-  height: 170px;
-  background: url('../images/topperRight.png') no-repeat right top;
+#payPalForm {
+  margin-right: 15px;
 }
 
-div #topperBottom {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 95%;
-  height: 119px;
-  background: url('../images/topperBottom.png') repeat-x left bottom;
+.photoPopup {
+  display: none;
+  max-width: 1000px;
+  max-height: 800px;
 }
 
-img.icon {
+span.currency {
+  width: 60px;
+  text-align: right;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+span.sum {
+  border-top: 1px #4F4F4F solid;
+} 
+
+.preview {
+  max-width: 450px;
+  max-heigth: 900px;
+}
+
+.label {
+  font-weight: bold;
+  font-size: 12px;
+  display: inline-block;
+  width: 130px;
+  height: 20px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+label.short {
+  width: 92px;
+}
+
+input[type=text], input[type=password] { 
+  color: #4F4F4F;
+  width: 210px;
+  height: 20px;
+  border: 1px solid #B6B6B6;
+  margin: 0;
+  background: #eeded url(images/bg_fallback.png) 0 0 repeat-x;
+  background: -moz-linear-gradient(top, #ededed 0%, #c4c4c4 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ededed), color-stop(100%,#c4c4c4));
+  background: -webkit-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: -o-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: -ms-linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  background: linear-gradient(top, #ededed 0%,#c4c4c4 100%);
+  -webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  -moz-box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+  box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
+}
+
+input.short {
+  width: 86px;
+}
+
+div.noInput {
+  padding-top: 5px;
+}
+
+span.short {
+  display: inline-block;
+  width: 102px;
+}
+
+.addIcon {
+  cursor: pointer;
   position: relative;
   top: 3px;
-  height: 1em;
-  cursor: pointer;
-  margin-left: 5px;
+  left: 40px;
 }
 
-.link {
+.closeIcon {
   cursor: pointer;
-  text-style: underline;
-}
-
-img.textIcon {
   position: relative;
-  height: 1em;
+  top: 3px;
+  left: 2px;
+}
+
+.icon {
   cursor: pointer;
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-.invisible {
-  display: none;
-}
-
-.comment {
-  font-style: italic;
 }
 
 .italic {
@@ -68,227 +120,23 @@ img.textIcon {
   font-weight: bold;  
 }
 
-#ifpaIdTextDiv {
-  float: left;
-  margin-right: 20px;
-}
-
-#ifpaButton {
-  float: left;
-  margin-right: 20px;
-}
-
-#ifpaButtonDiv {
-  display: none;
-}
-
-#newButtonDiv {
-  display: none;
-}
-
-#newButton {
-  float: left;
-  margin-right: 20px;
-}
-
-#noHits {
-  display: none;
-}
-
-#newData {
-  clear: left;
-}
-
-#noHits {
-  display: block;
-  clear: left;
-}
-
-#ifpaRegResults {
-  margin-top: 20px;
-}
-
-li {
-  display: block;
-}
-
-#usernameTextSpan {
-  font-style: italic;
-}
-
-.mandatory {
-  background-color: #FFFF00 !important;
-}
-
-.error {
-  color: #FF0000;
-  font-style: bold;
-}
-
-.errorSpan {
-  font-size: 75%;
-  margin-left: 10px;
-}
-
-.errorTd {
-  background-color: #FF0000;
-}
-
-.ui-datepicker {
-  z-index: 9999; 
-}
-
-.preview {
-  width: 400px;
-}
-
-#imageUpload {
-  width: 1px;
-  height: 1px;
-}
-
-.leftInfoDiv {
+.left {
   float: left;
 }
 
-.periodTable {
-  float: left;
-}
-
-.qualGroupTable {
-  float: left;
-  padding-right: 20px;
-}
-  
-.leftInfoDiv td {
-  padding-right: 10px;
-}
-
-.objectPhoto {
-  max-width: 400px;
-  margin: 10px;
-}
-
-.labelTd {
-  padding-right: 10px;
-}
-
-.sumTr {
-  border-top: 1px solid black;
-}
-
-.sumTd {
-  border-top: 1px solid black;
-}
-
-.costTd {
-  padding-left: 20px;
-}
-
-.selectTd {
-  padding-right: 10px;
-}
-
-select {
-  max-width: 250px;
-}
-
-#loggedInOut {
-  padding-top: 20px;
-  clear: both;
-}
-
-#payPalImg {
-  margin-top: 20px;
-}
-
-.toolTip {
-  display: none;
-  position: absolute;
-  background-color: #FFFFFF;
-  border: solid 1px black;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-}
-
-.allocEdit {
-  display: none;
-  position: absolute;
-  background-color: #FFFFFF;
-  border: solid 1px black;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-top: 3px;
-  padding-bottom: 3px;
-  z-index: 1;
-}
-
-li {
-  display: list-item;
-}
-
-#paymentMethodTable {
-  margin-top: 20px;
-}
-
-.yellow {
-  background-color: yellow;
-}
-
-.green {
-  background-color: green;
-}
-
-.red {
-  color: red;
-}
-
-#imageForm {
+.right {
   float: right;
-}
-
-input[type=text], input[type=password] {
-  color: #000000;
-  padding: 0px;
-  font-size: 12px;
-  line-height: 12px;
-}
-
-.curCalc {
-  width: 5em;
-  margin: 10px;
-}
-
-.emailTd {
-  width: 100px;
-  max-width: 100px;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .nowrap {
   white-space: nowrap;
 }
 
-.big {
-  font-size: 125%;
-  font-weight: bold;
+.inlineBlock {
+  display: inline-block;
 }
 
-#arriveMenu {
- float: left; 
+.hidden {
+  display: none;
 }
 
-#tabs {
-  clear: both;
-}
-
-.tabs {
-  padding-left: 10px;
-  padding-right: 10px;
-  padding-bottom: 5px;
-  padding-top: 5px;
-  float: left;
-}

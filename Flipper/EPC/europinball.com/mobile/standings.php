@@ -39,13 +39,13 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="https://www.europinball.org/mobile/standings.php">EPC 2013</a>
+          <a class="navbar-brand" href="https://test.europinball.org/mobile/standings.php">EPC 2013</a>
         </div>
         <div class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="https://www.europinball.org/mobile/standings.php">Main</a></li>
-            <li><a href="https://www.europinball.org/mobile/standings.php?classics=1">Classics</a></li>
-            <li><a href="https://www.europinball.org/mobile/standings.php?games=1">Games</a></li>
+            <li class="active"><a href="https://test.europinball.org/mobile/standings.php">Main</a></li>
+            <li><a href="https://test.europinball.org/mobile/standings.php?classics=1">Classics</a></li>
+            <li><a href="https://test.europinball.org/mobile/standings.php?games=1">Games</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
