@@ -114,11 +114,15 @@
 
     protected function label($label) {
       if (!isset($label)) {
+        debug('NOTSET');
         return $this->accessories['label'];
       } else if (is($label)) {
+        debug('IS');
         if ($label === TRUE) {
+        debug('TRUE');
           $this->accessories['label'] = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
         } else {
+        debug('!TRUE');
           $this->accessories['label'] = (isHtml($label)) ? $label : new label($label, $this->params['name']);
         }
         return isHtml($this->accessories['label']);

@@ -9,7 +9,6 @@
       $this->contentParam = 'src';
       $this->selfClose = TRUE;
       $this->inline = TRUE;
-      debug($this->crlf, 'CRLF'); 
       parent::__construct('img', $src, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
