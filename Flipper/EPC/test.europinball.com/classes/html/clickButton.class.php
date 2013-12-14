@@ -104,6 +104,7 @@
         return $this->accessories['form'];
       } else if (is($form)) {
         if ($form === TRUE) {
+          debug($this->params['id'], "CLICKID");
           $this->accessories['form'] = new form($this->params['id'].'Form', $url);
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
