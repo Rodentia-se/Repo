@@ -15,16 +15,16 @@
       }
       if ($params['id'] && $this->form && $this->form->id) {
         $this->form->inline = TRUE;
+        $this->form->hide();
       }
       if ($script == TRUE) {
         $this->script = new click('#'.$params['id'], '$("#'.$this->form->id.'").submit();', static::$indents);
-//        $this->script = new jquery('#'.$params['id'], 'click', 'function', '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
       } else if (is($script)) {
         $this->script = (isHtml($script)) ? $script : new click($script);
       }
-      parent::__construct($value, $name, $params);
       $this->inline = true;
-      $this->settings = mergeToArray($this->$settings, array('insideForm' => FALSE));
+      $this->settings['insideForm'] = TRUE;
+      parent::__construct($value, $name, $params);
     }
 //    public function __construct($selector = NULL, $code = NULL, $indents = 0) {
 //    form public function __construct($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {

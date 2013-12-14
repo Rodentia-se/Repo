@@ -7,9 +7,8 @@
       $params['rel'] = ($params['rel']) ? $params['rel'] : 'stylesheet';
       $file = ($file) ? $file : $params['href'];
       $this->contentParam = 'href';
-      parent::__construct('link', $file, $params);
-      $this->block = TRUE;
       $this->selfClose = TRUE;
+      parent::__construct('link', $file, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     

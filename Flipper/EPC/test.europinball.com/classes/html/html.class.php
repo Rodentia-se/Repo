@@ -10,26 +10,23 @@
     protected $footers = array();
     protected $classes = array();
     protected $css = array();
-    protected $settings = array();
-    public static $selfClosers = array('input', 'img', 'hr', 'br', 'meta', 'link');
-    public static $noCrlfs = array('img', 'span');
-    public static $valuers = array('input');
-    public static $srcrs = array('img', 'script');
+    protected $settings = array(
+      'display' => 'block',
+      'hidden' => FALSE,
+      'escape' => TRUE,
+      'entities' => FALSE
+    );
     public static $indenter = '  ';
     public static $indents = 0;
     public $localIndents;
     public $element = 'span';
-    public $selfClose;
-    public $crlf;
-    public $contentParam;
+    public $selfClose = FALSE;
+    public $crlf = "\n";
+    public $contentParam = FALSE;
     
     public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
       $this->element = strtolower($element);
-      $this->selfClose = (isset($this->selfClose)) ? $this->selfClose : ((in_array($this->element, static::$selfClosers)) ? TRUE : FALSE);
-      $this->crlf = (isset($this->crlf)) ? $this->crlf : ((in_array($this->element, static::$noCrlfs)) ? NULL : "\n");
-      $this->contentParam = (isset($this->contentParam)) ? $this->contentParam : ((in_array($this->element, static::$valuers)) ? 'value' : ((in_array($this->element, static::$srcrs)) ? 'src' : NULL));
       static::$indents = $indents;
-      $this->settings = array('display' => 'block', 'hidden' => FALSE, 'escape' => TRUE, 'entities' => FALSE);
       if (is($id)) {
         $params['id'] = $id;
       }
@@ -262,7 +259,7 @@
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
-      if (!in_array($this->element, static::$selfClosers)) {
+      if (!$this->selfClose)) {
         if(is($index)) {
           $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape'], $this->settings['entities']) : $this->$section[$index];
         } else {

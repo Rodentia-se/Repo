@@ -8,20 +8,21 @@
       if ($name) {
         $params['name'] = $name;
       }
-      if ($type) {
+      $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
+      if ($type && !($this instanceof select)) {
         $params['type'] = $type;
       }
-      if ($label === TRUE) {
-        $this->label = new label(ucfirst($name), $name, $name.'Label');
-      } else if (is($label)) {
-        $this->label = (isHtml($label)) ? $label : new label($label, $name);
-      }
+      $this->label($label);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
-      parent::__construct('input', $value, $params, $name, $class, $css);
-      $this->settings['insideLabel'] = FALSE;
-      $this->settings['beforeLabel'] = FALSE;
-      $this->selfClose = true;
-      $this->block = true;
+      $this->settings['insideLabel'] = ($this instanceof check) ? TRUE : FALSE;
+      $this->settings['beforeLabel'] = ($this instanceof check) ? TRUE : FALSE;
+      if ($this instanceof select) {
+        $this->selfClose = FALSE;
+      } else {
+        $this->selfClose = TRUE;
+        $this->contentParam = 'value';
+      }
+      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
@@ -33,6 +34,9 @@
         break;
         case 'previous':
           return $this->params['data-previous'];
+        break;
+        case 'label':
+          return $this->$prop();
         break;
         default:
           return parent::__get($prop);
@@ -62,6 +66,9 @@
         case 'previous':
           $this->params['data-previous'] = $value;
         break;
+        case 'label':
+          $this->$prop($value);
+        break;
         default:
           parent::__set($prop, $value);
         break;
@@ -76,6 +83,9 @@
         break;
         case 'previous':
           return isset($this->params['data-previous']);
+        break;
+        case 'label':
+          return ($this->$prop) ? TRUE : FALSE;
         break;
         default:
           return parent::__isset($prop);
@@ -92,12 +102,31 @@
         case 'previous':
           unset($this->params['data-previous']);
         break;
+        case 'label':
+          $this->$prop(FALSE);
+        break;
         default:
           parent::__unset($prop);
         break;
       }
     }
 
+    protected function label($label) {
+      if (!isset($label)) {
+        return $this->label;
+      } else if (is($label)) {
+        if ($label === TRUE) {
+          $this->label = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
+        } else {
+          $this->label = (isHtml($label)) ? $label : new label($label, $this->params['name']);
+        }
+        return isHtml($this->label);
+      } else {
+        $this->label = NULL;
+        return TRUE;
+      }
+    }
+    
     public function getHtml($label = TRUE, $input = TRUE) {
       if ($input) {
         if ($label && $this->label) {

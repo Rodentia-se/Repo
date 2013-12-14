@@ -33,9 +33,8 @@
           $this->contents = (is_array($contents)) ? $contents : array($contents);
         break;
       }
-      parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;
-      debug($this);
+      parent::__construct(NULL, NULL, $indents);
     }
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
