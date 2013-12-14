@@ -7,6 +7,7 @@
       $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       $this->contentParam = 'src';
       $this->settings['type'] == 'file';
+      $this->inlineBlock = TRUE;
       parent::__construct($file, $params);
     }
 //    public function __construct($source = NULL, array $params = NULL) {

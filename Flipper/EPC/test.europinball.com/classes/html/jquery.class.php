@@ -38,6 +38,38 @@
     }
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
+
+    public function __get($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        return $this->jquery[$prop];
+      } else {
+        return parent::__get($prop);
+      }
+    }
+
+    public function __set($prop, $value) {
+      if (array_key_exists($prop, $this->jquery)) {
+        $this->jquery[$prop] = $value;
+      } else {
+        parent::__set($prop, $value);
+      }
+    }
+    
+    public function __isset($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        return isset($this->jquery[$prop]);
+      } else {
+        return parent::__isset($prop);
+      }
+    }
+
+    public function __unset($prop) {
+      if (array_key_exists($prop, $this->jquery)) {
+        unset($this->jquery[$prop]);
+      } else {
+        parent::__unset($prop);
+      }
+    }
     
     protected function getContent($index = NULL, $string = TRUE) {
       if (is($index)) {
@@ -85,39 +117,6 @@
           $code = parent::getContent($index, $string);
         }
         return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').$code.(($this->settings['onReady']) ? "\n});" : ''), $options));
-      }
-    }
-
-
-    public function __get($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        return $this->jquery[$prop];
-      } else {
-        return parent::__get($prop);
-      }
-    }
-
-    public function __set($prop, $value) {
-      if (array_key_exists($prop, $this->jquery)) {
-        $this->jquery[$prop] = $value;
-      } else {
-        parent::__set($prop, $value);
-      }
-    }
-    
-    public function __isset($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        return isset($this->jquery[$prop]);
-      } else {
-        return parent::__isset($prop);
-      }
-    }
-
-    public function __unset($prop) {
-      if (array_key_exists($prop, $this->jquery)) {
-        unset($this->jquery[$prop]);
-      } else {
-        parent::__unset($prop);
       }
     }
 
