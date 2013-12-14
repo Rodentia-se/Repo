@@ -19,6 +19,7 @@
     );
     public static $indenter = '  ';
     public static $indents = 0;
+    public static $debugCounter = 0;
     public $localIndents;
     public $element = 'span';
     public $selfClose = FALSE;
@@ -780,7 +781,7 @@
     }
     
     public function getHtml() {
-      debug(get_class($this));
+     $this->debug(get_class($this), 'CLASS', NULL, 5);
      if ($this->crlf) {
         $indents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
         while ($i < $indents) {
@@ -816,6 +817,14 @@
 
     public function __toString() {
       return $this->getHtml();
+    }
+    
+    protected function debug($text, $title, $die, $stop) {
+      static::$debugCounter++;
+      if ($stop && static::$debugCounter > $stop) {
+        $die = TRUE;
+      }
+      debug($obj, $title, $die);
     }
     
   }
