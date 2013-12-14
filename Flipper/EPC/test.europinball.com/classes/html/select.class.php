@@ -135,9 +135,9 @@
     
     function selectOption($selected = NULL) {
       $chosen = FALSE;
-        debug($this->name.': '.$selected, "SELINASEL");
-      if ($this->contents && count($this->contents) > 0) {
+      if ($this->contents) {
         foreach ($this->contents as $key => $option) {
+        debug($this->name.': '.$selected.' - '.$option->value, "SELINASEL");
           if (!$chosen && $selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
             $chosen = TRUE;
