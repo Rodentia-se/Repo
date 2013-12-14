@@ -5,7 +5,7 @@
     protected $form;
     protected $script;
     
-    public function __construct($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script == TRUE, array $params = NULL) {
+    public function __construct($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL) {
       $params['name'] = ($name) ? $name : $value;
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       if ($form === TRUE) {
