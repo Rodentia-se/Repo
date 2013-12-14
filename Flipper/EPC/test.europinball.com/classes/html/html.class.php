@@ -640,7 +640,7 @@
       return $element;
     }
 
-    public function addLi($contents, $id = NULL, $class = NULL, array $params = NULL) {
+    public function addLi($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new li($contents, $id, $class, $params);
       $this->addContent($element);
       return $element;
@@ -682,14 +682,14 @@
       return $element;
     }
 
-    public function addCheckbox($name = NULL, $value = NULL, array $params = NULL) {
-      $element = new checkbox($name, $value, $params);
+    public function addCheckbox($name = NULL, $checked = FALSE, array $params = NULL) {
+      $element = new checkbox($name, $checked, $params);
       $this->addContent($element);
       return $element;
     }
 
-    public function addRadio($name = NULL, $value = 'yes', array $params = NULL) {
-      $element = new radio($name, $value, $params);
+    public function addRadio($name = NULL, $value = NULL, $checked = FALSE, array $params = NULL) {
+      $element = new radio($name, $value, $checked, $params);
       $this->addContent($element);
       return $element;
     }

@@ -49,7 +49,6 @@
   $tooltip = $div4->addTooltip('Hej!');
   $tooltip = $div4->addTooltip('Hej!', FALSE);
   $tooltip = $div4->addTooltip('Hej!', 'update');
-  debug($tooltip);
   $img->src = 'a_src';
   $div4->addElement($js);
   $div4->addElement($input2);
@@ -60,14 +59,50 @@
   $div4->addElement($input2);
   $div3->addSelect('selina', array(0 => 'Choose...', 1 => 'Huff'), 1);
   $el->indents = 5;
-  echo 'HÄRSTARTARDET';
-  $duff = true;
-      if ($duff == 'hej') {
-        $duff = false;
-      } else {
-        $duff = $duff;
-      }
-  var_dump($duff);  
+$div3->addDiv('ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addSpan('Some content', 'ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addImg('http://www.src', 'titel', array('sampleparam' => 'huff'));
+$div3->addLink('http://www.site', 'this is a länk', array('sampleparam' => 'huff'));
+$div3->addParagraph('Some content', 'ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addH1('Some content', array('sampleparam' => 'huff'));
+$div3->addH2('Some content', array('sampleparam' => 'huff'));
+$div3->addH3('Some content', array('sampleparam' => 'huff'));
+$div3->addH4('Some content', array('sampleparam' => 'huff'));
+$div3->addBr('ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addHr('ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addUl('ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addOl('ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addLi('Lista', 'ID', 'klasses', array('sampleparam' => 'huff'));
+$div3->addForm('ID', 'http://www.action', 'GET', array('sampleparam' => 'huff'));
+$div3->addLabel('Some content', 'forName', 'ID', 'klasses', array('sampleparam' => 'huff'));
+$sel = $div3->addSelect('Namnet', NULL, NULL, TRUE, array('sampleparam' => 'huff'));
+$opt = $sel->addOption('Välj mig!', 'vald', 'vald', array('sampleparam' => 'huff'));
+$sel2 = $div3->addSelect('Namnet', $opt, $opt, TRUE, array('sampleparam' => 'huff'));
+$opt2 = $sel->addOption('Välj inte mig!', 'ejvald', FALSE, array('sampleparam' => 'huff'));
+$opts = array($opt, $opt2);
+$div3->addSelect('Namnet', $opts, $opt2, FALSE, array('sampleparam' => 'huff'));
+$div3->addInput('Namnet', 'Värdet!', 'hidden', NULL, array('sampleparam' => 'huff'));
+$div3->addInput('Namnet', 'Värdet!', NULL, TRUE, array('sampleparam' => 'huff'));
+$div3->addInput('Namnet', 'Värdet!', 'text', 'Läjbel', array('sampleparam' => 'huff'));
+$div3->addHidden('Namnet', 'No', array('sampleparam' => 'huff'));
+$div3->addCheckbox('Namnet', TRUE, array('sampleparam' => 'huff'));
+$div3->addRadio('Namnet', 'yes', TRUE, array('sampleparam' => 'huff'));
+$div3->addRadio('Namnet', 'no', FALSE, array('sampleparam' => 'huff'));
+$div3->addButton('Knapp!', 'Namnet', array('sampleparam' => 'huff'));
+$div3->addClickButton('Klicka knapp!', 'Namnet', 'http://www.click', TRUE, TRUE, array('sampleparam' => 'huff'));
+$div3->addScript('script.js', array('sampleparam' => 'huff'));
+$div3->addScript('var kod = true; echo "Vi kodar!"; var merkod = false;', array('sampleparam' => 'huff'));
+$div3->addScriptFile('JS.fil', array('sampleparam' => 'huff'));
+$div3->addScriptCode('var kod = true; echo "Vi kodar!"; var merkod = false;', array('sampleparam' => 'huff'), 15);
+$div3->addTooltip('Some content', FALSE);
+$div3->addTooltip('More content', TRUE);
+$div3->addTooltip('Most content', 'update');
+$div3->addTooltip('Most content', 'new');
+$div3->addClick();
+$div3->addClick('var click = "klack";');
+$div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
+
+      echo 'HÄRSTARTARDET';
   echo($el);
 /*
 
@@ -128,9 +163,9 @@
   $page = new page('Test', true);
 
   $login = $page->reqLogin('Hej!', true);
-  if ($login) {
+  if ($login);
     $page->content .= 'Logged in!';
-  } else {
+  } else;
     $page->content .= 'NOT logged in!';
   }
   $page->submit(FALSE, TRUE);
@@ -138,7 +173,7 @@
       $division = division('active');
   debug($division);
 echo 'hej';
-foreach($objs as $obj) {
+foreach($objs as $obj);
 /*
   echo '<br><br>';
   echo ($obj->id) ? $obj->id.': '.$obj->firstName.' '.$obj->lastName : 'No ID';  

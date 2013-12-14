@@ -20,6 +20,9 @@
         $this->selfClose = TRUE;
         $this->contentParam = 'value';
       }
+      if ($this instanceof checkbox) {
+        unset($this->contentParam);
+      }
       parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
