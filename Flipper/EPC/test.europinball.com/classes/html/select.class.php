@@ -135,6 +135,10 @@
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
 debug($option, 'CONTENT');
+debug((($option == $selected) ? 'true' : 'false'), 'OPTSEL');
+debug((($option->value == $selected) ? 'true' : 'false'), 'VALSEL');
+debug((($option->getContent() == $selected) ? 'true' : 'false'), 'GETSEL');
+debug((($key == $selected) ? 'true' : 'false'), 'KEYSEL');
           if ($selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected)) {
             $option->selected = TRUE;
           } else {
