@@ -33,7 +33,7 @@
       $rows = array();
       $page->startDiv($division->shortName."PlayersDiv");
         if (count($players) > 0) {
-          if ($division->team) {
+          if ($division->team) { 
             if ($division->national) {
               $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
             } else {
