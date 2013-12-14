@@ -7,11 +7,6 @@
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       $this->form($form, $url);
       $this->script($script);
-      if ($script == TRUE) {
-        $this->accessories['click'] = new click('#'.$params['id'], '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
-      } else if (is($script)) {
-        $this->accessories['click'] = (isHtml($script)) ? $script : new click($script);
-      }
       $this->inline = true;
       $this->settings['insideForm'] = TRUE;
       parent::__construct($value, $name, $params);
@@ -136,6 +131,9 @@
         return $this->accessories['click'];
       } else if (is($script)) {
         if ($script === TRUE) {
+          if (!$this->form) {
+            $this->form(TRUE);
+          }
           $this->accessories['click'] = new click('#'.$this->params['id'], '$("#'.$this->accessories['form']->id.'").submit();', static::$indents);
         } else {
           $this->accessories['click'] = (isHtml($script)) ? $script : new click($script);
@@ -147,7 +145,7 @@
       }
     }
     
-    public function getHtml($form = TRUE, $button = TRUE, $script = FALSE) {
+    public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
       if ($button) {
         if ($form && $this->accessories['form']) {
           if ($this->insideForm) {
