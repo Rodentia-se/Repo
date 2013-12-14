@@ -15,11 +15,11 @@
         case 'command':
           if (is_array($contents)) {
             foreach ($contents as $command => $param) {
-              $this->jquery->command[] = $command;
+              $this->jquery['command'][] = $command;
               $this->contents[] = $param;
             }
           } else {
-            $this->jquery->command[] = $contents;
+            $this->jquery['command'][] = $contents;
             $this->contents[] = FALSE;
           }
         break;
@@ -56,8 +56,8 @@
           $code .= '.'.$this->jquery['tool']."(function() {\n".$contents."\n});";
         } else if ($this->jquery['type'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
-          if ($this->jquery['settings']) {
-            foreach ($this->jquery['settings'] as $prop => $val) {
+          if ($this->jquery['propr']) {
+            foreach ($this->jquery['props'] as $prop => $val) {
               if (is_string($val) && substr($val, 0, 8) != 'function') {
                 $delmiter = '"';
               } else {
@@ -73,7 +73,7 @@
             $code .= $this->jquery['contentProp'].': "'.$contents."\"\n";
           }
           $code = rtrim($code, ',');
-        } else if ($this->jquery['command']) {
+        } else if ($this->jquery['type'] == 'command') {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
               $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
