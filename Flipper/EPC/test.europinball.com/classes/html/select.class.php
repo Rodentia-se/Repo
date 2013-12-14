@@ -145,7 +145,7 @@
         }
         if (!$chosen) {
           foreach ($this->contents as $key => $option) {
-            if (!$chosen && $ley == $selected) {
+            if (!$chosen && $key == $selected) {
               $option->selected = TRUE;
               $chosen = TRUE;
             } else {
