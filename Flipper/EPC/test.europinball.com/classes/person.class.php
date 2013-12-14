@@ -28,6 +28,7 @@
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
         ifnull(o.paid, 0) as paid,
+	o.payDate as payDate,
         o.comment as comment,
         o.nonce as nonce,
         o.username as username
