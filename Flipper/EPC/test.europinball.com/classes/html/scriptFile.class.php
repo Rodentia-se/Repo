@@ -4,7 +4,7 @@
     
     public function __construct($file = NULL, array $params = NULL) {
       $file = ($file) ? $file : $params['src'];
-      $params['type'] = ($params['type') ? $params['type'] : 'text/javascript';
+      $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       $this->contentParam = 'src';
       $this->settings['type'] == 'file';
       parent::__construct($file, $params);
