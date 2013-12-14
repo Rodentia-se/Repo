@@ -115,5 +115,5 @@
   }
   
   $page->addContent($content);
-  $page-submit();
+  $page->submit();
 ?>
