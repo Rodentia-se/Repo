@@ -113,6 +113,8 @@ debug($options, 'OPTION');
             } else {
               $option = new option($options);
             }
+          } else {
+            $option = $options;
           }
           if (isHtml($option)) {
         debug('HTML');
