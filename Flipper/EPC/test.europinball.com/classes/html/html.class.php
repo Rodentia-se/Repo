@@ -673,7 +673,7 @@
       return $html;
     }
     
-    protected function getHtml() {
+    public function getHtml() {
       if ($this->crlf) {
         $indents = (is($this->localIndents)) ? $this->localIndents : static::$indents;
         while ($i < $indents) {
