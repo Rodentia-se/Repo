@@ -2,8 +2,6 @@
 
   class input extends html {
     
-    protected $label;
-
     public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
       if ($name) {
         $params['name'] = $name;
@@ -49,18 +47,18 @@
         case 'insideLabel':
           $this->settings['insideLabel'] = ($value);
           if ($value) {
-            if (!$this->label) {
-              $this->label = new label(ucfirst($name), $name.'Label');
+            if (!$this->accessories['label']) {
+              $this->accessories['label'] = new label(ucfirst($name), $name.'Label');
             }
-            $this->label->addContent($this, $this, $this->settings['beforeLabel']);
+            $this->accessories['label']->addContent($this, $this, $this->settings['beforeLabel']);
           } else {
-            $this->label->delContent($this);
+            $this->accessories['label']->delContent($this);
           }
         break;
         case 'beforeLabel':
           $this->settings['beforeLabel'] = ($value);
           if ($this->settings['insideLabel']) {
-            $this->label->addContent($this, $this, ($value));
+            $this->accessories['label']->addContent($this, $this, ($value));
           }
         break;
         case 'previous':
@@ -113,38 +111,38 @@
 
     protected function label($label) {
       if (!isset($label)) {
-        return $this->label;
+        return $this->accessories['label'];
       } else if (is($label)) {
         if ($label === TRUE) {
-          $this->label = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
+          $this->accessories['label'] = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
         } else {
-          $this->label = (isHtml($label)) ? $label : new label($label, $this->params['name']);
+          $this->accessories['label'] = (isHtml($label)) ? $label : new label($label, $this->params['name']);
         }
-        return isHtml($this->label);
+        return isHtml($this->accessories['label']);
       } else {
-        $this->label = NULL;
+        $this->accessories['label'] = NULL;
         return TRUE;
       }
     }
     
     public function getHtml($label = TRUE, $input = TRUE) {
       if ($input) {
-        if ($label && $this->label) {
+        if ($label && $this->accessories['label']) {
           if ($this->insideLabel) {
-            $this->label->addContent($this, $this, $this->beforeLabel);
-            return $this->label->getHtml();
+            $this->accessories['label']->addContent($this, $this, $this->beforeLabel);
+            return $this->accessories['label']->getHtml();
           } else {
             if ($this->beforeLabel) {
-              return parent::getHtml().$this->label->getHtml();
+              return parent::getHtml().$this->accessories['label']->getHtml();
             } else {
-              return $this->label->getHtml().parent::getHtml();
+              return $this->accessories['label']->getHtml().parent::getHtml();
             }
           }
         } else {
           return parent::getHtml();
         }
       } else {
-        return ($label && $this->label) ? $this->label->getHtml() : NULL;
+        return ($label && $this->accessories['label']) ? $this->accessories['label']->getHtml() : NULL;
       }
     }
     
