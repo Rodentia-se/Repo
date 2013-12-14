@@ -146,7 +146,9 @@
         }
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
-          $tshirtDiv->addParagraph('You will soon be able to order this T-shirt:');
+          $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
+          $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
+          $costSpan->addJquery('html', 'command', array('parseInt($(this).html().toMoney(0, ".", " ", "", format))' => FALSE));
           $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
         }
