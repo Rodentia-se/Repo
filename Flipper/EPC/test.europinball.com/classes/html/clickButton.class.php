@@ -118,10 +118,11 @@
       } else if (is($form)) {
         if ($form === TRUE) {
           $this->accessories['form'] = new form($params['id'].'Form', $url);
+          debug($this->accessories['form'], 'TRUE');
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
+          debug($this->accessories['form']);
         }
-        debug($this->accessories['form']);
         $this->accessories['form']->inline = TRUE;
         $this->accessories['form']->hide();
         return isHtml($this->accessories['form']);
