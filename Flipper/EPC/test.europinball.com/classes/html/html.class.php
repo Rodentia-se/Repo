@@ -34,7 +34,7 @@
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
-        $this->contentCrlf = (in_array($this->element, array('a', 'link', 'h1', 'h2', 'h3', 'h4', 'hr', 'br', 'li', 'input', 'img', 'span', 'label', 'option'))) ? NULL : "\n";
+        $this->contentCrlf = (in_array($this->element, array('a', 'link', 'p', 'h1', 'h2', 'h3', 'h4', 'hr', 'br', 'li', 'input', 'img', 'span', 'label', 'option'))) ? NULL : "\n";
         $this->settings['display'] = (in_array($this->element, array('img', 'span', 'label'))) ? 'inline' : 'block';
         if (in_array($this->element, array('img', 'script'))) {
           $this->contentParam = 'src';
