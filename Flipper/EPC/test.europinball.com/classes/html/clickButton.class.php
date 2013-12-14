@@ -127,25 +127,25 @@
     
     protected function script($script) {
       if (!isset($script)) {
-        return $this->accessories['click'];
+        return $this->accessories['script'];
       } else if (is($script)) {
         if ($script === TRUE) {
           if (!$this->form) {
             $this->form(TRUE);
           }
-          $this->accessories['click'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
+          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
         } else {
-          $this->accessories['click'] = (isHtml($script)) ? $script : new click($script);
+          $this->accessories['script'] = (isHtml($script)) ? $script : new click($script);
         }
-        return isHtml($this->accessories['click']);
+        return isHtml($this->accessories['script']);
       } else {
-        $this->accessories['click'] = NULL;
+        $this->accessories['script'] = NULL;
         return TRUE;
       }
     }
     
     public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
-      debug($this->accessories['click']);
+      debug($this->accessories['script']);
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
