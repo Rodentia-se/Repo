@@ -96,8 +96,12 @@
         if (is_array($options) && count($options) > 1) {
           debug('ISARR');
           $return = TRUE;
-          foreach($options as $key => $option) { 
-            $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
+          foreach($options as $key => $option) {
+            if (isHtml($option)) {
+              $result = $this->addOptions($option, $selected, FALSE, $index);
+            } else {
+              $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
+            }
             if (!$result) {
               $return = FALSE;
             }
