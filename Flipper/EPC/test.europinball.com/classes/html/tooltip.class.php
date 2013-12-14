@@ -4,6 +4,7 @@
     
     public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
       $new = ($new == 'update') ? FALSE : $new;
+      debug($new, 'NEW');
       if ($new) {
         $type = 'object';
         $props = array(
