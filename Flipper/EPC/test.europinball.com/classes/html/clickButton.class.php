@@ -7,6 +7,7 @@
       $params['id'] = ($params['id']) ? $params['id'] : preg_replace('/[^a-zA-Z0-9]/', '', $params['name']);
       $this->form($form, $url);
       $this->script($script);
+      $this->script = "Hej";
       $this->inline = true;
       $this->settings['insideForm'] = TRUE;
       parent::__construct($value, $name, $params);
