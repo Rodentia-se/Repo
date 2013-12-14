@@ -147,18 +147,18 @@
     
     public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
       if ($button) {
-        if ($form && $this->accessories['form']) {
+        if ($form && $this->form]) {
           if ($this->insideForm) {
-            $this->accessories['form']->addContent($this, $this);
-            return ($script) ? $this->accessories['form']->getHtml().$this->accessories['click']->getHtml() : $this->accessories['form']->getHtml();
+            $this-form->addContent($this, $this);
+            return ($script) ? $this->form->getHtml().$this->accessories['click']->getHtml() : $this->form->getHtml();
           } else {
-            return ($script) ? $this->accessories['form']->getHtml().parent::getHtml().$this->accessories['click']->getHtml() : $this->accessories['form']->getHtml().parent::getHtml();
+            return ($script) ? $this->form->getHtml().parent::getHtml().$this->accessories['click']->getHtml() : $this->form]->getHtml().parent::getHtml();
           }
         } else {
           return parent::getHtml();
         }
       } else {
-        return ($form && $this->accessories['form']) ? (($script && $this->accessories['click']) ? $this->accessories['form']->getHtml().$this->accessories['click']->getHtml() : $this->accessories['form']->getHtml()) : NULL;
+        return ($form && $this->form) ? (($script && $this->form) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml()) : NULL;
       }
     }
     
