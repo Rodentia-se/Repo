@@ -56,7 +56,7 @@
           $code .= '.'.$this->jquery['tool']."(function() {\n".$contents."\n});";
         } else if ($this->jquery['type'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
-          if ($this->jquery['propr']) {
+          if ($this->jquery['props']) {
             foreach ($this->jquery['props'] as $prop => $val) {
               if (is_string($val) && substr($val, 0, 8) != 'function') {
                 $delmiter = '"';
