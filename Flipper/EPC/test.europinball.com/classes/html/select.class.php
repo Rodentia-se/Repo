@@ -3,7 +3,7 @@
   class select extends input {
     
     public function __construct($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
-      $this->addOptions($options, $selected, TRUE);
+      $this->addOptions($options, $selected);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $selected);
       parent::__construct($name, NULL, 'select', $label, $params);
     }
