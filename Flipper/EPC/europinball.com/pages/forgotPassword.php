@@ -30,7 +30,7 @@
     $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
     $page->addForm('log out', array('action' => 'logout'));
   } else {
-    if ($nonce) {
+    if ($reqNonce) {
       $person = getPersonFromNonce($reqNonce);
       if ($person) {
         if ($person->valid) {
