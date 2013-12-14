@@ -34,7 +34,7 @@
   $div = $el->addDiv('newDiv', 'newDivKlass', array('title' => 'newDivTitle'));
   $h = new hidden('action', 'login');
   $b = new clickButton('Click me!');
-  echo($b->script));
+  echo($b->script);
   $el->addContent($h);
   $el->addContent($b);
   $form = new form('Form', NULL);
