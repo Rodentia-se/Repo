@@ -91,7 +91,7 @@
       }
       if ($options !== NULL) {
         if (is_array($options) && count($options > 1)) {
-          debug($options, 'OPTIONS');
+          debug($options, 'OPTIONS', TRUE);
           $return = TRUE;
           foreach($options as $key => $option) {
             $result = $this->addOptions(array($key, $option), $selected, FALSE, $index);
