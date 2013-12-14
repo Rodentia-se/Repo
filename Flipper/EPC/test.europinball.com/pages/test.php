@@ -35,8 +35,8 @@
   $h = new hidden('action', 'login');
   $b = new clickButton('Click me!');
   $el->addContent($h);
-  $el->addContent($b);
 /*
+  $el->addContent($b);
   $div->addContent($img);
   $div1 = $el->addDiv('1');
   $div2 = $div1->addDiv('2');
