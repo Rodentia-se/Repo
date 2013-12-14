@@ -125,10 +125,10 @@
           static::$indenter = $value;
         break;
         default:
-          if (array_key_exists($prop, $this->params)) {
-            $this->params[$prop] = $value;
-          } else if (array_key_exists($prop, $this->settings)) {
+          if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
+          } else {
+            $this->params[$prop] = $value;
           }
         break;
       }
@@ -255,14 +255,14 @@
         if (is_array($content)) {
           $return = TRUE;
           foreach($content as $part) {
-            $result = $this->add($section, $part, FALSE, $before);
+            $result = $this->add($section, $part, FALSE, $index);
             if (!$result) {
               $return = FALSE;
             }
           }
         } else {
           if ($index) {
-            $return = arrray_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
+            $return = array_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
           } else {
             $return = array_push($this->$section, $content);
           }

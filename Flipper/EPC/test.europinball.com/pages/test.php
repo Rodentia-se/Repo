@@ -59,6 +59,7 @@
   $div4->addElement($input2);
   $div4->addElement($input2);
   $div4->addElement($input2);
+  $div3->addSelect('selina', array(0 => 'Choose...', 1 => 'Huff'), 1);
   $el->indents = 5;
   echo 'HÄRSTARTARDET';
   echo($el);
