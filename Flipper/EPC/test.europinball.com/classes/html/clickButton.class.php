@@ -10,7 +10,7 @@
       $this->form($form, $url);
       $this->script($script);
       $this->inline = true;
-      $this->settings['insideForm'] = TRUE;
+      $this->settings['insideForm'] = FALSE;
       parent::__construct($value, $name, $params);
     }
 //    click public function __construct($selector = NULL, $code = NULL, $indents = 0) {

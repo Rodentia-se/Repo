@@ -48,7 +48,7 @@
           $this->settings['insideLabel'] = ($value);
           if ($value) {
             if (!$this->accessories['label']) {
-              $this->accessories['label'] = new label(ucfirst($name), $name.'Label');
+              $this->accessories['label'] = $this->label(TRUE);
             }
             $this->accessories['label']->addContent($this, $this, $this->settings['beforeLabel']);
           } else {
