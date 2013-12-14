@@ -117,14 +117,7 @@
         return $this->accessories['form'];
       } else if (is($form)) {
         if ($form === TRUE) {
-          $hepp = new form($this->params['id'].'Form', $url);
-          debug($hepp, 'HEPP');
           $this->accessories['form'] = new form($this->params['id'].'Form', $url);
-          debug($this->accessories['form'], 'TRUE');
-          $this->accessories['form'] = $hepp;
-          debug($this->accessories['form'], 'HUFF');
-          $this->accessories['form'] = 'huff';
-          debug($this->accessories['form'], 'HUFF');
         } else {
           $this->accessories['form'] = (isHtml($form)) ? $form : new form($form);
           debug($this->accessories['form']);
