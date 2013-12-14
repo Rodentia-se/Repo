@@ -134,9 +134,7 @@
     
     function selectOption($selected = NULL) {
       $chosen = FALSE;
-      if ($this->name == 'selina') {
         debug($selected, "SELINASEL");
-      }
       if ($this->contents && count($this->contents) > 0) {
         foreach ($this->contents as $key => $option) {
           if (!$chosen && $selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected)) {
