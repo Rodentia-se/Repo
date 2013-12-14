@@ -250,24 +250,28 @@
     
     protected function add($section = 'contents', $content = NULL, $replace = FALSE, $index = FALSE) {
       if ($replace) {
-        $this->del($section, $replace);
+        $return = $this->del($section, $replace);
       }
       if ($content !== NULL) {
         if (is_array($content)) {
+          $return = TRUE;
           foreach($content as $part) {
-            $this->add($section, $part, FALSE, $before);
+            $result = $this->add($section, $part, FALSE, $before);
+            if (!$result) {
+              $return = FALSE;
+            }
           }
         } else {
           if ($index) {
-            arrray_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
+            $return = arrray_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
           } else {
-            array_push($this->$section, $content);
+            $return = array_push($this->$section, $content);
           }
         }
       } else {
-        $this->del($section);
+        $return = $this->del($section);
       }
-      return $this->get($section);
+      return $return
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
@@ -308,6 +312,7 @@
           }
         } else {
           $this->$section = array();
+          return TRUE;
         }
       }
       return FALSE;
