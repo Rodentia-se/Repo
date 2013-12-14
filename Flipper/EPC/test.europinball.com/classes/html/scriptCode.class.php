@@ -30,7 +30,7 @@
         $jsbeautifier = new JSBeautifier();
         $content = parent::getContent($index, $string);
         debug ($content, "CONT");
-        return $jsbeautifier->beautify($content, $options);
+        return ltrim($jsbeautifier->beautify($content, $options), " ");
       }
     }
 
