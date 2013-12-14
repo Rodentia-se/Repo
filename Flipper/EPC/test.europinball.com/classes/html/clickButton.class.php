@@ -147,7 +147,6 @@
     }
     
     public function getHtml($form = FALSE, $button = FALSE, $script = FALSE) {
-      return parent::getHtml().(($this->form) ? $this->form->getHtml().(($this->script) ? $this->script->getHtml() : '') : '');
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
@@ -160,7 +159,7 @@
           return parent::getHtml();
         }
       } else {
-        return ($form && $this->form) ? (($script && $this->form) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml()) : NULL;
+        return parent::getHtml().(($this->form) ? $this->form->getHtml().(($this->script) ? $this->script->getHtml() : '') : '');
       }
     }
     
