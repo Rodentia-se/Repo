@@ -22,8 +22,7 @@
 
     public function __get($prop) {
       switch($prop) {
-        case 'insideLabel':
-        case 'beforeLabel':
+        case 'insideForm':
           return $this->settings[$prop];
         break;
         case 'previous':
@@ -41,21 +40,15 @@
 
     public function __set($prop, $value) {
       switch($prop) {
-        case 'insideLabel':
-          $this->settings['insideLabel'] = ($value);
+        case 'insideForm':
+          $this->settings['insideForm'] = ($value);
           if ($value) {
-            if (!$this->accessories['label']) {
-              $this->accessories['label'] = new label(ucfirst($name), $name.'Label');
+            if (!$this->accessories['form']) {
+              $this->accessories['form'] = $this->form(TRUE);
             }
-            $this->accessories['label']->addContent($this, $this, $this->settings['beforeLabel']);
+            $this->accessories['form']->addContent($this, $this);
           } else {
-            $this->accessories['label']->delContent($this);
-          }
-        break;
-        case 'beforeLabel':
-          $this->settings['beforeLabel'] = ($value);
-          if ($this->settings['insideLabel']) {
-            $this->accessories['label']->addContent($this, $this, ($value));
+            $this->accessories['form']->delContent($this);
           }
         break;
         case 'previous':
@@ -73,8 +66,7 @@
     
     public function __isset($prop) {
       switch($prop) {
-        case 'insideLabel':
-        case 'beforeLabel':
+        case 'insideForm':
           return isset($this->settings[$prop]);
         break;
         case 'previous':
@@ -92,8 +84,7 @@
 
     public function __unset($prop) {
       switch($prop) {
-        case 'insideLabel':
-        case 'beforeLabel':
+        case 'insideForm':
           $this->__set($prop, FALSE);
         break;
         case 'previous':
