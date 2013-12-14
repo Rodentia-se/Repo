@@ -824,7 +824,7 @@
       if ($stop && static::$debugCounter >= $stop) {
         $die = TRUE;
       }
-      debug_print_backtrace();
+      debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
       debug($obj, $title, $die);
     }
     
