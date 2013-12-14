@@ -792,7 +792,7 @@
         $closeEnd = ' />'.$this->crlf;
       } else {
         $openEnd = '>';
-        $closeStart = $indent.'</'.$this->element;
+        $closeStart = (($this->contentCrlf) ? $indent : '').'</'.$this->element;
         $closeEnd = '>';
       }
       if ($this->element == 'span') {
