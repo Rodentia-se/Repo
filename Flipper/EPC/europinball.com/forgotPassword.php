@@ -114,7 +114,6 @@
     }
   }
   
-  echo($content);
-  printFooter($dbh, $ulogin);
-  
+  $page->addContent($content);
+  $page-submit();
 ?>
