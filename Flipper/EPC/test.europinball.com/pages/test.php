@@ -61,7 +61,7 @@
   $div4->addElement($input2);
   $el->indents = 5;
   */
-  echo($el);
+//  echo($el);
 /*
 
   debug('TEST 1');
