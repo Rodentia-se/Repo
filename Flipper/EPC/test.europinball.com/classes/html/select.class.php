@@ -91,7 +91,6 @@
       }
       if ($options !== NULL) {
         debug('NOT NULL');
-debug($options, 'OPTION');
         if (is_array($options) && count($options) > 1) {
           debug('ISARR');
           $return = TRUE;
@@ -134,6 +133,7 @@ debug($options, 'OPTION');
     
     function selectOption($selected = NULL) {
       if ($this->contents && count($this->contents) > 0) {
+debug($this->contents, 'OPTION');
         foreach ($this->contents as $key => $option) {
           if ($selected && ($option == $selected || $option->value == $selected || $option->getContent() == $selected || $ley == $selected)) {
             $option->selected = TRUE;
