@@ -149,7 +149,7 @@
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
-            $this-form->addContent($this, $this);
+            $this->form->addContent($this, $this);
             return ($script) ? $this->form->getHtml().$this->accessories['click']->getHtml() : $this->form->getHtml();
           } else {
             return ($script) ? $this->form->getHtml().parent::getHtml().$this->accessories['click']->getHtml() : $this->form]->getHtml().parent::getHtml();
