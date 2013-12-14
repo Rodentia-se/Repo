@@ -8,26 +8,30 @@
       $this->jquery = array(
         'selector' => $selector,
         'tool' => $tool,
-        'function' => (($type == 'function') ? TRUE : FALSE),
-        'object' => (($type == 'object') ? TRUE : FALSE),
+        'type' => $type,
         'props' => $props
       );
-      if ($type == 'command') {
-        if (is_array($contents)) {
-          foreach ($contents as $command => $param) {
-            $this->jquery->command[] = $command;
-            $this->contents[] = $param;
+      switch ($type) {
+        case 'command':
+          if (is_array($contents)) {
+            foreach ($contents as $command => $param) {
+              $this->jquery->command[] = $command;
+              $this->contents[] = $param;
+            }
+          } else {
+            $this->jquery->command[] = $contents;
+            $this->contents[] = FALSE;
           }
-        } else {
-          $this->jquery->command[] = $contents;
-          $this->contents[] = FALSE;
-        }
-      } else {
-        $this->contents = (is_array($contents)) ? $contents : array($contents);
-      }
-      if ($this->jquery['object']) {
-        $this->jquery['contentProp'] = $props['contentProp'];
-        unset($this->jquery['props']['contentProp']);
+        break;
+        case 'object':
+          $this->jquery['contentProp'] = $props['contentProp'];
+          unset($this->jquery['props']['contentProp']);
+          $this->contents = (is_array($contents)) ? $contents : array($contents);
+        break;
+        case 'code':
+        case 'function':
+          $this->contents = (is_array($contents)) ? $contents : array($contents);
+        break;
       }
       parent::__construct(NULL, NULL, $indents);
       $this->settings['onReady'] = TRUE;
@@ -48,9 +52,9 @@
         $jsbeautifier = new JSBeautifier();
         $contents = parent::getContent($index, $string);
         $code = '$("'.$this->jquery['selector'].'")';
-        if ($this->jquery['function']) {
+        if ($this->jquery['type'] == 'function') {
           $code .= '.'.$this->jquery['tool']."(function() {\n".$contents."\n});";
-        } else if ($this->jquery['object']) {
+        } else if ($this->jquery['type'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['settings']) {
             foreach ($this->jquery['settings'] as $prop => $val) {
@@ -69,7 +73,7 @@
             $code .= $this->jquery['contentProp'].': "'.$contents."\"\n";
           }
           $code = rtrim($code, ',');
-        } else {
+        } else if ($this->jquery['command']) {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
               $code .= '.'.$this->jquery['tool'].'("'.$command.'"'.(($command) ? ', "'.$this->contents[$key].'")' : '');
@@ -78,6 +82,8 @@
             $code .= '.'.$this->jquery['tool'].'("'.$this->jquery['command'].'", "'.$this->contents[0].'")';
           }
           $code .= ';';
+        } else {
+          $code = parent::getContent($index, $string);
         }
         return ltrim($jsbeautifier->beautify((($this->settings['onReady']) ? static::$indenter."$(document).ready(function() {\n" : '').$code.(($this->settings['onReady']) ? "\n});" : ''), $options));
       }
