@@ -146,7 +146,7 @@
       }
     }
     
-    public function getHtml($form = FALSE, $button = TRUE, $script = TRUE) {
+    public function getHtml($form = TRUE, $button = TRUE, $script = TRUE) {
       if ($button) {
         if ($form && $this->form) {
           if ($this->insideForm) {
