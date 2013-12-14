@@ -5,6 +5,7 @@
     public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
       if ($name) {
         $params['name'] = $name;
+        $this->params['name'] = $name;
       }
       $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
       if ($type && !($this instanceof select)) {
