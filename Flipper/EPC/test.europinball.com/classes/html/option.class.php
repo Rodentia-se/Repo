@@ -6,7 +6,6 @@
       $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
       $params['value'] = $value;
       $params['selected'] = $selected;
-      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
       $this->inlineBlock = TRUE;
       parent::__construct('option', $text, $params);
     }
