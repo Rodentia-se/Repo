@@ -148,7 +148,7 @@
           $tshirtDiv = new div('tshirts');
           $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
           $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
-          $costSpan->addJquery('html', 'code', array('parseInt($(this).html().toMoney(0, ".", " ", "", format))' => FALSE));
+          $costSpan->addJquery('html', 'code', array('parseInt($(this).html().toMoney(0, ".", " ", "", "'.config::$currencies[$currency]['format'].'"))' => FALSE));
           $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
         }
