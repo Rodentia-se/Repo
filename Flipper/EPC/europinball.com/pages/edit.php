@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register');
+  $page = new page('Edit profile');
   
   if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $person = person('login');
@@ -19,7 +19,7 @@
           });
         ');
         $page->addContent($msg);
-        unset($_SESSION['msg'])
+        unset($_SESSION['msg']);
       }
       $page->startDiv('tabs');
         $page->startUl();
