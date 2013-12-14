@@ -35,7 +35,7 @@
     public function __isset($prop) {
       switch($prop) {
         case 'options':
-          return (isset($this->contents && count($this->contents) > 0) ? TRUE : FALSE;
+          return (isset($this->contents) && count($this->contents) > 0) ? TRUE : FALSE;
         break;
         default:
           return parent::__isset($prop);
