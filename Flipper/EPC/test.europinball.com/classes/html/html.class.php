@@ -543,8 +543,32 @@
       return $element;
     }
 
+    public function addLabel($contents = NULL, $for = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new label($contents, $for, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+  
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addHidden($name = NULL, $value = 'yes', array $params = NULL) {
+      $element = new hidden($name, $value, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addCheckbox($name = NULL, $value = 'yes', array $params = NULL) {
+      $element = new checkbox($name, $value, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addRadio($name = NULL, $value = 'yes', array $params = NULL) {
+      $element = new radio($name, $value, $params);
       $this->addContent($element);
       return $element;
     }
@@ -554,15 +578,9 @@
       $this->addContent($element);
       return $element;
     }
-
-    public function addLabel($contents = NULL, $for = NULL, $id = NULL, $class = NULL, array $params = NULL) {
-      $element = new label($contents, $for, $id, $class, $params);
-      $this->addContent($element);
-      return $element;
-    }
-  
-    public function addHidden($name = NULL, $value = 'yes', array $params = NULL) {
-      $element = new hidden($name, $value, $params);
+    
+    public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL);
+      $element = new clickButton($value, $name, $url, $form, $script, $params);
       $this->addContent($element);
       return $element;
     }
@@ -580,23 +598,32 @@
     }
     
     public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
-      $indents = ($indents) ? $indents : static::$indents;
+      $indents = (is($indents)) ? $indents : static::$indents;
       $element = new scriptCode($code, $params, $indents);
       $this->addContent($element);
       return $element;
     }
     
-    public function addJquery($selector = NULL, $object = NULL, $function = NULL, $comamnd = NULL, $code = NULL, array $settings = NULL, $indents = 0) {
-      $indents = ($indents) ? $indents : static::$indents;
-      $element = new jquery($selector, $object, $function, $comamnd, $code, $settings, $indents);
+    public function addJquery($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addTooltip($contents = NULL, $new = TRUE, $indents = 0) {
-      $indents = ($indents) ? $indents : static::$indents;
-      $selector = '#'.$this->id;
+    public function addTooltip($selector = NULL, $contents = NULL, $new = TRUE, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new tooltip($selector, $contents, $new, $indents);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addClick($selector = NULL, $code = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new click($selector, $code, $indents);
       $this->addContent($element);
       return $element;
     }
