@@ -410,8 +410,8 @@
             return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
-          } else if (($param == 'selected' || $param == 'checked') && $this->params[$param]) {
-            return $param;
+          } else if ($param == 'selected' || $param == 'checked') {
+            return ($this->params[$param]) ? $param : FALSE;
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
           } else if ($this->params[$param] === FALSE) {
