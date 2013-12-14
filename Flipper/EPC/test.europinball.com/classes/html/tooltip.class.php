@@ -26,9 +26,10 @@
       } else {
         if ($this->jquery['function']) {
           if ($this->jquery->settings) {
-          foreach ($this->jquery->settings as $option => $value) {
-            if (array_key_exists($option, $this->jquery)) {
-              $code .= $option.': '.$value.",\n";
+            foreach ($this->jquery->settings as $option => $value) {
+              if (array_key_exists($option, $this->jquery)) {
+                $code .= $option.': '.$value.",\n";
+              }
             }
           }
           $code .= 'content: "';
