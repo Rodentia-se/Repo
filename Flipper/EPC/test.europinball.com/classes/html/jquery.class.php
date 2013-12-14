@@ -72,7 +72,7 @@
             }
             $code .= $this->jquery['contentProp'].': "'.$contents;
           }
-          $code = rtrim($code, ',')."\n});\n";
+          $code = rtrim($code, ',')."\n});";
         } else if ($this->jquery['type'] == 'command') {
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {
             foreach ($this->jquery['command'] as $key => $command) {
