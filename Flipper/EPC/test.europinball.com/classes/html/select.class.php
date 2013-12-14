@@ -90,14 +90,14 @@
         $replaced = $this->delOptions($replace);
       }
       if ($options !== NULL) {
-        if (is_array($options) && count($options > 1)) {
+        if (is_array($options) && count($options) > 1) {
           static::$indents++;
           if (static::$indents > 5) {
             debug($options, 'OPTIONS', TRUE);
           }
           debug($options, 'OPTIONS');
           $return = TRUE;
-          foreach($options as $key => $option) {
+          foreach($options as $key => $option) { 
             $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
             if (!$result) {
               $return = FALSE;
