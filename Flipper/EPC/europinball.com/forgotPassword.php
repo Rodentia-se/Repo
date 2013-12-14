@@ -97,15 +97,15 @@
           <table>
             <tr>
               <td class="labelTd"><label>Username:</label></td>
-              <td><input type="text" name="username" id="username" onchange="resetPass(this);"><span id="usernameSpan" class="errorSpan"></span></td>
+              <td><input type="text" name="username" id="username"><span id="usernameSpan" class="errorSpan"></span></td>
             </tr>
             <tr>
               <td class="labelTd"><label>Email address:</label></td>
-              <td><input type="test" name="email" id="email" onchange="resetPass(this);"><span id="emailSpan" class="errorSpan"></span></td>
+              <td><input type="test" name="email" id="email""><span id="emailSpan" class="errorSpan"></span></td>
             </tr>
             <tr>
               <td></td>
-              <td><input type="submit" value="Submit" id="submit" disabled></td>
+              <td><input type="submit" value="Submit" id="submit"></td>
             </tr>
           </table>
         </form>
