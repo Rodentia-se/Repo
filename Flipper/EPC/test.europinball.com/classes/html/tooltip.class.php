@@ -6,6 +6,13 @@
       debug($new, 'NEWBEF');
       $new = ($new == 'update') ? FALSE : $new;
       debug($new, 'NEW');
+      $huff = TRUE;
+      if ($huff == 'update') {
+        $huff = FALSE;
+      } else {
+        $huff = $huff;
+      }
+      debug($huff, 'HUFF');
       if ($new) {
         $type = 'object';
         $props = array(
