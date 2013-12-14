@@ -13,6 +13,7 @@
       parent::__construct('option', $text, $params);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
+
     public function __get($prop) {
       switch($prop) {
         case 'selected':

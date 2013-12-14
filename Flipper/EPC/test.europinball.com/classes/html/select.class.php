@@ -90,7 +90,9 @@
         $replaced = $this->delOptions($replace);
       }
       if ($options !== NULL) {
+        debug('NOT NULL');
         if (is_array($options) && count($options) > 1) {
+          debug('ISARR');
           $return = TRUE;
           foreach($options as $key => $option) { 
             $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
@@ -101,6 +103,7 @@
           return $return;
         } else {
           if (!isHtml($options)) {
+        debug('!HTML');
             if (is_array($options)) {
               foreach ($options as $key => $val) {
                 $option = new option($val, $key);
@@ -110,6 +113,7 @@
             }
           }
           if (isHtml($option)) {
+        debug('HTML');
             if ($index || ($replaced && $replaced !== TRUE)) {
               $index = ($index) ? $index : $replaced;
               $return = array_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($option));
