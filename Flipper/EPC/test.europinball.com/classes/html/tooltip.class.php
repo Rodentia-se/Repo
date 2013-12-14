@@ -16,7 +16,7 @@
         $type = 'command';
         $contents = array('update' => $contents, 'show' => FALSE);
       }
-      parent::__construct($selector, 'tooltipster', $type, $contents, $propss, $indents);
+      parent::__construct($selector, 'tooltipster', $type, $contents, $props, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
