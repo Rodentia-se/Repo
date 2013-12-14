@@ -2,7 +2,7 @@
 
   class gender extends base {
         
-    public static $instances;
+    public static $instances; 
     public static $arrClass = 'genders';
 
     public static $select = '

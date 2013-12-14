@@ -4,6 +4,8 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Register');
+          $page->datatables = TRUE;
+          $page->datatablesReload = TRUE;
   
   if (isId($_REQUEST['tournament_id'])) {
     $tournament = tournament($_REQUEST['tournament_id']);
@@ -47,8 +49,6 @@
           }
           $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
-          $page->datatables = TRUE;
-          $page->datatablesReload = TRUE;
           $page->addScript('
             var tbl = [];
             tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({

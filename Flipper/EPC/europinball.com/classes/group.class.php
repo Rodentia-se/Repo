@@ -160,7 +160,7 @@
         foreach ($objs as $key => $obj) {
           if (is_int($obj->id)) {
             if ($group[$obj->id]) {
-              if ($group[$obj->id]->id == $obj->id) {
+              if ($group[$obj->id]->id == $obj->id) { 
                 $group[$obj->id] = $obj;
               } else if ($group[$obj->id]->id) {
                 $group[$group[$obj->id]->id] = $group[$obj->id];

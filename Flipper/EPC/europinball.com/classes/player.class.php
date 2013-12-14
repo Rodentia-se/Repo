@@ -115,7 +115,7 @@
       'continent' => 'continentName',
       'gender' => 'genderName'
     );
-
+ 
     public static $validators = array(
       'mailAddress' => array('person', 'validateEmail'),
       'username' => array('person', 'validateUsername')

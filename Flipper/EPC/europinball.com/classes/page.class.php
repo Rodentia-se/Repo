@@ -606,7 +606,7 @@
       if ($this->loggedin()) {
         // || ($_REQUEST['action'] == 'login' && config::$login->action('login'))) {
         return TRUE;
-      } else {
+      } else { 
         $this->addLogin($title, $prefix, $class, FALSE);
         return FALSE;
       }
