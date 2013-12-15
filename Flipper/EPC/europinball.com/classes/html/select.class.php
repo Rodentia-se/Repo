@@ -96,8 +96,11 @@
         debug(isGroup($options), 'CLASS 1');
         if (isGroup($options) || (is_array($options) && count($options) > 1)) {
           $return = TRUE;
+        debug(get_class($options), 'CLASS 2');
+        debug(isGroup($options), 'CLASS 2');
           foreach($options as $key => $option) {
-            debug(get_class($option), 'CLASS 1');
+            debug(get_class($key), 'CLASS 3');
+            debug(get_class($option), 'CLASS 3');
             if (isObj($option)) {
               $result = $this->addOptions(array($option->id => $option->name), $selected, FALSE, $index);
             } else if (isHtml($option)) {
