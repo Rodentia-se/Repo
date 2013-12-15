@@ -93,6 +93,7 @@
       }
       if ($options !== NULL) {
         debug(get_class($options), 'CLASS 1');
+        debug(isGroup($options), 'CLASS 1');
         if (isGroup($options) || (is_array($options) && count($options) > 1)) {
           $return = TRUE;
           foreach($options as $key => $option) {
