@@ -81,7 +81,7 @@
             $page->addParagraph('There\'s something wrong with the email address registered for you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
           }
         } else {
-          $page->addParagraph('You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.)';
+          $page->addParagraph('You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
         }
     } else if (!$success) {
       $page->addContent('
