@@ -12,7 +12,7 @@
   foreach ($players as $player) {
     $persons[] = $player->person;
   }
-  $div->addSelect($persons);
+  $div->addSelect('persons', $persons);
   
   $page->addContent($div);
   $page->submit();
