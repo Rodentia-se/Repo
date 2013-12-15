@@ -234,7 +234,7 @@
           $this->getLink('ifpa'),
           $this->person->getPhotoIcon(),
           (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
-          $this->paid
+          (($this->paid) ? 'Yes' : '')
         );
         return ($array) ? $return : (object) $return;
       }
