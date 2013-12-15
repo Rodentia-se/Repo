@@ -5,19 +5,23 @@
 
   $page = new page('Register');
   
-  $reqNonce = (isset($_REQUEST['resetNonce'])) ? $_REQUEST['resetNonce'] : false;
+  $reqNonce = (isset($_REQUEST['reqNonce'])) ? $_REQUEST['reqNonce'] : false;
 
   function getPersonFromNonce($regNonce) {
-    $person = person(array('nonce' => $reqNonce), TRUE);
-    if ($person) {
-      if (ulNonce::Verify('reqNonce', $reqNonce)) {
-        $person->valid = true;
+    if ($reqNonce) {
+      $person = person(array('nonce' => $reqNonce), TRUE);
+      if ($person) {
+        if (ulNonce::Verify('reqNonce', $reqNonce)) {
+          $person->valid = true;
+        } else {
+          $person->valid = false;
+        }
+        return $person;
       } else {
-        $person->valid = false;
+        return false;
       }
-      return $person;
     } else {
-      return false;
+      return FALSE;
     }
   }
   
@@ -72,7 +76,7 @@
         if ($person->mailAddress) {
           if (person::validateMailAddress($person->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
-              $page->addParagraph('<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.');
+              $page->addParagraph('We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.');
             } else {
               $page->addParagraph('Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
             }
