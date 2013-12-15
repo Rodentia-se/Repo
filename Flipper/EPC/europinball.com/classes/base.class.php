@@ -192,7 +192,7 @@
       return ($photo) ? '
         <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$this->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
         <div id="'.$this->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
-          <img src="'.$photo.'">
+          <img src="'.$photo.'" class="popupPhoto">
         </div>
       ' : '';
     }

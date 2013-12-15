@@ -31,10 +31,16 @@
   margin-right: 15px;
 }
 
-.photoPopup {
+div.photoPopup {
   display: none;
   max-width: 1000px;
-  max-height: 800px;
+  max-height: 600px;
+}
+
+img.popupPhoto {
+  display: none;
+  max-width: 970px;
+  max-height: 570px;
 }
 
 span.currency {
