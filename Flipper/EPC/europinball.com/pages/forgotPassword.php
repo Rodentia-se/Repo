@@ -16,11 +16,14 @@
         } else {
           $person->valid = false;
         }
+        debug('Valid nonce!');
         return $person;
       } else {
+        debug('Invalid nonce!');
         return false;
       }
     } else {
+      debug('No nonce!');
       return FALSE;
     }
   }
@@ -35,7 +38,9 @@
     $page->addForm('log out', array('action' => 'logout'));
   } else {
     if ($reqNonce) {
+      debug($person, 'Person, before Nonce');
       $person = getPersonFromNonce($reqNonce);
+      debug($person, 'Person, after Nonce');
       if ($person) {
         if ($person->valid) {
           $resetNonce = ulNonce::Create('resetNonce');
