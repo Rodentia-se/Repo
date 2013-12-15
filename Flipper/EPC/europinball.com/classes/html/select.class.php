@@ -92,7 +92,7 @@
         $replaced = $this->delOptions($replace);
       }
       if ($options !== NULL) {
-        if (is_array($options) && count($options) > 1) {
+        if ((is_array($options) || isGroup($options)) && count($options) > 1) {
           $return = TRUE;
           foreach($options as $key => $option) {
             if (isHtml($option) || isObj($option)) {
