@@ -212,7 +212,7 @@
                 waiting
               FROM player, 
                 (SELECT @rownum :=0)r
-              WHERE waiting = 1
+              WHERE waiting is not null
                 and tournamentDivision_id = '.$division->id.'
             ) AS players
             ON players.pid = player.id
