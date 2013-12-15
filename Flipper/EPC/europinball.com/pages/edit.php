@@ -5,8 +5,6 @@
 
   $page = new page('Edit profile');
   
-  debug($_SESSION);
-  
   if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $person = person('login');
     if ($person) {
