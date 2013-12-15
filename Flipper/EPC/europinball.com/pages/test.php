@@ -14,7 +14,16 @@
   foreach ($players as $player) {
     $persons[] = $player->person;
   }
-  $div->addSelect('persons', $persons);
+  $sel = $div->addSelect('persons', $persons);
+  $sel->addJquery('change', 'function', '
+    
+  ');
+  $div->addInput(0, 'paid');
+  $sel->addJquery('change', 'function', '
+    
+  ');
+  $div->addSpan($person->getCosts(), 'shouldPay');
+   
   
   $page->addContent($div);
   $page->submit();

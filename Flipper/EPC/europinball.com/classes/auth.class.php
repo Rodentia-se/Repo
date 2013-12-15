@@ -429,6 +429,22 @@
           $form .= page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', (($dialog) ? 'hidden ' : '').'submitButton', FALSE, NULL, NULL, FALSE);
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
+      $form .= page::getScript('
+        $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
+          theme: ".tooltipster-light",
+          content: "The passwords do not match...",
+          trigger: "custom",
+          position: "right",
+          timer: 3000
+        });
+        $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster({
+          theme: ".tooltipster-light",
+          content: "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...",
+          trigger: "custom",
+          position: "right",
+          timer: 3000
+        });
+      ';
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserDiv").dialog({
@@ -439,16 +455,13 @@
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
                 if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-                    $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                    if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
+                      $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                    } else {
+                      $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
+                    }
                   } else {
-                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-                      theme: ".tooltipster-light",
-                      content: "The passwords do not match...",
-                      trigger: "custom",
-                      position: "right",
-                      timer: 3000
-                    })
-                    .tooltipster("show");
+                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("show");
                   }
                 }
               },
@@ -463,17 +476,14 @@
         ');
       } else {
         $form .= page::getScript('
-          $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-            theme: ".tooltipster-light",
-            content: "The passwords do not match...",
-            trigger: "custom",
-            position: "right",
-            timer: 3000
-          });
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-                $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
+                  $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                } else {
+                  $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
+                }
               } else {
                 $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The passwords do not match...").tooltipster("show");
               }
