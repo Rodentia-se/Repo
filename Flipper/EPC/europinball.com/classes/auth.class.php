@@ -112,7 +112,7 @@
     
     protected function addUser($username, $password, $person = NULL) {
       if (!preg_match('/ /', $username)) {
-        if (preg_match('/[^a-zA-Z0-9\-_]/', $username)) {
+        if (preg_match('/[^a-zA-Z0-9\-_]+/', $username)) {
           if (strlen($username) < 3) {
             if (strlen($username) > 32) {
               if (preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
