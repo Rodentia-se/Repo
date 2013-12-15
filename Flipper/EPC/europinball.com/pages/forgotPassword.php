@@ -22,7 +22,7 @@
   }
   
   
-  $content = '<h2 class="entry-title">Password reset</h2>';
+  $page->addH2('Password reset');
 
   if ($page->loggedin()) {
     $person = person('login');
@@ -35,30 +35,25 @@
       if ($person) {
         if ($person->valid) {
           $resetNonce = ulNonce::Create('resetNonce');
-          $content .= '
-            <input type="hidden" name="person_id" id="personId" value="'.$person->id.'">
-            <input type="hidden" name="resetNonce" id="resetNonce" value="'.$resetNonce.'">
-            <p>Your identity as '.$person->firstName.' '.$person->lastName.' has been confirmed. Your username is '.$person->username.'.</p>
-            <table>
-              <tr>
-                <td class="labelTd"><label>Please set a new password:</label><td><input name="password" id="password" type="password" onkeyup="checkResetPassword(this);"><span id="passwordSpan" class="errorSpan"></span></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td><input type="submit" value="Submit" id="submit" onclick="resetPassword(this);" disabled></td>
-              </tr>
-            </table>
-          ';
+          $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'.');
+          $page->addParagraph('If this is not corret, please '.page::getButton('reload').' this page and try again.');
+          $page->addForm('reload');
+          $resetNonce = ulNonce::Create('resetNonce');
+          $page->addNewUser('Provide new credentials', $person->id, 'reset');
+          $page->addScript('
+            $("#resetaction").val("reset");
+            $("#resetnewUserButton").val("Submit");
+            $("#resetnonce").val("'.$resetNonce.'");
+          ');
           $success = true;
           $person->setNonce(null);
           // set password with ajax
           // Redirect to login when successful
         } else {
-          $content .= '<p>Your identity code has expired or is invalid.</p>';
-          $playerId = $person->id;
+          $page->addParagraph('Your identity code has expired or is invalid.');
         }
       } else {
-        $content .= 'We could not not identify you, or you have already used this identity code. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+        $page->addParagraph('We could not not identify you, or you have already used this identity code. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
       }
     } else {
       $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : false;
@@ -78,18 +73,18 @@
         if ($person->mailAddress) {
           if (person::validateMailAddress($player->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
-              $content .= '<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.</p>';
+              $page->addParagraph('<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.');
             } else {
-              $content .= '<p>Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+              $page->addParagraph('Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
             }
           } else {
-            $content .= 'There\'s something wrong with the email address registered for you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+            $page->addParagraph('There\'s something wrong with the email address registered for you. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
           }
         } else {
-          $content .= 'You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.</p>';
+          $page->addParagraph('You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.)';
         }
     } else if (!$success) {
-      $content .= '
+      $page->addContent('
         <p>Please specify either username or email address used for your registration:</p>
         <form action="?" method="POST">
           <table>
@@ -108,10 +103,9 @@
           </table>
         </form>
         <script type="text/javascript">document.getElementById(\'username\').focus();</script>
-      ';
+      ');
     }
   }
   
-  $page->addContent($content);
   $page->submit();
 ?>
