@@ -91,7 +91,6 @@
       if ($replace) {
         $replaced = $this->delOptions($replace);
       }
-      debug($option);
       if ($options !== NULL) {
         if (is_array($options) && count($options) > 1) {
           $return = TRUE;
@@ -107,11 +106,6 @@
           }
           return $return;
         } else {
-          if (isObj($options)) {
-            if ($options->name) {
-              $options = new option($options->name, $options->id);
-            }
-          }
           if (!isHtml($options)) {
             if (is_array($options)) {
               foreach ($options as $key => $val) {
