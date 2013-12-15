@@ -99,7 +99,7 @@
             </tr>
             <tr>
               <td class="labelTd"><label>Email address:</label></td>
-              <td><input type="test" name="email" id="email""><span id="emailSpan" class="errorSpan"></span></td>
+              <td><input type="text" name="email" id="email""><span id="emailSpan" class="errorSpan"></span></td>
             </tr>
             <tr>
               <td></td>
