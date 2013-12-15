@@ -102,6 +102,25 @@ $div3->addClick();
 $div3->addClick('var click = "klack";');
 $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
 
+  $person = person(940);
+  debug($person->name, "NAME 940");
+  debug($person->addPlayer(), "ADD");
+  $person = person(318);
+  debug($person->name, "NAME 318");
+  debug($person->addPlayer(), "ADD");
+  $person = person(18125);
+  debug($person->name, "NAME 18125");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5776);
+  debug($person->name, "NAME 5776");
+  debug($person->addPlayer(), "ADD");
+  $person = person(7521);
+  debug($person->name, "NAME 7521");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5778);
+  debug($person->name, "NAME 5778");
+  debug($person->addPlayer(), "ADD");
+
       echo 'HÄRSTARTARDET';
   echo($el);
   
