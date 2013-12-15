@@ -92,10 +92,12 @@
         $replaced = $this->delOptions($replace);
       }
       if ($options !== NULL) {
-        if ((is_array($options) || isGroup($options)) && count($options) > 1) {
+        if (isGroup($options) || (is_array($options) && count($options) > 1)) {
           $return = TRUE;
           foreach($options as $key => $option) {
-            if (isHtml($option) || isObj($option)) {
+            if (isObj($option)) {
+              $result = $this->addOptions(array($option->id => $option->name), $selected, FALSE, $index);
+            } else if (isHtml($option)) {
               $result = $this->addOptions($option, $selected, FALSE, $index);
             } else {
               $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
