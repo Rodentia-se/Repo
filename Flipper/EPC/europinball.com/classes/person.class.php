@@ -142,6 +142,9 @@
       if (isId($id)) {
         $player = player($id);
         if ($player) {
+          if ($player->waiting) {
+            $this->db->seqWaiting();
+          }
           return $id;
         }
       }

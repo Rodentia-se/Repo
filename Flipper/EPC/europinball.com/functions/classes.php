@@ -65,7 +65,6 @@
 
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new division($data, $search, $depth);
-    return obj($obj);
   }
 
   function divisions($data = NULL, $prop = NULL) {
@@ -78,6 +77,18 @@
 
   function isDivisions($divisions) {
     return (isObj($divisions) && get_class($divisions) == 'divisions');
+  }
+  
+  function getDivision($obj) {
+    $division = division($obj);
+    if (isDivision($division)) {
+      return $division;
+    }
+    $tournament = tournament($obj);
+    if (isTournament($tournament)) {
+      return division($tournament);
+    }
+    return FALSE;
   }
   
   function entry($data = NULL, $search = NOSEARCH, $depth = NULL) {
