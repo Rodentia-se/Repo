@@ -10,7 +10,7 @@
         $params['value'] = $value;
       }
       if(is_object($text)) {
-        debug("OBJ", "OBJ", TRUE);
+        debug(get_class($text), "OBJ", TRUE);
       }
       $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
       $params['selected'] = $selected;
