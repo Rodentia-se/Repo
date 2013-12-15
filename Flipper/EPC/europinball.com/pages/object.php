@@ -15,7 +15,7 @@
     if ($object) {
       $div->addContent($object->getInfo());
     } else {
-      $div->addParagraph('Could not find what you are looking for. Please try again.');
+      $div->addParagraph('Could not find the '.$obj.' you are looking for. Please try again.');
     }
   } else {
     $div->addParagraph('Could not find what you are looking for. Please try again.');
