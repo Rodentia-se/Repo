@@ -456,7 +456,11 @@
                 if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                     if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
-                      $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                      if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val().length > 5 || $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val() > 5) {
+                        $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                      } else {
+                        $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The password must be at least six characters long...").tooltipster("show");
+                      }
                     } else {
                       $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
                     }
@@ -480,7 +484,11 @@
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                 if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
-                  $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                  if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val().length > 5 || $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val() > 5) {
+                    $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                  } else {
+                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The password must be at least six characters long...").tooltipster("show");
+                  }
                 } else {
                   $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
                 }
