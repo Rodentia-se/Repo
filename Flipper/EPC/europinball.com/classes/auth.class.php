@@ -70,6 +70,7 @@
       if ($person) {
         $uid = $person->getUid();
         if ($uid) {
+          debug($person, "PERSON");
           if ($username == $person->username) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
@@ -270,12 +271,12 @@
             if ($this->verified) {
               if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
                 if ($_REQUEST['person_id'] == 0) {
-                  $person = person('new');
-                  $person_id = $person->save();
+                    config::$msg = 'Credential changes failed.';
+                    config::$msg = 'Could not identify you. Please try again, or contact us for assistance.';
+                    return FALSE;
                 } else {
                   if (isId($_REQUEST['person_id'])) {
                     $person_id = $_REQUEST['person_id'];
-                    $uid = ($person->username) ? $this->Uid($person->username) : NULL;
                   } else {
                     config::$msg = 'Credential changes failed.';
                     error('Not enough parameters provided');
