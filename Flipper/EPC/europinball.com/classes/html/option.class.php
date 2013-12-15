@@ -3,8 +3,13 @@
   class option extends html {
     
     public function __construct($text = NULL, $value = NULL, $selected = FALSE, array $params = NULL) {
+      if (isObj($text)) {
+        $params['value'] = $text->id;
+        $text = $text->name;
+      } else {
+        $params['value'] = $value;
+      }
       $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
-      $params['value'] = $value;
       $params['selected'] = $selected;
       $this->inlineBlock = TRUE;
       parent::__construct('option', $text, $params);
