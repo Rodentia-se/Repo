@@ -296,21 +296,24 @@ class uLogin
 	public function CreateUser($username, $password, $profile=NULL)
 	{
 		// Validate user input
-		if (!self::ValidateUsername($username))
+		if (!self::ValidateUsername($username)){
   		ulLog::Log('create login failed', $username, ulUtils::GetRemoteIP(false), 'username invalid');
 			return false;
-		if (!ulPassword::IsValid($password))
+    }
+		if (!ulPassword::IsValid($password)) {
   		ulLog::Log('create login failed', $username, ulUtils::GetRemoteIP(false), 'password invalid');
 			return false;
+    }
 
 		$ret = $this->Backend->CreateLogin($username, $password, $profile);
 		if ($ret !== true)
 		{
-			if ($ret == ulLoginBackend::ALREADY_EXISTS)
+			if ($ret == ulLoginBackend::ALREADY_EXISTS) {
     		ulLog::Log('create login failed', $username, ulUtils::GetRemoteIP(false), 'username exist');
 				return false;
-			else
+      }  else {
 				return NULL;
+      }
 		}
 
 		ulLog::Log('create login', $username, ulUtils::GetRemoteIP(false));
