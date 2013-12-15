@@ -203,7 +203,7 @@
       foreach (static::$infoProps as $label => $prop) {
         $html = FALSE;
         if (isObj($this->$prop)) {
-          $html = $this->$prop->getLink();
+          $html = new link($this->$prop->getLink('object', FALSE));
           if (!$html) {
             $html = $this->${$prop.'Name'};
           }
