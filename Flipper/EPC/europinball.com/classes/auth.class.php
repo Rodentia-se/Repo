@@ -269,7 +269,7 @@
         case 'reset':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
             if ($this->verified) {
-              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
+              if ($_REQUEST['password'] == $_REQUEST['verifyPassword']) {
                 if ($_REQUEST['person_id'] == 0) {
                     config::$msg = 'Credential changes failed.';
                     config::$msg = 'Could not identify you. Please try again, or contact us for assistance.';
@@ -286,7 +286,7 @@
                 $person = person($person_id);
                 if ($person) {
                   $uid = $this->Uid($_SESSION['username']);
-                  $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                  $change = $this->changeUser($_REQUEST['username'], $_REQUEST['password'], $person);
                   if ($change) {
                     config::$msg = 'Your username and/or password was successfully changed.';
                     return TRUE;
