@@ -6,11 +6,8 @@
   $page = new page('Register');
   
   $reqNonce = (isset($_REQUEST['reqNonce'])) ? $_REQUEST['reqNonce'] : false;
-  debug($reqNonce, 'N1');
   function getPersonFromNonce($reqNonce) {
-  debug($reqNonce, 'N5');
     if ($reqNonce) {
-  debug($reqNonce, 'N6');
       $person = person(array('nonce' => $reqNonce), TRUE);
       if ($person) {
         if (ulNonce::Verify('reqNonce', $reqNonce)) {
@@ -18,14 +15,11 @@
         } else {
           $person->valid = false;
         }
-        debug('Valid nonce!');
         return $person;
       } else {
-        debug('Invalid nonce!');
         return false;
       }
     } else {
-      debug('No nonce!');
       return FALSE;
     }
   }
@@ -35,20 +29,19 @@
 
   if ($page->loggedin()) {
     $person = person('login');
-    $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
-    $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
-    $page->addForm('log out', array('action' => 'logout'));
+    if ($_REQUEST['action'] == 'reset') {
+      $page->addParagraph('You are now logged in as '.$person->name.', and yuour password was changed. If you want to, you can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to also change your username.');
+    } else {
+      $page->addParagraph('You are already logged in as '.$person->name.'. You can go to the <a href="'.config::$baseHref.'/edit" class="buttonLink">Profile editor</a> to change your login credentials.');
+      $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
+      $page->addForm('log out', array('action' => 'logout'));
+    }
   } else {
-  debug($reqNonce, 'N2');
     if ($reqNonce) {
-  debug($reqNonce, 'N3');
-      debug($person, 'Person, before Nonce');
       $person = getPersonFromNonce($reqNonce);
-  debug($reqNonce, 'N4');
       debug($person, 'Person, after Nonce');
       if ($person) {
         if ($person->valid) {
-          $resetNonce = ulNonce::Create('resetNonce');
           $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'.');
           $page->addParagraph('If this is not corret, please '.page::getButton('reload').' this page and try again.');
           $page->addForm('reload');
@@ -61,8 +54,6 @@
           ');
           $success = true;
           $person->setNonce(null);
-          // set password with ajax
-          // Redirect to login when successful
         } else {
           $page->addParagraph('Your identity code has expired or is invalid.');
         }
@@ -80,8 +71,6 @@
         $person = person(array('mailAddress' => $email), TRUE);
         }    
       }
-    }
-  
       if ($person && isId($person->id)) {
         if ($person->mailAddress) {
           if (person::validateMailAddress($person->mailAddress)) {
@@ -96,29 +85,30 @@
         } else {
           $page->addParagraph('You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
         }
-    } else if (!$success) {
-      $page->addContent('
-        <p>Please specify either username or email address used for your registration:</p>
-        <form action="?" method="POST">
-          <table>
-            <tr>
-              <td class="labelTd"><label>Username:</label></td>
-              <td><input type="text" name="username" id="username"><span id="usernameSpan" class="errorSpan"></span></td>
-            </tr>
-            <tr>
-              <td class="labelTd"><label>Email address:</label></td>
-              <td><input type="text" name="email" id="email""><span id="emailSpan" class="errorSpan"></span></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td><input type="submit" value="Submit" id="submit"></td>
-            </tr>
-          </table>
-        </form>
-        <script type="text/javascript">document.getElementById(\'username\').focus();</script>
-      ');
+      } else if {
+        $page->addContent('
+          <p>Please specify either username or email address used for your registration:</p>
+          <form action="?" method="POST">
+            <table>
+              <tr>
+                <td class="labelTd"><label>Username:</label></td>
+                <td><input type="text" name="username" id="username"><span id="usernameSpan" class="errorSpan"></span></td>
+              </tr>
+              <tr>
+                <td class="labelTd"><label>Email address:</label></td>
+                <td><input type="text" name="email" id="email""><span id="emailSpan" class="errorSpan"></span></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" id="submit"></td>
+              </tr>
+            </table>
+          </form>
+          <script type="text/javascript">document.getElementById(\'username\').focus();</script>
+        ');
+      }
     }
   }
-  
+    
   $page->submit();
 ?>
