@@ -24,7 +24,7 @@
   if ($player) {
     $players = players($player);
   }
-  debug $players[0];
+
   switch ($type) {
     case 'registered':
       if ($players && count($players) > 0) {
