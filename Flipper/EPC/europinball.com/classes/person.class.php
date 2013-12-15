@@ -126,7 +126,7 @@
 
     public function addPlayer($division = NULL) {
       $division = ($division) ? getDivision($division) : division('active');
-      $player = player($person, $division);
+      $player = player($this, $division);
       if (!$player) {
         $player = player((array) $this->getFlat(), NOSEARCH, 0);
         unset($player->id);
