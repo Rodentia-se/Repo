@@ -471,21 +471,24 @@
         $reqNonce = ulNonce::Create('reqNonce');
         $person->setNonce($reqNonce);
         $headers = 'Content-Type: text/plain; charset=UTF-8'."\r\n".'From: '.config::$supportEmail;
-        $msg = 'Hello!
-          
-          You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
-        
-          If you want to reset your password, please click on this link or paste the address into your browser.
-          
-          '.config::$baseHref.'/password-reset/?reqNonce='.urlencode($reqNonce).'
-          
-          The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
-          
-          If you encounter any problems, email us at '.config::$supportEmail.' for assistance.
-          
-          Regards
-          /EPC 2014 organizers
-          https://www.europinball.org/
+        $msg = '
+Hello!
+
+You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
+
+If you want to reset your password, please click on this link or paste the address into your browser.
+
+'.config::$baseHref.'/password-reset/?reqNonce='.urlencode($reqNonce).'
+
+The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
+
+If you used this function multiple times, all earlier links have been rendered invalid by this email, just as future emails will render this one invalid.
+
+If you encounter any problems, email us at '.config::$supportEmail.' for assistance.
+
+Regards
+/EPC 2014 organizers
+https://www.europinball.org/
         ';
         if (mail($person->mailAddress, 'EPC password reset', $msg, $headers)) {
           return TRUE;

@@ -76,6 +76,8 @@
           if (person::validateMailAddress($person->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
               $page->addParagraph('We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.');
+              $page->addParagraph('If you are using Google\'s GMail, make sure to check your spam folder.');
+              $page->addParagraph('If you use this function multiple times, only the link in the last email will work. The earlier ones will be rendered invalid.');
             } else {
               $page->addParagraph('Something went wrong trying to send you a password reset email. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
             }
