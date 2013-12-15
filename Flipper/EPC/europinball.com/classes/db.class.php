@@ -201,7 +201,7 @@
       return FALSE;
     }
     
-    public function seqWaiting($division) {
+    public function seqWaiting($division = 'active') {
       $division = getDivision($division);
       if (isDivision($division)) {
         $query = '
@@ -212,7 +212,7 @@
                 waiting
               FROM player, 
                 (SELECT @rownum :=0)r
-              WHERE waiting =1
+              WHERE waiting = 1
                 and tournamentDivision_id = '.$division->id.'
             ) AS players
             ON players.pid = player.id
