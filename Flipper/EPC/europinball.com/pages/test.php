@@ -104,6 +104,43 @@ $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
 
       echo 'HÄRSTARTARDET';
   echo($el);
+  
+  
+  $person = person(903);
+  debug($person->name, "NAME 903");
+  debug($person->addPlayer(), "ADD");
+  $person = person(16956);
+  debug($person->name, "NAME 16956");
+  debug($person->addPlayer(), "ADD");
+  $person = person(754);
+  debug($person->name, "NAME 754");
+  debug($person->addPlayer(), "ADD");
+  $person = person(16815);
+  debug($person->name, "NAME 16815");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5784);
+  debug($person->name, "NAME 5784");
+  debug($person->addPlayer(), "ADD");
+  $person = person(7689);
+  debug($person->name, "NAME 7689");
+  debug($person->addPlayer(), "ADD");
+  $person = person(708);
+  debug($person->name, "NAME 708");
+  debug($person->addPlayer(), "ADD");
+  $person = person(952);
+  debug($person->name, "NAME 952");
+  debug($person->addPlayer(), "ADD");
+  $person = person(9798);
+  debug($person->name, "NAME 9798");
+  debug($person->addPlayer(), "ADD");
+  $person = person(6061);
+  debug($person->name, "NAME 6061");
+  debug($person->addPlayer(), "ADD");
+  $person = person(10536);
+  debug($person->name, "NAME 10536");
+  debug($person->addPlayer(), "ADD");
+
+
 /*
 
   debug('TEST 1');
