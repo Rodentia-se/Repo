@@ -7,8 +7,10 @@
 
   $div = new div();
   $divison = division('active');
+  debug($division, 'DIV');
   $players = players($division);
   $persons = new persons();
+  debug(count($persons), 'COUNT');
   foreach ($players as $player) {
     $persons[] = $player->person;
   }
