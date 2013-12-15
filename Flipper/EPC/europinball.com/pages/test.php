@@ -3,6 +3,22 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
+  $page = new page('Admin tools');
+
+  $div = new div();
+  $divison = division('active');
+  $players = players($division);
+  $persons = new persons();
+  foreach ($players as $player) {
+    $persons[] = $player->person;
+  }
+  $div->addSelect($persons);
+  
+  $page->addContent($div);
+  $page->submit();
+  
+
+/*
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
