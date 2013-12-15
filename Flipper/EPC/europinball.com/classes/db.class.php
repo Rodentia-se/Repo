@@ -207,13 +207,14 @@
         $query = '
           update player 
             right join (
-              SELECT @rownum := @rownum +1 seq, 
+              select @rownum := @rownum +1 seq, 
                 id AS pid, 
                 waiting
-              FROM player, 
+              from player, 
                 (SELECT @rownum :=0)r
-              WHERE waiting is not null
+              where waiting is not null
                 and tournamentDivision_id = '.$division->id.'
+              order by id
             ) AS players
             ON players.pid = player.id
           set player.waiting = players.seq
