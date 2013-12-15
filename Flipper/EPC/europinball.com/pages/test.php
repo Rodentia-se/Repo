@@ -6,7 +6,7 @@
   $page = new page('Admin tools');
 
   $div = new div();
-  $division = division(config::$mainDivision);
+  $division = division('active');
   debug($division, 'DIV');
   $players = players($division);
   $persons = new persons();
