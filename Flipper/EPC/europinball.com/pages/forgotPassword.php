@@ -68,7 +68,6 @@
       }
     }
   
-    debug($person);
       if ($person && isId($person->id)) {
         if ($person->mailAddress) {
           if (person::validateMailAddress($person->mailAddress)) {

@@ -469,7 +469,7 @@
       if ($person->validate('mailAddress', $person->mailAddress)) {
         $reqNonce = ulNonce::Create('reqNonce');
         $person->setNonce($reqNonce);
-        $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: '.config::$supportEmail);
+        $headers = 'Content-Type: text/plain; charset=UTF-8'."\r\n".'From: '.config::$supportEmail;
         $msg = 'Hello!
           
           You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
