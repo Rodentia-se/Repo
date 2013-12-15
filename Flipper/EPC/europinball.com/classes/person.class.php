@@ -204,12 +204,16 @@
       return FALSE;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username = NULL) {
       return $this->setProp('username', $username);
     }
     
     public function setNonce($nonce) {
       return $this->setProp('nonce', $nonce);
+    }
+
+    public function setPaid($amount = 1) {
+      return $this->setProp('paid', $amount);
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
