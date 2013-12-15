@@ -125,27 +125,30 @@
     }
 
     public function addPlayer($division = NULL) {
-      $division = ($division) ? division($division) : division('active');
-      $player = player((array) $this->getFlat(), NOSEARCH, 0);
-      unset($player->id);
-      $player->tournamentDivision_id = $division->id;
-      $player->tournamentEdition_id = $division->tournamentEdition_id;
-      $player->person_id = $this->id;
-      $player->dateRegistered = date('Y-m-d');
-      if ($division->main) {
-        $players = players($division);
-        if (config::$participationLimit && count($players) >= config::$participationLimit) {
-          $player->waiting = TRUE;
-        }
-      }
-      $id = $player->save();
-      if (isId($id)) {
-        $player = player($id);
-        if ($player) {
-          if ($player->waiting) {
-            $this->db->seqWaiting();
+      $division = ($division) ? getDivision($division) : division('active');
+      $player = player($person, $division);
+      if (!$player) {
+        $player = player((array) $this->getFlat(), NOSEARCH, 0);
+        unset($player->id);
+        $player->tournamentDivision_id = $division->id;
+        $player->tournamentEdition_id = $division->tournamentEdition_id;
+        $player->person_id = $this->id;
+        $player->dateRegistered = date('Y-m-d');
+        if ($division->main) {
+          $players = players($division);
+          if (config::$participationLimit && count($players) >= config::$participationLimit) {
+            $player->waiting = TRUE;
           }
-          return $id;
+        }
+        $id = $player->save();
+        if (isId($id)) {
+          $player = player($id);
+          if ($player) {
+            if ($player->waiting) {
+              $this->db->seqWaiting();
+            }
+            return $id;
+          }
         }
       }
       return false;
