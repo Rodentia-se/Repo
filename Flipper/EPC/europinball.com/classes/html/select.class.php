@@ -91,6 +91,7 @@
       if ($replace) {
         $replaced = $this->delOptions($replace);
       }
+      debug($option);
       if ($options !== NULL) {
         if (is_array($options) && count($options) > 1) {
           $return = TRUE;
