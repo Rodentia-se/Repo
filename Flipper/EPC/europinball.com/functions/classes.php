@@ -65,6 +65,7 @@
 
   function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
     $obj = new division($data, $search, $depth);
+    return obj($obj);
   }
 
   function divisions($data = NULL, $prop = NULL) {
