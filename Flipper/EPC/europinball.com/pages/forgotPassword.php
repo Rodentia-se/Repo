@@ -71,7 +71,7 @@
     debug($person);
       if ($person && isId($person->id)) {
         if ($person->mailAddress) {
-          if (person::validateMailAddress($player->mailAddress)) {
+          if (person::validateMailAddress($person->mailAddress)) {
             if (config::$login->sendResetEmail($person)) {
               $page->addParagraph('<p>We have sent a new email to the registered address for user '.$person->username.' - please click the link in that email.');
             } else {
