@@ -15,7 +15,7 @@
     public static $selfParent = FALSE;
     public static $validators = array();
     public static $mandatory = array();
-
+    public static $infoProps = array();
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
@@ -195,6 +195,21 @@
           <img src="'.$photo.'" class="popupPhoto">
         </div>
       ' : '';
+    }
+    
+    public function getInfo() {
+      $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
+      $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
+      foreach (static::$infoProps as $label => $prop) {
+        $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
+        $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
+        $nameDiv->addSpan($this->$prop);
+      }
+      $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
+      if ($this->getPhoto()) {
+        $right->addImg($this->getPhoto());
+      }
+      return $info;
     }
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {

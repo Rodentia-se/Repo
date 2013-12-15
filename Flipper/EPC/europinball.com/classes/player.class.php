@@ -120,6 +120,14 @@
       'mailAddress' => array('person', 'validateEmail'),
       'username' => array('person', 'validateUsername')
     );
+    
+    public static $infoProps = array(
+      'name',
+      'tag',
+      'city',
+      'region',
+      'country'
+    );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
