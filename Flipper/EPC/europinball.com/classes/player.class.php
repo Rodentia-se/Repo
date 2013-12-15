@@ -213,7 +213,8 @@
           (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
           (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
           $this->getLink('ifpa'),
-          $this->person->getPhotoIcon()
+          $this->person->getPhotoIcon(),
+          (($this->waiting) ? '*': '')
         );
         return ($array) ? $return : (object) $return;
       }
