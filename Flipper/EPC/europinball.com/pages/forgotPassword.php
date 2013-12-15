@@ -7,7 +7,7 @@
   
   $reqNonce = (isset($_REQUEST['reqNonce'])) ? $_REQUEST['reqNonce'] : false;
 
-  function getPersonFromNonce($regNonce) {
+  function getPersonFromNonce($reqNonce) {
     if ($reqNonce) {
       $person = person(array('nonce' => $reqNonce), TRUE);
       if ($person) {
