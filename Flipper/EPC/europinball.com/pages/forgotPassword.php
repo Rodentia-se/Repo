@@ -6,9 +6,11 @@
   $page = new page('Register');
   
   $reqNonce = (isset($_REQUEST['reqNonce'])) ? $_REQUEST['reqNonce'] : false;
-
+  debug($reqNonce, 'N1');
   function getPersonFromNonce($reqNonce) {
+  debug($reqNonce, 'N5');
     if ($reqNonce) {
+  debug($reqNonce, 'N6');
       $person = person(array('nonce' => $reqNonce), TRUE);
       if ($person) {
         if (ulNonce::Verify('reqNonce', $reqNonce)) {
@@ -37,9 +39,12 @@
     $page->addParagraph('If you are not '.$person->name.' and intended to reset the password for someone else, you need to '.page::getButton('log out').' first.');
     $page->addForm('log out', array('action' => 'logout'));
   } else {
+  debug($reqNonce, 'N2');
     if ($reqNonce) {
+  debug($reqNonce, 'N3');
       debug($person, 'Person, before Nonce');
       $person = getPersonFromNonce($reqNonce);
+  debug($reqNonce, 'N4');
       debug($person, 'Person, after Nonce');
       if ($person) {
         if ($person->valid) {
