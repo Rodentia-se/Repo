@@ -10,7 +10,7 @@
   
   $div = new div();
   
-  if (isObj($obj))) {
+  if (isObj($obj)) {
     $object = $obj($id);
     if ($object) {
       $div->addContent($object->getInfo());
