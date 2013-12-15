@@ -111,18 +111,38 @@
     }
     
     protected function addUser($username, $password, $person = NULL) {
-      if ($this->CreateUser($_REQUEST['username'],  $_REQUEST['password'])) {
-        if ($person) {
-          if($person->setUsername($_REQUEST['username'])) {
-            return TRUE;
+      if (!preg_match('/ /', $username)) {
+        if (preg_match('/[^a-zA-Z0-9\-_]/'), $username) {
+          if (strlen($username) < 3) {
+            if (strlen($username) > 32) {
+              if (preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
+                if ($this->CreateUser($username,  $password)) {
+                  if ($person) {
+                    if($person->setUsername($username)) {
+                      return TRUE;
+                    } else {
+                      error('User created, but could not associate the user with the person');
+                    }
+                  } else {
+                    return TRUE;
+                  }
+                } else {
+                  error('Could not create user '.$username);
+                }
+              } else {
+                error('Your username is invalid. Please use a-z, A-Z, 0-9, dash and underscore only. The username has to be at least three characters, and can not be longer than 32 characters. Change to a valid username and try again.');
+              }
+            } else {
+              error('Your username is too long. Please use no more than 32 characters and try again.');
+            }
           } else {
-            error('User created, but could not associate the user with the person');
+            error('Your username is too short. Please use at least three characters and try again.');
           }
         } else {
-          return TRUE;
+          error('You have invalid characters in your username. Please only use standard characters and try again.');
         }
       } else {
-        error('Could not create user '.$_REQUEST['username']);
+        error('You cannot have spaces in the username, please remove the spaces and try again.');
       }
       return  FALSE;
     }
