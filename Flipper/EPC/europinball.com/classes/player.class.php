@@ -126,7 +126,8 @@
       'tag',
       'city',
       'region',
-      'country'
+      'country',
+      'continent'
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
