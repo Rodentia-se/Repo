@@ -200,20 +200,26 @@
     public function getInfo() {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
-      foreach (static::$infoProps as $label => $prop) {
-        $html = FALSE;
-        if (isObj($this->$prop)) {
-          $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
-          if (!$html) {
-            $html = $this->${$prop.'Name'};
+      if (static::$infoProps) {
+        foreach (static::$infoProps as $label => $prop) {
+          $html = FALSE;
+          if (isObj($this->$prop)) {
+            $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
+            if (!$html) {
+              $html = $this->${$prop.'Name'};
+            }
+          } else {
+            ($html = (string) $this->$prop);
+          }
+          if ($html) {
+            $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
+            $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
+            $nameDiv->addSpan($html);
           }
         } else {
-          ($html = (string) $this->$prop);
-        }
-        if ($html) {
-          $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
-          $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-          $nameDiv->addSpan($html);
+            $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+            $nameDiv->addLabel('Name');
+            $nameDiv->addSpan($this->name);
         }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
