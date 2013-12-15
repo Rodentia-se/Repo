@@ -85,7 +85,7 @@
         } else {
           $page->addParagraph('You have no email address registered with us. Please try again or <a href="mailto:support@europinball.org">email us</a> for assistance.');
         }
-      } else if {
+      } else {
         $page->addContent('
           <p>Please specify either username or email address used for your registration:</p>
           <form action="?" method="POST">
