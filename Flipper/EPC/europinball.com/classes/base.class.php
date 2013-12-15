@@ -216,11 +216,11 @@
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
             $nameDiv->addSpan($html);
           }
-        } else {
-            $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-            $nameDiv->addLabel('Name');
-            $nameDiv->addSpan($this->name);
         }
+      } else {
+        $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+        $nameDiv->addLabel('Name');
+        $nameDiv->addSpan($this->name);
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
