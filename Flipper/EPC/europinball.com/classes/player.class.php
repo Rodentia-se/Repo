@@ -214,7 +214,7 @@
           (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
           $this->getLink('ifpa'),
           $this->person->getPhotoIcon(),
-          (($this->waiting) ? '*': '')
+          (($this->waiting) ? ((isId($this->waiting) ? $this->waiting) : '*'): '')
         );
         return ($array) ? $return : (object) $return;
       }
