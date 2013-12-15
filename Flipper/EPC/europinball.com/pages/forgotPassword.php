@@ -39,7 +39,6 @@
   } else {
     if ($reqNonce) {
       $person = getPersonFromNonce($reqNonce);
-      debug($person, 'Person, after Nonce');
       if ($person) {
         if ($person->valid) {
           $page->addParagraph('You have been identified as '.$person->name.(($person->shortName) ? ' ('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'.');
