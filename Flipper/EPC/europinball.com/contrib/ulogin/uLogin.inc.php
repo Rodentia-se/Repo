@@ -307,7 +307,7 @@ class uLogin
 		if ($ret !== true)
 		{
 			if ($ret == ulLoginBackend::ALREADY_EXISTS)
-    		ulLog::Log('create login failed', $username, ulUtils::GetRemoteIP(false), 'user exist');
+    		ulLog::Log('create login failed', $username, ulUtils::GetRemoteIP(false), 'username exist');
 				return false;
 			else
 				return NULL;
