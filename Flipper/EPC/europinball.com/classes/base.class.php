@@ -213,7 +213,7 @@
         if ($html) {
           $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
           $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-          $nameDiv->addSpan($this->$prop);
+          $nameDiv->addSpan($html);
         }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
