@@ -95,7 +95,7 @@
         if (is_array($options) && count($options) > 1) {
           $return = TRUE;
           foreach($options as $key => $option) {
-            if (isHtml($option)) {
+            if (isHtml($option) || isObj($option)) {
               $result = $this->addOptions($option, $selected, FALSE, $index);
             } else {
               $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
@@ -106,6 +106,11 @@
           }
           return $return;
         } else {
+          if (isObj($options)) {
+            if ($options->name) {
+              $options = new option($options->name, $options->id);
+            }
+          }
           if (!isHtml($options)) {
             if (is_array($options)) {
               foreach ($options as $key => $val) {
