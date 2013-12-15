@@ -102,6 +102,9 @@ $div3->addClick();
 $div3->addClick('var click = "klack";');
 $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
 
+  $person = person(5768);
+  debug($person->name, "NAME 5768");
+  debug($person->addPlayer(), "ADD");
   $person = person(940);
   debug($person->name, "NAME 940");
   debug($person->addPlayer(), "ADD");
