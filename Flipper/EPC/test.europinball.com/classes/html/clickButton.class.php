@@ -13,7 +13,7 @@
       parent::__construct($value, $name, $params);
     }
 //    click public function __construct($selector = NULL, $code = NULL, $indents = 0) {
-//    jquery public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
+//    jquery public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, array $settings = NULL, $indents = 0) {
 //    form public function __construct($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
 //    button public function __construct($value = 'submit', $name = NULL, array $params = NULL) {
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
@@ -125,7 +125,7 @@
           if (!$this->form) {
             $this->form(TRUE);
           }
-          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
+          $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', NULL, static::$indents);
         } else {
           $this->accessories['script'] = (isHtml($script)) ? $script : new click($script);
         }
