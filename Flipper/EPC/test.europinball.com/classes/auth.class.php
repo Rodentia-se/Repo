@@ -424,7 +424,7 @@
           position: "right",
           timer: 3000
         });
-      ';
+      ');
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserDiv").dialog({
