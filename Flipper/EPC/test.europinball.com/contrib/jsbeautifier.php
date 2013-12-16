@@ -204,7 +204,7 @@ class JSBeautifier
 		$this->indent_string = $this->options->indent_with_tabs
 				? "\t" : str_repeat($this->options->indent_char, $this->options->indent_size);
 
-		$this->preindent_string = $this->options->indent_level ? 
+		$this->preindent_string = ($this->options->indent_level > 0) ? 
       $this->options->indent_with_tabs
 			  ? str_repeat("\t", $this->options->indent_level)
         : str_repeat($this->options->indent_char, $this->options->indent_level * $this->options->indent_size)
