@@ -458,6 +458,8 @@
             if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
               unset($this->params[$params]);
             }
+          } else if (count($this->css) > 0) {
+            $this->params = array('style' => ' ');
           } else {
             $this->params = array();
             if ($this->contentParam) {
@@ -527,10 +529,11 @@
       } else {
         $this->css[$props] = $value;
       }
+      $this->params['style'] .= ' ';
       return TRUE;
     }
 
-    public function getCss($param = NULL, $string = TRUE) {
+    protected function getCss($param = NULL, $string = TRUE) {
       if ($param) {
         return (array_key_exists($this->css, $param)) ? (($string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
       } else {
