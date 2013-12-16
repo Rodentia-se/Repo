@@ -3,7 +3,7 @@
   class combobox extends jquery {
     
     public function __construct($selector = NULL, $indents = 0) {
-      $settings['required'][] = 'jquery-ui.js';
+      $this->settings['required'][] = 'jquery-ui.js';
       parent::__construct($selector, 'combobox', 'command', NULL, NULL, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {

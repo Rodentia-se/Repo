@@ -17,7 +17,7 @@
         $type = 'command';
         $contents = array('update' => $contents, 'show' => FALSE);
       }
-      $settings['required'][] = 'jquery.tooltipster.js';
+      $this->settings['required'][] = 'jquery.tooltipster.js';
       parent::__construct($selector, 'tooltipster', $type, $contents, $props, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
