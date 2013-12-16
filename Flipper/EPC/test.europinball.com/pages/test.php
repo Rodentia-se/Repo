@@ -20,7 +20,11 @@
   $persons = persons('main');
   debug(count($players), 'COUNT6');
   $persons = persons('eighties');
-  debug(count($players), 'COUNT6');
+  debug(count($players), 'COUNT7');
+  $persons = persons('');
+  debug(count($players), 'COUNT7');
+  $persons = persons('blaha');
+  debug(count($players), 'COUNT7');
 
 
 
