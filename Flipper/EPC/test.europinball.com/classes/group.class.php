@@ -213,8 +213,22 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
-      
-      return new select($name)
+      $name = ($name) ? $name : get_class($this);
+      $label = ($label) ? $label : ucfirst($name);
+      $params['id'] = ($params['id']) ? $params['id'] : $name;
+      if (isObj($selected)) {
+        $selected_id = $selected->id;
+      } else if (isId($selected)) {
+        $selected_id = $selected;
+      } else if (isArray($selected)) {
+        $selected_id = array_keys($selected)[0];
+      }
+      foreach ($this as $obj) {
+        $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
+        $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
+        $options[] = $option;
+      }
+      return new select($name, $options, $selected, $label, $params);
     }
     
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
