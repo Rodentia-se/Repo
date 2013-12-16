@@ -103,7 +103,7 @@ $div3->addClickButton('Klicka knapp!', 'Namnet', 'http://www.click', TRUE, TRUE,
 $div3->addScript('script.js', array('sampleparam' => 'huff'));
 $div3->addScript('var kod = true; echo "Vi kodar!"; var merkod = false;', array('sampleparam' => 'huff'));
 $div3->addScriptFile('JS.fil', array('sampleparam' => 'huff'));
-$div3->addScriptCode('var kod = true; echo "Vi kodar!"; var merkod = false;', array('sampleparam' => 'huff'), NULL, 15);
+$div3->addScriptCode('var kod = true; echo "Vi kodar!"; var merkod = false;', array('sampleparam' => 'huff'), 15);
 $div3->addTooltip('Some content', FALSE);
 $div3->addTooltip('More content', TRUE);
 $div3->addTooltip('Most content', 'update');
