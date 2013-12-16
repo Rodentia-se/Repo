@@ -52,7 +52,7 @@
       )
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
       if (is_string($data) && in_array($data, $persons)) {
@@ -62,14 +62,14 @@
           return FALSE;
         }
       } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
-        $division = division($data, (($search !== NOSEARCH) ? $search : 'main'));
+        $division = division($data, (($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$division || !isId($division->id)) {
           $this->failed = TRUE;
           return FALSE;
         }
       }
       if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
-        $division = division((($search !== NOSEARCH) ? $search : 'main'));
+        $division = division((($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$division || !isId($division->id)) {
           $this->failed = TRUE;
           return FALSE;

@@ -88,9 +88,9 @@
       'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
+      if (is_string($data) && in_array($data, $persons) && $search === config::NOSEARCH) {
         if (isObj(config::$login->person) && isId(config::$login->person->id)) {
           $this->_set(config::$login->person);
           return TRUE;
@@ -128,7 +128,7 @@
       $division = ($division) ? getDivision($division) : division('active');
       $player = player($this, $division);
       if (!$player) {
-        $player = player((array) $this->getFlat(), NOSEARCH, 0);
+        $player = player((array) $this->getFlat(), config::NOSEARCH, 0);
         unset($player->id);
         $player->tournamentDivision_id = $division->id;
         $player->tournamentEdition_id = $division->tournamentEdition_id;

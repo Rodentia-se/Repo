@@ -134,7 +134,7 @@
     public static $singleDivisions = array('main', 'classics', 'eighties');
     public static $teamDivisions = array('team', 'nationalTeam');
 
-    const NOSEARCH = 'noSearchCriteriaProvided';
+    const config::NOSEARCH = 'config::NOSEARCHCriteriaProvided';
     
     public static $pageType = 'normal'; // Default - will be changed by AJAX calls and similar
     public static $embedded = TRUE;

@@ -23,7 +23,7 @@
       'volunteer' => 'gender'
     );
 
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       parent::__construct($data, $search, $depth);
       $this->name = ucfirst($this->name);
       $this->fullName = ucfirst($this->fullName);

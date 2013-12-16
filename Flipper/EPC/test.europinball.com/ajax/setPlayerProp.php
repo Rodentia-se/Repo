@@ -25,7 +25,7 @@
             if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
               if ($id > 0) {
-                $obj = $class($id, NOSEARCH, 0);
+                $obj = $class($id, config::NOSEARCH, 0);
                 if ($obj) {
                   if ($person->setProp($prop, $id)) {
                     if (isGeo($obj)) {

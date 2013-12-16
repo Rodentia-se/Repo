@@ -12,7 +12,7 @@
     return ($obj->failed) ? FALSE : $obj;
   }
 
-  function city($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function city($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new city($data, $search, $depth);
     return obj($obj);
   }
@@ -29,7 +29,7 @@
     return (isGroup($cities) && get_class($cities) == 'cities');
   }
 
-  function continent($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function continent($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new continent($data, $search, $depth);
     return obj($obj);
   }
@@ -46,7 +46,7 @@
     return (isObj($continents) && get_class($continents) == 'continents');
   }
 
-  function country($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function country($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new country($data, $search, $depth);
     return obj($obj);
   }
@@ -63,7 +63,7 @@
     return (isObj($countries) && get_class($countries) == 'countries');
   }
 
-  function division($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function division($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new division($data, $search, $depth);
     return obj($obj);
   }
@@ -92,7 +92,7 @@
     return FALSE;
   }
   
-  function entry($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function entry($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new entry($data, $search, $depth);
     return obj($obj);
   }
@@ -109,7 +109,7 @@
     return (isGroup($entries) && get_class($entries) == 'entries');
   }
   
-  function game($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function game($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new game($data, $search, $depth);
     return obj($obj);
   }
@@ -126,7 +126,7 @@
     return (isObj($games) && get_class($games) == 'games');
   }
   
-  function gender($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function gender($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new gender($data, $search, $depth);
     return obj($obj);
   }
@@ -143,7 +143,7 @@
     return (isObj($genders) && get_class($genders) == 'genders');
   }
   
-  function location($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function location($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new location($data, $search, $depth);
     return obj($obj);
   }
@@ -160,7 +160,7 @@
     return (isObj($locations) && get_class($locations) == 'locations');
   }
   
-  function machine($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function machine($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new machine($data, $search, $depth);
     return obj($obj);
   }
@@ -177,7 +177,7 @@
     return (isObj($machines) && get_class($machines) == 'machines');
   }
   
-  function manufacturer($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function manufacturer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new manufacturer($data, $search, $depth);
     return obj($obj);
   }
@@ -194,7 +194,7 @@
     return (isObj($manufacturers) && get_class($manufacturers) == 'manufacturers');
   }
   
-  function match($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function match($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new match($data, $search, $depth);
     return obj($obj);
   }
@@ -211,7 +211,7 @@
     return (isObj($matches) && get_class($matches) == 'matches');
   }
   
-  function matchPlayer($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function matchPlayer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new matchPlayer($data, $search, $depth);
     return obj($obj);
   }
@@ -228,7 +228,7 @@
     return (isObj($matchPlayers) && get_class($matchPlayers) == 'matchPlayers');
   }
   
-  function owner($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function owner($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new owner($data, $search, $depth);
     return obj($obj);
   }
@@ -245,7 +245,7 @@
     return (isObj($owners) && get_class($owners) == 'owners');
   }
   
-  function period($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function period($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new period($data, $search, $depth);
     return obj($obj);
   }
@@ -262,7 +262,7 @@
     return (isObj($periods) && get_class($periods) == 'periods');
   }
   
-  function person($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function person($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new person($data, $search, $depth);
     return obj($obj);
   }
@@ -279,7 +279,7 @@
     return (isObj($persons) && get_class($persons) == 'persons');
   }
   
-  function player($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function player($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new player($data, $search, $depth);
     return obj($obj);
   }
@@ -296,7 +296,7 @@
     return (isObj($players) && get_class($players) == 'players');
   }
   
-  function qualGroup($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function qualGroup($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new qualGroup($data, $search, $depth);
     return obj($obj);
   }
@@ -313,7 +313,7 @@
     return (isObj($qualGroups) && get_class($qualGroups) == 'qualGroups');
   }
   
-  function region($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function region($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new region($data, $search, $depth);
     return obj($obj);
   }
@@ -330,7 +330,7 @@
     return (isObj($regions) && get_class($regions) == 'regions');
   }
   
-  function score($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function score($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new score($data, $search, $depth);
     return obj($obj);
   }
@@ -347,7 +347,7 @@
     return (isObj($scores) && get_class($scores) == 'scores');
   }
   
-  function set($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function set($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new set($data, $search, $depth);
     return obj($obj);
   }
@@ -364,7 +364,7 @@
     return (isObj($sets) && get_class($sets) == 'sets');
   }
   
-  function task($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function task($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new task($data, $search, $depth);
     return obj($obj);
   }
@@ -381,7 +381,7 @@
     return (isObj($tasks) && get_class($tasks) == 'tasks');
   }
   
-  function team($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function team($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new team($data, $search, $depth);
     return obj($obj);
   }
@@ -398,7 +398,7 @@
     return (isObj($teams) && get_class($teams) == 'teams');
   }
   
-  function tournament($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function tournament($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new tournament($data, $search, $depth);
     return obj($obj);
   }
@@ -415,7 +415,7 @@
     return (isObj($tournaments) && get_class($tournaments) == 'tournaments');
   }
   
-  function tshirt($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function tshirt($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new tshirt($data, $search, $depth);
     return obj($obj);
   }
@@ -432,7 +432,7 @@
     return (isObj($tshirts) && get_class($tshirts) == 'tshirts');
   }
   
-  function volunteer($data = NULL, $search = NOSEARCH, $depth = NULL) {
+  function volunteer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new volunteer($data, $search, $depth);
     return obj($obj);
   }

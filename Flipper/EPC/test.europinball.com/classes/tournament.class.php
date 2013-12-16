@@ -53,8 +53,8 @@
       )
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
-      if (is_string($data) && ($data == 'current' || $data == 'active') && $search == NOSEARCH) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+      if (is_string($data) && ($data == 'current' || $data == 'active') && $search == config::NOSEARCH) {
         $data = config::${$data.'Tournament'};
       }
       parent::__construct($data, $search, $depth);
