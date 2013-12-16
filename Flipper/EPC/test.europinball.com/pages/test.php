@@ -7,8 +7,10 @@
 
   $div = new div();
   $persons = persons(tournament('active'));
-  $select = $persons->getSelectObj();
-  $page->addContent($select);
+  $div->addContent($persons->getSelectObj());
+  
+  
+  $page->addContent($div);
   $page->submit();
 
 /*
