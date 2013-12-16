@@ -13,7 +13,7 @@
   $paidDiv = $div->addDiv();
   $label = $paidDiv->addLabel('Paid:');
   $label->addCss('margin-top', '15px');
-  debug($label, 'HUFFHEPP!');
+  debug($label->getCss(), 'HUFFHEPP!');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   $shouldDiv = $div->addDiv();
   $shouldDiv->addLabel('Should pay:');
