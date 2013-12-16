@@ -5,8 +5,9 @@
     public static $objClass = 'person';
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-        debug(get_class($data), 'NO');
-        debug(isPlayers($data), 'NO');
+        debug(get_class($data), 'get_class');
+        debug(isPlayers($data), 'isPlayers');
+        debug(isObj($data), 'isObj');
         debug(count($data), 'NO');
                 debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
 
