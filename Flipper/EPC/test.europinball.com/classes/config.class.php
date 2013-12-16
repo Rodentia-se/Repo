@@ -119,7 +119,7 @@
     public static $nationalTeamDivision = 17;
     public static $nationalTeamQualGroupLimit = FALSE;
     public static $nationalTeamCost = 0;
-
+ 
     public static $baseHref = 'https://test.europinball.org/';
     public static $baseDir = '/www/test.europinball.com/';
     public static $supportEmail = 'support@europinball.org';

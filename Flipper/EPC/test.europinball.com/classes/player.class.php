@@ -130,7 +130,7 @@
       'continent'
     );
 
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
       if (is_string($data) && in_array($data, $persons)) {
@@ -147,7 +147,7 @@
         }
       }
       if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
-        $search = division((($search !== NOSEARCH) ? $search : 'main'));
+        $search = division((($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;
