@@ -12,19 +12,19 @@
   $players = players($players);
   debug(count($players), 'COUNT2');
   $persons = persons($players);
-  debug(count($players), 'COUNT3');
+  debug(count($persons), 'COUNT3');
   $persons = persons($division);
-  debug(count($players), 'COUNT4');
+  debug(count($persons), 'COUNT4');
   $persons = persons('active');
-  debug(count($players), 'COUNT5');
+  debug(count($persons), 'COUNT5');
   $persons = persons('main');
-  debug(count($players), 'COUNT6');
+  debug(count($persons), 'COUNT6');
   $persons = persons('eighties');
-  debug(count($players), 'COUNT7');
+  debug(count($persons), 'COUNT7');
   $persons = persons('');
-  debug(count($players), 'COUNT7');
+  debug(count($persons), 'COUNT7');
   $persons = persons('blaha');
-  debug(count($players), 'COUNT7');
+  debug(count($persons), 'COUNT7');
 
 
 
