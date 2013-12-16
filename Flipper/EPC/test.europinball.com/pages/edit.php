@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register');
+  $page = new page('Edit profile');
   
   if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $person = person('login');
@@ -145,12 +145,20 @@
           $page->closeDiv();
         }
         if (in_array('t-shirts', config::$editSections)) {
-          $page->startDiv('tshirts');
-          $page->closeDiv();
+          $tshirtDiv = new div('tshirts');
+            $tshirtDiv->indents = 3;
+            $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
+              $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
+            $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
+            $tshirtDiv->addContent($jquery);
+            $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
+          $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
-          $page->startDiv('volunteer');
-          $page->closeDiv();
+          $volDiv = new div('volunteer');
+            $tshirtDiv->indents = 3;
+            $paragraph = $tshirtDiv->addParagraph('Volunteer registration will open in short.');
+          $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');

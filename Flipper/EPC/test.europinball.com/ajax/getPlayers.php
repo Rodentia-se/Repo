@@ -24,7 +24,7 @@
   if ($player) {
     $players = players($player);
   }
-  
+
   switch ($type) {
     case 'registered':
       if ($players && count($players) > 0) {
@@ -55,7 +55,7 @@
               $person->cityName,
               $person->countryName,
               $person->getLink('ifpa'),
-              (($person->getPhoto(FALSE, TRUE, FALSE)) ? '<img src="'.config::$baseHref.'/images/person.png" data-photoDiv="'.$person->id.'PhotoDiv" class="photoIcon icon" title="Click to view photo"><div id="'.$person->id.'PhotoDiv" class="photoPopup" title="'.$person->name.'"><img src="'.$person->getPhoto(FALSE, TRUE, FALSE).'"></div>' : ''),
+              $person->getPhotoIcon(),
               '<form id="'.$person->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="isMe"><input type="hidden" name="person_id" value="'.$person->id.'"><input type="button" id="'.$person->id.'_isMe" class="isMe" value="This is me!"></form>'
             );
           } 

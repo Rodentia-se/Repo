@@ -46,6 +46,13 @@
       'score' => 'city'
     );
 
+    public static $infoProps = array(
+      'name',
+      'region',
+      'country',
+      'continent'
+    );
+
     public function getLocations() {
       return $this->db->getObjectsByParent('location', $this);
     }

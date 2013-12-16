@@ -47,7 +47,7 @@
         o.wpprPoints as wpprPoints,
         o.here as here,
         o.hereFinal as hereFinal,
-        if(o.paid is not null, o.paid, 0) as paid,
+        ifnull(p.paid, 0) as paid,
         o.payDate as payDate,
         o.waiting as waiting,
         p.ifpa_id as ifpa_id,
@@ -115,10 +115,19 @@
       'continent' => 'continentName',
       'gender' => 'genderName'
     );
-
+ 
     public static $validators = array(
       'mailAddress' => array('person', 'validateEmail'),
       'username' => array('person', 'validateUsername')
+    );
+    
+    public static $infoProps = array(
+      'name',
+      'tag',
+      'city',
+      'region',
+      'country',
+      'continent'
     );
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
@@ -153,7 +162,7 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE) {
+    public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
         case 'ifpa':
           if ($this->ifpa_id) {
@@ -178,6 +187,16 @@
       return FALSE;
     }
     
+    public function setPaid($amount = 1) {
+      if (!is_object($this->person)) {
+        $this->populate(1);
+      }
+      if (!is_object($this->person)) {
+        return $this->person->setPaid($amount);
+      }
+      return FALSE;
+    }
+
     public function getRegRow($array = FALSE) {
       if ($this->team) {
         $members = $this->team->getMembers();
@@ -213,7 +232,9 @@
           (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
           (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
           $this->getLink('ifpa'),
-          $this->getLink('photo')
+          $this->person->getPhotoIcon(),
+          (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
+          (($this->paid) ? 'Yes' : '')
         );
         return ($array) ? $return : (object) $return;
       }

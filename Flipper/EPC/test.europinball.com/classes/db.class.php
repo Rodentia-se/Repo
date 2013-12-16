@@ -200,6 +200,28 @@
       }
       return FALSE;
     }
+    
+    public function seqWaiting($division = 'active') {
+      $division = getDivision($division);
+      if (isDivision($division)) {
+        $query = '
+          update player 
+            right join (
+              select @rownum := @rownum +1 seq, 
+                id AS pid, 
+                waiting
+              from player, 
+                (SELECT @rownum :=0)r
+              where waiting is not null
+                and tournamentDivision_id = '.$division->id.'
+              order by id
+            ) AS players
+            ON players.pid = player.id
+          set player.waiting = players.seq
+        ';
+      }
+      return $this->update($query);
+    } 
 
   }
 

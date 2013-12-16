@@ -70,6 +70,7 @@
       if ($person) {
         $uid = $person->getUid();
         if ($uid) {
+          debug($person, "PERSON");
           if ($username == $person->username) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
@@ -268,14 +269,14 @@
         case 'reset':
           if (isset($_REQUEST['username']) && isset($_REQUEST['password']) && isset($_REQUEST['nonce']) && isId($_REQUEST['person_id'])) {
             if ($this->verified) {
-              if ($_REQUEST['newPassword'] == $_REQUEST['verifyNewPassword']) {
+              if ($_REQUEST['password'] == $_REQUEST['verifyPassword']) {
                 if ($_REQUEST['person_id'] == 0) {
-                  $person = person('new');
-                  $person_id = $person->save();
+                    config::$msg = 'Credential changes failed.';
+                    config::$msg = 'Could not identify you. Please try again, or contact us for assistance.';
+                    return FALSE;
                 } else {
                   if (isId($_REQUEST['person_id'])) {
                     $person_id = $_REQUEST['person_id'];
-                    $uid = ($person->username) ? $this->Uid($person->username) : NULL;
                   } else {
                     config::$msg = 'Credential changes failed.';
                     error('Not enough parameters provided');
@@ -285,7 +286,7 @@
                 $person = person($person_id);
                 if ($person) {
                   $uid = $this->Uid($_SESSION['username']);
-                  $change = $this->changeUser($_REQUEST['newUsername'], $_REQUEST['newPassword'], $person);
+                  $change = $this->changeUser($_REQUEST['username'], $_REQUEST['password'], $person);
                   if ($change) {
                     config::$msg = 'Your username and/or password was successfully changed.';
                     return TRUE;
@@ -350,8 +351,7 @@
           $form .= page::getButton('Login', $prefix.'login', (($dialog) ? 'hidden ' : '').'enterButton', FALSE, NULL, NULL, FALSE);
           $form .= page::getButton('I forgot all this!', $prefix.'reset');
         $form .= page::getFormEnd();
-        $form .= page::getFormStart($prefix.'resetForm');
-          $form .= page::getInput('reset', $prefix.'action', 'action', 'hidden');
+        $form .= page::getFormStart($prefix.'resetForm', NULL, '/password-reset');
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
       if ($dialog) {
@@ -409,6 +409,22 @@
           $form .= page::getLabel('&nbsp').page::getButton((($new) ? 'Register' : 'Submit changes'), $prefix.(($new) ? 'new' : 'change').'User', (($dialog) ? 'hidden ' : '').'submitButton', FALSE, NULL, NULL, FALSE);
         $form .= page::getFormEnd();
       $form .= page::getDivEnd();
+      $form .= page::getScript('
+        $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
+          theme: ".tooltipster-light",
+          content: "The passwords do not match...",
+          trigger: "custom",
+          position: "right",
+          timer: 3000
+        });
+        $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster({
+          theme: ".tooltipster-light",
+          content: "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...",
+          trigger: "custom",
+          position: "right",
+          timer: 3000
+        });
+      ';
       if ($dialog) {
         $form .= page::getScript('
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserDiv").dialog({
@@ -419,16 +435,13 @@
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
                 if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-                    $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                    if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
+                      $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                    } else {
+                      $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
+                    }
                   } else {
-                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-                      theme: ".tooltipster-light",
-                      content: "The passwords do not match...",
-                      trigger: "custom",
-                      position: "right",
-                      timer: 3000
-                    })
-                    .tooltipster("show");
+                    $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("show");
                   }
                 }
               },
@@ -443,17 +456,14 @@
         ');
       } else {
         $form .= page::getScript('
-          $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster({
-            theme: ".tooltipster-light",
-            content: "The passwords do not match...",
-            trigger: "custom",
-            position: "right",
-            timer: 3000
-          });
           $("#'.$prefix.(($new) ? 'new' : 'change').'UserButton").click(function() {
             if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
               if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
-                $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
+                  $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
+                } else {
+                  $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster("update", "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...").tooltipster("show");
+                }
               } else {
                 $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The passwords do not match...").tooltipster("show");
               }
@@ -470,21 +480,25 @@
       if ($person->validate('mailAddress', $person->mailAddress)) {
         $reqNonce = ulNonce::Create('reqNonce');
         $person->setNonce($reqNonce);
-        $headers = array('Content-Type: text/plain; charset=UTF-8', 'From: '.config::$supportEmail);
-        $msg = 'Hello!
-          
-          You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
-        
-          If you want to reset your password, please click on this link or paste the address into your browser.
-          
-          '.config::$baseHref.'/resetpassword/?resetNonce='.urlencode($reqNonce).'
-          
-          The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
-          
-          If you encounter any problems, email us at '.config::$supportEmail.' for assistance.
-          
-          Regards
-          /EPC 2014 organizers
+        $headers = 'Content-Type: text/plain; charset=UTF-8'."\r\n".'From: '.config::$supportEmail;
+        $msg = '
+Hello!
+
+You (or someone) have requested your password at europinball.org to be reset. If you are not aware of this, you can safely ignore this message.
+
+If you want to reset your password, please click on this link or paste the address into your browser.
+
+'.config::$baseHref.'/password-reset/?reqNonce='.urlencode($reqNonce).'
+
+The link will expire in 10 hours, and can only be used once. This message was sent on '.date('Y-m-d H:i:s').'
+
+If you used this function multiple times, all earlier links have been rendered invalid by this email, just as future emails will render this one invalid.
+
+If you encounter any problems, email us at '.config::$supportEmail.' for assistance.
+
+Regards
+/EPC 2014 organizers
+https://www.europinball.org/
         ';
         if (mail($person->mailAddress, 'EPC password reset', $msg, $headers)) {
           return TRUE;

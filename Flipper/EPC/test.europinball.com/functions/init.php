@@ -5,12 +5,17 @@
   
   config::$login = new auth();
 
+    if ($_SESSION['msg']) {
+      config::$msg = $_SESSION['msg'];
+      unset($_SESSION['msg']);
+    }
+
   if (isset($_REQUEST['debug'])) {
     config::$debug = ($_REQUEST['debug']);
     config::$showWarnings = ($_REQUEST['debug']);
     config::$showErrors = ($_REQUEST['debug']);
   }
-  
+  debug($_SERVER);
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;

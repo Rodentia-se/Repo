@@ -15,7 +15,7 @@
     public static $selfParent = FALSE;
     public static $validators = array();
     public static $mandatory = array();
-
+    public static $infoProps = array();
 
     public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
@@ -187,7 +187,50 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
     
+    public function getPhotoIcon() {
+      $photo = $this->getPhoto(FALSE, TRUE, FALSE);
+      return ($photo) ? '
+        <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$this->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
+        <div id="'.$this->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
+          <img src="'.$photo.'" class="popupPhoto">
+        </div>
+      ' : '';
+    }
+    
+    public function getInfo() {
+      $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
+      $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
+      if (static::$infoProps) {
+        foreach (static::$infoProps as $label => $prop) {
+          $html = FALSE;
+          if (isObj($this->$prop)) {
+            $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
+            if (!$html) {
+              $html = $this->${$prop.'Name'};
+            }
+          } else {
+            ($html = (string) $this->$prop);
+          }
+          if ($html) {
+            $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
+            $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
+            $nameDiv->addSpan($html);
+          }
+        }
+      } else {
+        $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+        $nameDiv->addLabel('Name');
+        $nameDiv->addSpan($this->name);
+      }
+      $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
+      if ($this->getPhoto()) {
+        $right->addImg($this->getPhoto());
+      }
+      return $info;
+    }
+    
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 

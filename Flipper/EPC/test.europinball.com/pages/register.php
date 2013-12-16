@@ -9,6 +9,7 @@
     $person = person('login');
     $player = player($person);
     if ($player) {
+      $_SESSION['msg'] = 'You are logged in and already registered.';
       header('Location: '.config::$baseHref.'/edit/');
     } else {
       if ($_REQUEST['register'] == 'yes' || $_REQUEST['action'] == 'newUser') {
@@ -16,7 +17,7 @@
         $add = $person->addPlayer();
         $players = players($division);
         if ($add) {
-          if (config::$participationLimit && count($players) > config::$participationLimit) {
+          if (config::$participationLimit[$division->type] && count($players) > config::$participationLimit[$division->type]) {
             $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');

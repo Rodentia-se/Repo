@@ -28,7 +28,7 @@
         o.ifpa_id as ifpa_id,
         o.ifpaRank as ifpaRank,
         ifnull(o.paid, 0) as paid,
-	o.payDate as payDate,
+        o.payDate as payDate,
         o.comment as comment,
         o.nonce as nonce,
         o.username as username
@@ -125,24 +125,30 @@
     }
 
     public function addPlayer($division = NULL) {
-      $division = ($division) ? division($division) : division('active');
-      $player = player((array) $this->getFlat(), NOSEARCH, 0);
-      unset($player->id);
-      $player->tournamentDivision_id = $division->id;
-      $player->tournamentEdition_id = $division->tournamentEdition_id;
-      $player->person_id = $this->id;
-      $player->dateRegistered = date('Y-m-d');
-      if ($division->main) {
-        $players = players($division);
-        if (config::$participationLimit && count($players) >= config::$participationLimit) {
-          $player->waiting = TRUE;
+      $division = ($division) ? getDivision($division) : division('active');
+      $player = player($this, $division);
+      if (!$player) {
+        $player = player((array) $this->getFlat(), NOSEARCH, 0);
+        unset($player->id);
+        $player->tournamentDivision_id = $division->id;
+        $player->tournamentEdition_id = $division->tournamentEdition_id;
+        $player->person_id = $this->id;
+        $player->dateRegistered = date('Y-m-d');
+        if ($division->main) {
+          $players = players($division);
+          if (config::$participationLimit[$division->type] && count($players) >= config::$participationLimit[$division->type]) {
+            $player->waiting = TRUE;
+          }
         }
-      }
-      $id = $player->save();
-      if (isId($id)) {
-        $player = player($id);
-        if ($player) {
-          return $id;
+        $id = $player->save();
+        if (isId($id)) {
+          $player = player($id);
+          if ($player) {
+            if ($player->waiting) {
+              $this->db->seqWaiting();
+            }
+            return $id;
+          }
         }
       }
       return false;
@@ -198,12 +204,16 @@
       return FALSE;
     }
 
-    public function setUsername($username) {
+    public function setUsername($username = NULL) {
       return $this->setProp('username', $username);
     }
     
     public function setNonce($nonce) {
-      return $this->setProp('username', $nonce);
+      return $this->setProp('nonce', $nonce);
+    }
+
+    public function setPaid($amount = 1) {
+      return $this->setProp('paid', $amount);
     }
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {

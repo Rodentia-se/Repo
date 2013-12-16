@@ -55,6 +55,11 @@
       'score' => 'country'
     );
 
+    public static $infoProps = array(
+      'name',
+      'continent'
+    );
+
     public function getRegions() {
       return $this->db->getObjectsByParent('region', $this);
     }

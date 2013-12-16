@@ -7,7 +7,7 @@
     public static $currentTournament = 1;
 
     public static $dbhost = 'localhost';
-    public static $dbname = 'epc_test';
+    public static $dbname = 'epc_main';
     public static $dbuser = 'epc';
     public static $dbpass = 'vLdqLYyvxSZermEv';
     public static $charset = 'utf8';
@@ -27,7 +27,7 @@
     public static $swiftAddress = 'SWEDSESS';
     public static $ibanAccount = 'SE2280000832799031920490';
     public static $defaultCurrency = 'EUR';
-    public static $acceptedCurrencies = array('EUR', 'USD', 'SEK');
+    public static $acceptedCurrencies = array('EUR', 'USD', 'GBP', 'CHF', 'SEK', 'DKK');
     public static $currencies = array(
       'EUR' => array(
         'name' => 'euro',
@@ -53,6 +53,14 @@
         'format' => '£ §',
         'rate' => 0.9
       ),
+      'CHF' => array(
+        'name' => 'franc',
+        'plural' => 'francs',
+        'shortName' => 'CHF',
+        'symbol' => 'Fr',
+        'format' => '§ Fr',
+        'rate' => 1.3
+      ),
       'SEK' => array(
         'name' => 'krona',
         'plural' => 'kronor',
@@ -60,10 +68,20 @@
         'symbol' => 'kr',
         'format' => '§ kr',
         'rate' => 10
+      ),
+      'DKK' => array(
+        'name' => 'krone',
+        'plural' => 'kroner',
+        'shortName' => 'DKK',
+        'symbol' => 'kr',
+        'format' => '§ kr',
+        'rate' => 7.6
       )
     );
     
-    public static $participationLimit = 128;
+    public static $participationLimit = array(
+      'main' => 128
+    );
     public static $tshirts = TRUE;
     public static $tshirtCost = 15;
     public static $qualGroups = TRUE;
@@ -73,7 +91,6 @@
       'photo',
       'security',
       't-shirts',
-      'volunteer',
       'payment'
     );
     public static $editDivisions = array('eighties');
@@ -91,7 +108,7 @@
     public static $eighties = TRUE;
     public static $eightiesDivision = 16;
     public static $eightiesQualGroupLimit = FALSE;
-    public static $eightiesCost = 10;
+    public static $eightiesCost = 0;
  
     public static $team = FALSE;
     public static $teamDivision = FALSE;
@@ -103,8 +120,8 @@
     public static $nationalTeamQualGroupLimit = FALSE;
     public static $nationalTeamCost = 0;
 
-    public static $baseHref = 'https://test.europinball.org/';
-    public static $baseDir = '/www/test.europinball.com/';
+    public static $baseHref = 'https://www.europinball.org/';
+    public static $baseDir = '/www/europinball.com/';
     public static $supportEmail = 'support@europinball.org';
     
     public static $debug = TRUE;

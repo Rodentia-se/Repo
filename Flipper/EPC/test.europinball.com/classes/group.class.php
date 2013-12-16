@@ -160,7 +160,7 @@
         foreach ($objs as $key => $obj) {
           if (is_int($obj->id)) {
             if ($group[$obj->id]) {
-              if ($group[$obj->id]->id == $obj->id) {
+              if ($group[$obj->id]->id == $obj->id) { 
                 $group[$obj->id] = $obj;
               } else if ($group[$obj->id]->id) {
                 $group[$group[$obj->id]->id] = $group[$obj->id];
@@ -218,11 +218,11 @@
           case 'num':
             if ($direction == 'asc') {
               $return = $this->uasort(function($a, $b) use ($prop) {
-                return ($š == $b) ? 0 : (($a->$prop > $b->$prop) ? 1 : -1);
+                return ($a == $b) ? 0 : (($a->$prop > $b->$prop) ? 1 : -1);
               });
             } else if ($direction == 'desc') {
                $return = $this->uasort(function($a, $b) use ($prop) {
-                return ($š == $b) ? 0 : (($a->$prop < $b->$prop) ? 1 : -1);
+                return ($a == $b) ? 0 : (($a->$prop < $b->$prop) ? 1 : -1);
               });
             }
           break;

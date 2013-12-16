@@ -52,6 +52,12 @@
       'volunteer' => 'parentRegion'
     );
 
+    public static $infoProps = array(
+      'name',
+      'country',
+      'continent'
+    );
+
     public function getCities() {
       return $this->db->getObjectsByParent('city', $this);
     }

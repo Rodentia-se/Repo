@@ -262,7 +262,7 @@
     }
     
     public static function getFormStart($id = NULL, $class = NULL, $action = NULL, $method = 'POST', $ext = FALSE) {
-      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext) ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.explode("?", $_SERVER['REQUEST_URI'])[0].'" ').'method="'.$method.'"');
+      return self::getElementStart('form', $id, $class, (($action) ? 'action="'.(($ext || substr($action, 0, 4) == 'http') ? '' : config::$baseHref.'/').$action.'" ' : 'action="'.explode("?", $_SERVER['REQUEST_URI'])[0].'" ').'method="'.$method.'"');
     }
     
     public function closeForm() {
@@ -569,7 +569,7 @@
     
     public static function getButton($text = 'submit', $id = NULL, $class = NULL, $forms = FALSE, $action = NULL, $ext = NULL, $script = NULL, $method = 'POST', $header = NULL, $label = FALSE) {
       $id = ($id) ? $id : preg_replace('/[^A-Za-z0-9]/', '', $text);
-      $action = ($action) ? (($ext) ? '' : config::$baseHref.'/').$action : explode("?", $_SERVER['REQUEST_URI'])[0]; 
+      $action = ($action) ? (($ext || substr($action, 0, 4) == 'http') ? '' : config::$baseHref.'/').$action : explode("?", $_SERVER['REQUEST_URI'])[0]; 
       $button = ($forms) ? self::getFormStart($id.'Form', NULL, $action, $method, $ext) : '';
       $button .= ($header) ? $header : '';
       $button .= self::getInput($text, $id.'Button', $id.'Button', 'button', (($script !== FALSE) ? 'buttonSubmit ' : '').$class, $label);

@@ -3,6 +3,33 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
+  $page = new page('Admin tools');
+
+  $div = new div();
+  $division = division('active');
+  debug($division, 'DIV');
+  $players = players($division);
+  $persons = new persons();
+  debug(count($persons), 'COUNT');
+  foreach ($players as $player) {
+    $persons[] = $player->person;
+  }
+  $sel = $div->addSelect('persons', $persons);
+  $sel->addJquery('change', 'function', '
+    
+  ');
+  $div->addInput(0, 'paid');
+  $sel->addJquery('change', 'function', '
+    
+  ');
+  $div->addSpan($person->getCosts(), 'shouldPay');
+   
+  
+  $page->addContent($div);
+  $page->submit();
+  
+
+/*
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
@@ -102,8 +129,70 @@ $div3->addClick();
 $div3->addClick('var click = "klack";');
 $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
 
+  $person = person(856);
+  debug($person->name, "NAME 856"); 
+  debug($person->addPlayer(), "ADD");
+  $person = person(5768);
+  debug($person->name, "NAME 5768"); 
+  debug($person->addPlayer(), "ADD");
+  $person = person(940);
+  debug($person->name, "NAME 940");
+  debug($person->addPlayer(), "ADD");
+  $person = person(318);
+  debug($person->name, "NAME 318");
+  debug($person->addPlayer(), "ADD");
+  $person = person(18125);
+  debug($person->name, "NAME 18125");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5776);
+  debug($person->name, "NAME 5776");
+  debug($person->addPlayer(), "ADD");
+  $person = person(7521);
+  debug($person->name, "NAME 7521");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5778);
+  debug($person->name, "NAME 5778");
+  debug($person->addPlayer(), "ADD");
+
       echo 'HÄRSTARTARDET';
   echo($el);
+  
+  /*
+  $person = person(903);
+  debug($person->name, "NAME 903");
+  debug($person->addPlayer(), "ADD");
+  $person = person(16956);
+  debug($person->name, "NAME 16956");
+  debug($person->addPlayer(), "ADD");
+  $person = person(754);
+  debug($person->name, "NAME 754");
+  debug($person->addPlayer(), "ADD");
+  $person = person(16815);
+  debug($person->name, "NAME 16815");
+  debug($person->addPlayer(), "ADD");
+  $person = person(5784);
+  debug($person->name, "NAME 5784");
+  debug($person->addPlayer(), "ADD");
+  $person = person(7689);
+  debug($person->name, "NAME 7689");
+  debug($person->addPlayer(), "ADD");
+  $person = person(708);
+  debug($person->name, "NAME 708");
+  debug($person->addPlayer(), "ADD");
+  $person = person(952);
+  debug($person->name, "NAME 952");
+  debug($person->addPlayer(), "ADD");
+  $person = person(9798);
+  debug($person->name, "NAME 9798");
+  debug($person->addPlayer(), "ADD");
+  $person = person(6061);
+  debug($person->name, "NAME 6061");
+  debug($person->addPlayer(), "ADD");
+  $person = person(10536);
+  debug($person->name, "NAME 10536");
+  debug($person->addPlayer(), "ADD");
+
+
 /*
 
   debug('TEST 1');

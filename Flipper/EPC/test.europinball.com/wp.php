@@ -12,7 +12,10 @@ function customTemplate($page) {
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/edit.php');
 	  break;
 		case 'resetpassword':
-			include($_SERVER['DOCUMENT_ROOT'].'/pages/passwordReset.php');
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/forgotPassword.php');
+	  break;
+		case 'object':
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/object.php');
 	  break;
 		case 'admin-tools':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/test.php');

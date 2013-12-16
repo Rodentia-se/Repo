@@ -23,15 +23,15 @@
 
   $page->addH2('Registered players and teams');
   $page->startDiv('tabs');
-    $page->startUl();
+    $page->startUl();+++++++++++++++++++++++++++++++++++
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.'">'.$division->divisionName.'</a>');
+        $page->addLi('<a href="#'.$division->shortName.'Players">'.$division->divisionName.'</a>');
       }
     $page->closeUl();
     foreach ($divisions as $division) {
       $players = players($division);
       $rows = array();
-      $page->startDiv($division->shortName);
+      $page->startDiv($division->shortName.'Players');
         if (count($players) > 0) {
           if ($division->team) {
             if ($division->national) {
@@ -40,12 +40,12 @@
               $headers = array('Name', 'Tag', 'Members', 'Picture');
             }
           } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture');
+            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture', 'Waiting', 'Paid');
           }
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
           }
-          $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
+          $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main' && config::$participationLimit[$division->type]) ? 'The maximum number of players is '.config::$participationLimit[$division->type].'.' : '')));
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->datatables = TRUE;
           $page->datatablesReload = TRUE;
@@ -56,6 +56,32 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
+              "fnDrawCallback": function() {
+                $(".photoPopup").each(function() {
+                  $(this).dialog({
+                    autoOpen: false,
+                    show: {
+                      effect: "blind",
+                      duration: 1000,
+                    },
+                    hide: {
+                      effect: "blind",
+                      duration: 1000
+                    },
+                    modal: true, 
+                    width: "auto",
+                    height: "auto"
+                  });
+                });
+                $(".photoIcon").click(function() {
+                  var photoDiv = $(this).data("photodiv");
+                  $("#" + photoDiv).dialog("open");
+                  $(document).on("click", ".ui-widget-overlay", function() {
+                    $("#" + photoDiv).dialog("close");
+                  });
+                });
+                return true;
+              },
               "oLanguage": {
                 "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
               },
