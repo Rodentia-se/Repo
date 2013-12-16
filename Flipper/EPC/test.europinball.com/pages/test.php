@@ -6,6 +6,7 @@
   $page = new page('Admin tools');
 
   $div = new div();
+  $tournament = tournament('active');
   $division = division('active');
   $players = players($division);
   debug(count($players), 'COUNT');
@@ -13,18 +14,20 @@
   debug(count($players), 'COUNT2');
   $persons = persons($players);
   debug(count($persons), 'COUNT3');
-  $persons = persons($division);
+  $persons = persons($tournament);
   debug(count($persons), 'COUNT4');
-  $persons = persons('active');
+  $persons = persons($division);
   debug(count($persons), 'COUNT5');
-  $persons = persons('main');
+  $persons = persons('active');
   debug(count($persons), 'COUNT6');
+  $persons = persons('main');
+  debug(count($persons), 'COUNT7');
   $persons = persons('eighties');
-  debug(count($persons), 'COUNT7');
+  debug(count($persons), 'COUNT8');
   $persons = persons('');
-  debug(count($persons), 'COUNT7');
+  debug(count($persons), 'COUNT9');
   $persons = persons('blaha');
-  debug(count($persons), 'COUNT7');
+  debug(count($persons), 'COUNT10');
 
 
 
