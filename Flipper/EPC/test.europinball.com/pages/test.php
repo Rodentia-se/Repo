@@ -7,7 +7,6 @@
 
   $div = new div();
   $division = division('active');
-  debug($division, 'DIV');
   $players = players($division);
   $persons = persons($players);
   debug(count($persons), 'COUNT');
