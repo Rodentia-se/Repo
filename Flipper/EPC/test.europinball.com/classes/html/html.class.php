@@ -590,8 +590,8 @@
       $id = ($id) ? $id : $this->id.'MoneySpan';
       $return['span'] = $this->addSpan($value, $id);
       $return['script'] = $this->addScriptCode('
-        var num = parseInt($("#'.$id.'").val().replace(/[^0-9]/g, ""));
-        $("#'.$id.'").val($("#'.$id.'").val().toMoney(0, ".", " ", "", "'.$format.'")););
+        var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
+        $("#'.$id.'").html($("#'.$id.'").html().toMoney(0, ".", " ", "", "'.$format.'")););
       ');
       $return ['html'] = $return['span']->getHtml().$return['script']->getHtml();
       return $return;
