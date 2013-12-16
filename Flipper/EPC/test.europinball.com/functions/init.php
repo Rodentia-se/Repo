@@ -16,6 +16,7 @@
     config::$showErrors = ($_REQUEST['debug']);
   }
 
+  debug($_SERVER);
   $pageType = explode($_SERVER['PHP_SELF'], '/');
   debug($pageType);
 
