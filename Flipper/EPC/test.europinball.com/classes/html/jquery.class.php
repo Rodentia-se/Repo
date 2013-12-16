@@ -4,7 +4,7 @@
     
     protected $jquery = array();
     
-    public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, array $settings = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
       $settings['required'][] = 'jquery.js';
       $this->jquery = array(
         'selector' => $selector,
@@ -38,7 +38,7 @@
       $this->settings['onReady'] = TRUE;
       parent::__construct(NULL, NULL, $settings, $indents);
     }
-//    scriptCode public function __construct($code = NULL, array $params = NULL, array $settings = NULL,$indents = 0) {
+//    scriptCode public function __construct($code = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
     public function __get($prop) {
