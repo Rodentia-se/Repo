@@ -16,9 +16,10 @@
     config::$showErrors = ($_REQUEST['debug']);
   }
 
-  $pageType = dirname($_SERVER['PHP_SELF']);
+  $pageType = str_replace($_SERVER['PHP_SELF']);
   debug($pageType);
-
+$pathArr = explode("/", __DIR__);
+var_dump($pathArr);
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
     if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
       config::$login->verified = TRUE;
