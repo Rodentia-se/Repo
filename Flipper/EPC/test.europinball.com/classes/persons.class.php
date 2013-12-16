@@ -8,12 +8,12 @@
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
         $players = players($data);
         $class = get_class($this);
-        $objs = new $class();
+        $data = new $class();
         foreach ($players as $player) {
-          $objs[] = $player->person;
+          $data[] = $player->person;
         }
       }
-      parent::__construct($objs, $search, $depth);
+      parent::__construct($data, $search, $depth);
     }
 
   }
