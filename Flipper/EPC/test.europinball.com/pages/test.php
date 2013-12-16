@@ -8,7 +8,6 @@
   $div = new div();
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
-  $page->combobox = TRUE;
   $select->addCombobox();
   $div->addContent($select);
   
