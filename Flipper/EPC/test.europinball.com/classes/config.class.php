@@ -7,7 +7,7 @@
     public static $currentTournament = 1;
 
     public static $dbhost = 'localhost';
-    public static $dbname = 'epc_main';
+    public static $dbname = 'epc_test';
     public static $dbuser = 'epc';
     public static $dbpass = 'vLdqLYyvxSZermEv';
     public static $charset = 'utf8';
