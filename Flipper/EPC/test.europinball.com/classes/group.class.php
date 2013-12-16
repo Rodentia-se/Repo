@@ -220,7 +220,7 @@
         $selected_id = $selected->id;
       } else if (isId($selected)) {
         $selected_id = $selected;
-      } else if (isArray($selected)) {
+      } else if (is_array($selected)) {
         $selected_id = array_keys($selected)[0];
       }
       foreach ($this as $obj) {
