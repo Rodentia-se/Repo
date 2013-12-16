@@ -13,7 +13,7 @@
           $objs[] = $player->person;
         }
       }
-      parent::__construct($data, $search, $depth);
+      parent::__construct($objs, $search, $depth);
     }
 
   }
