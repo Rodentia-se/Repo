@@ -836,7 +836,7 @@
           $js = new scriptCode('
             var loaded = $("script").filter(function () {
               var src = $(this).attr("src").split("/");
-              return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") : true : false;
+              return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") ? true : false;
             }).length;
             if (!loaded) {
               $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
