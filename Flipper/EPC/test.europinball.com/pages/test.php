@@ -11,8 +11,10 @@
   debug(count($players), 'COUNT');
   $players = players($players);
   debug(count($players), 'COUNT2');
-  $players = players($division);
+  $persons = persons($players);
   debug(count($players), 'COUNT3');
+  $persons = persons($division);
+  debug(count($players), 'COUNT4');
 
 
 
