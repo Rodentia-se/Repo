@@ -527,5 +527,23 @@
       return validated(TRUE, 'No validator found', $obj);
     }
 
+    public function toArray($recursive = FALSE) {
+      $array  array();
+      foreach ($this as $prop => $value) {
+        if (is_object($value)) {
+          if ($recursive) {
+            $array[$prop] = $value->toArray($recursive);
+          } else if ($this->${$prop.'Name') {
+            $array[$prop] = $this->${$prop.'Name'};
+          } else {
+            $array[$prop] = TRUE;
+          }
+        } else {
+          $array[$prop] = $value;
+        }
+      }
+      return $array;
+    }
+    
   }
 ?>

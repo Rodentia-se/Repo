@@ -77,7 +77,15 @@
       }
       $this->order();
     }
-
+    
+    public function toArray($recursive = FALSE) {
+      $array  array();
+      foreach ($this as $obj) {
+        $array[] = $obj->toArray($recursive);
+      }
+      return $array;
+    }
+    
     public function __call($func, $argv) {
       if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
