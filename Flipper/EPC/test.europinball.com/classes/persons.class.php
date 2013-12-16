@@ -6,11 +6,14 @@
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
+        debug(count($data), 'YES')
         parent::__construct(NULL, config::NOSEARCH, $depth);
         $players = players($data);
+        debug(count($players), 'YES2')
         foreach ($players as $player) {
           $this[] = $player->person;
         }
+        debug(count($this), 'YES3')
       } else {
         parent::__construct($data, $search, $depth);
       }
