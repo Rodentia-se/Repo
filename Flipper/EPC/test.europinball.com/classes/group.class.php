@@ -41,11 +41,8 @@
           $objs = new $class();
           $objs[] = $data;
         } else {
-          debug('HEPP');
           $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
-          debug(static::$objClass.' '.$prop.'_id'.' '.$data->id);
           $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
-          debug(count($objs));
         }
       } else if ($data && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
