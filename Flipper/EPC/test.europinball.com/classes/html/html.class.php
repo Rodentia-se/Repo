@@ -730,17 +730,17 @@
       return $element;
     }
     
-    public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
+    public function addScriptCode($code = NULL, array $params = NULL, array $settings = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
-      $element = new scriptCode($code, $params, $indents);
+      $element = new scriptCode($code, $params, $settings, $indents);
       $this->addContent($element);
       return $element;
     }
     
-    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
+    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, array $settings = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
+      $element = new jquery($selector, $tool, $jqtype, $contents, $props, $settings, $indents);
       $this->addContent($element);
       return $element;
     }

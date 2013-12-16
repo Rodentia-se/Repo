@@ -13,83 +13,7 @@
   $div->addContent($select);
   
   $page->addContent($div);
-  $page->submit();
 
-/*
-  $division = division('active');
-  $players = players($division);
-  debug(count($players), 'COUNT1');
-  $players = players($players);
-  debug(count($players), 'COUNT2');
-  $persons = persons($players);
-  debug(count($persons), 'COUNT3');
-  $persons = persons($tournament);
-  debug(count($persons), 'COUNT4');
-  $persons = persons($division);
-  debug(count($persons), 'COUNT5');
-  $persons = persons('active');
-  debug(count($persons), 'COUNT6');
-  $persons = persons('main');
-  debug(count($persons), 'COUNT7');
-  $persons = persons('eighties');
-  debug(count($persons), 'COUNT8');
-  $persons = persons('blaha');
-  debug(count($persons), 'COUNT10');
-
-  $persons = persons($players);
-  $personsA = $persons->toArray();
-  debug(count($personsA), 'COUNT11');
-  $playersA = $players->toArray();
-  debug(count($playersA), 'COUNT12');
-  $personsF = $persons->array_filter();
-  debug(count($personsF), 'FILTER1');
-  $playersF = $players->array_filter();
-  debug(count($playersF), 'FILTER2');
-  
-  $hepp = array_diff_assoc($playersA, $personsA);
-  debug($hepp, 'DIFF1');
-  $hepp = array_diff($playersA, $personsA);
-  debug($hepp, 'DIFF2');
-  debug($playersA[245], 'DIFF3');
-  debug($personsA[245], 'DIFF4');
-  debug($players[245], 'DIFF5');
-  debug($persons[245], 'DIFF6');
-  echo "<div>";
-  foreach ($players as $player) {
-    echo $player->person_id.' '.$player->name."\n";
-  }
-  echo "</div><div>\n";
-  foreach ($persons as $person) {
-    echo $person->id.' '.$person->name."\n";
-  }
-
-
-  echo $persons->getSelect();
-  echo $players->getSelect();
-  
-
-/*
-  $persons = persons($players);
-  debug(count($persons), 'COUNT');
-
-/*  $persons = persons($players);
-
-  $sel = $div->addSelect('persons', $persons);
-  $sel->addJquery('change', 'function', '
-    
-  ');
-  $div->addInput(0, 'paid');
-  $sel->addJquery('change', 'function', '
-    
-  ');
-  $div->addSpan($person->getCosts(), 'shouldPay');
-   
-  
-  $page->addContent($div);
-  $page->submit();
-  
-
-/*
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));
   $el2->addElement('span', 'Innerst!', array('data-hepp' => 'huff'), 'spanId');
@@ -188,7 +112,7 @@ $div3->addTooltip('Most content', 'new');
 $div3->addClick();
 $div3->addClick('var click = "klack";');
 $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
-
+/*
   $person = person(856);
   debug($person->name, "NAME 856"); 
   debug($person->addPlayer(), "ADD");
@@ -213,7 +137,7 @@ $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
   $person = person(5778);
   debug($person->name, "NAME 5778");
   debug($person->addPlayer(), "ADD");
-
+*/
       echo 'HÄRSTARTARDET';
   echo($el);
   
@@ -337,5 +261,6 @@ foreach($objs as $obj);
   preDump($obj);
 }
 */
+  $page->submit();
 
 ?> 

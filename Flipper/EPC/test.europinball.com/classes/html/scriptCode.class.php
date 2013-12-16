@@ -4,7 +4,7 @@
   
   class scriptCode extends script {
     
-    public function __construct($code = NULL, array $params = NULL, $indents = 0) {
+    public function __construct($code = NULL, array $params = NULL, array $settings = NULL,$indents = 0) {
       $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
@@ -19,6 +19,21 @@
       if (is($index)) {
         return parent::getContent($index, $string);
       } else {
+        if ($this->settings['required']) {
+          $reqs = (is_array($this->settings['required'])) ? $this->settings['required'] : array($this->settings['required']);
+          foreach ($reqs as $req) {
+            $js = new scriptCode('
+              var loaded = $("script").filter(function () {
+                var src = $(this).attr("src").split("/");
+                return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") : true : false;
+              }).length;
+              if (!loaded) {
+                $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
+              }
+            ');
+            $html .= $js->getHtml();
+          }
+        }
         $options = new BeautifierOptions();
         $options->indent_size = strlen(static::$indenter);
         $options->indent_char = substr(static::$indenter, 0, 1);
@@ -26,7 +41,7 @@
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
         $content = parent::getContent($index, $string);
-        return ltrim($jsbeautifier->beautify($content, $options));
+        return $html.ltrim($jsbeautifier->beautify($content, $options));
       }
     }
 
