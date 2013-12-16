@@ -78,10 +78,10 @@
       $this->order();
     }
     
-    public function toArray($recursive = FALSE) {
+    public function toArray($allArrays = FALSE, $recursive = FALSE) {
       $array = array();
-      foreach ($this as $obj) {
-        $array[] = $obj->toArray($recursive);
+      foreach ($this as $obj) {)
+        $array[] = ($allArrays) ? $obj->toArray($recursive) : $obj;
       }
       return $array;
     }
@@ -210,6 +210,11 @@
         $select .= page::getIcon('images/add_icon.gif', 'add_'.static::$objClass, 'addIcon editIcon', 'Click to add new '.static::$objClass);
       }
       return $select;
+    }
+    
+    public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
+      
+      return new select($name)
     }
     
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
