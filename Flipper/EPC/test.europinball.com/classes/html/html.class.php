@@ -835,7 +835,7 @@
         foreach ($reqs as $req) {
           $js = new scriptCode('
             var loaded = $("script").filter(function () {
-              var src = ($(this).attr("src")) ? $(this).attr("src").split("/") : array('') ;
+              var src = ($(this).attr("src")) ? $(this).attr("src").split("/") : array("") ;
               return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") ? true : false;
             }).length;
             if (!loaded) {
