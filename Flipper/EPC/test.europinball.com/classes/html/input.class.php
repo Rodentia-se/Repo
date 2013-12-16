@@ -29,7 +29,9 @@
       if ($this instanceof checkbox) {
         $this->contentParam = FALSE;
       }
-      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name);
+      $classes = $params['class'];
+      unset($params['class']);
+      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name, $classes);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
