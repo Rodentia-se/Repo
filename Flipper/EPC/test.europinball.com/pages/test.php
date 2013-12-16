@@ -28,10 +28,8 @@
   debug(count($persons), 'COUNT10');
 
   $persons = persons($players);
-  $personsArr = $persons->getArrayCopy();
-  $playersArr = $players->getArrayCopy();
   
-  $hepp = array_diff($personsArr, $playersArr);
+  $hepp = array_diff($persons->toArray(), $players->toArray());
   debug($hepp, 'DIFF');
 
 
