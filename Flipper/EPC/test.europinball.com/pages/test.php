@@ -37,9 +37,9 @@
   $playersF = $players->array_filter();
   debug(count($playersF), 'FILTER2');
   
-  $hepp = array_diff_assoc($personsA, $playersA);
+  $hepp = array_diff_assoc($playersA, $personsA);
   debug($hepp, 'DIFF');
-  $hepp = array_diff_assoc($personsA, $personsA);
+  $hepp = array_diff_assoc($playersF, $personsF);
   debug($hepp, 'DIFF');
 
 
