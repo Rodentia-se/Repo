@@ -9,6 +9,12 @@
   $division = division('active');
   $players = players($division);
   debug(count($players), 'COUNT');
+  $players = players($players);
+  debug(count($players), 'COUNT2');
+
+
+
+/*
   $persons = persons($players);
   debug(count($persons), 'COUNT');
 

@@ -5,13 +5,6 @@
     public static $objClass = 'person';
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-        debug(get_class($data), 'get_class');
-        debug(isPlayers($data), 'isPlayers');
-        debug(isObj($data), 'isObj');
-        debug($obj instanceof base, 'instance');
-        debug((is_string($obj) && class_exists($obj) && $string && class_exists($obj)), 'count');
-                debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
-
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
         debug(count($data), 'YES');
         parent::__construct(NULL, config::NOSEARCH, $depth);
