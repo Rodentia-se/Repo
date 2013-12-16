@@ -5,7 +5,7 @@
     public static $objClass = 'person';
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-        debug(count(get_class($data)), 'NO');
+        debug(get_class($data), 'NO');
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
         debug(count($data), 'YES');
         parent::__construct(NULL, config::NOSEARCH, $depth);
