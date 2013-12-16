@@ -18,11 +18,12 @@
       if (isAssoc($data)) {
         $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
       } else if (is_array($data) || isGroup($data)) {
-        $objs = [];
+        $class = get_class($this);
+        $objs = new $class();
         foreach ($data as $obj) {
           if ($obj->id) {
             if (get_class($obj) == static::$objClass) {
-              $objs[] = $data;
+              $objs[] = $obj;
             } else {
               if (!is_string($prop)) {
                 $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id';
