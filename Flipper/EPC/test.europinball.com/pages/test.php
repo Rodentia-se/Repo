@@ -6,7 +6,12 @@
   $page = new page('Admin tools');
 
   $div = new div();
-  $tournament = tournament('active');
+  $persons = persons(tournament('active'));
+  $select = $persons->getSelectObj();
+  $page->addContent($select);
+  $page->submit();
+
+/*
   $division = division('active');
   $players = players($division);
   debug(count($players), 'COUNT1');
