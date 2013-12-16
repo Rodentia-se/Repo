@@ -28,9 +28,9 @@
   debug(count($persons), 'COUNT10');
 
   $persons = persons($players);
-  $personsA = $persons.toArray();
+  $personsA = $persons->toArray();
   debug(count($personsA), 'COUNT11');
-  $playersA = $players.toArray();
+  $playersA = $players->toArray();
   debug(count($playersA), 'COUNT12');
   
   $hepp = array_diff($persons->toArray(), $players->toArray());
