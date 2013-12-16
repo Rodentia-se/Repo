@@ -40,7 +40,7 @@
               $headers = array('Name', 'Tag', 'Members', 'Picture');
             }
           } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture', 'Waiting', 'Paid');
+            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture', 'Waiting', 'Paid');
           }
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
