@@ -17,7 +17,10 @@
   }
 
   debug($_SERVER);
-  $pageType = explode('/', array_pop($_SERVER['PHP_SELF']));
+  $path = explode('/', ($_SERVER['PHP_SELF']);
+  array_pop($parh);
+  debug($path);
+  $pageType = $path[1];
   debug($pageType);
 
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
