@@ -23,7 +23,7 @@
 
   $page->addH2('Registered players and teams');
   $page->startDiv('tabs');
-    $page->startUl();+++++++++++++++++++++++++++++++++++
+    $page->startUl();
       foreach ($divisions as $division) {
         $page->addLi('<a href="#'.$division->shortName.'Players">'.$division->divisionName.'</a>');
       }
