@@ -41,6 +41,7 @@
   debug($hepp, 'DIFF');
 
   echo $persons->getSelect();
+  echo $players->getSelect();
   
 
 /*
