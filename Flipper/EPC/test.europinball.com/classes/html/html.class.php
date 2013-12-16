@@ -841,7 +841,7 @@
             if (!loaded) {
               $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
             }
-          ');
+          ', NULL, $indent);
           $reqHtml .= $js->getHtml();
         }
       }
