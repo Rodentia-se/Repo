@@ -1,10 +1,10 @@
 <?php
 
-  class combobox extends jquery {
+  class combobox extends jqueryui {
     
     public function __construct($selector = NULL, $indents = 0) {
-      $this->settings['required'][] = 'jquery-ui.js';
-      $this->settings['required'][] = 'jquery.combobox.js';
+      $this->settings['jsReq'][] = 'jquery.combobox';
+      $this->settings['cssReq'][] = 'jquery.combobox';
       parent::__construct($selector, 'combobox', 'command', NULL, NULL, $settings, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {

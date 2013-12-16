@@ -830,7 +830,7 @@
       }
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
-      if ($this->settings['required']) {
+      if ($this->settings['jsReq']) {
         $reqs = (is_array($this->settings['required'])) ? $this->settings['required'] : array($this->settings['required']);
         foreach ($reqs as $req) {
           $js = new scriptCode('
@@ -839,7 +839,26 @@
               return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") ? true : false;
             }).length;
             if (!loaded) {
-              $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
+              $("<script>").appendTo($("head"))
+              .attr("type", "text/javascript")
+              .attr("src", "'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
+            }
+          ', NULL, $indent);
+          $reqHtml .= $js->getHtml();
+        }
+      }
+      if ($this->settings['cssReq']) {
+        $reqs = (is_array($this->settings['cssReq'])) ? $this->settings['cssReq'] : array($this->settings['cssReq']);
+        foreach ($reqs as $req) {
+          $js = new scriptCode('
+            var loaded = $("link").filter(function () {
+              var href = ($(this).attr("href")) ? $(this).attr("href").split("/") : [""] ;
+              return (href[href.length - 1] == "'.$req.((substr($req, -3) != '.css') ? '.css': '').'") ? true : false;
+            }).length;
+            if (!loaded) {
+              $("<link>").appendTo($("head"))
+              .attr({type : "text/css", rel : "stylesheet"})
+              .attr("href", "'.config::$baseHref.'/css/contrib/'.$req.((substr($req, -3) != '.css') ? '.css': '').'");
             }
           ', NULL, $indent);
           $reqHtml .= $js->getHtml();
