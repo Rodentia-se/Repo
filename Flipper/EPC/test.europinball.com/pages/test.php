@@ -9,7 +9,7 @@
   $tournament = tournament('active');
   $division = division('active');
   $players = players($division);
-  debug(count($players), 'COUNT');
+  debug(count($players), 'COUNT1');
   $players = players($players);
   debug(count($players), 'COUNT2');
   $persons = persons($players);
@@ -24,11 +24,13 @@
   debug(count($persons), 'COUNT7');
   $persons = persons('eighties');
   debug(count($persons), 'COUNT8');
-  $persons = persons('');
-  debug(count($persons), 'COUNT9');
   $persons = persons('blaha');
   debug(count($persons), 'COUNT10');
 
+  $players = players($players);
+  $persons = persons($players);
+  $hepp = $persons->array_diff($players);
+  debug(count($persons), 'COUNT3');
 
 
 /*
