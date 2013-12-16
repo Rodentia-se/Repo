@@ -39,6 +39,8 @@
   
   $hepp = array_diff_assoc($personsA, $playersA);
   debug($hepp, 'DIFF');
+  $hepp = array_diff_assoc($personsA, $personsA);
+  debug($hepp, 'DIFF');
 
 
 /*
