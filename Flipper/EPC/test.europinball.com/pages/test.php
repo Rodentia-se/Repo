@@ -18,7 +18,9 @@
   $persons = persons('active');
   debug(count($players), 'COUNT5');
   $persons = persons('main');
-  debug(count($players), 'COUNT4');
+  debug(count($players), 'COUNT6');
+  $persons = persons('eighties');
+  debug(count($players), 'COUNT6');
 
 
 
