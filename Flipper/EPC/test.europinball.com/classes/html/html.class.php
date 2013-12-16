@@ -591,7 +591,7 @@
       $return['span'] = $this->addSpan($value, $id);
       $return['script'] = $this->addScriptCode('
         var num = parseInt($("#'.$id.'").val().replace(/[^0-9]/g, ""));
-        $("#'.$id.'").val($("#'.$id.'").val().toMoney(0, ".", " ", "", '.$format.')););
+        $("#'.$id.'").val($("#'.$id.'").val().toMoney(0, ".", " ", "", "'.$format.'")););
       ');
       $return ['html'] = $return['span']->getHtml().$return['script']->getHtml();
       return $return;
