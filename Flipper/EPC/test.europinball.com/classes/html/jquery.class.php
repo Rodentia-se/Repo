@@ -5,7 +5,7 @@
     protected $jquery = array();
     
     public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
-      $this->settings['required'][] = 'jquery.js';
+      $this->settings['jsReq'][] = 'jquery.js';
       $this->jquery = array(
         'selector' => $selector,
         'tool' => $tool,
