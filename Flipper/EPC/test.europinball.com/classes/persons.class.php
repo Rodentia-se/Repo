@@ -6,14 +6,14 @@
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
-        parent::__construct(NULL, $prop, $cond);
         $players = players($data);
+        $class = get_class($this);
+        $objs = new $class();
         foreach ($players as $player) {
-          $this[] = $player->person;
+          $objs[] = $player->person;
         }
-      } else {
-        parent::__construct($data, $search, $depth);
       }
+      parent::__construct($data, $search, $depth);
     }
 
   }
