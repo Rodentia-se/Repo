@@ -20,7 +20,7 @@
       } else if (is_array($data) || isGroup($data)) {
         $objs = [];
         foreach ($data as $obj) {
-          debug(get_class($data));
+          debug(get_class($obj));
           if ($obj->id) {
             if (get_class($data) == static::$objClass) {
               $objs[] = $data;
