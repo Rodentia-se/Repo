@@ -8,6 +8,8 @@
         debug(get_class($data), 'NO');
         debug(isPlayers($data), 'NO');
         debug(count($data), 'NO');
+                debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);
+
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {
         debug(count($data), 'YES');
         parent::__construct(NULL, config::NOSEARCH, $depth);
