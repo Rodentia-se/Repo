@@ -18,7 +18,7 @@
 
   debug($_SERVER);
   $path = explode('/', $_SERVER['PHP_SELF']);
-  array_pop($parh);
+  array_pop($path);
   debug($path);
   $pageType = $path[1];
   debug($pageType);
