@@ -9,11 +9,9 @@
   $division = division('active');
   debug($division, 'DIV');
   $players = players($division);
-  $persons = new persons();
+  $persons = persons($players);
   debug(count($persons), 'COUNT');
-  foreach ($players as $player) {
-    $persons[] = $player->person;
-  }
+
   $sel = $div->addSelect('persons', $persons);
   $sel->addJquery('change', 'function', '
     
