@@ -730,41 +730,41 @@
       return $element;
     }
     
-    public function addScriptCode($code = NULL, array $params = NULL, array $settings = NULL, $indents = NULL) {
+    public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
-      $element = new scriptCode($code, $params, $settings, $indents);
+      $element = new scriptCode($code, $params, $indents);
       $this->addContent($element);
       return $element;
     }
     
-    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, array $settings = NULL, $selector = NULL, $indents = NULL) {
+    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new jquery($selector, $tool, $jqtype, $contents, $props, $settings, $indents);
+      $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addTooltip($contents = NULL, $new = TRUE, array $settings = NULL, $selector = NULL, $indents = NULL) {
+    public function addTooltip($contents = NULL, $new = TRUE, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new tooltip($selector, $contents, $new, $settings, $indents);
+      $element = new tooltip($selector, $contents, $new, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addCombobox($selector = NULL, array $settings = NULL, $indents = NULL) {
+    public function addCombobox($selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new combobox($selector, $settings, $indents);
+      $element = new combobox($selector, $indents);
       $this->addContent($element);
       return $element;
     }
 
-    public function addClick($code = NULL, $selector = NULL, array $settings = NULL, $indents = NULL) {
+    public function addClick($code = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new click($selector, $code, $settings, $indents);
+      $element = new click($selector, $code, $indents);
       $this->addContent($element);
       return $element;
     }
@@ -782,7 +782,7 @@
         $this->delCss('display', 'none');
       }
         $this->settings['hidden'] = $hidden;
-    }
+7    }
 
     protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
       if (isHtml($content)) {
@@ -830,7 +830,22 @@
       }
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
-      return $open.$html.$close;
+      if ($this->settings['required']) {
+        $reqs = (is_array($this->settings['required'])) ? $this->settings['required'] : array($this->settings['required']);
+        foreach ($reqs as $req) {
+          $js = new scriptCode('
+            var loaded = $("script").filter(function () {
+              var src = $(this).attr("src").split("/");
+              return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") : true : false;
+            }).length;
+            if (!loaded) {
+              $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
+            }
+          ');
+          $reqHtml .= $js->getHtml();
+        }
+      }
+      return $reqHtml.$open.$html.$close;
     }
 
     public function __toString() {

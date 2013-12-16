@@ -2,7 +2,7 @@
 
   class tooltip extends jquery {
     
-    public function __construct($selector = NULL, $contents = NULL, $new = TRUE, array $settings = NULL, $indents = 0) {
+    public function __construct($selector = NULL, $contents = NULL, $new = TRUE, $indents = 0) {
       $new = ($new === 'update') ? FALSE : $new;
       if ($new) {
         $type = 'object';
@@ -17,10 +17,10 @@
         $type = 'command';
         $contents = array('update' => $contents, 'show' => FALSE);
       }
-      $settings['required'] = array('jquery.js', 'jquery.tooltipster.js');
+      $settings['required'][] = 'jquery.tooltipster.js';
       parent::__construct($selector, 'tooltipster', $type, $contents, $props, $settings, $indents);
     }
-//    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, array $settings = NULL, $indents = 0) {
+//    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
