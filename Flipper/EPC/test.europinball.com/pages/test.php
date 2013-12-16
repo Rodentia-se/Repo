@@ -30,7 +30,7 @@
   $players = players($players);
   $persons = persons($players);
   $hepp = $persons->array_diff($players);
-  debug(count($persons), 'COUNT3');
+  debug($hepp, 'DIFF');
 
 
 /*
