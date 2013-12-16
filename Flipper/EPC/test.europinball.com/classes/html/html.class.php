@@ -530,7 +530,7 @@
       return TRUE;
     }
 
-    protected function getCss($param = NULL, $string = TRUE) {
+    public function getCss($param = NULL, $string = TRUE) {
       if ($param) {
         return (array_key_exists($this->css, $param)) ? (($string) ? $param.': '.$this->css[$param].';' : array($param => $this->css[$param])) : FALSE;
       } else {
