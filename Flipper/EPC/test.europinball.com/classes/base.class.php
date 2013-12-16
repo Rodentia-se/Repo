@@ -17,7 +17,7 @@
     public static $mandatory = array();
     public static $infoProps = array();
 
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
@@ -29,7 +29,7 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-        if ($search === NOSEARCH) {
+        if ($search === config::NOSEARCH) {
           if (is($data)) {
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
@@ -299,7 +299,7 @@
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}]->getFlat();
             } else {
-              $this->$field = $class($this->{$field.'_id'}, NOSEARCH, $depth);
+              $this->$field = $class($this->{$field.'_id'}, config::NOSEARCH, $depth);
             }
             $this->{$field.'Name'} = $this->$field->name;
           }
