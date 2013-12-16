@@ -15,6 +15,10 @@
   debug(count($players), 'COUNT3');
   $persons = persons($division);
   debug(count($players), 'COUNT4');
+  $persons = persons('active');
+  debug(count($players), 'COUNT5');
+  $persons = persons('main');
+  debug(count($players), 'COUNT4');
 
 
 
