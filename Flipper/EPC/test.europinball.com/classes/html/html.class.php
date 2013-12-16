@@ -782,7 +782,7 @@
         $this->delCss('display', 'none');
       }
         $this->settings['hidden'] = $hidden;
-7    }
+    }
 
     protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
       if (isHtml($content)) {
