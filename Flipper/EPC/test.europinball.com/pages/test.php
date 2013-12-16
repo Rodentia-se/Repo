@@ -10,6 +10,7 @@
   $players = players($division);
   debug(count($players), 'COUNT');
   $persons = persons($players);
+  debug(count($persons), 'COUNT');
 
 /*  $persons = persons($players);
 
