@@ -11,7 +11,7 @@
   $select->addCombobox();
   $div->addContent($select);
   $paidDiv = $div->addDiv();
-  $label = $paidDiv->addLabel('Paid:')
+  $label = $paidDiv->addLabel('Paid:');
   $label->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   $shouldDiv = $div->addDiv();
