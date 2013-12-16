@@ -33,7 +33,7 @@
   $playersA = $players->toArray();
   debug(count($playersA), 'COUNT12');
   
-  $hepp = array_diff($persons->toArray(), $players->toArray());
+  $hepp = array_diff_assoc($personsA, $playersA);
   debug($hepp, 'DIFF');
 
 
