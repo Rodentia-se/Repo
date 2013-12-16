@@ -6,6 +6,7 @@
     
     public function __construct($code = NULL, array $params = NULL, array $settings = NULL,$indents = 0) {
       $params['type'] = ($params['type']) ? $params['type'] : 'text/javascript';
+      $this->settings = $settings;
       $this->settings['type'] = 'code';
       $this->settings['escape'] = FALSE;
       $this->contentParam = FALSE;
