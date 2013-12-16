@@ -533,7 +533,7 @@
         if (is_object($value)) {
           if ($recursive) {
             $array[$prop] = $value->toArray($recursive);
-          } else if ($this->${$prop.'Name') {
+          } else if ($this->${$prop.'Name'} {
             $array[$prop] = $this->${$prop.'Name'};
           } else {
             $array[$prop] = TRUE;
