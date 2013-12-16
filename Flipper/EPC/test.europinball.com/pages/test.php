@@ -10,7 +10,9 @@
   $select = $persons->getSelectObj();
   $select->addCombobox();
   $div->addContent($select);
+  $div->addSpan('Paid:');
   $paidSpan = $div->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
+  $div->addSpan('Should pay:');
   $paySpan = $div->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
   $setPaid = $div->addInput('setPaid', 0, 'text', 'short', array('class' => 'short'));
 
