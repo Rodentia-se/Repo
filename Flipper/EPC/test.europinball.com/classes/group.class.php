@@ -21,7 +21,9 @@
         $objs = [];
         foreach ($data as $obj) {
           if ($obj->id) {
+            debug('YUP');
             if (get_class($data) == static::$objClass) {
+            debug('YUPP');
               $objs[] = $data;
             } else {
               if (!is_string($prop)) {
