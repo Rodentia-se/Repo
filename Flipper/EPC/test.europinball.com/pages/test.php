@@ -38,11 +38,13 @@
   debug(count($playersF), 'FILTER2');
   
   $hepp = array_diff_assoc($playersA, $personsA);
-  debug($hepp, 'DIFF');
-  debug($playersA[245], 'DIFF');
-  debug($personsA[245], 'DIFF2');
-  debug($players[245], 'DIFF3');
-  debug($persons[245], 'DIFF4');
+  debug($hepp, 'DIFF1');
+  $hepp = array_diff($playersA, $personsA);
+  debug($hepp, 'DIFF2');
+  debug($playersA[245], 'DIFF3');
+  debug($personsA[245], 'DIFF4');
+  debug($players[245], 'DIFF5');
+  debug($persons[245], 'DIFF6');
 
 
   echo $persons->getSelect();
