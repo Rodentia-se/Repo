@@ -17,7 +17,7 @@
   $shouldDiv->addLabel('Should pay:');
   $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
   $setDiv = $div->addDiv();
-  $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'short', array('class' => 'short'));
+  $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
 
   
   
