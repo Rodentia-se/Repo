@@ -19,9 +19,6 @@
   
   
   
-  $name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
-  
-  
   
   
   $page->addContent($div);
