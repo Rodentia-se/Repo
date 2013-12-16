@@ -27,7 +27,6 @@
   $persons = persons('blaha');
   debug(count($persons), 'COUNT10');
 
-  $players = players($players);
   $persons = persons($players);
   $hepp = array_diff($players->getArrayCopy(), $persons->getArrayCopy());
   debug($hepp, 'DIFF');
