@@ -17,7 +17,7 @@
   }
 
   debug($_SERVER);
-  $pageType = explode($_SERVER['PHP_SELF'], '/');
+  $pageType = explode('/', $_SERVER['PHP_SELF']);
   debug($pageType);
 
   if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
