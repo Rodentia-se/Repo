@@ -230,7 +230,7 @@
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
           (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
-          $this->getLink('ifpa'),
+          str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
           (($this->person) ? $this->person->getPhotoIcon() : ''),
           (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
           (($this->paid) ? 'Yes' : '')
