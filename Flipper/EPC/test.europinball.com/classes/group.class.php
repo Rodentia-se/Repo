@@ -79,7 +79,7 @@
     }
     
     public function toArray($recursive = FALSE) {
-      $array  array();
+      $array = array();
       foreach ($this as $obj) {
         $array[] = $obj->toArray($recursive);
       }
