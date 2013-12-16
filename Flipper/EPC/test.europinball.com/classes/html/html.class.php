@@ -830,6 +830,7 @@
       }
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
+/*
       if ($this->settings['jsReq']) {
         $reqs = (is_array($this->settings['jsReq'])) ? $this->settings['jsReq'] : array($this->settings['jsReq']);
         foreach ($reqs as $req) {
@@ -864,6 +865,7 @@
           $reqHtml .= $js->getHtml();
         }
       }
+      */
       return $reqHtml.$open.$html.$close;
     }
 

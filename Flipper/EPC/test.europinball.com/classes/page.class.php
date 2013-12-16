@@ -22,6 +22,7 @@
     public $jquery = TRUE;
     public $jqueryui = TRUE;
     public $tooltipster = TRUE;
+    public $combobox = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
     public $content;
