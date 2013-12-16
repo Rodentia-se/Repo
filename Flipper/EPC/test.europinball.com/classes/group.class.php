@@ -80,7 +80,7 @@
     
     public function toArray($allArrays = FALSE, $recursive = FALSE) {
       $array = array();
-      foreach ($this as $obj) {)
+      foreach ($this as $obj) {
         $array[] = ($allArrays) ? $obj->toArray($recursive) : $obj;
       }
       return $array;
