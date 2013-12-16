@@ -45,6 +45,14 @@
   debug($personsA[245], 'DIFF4');
   debug($players[245], 'DIFF5');
   debug($persons[245], 'DIFF6');
+  echo "<div>";
+  foreach ($players as $player) {
+    echo $player->person_id.' '.$player->name."\n";
+  }
+  echo "</div><div>\n";
+  foreach ($persons as $person) {
+    echo $person->id.' '.$person->name."\n";
+  }
 
 
   echo $persons->getSelect();
