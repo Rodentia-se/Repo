@@ -29,7 +29,7 @@
 
   $players = players($players);
   $persons = persons($players);
-  $hepp = $persons->array_diff($players->getArrayCopy());
+  $hepp = array_diff($players->getArrayCopy(), $persons->getArrayCopy());
   debug($hepp, 'DIFF');
 
 
