@@ -11,30 +11,15 @@
       $this->settings['escape'] = FALSE;
       $this->contentParam = FALSE;
       static::$indents = ($indents) ? $indents : static::$indents;
-      parent::__construct($code, $params);
+      parent::__construct($code, $params, $settings, $indent);
     }
-//    public function __construct($code = NULL, array $params = NULL) {
+//    script public function __construct($source = NULL, array $params = NULL, array $settings = NULL, $indent = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
     protected function getContent($index = NULL, $string = TRUE) {
       if (is($index)) {
         return parent::getContent($index, $string);
       } else {
-        if ($this->settings['required']) {
-          $reqs = (is_array($this->settings['required'])) ? $this->settings['required'] : array($this->settings['required']);
-          foreach ($reqs as $req) {
-            $js = new scriptCode('
-              var loaded = $("script").filter(function () {
-                var src = $(this).attr("src").split("/");
-                return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") : true : false;
-              }).length;
-              if (!loaded) {
-                $.getScript("'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
-              }
-            ');
-            $html .= $js->getHtml();
-          }
-        }
         $options = new BeautifierOptions();
         $options->indent_size = strlen(static::$indenter);
         $options->indent_char = substr(static::$indenter, 0, 1);
@@ -42,7 +27,7 @@
         $options->max_preserve_newlines = 1;
         $jsbeautifier = new JSBeautifier();
         $content = parent::getContent($index, $string);
-        return $html.ltrim($jsbeautifier->beautify($content, $options));
+        return ltrim($jsbeautifier->beautify($content, $options));
       }
     }
 
