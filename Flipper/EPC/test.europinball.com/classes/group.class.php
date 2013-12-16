@@ -17,13 +17,11 @@
       $this->db = base::$_db;
       if (isAssoc($data)) {
         $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
-      } else if (is_array($data)) {
+      } else if (is_array($data) || isGroup($data)) {
         $objs = [];
         foreach ($data as $obj) {
           if ($obj->id) {
-            debug('YUP');
             if (get_class($data) == static::$objClass) {
-            debug('YUPP');
               $objs[] = $data;
             } else {
               if (!is_string($prop)) {
