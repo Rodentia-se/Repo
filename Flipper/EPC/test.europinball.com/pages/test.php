@@ -137,8 +137,8 @@ $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
   debug($person->name, "NAME 5778");
   debug($person->addPlayer(), "ADD");
 */
-      echo 'HÄRSTARTARDET';
-  echo($el);
+      $page->addContent('HÄRSTARTARDET');
+   $page->addContent($el);
   
   /*
   $person = person(903);
