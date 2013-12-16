@@ -10,10 +10,26 @@
   $select = $persons->getSelectObj();
   $select->addCombobox();
   $div->addContent($select);
+  $setPaid = $div->addInput(0, 'setPaid', NULL, 'short');
+  $paidSpan = $div->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
+  $paySpan = $div->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   $page->addContent($div);
 
 
+
+
+/*
 
   $el = new html('div', 'Ytterdiv!', array('style' => 'display: block;'), 'ytterId', 'ytterklass1 ytterklass2', array('color' => 'red', 'display' => 'block'));
   $el2 = $el->addElement('div', 'Innerdiv!', array('class' => 'nlah', 'src' => 'asas'), 'innerId', 'innerKlass', array('color' => 'black'));

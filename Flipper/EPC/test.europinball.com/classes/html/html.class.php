@@ -585,6 +585,17 @@
       $this->addContent($element);
       return $element;
     }
+    
+    public function addMoneySpan($value = 0, $id = NULL, $format = '€ §') {
+      $id = ($id) ? $id : $this->id.'MoneySpan';
+      $return['span'] = $this->addSpan($value, $id);
+      $return['script'] = $this->addScriptCode('
+        var num = parseInt($("#'.$id.'").val().replace(/[^0-9]/g, ""));
+        $("#'.$id.'").val($("#'.$id.'").val().toMoney(0, ".", " ", "", '.$format.')););
+      ');
+      $return ['html'] = $return['span']->getHtml().$return['script']->getHtml();
+      return $return;
+    }
 
     public function addImg($src = NULL, $title = NULL, array $params = NULL) {
       $element = new img($src, $title, $params);
