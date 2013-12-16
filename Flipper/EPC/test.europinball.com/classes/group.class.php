@@ -223,6 +223,7 @@
       } else if (is_array($selected)) {
         $selected_id = array_keys($selected)[0];
       }
+      $options[] = new option('Choose...', 0, !$selected);
       foreach ($this as $obj) {
         $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
         $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
