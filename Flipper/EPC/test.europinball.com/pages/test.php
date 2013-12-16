@@ -7,8 +7,9 @@
 
   $div = new div();
   $persons = persons(tournament('active'));
-  $div->addContent($persons->getSelectObj());
-  
+  $select = $persons->getSelectObj();
+  $eselect->addCombobox();
+  $div->addContent($select);
   
   $page->addContent($div);
   $page->submit();
