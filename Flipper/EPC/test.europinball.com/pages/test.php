@@ -8,8 +8,8 @@
   $div = new div();
   $division = division('active');
   $players = players($division);
+  debug(count($players), 'COUNT');
   $persons = persons($players);
-  debug(count($persons), 'COUNT');
 
   $sel = $div->addSelect('persons', $persons);
   $sel->addJquery('change', 'function', '
