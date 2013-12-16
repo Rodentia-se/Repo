@@ -16,17 +16,12 @@
     config::$showErrors = ($_REQUEST['debug']);
   }
 
-  debug($_SERVER);
   $path = explode('/', $_SERVER['PHP_SELF']);
   array_pop($path);
-  debug($path);
-  $pageType = $path[1];
-  debug($pageType);
+  config::$pageType = $path[1];
 
-  if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
-    if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
-      config::$login->verified = TRUE;
-    } else {
+  if (isset($_REQUEST[$pageType.'nonce'])) {
+    if (ulNonce::Verify('login', $_REQUEST[$pageType.'nonce'])) {
       config::$login->verified = TRUE;
     }
   }
