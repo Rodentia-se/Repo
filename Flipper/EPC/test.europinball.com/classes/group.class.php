@@ -20,9 +20,8 @@
       } else if (is_array($data) || isGroup($data)) {
         $objs = [];
         foreach ($data as $obj) {
-          debug(get_class($obj));
           if ($obj->id) {
-            if (get_class($data) == static::$objClass) {
+            if (get_class($obj) == static::$objClass) {
               $objs[] = $data;
             } else {
               if (!is_string($prop)) {
