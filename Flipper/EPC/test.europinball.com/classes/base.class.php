@@ -528,7 +528,7 @@
     }
 
     public function toArray($recursive = FALSE) {
-      $array  array();
+      $array = array();
       foreach ($this as $prop => $value) {
         if (is_object($value)) {
           if ($recursive) {
