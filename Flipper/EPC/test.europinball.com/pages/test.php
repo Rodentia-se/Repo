@@ -40,7 +40,10 @@
   $hepp = array_diff_assoc($playersA, $personsA);
   debug($hepp, 'DIFF');
   debug($playersA[245], 'DIFF');
-  debug($personsA[245], 'DIFF');
+  debug($personsA[245], 'DIFF2');
+  debug($players[245], 'DIFF3');
+  debug($persons[245], 'DIFF4');
+
 
   echo $persons->getSelect();
   echo $players->getSelect();
