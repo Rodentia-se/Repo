@@ -32,6 +32,10 @@
   debug(count($personsA), 'COUNT11');
   $playersA = $players->toArray();
   debug(count($playersA), 'COUNT12');
+  $personsF = $persons->array_filter();
+  debug($personsF, 'FILTER1');
+  $playersF = $players->array_filter();
+  debug($playersF, 'FILTER2');
   
   $hepp = array_diff_assoc($personsA, $playersA);
   debug($hepp, 'DIFF');
