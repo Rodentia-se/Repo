@@ -243,6 +243,18 @@
       return FALSE;
     }
 
+    public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      if ($this->team_id) {
+        $team = team($this->team_id);
+      }
+      if (isTeam($team)) {
+        return $team->getPhoto($defaults, $thumbnail, $anchor);
+      } else {
+        return parent::getPhoto($defaults, $thumbnail, $anchor);
+      }
+    }
+
+
   }
 
 ?>
