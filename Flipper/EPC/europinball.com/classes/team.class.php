@@ -131,7 +131,7 @@
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       if ($this->national && $this->country_id) {
-        if (isGeo($this->country))
+        if (isGeo($this->country)) {
           $country = $this->country;
         } else {
           $country = country($this->country_id);
