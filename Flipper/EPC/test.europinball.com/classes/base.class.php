@@ -210,12 +210,12 @@
               $html = $this->${$prop.'Name'};
             }
           } else {
-            ($html = (string) $this->$prop);
+            $html = (string) $this->$prop;
           }
           if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-            $nameDiv->addSpan($html);
+            $nameDiv->addSpan($html)->escape = FALSE;
           }
         }
       } else {
