@@ -129,6 +129,21 @@
       return FALSE;
     }
     
+    public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      if ($this->national && $this->country_id) {
+        if (isGeo($this->country))
+          $country = $this->country;
+        } else {
+          $country = country($this->country_id);
+        }
+      }
+      if (isGeo($country)) {
+        return $country->getPhoto($defaults, $thumbnail, $anchor);
+      } else {
+        return parent::getPhoto($defaults, $thumbnail, $anchor);
+      }
+    }
+    
     public static function validateName($name, $obj = FALSE) {
       if (!$name) {
         return validated(TRUE, 'Nothing to validate.', $obj);
