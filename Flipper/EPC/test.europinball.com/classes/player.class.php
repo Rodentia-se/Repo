@@ -127,7 +127,8 @@
       'city',
       'region',
       'country',
-      'continent'
+      'continent',
+      'ifpaLink'
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
@@ -160,6 +161,7 @@
         }
       }
       parent::__construct($data, $search, $depth);
+      $this->ifpaLink = $this->getLink('ifpa');
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
