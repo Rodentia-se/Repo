@@ -213,7 +213,7 @@
             $this->shortName,
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
-            $this->getLink('photo')
+            $this->team->getPhotoIcon(),
           );
           return ($array) ? $return : (object) $return;
         } else {
@@ -221,7 +221,7 @@
             $this->getLink(),
             $this->shortName,
             $memberCell,
-            $this->getLink('photo')
+            $this->team->getPhotoIcon(),
           );
           return ($array) ? $return : (object) $return;
         }
