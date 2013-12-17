@@ -128,7 +128,7 @@
       'region',
       'country',
       'continent',
-      'ifpaLink'
+      'IFPA' => 'ifpaLink'
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
