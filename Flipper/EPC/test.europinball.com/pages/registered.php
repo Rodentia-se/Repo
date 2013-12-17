@@ -40,7 +40,7 @@
               $headers = array('Name', 'Tag', 'Members', 'Picture');
             }
           } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA', 'Picture', 'Waiting', 'Paid');
+            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA ID', 'IFPA', 'Picture', 'Waiting', 'Paid');
           }
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
@@ -56,6 +56,9 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
+              "aoColumnDefs": [
+                { "aDataSort": [ 5 ], "aTargets": [ 6 ] }
+              ],
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({

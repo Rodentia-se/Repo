@@ -17,9 +17,7 @@
         $type = 'command';
         $contents = array('update' => $contents, 'show' => FALSE);
       }
-      $this->settings['jsReq'][] = 'jquery.tooltipster';
-      $this->settings['cssReq'][] = 'tooltipster';
-      parent::__construct($selector, 'tooltipster', $type, $contents, $props, $settings, $indents);
+      parent::__construct($selector, 'tooltipster', $type, $contents, $props, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {

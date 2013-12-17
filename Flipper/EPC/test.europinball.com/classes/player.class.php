@@ -201,17 +201,19 @@
       if ($this->team) {
         $members = $this->team->getMembers();
         unset($memberLinks);
-        foreach($members as $member) {
-          $memberLinks[] = $member->getLink();
+        if($members) {
+          foreach($members as $member) {
+            $memberLinks[] = $member->getLink();
+          }
+          $memberCell = implode($memberLinks, '<br />');
         }
-        $memberCell = implode($memberLinks, '<br />');
         if ($this->team->national) {
           $return = array(
             $this->getLink(),
             $this->shortName,
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
-            $this->getLink('photo')
+            $this->team->getPhotoIcon(),
           );
           return ($array) ? $return : (object) $return;
         } else {
@@ -219,7 +221,7 @@
             $this->getLink(),
             $this->shortName,
             $memberCell,
-            $this->getLink('photo')
+            $this->team->getPhotoIcon(),
           );
           return ($array) ? $return : (object) $return;
         }
@@ -230,6 +232,7 @@
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
           (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
+          $this->ifpa_id,
           str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
           (($this->person) ? $this->person->getPhotoIcon() : ''),
           (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
@@ -239,6 +242,18 @@
       }
       return FALSE;
     }
+
+    public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
+      if ($this->team_id) {
+        $team = team($this->team_id);
+      }
+      if (isTeam($team)) {
+        return $team->getPhoto($defaults, $thumbnail, $anchor);
+      } else {
+        return parent::getPhoto($defaults, $thumbnail, $anchor);
+      }
+    }
+
 
   }
 
