@@ -201,10 +201,12 @@
       if ($this->team) {
         $members = $this->team->getMembers();
         unset($memberLinks);
-        foreach($members as $member) {
-          $memberLinks[] = $member->getLink();
+        if($members) {
+          foreach($members as $member) {
+            $memberLinks[] = $member->getLink();
+          }
+          $memberCell = implode($memberLinks, '<br />');
         }
-        $memberCell = implode($memberLinks, '<br />');
         if ($this->team->national) {
           $return = array(
             $this->getLink(),
