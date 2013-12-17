@@ -129,6 +129,11 @@
       return FALSE;
     }
     
+    public function getPhotoIcon($icon = NULL) {
+      $icon = ($icon) ? $icon : $this->getPhoto(FALSE, TRUE, FALSE);
+      return parent::getPhotoIcon($icon);
+    }
+
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       if ($this->national && $this->country_id) {
         if (isGeo($this->country)) {

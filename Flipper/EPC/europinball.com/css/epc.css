@@ -118,6 +118,7 @@ span.short {
 }
 
 .icon {
+  height: 16px;
   cursor: pointer;
 }
 

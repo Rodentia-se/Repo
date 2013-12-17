@@ -187,10 +187,11 @@
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
     
-    public function getPhotoIcon() {
+    public function getPhotoIcon($icon = NULL) {
       $photo = $this->getPhoto(FALSE, TRUE, FALSE);
+      $icon = ($icon) ? $icon : config::$baseHref.'/images/objects/'.get_class($this).'.png';
       return ($photo) ? '
-        <img src="'.config::$baseHref.'/images/objects/'.get_class($this).'.png" data-photoDiv="'.$this->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
+        <img src="'.$icon.'" data-photoDiv="'.$this->id.get_class($this).'PhotoDiv" class="photoIcon icon" title="Click to view photo">
         <div id="'.$this->id.get_class($this).'PhotoDiv" class="photoPopup" title="'.$this->name.'">
           <img src="'.$photo.'" class="popupPhoto">
         </div>
