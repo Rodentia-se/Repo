@@ -56,10 +56,10 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
-              "aoColumnDefs": [
+              '.((!$division->team) ? '"aoColumnDefs": [
                 { "aDataSort": [ 5 ], "aTargets": [ 6 ] },
                 { "bVisible": false, "aTargets": [ 5 ] }
-              ],
+              ],' : '').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
@@ -77,6 +77,7 @@
                     height: "auto"
                   });
                 });
+                $("#'.$division->shortName.'Table").css("width", "");
                 $(".photoIcon").click(function() {
                   var photoDiv = $(this).data("photodiv");
                   $("#" + photoDiv).dialog("open");
