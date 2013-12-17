@@ -57,7 +57,8 @@
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
               "aoColumnDefs": [
-                { "aDataSort": [ 5 ], "aTargets": [ 6 ] }
+                { "aDataSort": [ 5 ], "aTargets": [ 6 ] },
+                { "bVisible": false, "aTargets": [ 0 ] }
               ],
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
