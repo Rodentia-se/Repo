@@ -198,6 +198,13 @@
       ' : '';
     }
     
+    public function getIcon($anchor = TRUE, $defaults = FALSE) {
+      $photo = $this->getPhoto($defaults, TRUE, FALSE);
+      $icon = '<img src="'.$photo.'" class="icon" title="Click to view '.$this->name.'">';
+      $link = ($anchor) ? $this->getLink('object', FALSE, FALSE, FALSE, $defaults, $icon) : $icon;
+      return ($link) ? $link : FALSE;
+    }
+
     public function getInfo() {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
@@ -231,7 +238,6 @@
     }
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
-      
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 

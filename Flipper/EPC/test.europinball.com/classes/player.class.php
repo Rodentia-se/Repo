@@ -233,7 +233,7 @@
           $this->shortName,
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
-          (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
+          (is_object($this->country)) ? $this->country->getIcon() : $this->countryName,
           (($this->ifpaRank) ? $this->ifpaRank : 100000),
           str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
           (($this->person) ? $this->person->getPhotoIcon() : ''),
