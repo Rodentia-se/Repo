@@ -201,7 +201,7 @@
     public function getIcon($anchor = TRUE, $defaults = FALSE) {
       $photo = $this->getPhoto($defaults, TRUE, FALSE);
       $icon = '<img src="'.$photo.'" class="icon" title="Click to view '.$this->name.'">';
-      $link = ($anchor) ? $this->getLink('object', FALSE, FALSE, FALSE, $defaults, $icon) : $icon;
+      $link = ($anchor) ? $this->getLink('object', TRUE, FALSE, FALSE, $defaults, $icon) : $icon;
       return ($link) ? $link : FALSE;
     }
 
@@ -241,7 +241,7 @@
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
       switch ($type) {
         case 'photo':
           if ($defaults) {
@@ -293,7 +293,7 @@
           return NULL;
         break;
       }
-      return ($url && $anchor) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
+      return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : this->name).'</a>' : $url;
     }
 
     protected function populate($depth = NULL) {
