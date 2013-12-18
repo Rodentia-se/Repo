@@ -110,17 +110,17 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembers($division = NULL) {
-      $division = ($division) ? division($division) : division('current');
-      if ($division && isId($division->id)) {
-        $query = person::$select.'
-          left join teamPerson tp on tp.person_id = o.id
+    public function getMembers($tournament = NULL, $asPlayers = TRUE) {
+      $tournament = (isTournament($tournament)) ? $tournament : (($tournament) ? tournament($tournament) : tournament('current'));
+      if (isTournament($tournament)) {
+        $query = (($asPlayers) ? player::$select : person::$select).'
+          left join teamPerson tp on tp.person_id = '.(($asPlayers) ? 'p' : 'o').'.id
           left join team t on tp.team_id = t.id
-          where tp.team_id = :id
-            and t.tournamentDivision_id = :division
+          where t.id = :id
+            and tp.tournamentEdition_id = :tournament
         ';
         $values[':id'] = $this->id;
-        $values[':division'] = $division->id;
+        $values[':tournament'] = $tournament->id;
         $members = $this->db->select($query, $values, 'person');
         if (count($members) > 0) {
           return $members;

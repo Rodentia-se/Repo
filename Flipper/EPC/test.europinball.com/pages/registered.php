@@ -40,7 +40,7 @@
               $headers = array('Name', 'Tag', 'Members', 'Picture');
             }
           } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'IFPA Rank', 'IFPA', 'Picture', 'Waiting', 'Paid');
+            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Flag', 'IFPA Rank', 'IFPA', 'Picture', 'Waiting', 'Paid');
           }
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
@@ -57,9 +57,12 @@
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
               '.((!$division->team) ? '"aoColumnDefs": [
-                { "aDataSort": [ 5 ], "aTargets": [ 6 ] },
-                { "bVisible": false, "aTargets": [ 5 ] }
-              ],' : '').'
+                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                { "bVisible": false, "aTargets": [ 6 ] },
+                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                { "bVisible": false, "aTargets": [ 4 ] },
+                {"sClass": "flag", "aTargets": [ 5 ] }
+              ],' : '{"sClass": "flag", "aTargets": [ 4 ] }').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
