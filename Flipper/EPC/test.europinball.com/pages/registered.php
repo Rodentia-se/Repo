@@ -64,7 +64,7 @@
                 {"sClass": "flag", "aTargets": [ 5 ] }
               ],' : '"aoColumnDefs": [
                 {"sClass": "flag", "aTargets": [ 4 ] }
-              ]').'
+              ],').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
