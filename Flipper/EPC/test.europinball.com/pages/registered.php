@@ -62,7 +62,9 @@
                 { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
                 { "bVisible": false, "aTargets": [ 4 ] },
                 {"sClass": "flag", "aTargets": [ 5 ] }
-              ],' : '{"sClass": "flag", "aTargets": [ 4 ] }').'
+              ],' : '"aoColumnDefs": [
+                {"sClass": "flag", "aTargets": [ 4 ] }
+              ]').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
