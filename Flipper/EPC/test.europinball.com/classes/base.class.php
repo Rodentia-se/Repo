@@ -293,7 +293,7 @@
           return NULL;
         break;
       }
-      return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : this->name).'</a>' : $url;
+      return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
     }
 
     protected function populate($depth = NULL) {
