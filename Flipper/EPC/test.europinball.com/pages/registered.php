@@ -56,14 +56,15 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
-              '.((!$division->team) ? '"aoColumnDefs": [
+              '.(($division->team) ? '"aoColumnDefs": [
+                {"sClass": "flag", "aTargets": [ 4 ] }
+              ],' : '"aoColumnDefs": [
                 { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
                 { "bVisible": false, "aTargets": [ 6 ] },
                 { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
                 { "bVisible": false, "aTargets": [ 4 ] },
-                {"sClass": "flag", "aTargets": [ 5 ] }
-              ],' : '"aoColumnDefs": [
-                {"sClass": "flag", "aTargets": [ 4 ] }
+                {"sClass": "flag", "aTargets": [ 5 ] },
+                {"sClass": "flag", "aTargets": [ 8 ] }
               ],').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
