@@ -122,6 +122,15 @@ span.short {
   cursor: pointer;
 }
 
+td.flag {
+  padding: 0px 0px 0px 10px;
+}
+
+td.flag img {
+  height: 16px;
+  cursor: pointer;
+}
+
 .italic {
   font-style: italic;  
 }
