@@ -123,12 +123,13 @@ span.short {
 }
 
 td.flag {
-  padding: 0px 0px 0px 10px;
+  padding: 1px 10px !important;
 }
 
 td.flag img {
   height: 16px;
   cursor: pointer;
+  position: absolute;
 }
 
 .italic {
