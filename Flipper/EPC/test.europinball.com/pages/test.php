@@ -44,8 +44,7 @@
       showMsg("Fail: S: " + status + " E: " + error);
     });
   ');
-  debug($setPaid->id);
-  $setPaid->addChange('
+  debug($setPaid->addChange('
     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", $value = $(this).val()})
     .done(function(data) {
       if (data.valid) {
@@ -57,7 +56,7 @@
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
-  ');
+  '));
 
   
   
