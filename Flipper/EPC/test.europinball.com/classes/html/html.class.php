@@ -859,6 +859,7 @@
           $element->parent = $this;
         if ($select) {
           $script = $this->addContent(new selectAll($selector, $indents));
+          debug($script);
           $script->parent = $this;
         }
       }
