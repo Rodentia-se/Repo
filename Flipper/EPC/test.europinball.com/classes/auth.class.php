@@ -115,7 +115,7 @@
           if (strlen($username) > 2) {
             if (strlen($username) < 33) {
               if (preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
-                if ($this->Uid($username)) {
+                if (!$this->Uid($username)) {
                   if ($this->CreateUser($username,  $password)) {
                     if ($person) {
                       if($person->setUsername($username)) {
