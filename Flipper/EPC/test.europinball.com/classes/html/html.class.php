@@ -883,7 +883,7 @@
     
     public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
       $element = new div('loading'.rand(0, 10000), 'modal');
-      $element->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...');
+      $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
       $this->addContent($element);
       $element->parent = $this;
       return $element;

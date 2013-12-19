@@ -44,6 +44,12 @@ div.modal {
   filter: Alpha(Opacity=70);
 }
 
+div.modal img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+}
+
 body.modal {
   overflow: hidden;
 }
