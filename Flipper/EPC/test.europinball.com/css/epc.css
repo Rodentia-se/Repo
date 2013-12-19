@@ -31,12 +31,25 @@
   margin-right: 15px;
 }
 
-div#loading {
-  background: transparent;
+div.modal {
+  display:    none;
+  position:   fixed;
+  z-index:    1000;
+  top:        0;
+  left:       0;
+  height:     100%;
+  width:      100%;
+  background: #262b33;
+  opacity: .70;
+  filter: Alpha(Opacity=70);
 }
 
-div.noTitleBar .ui-dialog-titlebar {
-  display:none;
+body.modal {
+  overflow: hidden;
+}
+
+body.modal div.modal {
+  display: block;
 }
 
 div.photoPopup {

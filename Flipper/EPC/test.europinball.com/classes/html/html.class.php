@@ -882,23 +882,10 @@
     }
     
     public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
-      $indents = (is($indents)) ? $indents : static::$indents;
-      $element = $this->addDiv('loading'.rand(0, 10000));
+      $element = new div('loading'.rand(0, 10000), 'modal');
       $element->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...');
-      $selector = '#'.$element->id;
-      $appendTo = (is($appendTo)) ? ((isHtml($appendTo)) ? '#'.$appendTo->id : $appendTo) : (($this->id) ? '#'.$this->id : 'body');
-      $script = new loading($selector, $appendTo, $props, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $this->parent->addContent($script);
-        $element->parent = $this->parent;
-        $script->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $this->addContent($script);
-        $element->parent = $this;
-        $script->parent = $this;
-      }
+      $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
