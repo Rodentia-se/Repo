@@ -17,6 +17,7 @@
   debug($paidSpan);
   debug($paidSpan->id);
   debug($paidSpan->params['id']);
+  debug($paidSpan->params);
   debug($select->id);
   $shouldDiv = $div->addDiv('shouldDiv');
   $shouldDiv->addLabel('Should pay:');
