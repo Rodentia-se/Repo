@@ -95,7 +95,7 @@
               } else {
                 $delimiter = '';
               }
-              $code.= $prop.': '.$delimiter.$val.$delimiter.",\n";
+              $code.= $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter.",\n";
             }
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {

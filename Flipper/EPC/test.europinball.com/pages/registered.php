@@ -70,14 +70,6 @@
                 $(".photoPopup").each(function() {
                   $(this).dialog({
                     autoOpen: false,
-                    show: {
-                      effect: "blind",
-                      duration: 1000,
-                    },
-                    hide: {
-                      effect: "blind",
-                      duration: 1000
-                    },
                     modal: true, 
                     width: "auto",
                     height: "auto"
