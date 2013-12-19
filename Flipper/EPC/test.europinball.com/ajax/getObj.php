@@ -10,7 +10,7 @@
   if ($class) {
     if (isObj($class, TRUE)) {
       if (isId($id)) {
-        $obj = $class($id)
+        $obj = $class($id);
         if ($obj) {
           if ($prop) {
             $json = $obj->$prop;
