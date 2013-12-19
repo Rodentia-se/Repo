@@ -866,6 +866,20 @@
       }
       return $element;
     }
+    
+    public function addDialog(array $props = NULL, $selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new dialog($selector, $props, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
 
     public function addCssFile($file = NULL, array $params = NULL) {
       $element = new cssFile($file, $params);
