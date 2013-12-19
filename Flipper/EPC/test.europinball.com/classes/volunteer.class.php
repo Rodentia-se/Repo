@@ -1,7 +1,5 @@
 <?php
 
-<?php
-
   class volunteer extends base {
     
     public static $instances;
