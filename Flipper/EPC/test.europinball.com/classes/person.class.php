@@ -109,7 +109,7 @@
         $this->shouldPay = $this->getCost();
         $this->volunteer = volunteer($this, tournament('active'));
         if ($this->volunteer) {
-          $this->adminLevel = $this->volunteer->adminLevel;
+          $this->adminLevel = $this->volunteer->adminLevel_id;
           $this->scorereader = $this->volunteer->scorereader;
           $this->allreader = $this->volunteer->allreader;
           $this->scorekeeper = $this->volunteer->scorekeeper;
