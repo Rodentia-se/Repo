@@ -131,7 +131,7 @@
                     error('Could not create user '.$username);
                   }
                 } else {
-                  config::$msg = $username.'Is already taken. Please change to another username and try again.';
+                  config::$msg = $username.' is already taken. Please change to another username and try again.';
                   error($username.' is already taken. Please change to another username and try again.');
                 }
               } else {
