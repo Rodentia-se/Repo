@@ -132,7 +132,7 @@
                   }
                 } else {
                   config::$msg = $username.'Is already taken. Please change to another username and try again.';
-                  error($username.'Is already taken. Please change to another username and try again.');
+                  error($username.' is already taken. Please change to another username and try again.');
                 }
               } else {
                 config::$msg = 'Your username is invalid. Please use a-z, A-Z, 0-9, dash and underscore only. The username has to be at least three characters, and can not be longer than 32 characters. Change to a valid username and try again.';
