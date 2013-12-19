@@ -89,6 +89,7 @@
         } else if ($this->jquery['jqtype'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['props']) {
+            var codes = [];
             foreach ($this->jquery['props'] as $prop => $val) {
               if ($prop) {
                 if (is_string($val) && substr($val, 0, 8) != 'function') {
@@ -96,9 +97,10 @@
                 } else {
                   $delimiter = '';
                 }
-                $code.= $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter.",\n";
+                $codes[] = $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter;
               }
             }
+            $code .= codes.join(",\n")."\n";
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
                 $contents .= trim(parent::getContent($key, $string));

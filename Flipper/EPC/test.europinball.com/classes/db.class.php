@@ -68,8 +68,6 @@
     protected function getRow($sth, $class = null) {
       $rowCount = $this->getRowCount();
       if ($rowCount > 1) {
-        debug($this);
-        debug($sth);
         die('Error: Single object expected, '.$rowCount.' objects found...');
       } else if ($rowCount == 1) {
         $obj = $sth->fetchObject();

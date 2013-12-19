@@ -3,7 +3,7 @@
   class click extends jquery {
     
     public function __construct($selector = NULL, $code = NULL, $indents = 0) {
-      parent::__construct($selector, 'click', (($code && $change !== TRUE) ? 'function' : 'command'), $code, NULL, static::$indents);
+      parent::__construct($selector, 'click', (($code) ? 'function' : 'command'), $code, NULL, static::$indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $type = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {

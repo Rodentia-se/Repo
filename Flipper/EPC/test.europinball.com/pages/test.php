@@ -2,9 +2,6 @@
 
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
-  
-  $ulogin = new uLogin();
-  debug($ulogin->Uid('asdasdasdasdasdasd'));
 
   $page = new page('Admin tools');
 
@@ -96,16 +93,8 @@
     });
   ');
 
-  
-  
-  
-  
-  
-  
-  
   $page->addContent($div);
-
-
+  $page->submit();
 
 
 /*
@@ -355,6 +344,5 @@ foreach($objs as $obj);
   preDump($obj);
 }
 */
-  $page->submit();
 
 ?> 
