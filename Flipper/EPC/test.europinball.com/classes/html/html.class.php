@@ -527,7 +527,9 @@
           $this->addCss($prop, $val);
         }
       } else {
-        $this->css[$props] = $value;
+        if ($props) {
+          $this->css[$props] = $value;
+        }
       }
       $this->params['style'] .= ' ';
       return TRUE;
