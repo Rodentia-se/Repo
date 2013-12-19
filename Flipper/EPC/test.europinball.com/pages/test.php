@@ -7,8 +7,6 @@
 
   $volunteer = volunteer('login');
 
-"<img src=\"https://test.europinball.org//images/ajax-loader.gif\" alt=\"Loading data...\">"
-
   $div = new div();
   $div->addDiv('loading')->addImg(config::$baseHref'/images/ajax-loader.gif', 'Loading data...');
   $div->addDialog(NULL, '#loading');
