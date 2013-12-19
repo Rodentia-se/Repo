@@ -23,7 +23,7 @@
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
     .done(function(data) {
       if (data.valid) {
-        $("#paid").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+        $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
       } else {
         showMsg(data.reason);
       }
@@ -34,7 +34,7 @@
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "shouldPay"})
     .done(function(data) {
       if (data.valid) {
-        $("#pay").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+        $("#'.$paySpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
       } else {
         showMsg(data.reason);
       }
@@ -42,10 +42,26 @@
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
-    $("#setPaid").focus();
-    $("#setPaid").select();
+    $("#'.$setPaid->id.'").focus();
+    $("#'.$setPaid->id.'").select();
   ');
-  
+  $setPaid->addChange('
+    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", $value = $(this).val()})
+    .done(function(data) {
+      if (data.valid) {
+        $("#'.$select->id.'").change();
+      } else {
+        showMsg(data.reason);
+      }
+    })
+    .fail(function(jqHXR,status,error) {
+      showMsg("Fail: S: " + status + " E: " + error);
+    });
+  ');
+    $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
+  $id = (isId($value)) ? $value : NULL;
+  $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
+
   
   
   

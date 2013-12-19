@@ -27,7 +27,7 @@
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -81,7 +81,7 @@
                 var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
                 var continent_id = (this.id == "city" || this.id == "region") ? $("#continent_id").val() : null;
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
