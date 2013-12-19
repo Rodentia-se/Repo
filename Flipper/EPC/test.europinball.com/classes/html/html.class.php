@@ -861,7 +861,6 @@
         if ($select) {
           $script = new selectAll($selector, $indents);
           $this->addContent($script);
-          debug($script);
           $script->parent = $this;
         }
       }

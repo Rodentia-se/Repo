@@ -5,12 +5,8 @@
 
   $page = new page('Admin tools');
 
-$person = person(1);
-$tournament = tournament(1);
-$volunteer = volunteer($person, 'active');
-debug($volunteer);
+  $volunteer = volunteer('login');
 
-/*
   $div = new div();
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
@@ -203,11 +199,9 @@ $div3->addCssFile('http://www.css', array('sampleparam' => 'huff'));
   $person = person(5778);
   debug($person->name, "NAME 5778");
   debug($person->addPlayer(), "ADD");
-*/
-      $page->addContent('HÄRSTARTARDET');
+   $page->addContent('HÄRSTARTARDET');
    $page->addContent($el);
   
-  /*
   $person = person(903);
   debug($person->name, "NAME 903");
   debug($person->addPlayer(), "ADD");

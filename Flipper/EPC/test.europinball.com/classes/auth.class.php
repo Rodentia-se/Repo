@@ -70,7 +70,6 @@
       if ($person) {
         $uid = $person->getUid();
         if ($uid) {
-          debug($person, "PERSON");
           if ($username == $person->username) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
