@@ -59,12 +59,6 @@
       showMsg("Fail: S: " + status + " E: " + error);
     });
   ');
-  debug('BEFORE');
-  debug($paidSpan->id, 'NUPARAMS');
-  debug('AFTER');
-  $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
-  $id = (isId($value)) ? $value : NULL;
-  $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
 
   
   
