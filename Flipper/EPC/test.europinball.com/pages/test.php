@@ -15,6 +15,7 @@
   $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   debug($paidSpan);
+  debug($select);
   debug($paidSpan->id);
   debug($paidSpan->params['id']);
   debug($paidSpan->params);
