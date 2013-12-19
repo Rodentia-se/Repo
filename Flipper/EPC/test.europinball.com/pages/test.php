@@ -7,7 +7,7 @@
 
 $person = person(1);
 $tournament = tournament(1);
-$volunteer = volunteer($person, $tournament);
+$volunteer = volunteer($person, 'active');
 debug($volunteer);
 
 /*
