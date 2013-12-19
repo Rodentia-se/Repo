@@ -46,7 +46,7 @@
   ');
   $setPaid->addChange('
     var el = this;
-    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", $value = $(el).val()})
+    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", value: $(el).val()})
     .done(function(data) {
       if (data.valid) {
         $("#'.$select->id.'").change();
