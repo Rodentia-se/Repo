@@ -28,13 +28,13 @@
   $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
   $setPaid->disabled = TRUE;
   $select->addChange('
-    $("#'.$loading->id.'").dialog("open");
+    $("body").addClass("modal");
     var num = 3;
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
     .done(function(data) {
       num--;
       if (num == 0) {
-        $("#'.$loading->id.'").dialog("close");
+        $("body").removeClass("modal");
       }
       if (data.valid) {
         $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
@@ -50,7 +50,7 @@
     .done(function(data) {
       num--;
       if (num == 0) {
-        $("#'.$loading->id.'").dialog("close");
+        $("body").removeClass("modal");
       }
       if (data.valid) {
         $("#'.$costsSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
@@ -65,7 +65,7 @@
     .done(function(data) {
       num--;
       if (num == 0) {
-        $("#'.$loading->id.'").dialog("close");
+        $("body").removeClass("modal");
       }
       if (data.valid) {
         $("#'.$paySpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
@@ -79,7 +79,7 @@
   ');
   $setPaid->addChange('
     var el = this;
-    $("#'.$loading->id.'").dialog("open");
+    $("body").addClass("modal");
     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", value: $(el).val()})
     .done(function(data) {
       if (data.valid) {
