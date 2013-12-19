@@ -32,22 +32,7 @@
         o.comment as comment,
         o.nonce as nonce,
         o.username as username,
-        if(v.id is not null,1,0) as volunteer,
-        v.id as volunteer_id,
-        v.adminLevel_id as adminLevel_id,
-        v.adminLevel_id as adminLevel,
-        if(v.adminLevel_id > 0, 1, null) as scorereader,
-        if(v.adminLevel_id > 7, 1, null) as allreader,
-        if(v.adminLevel_id > 15, 1, null) as scorekeeper,
-        if(v.adminLevel_id > 23, 1, null) as receptionist,
-        if(v.adminLevel_id > 31, 1, null) as admin,
-        v.here as hereVol,
-        ifnull(v.hours, 0) as hours,
-        ifnull(v.alloc, 0) as alloc,
-        timediff(time(concat(ifnull(v.hours, "00"), ":00:00")), ifnull(v.alloc, time("00:00:00"))) as hoursDiff
       from person o
-      left join volunteer v
-        on v.person_id = o.id
     ';
 
     public static $parents = array(

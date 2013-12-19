@@ -16,7 +16,8 @@
       'hidden' => FALSE,
       'escape' => TRUE,
       'entities' => FALSE,
-      'parent' => NULL
+      'parent' => NULL,
+      'disabled' => FALSE
     );
     public static $indenter = '  ';
     public static $indents = 0;
@@ -421,7 +422,7 @@
             }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
-          } else if ($param == 'selected' || $param == 'checked') {
+          } else if ($param == 'selected' || $param == 'checked' $$ $param == 'disabled') {
             return ($this->params[$param]) ? $param : FALSE;
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';

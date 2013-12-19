@@ -19,12 +19,13 @@
   $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
   $setDiv = $div->addDiv();
   $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
+  $setPaid->disabled = TRUE;
   $select->addChange('
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
     .done(function(data) {
       if (data.valid) {
         $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
-        $("#'.$setPaid->id.'").val(data.reason).focus().select();
+        $("#'.$setPaid->id.'").val(data.reason).focus().select().prop("disabled", false);
       } else {
         showMsg(data.reason);
       }
