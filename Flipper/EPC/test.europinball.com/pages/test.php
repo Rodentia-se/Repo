@@ -6,7 +6,7 @@
   $page = new page('Admin tools');
 
 $person = person(1);
-$tournament = tournament(1)
+$tournament = tournament(1);
 $volunteer = volunteer($person, $tournament);
 debug($volunteer);
 
