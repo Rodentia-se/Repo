@@ -31,7 +31,12 @@
         p.nonce as nonce,
         o.tournamentEdition_id as tournamentEdition_id,
         o.comment as comment,
-        o.adminLevel as adminLevel,
+        o.adminLevel_id as adminLevel_id,
+        if(o.adminLevel_id > 0, 1, null) as scorereader,
+        if(o.adminLevel_id > 7, 1, null) as allreader,
+        if(o.adminLevel_id > 15, 1, null) as scorekeeper,
+        if(o.adminLevel_id > 23, 1, null) as receptionist,
+        if(o.adminLevel_id > 31, 1, null) as admin,
         ifnull(o.hours, 0) as hours,
         ifnull(o.alloc, 0) as alloc,
         timediff(time(concat(ifnull(o.hours, "00"), ":00:00")), ifnull(o.alloc, time("00:00:00"))) as hoursDiff

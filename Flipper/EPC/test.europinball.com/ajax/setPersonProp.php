@@ -21,7 +21,7 @@
         $person = $loginPerson;
       }
       if ($person) {
-        if ($loginPerson->id == $person->id || $loginPerson->adminLevel > 1) {
+        if ($loginPerson->id == $person->id || $loginPerson->receptionist) {
           if (substr($prop, -3) == '_id') {
             if ($id || $id == 0) {
               $class = substr($prop, 0, -3);
