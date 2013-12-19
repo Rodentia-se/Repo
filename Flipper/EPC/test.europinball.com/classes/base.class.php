@@ -76,9 +76,11 @@
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
               $objSearch[$searchTable.'_id'] = $search->id;
             }
-            debug($data, "BASEDATA");
-            debug($search, "BASESEARCH");
-            debug($objSearch, "BASEOBJSEARCH");
+            if (get_class($this) == 'volunteer') {
+              debug($data, "BASEDATA");
+              debug($search, "BASESEARCH");
+              debug($objSearch, "BASEOBJSEARCH");
+            }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
           } else if (is($data)) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
