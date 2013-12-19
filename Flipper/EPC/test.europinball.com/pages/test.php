@@ -7,7 +7,7 @@
 
   $volunteer = volunteer('login');
 
-  $div = new div();
+  $div = new div('paymentDiv');
   $div->addLoading();
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
