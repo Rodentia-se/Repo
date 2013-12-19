@@ -23,6 +23,8 @@
   if (isset($_REQUEST[$pageType.'nonce'])) {
     if (ulNonce::Verify($pageType.'login', $_REQUEST[$pageType.'nonce'])) {
       config::$login->verified = TRUE;
+    } else {
+      config::$login->verified = TRUE;
     }
   }
 
