@@ -67,15 +67,18 @@
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+  debug('vol1');
      $persons = array('login', 'auth');
      $tournaments = array('current', 'active');
       if (isPerson($data) || (is_string($data) && in_array($data, $persons))) {
+  debug('vol2');
         $data = person($data);
         if (!$data || !isPerson($data)) {
           $this->failed = TRUE;
           return FALSE;
         }
       } else if (isPerson($search) || (is_string($search) && in_array($search, $persons))) {
+  debug('vol3');
         $search = person($search);
         if (!$search || !isPerson($search)) {
           $this->failed = TRUE;
@@ -83,6 +86,7 @@
         }
       }
       if (isTournament($data) || (is_string($data) && in_array($data, $tournaments))) {
+  debug('vol4');
         $data = tournament($data);
         if (!$data || !isTournament($data)) {
           $this->failed = TRUE;
@@ -90,8 +94,10 @@
         }
       }
       if (isTournament($search) || (is_string($search) && in_array($search, $tournaments))) {
+  debug('vol5');
         $search = tournament($search);
         if (!$search || !isTournament($search)) {
+  debug('vol6');
           $this->failed = TRUE;
           return FALSE;
         }
