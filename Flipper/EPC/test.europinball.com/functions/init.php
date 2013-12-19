@@ -44,11 +44,15 @@
   }
 
   if (config::$login->loggedin() && !config::$login->person) {
+    debug(1);
     if (isset($_SESSION['username']) && $_SESSION['username']) {
+    debug(2);
       config::$login->person = person(array('username' => $_SESSION['username']), TRUE);
     } else if (config::$login->Username($_SESSION['uid'])) {
+    debug(3);
       $_SESSION['username'] = config::$login->Username($_SESSION['uid']);
       if (isset($_SESSION['username']) && $_SESSION['username']) {
+    debug(4);
         config::$login->person = person(array('username' => $_SESSION['username']), TRUE);
       }
     }
