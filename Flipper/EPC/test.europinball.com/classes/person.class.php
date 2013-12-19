@@ -159,11 +159,6 @@
       return false;
     }
     
-    public function getAdminLevel() {
-      $volunteer = volunteer($this);
-      return $volunteer->adminLevel;
-    }
-    
     public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
       foreach (config::$activeSingleDivisions as $divisionType) {
         $player = ($this->id) ? player($this, $divisionType) : NULL;
