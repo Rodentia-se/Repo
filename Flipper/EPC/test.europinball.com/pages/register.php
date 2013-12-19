@@ -60,7 +60,7 @@
             $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. Make sure this is correct, and then choose a username and password below.');
             $page->addNewUser('Register a new user', $person_id, 1);
             $page->addScript('$("#1newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
-            $page->focus('username');
+            $page->focus('1username');
           }
         } else {
           if ($_REQUEST['action'] == 'newUser') {
@@ -69,7 +69,7 @@
           $page->addParagraph('You have identified yourself as a new guy. Make sure this is correct, and then choose a username and password below.');
           $page->addNewUser('Register a new user', $person_id, 2);
           $page->addScript('$("#2newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
-          $page->focus('username');
+          $page->focus('2username');
         }
       } else {
         $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
