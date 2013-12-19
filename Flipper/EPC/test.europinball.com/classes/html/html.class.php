@@ -786,7 +786,7 @@
     public function addFocus($selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new change($selector, $code, $indents);
+      $element = new focus($selector, $code, $indents);
       $this->addContent($element);
       return $element;
     }
