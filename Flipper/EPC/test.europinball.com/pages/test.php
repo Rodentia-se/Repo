@@ -2,6 +2,9 @@
 
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
+  
+  $ulogin = new uLogin();
+  debug($ulogin->Uid('pal'));
 
   $page = new page('Admin tools');
 
