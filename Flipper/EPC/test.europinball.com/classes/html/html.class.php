@@ -881,7 +881,7 @@
       return $element;
     }
     
-    public addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
+    public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $element = $this->addDiv('loading'.rand(0, 10000), 'hidden');
       $element->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...');
