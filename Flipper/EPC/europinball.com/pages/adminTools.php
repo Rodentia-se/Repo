@@ -14,7 +14,7 @@
       $select = $persons->getSelectObj();
       $select->addCombobox();
       $div->addContent($select);
-      $div->addFocus('#persons_combobox', TRUE);
+      $div->addFocus('#'.$select->id.'_combobox', TRUE);
       $paidDiv = $div->addDiv('paidDiv', 'noInput');
       $paidDiv->addLabel('Paid:');
       $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
@@ -85,7 +85,7 @@
         .done(function(data) {
           if (data.valid) {
             $("#'.$select->id.'").change();
-            $("#persons_combobox").focus().select();
+            $("#'.$select->id.'_combobox").focus().select();
           } else {
             showMsg(data.reason);
           }
