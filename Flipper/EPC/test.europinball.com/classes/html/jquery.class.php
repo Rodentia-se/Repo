@@ -25,9 +25,11 @@
           }
         break;
         case 'object':
-          $this->jquery['contentProp'] = $props['contentProp'];
-          unset($this->jquery['props']['contentProp']);
-          $this->contents = (is_array($contents)) ? $contents : array($contents);
+          if (array_key_exists('contentProp', $props)) {
+            $this->jquery['contentProp'] = $props['contentProp'];
+            unset($this->jquery['props']['contentProp']);
+            $this->contents = (is_array($contents)) ? $contents : array($contents);
+          }
         break;
         case 'code':
         case 'function':
@@ -90,12 +92,14 @@
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['props']) {
             foreach ($this->jquery['props'] as $prop => $val) {
-              if (is_string($val) && substr($val, 0, 8) != 'function') {
-                $delimiter = '"';
-              } else {
-                $delimiter = '';
+              if ($prop) {
+                if (is_string($val) && substr($val, 0, 8) != 'function') {
+                  $delimiter = '"';
+                } else {
+                  $delimiter = '';
+                }
+                $code.= $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter.",\n";
               }
-              $code.= $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter.",\n";
             }
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
