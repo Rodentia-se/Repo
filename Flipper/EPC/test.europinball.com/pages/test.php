@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
   
   $ulogin = new uLogin();
-  debug($ulogin->Uid('pal'));
+  debug($ulogin->Uid('asdasdasdasdasdasd'));
 
   $page = new page('Admin tools');
 
