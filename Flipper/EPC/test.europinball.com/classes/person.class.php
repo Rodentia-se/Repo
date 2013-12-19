@@ -123,7 +123,7 @@
         $this->shouldPay = $this->getCost();
         if (in_array($data, array('login', 'auth', 'active'))) {
           $tournament = tournament('active');
-        } else if ($data == 'current')) {
+        } else if ($data == 'current') {
           $tournament = tournament($data);
         } else if (isTournament($data)) {
           $tournament = $data;
