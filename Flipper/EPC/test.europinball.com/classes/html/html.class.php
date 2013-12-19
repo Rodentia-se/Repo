@@ -410,7 +410,11 @@
           if ($param == 'style' && count($this->css) > 0) {
             $this->style = trim($this->style);
             $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
-            return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+            if ($this->style && $this->style != " ") {
+              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+            } else {
+              return NULL;
+            }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
           } else if ($param == 'selected' || $param == 'checked') {
