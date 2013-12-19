@@ -105,7 +105,7 @@
         }
       }
       parent::__construct($data, $search, $depth);
-      debug($this, "VOLTHIS")
+      debug($this, "VOLTHIS");
     }
 
   }
