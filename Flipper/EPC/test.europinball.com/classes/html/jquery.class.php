@@ -25,11 +25,9 @@
           }
         break;
         case 'object':
-          if (array_key_exists('contentProp', $props)) {
-            $this->jquery['contentProp'] = $props['contentProp'];
-            unset($this->jquery['props']['contentProp']);
-            $this->contents = (is_array($contents)) ? $contents : array($contents);
-          }
+          $this->jquery['contentProp'] = $props['contentProp'];
+          unset($this->jquery['props']['contentProp']);
+          $this->contents = (is_array($contents)) ? $contents : array($contents);
         break;
         case 'code':
         case 'function':
