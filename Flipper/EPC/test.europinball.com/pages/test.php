@@ -8,7 +8,7 @@
   $volunteer = volunteer('login');
 
   $div = new div();
-  $div->addDiv('loading')->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...');
+  $div->addDiv('loading')->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...')->hide();
   $div->addDialog(NULL, '#loading');
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
