@@ -407,19 +407,15 @@
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
-          if ($param == 'style' && count($this->css) > 0) {
-            $this->style = trim($this->style);
-            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+          if ($param == 'style') {
+             if (count($this->css) > 0) {
+              $this->style = trim($this->style);
+              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+            }
             if ($this->style && $this->style != " ") {
               return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
             } else {
               return NULL;
-            }
-          } else if ($param == 'style') {
-            if ($this->style && $this->style != " ") {
-              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
-            } else {
-              return NULL
             }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
