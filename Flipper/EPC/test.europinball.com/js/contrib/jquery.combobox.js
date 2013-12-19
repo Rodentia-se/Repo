@@ -19,13 +19,13 @@
           .val( value )
           .attr( "title", "" )
           .attr( "id", this.element.attr("id") + "_combobox")
-          .autocomplete("option", "autoFocus", true)
           .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
           .autocomplete({
             delay: 0,
             minLength: 0,
             source: $.proxy( this, "_source" )
           });
+          .autocomplete("option", "autoFocus", true)
 /*
           .tooltip({
             tooltipClass: "ui-state-highlight"
