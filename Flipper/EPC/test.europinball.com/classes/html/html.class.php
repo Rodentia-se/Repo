@@ -15,7 +15,8 @@
       'display' => 'block',
       'hidden' => FALSE,
       'escape' => TRUE,
-      'entities' => FALSE
+      'entities' => FALSE,
+      'parent' => NULL
     );
     public static $indenter = '  ';
     public static $indents = 0;
@@ -266,6 +267,7 @@
         $element = new html($element, $contents, $params, $id, $class, $css);
       }
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
@@ -588,173 +590,200 @@
     public function addDiv($id = NULL, $class = NULL, array $params = NULL) {
       $element = new div($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addSpan($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new span($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
     public function addMoneySpan($value = 0, $id = NULL, $format = '€ §') {
       $id = ($id) ? $id : $this->id.'MoneySpan';
-      $return = $this->addSpan($value, $id);
-      $this->addScriptCode('
+      $element = $this->addSpan($value, $id);
+      $script = $this->addScriptCode('
         var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
         $("#'.$id.'").html(num.toMoney(0, ".", " ", "", "'.$format.'"));
       ');
-      return $return;
+      $script->parent = $this;
+      $element->parent = $this;
+      return $element;
     }
 
     public function addImg($src = NULL, $title = NULL, array $params = NULL) {
       $element = new img($src, $title, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLink($url = NULL, $contents = 'link', array $params = NULL) {
       $element = new link($url, $contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addParagraph($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new paragraph($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH1($contents = NULL, array $params = NULL) {
       $element = new h1($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH2($contents = NULL, array $params = NULL) {
       $element = new h2($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH3($contents = NULL, array $params = NULL) {
       $element = new h3($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH4($contents = NULL, array $params = NULL) {
       $element = new h4($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addBr($id = NULL, $class = NULL, array $params = NULL) {
       $element = new br($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addHr($id = NULL, $class = NULL, array $params = NULL) {
       $element = new hr($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addUl($id = NULL, $class = NULL, array $params = NULL) {
       $element = new ul($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addOl($id = NULL, $class = NULL, array $params = NULL) {
       $element = new ol($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLi($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new li($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addForm($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
       $element = new form($id, $action, $method, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLabel($contents = NULL, $for = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new label($contents, $for, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
   
     public function addSelect($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
       $element = new select($name, $options, $selected, $label, $params);
       $this->addContent($element);
-      return $element;
-    }
-
-    public function addOption($text = NULL, $value = NULL, $selected = FALSE, array $params = NULL) {
-      $element = new option($text, $value, $selected, $params);
-      $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addHidden($name = NULL, $value = 'yes', array $params = NULL) {
       $element = new hidden($name, $value, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addCheckbox($name = NULL, $checked = FALSE, array $params = NULL) {
       $element = new checkbox($name, $checked, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addRadio($name = NULL, $value = NULL, $checked = FALSE, array $params = NULL) {
       $element = new radio($name, $value, $checked, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addButton($value = 'submit', $name = NULL, array $params = NULL) {
       $element = new button($value, $name, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
     public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL) {
       $element = new clickButton($value, $name, $url, $form, $script, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addScript($source = NULL, array $params = NULL) {
       $element = new script($source, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addScriptFile($file = NULL, array $params = NULL) {
       $element = new scriptFile($file, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
     public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $element = new scriptCode($code, $params, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
     
@@ -762,7 +791,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -770,7 +805,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new tooltip($selector, $contents, $new, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -778,7 +819,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new click($selector, $code, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -786,7 +833,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new change($selector, $code, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -794,9 +847,20 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new focus($selector, $indents);
-      $this->addContent($element);
-      if ($select) {
-        $this->addContent(new selectAll($selector, $indents));
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+        if ($select) {
+          $script = $this->parent->addContent(new selectAll($selector, $indents));
+          $script->parent = $this->parent;
+        }
+        } else {
+          $this->addContent($element);
+          $element->parent = $this;
+        if ($select) {
+          $script = $this->addContent(new selectAll($selector, $indents));
+          $script->parent = $this;
+        }
       }
       return $element;
     }
@@ -804,6 +868,7 @@
     public function addCssFile($file = NULL, array $params = NULL) {
       $element = new cssFile($file, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
