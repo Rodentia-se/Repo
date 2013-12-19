@@ -43,6 +43,7 @@
       showMsg("Fail: S: " + status + " E: " + error);
     });
     $("#setPaid").focus();
+    $("#setPaid").select();
   ');
   
   
