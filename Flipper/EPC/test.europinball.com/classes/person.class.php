@@ -102,7 +102,8 @@
       parent::__construct($data, $search, $depth);
       if ($this->id) {
         $this->shouldPay = $this->getCost();
-        $this->adminLevel = $this->getAdminLevel();
+        $this->volunteer = volunteer($this);
+        $this->adminLevel = ($this->volunteer) ? $this->volunteer->adminLevel : NULL;
       }
     }
     
