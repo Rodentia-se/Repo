@@ -16,6 +16,7 @@
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   debug($paidSpan);
   debug($paidSpan->id);
+  debug($paidSpan->params['id']);
   debug($select->id);
   $shouldDiv = $div->addDiv('shouldDiv');
   $shouldDiv->addLabel('Should pay:');
