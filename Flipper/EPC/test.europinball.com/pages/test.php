@@ -14,7 +14,6 @@
   $paidDiv = $div->addDiv('paidDiv');
   $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-  debug($paidSpan->id, 'NUPARAMS');
   $shouldDiv = $div->addDiv('shouldDiv');
   $shouldDiv->addLabel('Should pay:');
   $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
@@ -60,7 +59,8 @@
       showMsg("Fail: S: " + status + " E: " + error);
     });
   ');
-    $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
+  debug($paidSpan->id, 'NUPARAMS');
+  $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
   $id = (isId($value)) ? $value : NULL;
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
 
