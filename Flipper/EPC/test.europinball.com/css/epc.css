@@ -35,7 +35,7 @@ div#loading {
   background: transparent;
 }
 
-div#loading .ui-dialog-titlebar {
+div.noTitleBar .ui-dialog-titlebar {
   display:none;
 }
 
@@ -166,3 +166,6 @@ td.icon img {
   display: none;
 }
 
+.transparent {
+  background: transparent;
+}
