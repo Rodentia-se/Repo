@@ -3,14 +3,14 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
+  $page = new page('Admin tools');
+
 $person = person(1);
 $tournament = tournament(1)
 $volunteer = volunteer($person, $tournament);
 debug($volunteer);
 
 /*
-  $page = new page('Admin tools');
-
   $div = new div();
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
