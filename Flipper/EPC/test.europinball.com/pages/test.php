@@ -10,15 +10,30 @@
   $select = $persons->getSelectObj();
   $select->addCombobox();
   $div->addContent($select);
-  $paidDiv = $div->addDiv();
-  $label = $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
+  $paidDiv = $div->addDiv('paidDiv');
+  $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-  $shouldDiv = $div->addDiv();
+  $shouldDiv = $div->addDiv('shouldDiv');
   $shouldDiv->addLabel('Should pay:');
   $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
   $setDiv = $div->addDiv();
   $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
-
+  $select->addChange('
+    $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
+    .done(function(data) {
+      $("#paid").html(parseInt(data).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+    })
+    .fail(function(jqHXR,status,error) {
+      showMsg("Fail: S: " + status + " E: " + error);
+    });
+    $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "shouldPay"})
+    .done(function(data) {
+      $("#pay").html(parseInt(data).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+    })
+    .fail(function(jqHXR,status,error) {
+      showMsg("Fail: S: " + status + " E: " + error);
+    });
+  ');
   
   
   

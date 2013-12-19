@@ -56,37 +56,15 @@
       }
     }
     
-    public function delOptions($options = NULL) {
-      if (is_array($options)) {
-        if (count($options) > 0) {
-          foreach($options as $key => $option) {
-            $this->delOptions($key);
-          }
-          return TRUE;
-        }
-      } else if (is($option)) {
-        if ($option === TRUE) {
-          $this->contents = array();
-          return TRUE;
-        } else if (array_key_exists($option, $this->contents)) {
-          unset($this->contents[$option]);
-          return $option;
-        } else {
-          if (count($this->contents) > 0) {
-            foreach ($this->contents as $key => $option) {
-              if ($options == $option || $options == $option->value || (isHtml($options) && $options->value == $option->value)) {
-                unset($this->contents[$key]);
-                return (is_int($key)) ? $key : TRUE;
-              }
-            }
-          }
-        }
-      } else {
-        $this->contents = array();
-        return TRUE;
-      }
+    public function addCombobox($selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new combobox($selector, $indents);
+      $this->settings['combobox'] = TRUE;
+      $this->addContent($element);
+      return $element;
     }
-    
+
     public function addOptions($options = NULL, $selected = NULL, $replace = FALSE, $index = NULL) {
       if ($replace) {
         $replaced = $this->delOptions($replace);
@@ -131,6 +109,52 @@
       }
       if ($selected) {
         $this->selectOption($selected);
+      }
+    }
+    
+    protected function getOptions($index = NULL, $string = TRUE) {
+      if(is($index)) {
+        if (isHtml($this->contents[$index]) && getClass($this->contents[$index]) == 'option') {
+          return ($string) ? $this->contents[$index]->getHtml() : $this->contents[$index];
+        } else {
+          return NULL;
+        }
+      } else {
+        foreach ($this->contents as $key => $part) {
+          $html .= $this->getOptions($key, $string);
+        }
+        return $html;
+      }
+    }
+
+    public function delOptions($options = NULL) {
+      if (is_array($options)) {
+        if (count($options) > 0) {
+          foreach($options as $key => $option) {
+            $this->delOptions($key);
+          }
+          return TRUE;
+        }
+      } else if (is($option)) {
+        if ($option === TRUE) {
+          $this->contents = array();
+          return TRUE;
+        } else if (array_key_exists($option, $this->contents)) {
+          unset($this->contents[$option]);
+          return $option;
+        } else {
+          if (count($this->contents) > 0) {
+            foreach ($this->contents as $key => $option) {
+              if ($options == $option || $options == $option->value || (isHtml($options) && $options->value == $option->value)) {
+                unset($this->contents[$key]);
+                return (is_int($key)) ? $key : TRUE;
+              }
+            }
+          }
+        }
+      } else {
+        $this->contents = array();
+        return TRUE;
       }
     }
     

@@ -100,6 +100,7 @@
         }
       }
       parent::__construct($data, $search, $depth);
+      $this->shouldPay = $this->getCost();
     }
     
     public function getCost($type = NULL) {
