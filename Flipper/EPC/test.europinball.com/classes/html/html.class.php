@@ -413,7 +413,13 @@
             if ($this->style && $this->style != " ") {
               return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
             } else {
-              return NULL;
+              return NULL
+            }
+          } else if ($param == 'style') {
+            if ($this->style && $this->style != " ") {
+              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+            } else {
+              return NULL
             }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
