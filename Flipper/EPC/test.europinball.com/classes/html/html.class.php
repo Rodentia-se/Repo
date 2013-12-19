@@ -83,6 +83,9 @@
           return static::$indenter;
         break;
         default:
+          if ($prop == 'id') {
+            debug($this->params, "IDPARAMS");
+          }
           return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
         break;
       }
