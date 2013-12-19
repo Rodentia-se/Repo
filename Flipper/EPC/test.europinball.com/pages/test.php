@@ -13,7 +13,7 @@
   $select->addCombobox();
   $div->addContent($select);
   $div->addFocus('#persons_combobox', TRUE);
-  $paidDiv = $div->addDiv('paidDiv');
+  $paidDiv = $div->addDiv('paidDiv', 'noInput');
   $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   $shouldDiv = $div->addDiv('shouldDiv');
