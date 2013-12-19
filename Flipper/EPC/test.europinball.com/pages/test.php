@@ -7,7 +7,11 @@
 
   $volunteer = volunteer('login');
 
+"<img src=\"https://test.europinball.org//images/ajax-loader.gif\" alt=\"Loading data...\">"
+
   $div = new div();
+  $div->addDiv('loading')->addImg(config::$baseHref'/images/ajax-loader.gif', 'Loading data...');
+  $div->addDialog(NULL, '#loading');
   $persons = persons(tournament('active'));
   $select = $persons->getSelectObj();
   $select->addCombobox();
@@ -27,8 +31,14 @@
   $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
   $setPaid->disabled = TRUE;
   $select->addChange('
+    $("#loading").dialog("open");
+    var num = 3;
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
     .done(function(data) {
+      num--;
+      if (num == 0) {
+        $("#loading").dialog("close");
+      }
       if (data.valid) {
         $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
         $("#'.$setPaid->id.'").val(data.reason).focus().select().prop("disabled", false);
@@ -41,6 +51,10 @@
     });
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "costs"})
     .done(function(data) {
+      num--;
+      if (num == 0) {
+        $("#loading").dialog("close");
+      }
       if (data.valid) {
         $("#'.$costsSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
       } else {
@@ -52,6 +66,10 @@
     });
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "toPay"})
     .done(function(data) {
+      num--;
+      if (num == 0) {
+        $("#loading").dialog("close");
+      }
       if (data.valid) {
         $("#'.$paySpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
       } else {
@@ -64,6 +82,7 @@
   ');
   $setPaid->addChange('
     var el = this;
+    $("#loading").dialog("open");
     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", value: $(el).val()})
     .done(function(data) {
       if (data.valid) {
