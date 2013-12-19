@@ -66,6 +66,39 @@
       )
     );
 
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+     $persons = array('login', 'auth');
+     $tournaments = array('current', 'active');
+      if (isPerson($data) || (is_string($data) && in_array($data, $persons))) {
+        $data = person($data);
+        if (!$data || !isPerson($data)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      } else if (isPerson($search) || (is_string($search) && in_array($search, $persons))) {
+        $search = person($search);
+        if (!$search || !isPerson($search)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if (isTournament($data) || (is_string($data) && in_array($data, $tournaments))) {
+        $data = tournament($data);
+        if (!$data || !isTournament($data)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      if (isTournament($search) || (is_string($search) && in_array($search, $tournaments))) {
+        $search = tournament($search);
+        if (!$search || !isTournament($search)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
+      }
+      parent::__construct($data, $search, $depth);
+    }
+
   }
 
 ?>
