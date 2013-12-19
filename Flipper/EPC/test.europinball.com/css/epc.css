@@ -168,4 +168,5 @@ td.icon img {
 
 .transparent {
   background: transparent;
+  border: 0;
 }
