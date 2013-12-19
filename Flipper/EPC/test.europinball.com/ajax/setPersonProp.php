@@ -14,7 +14,7 @@
   if ($value || $value == 0) {
     if ($prop) {
       $loginPerson = person('login');
-      debug($loginPerson);
+      debug($loginPerson, 'LOGINPERSSON');
       if ($person_id) {
         $person = person($person_id);
       } else {
