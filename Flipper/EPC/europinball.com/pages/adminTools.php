@@ -85,7 +85,9 @@
         .done(function(data) {
           if (data.valid) {
             $("#'.$select->id.'").change();
-            $("#'.$select->id.'_combobox").focus().select();
+            setTimeout(function() {
+              $("#'.$select->id.'_combobox").focus().select()
+            }, 500);
           } else {
             showMsg(data.reason);
           }
