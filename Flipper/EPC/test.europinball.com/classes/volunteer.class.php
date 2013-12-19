@@ -70,14 +70,14 @@
   debug('vol1');
      $persons = array('login', 'auth');
      $tournaments = array('current', 'active');
-      if (isPerson($data) || (is_string($data) && in_array($data, $persons))) {
+      if (is_string($data) && in_array($data, $persons)) {
   debug('vol2');
         $data = person($data);
         if (!$data || !isPerson($data)) {
           $this->failed = TRUE;
           return FALSE;
         }
-      } else if (isPerson($search) || (is_string($search) && in_array($search, $persons))) {
+      } else if (is_string($search) && in_array($search, $persons)) {
   debug('vol3');
         $search = person($search);
         if (!$search || !isPerson($search)) {
@@ -85,7 +85,7 @@
           return FALSE;
         }
       }
-      if (isTournament($data) || (is_string($data) && in_array($data, $tournaments))) {
+      if (is_string($data) && in_array($data, $tournaments)) {
   debug('vol4');
         $data = tournament($data);
         if (!$data || !isTournament($data)) {
@@ -93,7 +93,7 @@
           return FALSE;
         }
       }
-      if (isTournament($search) || (is_string($search) && in_array($search, $tournaments))) {
+      if (is_string($search) && in_array($search, $tournaments)) {
   debug('vol5');
         $search = tournament($search);
         debug($search);
