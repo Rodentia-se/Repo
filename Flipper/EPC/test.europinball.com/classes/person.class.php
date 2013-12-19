@@ -121,8 +121,8 @@
       parent::__construct($data, $search, $depth);
       if ($this->id && !$this->failed) {
         $this->shouldPay = $this->getCost();
-        if (in_array($data, array('login', 'auth', 'active')) {
-          $tournament = tournemtn('active');
+        if (in_array($data, array('login', 'auth', 'active'))) {
+          $tournament = tournament('active');
         } else if ($data == 'current')) {
           $tournament = tournament($data);
         } else if (isTournament($data)) {
