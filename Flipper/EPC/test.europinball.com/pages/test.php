@@ -14,11 +14,15 @@
   $div->addContent($select);
   $div->addFocus('#persons_combobox', TRUE);
   $paidDiv = $div->addDiv('paidDiv', 'noInput');
-  $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
+  $paidDiv->addLabel('Paid:');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-  $shouldDiv = $div->addDiv('shouldDiv');
-  $shouldDiv->addLabel('Should pay:');
-  $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
+  $costsDiv = $div->addDiv('costsDiv');
+  $costsDiv->addLabel('Costs:'));
+  $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
+  $payDiv = $div->addDiv('payDiv');
+  $payDiv->addLabel('Should pay:');
+  $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
+  $paySpan->addClasses('sum');
   $setDiv = $div->addDiv();
   $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
   $setPaid->disabled = TRUE;
@@ -35,7 +39,18 @@
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
-    $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "shouldPay"})
+    $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "costs"})
+    .done(function(data) {
+      if (data.valid) {
+        $("#'.$costsSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+      } else {
+        showMsg(data.reason);
+      }
+    })
+    .fail(function(jqHXR,status,error) {
+      showMsg("Fail: S: " + status + " E: " + error);
+    });
+    $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "toPay"})
     .done(function(data) {
       if (data.valid) {
         $("#'.$paySpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));

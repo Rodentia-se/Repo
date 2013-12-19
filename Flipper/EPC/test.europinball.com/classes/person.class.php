@@ -101,7 +101,10 @@
       }
       parent::__construct($data, $search, $depth);
       if ($this->id && !$this->failed) {
-        $this->shouldPay = $this->getCost();
+        $this->costs = $this->getCost();
+        if ($this->costs) {
+          $this->toPay = ($this->paid) ? $this->costs - $this->paid : $this->costs;
+        }
         if (in_array($data, array('login', 'auth', 'active')) || in_array($search, array('login', 'auth', 'active'))) {
           $tournament = tournament('active');
         } else if ($data == 'current' || $search == 'current') {
