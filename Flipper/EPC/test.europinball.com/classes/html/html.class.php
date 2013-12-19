@@ -422,7 +422,7 @@
             }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
-          } else if ($param == 'selected' || $param == 'checked' $$ $param == 'disabled') {
+          } else if ($param == 'selected' || $param == 'checked' || $param == 'disabled') {
             return ($this->params[$param]) ? $param : FALSE;
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
