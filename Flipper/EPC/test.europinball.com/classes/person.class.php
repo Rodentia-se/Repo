@@ -31,7 +31,7 @@
         o.payDate as payDate,
         o.comment as comment,
         o.nonce as nonce,
-        o.username as username,
+        o.username as username
       from person o
     ';
 
