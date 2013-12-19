@@ -18,14 +18,14 @@
   $paidDiv->addLabel('Paid:');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   $costsDiv = $div->addDiv('costsDiv');
-  $costsDiv->addLabel('Costs:');
+  $costsDiv->addLabel('Should pay:');
   $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
   $payDiv = $div->addDiv('payDiv');
-  $payDiv->addLabel('Should pay:');
+  $payDiv->addLabel('Left to pay:');
   $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
   $paySpan->addClasses('sum');
   $setDiv = $div->addDiv();
-  $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid', array('class' => 'short'));
+  $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
   $setPaid->disabled = TRUE;
   $select->addChange('
     $("body").addClass("modal");
