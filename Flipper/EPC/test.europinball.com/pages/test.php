@@ -17,7 +17,7 @@
   $paidDiv->addLabel('Paid:');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
   $costsDiv = $div->addDiv('costsDiv');
-  $costsDiv->addLabel('Costs:'));
+  $costsDiv->addLabel('Costs:');
   $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
   $payDiv = $div->addDiv('payDiv');
   $payDiv->addLabel('Should pay:');
