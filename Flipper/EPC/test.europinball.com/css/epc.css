@@ -50,9 +50,11 @@ div.modal img {
   left: 50%;
 }
 
+/*
 body.modal {
   overflow: hidden;
 }
+*/
 
 body.modal div.modal {
   display: block;
