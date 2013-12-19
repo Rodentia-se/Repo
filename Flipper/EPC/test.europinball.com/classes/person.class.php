@@ -127,6 +127,7 @@
 
     public function getVolunteer($tournemant = 'active') {
       $this->volunteer = volunteer($this, $tournemant);
+      debug($this->volunteer);
       if ($this->volunteer) {
         $this->volunteer_id = $this->volunteer->id;
         $this->adminLevel_id = $this->volunteer->adminLevel_id;
