@@ -14,12 +14,7 @@
   $paidDiv = $div->addDiv('paidDiv');
   $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-  debug($paidSpan);
-  debug($select);
-  debug($paidSpan->id);
-  debug($paidSpan->params['id']);
-  debug($paidSpan->params);
-  debug($select->id);
+  debug($paidSpan->id, 'NUPARAMS');
   $shouldDiv = $div->addDiv('shouldDiv');
   $shouldDiv->addLabel('Should pay:');
   $paySpan = $shouldDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
