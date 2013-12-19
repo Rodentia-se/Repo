@@ -886,7 +886,7 @@
       $element = $this->addDiv('loading'.rand(0, 10000), 'hidden');
       $element->addImg(config::$baseHref.'/images/ajax-loader.gif', 'Loading data...');
       $selector = '#'.$element->id;
-      $appendTo = (is($appendTo)) ? ((isHtml($appendTo)) ? '#'.$appendTo->id : $appendTo) : '#'.$this->id;
+      $appendTo = (is($appendTo)) ? ((isHtml($appendTo)) ? '#'.$appendTo->id : $appendTo) : (($this->id) ? '#'.$this->id : 'body');
       $script = new loading($selector, $appendTo, $props, $indents);
       if ($this->selfClose) {
         $this->parent->addContent($element);
