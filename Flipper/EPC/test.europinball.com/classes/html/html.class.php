@@ -783,6 +783,14 @@
       return $element;
     }
 
+    public function addFocus($selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new change($selector, $code, $indents);
+      $this->addContent($element);
+      return $element;
+    }
+
     public function addCssFile($file = NULL, array $params = NULL) {
       $element = new cssFile($file, $params);
       $this->addContent($element);

@@ -10,6 +10,7 @@
   $select = $persons->getSelectObj();
   $select->addCombobox();
   $div->addContent($select);
+  $div->addFocus('#persons_combobox');
   $paidDiv = $div->addDiv('paidDiv');
   $paidDiv->addLabel('Paid:')->addCss('margin-top', '15px');
   $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
@@ -41,6 +42,7 @@
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
+    $("#setPaid").focus();
   ');
   
   
