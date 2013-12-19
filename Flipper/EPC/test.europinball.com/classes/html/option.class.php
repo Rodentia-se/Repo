@@ -9,9 +9,6 @@
       } else {
         $params['value'] = $value;
       }
-      if(is_object($text)) {
-        debug(get_class($text), "OBJ", TRUE);
-      }
       $params['id'] = ($params['id']) ? $params['id'] : $params['name'];
       $params['selected'] = $selected;
       $this->inlineBlock = TRUE;

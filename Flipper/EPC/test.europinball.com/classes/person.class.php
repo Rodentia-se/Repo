@@ -90,15 +90,11 @@
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
-     debug("person1");
       if (is_string($data) && in_array($data, $persons) && $search === config::NOSEARCH) {
-     debug("person2");
         if (isObj(config::$login->person) && isId(config::$login->person->id)) {
-     debug("person3");
           $this->_set(config::$login->person);
           return TRUE;
         } else {
-     debug("person4");
           $this->failed = TRUE;
           return FALSE;
         }

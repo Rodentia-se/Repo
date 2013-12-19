@@ -67,45 +67,42 @@
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-  debug('vol1');
      $persons = array('login', 'auth');
      $tournaments = array('current', 'active');
       if (is_string($data) && in_array($data, $persons)) {
-  debug('vol2');
         $data = person($data);
         if (!$data || !isPerson($data)) {
           $this->failed = TRUE;
           return FALSE;
         }
+        if (is_string($search) && in_array($search, $tournaments)) {
+          $search = tournament($search);
+        }
+        if (!$search || !isTournament($search)) {
+          $search = tournament('active');
+        }
+        if (!$search || !isTournament($search)) {
+          $this->failed = TRUE;
+          return FALSE;
+        }
       } else if (is_string($search) && in_array($search, $persons)) {
-  debug('vol3');
         $search = person($search);
         if (!$search || !isPerson($search)) {
           $this->failed = TRUE;
           return FALSE;
         }
-      }
-      if (is_string($data) && in_array($data, $tournaments)) {
-  debug('vol4');
-        $data = tournament($data);
+        if (is_string($data) && in_array($data, $tournaments)) {
+          $data = tournament($data);
+        }
+        if (!$data || !isTournament($data)) {
+          $data = tournament('active');
+        }
         if (!$data || !isTournament($data)) {
           $this->failed = TRUE;
           return FALSE;
         }
       }
-      if (is_string($search) && in_array($search, $tournaments)) {
-  debug('vol5');
-        $search = tournament($search);
-        debug($search, "SEARCH");
-        debug($data, "DATA");
-        if (!$search || !isTournament($search)) {
-  debug('vol6');
-          $this->failed = TRUE;
-          return FALSE;
-        }
-      }
       parent::__construct($data, $search, $depth);
-      debug($this, "VOLTHIS");
     }
 
   }
