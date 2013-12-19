@@ -13,9 +13,9 @@
         $obj = $class($id);
         if ($obj) {
           if ($prop) {
-            $json = $obj->$prop;
+            $json = success($obj->$prop);
           } else {
-            $json = $obj;
+            $json = success($obj);
           }
         } else {
           $json = failure('No such object');

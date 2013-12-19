@@ -21,14 +21,22 @@
   $select->addChange('
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
     .done(function(data) {
-      $("#paid").html(parseInt(data).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+      if (data.valid) {
+        $("#paid").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+      } else {
+        showMsg(data.reason);
+      }
     })
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "shouldPay"})
     .done(function(data) {
-      $("#pay").html(parseInt(data).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+      if (data.valid) {
+        $("#pay").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+      } else {
+        showMsg(data.reason);
+      }
     })
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
