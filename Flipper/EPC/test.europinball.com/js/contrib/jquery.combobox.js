@@ -24,8 +24,8 @@
             delay: 0,
             minLength: 0,
             source: $.proxy( this, "_source" )
-          });
-          .autocomplete("option", "autoFocus", true)
+          })
+          .autocomplete("option", "autoFocus", true);
 /*
           .tooltip({
             tooltipClass: "ui-state-highlight"
