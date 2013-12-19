@@ -105,8 +105,8 @@
               foreach ($this->contents as $key => $content) {
                 $contents .= trim(parent::getContent($key, $string));
               }
+              $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
             }
-            $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
           }
           $code = rtrim($code, ',')."\n});";
         } else if ($this->jquery['jqtype'] == 'command' || $this->jquery['jqtype'] == 'code') {
