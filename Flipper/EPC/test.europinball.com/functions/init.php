@@ -48,6 +48,7 @@
     if (isset($_SESSION['username']) && $_SESSION['username']) {
     debug(2);
       config::$login->person = person(array('username' => $_SESSION['username']), TRUE);
+      debug(config::$login->person);
     } else if (config::$login->Username($_SESSION['uid'])) {
     debug(3);
       $_SESSION['username'] = config::$login->Username($_SESSION['uid']);
