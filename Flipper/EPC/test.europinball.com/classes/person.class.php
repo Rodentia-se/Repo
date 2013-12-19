@@ -96,6 +96,7 @@
         if (isObj(config::$login->person) && isId(config::$login->person->id)) {
      debug(7);
           $this->_set(config::$login->person);
+          debug($this);
           return TRUE;
         } else {
      debug(8);
