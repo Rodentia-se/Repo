@@ -37,7 +37,7 @@
       $this->settings['onReady'] = TRUE;
       parent::__construct(NULL, NULL, $indents);
     }
-//    scriptCode public function __construct($source = NULL, array $params = NULL, $indents = 0) {
+//    scriptCode public function __construct($code = NULL, array $params = NULL, $indents = 0) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
     public function __get($prop) {
@@ -89,20 +89,24 @@
         } else if ($this->jquery['jqtype'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['props']) {
+            var codes = [];
             foreach ($this->jquery['props'] as $prop => $val) {
-              if (is_string($val) && substr($val, 0, 8) != 'function') {
-                $delimiter = '"';
-              } else {
-                $delimiter = '';
+              if ($prop) {
+                if (is_string($val) && substr($val, 0, 8) != 'function') {
+                  $delimiter = '"';
+                } else {
+                  $delimiter = '';
+                }
+                $codes[] = $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter;
               }
-              $code.= $prop.': '.$delimiter.$val.$delimiter.",\n";
             }
+            $code .= codes.join(",\n")."\n";
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
                 $contents .= trim(parent::getContent($key, $string));
               }
+              $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
             }
-            $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
           }
           $code = rtrim($code, ',')."\n});";
         } else if ($this->jquery['jqtype'] == 'command' || $this->jquery['jqtype'] == 'code') {

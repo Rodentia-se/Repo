@@ -3,28 +3,31 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
   
-  $class (isObj($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-  $id (isId($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
-  $prop = (is($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
-  $value = $_REQUEST['value'];
+  $class = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
+  $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
+  $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
+  $mandatory = ($_REQUEST['mandatory']) : TRUE : FALSE;
   
-  if ($prop) {
-    if ($class) {
-      if ($id) {
-        $currentObj = $class($id);
-      } else if ($class == 'person' || $class = 'team') {
-        $currentObj = $class('login')
-      }
-      $otherObj = $class($value, $prop);
-    }
-    if (isObj($currrentObj) && $isId($currentObj) && isObj($otherObj) && isId($otherObj->id) && get_class($currentObj) == get_class($otherObj) && $currentObj-> == $otherObj->id) {
-      // Identical
-    } else {
-      if (isObj($class)) {
-        $validateioN = $class::validate($prop, $value)
-      }
+  if (!$class) {
+    $obj = person('login');
+    if ($obj) {
+      $class = get_class($obj);
     }
   }
-
-    
+  if ($class) {
+    if (isObj($class, TRUE)) {
+      if ($prop) {
+        $json = $class::validate($prop, $value, TRUE, $mandatory);
+      } else {
+        $json = failure('Invalid ID');
+      }
+    } else {
+      $json = failure('No property provided');
+    }
+  } else {
+    $json = failure('No class provided');
+  }
+  
+  jsonEcho($json);
+  
 ?>

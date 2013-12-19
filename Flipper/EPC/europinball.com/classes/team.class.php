@@ -52,7 +52,7 @@
       )
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
       if (is_string($data) && in_array($data, $persons)) {
@@ -62,14 +62,14 @@
           return FALSE;
         }
       } else if ((isObj($data) && get_class($data) == 'tournament') || (is_string($data) && in_array($data, $divisions))) {
-        $division = division($data, (($search !== NOSEARCH) ? $search : 'main'));
+        $division = division($data, (($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$division || !isId($division->id)) {
           $this->failed = TRUE;
           return FALSE;
         }
       }
       if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
-        $division = division((($search !== NOSEARCH) ? $search : 'main'));
+        $division = division((($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$division || !isId($division->id)) {
           $this->failed = TRUE;
           return FALSE;
@@ -110,17 +110,17 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembers($division = NULL) {
-      $division = ($division) ? division($division) : division('current');
-      if ($division && isId($division->id)) {
-        $query = person::$select.'
-          left join teamPerson tp on tp.person_id = o.id
+    public function getMembers($tournament = NULL, $asPlayers = TRUE) {
+      $tournament = (isTournament($tournament)) ? $tournament : (($tournament) ? tournament($tournament) : tournament('current'));
+      if (isTournament($tournament)) {
+        $query = (($asPlayers) ? player::$select : person::$select).'
+          left join teamPerson tp on tp.person_id = '.(($asPlayers) ? 'p' : 'o').'.id
           left join team t on tp.team_id = t.id
-          where tp.team_id = :id
-            and t.tournamentDivision_id = :division
+          where t.id = :id
+            and tp.tournamentEdition_id = :tournament
         ';
         $values[':id'] = $this->id;
-        $values[':division'] = $division->id;
+        $values[':tournament'] = $tournament->id;
         $members = $this->db->select($query, $values, 'person');
         if (count($members) > 0) {
           return $members;
@@ -128,7 +128,7 @@
       }
       return FALSE;
     }
-    
+
     public function getPhotoIcon($icon = NULL) {
       $icon = ($icon) ? $icon : $this->getPhoto(FALSE, TRUE, FALSE);
       return parent::getPhotoIcon($icon);

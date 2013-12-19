@@ -79,7 +79,9 @@
       )
     );
     
-    public static $participationLimit = 128;
+    public static $participationLimit = array(
+      'main' => 128
+    );
     public static $tshirts = TRUE;
     public static $tshirtCost = 15;
     public static $qualGroups = TRUE;
@@ -133,6 +135,10 @@
     public static $teamDivisions = array('team', 'nationalTeam');
 
     const NOSEARCH = 'noSearchCriteriaProvided';
+
+    public static $pageType = 'normal'; // Default - will be changed by AJAX calls and similar
+    public static $embedded = TRUE;
+
   }
 
 ?>

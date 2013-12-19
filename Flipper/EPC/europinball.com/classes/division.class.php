@@ -66,7 +66,7 @@
       'score' => 'tournamentDivision'
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $aliases = array('current', 'active');
       $divisions = array_merge($aliases, config::$divisions);
       if (is_string($data) && in_array($data, $aliases)) {
@@ -79,7 +79,7 @@
       } else if (is_string($data) && in_array($data, config::$activeDivisions)) {
         if (config::${$data.'Division'}) {
           $data = config::${$data.'Division'};
-          $search = NOSEARCH;
+          $search = config::NOSEARCH;
         } else {
           $this->failed = TRUE;
           return FALSE;

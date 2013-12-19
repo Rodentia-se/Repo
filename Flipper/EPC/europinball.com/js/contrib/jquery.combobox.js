@@ -24,7 +24,8 @@
             delay: 0,
             minLength: 0,
             source: $.proxy( this, "_source" )
-          });
+          })
+          .autocomplete("option", "autoFocus", true);
 /*
           .tooltip({
             tooltipClass: "ui-state-highlight"
@@ -119,7 +120,7 @@
 //          .tooltip( "open" );
         this.element.val( "" );
         this._delay(function() {
-          this.input.tooltip( "close" ).attr( "title", "" );
+//          this.input.tooltip( "close" ).attr( "title", "" );
         }, 60000 );
         this.input.data( "ui-autocomplete" ).term = "";
       },

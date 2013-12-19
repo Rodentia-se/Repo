@@ -70,7 +70,6 @@
       if ($person) {
         $uid = $person->getUid();
         if ($uid) {
-          debug($person, "PERSON");
           if ($username == $person->username) {
             if ($this->SetPassword($uid, $password)) {
               $this->Authenticate($username, $password);
@@ -113,35 +112,46 @@
     protected function addUser($username, $password, $person = NULL) {
       if (!preg_match('/ /', $username)) {
         if (preg_match('/^[a-zA-Z0-9\-_]+$/', $username)) {
-          if (strlen($username) > 3) {
-            if (strlen($username) < 32) {
+          if (strlen($username) > 2) {
+            if (strlen($username) < 33) {
               if (preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
-                if ($this->CreateUser($username,  $password)) {
-                  if ($person) {
-                    if($person->setUsername($username)) {
-                      return TRUE;
+                if (!$this->Uid($username)) {
+                  if ($this->CreateUser($username,  $password)) {
+                    if ($person) {
+                      if($person->setUsername($username)) {
+                        return TRUE;
+                      } else {
+                        error('User created, but could not associate the user with the person.');
+                      }
                     } else {
-                      error('User created, but could not associate the user with the person');
+                      return TRUE;
                     }
                   } else {
-                    return TRUE;
+                    config::$msg = 'Could not create user ';
+                    error('Could not create user '.$username);
                   }
                 } else {
-                  error('Could not create user '.$username);
+                  config::$msg = $username.' is already taken. Please change to another username and try again.';
+                  error($username.' is already taken. Please change to another username and try again.');
                 }
               } else {
+                config::$msg = 'Your username is invalid. Please use a-z, A-Z, 0-9, dash and underscore only. The username has to be at least three characters, and can not be longer than 32 characters. Change to a valid username and try again.';
                 error('Your username is invalid. Please use a-z, A-Z, 0-9, dash and underscore only. The username has to be at least three characters, and can not be longer than 32 characters. Change to a valid username and try again.');
               }
             } else {
+              config::$msg = 'Your username is too long. Please use no more than 32 characters and try again.';
               error('Your username is too long. Please use no more than 32 characters and try again.');
             }
           } else {
+            config::$msg = 'Your username is too short. Please use at least three characters and try again.';
             error('Your username is too short. Please use at least three characters and try again.');
           }
         } else {
+          config::$msg = 'You have invalid characters in your username. Please only use standard characters and try again.';
           error('You have invalid characters in your username. Please only use standard characters and try again.');
         }
       } else {
+        config::$msg = 'You cannot have spaces in the username, please remove the spaces and try again.';
         error('You cannot have spaces in the username, please remove the spaces and try again.');
       }
       return  FALSE;
@@ -264,9 +274,6 @@
                       config::$msg = 'User created, but could not log you in. Please try logging in.';
                       error('User created, but could not log you in. Please try logging in.');
                     }
-                  } else {
-                    config::$msg = 'Could not add the user. Please try again.';
-                    error('Could not add the user');
                   }
                 } else {
                   config::$msg = 'Could not identify you. Please try again.';

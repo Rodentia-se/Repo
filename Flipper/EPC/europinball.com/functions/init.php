@@ -15,9 +15,13 @@
     config::$showWarnings = ($_REQUEST['debug']);
     config::$showErrors = ($_REQUEST['debug']);
   }
-  
-  if (isset($_REQUEST['nonce']) && (!$ajax || $noLogin)) {
-    if (ulNonce::Verify('login', $_REQUEST['nonce'])) {
+
+  $path = explode('/', $_SERVER['PHP_SELF']);
+  array_pop($path);
+  config::$pageType = $path[1];
+
+  if (isset($_REQUEST[$pageType.'nonce'])) {
+    if (ulNonce::Verify($pageType.'login', $_REQUEST[$pageType.'nonce'])) {
       config::$login->verified = TRUE;
     } else {
       config::$login->verified = TRUE;
@@ -37,7 +41,7 @@
   }
 
   if (!config::$login->nonce) {
-    $nonce = ulNonce::Create('login');
+    $nonce = ulNonce::Create($pageType.'login');
     config::$login->nonce = $nonce;
   }
 

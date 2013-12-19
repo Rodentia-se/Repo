@@ -17,7 +17,7 @@
         $add = $person->addPlayer();
         $players = players($division);
         if ($add) {
-          if (config::$participationLimit && count($players) > config::$participationLimit) {
+          if (config::$participationLimit[$division->type] && count($players) > config::$participationLimit[$division->type]) {
             $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');
@@ -60,7 +60,7 @@
             $page->addParagraph('You have identified yourself as '.$person->name.' '.(($person->shortName) ? '('.$person->shortName.')' : '').(($person->cityName || $person->countryName) ? ' from '.(($person->cityName) ? $person->cityName.', ' : '').$person->countryName : '').'. Make sure this is correct, and then choose a username and password below.');
             $page->addNewUser('Register a new user', $person_id, 1);
             $page->addScript('$("#1newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
-            $page->focus('username');
+            $page->focus('1username');
           }
         } else {
           if ($_REQUEST['action'] == 'newUser') {
@@ -69,7 +69,7 @@
           $page->addParagraph('You have identified yourself as a new guy. Make sure this is correct, and then choose a username and password below.');
           $page->addNewUser('Register a new user', $person_id, 2);
           $page->addScript('$("#2newUserForm").append("<input type=\"hidden\" name=\"register\" value=\"isMe\">");');
-          $page->focus('username');
+          $page->focus('2username');
         }
       } else {
         $page->addParagraph('Something went wrong. Please note any error messages above, and try again. If it still doesn\'t work, please <a href="'.config::$baseHref.'/misc/contact-us/">contact us</a>.');
@@ -141,7 +141,7 @@
                 "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
                 "bServerSide": false,
                 "oLanguage": {
-                  "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
+                  "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
                 },
                 "sAjaxSource": "'.config::$baseHref.'/ajax/getPlayers.php?type=regSearch&search=" + $("#searchBox").val()
               });

@@ -15,7 +15,9 @@
       'display' => 'block',
       'hidden' => FALSE,
       'escape' => TRUE,
-      'entities' => FALSE
+      'entities' => FALSE,
+      'parent' => NULL,
+      'disabled' => FALSE
     );
     public static $indenter = '  ';
     public static $indents = 0;
@@ -266,6 +268,7 @@
         $element = new html($element, $contents, $params, $id, $class, $css);
       }
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
@@ -407,13 +410,19 @@
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
         if (in_array($param, array_keys($this->params))) {
-          if ($param == 'style' && count($this->css) > 0) {
-            $this->style = trim($this->style);
-            $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
-            return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+          if ($param == 'style') {
+             if (count($this->css) > 0) {
+              $this->style = trim($this->style);
+              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+            }
+            if ($this->style && $this->style != " ") {
+              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+            } else {
+              return NULL;
+            }
           } else if ($param == 'class') {
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
-          } else if ($param == 'selected' || $param == 'checked') {
+          } else if ($param == 'selected' || $param == 'checked' || $param == 'disabled') {
             return ($this->params[$param]) ? $param : FALSE;
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
@@ -458,6 +467,8 @@
             if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
               unset($this->params[$params]);
             }
+          } else if (count($this->css) > 0) {
+            $this->params = array('style' => ' ');
           } else {
             $this->params = array();
             if ($this->contentParam) {
@@ -525,8 +536,11 @@
           $this->addCss($prop, $val);
         }
       } else {
-        $this->css[$props] = $value;
+        if ($props) {
+          $this->css[$props] = $value;
+        }
       }
+      $this->params['style'] .= ' ';
       return TRUE;
     }
 
@@ -577,163 +591,200 @@
     public function addDiv($id = NULL, $class = NULL, array $params = NULL) {
       $element = new div($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addSpan($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new span($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
+      return $element;
+    }
+    
+    public function addMoneySpan($value = 0, $id = NULL, $format = '€ §') {
+      $id = ($id) ? $id : $this->id.'MoneySpan';
+      $element = $this->addSpan($value, $id);
+      $script = $this->addScriptCode('
+        var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
+        $("#'.$id.'").html(num.toMoney(0, ".", " ", "", "'.$format.'"));
+      ');
+      $script->parent = $this;
+      $element->parent = $this;
       return $element;
     }
 
     public function addImg($src = NULL, $title = NULL, array $params = NULL) {
       $element = new img($src, $title, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLink($url = NULL, $contents = 'link', array $params = NULL) {
       $element = new link($url, $contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addParagraph($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new paragraph($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH1($contents = NULL, array $params = NULL) {
       $element = new h1($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH2($contents = NULL, array $params = NULL) {
       $element = new h2($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH3($contents = NULL, array $params = NULL) {
       $element = new h3($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addH4($contents = NULL, array $params = NULL) {
       $element = new h4($contents, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addBr($id = NULL, $class = NULL, array $params = NULL) {
       $element = new br($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addHr($id = NULL, $class = NULL, array $params = NULL) {
       $element = new hr($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addUl($id = NULL, $class = NULL, array $params = NULL) {
       $element = new ul($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addOl($id = NULL, $class = NULL, array $params = NULL) {
       $element = new ol($id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLi($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new li($contents, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addForm($id = NULL, $action = NULL, $method = 'POST', array $params = NULL) {
       $element = new form($id, $action, $method, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addLabel($contents = NULL, $for = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new label($contents, $for, $id, $class, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
   
     public function addSelect($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
       $element = new select($name, $options, $selected, $label, $params);
       $this->addContent($element);
-      return $element;
-    }
-
-    public function addOption($text = NULL, $value = NULL, $selected = FALSE, array $params = NULL) {
-      $element = new option($text, $value, $selected, $params);
-      $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addHidden($name = NULL, $value = 'yes', array $params = NULL) {
       $element = new hidden($name, $value, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addCheckbox($name = NULL, $checked = FALSE, array $params = NULL) {
       $element = new checkbox($name, $checked, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addRadio($name = NULL, $value = NULL, $checked = FALSE, array $params = NULL) {
       $element = new radio($name, $value, $checked, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addButton($value = 'submit', $name = NULL, array $params = NULL) {
       $element = new button($value, $name, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
     public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL) {
       $element = new clickButton($value, $name, $url, $form, $script, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addScript($source = NULL, array $params = NULL) {
       $element = new script($source, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addScriptFile($file = NULL, array $params = NULL) {
       $element = new scriptFile($file, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
     public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $element = new scriptCode($code, $params, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
     
@@ -741,7 +792,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -749,7 +806,13 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new tooltip($selector, $contents, $new, $indents);
-      $this->addContent($element);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
       return $element;
     }
 
@@ -757,13 +820,79 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new click($selector, $code, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
+
+    public function addChange($code = NULL, $selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new change($selector, $code, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
+
+    public function addFocus($selector = NULL, $select = TRUE, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new focus($selector, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+        if ($select) {
+          $script = $this->parent->addContent(new selectAll($selector, $indents));
+          $script->parent = $this->parent;
+        }
+        } else {
+          $this->addContent($element);
+          $element->parent = $this;
+        if ($select) {
+          $script = new selectAll($selector, $indents);
+          $this->addContent($script);
+          $script->parent = $this;
+        }
+      }
+      return $element;
+    }
+    
+    public function addDialog(array $props = NULL, $selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new dialog($selector, $props, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
+    
+    public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
+      $element = new div('loading'.rand(0, 10000), 'modal');
+      $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
 
     public function addCssFile($file = NULL, array $params = NULL) {
       $element = new cssFile($file, $params);
       $this->addContent($element);
+      $element->parent = $this;
       return $element;
     }
     
@@ -822,7 +951,43 @@
       }
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
-      return $open.$html.$close;
+/*
+      if ($this->settings['jsReq']) {
+        $reqs = (is_array($this->settings['jsReq'])) ? $this->settings['jsReq'] : array($this->settings['jsReq']);
+        foreach ($reqs as $req) {
+          $js = new scriptCode('
+            var loaded = $("script").filter(function () {
+              var src = ($(this).attr("src")) ? $(this).attr("src").split("/") : [""] ;
+              return (src[src.length - 1] == "'.$req.((substr($req, -3) != '.js') ? '.js': '').'") ? true : false;
+            }).length;
+            if (!loaded) {
+              $("<script>").appendTo($("head"))
+              .attr("type", "text/javascript")
+              .attr("src", "'.config::$baseHref.'/js/contrib/'.$req.((substr($req, -3) != '.js') ? '.js': '').'");
+            }
+          ', NULL, $indent);
+          $reqHtml .= $js->getHtml();
+        }
+      }
+      if ($this->settings['cssReq']) {
+        $reqs = (is_array($this->settings['cssReq'])) ? $this->settings['cssReq'] : array($this->settings['cssReq']);
+        foreach ($reqs as $req) {
+          $js = new scriptCode('
+            var loaded = $("link").filter(function () {
+              var href = ($(this).attr("href")) ? $(this).attr("href").split("/") : [""] ;
+              return (href[href.length - 1] == "'.$req.((substr($req, -3) != '.css') ? '.css': '').'") ? true : false;
+            }).length;
+            if (!loaded) {
+              $("<link>").appendTo($("head"))
+              .attr({type : "text/css", rel : "stylesheet"})
+              .attr("href", "'.config::$baseHref.'/css/contrib/'.$req.((substr($req, -3) != '.css') ? '.css': '').'");
+            }
+          ', NULL, $indent);
+          $reqHtml .= $js->getHtml();
+        }
+      }
+      */
+      return $reqHtml.$open.$html.$close;
     }
 
     public function __toString() {

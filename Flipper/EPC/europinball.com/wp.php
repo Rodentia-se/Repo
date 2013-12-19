@@ -18,7 +18,7 @@ function customTemplate($page) {
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/forgotPassword.php');
 	  break;
 		case 'admin-tools':
-			include($_SERVER['DOCUMENT_ROOT'].'/pages/test.php');
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/adminTools.php');
 	  break;
 	}
 }

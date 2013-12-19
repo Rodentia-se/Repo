@@ -17,12 +17,13 @@
       $this->db = base::$_db;
       if (isAssoc($data)) {
         $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
-      } else if (is_array($data)) {
-        $objs = [];
+      } else if (is_array($data) || isGroup($data)) {
+        $class = get_class($this);
+        $objs = new $class();
         foreach ($data as $obj) {
           if ($obj->id) {
-            if (get_class($data) == static::$objClass) {
-              $objs[] = $data;
+            if (get_class($obj) == static::$objClass) {
+              $objs[] = $obj;
             } else {
               if (!is_string($prop)) {
                 $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id';
@@ -76,7 +77,15 @@
       }
       $this->order();
     }
-
+    
+    public function toArray($allArrays = FALSE, $recursive = FALSE) {
+      $array = array();
+      foreach ($this as $obj) {
+        $array[] = ($allArrays) ? $obj->toArray($recursive) : $obj;
+      }
+      return $array;
+    }
+    
     public function __call($func, $argv) {
       if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
@@ -201,6 +210,26 @@
         $select .= page::getIcon('images/add_icon.gif', 'add_'.static::$objClass, 'addIcon editIcon', 'Click to add new '.static::$objClass);
       }
       return $select;
+    }
+    
+    public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
+      $name = ($name) ? $name : get_class($this);
+      $label = ($label) ? $label : ucfirst($name);
+      $params['id'] = ($params['id']) ? $params['id'] : $name;
+      if (isObj($selected)) {
+        $selected_id = $selected->id;
+      } else if (isId($selected)) {
+        $selected_id = $selected;
+      } else if (is_array($selected)) {
+        $selected_id = array_keys($selected)[0];
+      }
+      $options[] = new option('Choose...', 0, !$selected);
+      foreach ($this as $obj) {
+        $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
+        $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
+        $options[] = $option;
+      }
+      return new select($name, $options, $selected, $label, $params);
     }
     
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {

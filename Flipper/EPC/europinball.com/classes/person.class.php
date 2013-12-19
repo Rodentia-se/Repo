@@ -88,9 +88,9 @@
       'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
     );
     
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
-      if (is_string($data) && in_array($data, $persons) && $search === NOSEARCH) {
+      if (is_string($data) && in_array($data, $persons) && $search === config::NOSEARCH) {
         if (isObj(config::$login->person) && isId(config::$login->person->id)) {
           $this->_set(config::$login->person);
           return TRUE;
@@ -100,6 +100,47 @@
         }
       }
       parent::__construct($data, $search, $depth);
+      if ($this->id && !$this->failed) {
+        $this->costs = $this->getCost();
+        if ($this->costs) {
+          $this->toPay = ($this->paid) ? $this->costs - $this->paid : $this->costs;
+        }
+        if (in_array($data, array('login', 'auth', 'active')) || in_array($search, array('login', 'auth', 'active'))) {
+          $tournament = tournament('active');
+        } else if ($data == 'current' || $search == 'current') {
+          $tournament = tournament('current');
+        } else if (isTournament($data)) {
+          $tournament = $data;
+        } else if (isDivision($data)) {
+          $tournament = $data->tournament;
+        } else if (isTournament($search)) {
+          $tournament = $search;
+        } else if (isDivision($search)) {
+          $tournament = $search->tournament;
+        }
+        if (isTournament($tournament)) {
+          $this->getVolunteer($tournament);
+        }
+      }
+    }
+
+    public function getVolunteer($tournemant = 'active') {
+      $this->volunteer = volunteer($this, $tournemant);
+      if ($this->volunteer) {
+        $this->volunteer_id = $this->volunteer->id;
+        $this->adminLevel_id = $this->volunteer->adminLevel_id;
+        $this->adminLevel = $this->volunteer->adminLevel;
+        $this->scorereader = $this->volunteer->scorereader;
+        $this->allreader = $this->volunteer->allreader;
+        $this->scorekeeper = $this->volunteer->scorekeeper;
+        $this->receptionist = $this->volunteer->receptionist;
+        $this->admin = $this->volunteer->admin;
+        $this->hereVol = $this->volunteer->here;
+        $this->hours = $this->volunteer->hours;
+        $this->alloc = $this->volunteer->alloc;
+        $this->hoursDiff = $this->volunteer->hoursDiff;
+      }
+      return $this->volunteer;
     }
     
     public function getCost($type = NULL) {
@@ -128,7 +169,7 @@
       $division = ($division) ? getDivision($division) : division('active');
       $player = player($this, $division);
       if (!$player) {
-        $player = player((array) $this->getFlat(), NOSEARCH, 0);
+        $player = player((array) $this->getFlat(), config::NOSEARCH, 0);
         unset($player->id);
         $player->tournamentDivision_id = $division->id;
         $player->tournamentEdition_id = $division->tournamentEdition_id;
@@ -136,7 +177,7 @@
         $player->dateRegistered = date('Y-m-d');
         if ($division->main) {
           $players = players($division);
-          if (config::$participationLimit && count($players) >= config::$participationLimit) {
+          if (config::$participationLimit[$division->type] && count($players) >= config::$participationLimit[$division->type]) {
             $player->waiting = TRUE;
           }
         }

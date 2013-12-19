@@ -59,7 +59,13 @@
         coalesce(o.comment, p.comment) as comment,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
-        v.adminLevel as adminLevel,
+        v.adminLevel_id as adminLevel_id,
+        v.adminLevel_id as adminLevel,
+        if(v.adminLevel_id > 0, 1, null) as scorereader,
+        if(v.adminLevel_id > 7, 1, null) as allreader,
+        if(v.adminLevel_id > 15, 1, null) as scorekeeper,
+        if(v.adminLevel_id > 23, 1, null) as receptionist,
+        if(v.adminLevel_id > 31, 1, null) as admin,
         v.here as hereVol,
         ifnull(v.hours, 0) as hours,
         ifnull(v.alloc, 0) as alloc,
@@ -69,6 +75,7 @@
         on o.person_id = p.id
       left join volunteer v
         on v.person_id = p.id
+        and v.tournamentEdition_id = o.tournamentEdition_id
     ';
 
     public static $parents = array(
@@ -127,10 +134,11 @@
       'city',
       'region',
       'country',
-      'continent'
+      'continent',
+      'IFPA' => 'ifpaLink'
     );
 
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
       if (is_string($data) && in_array($data, $persons)) {
@@ -147,7 +155,7 @@
         }
       }
       if ((isObj($data) && get_class($data) == 'person') || (is_string($search) && in_array($search, $divisions))) {
-        $search = division((($search !== NOSEARCH) ? $search : 'main'));
+        $search = division((($search !== config::NOSEARCH) ? $search : 'main'));
         if (!$search || !isId($search->id)) {
           $this->failed = TRUE;
           return FALSE;
@@ -160,6 +168,7 @@
         }
       }
       parent::__construct($data, $search, $depth);
+      $this->ifpaLink = $this->getLink('ifpa');
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
@@ -231,10 +240,11 @@
           $this->shortName,
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
-          (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
-          (is_object($this->continent)) ? $this->continent->getLink() : $this->continentName,
-          $this->getLink('ifpa'),
-          $this->person->getPhotoIcon(),
+          (is_object($this->country)) ? $this->country->name : $this->countryName,
+          (is_object($this->country)) ? $this->country->getIcon() : $this->countryName,
+          (($this->ifpaRank) ? $this->ifpaRank : 100000),
+          str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
+          (($this->person) ? $this->person->getPhotoIcon() : ''),
           (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
           (($this->paid) ? 'Yes' : '')
         );

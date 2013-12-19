@@ -27,7 +27,7 @@
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -81,7 +81,7 @@
                 var country_id = (this.id == "city" || this.id == "region") ? $("#country_id").val() : null;
                 var continent_id = (this.id == "city" || this.id == "region") ? $("#continent_id").val() : null;
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPlayerProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -244,7 +244,7 @@ $num = 1;
                   var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
                   $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
                   var costs = 0;
-                  var payMsg = $("#person_name").val() + " (ID: " + $("#person_id").val() + ") is paying for ";
+                  var payMsg = $("#payment_person_name").val() + " (ID: " + $("#payment_person_id").val() + ") is paying for ";
                   var payMsgs = [];
                   $(".each").each(function() {
                     var id = this.id.replace("Each", "");
@@ -269,8 +269,8 @@ $num = 1;
                 .change();
               ');
             $page->closeDiv();
-            $page->addInput($person->id, 'person_id', NULL, 'hidden');
-            $page->addInput($person->name, 'person_name', NULL, 'hidden');
+            $page->addInput($person->id, 'payment_person_id', NULL, 'hidden');
+            $page->addInput($person->name, 'payment_person_name', NULL, 'hidden');
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {

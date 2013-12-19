@@ -17,7 +17,7 @@
     public static $mandatory = array();
     public static $infoProps = array();
 
-    public function __construct($data = NULL, $search = NOSEARCH, $depth = NULL) {
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $depth = (preg_match('/^[0-9]+$/', $depth)) ? $depth : config::$parentDepth;
       if (!self::$_db) {
         self::$_db = new db();
@@ -29,7 +29,7 @@
       if ($data === FALSE) {
         $this->failed = TRUE;
       } else {
-        if ($search === NOSEARCH) {
+        if ($search === config::NOSEARCH) {
           if (is($data)) {
             if (isId($data)) {
               if (is_object(static::$instances['ID'.$data])) {
@@ -198,6 +198,13 @@
       ' : '';
     }
     
+    public function getIcon($anchor = TRUE, $defaults = FALSE) {
+      $photo = $this->getPhoto($defaults, TRUE, FALSE);
+      $icon = '<img src="'.$photo.'" class="icon" title="Click to view '.$this->name.'">';
+      $link = ($anchor) ? $this->getLink('object', TRUE, FALSE, FALSE, $defaults, $icon) : $icon;
+      return ($link) ? $link : FALSE;
+    }
+
     public function getInfo() {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
@@ -210,12 +217,12 @@
               $html = $this->${$prop.'Name'};
             }
           } else {
-            ($html = (string) $this->$prop);
+            $html = (string) $this->$prop;
           }
           if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-            $nameDiv->addSpan($html);
+            $nameDiv->addSpan($html)->escape = FALSE;
           }
         }
       } else {
@@ -231,11 +238,10 @@
     }
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
-      
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
 
-    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
       switch ($type) {
         case 'photo':
           if ($defaults) {
@@ -287,7 +293,7 @@
           return NULL;
         break;
       }
-      return ($url && $anchor) ? '<a href="'.$url.'">'.$this->name.'</a>' : $url;
+      return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
     }
 
     protected function populate($depth = NULL) {
@@ -300,7 +306,7 @@
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}]->getFlat();
             } else {
-              $this->$field = $class($this->{$field.'_id'}, NOSEARCH, $depth);
+              $this->$field = $class($this->{$field.'_id'}, config::NOSEARCH, $depth);
             }
             $this->{$field.'Name'} = $this->$field->name;
           }
@@ -528,5 +534,23 @@
       return validated(TRUE, 'No validator found', $obj);
     }
 
+    public function toArray($recursive = FALSE) {
+      $array = array();
+      foreach ($this as $prop => $value) {
+        if (is_object($value)) {
+          if ($recursive) {
+            $array[$prop] = $value->toArray($recursive);
+          } else if ($this->{$prop.'Name'}) {
+            $array[$prop] = $this->{$prop.'Name'};
+          } else {
+            $array[$prop] = TRUE;
+          }
+        } else {
+          $array[$prop] = $value;
+        }
+      }
+      return $array;
+    }
+    
   }
 ?>

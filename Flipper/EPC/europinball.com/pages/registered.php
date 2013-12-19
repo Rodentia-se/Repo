@@ -40,12 +40,12 @@
               $headers = array('Name', 'Tag', 'Members', 'Picture');
             }
           } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country', 'Continent', 'IFPA', 'Picture', 'Waiting', 'Paid');
+            $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
           }
           foreach ($players as $player) {
             $rows[] = $player->getRegRow(TRUE);
           }
-          $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main') ? ' <span class="right">Payment status will be updated soon. The current maximum number of players is '.config::$participationLimit.'.</span>' : ''));
+          $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main' && config::$participationLimit[$division->type]) ? ' <span class="right">The maximum number of players is '.config::$participationLimit[$division->type].'.</span>' : ''));
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
           $page->datatables = TRUE;
           $page->datatablesReload = TRUE;
@@ -56,23 +56,26 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
+              '.(($division->team) ? '"aoColumnDefs": [
+                {"sClass": "icon", "aTargets": [ 4 ] }
+              ],' : '"aoColumnDefs": [
+                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                { "bVisible": false, "aTargets": [ 6 ] },
+                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                { "bVisible": false, "aTargets": [ 4 ] },
+                {"sClass": "icon", "aTargets": [ 5 ] },
+                {"sClass": "icon", "aTargets": [ 8 ] }
+              ],').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
                     autoOpen: false,
-                    show: {
-                      effect: "blind",
-                      duration: 1000,
-                    },
-                    hide: {
-                      effect: "blind",
-                      duration: 1000
-                    },
                     modal: true, 
                     width: "auto",
                     height: "auto"
                   });
                 });
+                $("#'.$division->shortName.'Table").css("width", "");
                 $(".photoIcon").click(function() {
                   var photoDiv = $(this).data("photodiv");
                   $("#" + photoDiv).dialog("open");
@@ -83,7 +86,7 @@
                 return true;
               },
               "oLanguage": {
-                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader.gif\" alt=\"Loading data...\">"
+                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
               },
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
