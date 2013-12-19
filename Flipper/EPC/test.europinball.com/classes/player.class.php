@@ -75,6 +75,7 @@
         on o.person_id = p.id
       left join volunteer v
         on v.person_id = p.id
+        and v.tournamentEdition_id = o.tournamentEdition_id
     ';
 
     public static $parents = array(
