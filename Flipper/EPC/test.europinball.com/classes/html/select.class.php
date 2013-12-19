@@ -62,7 +62,6 @@
       $element = new combobox($selector, $indents);
       $this->settings['combobox'] = TRUE;
       $this->addContent($element);
-      $this->addContent(new scriptCode('$(".custom-combobox-input").autocomplete("option", "autoFocus", true)', NULL, $indents));
       return $element;
     }
 
