@@ -31,7 +31,7 @@
         o.payDate as payDate,
         o.comment as comment,
         o.nonce as nonce,
-        o.username as username
+        o.username as username,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
         v.adminLevel_id as adminLevel_id,
