@@ -96,6 +96,7 @@
       if (isTournament($search) || (is_string($search) && in_array($search, $tournaments))) {
   debug('vol5');
         $search = tournament($search);
+        debug($search);
         if (!$search || !isTournament($search)) {
   debug('vol6');
           $this->failed = TRUE;
