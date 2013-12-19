@@ -90,15 +90,15 @@
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
-     debug(5);
+     debug("person1");
       if (is_string($data) && in_array($data, $persons) && $search === config::NOSEARCH) {
-     debug(6);
+     debug("person2");
         if (isObj(config::$login->person) && isId(config::$login->person->id)) {
-     debug(7);
+     debug("person3");
           $this->_set(config::$login->person);
           return TRUE;
         } else {
-     debug(8);
+     debug("person4");
           $this->failed = TRUE;
           return FALSE;
         }
@@ -127,7 +127,6 @@
 
     public function getVolunteer($tournemant = 'active') {
       $this->volunteer = volunteer($this, $tournemant);
-      debug($this->volunteer);
       if ($this->volunteer) {
         $this->volunteer_id = $this->volunteer->id;
         $this->adminLevel_id = $this->volunteer->adminLevel_id;
