@@ -783,11 +783,14 @@
       return $element;
     }
 
-    public function addFocus($selector = NULL, $indents = NULL) {
+    public function addFocus($selector = NULL, $select = TRUE, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new focus($selector, $code, $indents);
+      $element = new focus($selector, $indents);
       $this->addContent($element);
+      if ($select) {
+        $this->addContent(new selectAll($selector, $indents));
+      }
       return $element;
     }
 
