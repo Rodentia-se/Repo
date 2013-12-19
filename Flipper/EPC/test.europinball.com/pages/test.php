@@ -24,7 +24,7 @@
     .done(function(data) {
       if (data.valid) {
         $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
-        $("#'.$setPaid->id.'").val(data.reason);
+        $("#'.$setPaid->id.'").val(data.reason).focus().select();
       } else {
         showMsg(data.reason);
       }
@@ -43,8 +43,6 @@
     .fail(function(jqHXR,status,error) {
       showMsg("Fail: S: " + status + " E: " + error);
     });
-    $("#'.$setPaid->id.'").focus();
-    $("#'.$setPaid->id.'").select();
   ');
   $setPaid->addChange('
     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", $value = $(this).val()})
