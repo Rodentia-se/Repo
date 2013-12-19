@@ -102,6 +102,7 @@
       parent::__construct($data, $search, $depth);
       if ($this->id) {
         $this->shouldPay = $this->getCost();
+        $this->adminLevel = $this->getAdminLevel();
       }
     }
     
@@ -155,6 +156,11 @@
         }
       }
       return false;
+    }
+    
+    public function getAdminLevel() {
+      $volunteer = volunteer($this);
+      return $volunteer->adminLevel;
     }
     
     public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
