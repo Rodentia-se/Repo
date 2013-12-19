@@ -65,6 +65,7 @@
             }
           }
         } else {
+          debug($data);
           if (isAssoc($data)) {
             $obj = $this->db->getObjectByProps(get_class($this), $data);
           } else if (isObj($data) && isId($data->id)) {

@@ -125,7 +125,6 @@
 
     public function getObjectByProp($class, $prop, $value) {
       $props[$prop] = $value;
-      debug($props);
       return $this->getObjectByProps($class, $props);
     }
 
