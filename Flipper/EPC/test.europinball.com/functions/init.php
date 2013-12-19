@@ -21,7 +21,7 @@
   config::$pageType = $path[1];
 
   if (isset($_REQUEST[$pageType.'nonce'])) {
-    if (ulNonce::Verify('login', $_REQUEST[$pageType.'nonce'])) {
+    if (ulNonce::Verify($pageType.'login', $_REQUEST[$pageType.'nonce'])) {
       config::$login->verified = TRUE;
     }
   }
@@ -39,7 +39,7 @@
   }
 
   if (!config::$login->nonce) {
-    $nonce = ulNonce::Create('login');
+    $nonce = ulNonce::Create($pageType.'login');
     config::$login->nonce = $nonce;
   }
 
