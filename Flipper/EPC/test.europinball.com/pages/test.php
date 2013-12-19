@@ -24,6 +24,7 @@
     .done(function(data) {
       if (data.valid) {
         $("#'.$paidSpan->id.'").html(parseInt(data.reason).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'"));
+        $("#'.$setPaid->id.'").val(data.reason);
       } else {
         showMsg(data.reason);
       }
