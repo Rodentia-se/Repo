@@ -85,6 +85,7 @@
         .done(function(data) {
           if (data.valid) {
             $("#'.$select->id.'").change();
+            $("#persons_combobox").focus().select();
           } else {
             showMsg(data.reason);
           }
