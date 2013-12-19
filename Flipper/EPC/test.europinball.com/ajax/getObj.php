@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
   
   $class = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-  $id = (isId($id)) ? $vid : NULL;
+  $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
   
   if ($class) {
