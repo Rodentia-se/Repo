@@ -432,6 +432,23 @@
     return (isGroup($tshirts) && get_class($tshirts) == 'tshirts');
   }
   
+  function tshirtOrder($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    $obj = new tshirtOrder($data, $search, $depth);
+    return obj($obj);
+  }
+
+  function tshirtOrders($data = NULL, $search = NULL) {
+    return ($data === FALSE) ? FALSE : new tshirtOrders($data, $search);
+  }
+
+  function isTshirtOrder($tshirt) {
+    return (isObj($tshirt) && get_class($tshirt) == 'tshirtOrder');
+  }
+
+  function isTshirtOrders($tshirts) {
+    return (isGroup($tshirts) && get_class($tshirts) == 'tshirtOrders');
+  }
+  
   function volunteer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new volunteer($data, $search, $depth);
     return obj($obj);
