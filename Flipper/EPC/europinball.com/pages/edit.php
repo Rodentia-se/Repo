@@ -301,7 +301,7 @@ $num = 1;
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
-                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((confíg::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
+                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
                   $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
