@@ -153,8 +153,8 @@
             $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
             $tshirts = tshirts($tournament);
             foreach($tshirts as $tshirt) {
-              $tshirtDiv[$tshirt->id] = $tshirtDiv->addDiv('shirtDiv_'.$tshirt->id);
-              $select = $tshirtDiv[$tshirt->id]->addSelect($tshirt->name, 10);
+              $tshirtsDiv[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
+              $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10);
             }
             $tshirtDiv->addContent($jquery);
             $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
