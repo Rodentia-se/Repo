@@ -17,7 +17,6 @@ debug('GR1');
       } 
       $this->db = base::$_db;
       if (isAssoc($data)) {
-debug('GR2');
         $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
       } else if (is_array($data) || isGroup($data)) {
         $class = get_class($this);
@@ -39,12 +38,15 @@ debug('GR2');
       } else if (is_object($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (is_object($data) && $data->id) {
+debug('GR2');
         if (get_class($data) == static::$objClass) {
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;
         } else {
+debug('GR3');
           if (isObj($search)) {
+debug('GR4');
             $props = array(
               (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id',
               (property_exists($search, 'table')) ? get_class_vars(get_class($search))['table'].'_id' : get_class($search).'_id'
