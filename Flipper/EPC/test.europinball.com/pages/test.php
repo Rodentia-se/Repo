@@ -12,8 +12,7 @@ $tshirts = tshirts($tournament);
 
 foreach($tshirts as $tshirt) {
   $tshirtDiv[$tshirt->id] = $div->addDiv('shirtDiv_'.$tshirt->id);
-  $label = $tshirtDiv[$tshirt->id]->addLabel($tshirt->name);
-  $select = $tshirtDiv[$tshirt->id]->addSelect(10);
+  $select = $tshirtDiv[$tshirt->id]->addSelect($tshirt->name, 10);
 }
 
 /*
