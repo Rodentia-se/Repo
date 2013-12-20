@@ -10,12 +10,14 @@
     );
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
+debug('GR1');
       parent::__construct();
       if (!base::$_db) {
         base::$_db = new db();
       } 
       $this->db = base::$_db;
       if (isAssoc($data)) {
+debug('GR2');
         $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
       } else if (is_array($data) || isGroup($data)) {
         $class = get_class($this);
@@ -42,8 +44,17 @@
           $objs = new $class();
           $objs[] = $data;
         } else {
-          $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
-          $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
+          if (isObj($search)) {
+            $props = array(
+              (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id',
+              (property_exists($search, 'table')) ? get_class_vars(get_class($search))['table'].'_id' : get_class($search).'_id';
+            }
+            $vals = array($data->id, $search->id);
+            $objs = $this->db->getObjectsByProps(static::$objClass, $props, $vals);
+          } else {
+            $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
+            $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
+          }
         }
       } else if ($data && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
