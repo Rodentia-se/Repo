@@ -89,7 +89,7 @@
         } else if ($this->jquery['jqtype'] == 'object') {
           $code .= '.'.$this->jquery['tool']."({\n";
           if ($this->jquery['props']) {
-            var codes = [];
+            $codes = array();
             foreach ($this->jquery['props'] as $prop => $val) {
               if ($prop) {
                 if (is_string($val) && substr($val, 0, 8) != 'function') {

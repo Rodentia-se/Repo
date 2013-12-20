@@ -14,7 +14,7 @@
       $select = $persons->getSelectObj();
       $select->addCombobox();
       $div->addContent($select);
-      $div->addFocus('#persons_combobox', TRUE);
+      $div->addFocus('#'.$select->id.'_combobox', TRUE);
       $paidDiv = $div->addDiv('paidDiv', 'noInput');
       $paidDiv->addLabel('Paid:');
       $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
@@ -85,6 +85,9 @@
         .done(function(data) {
           if (data.valid) {
             $("#'.$select->id.'").change();
+            setTimeout(function() {
+              $("#'.$select->id.'_combobox").focus().select()
+            }, 500);
           } else {
             showMsg(data.reason);
           }
@@ -96,6 +99,7 @@
       $page->addContent($div);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
+      $page->addContent($paragraph);
     }
 
     $page->submit();
