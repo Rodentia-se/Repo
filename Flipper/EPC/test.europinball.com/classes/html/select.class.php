@@ -101,7 +101,7 @@
                 $option = new option($val, $key);
               }
             } else if (is_int($options)) {
-              for ($i = 0; $i <= $topions; $i++) {
+              for ($i = 0; $i <= $options; $i++) {
                 $this->addOptions(array($i => $i));
               }
             } else {
