@@ -104,7 +104,6 @@
               for ($i = 0; $i <= $topions; $i++) {
                 $this->addOptions(array($i => $i));
               }
-            }
             } else {
               $option = new option($options);
             }
