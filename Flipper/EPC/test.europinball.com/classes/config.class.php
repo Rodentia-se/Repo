@@ -24,8 +24,10 @@
     public static $payPalAccount = 'alessio.Crisantemi@gmail.com';
     public static $payPalItem = 'EPC Entrance Fee';
     public static $payPalPageStyle= 'EPC';
-    public static $swiftAddress = 'SWEDSESS';
-    public static $ibanAccount = 'SE2280000832799031920490';
+    public static $swiftAddress = 'UNCRITM1537';
+    public static $ibanAccount = 'IT 15 T 02008 14412 000102922259';
+    public static $bank = 'Unicredit Banca di Roma';
+    public static $paymentReciever = 'IFPA ITALIA ASSOCIAZIONE SPORTIVA DILETTANTISTICA';
     public static $defaultCurrency = 'EUR';
     public static $acceptedCurrencies = array('EUR', 'USD', 'GBP', 'CHF', 'SEK', 'DKK');
     public static $currencies = array(
