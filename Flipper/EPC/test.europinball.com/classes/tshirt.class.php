@@ -4,6 +4,7 @@
         
     public static $instances;
     public static $arrClass = 'tshirts';
+    public static $table = 'tournamentTShirt';
 
     public static $select = '
       select 
