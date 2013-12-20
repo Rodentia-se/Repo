@@ -10,8 +10,10 @@
 $tournament = tournament('active');
 $tshirts = tshirts($tournament);
 
-debug(count($tshirts));
-debug($tshirts);
+foreach($tshirts as $tshirt) {
+  $label = $div->addLabel($thirt->name);
+  $select = $div->addSelect(10);
+}
 
 /*
 

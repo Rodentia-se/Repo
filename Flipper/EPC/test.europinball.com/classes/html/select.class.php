@@ -93,16 +93,21 @@
           }
           return $return;
         } else {
-          if (!isHtml($options)) {
+          if (isHtml($options)) {
+            $option = $options;
+          } else {
             if (is_array($options)) {
               foreach ($options as $key => $val) {
                 $option = new option($val, $key);
               }
+            } else if (is_int($options)) {
+              for ($i = 0; $i <= $topions; $i++) {
+                $this->addOptions(array($i => $i));
+              }
+            }
             } else {
               $option = new option($options);
             }
-          } else {
-            $option = $options;
           }
           if (isHtml($option)) {
             if ($index || ($replaced && $replaced !== TRUE)) {
