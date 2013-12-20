@@ -20,6 +20,9 @@ function customTemplate($page) {
 		case 'admin-tools':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/adminTools.php');
 	  break;
+		case 'test':
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/test.php');
+	  break;
 	}
 }
 

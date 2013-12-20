@@ -3,7 +3,16 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Admin tools');
+  $page = new page('Test');
+
+  $div = new div('testDiv');
+
+$tournament = tournament('active');
+$tshirts = tshirts($tournament);
+
+debug($tshirts);
+
+/*
 
   $volunteer = volunteer('login');
 
@@ -344,5 +353,7 @@ foreach($objs as $obj);
   preDump($obj);
 }
 */
+  $page->addContent($div);
+  $page->submit();
 
 ?> 
