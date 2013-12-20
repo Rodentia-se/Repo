@@ -10,6 +10,7 @@
 $tournament = tournament('active');
 $tshirts = tshirts($tournament);
 
+debug(count($tshirts));
 debug($tshirts);
 
 /*
