@@ -53,9 +53,10 @@ debug('GR3');
             $vals = array($data->id, $search->id);
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $vals);
           } else {
+            debug($prop, 'PROP');
+            debug($data, 'DATA');
             $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
             $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
-            debug($prop, 'PROP');
           }
         }
       } else if ($data && is_string($prop)) {
