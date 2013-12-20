@@ -21,7 +21,7 @@
     public static $activeTeamDivisions = array('nationalTeam');
     
     public static $paymentOptions = array('Credit card', 'International bank transfer');
-    public static $payPalAccount = 'pay@pal.pp.se';
+    public static $payPalAccount = 'alessio.Crisantemi@gmail.com';
     public static $payPalItem = 'EPC Entrance Fee';
     public static $payPalPageStyle= 'EPC';
     public static $swiftAddress = 'SWEDSESS';
