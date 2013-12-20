@@ -150,15 +150,21 @@
             $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
               $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
             $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
+            $tshirts = tshirts($tournament);
+
+            foreach($tshirts as $tshirt) {
+              $tshirtDiv[$tshirt->id] = $div->addDiv('shirtDiv_'.$tshirt->id);
+              $select = $tshirtDiv[$tshirt->id]->addSelect($tshirt->name, 10);
+            }
             $tshirtDiv->addContent($jquery);
             $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
-            $tshirtDiv->indents = 3;
-            $paragraph = $tshirtDiv->addParagraph('Volunteer registration will open in short.');
-          $page->addContent($tshirtDiv->getHtml());
+            $volDiv->indents = 3;
+            $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
+          $page->addContent($volDiv->getHtml());
         }
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
@@ -301,7 +307,7 @@ $num = 1;
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
-                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((confíg::$bank) ? ' in '.config::$bank : '').(() ? '. Payment receiver is '.config::$paymentReciever : '').'.');
+                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
                   $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
