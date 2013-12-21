@@ -31,6 +31,18 @@
     );
 
     public static $children = array();
+
+    public function getBuyers() {
+      $query = player::$select.'
+        left join personTShirt pt
+          on pt.person_id = o.person_id
+        where pt.id is not null
+          and o.tournamentEdition_id = '.config::$currentTournament.'
+          '.((isset($this) && $this instanceof tshirt && $this->tournamentTShirt_id) ? 'and pt.tournamentTShirt_id = '.$this->tournamentTShirt_id : '').'
+        order by p.name
+      ';
+    }
+
   }
 
 ?>
