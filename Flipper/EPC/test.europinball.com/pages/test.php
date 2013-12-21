@@ -7,6 +7,7 @@
 
   $div = new div('testDiv');
 
+$person = person('login');
 $tournament = tournament('active');
 $tshirts = tshirts($tournament);
 
@@ -14,6 +15,10 @@ foreach($tshirts as $tshirt) {
   $tshirtDiv[$tshirt->id] = $div->addDiv('shirtDiv_'.$tshirt->id);
   $select = $tshirtDiv[$tshirt->id]->addSelect($tshirt->name, 10);
 }
+
+$tshirtOrders = tshirtOrders($person, $tournament);
+
+debug($tshirtOrders);
 
 /*
 
