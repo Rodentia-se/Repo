@@ -29,6 +29,23 @@
     return (isGroup($cities) && get_class($cities) == 'cities');
   }
 
+  function color($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    $obj = new color($data, $search, $depth);
+    return obj($obj);
+  }
+
+  function colors($data = NULL, $search = NULL) {
+    return ($data === FALSE) ? FALSE : new colors($data, $search);
+  }
+  
+  function isColor($city) {
+    return (isObj($city) && get_class($city) == 'color');
+  }
+
+  function isColors($cities) {
+    return (isGroup($cities) && get_class($cities) == 'colors');
+  }
+
   function continent($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new continent($data, $search, $depth);
     return obj($obj);
