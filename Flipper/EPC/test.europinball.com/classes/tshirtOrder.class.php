@@ -14,10 +14,10 @@
         concat(tc.name, " ", tz.name) as shortName,
         o.number as number,
         o.person_id as person_id,
-        tc.name as color,
         tc.id as color_id,
-        tz.name as size,
+        tc.name as colorName,
         tz.id as size_id,
+        tz.name as size,
         tt.id as tournamentTshirt_id,
         tt.tournamentEdition_id as tournamentEdition_id
       from personTShirt o 
@@ -30,10 +30,11 @@
     public static $parents = array(
       'tournamentEdition' => 'tournament',
       'person' => 'person',
+      'color' => 'color'
     );
 
     public static $children = array();
-    
+
   }
 
 ?>

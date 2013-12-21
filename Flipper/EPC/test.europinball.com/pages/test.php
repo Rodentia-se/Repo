@@ -18,7 +18,11 @@ foreach($tshirts as $tshirt) {
 
 $tshirtOrders = tshirtOrders($person, $tournament);
 
-debug($tshirtOrders);
+foreach ($tshirtOrders as $tshirtOrder) {
+  $div->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
+  $div->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
+}
+
 
 /*
 

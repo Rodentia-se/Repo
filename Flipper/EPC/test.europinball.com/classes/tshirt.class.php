@@ -27,7 +27,7 @@
     
     public static $parents = array(
       'tournamentEdition' => 'tournament',
-      
+      'color' => 'color'
     );
 
     public static $children = array();
