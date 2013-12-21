@@ -1,6 +1,6 @@
 <?php
 
-  class tshirtOrderss extends group {
+  class tshirtOrders extends group {
     
     public static $objClass = 'tshirtOrder';
     
