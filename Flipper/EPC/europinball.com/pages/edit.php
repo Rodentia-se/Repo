@@ -157,9 +157,9 @@
         }
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
-            $tshirtDiv->indents = 3;
-            $paragraph = $tshirtDiv->addParagraph('Volunteer registration will open in short.');
-          $page->addContent($tshirtDiv->getHtml());
+            $volDiv->indents = 3;
+            $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
+          $page->addContent($volDiv->getHtml());
         }
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
