@@ -201,7 +201,7 @@
       return FALSE;
     }
     
-    public function seqWaiting($division = 'active') {
+    public function seqWaiting($division = 'main') {
       $division = getDivision($division);
       if (isDivision($division)) {
         $query = '
@@ -212,12 +212,11 @@
                 waiting
               from player, 
                 (SELECT @rownum :=0)r
-              where waiting is not null
-                and tournamentDivision_id = '.$division->id.'
+              where tournamentDivision_id = '.$division->id.'
               order by id
             ) AS players
             ON players.pid = player.id
-          set player.waiting = players.seq
+          set player.waiting = if(players.seq > '.config::$participationLimit[$division->type].', players.seq - '.config::$participationLimit[$division->type].', NULL)
         ';
       }
       return $this->update($query);
