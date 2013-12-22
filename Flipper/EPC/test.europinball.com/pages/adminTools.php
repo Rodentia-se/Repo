@@ -105,9 +105,9 @@
         $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
         .done(function(data) {
           if (data.valid) {
-            $el.tooltip("update", "Waiting list racalculted...").tooltip("show");
+            $(el).tooltipster("update", "Waiting list racalculted...").tooltipster("show");
           } else {
-            $el.tooltip("update", data.reason).tooltip("show");
+            $(el).tooltipster("update", data.reason).tooltipster("show");
           }
         })
         .fail(function(jqHXR,status,error) {
