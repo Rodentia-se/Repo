@@ -100,7 +100,7 @@
                 $codes[] = $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter;
               }
             }
-            $code .= explode($codes, ",\n")."\n";
+            $code .= explode(",\n", $codes)."\n";
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
                 $contents .= trim(parent::getContent($key, $string));
