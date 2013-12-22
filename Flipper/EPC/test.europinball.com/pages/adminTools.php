@@ -115,6 +115,7 @@
         });
       ');
       $page->addContent($paymentDiv);
+      $page->addContent($waitingDiv);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
