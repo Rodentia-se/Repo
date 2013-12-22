@@ -98,7 +98,7 @@
       ');
       $waitingDiv = new div('waitingDiv');
       $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
-      $waitingButton->addTooltip();
+      $waitingButton->addTooltip('hej');
       $waitingButton->addClick('
         var el = this;
         $el.tooltip("update", "Recalculating waiting list...").tooltip("show");
