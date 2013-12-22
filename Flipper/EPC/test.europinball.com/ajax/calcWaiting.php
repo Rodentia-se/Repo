@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $division_id = (isset($_REQUEST['division_id'])) ? $_REQUEST['division_id'] : null;
-  $division = ($division_id) ? division($division_id) : 'active';
+  $division = ($division_id) ? division($division_id) : 'main';
   
   $person = person('login');
   if ($person) {
