@@ -429,7 +429,7 @@
           } else if ($param == 'selected' || $param == 'checked' || $param == 'disabled') {
             return ($this->params[$param]) ? $param : FALSE;
           } else if ($param == 'id') {
-            $this->params[$param] = strtolower(preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]));
+            return $param.'="'.strtolower(preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param])).'"';
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
           } else if ($this->params[$param] === FALSE) {
