@@ -14,7 +14,7 @@
         if ($calc) {
           $json = success('Waiting list recalculated');
         } else {
-          json = failure('Waiting list recalculation failed');
+          $json = failure('Waiting list recalculation failed');
         }
       } else {
         $json = failure('Could not identify the division');
