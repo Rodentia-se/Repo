@@ -38,12 +38,12 @@
     return ($data === FALSE) ? FALSE : new colors($data, $search);
   }
   
-  function isColor($city) {
-    return (isObj($city) && get_class($city) == 'color');
+  function isColor($color) {
+    return (isObj($color) && get_class($color) == 'color');
   }
 
-  function isColors($cities) {
-    return (isGroup($cities) && get_class($cities) == 'colors');
+  function isColors($colors) {
+    return (isGroup($colors) && get_class($colors) == 'colors');
   }
 
   function continent($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
@@ -458,12 +458,12 @@
     return ($data === FALSE) ? FALSE : new tshirtOrders($data, $search);
   }
 
-  function isTshirtOrder($tshirt) {
-    return (isObj($tshirt) && get_class($tshirt) == 'tshirtOrder');
+  function isTshirtOrder($tshirtOrder) {
+    return (isObj($tshirtOrder) && get_class($tshirtOrder) == 'tshirtOrder');
   }
 
-  function isTshirtOrders($tshirts) {
-    return (isGroup($tshirts) && get_class($tshirts) == 'tshirtOrders');
+  function isTshirtOrders($tshirtOrders) {
+    return (isGroup($tshirtOrders) && get_class($tshirtOrders) == 'tshirtOrders');
   }
   
   function volunteer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
