@@ -96,22 +96,7 @@
           showMsg("Fail: S: " + status + " E: " + error);
         });
       ');
-      $waitingDiv = new div('waitingDiv');
-      $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
-      $waitingButton->addTooltip('hej');
-      $waitingButton->addClick('
-        var el = this;
-        $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
-        $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
-        .done(function(data) {
-          $(el).tooltipster("update", data.reason).tooltipster("show");
-        })
-        .fail(function(jqHXR,status,error) {
-          showMsg("Fail: S: " + status + " E: " + error);
-        });
-      ');
       $page->addContent($paymentDiv);
-      $page->addContent($waitingDiv);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
