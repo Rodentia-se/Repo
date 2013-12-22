@@ -104,11 +104,7 @@
         $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
         $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
         .done(function(data) {
-          if (data.valid) {
-            $(el).tooltipster("update", "Waiting list racalculted...").tooltipster("show");
-          } else {
-            $(el).tooltipster("update", data.reason).tooltipster("show");
-          }
+          $(el).tooltipster("update", data.reason).tooltipster("show");
         })
         .fail(function(jqHXR,status,error) {
           showMsg("Fail: S: " + status + " E: " + error);
