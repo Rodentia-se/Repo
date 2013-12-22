@@ -30,7 +30,8 @@
     public static $parents = array(
       'tournamentEdition' => 'tournament',
       'person' => 'person',
-      'color' => 'color'
+      'color' => 'color',
+      'tournamentTShirt' => 'tshirt'
     );
 
     public static $children = array();
