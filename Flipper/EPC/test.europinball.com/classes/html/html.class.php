@@ -33,7 +33,7 @@
       $this->element = strtolower($element);
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
-      $this->params['id'] = strtolower(preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params['id']));
+      $params['id'] = strtolower(preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']));
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
