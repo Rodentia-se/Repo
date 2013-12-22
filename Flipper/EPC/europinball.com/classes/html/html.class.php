@@ -33,6 +33,7 @@
       $this->element = strtolower($element);
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
+      $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
@@ -148,6 +149,9 @@
         break;
         case 'indenter':
           static::$indenter = $value;
+        break;
+        case 'id':
+          $this->params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
         break;
         default:
           if (array_key_exists($prop, $this->settings)) {
@@ -424,6 +428,8 @@
             return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
           } else if ($param == 'selected' || $param == 'checked' || $param == 'disabled') {
             return ($this->params[$param]) ? $param : FALSE;
+          } else if ($param == 'id') {
+            return $param.'="'.preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]).'"';
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
             return $param.'="'.$this->$param.'"';
           } else if ($this->params[$param] === FALSE) {

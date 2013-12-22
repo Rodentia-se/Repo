@@ -100,7 +100,7 @@
                 $codes[] = $prop.': '.$delimiter.(($val === TRUE) ? 'true' : (($val === FALSE) ? 'false' : $val)).$delimiter;
               }
             }
-            $code .= codes.join(",\n")."\n";
+            $code .= implode(",\n", $codes).((count($codes) > 0) ? ",\n" : '');
             if ($this->jquery['contentProp'] && count($this->contents) > 0) {
               foreach ($this->contents as $key => $content) {
                 $contents .= trim(parent::getContent($key, $string));
@@ -108,7 +108,7 @@
               $code .= $this->jquery['contentProp'].': "'.trim($contents).'"';
             }
           }
-          $code = rtrim($code, ',')."\n});";
+          $code = rtrim($code, ",\n")."\n});";
         } else if ($this->jquery['jqtype'] == 'command' || $this->jquery['jqtype'] == 'code') {
           $quote = ($this->jquery['jqtype'] == 'command') ? '"' : '';
           if (is_array($this->jquery['command']) && count($this->jquery['command']) > 0) {

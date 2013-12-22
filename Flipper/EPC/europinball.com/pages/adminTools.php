@@ -5,27 +5,27 @@
 
   $page = new page('Admin tools');
 
-  if ($page->reqLogin('You need to be logged in to access this page. If you are don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
+  if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
     if ($volunteer->admin) {
-      $div = new div('paymentDiv');
-      $loading = $div->addLoading();
+      $paymentDiv = new div('paymentDiv');
+      $loading = $paymentDiv->addLoading();
       $persons = persons(tournament('active'));
       $select = $persons->getSelectObj();
       $select->addCombobox();
-      $div->addContent($select);
-      $div->addFocus('#'.$select->id.'_combobox', TRUE);
-      $paidDiv = $div->addDiv('paidDiv', 'noInput');
+      $paymentDiv->addContent($select);
+      $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
+      $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
       $paidDiv->addLabel('Paid:');
       $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-      $costsDiv = $div->addDiv('costsDiv');
+      $costsDiv = $paymentDiv->addDiv('costsDiv');
       $costsDiv->addLabel('Should pay:');
       $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
-      $payDiv = $div->addDiv('payDiv');
+      $payDiv = $paymentDiv->addDiv('payDiv');
       $payDiv->addLabel('Left to pay:');
       $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
       $paySpan->addClasses('sum');
-      $setDiv = $div->addDiv();
+      $setDiv = $paymentDiv->addDiv();
       $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
       $setPaid->disabled = TRUE;
       $select->addChange('
@@ -96,13 +96,27 @@
           showMsg("Fail: S: " + status + " E: " + error);
         });
       ');
-      $page->addContent($div);
+      $waitingDiv = new div('waitingDiv');
+      $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+      $waitingButton->addTooltip('hej');
+      $waitingButton->addClick('
+        var el = this;
+        $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
+        $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
+        .done(function(data) {
+          $(el).tooltipster("update", data.reason).tooltipster("show");
+        })
+        .fail(function(jqHXR,status,error) {
+          showMsg("Fail: S: " + status + " E: " + error);
+        });
+      ');
+      $page->addContent($paymentDiv);
+      $page->addContent($waitingDiv);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
     }
-
-    $page->submit();
   }
+  $page->submit();
 
 ?>
