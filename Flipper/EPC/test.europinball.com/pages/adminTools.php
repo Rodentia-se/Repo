@@ -101,7 +101,7 @@
       $waitingButton->addTooltip('hej');
       $waitingButton->addClick('
         var el = this;
-        $el.tooltip("update", "Recalculating waiting list...").tooltip("show");
+        $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
         $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
         .done(function(data) {
           if (data.valid) {
