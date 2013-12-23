@@ -77,6 +77,11 @@
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
               $objSearch[$searchTable.'_id'] = $search->id;
             }
+            if (isObj($depth) && isId($depth->id)) {
+              $depthClass = get_class($depth);
+              $depthTable = (property_exists($depth, 'table')) ? $depthClass::$table : $depthClass;
+              $objSearch[$depthTable.'_id'] = $depth->id;
+            }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
           } else if (is($data)) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);

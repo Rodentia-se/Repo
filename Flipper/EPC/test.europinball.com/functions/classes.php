@@ -432,6 +432,22 @@
     return (isGroup($tournaments) && get_class($tournaments) == 'tournaments');
   }
   
+  function getTournament($obj) {
+    $tournament = tournament($obj);
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    $tournament = tournament('active');
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    $tournament = tournament('current');
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    return FALSE;
+  }
+
   function tshirt($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new tshirt($data, $search, $depth);
     return obj($obj);

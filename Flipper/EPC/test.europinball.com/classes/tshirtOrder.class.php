@@ -18,7 +18,7 @@
         tc.name as colorName,
         ts.size_id as size_id,
         tz.name as size,
-        o.tournamentTShirt_id as tournamentTshirt_id,
+        o.tournamentTShirt_id as tshirt_id,
         tt.tournamentEdition_id as tournamentEdition_id
       from personTShirt o 
         left join tournamentTShirt tt on o.tournamentTShirt_id = tt.id
@@ -31,7 +31,7 @@
       'tournamentEdition' => 'tournament',
       'person' => 'person',
       'color' => 'color',
-      'tournamentTShirt' => 'tshirt'
+      'tshirt' => 'tshirt'
     );
 
     public static $children = array();
