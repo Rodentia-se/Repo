@@ -929,6 +929,34 @@
       return $element;
     }
     
+    public function addCombobox($selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new combobox($selector, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
+    
+    public function addSpinner($selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new spinner($selector, $props, $indents);
+      if ($this->selfClose) {
+        $this->parent->addContent($element);
+        $element->parent = $this->parent;
+      } else {
+        $this->addContent($element);
+        $element->parent = $this;
+      }
+      return $element;
+    }
+    
     public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
       $element = new div(html::newId('Loading'), 'modal');
       $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
