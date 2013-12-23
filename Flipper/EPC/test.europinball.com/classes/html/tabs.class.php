@@ -40,12 +40,12 @@
 
     protected function getHeader($index = NULL, $string = TRUE) {
       if ($this->contents) {
+        $ul = new ul();
         foreach ($this->contents as $content) {
-          $ul = new ul();
           $li = $ul->addLi();
           $li->addLink('#'.$content->id, $content->title);
-          return ($string) ? $ul->getHtml() : $ul;
         }
+        return ($string) ? $ul->getHtml() : $ul;
       }
       return NULL;
     }
