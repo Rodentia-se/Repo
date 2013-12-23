@@ -210,7 +210,7 @@
           foreach ($tshirts as $tshirt) {
             $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
-            $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
+            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
           return $tshirtDiv;
         break;
