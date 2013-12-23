@@ -248,7 +248,7 @@
       $direction = ($direction == 'desc') ? 'desc' : ((property_exists($this, 'order') && static::$order['dir'] == 'desc') ? 'desc' : 'asc') ;
       $case = ($case) ? TRUE : ((property_exists($this, 'order') && static::$order['case']) ? TRUE : FALSE) ;
       if (get_class($this) == 'tshirts') {
-        debug($this[0]);
+        debug($this[0]->sortName);
       }
       if (count($this) > 0) {
         switch ($type) {
