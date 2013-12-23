@@ -269,9 +269,9 @@
     }
     
     protected static function newId($prefix = NULL, $suffix = NULL) {
-      $id = $prefix.rand(0,10000).$suffix;
+      $id = $prefix.'id'.rand(0,10000).$suffix;
       while (in_array($id, html::$ids)) {
-        $id = $prefix.rand(0,10000).$suffix;
+        $id = $prefix.'id'.rand(0,10000).$suffix;
       }
       return $id;
     }
