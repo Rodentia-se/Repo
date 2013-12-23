@@ -195,40 +195,55 @@
       return false;
     }
     
-    public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
-      foreach (config::$activeSingleDivisions as $divisionType) {
-        $player = ($this->id) ? player($this, $divisionType) : NULL;
-        $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
+    public function getEdit($type = 'profile', $title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
+      switch ($type) {
+        case 'tshirtOrder':
+        case 'tshirtOrders':
+          $tournament = getTournament($tournament);
+          $tshirts = tshirts($tournament);
+          foreach ($tshirts as $tshirt) {
+            $tshirtsDiv[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
+            $tshirtOrder = tshirtOrder($this, $tshirt);
+            $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10, $tshirtOrder->number);
+          }
+        break;
+        case 'profile':
+        default:
+          foreach (config::$activeSingleDivisions as $divisionType) {
+            $player = ($this->id) ? player($this, $divisionType) : NULL;
+            $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
+          }
+          $genders = genders('all');
+          $cities = cities('all');
+          $regions = regions('all');
+          $countries = countries('all');
+          $continents = continents('all');
+          return '
+            <div id="editDiv">
+            	<h2 class="entry-title">'.$title.'</h2>
+              <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
+              '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
+              <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
+              <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
+              <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
+              <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
+              <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
+              <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
+              <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
+              <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
+              <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
+              <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
+              <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
+              <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
+              <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
+              <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
+              <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
+              <div>'.page::getLabel('Divisions').$checkboxes.'</div>
+              <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
+            </div>
+          ';
+        break;
       }
-      $genders = genders('all');
-      $cities = cities('all');
-      $regions = regions('all');
-      $countries = countries('all');
-      $continents = continents('all');
-      return '
-        <div id="editDiv">
-        	<h2 class="entry-title">'.$title.'</h2>
-          <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
-          '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
-          <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
-          <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
-          <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
-          <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-          <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
-          <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
-          <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
-          <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-          <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
-          <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
-          <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
-          <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-          <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
-          <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
-          <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
-          <div>'.page::getLabel('Divisions').$checkboxes.'</div>
-          <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-        </div>
-      ';
     }
     
     public function getUid() {
