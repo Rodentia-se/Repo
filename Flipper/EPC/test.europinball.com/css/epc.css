@@ -85,6 +85,7 @@ span.sum {
 .preview {
   max-width: 450px;
   max-heigth: 900px;
+  cursor: pointer;
 }
 
 .label {
