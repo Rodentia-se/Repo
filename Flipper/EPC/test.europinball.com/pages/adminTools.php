@@ -110,8 +110,12 @@
           showMsg("Fail: S: " + status + " E: " + error);
         });
       ');
-      $page->addContent($paymentDiv);
-      $page->addContent($waitingDiv);
+      $tabs = new tabs(NULL, 'adminTabs');
+      $paymentDiv->title = 'Payments administration'
+      $tabs->addContent($paymentDiv);
+      $waitingDiv->title = 'Waiting list administration'
+      $tabs->addContent($waitingDiv);
+      $page->addContent($tabs);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
