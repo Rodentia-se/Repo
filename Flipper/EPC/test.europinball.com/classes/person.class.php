@@ -206,7 +206,7 @@
           if ($title) {
             $div->addH2('T-shirt orders', NULL, array('class' => 'entry-title'));
           }
-          $orderDiv = $div->addDiv($prefix.'TshirtEditDiv');
+          $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'left');
           $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
           $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
           $tshirts = tshirts($tournament);
