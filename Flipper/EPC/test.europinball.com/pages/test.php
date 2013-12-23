@@ -17,7 +17,7 @@
   $tshirts = tshirts($tournament);
   foreach($tshirts as $tshirt) {
     $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('shirtDiv_'.$tshirt->id);
-    $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10);
+    $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->sortName, 10);
   }
 
   $orderDiv = $tabs->addDiv('tshirtOrders', NULL, array('title' => 'T-shirt orders'));
