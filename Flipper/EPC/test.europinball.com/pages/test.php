@@ -10,7 +10,7 @@
 $person = person('login');
 $tournament = tournament('active');
 
-$tshirtDiv = $div->addDiv('testDiv');
+$tshirtDiv = $div->addDiv('tshirtDiv');
 $tshirts = tshirts($tournament);
 
 foreach($tshirts as $tshirt) {
