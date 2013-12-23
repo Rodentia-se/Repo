@@ -35,7 +35,7 @@
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
       $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
-      if (in_array($params['id'], html::$ids) {
+      if (in_array($params['id'], html::$ids)) {
         error('Duplicate ID detected!', NULL, FALSE, TRUE);
       } else {
         html::$ids[] = $params['id'];
