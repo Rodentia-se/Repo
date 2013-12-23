@@ -11,7 +11,6 @@
     protected $classes = array();
     protected $css = array();
     protected $accessories = array();
-    protected $ids = array();
     protected $settings = array(
       'display' => 'block',
       'hidden' => FALSE,
@@ -20,6 +19,7 @@
       'parent' => NULL,
       'disabled' => FALSE
     );
+    protected static $ids = array();
     public static $indenter = '  ';
     public static $indents = 0;
     public static $debugCounter = 0;
