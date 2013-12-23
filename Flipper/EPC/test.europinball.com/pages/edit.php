@@ -163,6 +163,7 @@
           */
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
+          $tshitDiv->addContent('&nbsp;');
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {
