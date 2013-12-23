@@ -215,7 +215,7 @@
               $payMsg .= implode($payMsgs, ', ');
               if (config::$tshirts && config::$tshirtCost > 0) {
                 $page->startDiv('TshirtDiv');
-                  $num = count(tshirts($person));
+                  $num = count(tshirtOrders($person, $tournament));
                   $cost = $person->getCost('tshirts');
                   $costs += $cost;
                   $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');
