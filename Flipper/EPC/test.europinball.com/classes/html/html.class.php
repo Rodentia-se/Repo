@@ -38,7 +38,6 @@
       if (!$params['id']) {
         $params['id'] = static::newId(NULL, ucfirst($this->element));
       }
-      debug('hej');
       if (in_array($params['id'], html::$ids)) {
         error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE, TRUE);
       } else {
@@ -161,7 +160,6 @@
           static::$indenter = $value;
         break;
         case 'id':
-          debug('huff');
           if (in_array($value, html::$ids)) {
             error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE, TRUE);
           } else {
