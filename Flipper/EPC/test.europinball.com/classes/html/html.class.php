@@ -39,7 +39,7 @@
         $params['id'] = static::newId(NULL, ucfirst($this->element));
       }
       if (in_array($params['id'], html::$ids)) {
-        error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE, TRUE);
+        error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE);
       } else {
         html::$ids[] = $params['id'];
       }
