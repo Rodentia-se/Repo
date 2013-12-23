@@ -111,9 +111,9 @@
         });
       ');
       $tabs = new tabs(NULL, 'adminTabs');
-      $paymentDiv->title = 'Payments administration'
+      $paymentDiv->title = 'Payments administration';
       $tabs->addContent($paymentDiv);
-      $waitingDiv->title = 'Waiting list administration'
+      $waitingDiv->title = 'Waiting list administration';
       $tabs->addContent($waitingDiv);
       $page->addContent($tabs);
     } else {
