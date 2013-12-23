@@ -98,6 +98,7 @@
   }
   
   function getDivision($obj = 'main') {
+    $obj = ($obj) ? $obj : 'main';
     $division = division($obj);
     if (isDivision($division)) {
       return $division;
@@ -440,6 +441,7 @@
   }
   
   function getTournament($obj = 'active') {
+    $obj = ($obj) ? $obj : 'active';
     debug(1);
     $tournament = tournament($obj);
     if (isTournament($tournament)) {
