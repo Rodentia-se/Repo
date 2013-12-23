@@ -146,9 +146,9 @@
           $page->closeDiv();
         }
         if (in_array('t-shirts', config::$editSections)) {
+/*
           $tshirtDiv = new div('tshirts');
             $tshirtDiv->indents = 3;
-            $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
               $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
             $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
             $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
@@ -160,6 +160,8 @@
             $tshirtDiv->addContent($jquery);
             $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
+          */
+          $page->addContent($person->getEdit('tshirts'));
         }
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
@@ -213,8 +215,7 @@
               $payMsg .= implode($payMsgs, ', ');
               if (config::$tshirts && config::$tshirtCost > 0) {
                 $page->startDiv('TshirtDiv');
-//                  $num = count(tshirts($person));
-$num = 1;
+                  $num = count(tshirts($person));
                   $cost = $person->getCost('tshirts');
                   $costs += $cost;
                   $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');

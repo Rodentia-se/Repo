@@ -195,19 +195,28 @@
       return false;
     }
     
-    public function getEdit($type = 'profile', $title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
+    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
       switch ($type) {
+        case 'tshirt':
+        case 'tshirts':
         case 'tshirtOrder':
         case 'tshirtOrders':
           $tournament = getTournament($tournament);
+          $tshirtDiv = new div();
+          $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
+          $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
+          $tshirtDiv->addJquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
           $tshirts = tshirts($tournament);
           foreach ($tshirts as $tshirt) {
-            $tshirtsDiv[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
+            $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
-            $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10, $tshirtOrder->number);
+            $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
+          return $tshirtDiv;
         break;
         case 'profile':
+        case 'player':
+        case 'person':
         default:
           foreach (config::$activeSingleDivisions as $divisionType) {
             $player = ($this->id) ? player($this, $divisionType) : NULL;
@@ -220,7 +229,7 @@
           $continents = continents('all');
           return '
             <div id="editDiv">
-            	<h2 class="entry-title">'.$title.'</h2>
+            	<h2 class="entry-title">'.(($title) ? $title : 'Edit profile').'</h2>
               <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
               '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
               <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
