@@ -13,17 +13,17 @@
   $tabs = $div->addTabs(NULL, 'testTabs');
   $tshirtDiv = $tabs->addDiv('tshirtDiv');
   $tshirtDiv->title = 'T-shirts';
-  $tshirts = tshirts($tournament);
 
+  $tshirts = tshirts($tournament);
   foreach($tshirts as $tshirt) {
     $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('shirtDiv_'.$tshirt->id);
     $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10);
   }
 
-  $tshirtOrders = tshirtOrders($person, $tournament);
   $orderDiv = $tabs->addDiv('tshirtOrders');
-  $orderDiv->addH2('T-shirt orders', NULL, 'entry-title');
+  $orderDiv->addH2('T-shirt orders', NULL, 'entry-title', array('title' => 'T-shirt orders'));
 
+  $tshirtOrders = tshirtOrders($person, $tournament);
   foreach ($tshirtOrders as $tshirtOrder) {
     $orderDiv->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
     $orderDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
