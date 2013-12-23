@@ -163,7 +163,6 @@
           */
           $tshirtDiv = new div($prefix);
           $tshirtDiv->addContent($person->getEdit('tshirts'));
-          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {

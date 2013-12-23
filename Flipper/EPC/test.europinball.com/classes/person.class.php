@@ -202,17 +202,21 @@
         case 'tshirtOrder':
         case 'tshirtOrders':
           $tournament = getTournament($tournament);
-          $tshirtDiv = new div($prefix.'TshirtEditDiv');
-          $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
+          $div = new div($prefix.'TshirtEditDiv');
+          if ($title) {
+            $div->addH2('T-shirt orders', NULL, array('class' => 'entry-title'));
+          }
+          $orderDiv = $div->addDiv($prefix.'TshirtEditDiv');
+          $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
           $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
           $tshirts = tshirts($tournament);
           foreach ($tshirts as $tshirt) {
-            $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
+            $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
             $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
-          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'right'));
-          return $tshirtDiv;
+          $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'right'));
+          return $div;
         break;
         case 'profile':
         case 'player':
