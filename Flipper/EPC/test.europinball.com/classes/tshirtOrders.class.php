@@ -5,6 +5,7 @@
     public static $objClass = 'tshirtOrder';
     
     public static $order = array(
+      'person_id',
       'color_id',
       'size_id'
     );

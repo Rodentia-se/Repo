@@ -12,7 +12,7 @@
         o.name as name,
         o.name as fullName,
         o.name as shortName,
-        concat(tc.name, tz.name) as sortName,
+        concat(tc.name, tz.id) as sortName,
         tc.id as color_id,
         tc.name as color,
         tz.id as size_id,
