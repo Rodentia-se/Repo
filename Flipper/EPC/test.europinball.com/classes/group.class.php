@@ -51,7 +51,7 @@
               ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($prop)).'_id' => $prop->id
             );
             if (isObj($cond) && $cond->id) {
-              $props[((property_exists($cond, 'table')) ? get_class_vars(get_class($cond))['table'] : get_class($cond)).'_id'] = $cond->id);
+              $props[((property_exists($cond, 'table')) ? get_class_vars(get_class($cond))['table'] : get_class($cond)).'_id'] = $cond->id;
               $cond = NULL;
             }
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
