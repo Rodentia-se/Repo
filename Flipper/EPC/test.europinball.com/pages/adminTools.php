@@ -33,8 +33,8 @@
           $userDiv->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
-          $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $paymentDiv->title = 'Payments';
+          $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
           $persons = persons(tournament('active'));
             $select = $persons->getSelectObj();
