@@ -40,7 +40,7 @@
       'tournamentEdition_id' => 'tt',
       'color_id' => 'ts',
       'size_id' => 'ts'
-    )
+    );
 
   }
 
