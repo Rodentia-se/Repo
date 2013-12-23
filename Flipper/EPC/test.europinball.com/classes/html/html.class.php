@@ -157,7 +157,7 @@
           static::$indenter = $value;
         break;
         case 'id':
-          if (in_array($value, html::$ids) {
+          if (in_array($value, html::$ids)) {
             error('Duplicate ID detected!', NULL, FALSE, TRUE);
           } else {
             html::$ids[] = $value;
