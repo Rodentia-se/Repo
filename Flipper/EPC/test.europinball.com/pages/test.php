@@ -20,7 +20,7 @@ foreach($tshirts as $tshirt) {
 }
 
 $tshirtOrders = tshirtOrders($person, $tournament);
-$orderDiv = tabs->addDiv('tshirtOrders');
+$orderDiv = $tabs->addDiv('tshirtOrders');
 $orderDiv->addH2('T-shirt orders');
 foreach ($tshirtOrders as $tshirtOrder) {
   $orderDiv->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
