@@ -37,15 +37,19 @@
             $objs[] = $this->db->getObjectById(static::$objClass, $obj);
           }
         }
-      } else if (is_object($data) && $data->id && is_string($prop)) {
+      } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
-      } else if (is_object($data) && $data->id) {
+      } else if (isObj($data) && $data->id) {
+        debug(1);
         if (get_class($data) == static::$objClass) {
+        debug(2);
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;
         } else {
-          if (isObj($search)) {
+        debug(3);
+          if (isObj($search) && $search->id) {
+        debug(4);
             $props = array(
               (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id',
               (property_exists($search, 'table')) ? get_class_vars(get_class($search))['table'].'_id' : get_class($search).'_id'
@@ -53,6 +57,7 @@
             $vals = array($data->id, $search->id);
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $vals);
           } else {
+        debug(5);
             $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
             $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
           }
