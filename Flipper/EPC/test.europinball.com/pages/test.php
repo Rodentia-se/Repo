@@ -20,8 +20,8 @@
     $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10);
   }
 
-  $orderDiv = $tabs->addDiv('tshirtOrders');
-  $orderDiv->addH2('T-shirt orders', NULL, 'entry-title', array('title' => 'T-shirt orders'));
+  $orderDiv = $tabs->addDiv('tshirtOrders', NULL, array('title' => 'T-shirt orders'));
+  $orderDiv->addH2('T-shirt orders', NULL, 'entry-title');
 
   $tshirtOrders = tshirtOrders($person, $tournament);
   foreach ($tshirtOrders as $tshirtOrder) {
