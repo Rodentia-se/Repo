@@ -10,7 +10,7 @@
     if ($volunteer->admin) {
       $tabs = new tabs(NULL, 'adminTabs');
         $paymentDiv = $tabs->addDiv('paymentDiv');
-          $paymentDiv->title = 'Payments administration';
+          $paymentDiv->title = 'Payments';
           $loading = $paymentDiv->addLoading();
           $persons = persons(tournament('active'));
             $select = $persons->getSelectObj();
@@ -104,8 +104,8 @@
             });
           ');
         //}
-        $waitingDiv = $tabs->addDiv(NULL, 'waitingDiv');
-          $waitingDiv->title = 'Waiting list administration';
+        $waitingDiv = $tabs->addDiv('waitingDiv');
+          $waitingDiv->title = 'Waiting list';
           $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
           $waitingButton->addTooltip('hej');
           $waitingButton->addClick('
@@ -120,6 +120,22 @@
             });
           ');
         //}
+        $gameDiv = $tabs->addDiv('gameDiv');
+          $gameDiv->title = 'Games';
+        $userDiv = $tabs->addDiv('userDiv');
+          $userDiv->title = 'Users';
+        $scoresDiv = $tabs->addDiv('scoresDiv');
+          $scoresDiv->title = 'Scores';
+        $qualGroupsDiv = $tabs->addDiv('qualGroupsDiv');
+          $qualGroupsDiv->title = 'Groups';
+        $teamDiv = $tabs->addDiv('teamDiv');
+          $teamDiv->title = 'Teams';
+        $volDiv = $tabs->addDiv('volDiv');
+          $volDiv->title = 'Volunteers';
+        $tshirtDiv = $tabs->addDiv('tshirtDiv');
+          $tshirtDiv->title = 'T-shirts';
+        $otherDiv = $tabs->addDiv('otherDiv');
+          $otherDiv->title = 'Games';
       //}
       $page->addContent($tabs);
     } else {
