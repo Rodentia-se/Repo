@@ -204,7 +204,7 @@
           $tournament = getTournament($tournament);
           $div = new div($prefix.'TshirtEditDiv');
           if ($title) {
-            $div->addH2('T-shirt orders', NULL, array('class' => 'entry-title'));
+            $div->addH2('T-shirt orders', array('class' => 'entry-title'));
           }
           $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'left');
           $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
