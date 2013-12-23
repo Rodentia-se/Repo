@@ -163,9 +163,7 @@
           */
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
-          $clearDiv = $tshirtDiv->addDiv();
-          $clearDiv->addContent('&nbsp;');
-          $clearDiv->escape = FALSE;
+          $clearDiv = $tshirtDiv->addDiv('clearer');
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {
