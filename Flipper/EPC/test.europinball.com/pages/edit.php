@@ -162,7 +162,7 @@
           $page->addContent($tshirtDiv->getHtml());
           */
           $tshirtDiv = new div($prefix);
-          $tshirtDiv->addContent($person->getEdit('tshirts'));
+          $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {
