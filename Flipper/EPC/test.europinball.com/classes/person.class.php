@@ -211,6 +211,7 @@
             $tshirtOrder = tshirtOrder($this, $tshirt);
             $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
+          $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL; array('class' => 'right'));
           return $tshirtDiv;
         break;
         case 'profile':
