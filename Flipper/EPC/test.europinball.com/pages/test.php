@@ -25,8 +25,10 @@ foreach ($tshirtOrders as $tshirtOrder) {
   $tshirtDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
 }
 
-$tabs = new tabs();
-$tabs->addContent($tshirtDiv);
+$tabs = $div->addTabs($tshirtDiv);
+
+
+
 
 /*
 
