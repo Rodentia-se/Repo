@@ -202,13 +202,12 @@
         case 'tshirtOrder':
         case 'tshirtOrders':
           $tournament = getTournament($tournament);
-          $tshirtDiv = new div();
+          $tshirtDiv = new div($prefix.'TshirtEditDiv');
           $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
-          $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, 'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
-//          $tshirtDiv->addJquery('html', 'code', array('parseInt($("#'.$costSpan->id.'").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE), NULL, '#'.$costSpan->id);
+          $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
           $tshirts = tshirts($tournament);
           foreach ($tshirts as $tshirt) {
-            $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
+            $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
             $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }

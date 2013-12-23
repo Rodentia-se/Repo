@@ -161,7 +161,8 @@
             $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv->getHtml());
           */
-          $tshirtDiv = $person->getEdit('tshirts');
+          $tshirtDiv = new div($prefix);
+          $tshirtDiv->addContent($person->getEdit('tshirts'));
           $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
           $page->addContent($tshirtDiv);
         }
