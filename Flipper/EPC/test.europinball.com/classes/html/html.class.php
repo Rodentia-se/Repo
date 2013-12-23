@@ -11,6 +11,7 @@
     protected $classes = array();
     protected $css = array();
     protected $accessories = array();
+    protected $ids = array();
     protected $settings = array(
       'display' => 'block',
       'hidden' => FALSE,
@@ -34,6 +35,11 @@
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
       $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
+      if (in_array($params['id'], html::$ids) {
+        error('Duplicate ID detected!', NULL, FALSE, TRUE);
+      } else {
+        html::$ids[] = $params['id'];
+      }
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
@@ -151,6 +157,11 @@
           static::$indenter = $value;
         break;
         case 'id':
+          if (in_array($value, html::$ids) {
+            error('Duplicate ID detected!', NULL, FALSE, TRUE);
+          } else {
+            html::$ids[] = $value;
+          }
           $this->params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
         break;
         default:
@@ -238,6 +249,10 @@
         case 'indenter':
           unset(static::$indenter);
         break;
+        case 'id':
+          html::$ids = array_diff(html::$ids, array($this->params['id']));
+          unset($this->params['id']);
+        break;
         default:
           if (array_key_exists($prop, $this->params)) {
             unset($this->params[$prop]);
@@ -246,6 +261,14 @@
           }
         break;
       }
+    }
+    
+    protected static function newId($prefix = NULL, $suffix = NULL) {
+      $id = $prefix.rand(0,10000).$suffix;
+      while (in_array($id, html::$ids)) {
+        $id = $prefix.rand(0,10000).$suffix;
+      }
+      return $id;
     }
     
     protected static function getIndent($type = 'indent') {

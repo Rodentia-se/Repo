@@ -9,20 +9,24 @@
 
 $person = person('login');
 $tournament = tournament('active');
+
+$tshirtDiv = $div->addDiv('testDiv');
 $tshirts = tshirts($tournament);
 
 foreach($tshirts as $tshirt) {
-  $tshirtDiv[$tshirt->id] = $div->addDiv('shirtDiv_'.$tshirt->id);
-  $select = $tshirtDiv[$tshirt->id]->addSelect($tshirt->name, 10);
+  $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('shirtDiv_'.$tshirt->id);
+  $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10);
 }
 
 $tshirtOrders = tshirtOrders($person, $tournament);
 
 foreach ($tshirtOrders as $tshirtOrder) {
-  $div->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
-  $div->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
+  $tshirtDiv->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
+  $tshirtDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
 }
 
+$tabs = new tabs();
+$tabs->addContent($tshirtDiv);
 
 /*
 
