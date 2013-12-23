@@ -54,7 +54,7 @@
       $script = new scriptCode('
         $(document).ready(function() {
           try {
-            var tabIndex = dataStore.getItem("tab'.$this->id.'Index");
+            var tab'.$this->id.'Index = dataStore.getItem("tab'.$this->id.'Index");
           } catch(e) {
             var tab'.$this->id.'Index = 0;
           };
