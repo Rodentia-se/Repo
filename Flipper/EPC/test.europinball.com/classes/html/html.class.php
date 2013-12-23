@@ -43,6 +43,7 @@
       } else {
         html::$ids[] = $params['id'];
       }
+      $params['title'] = (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id']));
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
