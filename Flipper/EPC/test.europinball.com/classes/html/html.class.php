@@ -916,7 +916,7 @@
     }
     
     public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
-      $element = new div(html::newId('loading', 'modal');
+      $element = new div(html::newId('loading', 'modal'));
       $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
       $this->addContent($element);
       $element->parent = $this;
