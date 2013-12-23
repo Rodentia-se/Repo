@@ -49,13 +49,13 @@
         } else {
         debug(3);
         debug($search);
-          if (isObj($search) && $search->id) {
+          if (isObj($prop) && $prop->id) {
         debug(4);
             $props = array(
               (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id',
-              (property_exists($search, 'table')) ? get_class_vars(get_class($search))['table'].'_id' : get_class($search).'_id'
+              (property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'].'_id' : get_class($search).'_id'
             );
-            $vals = array($data->id, $search->id);
+            $vals = array($data->id, $prop->id);
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $vals);
           } else {
         debug(5);
