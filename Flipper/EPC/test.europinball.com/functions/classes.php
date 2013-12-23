@@ -433,18 +433,23 @@
   }
   
   function getTournament($obj) {
+    debug(1);
     $tournament = tournament($obj);
     if (isTournament($tournament)) {
+    debug(2);
       return $tournament;
     }
     $tournament = tournament('active');
     if (isTournament($tournament)) {
+    debug(3);
       return $tournament;
     }
     $tournament = tournament('current');
     if (isTournament($tournament)) {
+    debug(4);
       return $tournament;
     }
+    debug(5);
     return FALSE;
   }
 
