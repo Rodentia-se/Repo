@@ -247,7 +247,7 @@
       $type = ($type) ? $type : ((property_exists($this, 'order') && static::$order['type']) ? static::$order['type'] : 'string') ;
       $direction = ($direction == 'desc') ? 'desc' : ((property_exists($this, 'order') && static::$order['dir'] == 'desc') ? 'desc' : 'asc') ;
       $case = ($case) ? TRUE : ((property_exists($this, 'order') && static::$order['case']) ? TRUE : FALSE) ;
-      if (get_class($this) == 'tshirt') {
+      if (get_class($this) == 'tshirts') {
         debug($prop);
       }
       if (count($this) > 0) {
