@@ -29,7 +29,7 @@
       'tournamentEdition' => 'tournament',
       'color' => 'color'
     );
-
+    
     public static $children = array();
 
     public function getBuyers() {

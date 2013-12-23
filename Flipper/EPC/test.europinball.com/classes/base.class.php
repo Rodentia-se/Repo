@@ -11,6 +11,7 @@
     public static $select;
     public static $parents = array();
     public static $children = array();
+    public static $prefixes = array();
     public static $cols = array();
     public static $selfParent = FALSE;
     public static $validators = array();

@@ -40,24 +40,18 @@
       } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (isObj($data) && $data->id) {
-        debug(1);
         if (get_class($data) == static::$objClass) {
-        debug(2);
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;
         } else {
-        debug(3);
-        debug($search);
           if (isObj($prop) && $prop->id) {
-        debug(4);
             $props = array(
               ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
               ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($search)).'_id' => $prop->id
             );
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
           } else {
-        debug(5);
             $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
             $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
           }

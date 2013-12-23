@@ -14,11 +14,11 @@
         concat(tc.name, " ", tz.name) as shortName,
         o.number as number,
         o.person_id as person_id,
-        tc.id as color_id,
+        ts.color_id as color_id,
         tc.name as colorName,
-        tz.id as size_id,
+        ts.size_id as size_id,
         tz.name as size,
-        tt.id as tournamentTshirt_id,
+        o.tournamentTShirt_id as tournamentTshirt_id,
         tt.tournamentEdition_id as tournamentEdition_id
       from personTShirt o 
         left join tournamentTShirt tt on o.tournamentTShirt_id = tt.id
@@ -35,6 +35,12 @@
     );
 
     public static $children = array();
+
+    public static $prefixes = array(
+      'tournamentEdition_id' => 'tt',
+      'color_id' => 'ts',
+      'size_id' => 'ts'
+    )
 
   }
 
