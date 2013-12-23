@@ -10,7 +10,8 @@
 $person = person('login');
 $tournament = tournament('active');
 
-$tshirtDiv = $div->addDiv('tshirtDiv');
+$tabs = $div->addTabs();
+$tshirtDiv = $tabs->addDiv('tshirtDiv');
 $tshirts = tshirts($tournament);
 
 foreach($tshirts as $tshirt) {
@@ -25,7 +26,6 @@ foreach ($tshirtOrders as $tshirtOrder) {
   $tshirtDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
 }
 
-$tabs = $div->addTabs($tshirtDiv);
 
 
 
