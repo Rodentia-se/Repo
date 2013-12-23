@@ -163,7 +163,7 @@
           */
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
-          $tshitDiv->addContent('&nbsp;');
+          $tshirtDiv->addContent('&nbsp;');
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {
@@ -171,7 +171,7 @@
             $volDiv->indents = 3;
             $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
           $page->addContent($volDiv->getHtml());
-        }
+        } 
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
             $page->addH2('Payment options');
