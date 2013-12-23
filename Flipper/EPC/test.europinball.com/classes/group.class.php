@@ -53,7 +53,7 @@
         debug(4);
             $props = array(
               ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
-              ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($search)).'_id' => $prop->id'
+              ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($search)).'_id' => $prop->id
             );
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
           } else {
