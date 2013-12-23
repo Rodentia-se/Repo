@@ -77,7 +77,7 @@
           });
         });
       ');
-      return ($string) ? $script->getHmtl() : $script;
+      return ($string) ? $script->getHtml() : $script;
     }
 
   }
