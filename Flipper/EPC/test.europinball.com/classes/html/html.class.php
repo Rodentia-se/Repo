@@ -36,7 +36,7 @@
       $params['id'] = (is($id)) ? $id : $params['id'];
       $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
       if (!$params['id']) {
-        $params['id'] = static::newId();
+        $params['id'] = static::newId(NULL, ucfirst($this->element));
       }
       debug('hej');
       if (in_array($params['id'], html::$ids)) {
@@ -981,15 +981,9 @@
       $params = $this->getParams();
       $open .= (($params) ? ' ' : '').$params.$openEnd;
       $close = $closeStart.$closeEnd;
-      if ($this->headers) {
-        $html .= $this->getHeader();
-      }
-      if ($this->contents) {
-        $html .= $this->getContent();
-      } 
-      if ($this->footers) {
-        $html .= $this->getFooter();
-      }
+      $html .= $this->getHeader();
+      $html .= $this->getContent();
+      $html .= $this->getFooter();
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
 /*
