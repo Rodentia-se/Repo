@@ -10,7 +10,7 @@
     if ($volunteer->admin) {
       $tabs = new tabs(NULL, 'adminTabs');
         $paymentDiv = $tabs->addDiv('paymentDiv');
-          $paymentDiv->addH2($paymentDiv->title, NULL, 'entry-title');
+          $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $paymentDiv->title = 'Payments';
           $loading = $paymentDiv->addLoading();
           $persons = persons(tournament('active'));
@@ -107,7 +107,7 @@
         //}
         $waitingDiv = $tabs->addDiv('waitingDiv');
           $waitingDiv->title = 'Waiting list';
-          $waitingDiv->addH2($waitingDiv->title, NULL, 'entry-title');
+          $waitingDiv->addH2($waitingDiv->title, array('class' => 'entry-title'));
           $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
           $waitingButton->addTooltip('hej');
           $waitingButton->addClick('
@@ -124,35 +124,35 @@
         //}
         $gameDiv = $tabs->addDiv('gameDiv');
           $gameDiv->title = 'Games';
-          $gameDiv->addH2($gameDiv->title, NULL, 'entry-title');
+          $gameDiv->addH2($gameDiv->title, array('class' => 'entry-title'));
           $gameDiv->addParagraph('Coming soon...');
         $userDiv = $tabs->addDiv('userDiv');
           $userDiv->title = 'Users';
-          $userDiv->addH2($userDiv->title, NULL, 'entry-title');
+          $userDiv->addH2($userDiv->title, array('class' => 'entry-title'));
           $userDiv->addParagraph('Coming soon...');
         $scoresDiv = $tabs->addDiv('scoresDiv');
           $scoresDiv->title = 'Scores';
-          $scoresDiv->addH2($scoresDiv->title, NULL, 'entry-title');
+          $scoresDiv->addH2($scoresDiv->title, array('class' => 'entry-title'));
           $scoresDiv->addParagraph('Coming soon...');
         $qualGroupsDiv = $tabs->addDiv('qualGroupsDiv');
           $qualGroupsDiv->title = 'Groups';
-          $qualGroupsDiv->addH2($qualGroupsDiv->title, NULL, 'entry-title');
+          $qualGroupsDiv->addH2($qualGroupsDiv->title, array('class' => 'entry-title'));
           $qualGroupsDiv->addParagraph('Coming soon...');
         $teamDiv = $tabs->addDiv('teamDiv');
           $teamDiv->title = 'Teams';
-          $teamDiv->addH2($teamDiv->title, NULL, 'entry-title');
+          $teamDiv->addH2($teamDiv->title, array('class' => 'entry-title'));
           $teamDiv->addParagraph('Coming soon...');
         $volDiv = $tabs->addDiv('volDiv');
           $volDiv->title = 'Volunteers';
-          $volDiv->addH2($volDiv->title, NULL, 'entry-title');
+          $volDiv->addH2($volDiv->title, array('class' => 'entry-title'));
           $volDiv->addParagraph('Coming soon...');
         $tshirtDiv = $tabs->addDiv('tshirtDiv');
           $tshirtDiv->title = 'T-shirts';
-          $tshirtDiv->addH2($tshirtDiv->title, NULL, 'entry-title');
+          $tshirtDiv->addH2($tshirtDiv->title, array('class' => 'entry-title'));
           $tshirtDiv->addParagraph('Coming soon...');
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
-          $otherDiv->addH2($otherDiv->title, NULL, 'entry-title');
+          $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
           $otherDiv->addParagraph('Coming soon...');
       //}
       $page->addContent($tabs);

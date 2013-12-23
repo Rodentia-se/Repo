@@ -21,7 +21,7 @@
   }
 
   $orderDiv = $tabs->addDiv('tshirtOrders', NULL, array('title' => 'T-shirt orders'));
-  $orderDiv->addH2('T-shirt orders', NULL, 'entry-title');
+  $orderDiv->addH2('T-shirt orders', array('class' => 'entry-title'));
 
   $tshirtOrders = tshirtOrders($person, $tournament);
   foreach ($tshirtOrders as $tshirtOrder) {
