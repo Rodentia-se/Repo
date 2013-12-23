@@ -59,6 +59,7 @@
             var tab'.$this->id.'Index = 0;
           };
           tab'.$this->id.'Index = (parseInt(tab'.$this->id.'Index)) ? parseInt(tab'.$this->id.'Index) : 0;
+          alert(tab'.$this->id.'Index);
           $("#'.$this->id.'").tabs({
             active: tab'.$this->id.'Index,
             activate: function(event, ui) {
