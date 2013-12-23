@@ -5,9 +5,11 @@
   class html {
     
     protected $params = array();
+    protected $before = array();
     protected $headers = array();
     protected $contents = array();
     protected $footers = array();
+    protected $after = array();
     protected $classes = array();
     protected $css = array();
     protected $accessories = array();
@@ -340,7 +342,9 @@
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
-      if (!$this->selfClose && !$this->contentParam) {
+      if ($section == 'contents' && ($this->selfClose || $this->contentParam)) {
+        return NULL;
+      } else {
         if(is($index)) {
           $html .= ($string) ? static::contentToHtml($this->$section[$index], $this->settings['escape'], $this->settings['entities']) : $this->$section[$index];
         } else {
@@ -385,6 +389,18 @@
       return FALSE;
     }
 
+    public function addBefore($content = NULL, $replace = FALSE, $index = FALSE) {
+      return $this->add('before', $content, $replace, $index);
+    }
+
+    protected function getBefore($index = NULL, $string = TRUE) {
+      return $this->get('before', $index, $string);
+    }
+
+    public function delBefore($items = NULL) {
+      return $this->del('before', $items);
+    }
+
     public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
       return $this->add('headers', $content, $replace, $index);
     }
@@ -421,6 +437,18 @@
       return $this->del('footers', $items);
     }
       
+    public function addAfter($content = NULL, $replace = FALSE, $index = FALSE) {
+      return $this->add('after', $content, $replace, $index);
+    }
+
+    protected function getAfter($index = NULL, $string = TRUE) {
+      return $this->get('after', $index, $string);
+    }
+
+    public function delAfter($items = NULL) {
+      return $this->del('after', $items);
+    }
+
     public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
       if ($replace) {
         $this->delParams($replace);
@@ -767,6 +795,14 @@
       return $element;
     }
 
+    public function addCombobox($selector = NULL, $indents = NULL) {
+      $element = new select($name, $options, $selected, $label, $params);
+      $element->addCombobox();
+      $this->addContent($element);
+      $element->parent = $this;
+      return $element;
+    }
+    
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
       $this->addContent($element);
@@ -826,13 +862,8 @@
     public function addScriptCode($code = NULL, array $params = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $element = new scriptCode($code, $params, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
     
@@ -840,13 +871,8 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new jquery($selector, $tool, $jqtype, $contents, $props, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
 
@@ -854,13 +880,8 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new tooltip($selector, $contents, $new, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
 
@@ -868,13 +889,8 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new click($selector, $code, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
 
@@ -882,13 +898,8 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new change($selector, $code, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
 
@@ -896,21 +907,11 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new focus($selector, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-        if ($select) {
-          $script = $this->parent->addContent(new selectAll($selector, $indents));
-          $script->parent = $this->parent;
-        }
-        } else {
-          $this->addContent($element);
-          $element->parent = $this;
-        if ($select) {
-          $script = new selectAll($selector, $indents);
-          $this->addContent($script);
-          $script->parent = $this;
-        }
+      $this->addAfter($element);
+      $element->parent = $this;
+      if ($select) {
+        $script = $this->addAfter(new selectAll($selector, $indents));
+        $script->parent = $this;
       }
       return $element;
     }
@@ -919,41 +920,8 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new dialog($selector, $props, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
-      return $element;
-    }
-    
-    public function addCombobox($selector = NULL, $indents = NULL) {
-      $indents = (is($indents)) ? $indents : static::$indents;
-      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new combobox($selector, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
-      return $element;
-    }
-    
-    public function addSpinner($selector = NULL, $indents = NULL) {
-      $indents = (is($indents)) ? $indents : static::$indents;
-      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new spinner($selector, $props, $indents);
-      if ($this->selfClose) {
-        $this->parent->addContent($element);
-        $element->parent = $this->parent;
-      } else {
-        $this->addContent($element);
-        $element->parent = $this;
-      }
+      $this->addAfter($element);
+      $element->parent = $this;
       return $element;
     }
     
@@ -1011,6 +979,7 @@
           $i++;
         }
       }
+      $before = $this->getBefore();
       $openStart = $this->crlf.$indent.'<';
       if ($this->selfClose) {
         $closeEnd = ' />'.$this->crlf;
@@ -1028,6 +997,7 @@
       $html .= $this->getFooter();
       $html .= ($this->contentCrlf && substr($close, 0, strlen($this->contentCrlf)) != $this->contentCrlf && substr(trim($html, static::$indenter), strlen($this->contentCrlf) * -1) != $this->contentCrlf) ? $this->contentCrlf : '';
       $open .= ($this->contentCrlf && !$this->selfClose && substr($open, strlen($this->contentCrlf) * -1) != $this->contentCrlf && substr(trim($html, static::$indenter), 0, strlen($this->contentCrlf)) != $this->contentCrlf) ? $this->contentCrlf.$indent.static::$indenter : '';
+      $after = $this->getAfter();
 /*
       if ($this->settings['jsReq']) {
         $reqs = (is_array($this->settings['jsReq'])) ? $this->settings['jsReq'] : array($this->settings['jsReq']);
@@ -1064,7 +1034,7 @@
         }
       }
       */
-      return $reqHtml.$open.$html.$close;
+      return $before.$open.$html.$close.$after;
     }
 
     public function __toString() {
