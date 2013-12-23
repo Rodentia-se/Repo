@@ -697,6 +697,20 @@
       return $element;
     }
 
+    public function addH5($contents = NULL, array $params = NULL) {
+      $element = new h5($contents, $params);
+      $this->addContent($element);
+      $element->parent = $this;
+      return $element;
+    }
+
+    public function addH6($contents = NULL, array $params = NULL) {
+      $element = new h6($contents, $params);
+      $this->addContent($element);
+      $element->parent = $this;
+      return $element;
+    }
+
     public function addBr($id = NULL, $class = NULL, array $params = NULL) {
       $element = new br($id, $class, $params);
       $this->addContent($element);
