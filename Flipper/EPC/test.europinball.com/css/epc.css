@@ -119,6 +119,13 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
+input.custom-combobox-input {
+  margin: 0;
+  padding: 4px;
+  height: 18px;
+  width: 174px;
+}
+
 input.short {
   width: 86px;
 }
