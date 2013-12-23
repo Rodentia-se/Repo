@@ -48,6 +48,7 @@
           $objs[] = $data;
         } else {
         debug(3);
+        debug($search);
           if (isObj($search) && $search->id) {
         debug(4);
             $props = array(
