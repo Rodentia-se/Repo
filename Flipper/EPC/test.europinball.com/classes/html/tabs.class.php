@@ -54,15 +54,15 @@
       $script = new scriptCode('
         $(document).ready(function() {
           try {
-            var tabIndex = dataStore.getItem("'.$this->id.'Index");
+            var tabIndex = dataStore.getItem("tab'.$this->id.'Index");
           } catch(e) {
-            var '.$this->id.'Index = 0;
+            var tab'.$this->id.'Index = 0;
           };
-          tabIndex = (parseInt('.$this->id.'Index)) ? parseInt('.$this->id.'Index) : 0;
+          tab'.$this->id.'Index = (parseInt(tab'.$this->id.'Index)) ? parseInt(tab'.$this->id.'Index) : 0;
           $("#'.$this->id.'").tabs({
-            active: '.$this->id.'Index,
+            active: tab'.$this->id.'Index,
             activate: function(event, ui) {
-              dataStore.setItem("'.$this->id.'Index", ui.newTab.parent().children().index(ui.newTab));
+              dataStore.setItem("tab'.$this->id.'Index", ui.newTab.parent().children().index(ui.newTab));
               var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
               if (firstField) {
                 firstField.focus();
