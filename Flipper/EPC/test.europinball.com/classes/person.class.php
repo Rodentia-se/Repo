@@ -206,6 +206,7 @@
           $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
           $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, 'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
 //          $tshirtDiv->addJquery('html', 'code', array('parseInt($("#'.$costSpan->id.'").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE), NULL, '#'.$costSpan->id);
+debug($tournament);
           $tshirts = tshirts($tournament);
           foreach ($tshirts as $tshirt) {
             $tshirtDivs[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
