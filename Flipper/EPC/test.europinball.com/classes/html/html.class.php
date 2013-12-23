@@ -916,8 +916,15 @@
     }
     
     public function addLoading(array $props = NULL, $appendTo = NULL, $indents = 0) {
-      $element = new div('loading'.rand(0, 10000), 'modal');
+      $element = new div(html::newId('loading', 'modal');
       $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
+      $this->addContent($element);
+      $element->parent = $this;
+      return $element;
+    }
+    
+    public function addTabs($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new tabs($contents, $id, $class, $params);
       $this->addContent($element);
       $element->parent = $this;
       return $element;
