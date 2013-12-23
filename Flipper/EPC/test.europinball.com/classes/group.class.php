@@ -3,11 +3,14 @@
   abstract class group extends ArrayObject {
     
     public static $objClass = 'group';
+    public static $order = array();
+/*
     public static $order = array(
       'prop' => 'name',
       'type' => 'string',
       'dir' => 'asc'
     );
+*/
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       parent::__construct();
