@@ -163,8 +163,9 @@
           */
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
-          $clearSpan = $tshirtDiv->addSpan('&nbsp;');
-          $clearSpan->escape = FALSE;
+          $clearDiv = $tshirtDiv->addDiv();
+          $clearDiv->addContent('&nbsp;');
+          $clearDiv->escape = FALSE;
           $page->addContent($tshirtDiv);
         }
         if (in_array('volunteer', config::$editSections)) {
