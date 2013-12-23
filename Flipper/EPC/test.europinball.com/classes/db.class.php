@@ -111,7 +111,7 @@
     protected function getObjectsByPropsHelper($class, $props, $cond = 'and') {
       foreach ($props as $key => $value) {
         $prefix = (property_exists($class, 'prefixes')) ? (($class::$prefixes[$key]) ? $class::$prefixes[$key] : 'o') : 'o';
-        $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
+        $key = (preg_match('/\./', $key)) ? $key : $prefix.'.'.$key; 
         if ($where) {
           $query .= ' '.$cond.' '.$key.(($value === NULL) ? ' is ' : ' = ').self::getAlias($key);
           $values[self::getAlias($key)] = $value;
