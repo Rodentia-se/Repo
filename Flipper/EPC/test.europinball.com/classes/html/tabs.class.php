@@ -64,6 +64,7 @@
             active: tab'.$this->id.'Index,
             activate: function(event, ui) {
               dataStore.setItem("tab'.$this->id.'Index", ui.newTab.parent().children().index(ui.newTab));
+              alert(dataStore.getItem("tab'.$this->id.'Index"));
               var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
               if (firstField) {
                 firstField.focus();
