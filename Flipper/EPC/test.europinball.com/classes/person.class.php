@@ -206,7 +206,7 @@
           if ($title) {
             $div->addH2('T-shirt orders', array('class' => 'entry-title'));
           }
-          $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'left');
+          $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
           $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
           $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
           $tshirts = tshirts($tournament);
@@ -215,7 +215,7 @@
             $tshirtOrder = tshirtOrder($this, $tshirt);
             $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
-          $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'right'));
+          $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $div;
         break;
         case 'profile':

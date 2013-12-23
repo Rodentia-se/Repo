@@ -182,6 +182,16 @@ td.icon img {
   float: right;
 }
 
+.leftHalf {
+  float: left;
+  width: 50%;
+}
+
+.rightHalf {
+  float: right;
+  width: 50%;
+}
+
 .nowrap {
   white-space: nowrap;
 }
