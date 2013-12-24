@@ -103,7 +103,7 @@ label.short {
 }
 
 label.veryShort {
-  width: 36px;
+  width: 50px;
 }
 
 input[type=text], input[type=password] { 
@@ -135,8 +135,8 @@ input.short {
   width: 86px;
 }
 
-input.short {
-  width: 86px;
+input.veryShort {
+  width: 36px;
 }
 
 div.noInput {
