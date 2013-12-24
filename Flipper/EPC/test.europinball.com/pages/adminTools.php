@@ -21,9 +21,6 @@
             .done(function(data) {
               $(el).tooltipster("update", data.reason).tooltipster("show");
             })
-            .fail(function(jqHXR,status,error) {
-              showMsg("Fail: S: " + status + " E: " + error);
-            });
           ');
           $playerDiv->addParagraph('More coming soon...');
         //}
@@ -71,9 +68,6 @@
                 } else {
                   showMsg(data.reason);
                 }
-              })
-              .fail(function(jqHXR,status,error) {
-                showMsg("Fail: S: " + status + " E: " + error);
               });
             ');
           //}
@@ -92,9 +86,6 @@
               } else {
                 showMsg(data.reason);
               }
-            })
-            .fail(function(jqHXR,status,error) {
-              showMsg("Fail: S: " + status + " E: " + error);
             });
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "costs"})
             .done(function(data) {
@@ -107,9 +98,6 @@
               } else {
                 showMsg(data.reason);
               }
-            })
-            .fail(function(jqHXR,status,error) {
-              showMsg("Fail: S: " + status + " E: " + error);
             });
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "toPay"})
             .done(function(data) {
@@ -122,9 +110,6 @@
               } else {
                 showMsg(data.reason);
               }
-            })
-            .fail(function(jqHXR,status,error) {
-              showMsg("Fail: S: " + status + " E: " + error);
             });
           ');
         //}

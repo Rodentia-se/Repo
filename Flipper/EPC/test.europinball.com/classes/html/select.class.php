@@ -61,7 +61,7 @@
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new combobox($selector, $indents);
       $this->settings['combobox'] = TRUE;
-      $this->addContent($element);
+      $this->addAfter($element);
       return $element;
     }
 

@@ -116,6 +116,11 @@
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
       ');
+      $footer .= self::getScript('
+        $(document).ajaxError(function(event, jqHXR, settings, error) {
+          showMsg("Fail: " + error + " trying " + settings.url);
+        });
+      ');
       $footer .= '
           </body>
         </html>

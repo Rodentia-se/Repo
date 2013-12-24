@@ -5,11 +5,11 @@
   class html {
     
     protected $params = array();
-    protected $before = array();
+    protected $befores = array();
     protected $headers = array();
     protected $contents = array();
     protected $footers = array();
-    protected $after = array();
+    protected $afters = array();
     protected $classes = array();
     protected $css = array();
     protected $accessories = array();
@@ -45,7 +45,7 @@
       } else {
         html::$ids[] = $params['id'];
       }
-      $params['title'] = (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id']));
+      $params['data-title'] = (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id']));
       $class = mergeToArray($class, $params['class']);
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
@@ -75,10 +75,29 @@
         case 'inlineBlock':
           return ($this->settings['display'] == $prop) ? TRUE : FALSE;
         break;
+        case 'before':
+        case 'befores':
+          return $this->getBefore();
+        break;
+        case 'header':
+        case 'headers':
+          return $this->getHeader();
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
           return $this->getContent();
+        break;
+        case 'footer':
+        case 'footers':
+          return $this->getFooter();
+        break;
+        case 'after':
+        case 'afters':
+          return $this->getAfter();
+        break;
+        case 'title': 
+          return ($this->params['title']) ? $this->params['title'] : (($this->params['data-title']) ? $this->params['data-title'] : NULL);
         break;
         case 'class': 
           return $this->getClasses(NULL, TRUE);
@@ -142,10 +161,30 @@
         case 'hidden':
           $this->hide($value);
         break;
+        case 'before':
+        case 'befores':
+          return $this->addBefore($value, TRUE);
+        break;
+        case 'header':
+        case 'headers':
+          return $this->addHeader($value, TRUE);
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
           $this->addContent($value, TRUE);
+        break;
+        case 'footer':
+        case 'footers':
+          return $this->addFooter($value, TRUE);
+        break;
+        case 'after':
+        case 'afters':
+          return $this->addAfter($value, TRUE);
+        break;
+        case 'title': 
+          $this->params['title'] = $value;
+          $this->params['data-title'] = $value;
         break;
         case 'class': 
         case 'classes': 
@@ -188,10 +227,29 @@
         case 'inlineBlock':
           return ($this->settings['display'] == $prop) ? TRUE : FALSE;
         break;
+        case 'before':
+        case 'befores':
+          return (count($this->befores) > 0) ? TRUE : FALSE;
+        break;
+        case 'header':
+        case 'headers':
+          return (count($this->headers) > 0) ? TRUE : FALSE;
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
           return (count($this->contents) > 0) ? TRUE : FALSE;
+        break;
+        case 'footer':
+        case 'footers':
+          return (count($this->footers) > 0) ? TRUE : FALSE;
+        break;
+        case 'after':
+        case 'afters':
+          return (count($this->afters) > 0) ? TRUE : FALSE;
+        break;
+        case 'title': 
+          return ($this->params['title'] || $this->params['data-title']) ? TRUE : FALSE;
         break;
         case 'class': 
         case 'classes': 
@@ -235,10 +293,30 @@
         case 'hidden':
           $this->hide(FALSE);
         break;
+        case 'before':
+        case 'befores':
+          $this->addBefore(NULL, TRUE);
+        break;
+        case 'header':
+        case 'headers':
+          $this->addHeader(NULL, TRUE);
+        break;
         case 'content':
         case 'contents':
         case $this->contentParam:
           $this->addContent(NULL, TRUE);
+        break;
+        case 'footer':
+        case 'footers':
+          $this->addFooter(NULL, TRUE);
+        break;
+        case 'after':
+        case 'afters':
+          $this->addAfter(NULL, TRUE);
+        break;
+        case 'title': 
+          unset($this->params['title']);
+          unset($this->params['data-title']);
         break;
         case 'class': 
         case 'classes': 
@@ -390,15 +468,15 @@
     }
 
     public function addBefore($content = NULL, $replace = FALSE, $index = FALSE) {
-      return $this->add('before', $content, $replace, $index);
+      return $this->add('befores', $content, $replace, $index);
     }
 
     protected function getBefore($index = NULL, $string = TRUE) {
-      return $this->get('before', $index, $string);
+      return $this->get('befores', $index, $string);
     }
 
     public function delBefore($items = NULL) {
-      return $this->del('before', $items);
+      return $this->del('befores', $items);
     }
 
     public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
@@ -438,15 +516,15 @@
     }
       
     public function addAfter($content = NULL, $replace = FALSE, $index = FALSE) {
-      return $this->add('after', $content, $replace, $index);
+      return $this->add('afters', $content, $replace, $index);
     }
 
     protected function getAfter($index = NULL, $string = TRUE) {
-      return $this->get('after', $index, $string);
+      return $this->get('afters', $index, $string);
     }
 
     public function delAfter($items = NULL) {
-      return $this->del('after', $items);
+      return $this->del('afters', $items);
     }
 
     public function addParams($props = NULL, $value = NULL, $replace = FALSE) {
