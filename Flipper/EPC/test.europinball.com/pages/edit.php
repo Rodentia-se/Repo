@@ -305,59 +305,56 @@
                 }
               });
             ');
-          $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
+            $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
           $page->closeDiv();
         }
-          $page->submit();
-          die('HUFF');
       $page->closeDiv();
-    $page->addScript('
-      try {
-        var tabIndex = dataStore.getItem("tabIndex");
-      } catch(e) {
-        var tabIndex = 0;
-      };
-      tabIndex = (parseInt(tabIndex)) ? parseInt(tabIndex) : 0;
-      $("#tabs").tabs({
-        active: tabIndex,
-        activate: function(event, ui) {
-          dataStore.setItem("tabIndex", ui.newTab.parent().children().index(ui.newTab));
-          var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
-          firstField.focus();
-        },
-        create: function(event, ui) {
-          var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
-          firstField.focus();
-        }
-      });
-      $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
-    ');
-    die(1);
-    $page->addInput(config::$defaultCurrency, 'curCode', 'curCode', 'hidden', 'curCodes');
-    foreach(config::$acceptedCurrencies as $currency) {
-      $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-      $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
-    }
-    $page->addScript('
-      try {
-        var curVal = dataStore.getItem("curVal");
-      } catch(e) {
-        var curVal = 0;
-      };
-      curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
-      $(".currency").val(curVal)
-      .combobox()
-      .change(function(){
-        $(".currency").val($(this).val());
-        dataStore.setItem("curVal", $(this).val());
-        $(".curCodes").val($(this).children(":selected").text());
-        $(".curCodeSpans").html($(this).children(":selected").text());
-        $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
-        $(".cost").change();
-      })
-      .change();
-    ');
-  } else {
+      $page->addScript('
+        try {
+          var tabIndex = dataStore.getItem("tabIndex");
+        } catch(e) {
+          var tabIndex = 0;
+        };
+        tabIndex = (parseInt(tabIndex)) ? parseInt(tabIndex) : 0;
+        $("#tabs").tabs({
+          active: tabIndex,
+          activate: function(event, ui) {
+            dataStore.setItem("tabIndex", ui.newTab.parent().children().index(ui.newTab));
+            var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
+            firstField.focus();
+          },
+          create: function(event, ui) {
+            var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
+            firstField.focus();
+          }
+        });
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
+      ');
+      $page->addInput(config::$defaultCurrency, 'curCode', 'curCode', 'hidden', 'curCodes');
+      foreach(config::$acceptedCurrencies as $currency) {
+        $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
+        $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
+      }
+      $page->addScript('
+        try {
+          var curVal = dataStore.getItem("curVal");
+        } catch(e) {
+          var curVal = 0;
+        };
+        curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
+        $(".currency").val(curVal)
+        .combobox()
+        .change(function(){
+          $(".currency").val($(this).val());
+          dataStore.setItem("curVal", $(this).val());
+          $(".curCodes").val($(this).children(":selected").text());
+          $(".curCodeSpans").html($(this).children(":selected").text());
+          $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
+          $(".cost").change();
+        })
+        .change();
+      ');
+    } else {
       $page->startDiv();
         $page->addParagraph('Could not find you in the database? Please <a href="'.config::$baseHref.'/contact-us">contact</a> an administrator.');
       $page->closeDiv();
