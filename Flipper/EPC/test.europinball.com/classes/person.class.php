@@ -213,7 +213,8 @@
           foreach ($tshirts as $tshirt) {
             $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
-            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
+            $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name);
+//            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
           }
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $div;
