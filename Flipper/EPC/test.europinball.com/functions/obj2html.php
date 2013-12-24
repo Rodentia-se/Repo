@@ -5,7 +5,8 @@
     $defaultCurrency = ($defaultCurrency) ? $defaultCurrency : config::$defaultCurrency;
     $currencyProps = config::$currencies;
     $prefix = ($prefix) ? $prefix : html::newId();
-    $select = new combobox($prefix.'Currency', $currencies, $defaultCurrency, 'Currency');
+    $select = new select($prefix.'Currency', $currencies, $defaultCurrency, 'Currency');
+    $select->addCombobox();
     return $select;
   }
 
