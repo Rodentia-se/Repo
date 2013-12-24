@@ -213,11 +213,13 @@
           foreach ($tshirts as $tshirt) {
             $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
-            $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner'));
+            
+            $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner'));
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
 //            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
-            $tshirtDivs[$tshirt->id]->addChange('
-              alert($(this).spinner("value"));
+            $spinner[$tshirt->id]->addChange('
+              alert("Value: ".$(this).spinner("value"));
+              alert("Val: ".$(this).val());
             ');
           }
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
