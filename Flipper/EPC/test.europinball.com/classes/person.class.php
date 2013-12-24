@@ -214,8 +214,8 @@
             $curDiv = $orderDiv->addDiv('tshirtCurrencyDiv');
               $curDiv->addSelect('tshirtCurrency', config::$acceptedCurrencies, config::$defaultCurrency, 'Currency');
             //} 
-    die("HUFF");
             $tshirts = tshirts($tournament);
+    die("HUFF");
             foreach ($tshirts as $tshirt) {
               $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
                 $tshirtOrder = tshirtOrder($this, $tshirt);
