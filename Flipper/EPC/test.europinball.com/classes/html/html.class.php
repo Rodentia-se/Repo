@@ -70,6 +70,7 @@
     public function __get($prop) {
       if ($prop == $this->contentParam) {
         $prop == 'contents';
+        debug('huff');
       }
       switch ($prop) {
         case 'block':
