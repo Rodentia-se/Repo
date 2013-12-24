@@ -239,7 +239,6 @@
                   ');
                 //}
               //}
-    die("HUFF");
             }
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
