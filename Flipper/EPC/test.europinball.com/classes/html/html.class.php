@@ -68,12 +68,6 @@
     }
     
     public function __get($prop) {
-      if ($prop == $this->contentParam) {
-        $prop == 'contents';
-        debug('huff');
-        debug($this->getParams('value'));
-        debug($this->getContent(), "content");
-      }
       switch ($prop) {
         case 'block':
         case 'inline':
@@ -90,8 +84,10 @@
         break;
         case 'content':
         case 'contents':
-        case $this->contentParam:
           return $this->getContent();
+        break;
+        case $this->contentParam:
+          return $this->getParams($prop);
         break;
         case 'footer':
         case 'footers':
@@ -129,9 +125,6 @@
     }
      
     public function __set($prop, $value) {
-      if ($prop == $this->contentParam) {
-        $prop == 'contents';
-      }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -229,9 +222,6 @@
     }
     
     public function __isset($prop) {
-      if ($prop == $this->contentParam) {
-        $prop == 'contents';
-      }
       switch ($prop) { 
         case 'block':
         case 'inline':
@@ -285,9 +275,6 @@
     }
     
     public function __unset($prop) {
-      if ($prop == $this->contentParam) {
-        $prop == 'contents';
-      }
       switch ($prop) {
         case 'block':
           $this->settings['display'] = 'inline';
@@ -569,24 +556,28 @@
               $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
             }
             if ($this->style && $this->style != " ") {
-              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : array($param = trim($this->style.' '.$this->getCss()));
+              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : trim($this->style.' '.$this->getCss());
             } else {
               return NULL;
             }
           } else if ($param == 'class') {
-            return ($string) ? 'class="'.$this->getClasses().'"' : array($this->getClasses(FALSE));
+            return ($string) ? 'class="'.$this->getClasses().'"' : $this->getClasses();
           } else if ($param == 'selected' || $param == 'checked' || $param == 'disabled') {
-            return ($this->params[$param]) ? $param : FALSE;
+            return ($this->params[$param]) ? (($string) ? $param : TRUE) : FALSE;
           } else if ($param == 'id') {
-            return $param.'="'.preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]).'"';
+            return ($string) ? $param.'="'.preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]).'"' : preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]);
           } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
-            return $param.'="'.$this->$param.'"';
+            return ($string) ? $param.'="'.$this->$param.'"' : $this->$param;
           } else if ($this->params[$param] === FALSE) {
-            return $param.'="0"';
+            return ($string) ? $param.'="0"' : FALSE;
           } else if ($this->params[$param] === TRUE) {
-            return $param.'="1"';
+            return ($string) ? $param.'="1"' : TRUE;
           } else {
-            return FALSE;
+            if ($this->contentParam) {
+              return ($string) ? $this->contentParam.'="'.$this->contents[0].'"' : $this->contents[0];
+            } else {
+              return FALSE;
+            }
           }
         } else {
           return FALSE;
