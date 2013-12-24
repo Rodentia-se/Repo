@@ -273,6 +273,9 @@
     }
     
     public function __unset($prop) {
+      if ($prop == $this->contentParam) {
+        $prop == 'contents';
+      }
       switch ($prop) {
         case 'block':
           $this->settings['display'] = 'inline';
