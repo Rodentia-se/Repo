@@ -32,7 +32,7 @@
                 }
               } else if ($number == 0) {
                 $tshirtOrder->delete();
-                $tshirtOrder = tshirtOrder($tshirtOrder->id);
+                $tshirtOrder = tshirtOrder($tshirtOrder_id);
                 if (!$tshirtOrder) {
                   $json = success('Removed T-shirt order ID '.$tshirtOrder_id);
                 } else {
