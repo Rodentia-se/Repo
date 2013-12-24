@@ -4,8 +4,7 @@
     
     public function __construct($selector = NULL, $indents = 0) {
       $props = array(
-        'stop' => '
-          function(event, ui) {
+        'stop' => 'function(event, ui) {
             $("'.$selector.'").change();
           });'
       );
