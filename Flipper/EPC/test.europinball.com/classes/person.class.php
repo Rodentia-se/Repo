@@ -239,6 +239,7 @@
                     })
                   ');
                 //}
+                debug($spinner[$tshirt->id]);
                 $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->params['data-eachcost']);
               //}
             }
