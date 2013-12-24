@@ -221,7 +221,8 @@
                 $spinnerParams = array(
                   'class' => 'tshirtSpinner enterChange',
                   'data-tshirt_id' => $tshirt->id,
-                  'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0)
+                  'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0),
+                  'data-eachcost' => config::$tshirtCost
                 );
                 $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
                   $spinner[$tshirt->id]->addTooltip('');
@@ -238,6 +239,7 @@
                     })
                   ');
                 //}
+                $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->params['data-eachcost']);
               //}
             }
           //}
