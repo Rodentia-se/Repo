@@ -148,7 +148,8 @@
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
-          $clearDiv = $tshirtDiv->addDiv('clearer');
+          $tshirtDiv->addDiv(NULL, 'clearer');
+          debug($tshirtDiv->getHtml());
           $page->addContent($tshirtDiv->getHtml());
     die("HUFF");
         }

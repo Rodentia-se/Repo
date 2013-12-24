@@ -73,7 +73,7 @@
 
     public function getFooter() {
       $person = person('login');
-      $footer = self::getDivStart('clearer');
+      $footer = self::getDivStart(NULL, 'clearer');
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
         if ($this->loggedin()) {
