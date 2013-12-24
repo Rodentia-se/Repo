@@ -2,6 +2,7 @@
 
   require_once('classes.php');
   require_once('general.php');
+  require_once('obj2html.php');
   
   config::$login = new auth();
 
