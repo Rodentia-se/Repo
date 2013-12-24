@@ -215,7 +215,7 @@
             $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
             
-            $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner'));
+            $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner enterChange'));
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
 //            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
 //    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {

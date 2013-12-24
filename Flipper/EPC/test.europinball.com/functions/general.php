@@ -22,6 +22,14 @@
     return ($string || $string === 0 || $string === "0") ? TRUE : FALSE;
   }
   
+  function today() {
+    return now(FALSE);
+  }
+
+  function now($time = TRUE) {
+    return ($time) ? date('Y-m-d H:i:s') : date('Y-m-d');
+  }
+  
   function mergeToArray($obj1 = NULL, $obj2 = NULL, $delimiter = ' ') {
     $obj1 = (is($obj1)) ? $obj1 : '';
     $obj2 = (is($obj2)) ? $obj2 : '';

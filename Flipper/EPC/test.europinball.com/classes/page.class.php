@@ -105,6 +105,11 @@
             $("#" + this.form.id.replace("Form", "Button")).click();
           }
         });
+        $(".enterChange").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            $(this).change();
+          }
+        });
       ');
       $footer .= self::getScript('
         $("#mainContent").tooltipster({

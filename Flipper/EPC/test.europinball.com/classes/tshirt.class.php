@@ -14,7 +14,7 @@
         o.name as shortName,
         concat(tc.name, tz.id) as sortName,
         tc.id as color_id,
-        tc.name as color,
+        tc.name as colorName,
         tz.id as size_id,
         tz.name as size,
         ts.id as tshirt_id,

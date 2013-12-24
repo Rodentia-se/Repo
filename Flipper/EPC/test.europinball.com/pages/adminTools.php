@@ -13,7 +13,7 @@
           $playerDiv->title = 'Players';
           $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
           $waitingButton = $playerDiv->addButton('Recalculate waiting list');
-          $waitingButton->addTooltip('hej');
+          $waitingButton->addTooltip('');
           $waitingButton->addClick('
             var el = this;
             $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");

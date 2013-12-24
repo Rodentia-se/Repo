@@ -42,6 +42,10 @@
       'size_id' => 'ts'
     ); 
 
+    public function setNumber($number) {
+      return $this->setProp('number', $number);
+    }
+
   }
 
 ?>

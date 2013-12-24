@@ -120,18 +120,6 @@
       }
     }
     
-    public function save($propagate = FALSE) {
-      if ($this->id) {
-        $return = $this->update();
-      } else {
-        $return = $this->add();
-      }
-      if ($propagate) {
-        // Propagate
-      }
-      return $return;
-    }
-    
     public function setProp($prop, $value = NULL) {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->getColNames();
@@ -164,6 +152,7 @@
 
     protected function update() {
       if ($this->id) {
+        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
         $cols = $this->getColNames();
         $query = 'update '.$table.' set ';
         $array = $this->getQueryArray($cols, ', ');
@@ -180,6 +169,18 @@
       $array = $this->getQueryArray($cols, ', ', FALSE);
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
+    }
+    
+    public function save($propagate = FALSE) {
+      if ($this->id) {
+        $return = $this->update();
+      } else {
+        $return = $this->add();
+      }
+      if ($propagate) {
+        // Propagate
+      }
+      return $return;
     }
     
     protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = TRUE) {
