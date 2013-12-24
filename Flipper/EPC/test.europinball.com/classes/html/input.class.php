@@ -141,8 +141,7 @@
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new spinner($selector, $indents);
       $this->settings['spinner'] = TRUE;
-      $this->parent->addAfter($element);
-      $element->parent = $this->parent;
+      $this->addAfter($element);
       return $element;
     }
     
