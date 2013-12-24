@@ -9,7 +9,7 @@
             $("'.$selector.'").change();
           });'
       );
-      parent::__construct($selector, 'spinner', 'object', NULL, NULL, $indents);
+      parent::__construct($selector, 'spinner', 'object', NULL, $props, $indents);
     }
 //    jqueryui public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
