@@ -508,7 +508,7 @@
       return $this->add('contents', $content, $replace, $index);
     }
     
-    protected function getContent($index = NULL, $string = TRUE) {
+    public function getContent($index = NULL, $string = TRUE) {
       return $this->get('contents', $index, $string);
     }
     
