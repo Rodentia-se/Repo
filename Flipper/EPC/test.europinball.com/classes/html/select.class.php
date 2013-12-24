@@ -73,7 +73,7 @@
     }
 
     public function addOptions($options = NULL, $selected = NULL, $replace = FALSE, $index = NULL) {
-      $this->debug("OPT", "OPT", NULL, 10) {
+      $this->debug("OPT", "OPT", NULL, 10);
       if ($replace) {
         $replaced = $this->delOptions($replace);
       }
