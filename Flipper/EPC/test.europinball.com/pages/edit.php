@@ -342,10 +342,10 @@
           var curVal = 0;
         };
         curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
-        $(".currency").val(curVal)
+        $("#currency").val(curVal)
         .combobox()
         .change(function(){
-          $(".currency").val($(this).val());
+//          $(".currency").val($(this).val());
           dataStore.setItem("curVal", $(this).val());
           $(".curCodes").val($(this).children(":selected").text());
           $(".curCodeSpans").html($(this).children(":selected").text());
