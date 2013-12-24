@@ -145,6 +145,7 @@
           $page->startDiv('qualGroup');
           $page->closeDiv();
         }
+    die(1);
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
@@ -157,8 +158,6 @@
             $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
           $page->addContent($volDiv->getHtml());
         } 
-            die(1);
-
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
             $page->addH2('Payment options');
