@@ -162,10 +162,6 @@
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
               $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', NULL, 'Currency', config::$defaultCurrency);
-              foreach(config::$acceptedCurrencies as $currency) {
-                $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-                $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
-              }
             $page->closeDiv();
             $page->startDiv('itemsDiv');
               $divisions = divisions('active');
@@ -217,9 +213,9 @@
                 $(".cost").change(function() {
                   var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
                   var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-                  var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
+                  var rate = $("#" + $("#curCode").val() + "Rate").val();
                   var cost = num * each * rate;
-                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+                  var format = $("#" + $("#curCode").val() + "Format").val();
                   $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
                   var costs = 0;
                   var payMsg = $("#payment_person_name").val() + " (ID: " + $("#payment_person_id").val() + ") is paying for ";
@@ -313,28 +309,33 @@
           $page->closeDiv();
         }
       $page->closeDiv();
-      $page->addScript('
-        try {
-          var tabIndex = dataStore.getItem("tabIndex");
-        } catch(e) {
-          var tabIndex = 0;
-        };
-        tabIndex = (parseInt(tabIndex)) ? parseInt(tabIndex) : 0;
-        $("#tabs").tabs({
-          active: tabIndex,
-          activate: function(event, ui) {
-            dataStore.setItem("tabIndex", ui.newTab.parent().children().index(ui.newTab));
-            var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
-            firstField.focus();
-          },
-          create: function(event, ui) {
-            var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
-            firstField.focus();
-          }
-        });
-        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
-      ');
-      $page->addScript('
+    $page->addScript('
+      try {
+        var tabIndex = dataStore.getItem("tabIndex");
+      } catch(e) {
+        var tabIndex = 0;
+      };
+      tabIndex = (parseInt(tabIndex)) ? parseInt(tabIndex) : 0;
+      $("#tabs").tabs({
+        active: tabIndex,
+        activate: function(event, ui) {
+          dataStore.setItem("tabIndex", ui.newTab.parent().children().index(ui.newTab));
+          var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
+          firstField.focus();
+        },
+        create: function(event, ui) {
+          var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
+          firstField.focus();
+        }
+      });
+      $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
+    ');
+    $page->addInput(config::$defaultCurrency, 'curCode', 'curCode', 'hidden', 'curCodes');
+    foreach(config::$acceptedCurrencies as $currency) {
+      $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
+      $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
+    }
+    $page->addScript('
       try {
         var curVal = dataStore.getItem("curVal");
       } catch(e) {
