@@ -207,6 +207,7 @@
             $div->addH2('T-shirt orders', array('class' => 'entry-title'));
           }
           $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
+          $tshirtPerson = $orderDiv->addHidden('tshirtPerson_id', $this->id);
           $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
           $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
           $tshirts = tshirts($tournament);
@@ -217,9 +218,16 @@
             $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner'));
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
 //            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
+//    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
+            $spinner[$tshirt->id]->addTooltip('');
             $spinner[$tshirt->id]->addChange('
-              alert("Value: " + $(this).spinner("value"));
-              alert("Val: " + $(this).val());
+              var el = this;
+              var ids = el.id.split("_");
+              $(el).tooltipster("update", "Updating order...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: ids[ids.length - 2], tshirtOrder_id: ids[ids.length - 1], person_id: $("#'.$tshirtPerson->id.'").val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+              })
             ');
           }
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
