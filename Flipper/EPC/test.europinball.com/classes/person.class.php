@@ -215,7 +215,6 @@
               $curDiv->addSelect('tshirtCurrency', config::$acceptedCurrencies, config::$defaultCurrency, 'Currency');
             //} 
             $tshirts = tshirts($tournament);
-    die("HUFF");
             foreach ($tshirts as $tshirt) {
               $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
                 $tshirtOrder = tshirtOrder($this, $tshirt);
@@ -240,6 +239,7 @@
                   ');
                 //}
               //}
+    die("HUFF");
             }
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
