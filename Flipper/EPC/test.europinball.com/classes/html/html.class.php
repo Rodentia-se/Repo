@@ -71,7 +71,7 @@
       if ($prop == $this->contentParam) {
         $prop == 'contents';
         debug('huff');
-        debug($this->params['value']);
+        debug($this->getParams('value'));
         debug($this->getContent(), "content");
       }
       switch ($prop) {
