@@ -146,21 +146,6 @@
           $page->closeDiv();
         }
         if (in_array('t-shirts', config::$editSections)) {
-/*
-          $tshirtDiv = new div('tshirts');
-            $tshirtDiv->indents = 3;
-              $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
-            $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
-            $paragraph = $tshirtDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
-            $tshirts = tshirts($tournament);
-            foreach($tshirts as $tshirt) {
-              $tshirtsDiv[$tshirt->id] = $tshirtDiv->addDiv('tshirtsDiv_'.$tshirt->id);
-              $select = $tshirtsDiv[$tshirt->id]->addSelect($tshirt->name, 10);
-            }
-            $tshirtDiv->addContent($jquery);
-            $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
-          $page->addContent($tshirtDiv->getHtml());
-          */
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $clearDiv = $tshirtDiv->addDiv('clearer');
@@ -182,24 +167,6 @@
                 $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
               }
             $page->closeDiv();
-            $page->addScript('
-              try {
-                var curVal = dataStore.getItem("curVal");
-              } catch(e) {
-                var curVal = 0;
-              };
-              curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
-              $("#currency").val(curVal)
-              .combobox()
-              .change(function(){
-                dataStore.setItem("curVal", $(this).val());
-                $(".curCodes").val($(this).children(":selected").text())
-                $(".curCodeSpans").html($(this).children(":selected").text())
-                $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
-                $(".cost").change();
-              })
-              .change();
-            ');
             $page->startDiv('itemsDiv');
               $divisions = divisions('active');
               foreach ($divisions as $division) {
@@ -367,7 +334,26 @@
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
-    } else {
+      $page->addScript('
+      try {
+        var curVal = dataStore.getItem("curVal");
+      } catch(e) {
+        var curVal = 0;
+      };
+      curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
+      $(".currency").val(curVal)
+      .combobox()
+      .change(function(){
+        $(".currency").val($(this).val());
+        dataStore.setItem("curVal", $(this).val());
+        $(".curCodes").val($(this).children(":selected").text());
+        $(".curCodeSpans").html($(this).children(":selected").text());
+        $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
+        $(".cost").change();
+      })
+      .change();
+    ');
+  } else {
       $page->startDiv();
         $page->addParagraph('Could not find you in the database? Please <a href="'.config::$baseHref.'/contact-us">contact</a> an administrator.');
       $page->closeDiv();
