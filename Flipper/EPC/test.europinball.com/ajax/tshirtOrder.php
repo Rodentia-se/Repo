@@ -34,7 +34,7 @@
                 $tshirtOrder->delete();
                 $tshirtOrder = tshirtOrder($tshirtOrder_id);
                 if (!$tshirtOrder) {
-                  $json = success('Removed T-shirt order ID '.$tshirtOrder_id);
+                  $json = success('Removed T-shirt order ID '.$tshirtOrder_id, array('newId' => 0));
                 } else {
                   $json = failure('Could not remove T-shirt order ID '.$tshirtOrder_id);
                 }

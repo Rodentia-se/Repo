@@ -214,21 +214,25 @@
           foreach ($tshirts as $tshirt) {
             $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
             $tshirtOrder = tshirtOrder($this, $tshirt);
-            
-            $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id.'_'.(($tshirtOrder) ? $tshirtOrder->id : 0), (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, array('class' => 'tshirtSpinner enterChange'));
+            $spinnerParams = array(
+              'class' => 'tshirtSpinner enterChange',
+              'data-tshirt_id' => $tshirt->id,
+              'data-tshirtOrder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0)
+            );
+            $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
 //            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
 //    public function addJquery($tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
             $spinner[$tshirt->id]->addTooltip('');
             $spinner[$tshirt->id]->addChange('
               var el = this;
-              var ids = el.id.split("_");
+              var tshirtOrder_id = $(el).data("tshirtOrder_id");
               $(el).tooltipster("update", "Updating order...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: ids[ids.length - 2], tshirtOrder_id: ids[ids.length - 1], person_id: $("#'.$tshirtPerson->id.'").val()})
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
-                if (data.newId) {
-                  el.id = el.id.replace(/_0$/, "_" + data.newId);
+                if (data.newId || data.newId == 0) {
+                  $(el).data("tshirtOrder_id", data.newId);
                 }
               })
             ');
