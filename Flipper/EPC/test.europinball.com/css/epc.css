@@ -102,6 +102,10 @@ label.short {
   width: 92px;
 }
 
+label.veryShort {
+  width: 36px;
+}
+
 input[type=text], input[type=password] { 
   color: #4F4F4F;
   width: 210px;
@@ -125,6 +129,10 @@ input.custom-combobox-input {
   padding: 4px;
   height: 18px;
   width: 174px;
+}
+
+input.short {
+  width: 86px;
 }
 
 input.short {
