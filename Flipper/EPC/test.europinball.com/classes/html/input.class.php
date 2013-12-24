@@ -140,7 +140,7 @@
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
       $element = new spinner($selector, $indents);
-      $this->addClasses('veryShort');
+      $this->addClasses('short');
       $this->settings['spinner'] = TRUE;
       $this->addAfter($element);
       return $element;
