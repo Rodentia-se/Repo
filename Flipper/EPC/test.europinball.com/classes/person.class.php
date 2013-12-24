@@ -217,7 +217,7 @@
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
 //            $select = $tshirtDivs[$tshirt->id]->addSelect($tshirt->name, 10, (($tshirtOrder) ? $tshirtOrder->number : 0));
             $tshirtDivs[$tshirt->id]->addChange('
-              alert($(this).spinner("value");
+              alert($(this).spinner("value"));
             ');
           }
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
