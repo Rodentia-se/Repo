@@ -241,6 +241,7 @@
                 //}
                 debug($spinner[$tshirt->id]);
                 debug($spinner[$tshirt->id]->value, 'val');
+                debug($spinner[$tshirt->id]->contents, 'val2');
                 $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->data-eachcost);
               //}
             }
