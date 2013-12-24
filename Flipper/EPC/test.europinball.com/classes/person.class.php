@@ -217,7 +217,7 @@
             $spinnerParams = array(
               'class' => 'tshirtSpinner enterChange',
               'data-tshirt_id' => $tshirt->id,
-              'data-tshirtOrder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0)
+              'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0)
             );
             $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
 //    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, $selector = NULL, $indents = NULL) {
@@ -226,13 +226,13 @@
             $spinner[$tshirt->id]->addTooltip('');
             $spinner[$tshirt->id]->addChange('
               var el = this;
-              var tshirtOrder_id = $(el).data("tshirtOrder_id");
+              var tshirtOrder_id = $(el).data("tshirtorder_id");
               $(el).tooltipster("update", "Updating order...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
                 if (data.newId || data.newId == 0) {
-                  $(el).data("tshirtOrder_id", data.newId);
+                  $(el).data("tshirtorder_id", data.newId);
                 }
               })
             ');
