@@ -64,7 +64,7 @@
               $newOrder = tshirtOrder($tshirtOrder_id);
               if ($newOrder) {
                 if ($newOrder->number = $tshirtOrder->number) {
-                  $json = success('Created new order ID '.$newOrder->id.' for '.$newOrder->number.' number of T-shirts');
+                  $json = success('Created new order ID '.$newOrder->id.' for '.$newOrder->number.' number of T-shirts', array('newId' => $newOrder->id));
                 } else {
                   $json = failure('Something went wrong saving the new order ID '.$newOrder->id);
                 }

@@ -227,6 +227,9 @@
               $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: ids[ids.length - 2], tshirtOrder_id: ids[ids.length - 1], person_id: $("#'.$tshirtPerson->id.'").val()})
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.newId) {
+                  el.id = el.id.replace(/_0$/, "_" + data.newId);
+                }
               })
             ');
           }
