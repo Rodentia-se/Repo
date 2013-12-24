@@ -68,7 +68,6 @@
     public function addOption($text = NULL, $value = NULL, $selected = FALSE, array $params = NULL) {
       $element = new option($text, $value, $selected, $params);
       $this->addContent($element);
-      $element->parent = $this;
       return $element;
     }
 
@@ -115,10 +114,8 @@
             if ($index || ($replaced && $replaced !== TRUE)) {
               $index = ($index) ? $index : $replaced;
               $return = array_splice($this->contents, (($index == TRUE) ? 0 : $index), 0, array($option));
-              $option->parent = $this;
             } else {
               $return = array_push($this->contents, $option);
-              $option->parent = $this;
             }
           }
         }
