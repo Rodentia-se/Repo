@@ -72,7 +72,7 @@
         $prop == 'contents';
         debug('huff');
         debug($this->params['value']);
-        debug($this->getContent());
+        debug($this->getContent(), "content");
       }
       switch ($prop) {
         case 'block':
