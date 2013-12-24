@@ -275,6 +275,7 @@
     public function __unset($prop) {
       if ($prop == $this->contentParam) {
         $prop == 'contents';
+        debug("HUFF");
       }
       switch ($prop) {
         case 'block':
