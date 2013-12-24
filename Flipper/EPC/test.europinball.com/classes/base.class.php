@@ -327,6 +327,7 @@
       if ($this->id) {
         $delete = (property_exists($this, 'delete')) ? static::$delete : 'delete from '.$table.' where id = :id';
         if ($this->db->delete($delete, array('id' => $this->id))) {
+          unset(static::$instances['ID'.$this->id]);
           if ($propagate) {
             foreach (static::$children as $class => $target) {
               if (isAssoc($target)) {
