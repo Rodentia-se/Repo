@@ -6,7 +6,7 @@
       $props = array(
         'stop' => 'function(event, ui) {
             $("'.$selector.'").change();
-          });'
+          }'
       );
       parent::__construct($selector, 'spinner', 'object', NULL, $props, $indents);
     }
