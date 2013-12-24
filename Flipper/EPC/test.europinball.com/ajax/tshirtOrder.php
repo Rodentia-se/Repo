@@ -33,7 +33,6 @@
               } else if ($number == 0) {
                 $tshirtOrder->delete();
                 $tshirtOrder = tshirtOrder($tshirtOrder_id);
-                debug($tshirtOrder, 'order');
                 if (!$tshirtOrder) {
                   $json = success('Removed T-shirt order ID '.$tshirtOrder_id, array('newId' => 0));
                 } else {
