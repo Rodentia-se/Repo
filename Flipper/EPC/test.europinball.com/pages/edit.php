@@ -245,8 +245,6 @@
             $page->closeDiv();
             $page->addInput($person->id, 'payment_person_id', NULL, 'hidden');
             $page->addInput($person->name, 'payment_person_name', NULL, 'hidden');
-          $page->submit();
-          die('HUFF');
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
@@ -310,6 +308,8 @@
           $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
           $page->closeDiv();
         }
+          $page->submit();
+          die('HUFF');
       $page->closeDiv();
     $page->addScript('
       try {
