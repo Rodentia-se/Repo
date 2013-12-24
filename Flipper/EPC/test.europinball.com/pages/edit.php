@@ -149,7 +149,6 @@
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $clearDiv = $tshirtDiv->addDiv('clearer');
-    die("HUFF");
           $page->addContent($tshirtDiv);
         }
     die("HUFF");
