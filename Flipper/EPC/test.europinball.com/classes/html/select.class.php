@@ -86,6 +86,8 @@
               $result = $this->addOptions($option, $selected, FALSE, $index);
             } else {
               $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
+              debug($key, "KEY");
+              debug($option, "OPTION");
             }
             if (!$result) {
               $return = FALSE;
