@@ -150,8 +150,6 @@
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $tshirtDiv->addDiv(NULL, 'clearer');
           $page->addContent($tshirtDiv->getHtml());
-          $page->submit();
-          die('HUFF');
         }
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
@@ -247,6 +245,8 @@
             $page->closeDiv();
             $page->addInput($person->id, 'payment_person_id', NULL, 'hidden');
             $page->addInput($person->name, 'payment_person_name', NULL, 'hidden');
+          $page->submit();
+          die('HUFF');
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
