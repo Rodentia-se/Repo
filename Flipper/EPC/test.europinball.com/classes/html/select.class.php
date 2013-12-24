@@ -72,7 +72,6 @@
     }
 
     public function addOptions($options = NULL, $selected = NULL, $replace = FALSE, $index = NULL) {
-      $this->debug("OPT", "OPT", NULL, 10);
       if ($replace) {
         $replaced = $this->delOptions($replace);
       }
@@ -86,8 +85,6 @@
               $result = $this->addOptions($option, $selected, FALSE, $index);
             } else {
               $result = $this->addOptions(array($key => $option), $selected, FALSE, $index);
-              debug($key, "KEY");
-              debug($option, "OPTION");
             }
             if (!$result) {
               $return = FALSE;
