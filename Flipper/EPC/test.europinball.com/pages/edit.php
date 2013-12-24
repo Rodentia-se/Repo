@@ -145,13 +145,13 @@
           $page->startDiv('qualGroup');
           $page->closeDiv();
         }
-    die("HUFF");
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $clearDiv = $tshirtDiv->addDiv('clearer');
           $page->addContent($tshirtDiv);
         }
+    die("HUFF");
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
             $volDiv->indents = 3;
