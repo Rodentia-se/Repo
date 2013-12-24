@@ -149,8 +149,7 @@
           $tshirtDiv = new div('tshirts');
           $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
           $clearDiv = $tshirtDiv->addDiv('clearer');
-          $page->addContent($tshirtDiv);
-    die("HUFF");
+          $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
           $volDiv = new div('volunteer');
