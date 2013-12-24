@@ -157,6 +157,8 @@
             $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
           $page->addContent($volDiv->getHtml());
         } 
+            die(1);
+
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
             $page->addH2('Payment options');
@@ -330,6 +332,7 @@
       });
       $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
     ');
+    die(1);
     $page->addInput(config::$defaultCurrency, 'curCode', 'curCode', 'hidden', 'curCodes');
     foreach(config::$acceptedCurrencies as $currency) {
       $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
