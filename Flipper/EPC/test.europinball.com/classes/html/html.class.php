@@ -68,6 +68,9 @@
     }
     
     public function __get($prop) {
+      if ($prop == $this->contentParam) {
+        $prop == 'contents';
+      }
       switch ($prop) {
         case 'block':
         case 'inline':
@@ -123,6 +126,9 @@
     }
      
     public function __set($prop, $value) {
+      if ($prop == $this->contentParam) {
+        $prop == 'contents';
+      }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -220,6 +226,9 @@
     }
     
     public function __isset($prop) {
+      if ($prop == $this->contentParam) {
+        $prop == 'contents';
+      }
       switch ($prop) { 
         case 'block':
         case 'inline':
@@ -275,7 +284,6 @@
     public function __unset($prop) {
       if ($prop == $this->contentParam) {
         $prop == 'contents';
-        debug("HUFF");
       }
       switch ($prop) {
         case 'block':
