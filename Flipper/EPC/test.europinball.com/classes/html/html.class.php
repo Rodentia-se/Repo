@@ -406,17 +406,19 @@
               $return = FALSE;
             }
           }
+          return $return;
         } else {
           if ($index) {
-            $return = array_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
+            array_splice($this->$section, (($index == TRUE) ? 0 : $index), 0, array($content));
+            return $content;
           } else {
-            $return = array_push($this->$section, $content);
+            array_push($this->$section, $content);
+            return $content;
           }
         }
       } else {
-        $return = $this->del($section);
+        return $this->del($section);
       }
-      return $return;
     }
 
     protected function get($section = 'contents', $index = NULL, $string = TRUE) {
