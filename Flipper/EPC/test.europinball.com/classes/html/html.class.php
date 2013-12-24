@@ -71,6 +71,8 @@
       if ($prop == $this->contentParam) {
         $prop == 'contents';
         debug('huff');
+        debug($this->params['value']);
+        debug($this->getContent());
       }
       switch ($prop) {
         case 'block':
@@ -508,7 +510,7 @@
       return $this->add('contents', $content, $replace, $index);
     }
     
-    public function getContent($index = NULL, $string = TRUE) {
+    protected function getContent($index = NULL, $string = TRUE) {
       return $this->get('contents', $index, $string);
     }
     
