@@ -87,7 +87,6 @@
           return $this->getContent();
         break;
         case $this->contentParam:
-          debug('huff');
           return $this->getParams($prop, FALSE);
         break;
         case 'footer':
