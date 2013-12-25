@@ -36,6 +36,6 @@
           })
           .first().change();
         });
-      ');
+      '));
     return $select;
   }
