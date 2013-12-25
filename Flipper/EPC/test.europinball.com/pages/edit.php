@@ -267,7 +267,7 @@
                     $page->addInput('Who/what you are paying for', NULL, 'cn', 'hidden');
                     $page->addInput('Pay for', NULL, 'on0', 'hidden');
                     $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden', 'payMsg');
-                    $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
+                    $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'currencyInput');
                     $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                   $page->closeForm();
                   $page->addParagraph('We are using PayPal for credit card payments. To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the following pages. We accept Visa, Mastercard, Discover and American Express, as well as PayPal payments.');
@@ -275,7 +275,7 @@
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
-                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
+                  $page->addParagraph('Pay <span class="currencySpan bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
                   $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
