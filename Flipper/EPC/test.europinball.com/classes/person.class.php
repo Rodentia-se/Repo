@@ -266,9 +266,10 @@
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $goToPayment = $orderDiv->addParagraph('Go to the ');
-              $goToPayment->addClickButton('payment tab', NULL, NULL, FALSE, '
+              $gotoPaymentBtn = $goToPayment->addClickButton('payment tab', NULL, NULL, FALSE, '
                 $("#paymenttabLink").click();
               ');
+              debug($gotoPaymentBtn);
               $goToPayment->addContent(' to pay or check payment status.');
             //}
           //}
