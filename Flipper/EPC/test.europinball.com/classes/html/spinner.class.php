@@ -2,12 +2,13 @@
 
   class spinner extends jqueryui {
     
-    public function __construct($selector = NULL, $indents = 0) {
-      $props = array(
-        'stop' => 'function(event, ui) {
-            $("'.$selector.'").change();
-          }'
-      );
+    public function __construct($props = NULL, $selector = NULL, $indents = 0) {
+      $props['stop'] = ($props['stop']) ? $props['stop'] : '
+        function(event, ui) {
+          $("'.$selector.'").change();
+        }
+      ';
+      $props['min'] = ($props['min']) ? $props['min'] : 0;
       parent::__construct($selector, 'spinner', 'object', NULL, $props, $indents);
     }
 //    jqueryui public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {

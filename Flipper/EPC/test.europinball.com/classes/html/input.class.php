@@ -136,10 +136,10 @@
       }
     }
     
-    public function addSpinner($selector = NULL, $indents = NULL) {
+    public function addSpinner($props = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
-      $element = new spinner($selector, $indents);
+      $element = new spinner($props, $selector, $indents);
       $this->addClasses('short');
       $this->settings['spinner'] = TRUE;
       $this->addAfter($element);
