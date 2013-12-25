@@ -236,6 +236,17 @@
                 $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
 */
             }
+            $orderDiv->addScriptCode('
+              $(document).ready(function() {
+                function calcTshirts() {
+                  var cost = 0;
+                  $(".tshirtSpinner").each(function() {
+                    cost += parseInt($("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                  });
+                  return cost;
+                }
+              });
+            ');
             $orderDiv->addChange('
               var el = this;
               var tshirtOrder_id = $(el).data("tshirtorder_id");
@@ -257,22 +268,13 @@
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+            //}
             $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid', NULL, 'short');
               $paid = $this->paid - ($this->getCost() - $this->getCost('tshirt'));
               $paidDiv->addMoneySpan($paid * -1, NULL, config::$currencies[$defaultCurrency]['format']);
-            $orderDiv->addScriptCode('
-              $(document).ready(function() {
-                function calcTshirts() {
-                  var cost = 0;
-                  $(".tshirtSpinner").each(function() {
-                    cost += parseInt($("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
-                  });
-                  return cost;
-                }
-              });
-            ');
+            //}
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $div;
