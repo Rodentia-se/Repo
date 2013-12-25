@@ -23,7 +23,7 @@
   z-index: -1;
 }
 
-#currency_combobox, #tshirtCurrency_combobox {
+#paymentCurrency_combobox, #tshirtCurrency_combobox {
   width: 50px;
 }
 
