@@ -219,7 +219,7 @@
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
                 $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
-                  $cost = $person->getCost($division);
+                  $cost = $this->getCost($division);
                   $spinnerParams = array(
                     'class' => 'divisionSpinner enterChange',
                     'data-division_id' => $division->id,
