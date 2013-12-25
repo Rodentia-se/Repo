@@ -567,12 +567,12 @@
             return ($this->params[$param]) ? (($string) ? $param : TRUE) : FALSE;
           } else if ($param == 'id') {
             return ($string) ? $param.'="'.preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]).'"' : preg_replace('/[^a-zA-Z0-9_\-]/', '', $this->params[$param]);
-          } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
-            return ($string) ? $param.'="'.$this->$param.'"' : $this->$param;
           } else if ($this->params[$param] === FALSE) {
             return ($string) ? $param.'="0"' : FALSE;
           } else if ($this->params[$param] === TRUE) {
             return ($string) ? $param.'="1"' : TRUE;
+          } else if ($this->params[$param] !== '' && $this->params[$param] !== NULL) {
+            return ($string) ? $param.'="'.$this->$param.'"' : $this->$param;
           } else {
             return FALSE;
           }
