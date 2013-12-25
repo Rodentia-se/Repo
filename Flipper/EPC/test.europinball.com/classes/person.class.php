@@ -249,7 +249,7 @@
                   $(el).data("tshirtorder_id", data.newId);
                 }
                 $("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
-                $("#'.$prefix.'tshirtsSubTotal").html(calcTshirts());
+                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(calcTshirts());
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
