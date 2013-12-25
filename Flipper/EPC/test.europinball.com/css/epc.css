@@ -23,7 +23,7 @@
   z-index: -1;
 }
 
-input[id~="Currency_combobox"] {
+input[id$="Currency_combobox"] {
   width: 50px;
 }
 
