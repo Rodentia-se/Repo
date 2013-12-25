@@ -23,18 +23,6 @@
   z-index: -1;
 }
 
-input[id $= "Currency_combobox"] {
-  width: 50px; 
-}
-
-input[id *= "Currency_combobox"] {
-  width: 50px; 
-}
-
-input[id ^= "paymentCurrency_"] {
-  width: 50px; 
-}
-
 #payPalForm {
   margin-right: 15px;
 }
@@ -225,3 +213,16 @@ td.icon img {
   background: transparent;
   border: 0;
 }
+
+input[id $= "Currency_combobox"] {
+  width: 50px; 
+}
+
+input[id *= "Currency_combobox"] {
+  width: 50px; 
+}
+
+input[id ^= "paymentCurrency_"] {
+  width: 50px; 
+}
+
