@@ -248,7 +248,7 @@
                 if (data.newId || data.newId == 0) {
                   $(el).data("tshirtorder_id", data.newId);
                 }
-                $("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
+                $("#'.$prefix.'tshirtsDiv_" + $(el).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
                 var cost = 0;
                 $(".tshirtSpinner").each(function() {
                   cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
