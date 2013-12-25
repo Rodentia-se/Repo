@@ -412,6 +412,7 @@ hr {
 /* Text elements */
 p {
 	margin-bottom: 0.94em;
+	margin-top: 0.94em;
 }
 ul, ol {
 	margin: 0 0 .94em 2.5em;
