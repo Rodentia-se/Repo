@@ -250,16 +250,19 @@
                 }
                 $("#'.$prefix.'tshirtsDiv_" + $(el).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
                 var cost = 0;
+                var num = 0;
                 $(".tshirtSpinner").each(function() {
                   cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                  num += parseInt($(this).val());
                 });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
+            $tshirtOrders = tshirtOrder($this, $tournament);
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addLabel(' ');
-              $subTotalDiv->addSpan(' ', NULL, 'short');
+              $subTotalDiv->addInput('tshirtsNumOfTshirts', count($tshirtOrders), 'short', 'Total', array('disabled' => TRUE));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
