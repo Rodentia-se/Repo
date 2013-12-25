@@ -248,20 +248,20 @@
                 if (data.newId || data.newId == 0) {
                   $(el).data("tshirtorder_id", data.newId);
                 }
-                $("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
-                //$("#tshirtsSubTotal").html(calcTshirts());
+                $("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
+                $("#'.$prefix.'tshirtsSubTotal").html(calcTshirts());
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
-            $subTotalDiv = $orderDiv->addDiv($prefix.'SubTotalDiv');
+            $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
-              $subTotalDiv->addMoneySpan($costs, $prefix.'SubTotal', config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
-            $paidDiv = $orderDiv->addDiv('paidDiv');
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+            $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
               $paidDiv->addLabel(' ');
-              $paidDiv->addSpan('Already paid', NULL, 'short');
+              $paidDiv->addLabel('Already paid', NULL, 'short');
               $paid = $this->paid - ($this->getCost() - $this->getCost('tshirt'));
-              $paidDiv->addMoneySpan($paid * -1, 'paid', config::$currencies[$defaultCurrency]['format']);
+              $paidDiv->addMoneySpan($paid * -1, NULL, config::$currencies[$defaultCurrency]['format']);
             $orderDiv->addScriptCode('
               $(document).ready(function() {
                 function calcTshirts() {
