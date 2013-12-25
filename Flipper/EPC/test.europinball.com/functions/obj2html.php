@@ -35,7 +35,7 @@
             $(".currencySpan").html(currency);
             $(".currencyInput").val(currency);
             var format = $("#currency_" + $(this).val()).data("format");
-            var rate = parseInt($("#currency_" + $(this).val()).data("rate"));
+            var rate = parseFloat($("#currency_" + $(this).val()).data("rate"));
             $(".moneySpan").each(function() { 
               $(this).html((+ parseInt($("#" + this.id + "Amount").html().replace(/[^0-9]/g, "")) * rate).toMoney(0, ".", " ", "", format));
             });
