@@ -306,8 +306,8 @@
               //}
             //}
           //}
-          $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
-          return $div;
+          $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
+          return $tshirtsDiv;
         break;
         case 'profile':
         case 'player':
