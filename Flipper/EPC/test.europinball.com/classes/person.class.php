@@ -260,7 +260,7 @@
             $paidDiv = $orderDiv->addDiv('paidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addSpan('Already paid', NULL, 'short');
-              $paid = $person->paid - ($person->getCost() - $person->getCost('tshirt'));
+              $paid = $this->paid - ($this->getCost() - $this->getCost('tshirt'));
               $paidDiv->addMoneySpan($paid * -1, 'paid', config::$currencies[$defaultCurrency]['format']);
             $orderDiv->addScriptCode('
               $(document).ready(function() {
