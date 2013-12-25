@@ -261,7 +261,7 @@
             ', '.tshirtSpinner');
             $tshirtOrders = tshirtOrders($this, $tournament);
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
-              $subTotalDiv->addInput('tshirtsNumOfTshirts', count($tshirtOrders), 'short', 'Total', array('disabled' => TRUE));
+              $subTotalDiv->addInput('tshirtsNumOfTshirts', count($tshirtOrders), 'text', 'short', 'Total', array('disabled' => TRUE));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
