@@ -228,23 +228,6 @@
                   $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $spinner->addTooltip('');
-                  $spinner->addChange('
-                    var el = this;
-                    var tshirtOrder_id = $(el).data("tshirtorder_id");
-                    var number = $(el).val();
-                    var each = $(el).data("eachcost");
-                    $(el).tooltipster("update", "Updating order...").tooltipster("show");
-                    $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
-                    .done(function(data) {
-                      $(el).tooltipster("update", data.reason).tooltipster("show");
-                      if (data.newId || data.newId == 0) {
-                        $(el).data("tshirtorder_id", data.newId);
-                      }
-                      $("#'.$moneySpan->id.'Amount").html((+ number * each));
-                      //$("#tshirtsSubTotal").html(calcTshirts());
-                      $("#'.$currencyChooser->id.'").change();
-                    })
-                  ');
                 //}
               //}
 /*              $page->startDiv('totalDiv');
@@ -253,6 +236,23 @@
                 $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
 */
             }
+            $orderDiv->addChange('
+              var el = this;
+              var tshirtOrder_id = $(el).data("tshirtorder_id");
+              var number = $(el).val();
+              var each = $(el).data("eachcost");
+              $(el).tooltipster("update", "Updating order...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.newId || data.newId == 0) {
+                  $(el).data("tshirtorder_id", data.newId);
+                }
+                $("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
+                //$("#tshirtsSubTotal").html(calcTshirts());
+                $("#'.$currencyChooser->id.'").change();
+              })
+            ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv('subTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
