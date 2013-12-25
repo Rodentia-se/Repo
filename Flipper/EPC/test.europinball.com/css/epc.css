@@ -23,7 +23,7 @@
   z-index: -1;
 }
 
-#paymentCurrency_combobox, #tshirtCurrency_combobox {
+input[id^="Currency_combobox"] {
   width: 50px;
 }
 
