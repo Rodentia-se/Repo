@@ -750,7 +750,7 @@
       $id = ($id) ? $id : $this->id.'MoneySpan';
       $this->addSpan($value, $id.'Amount', 'hidden');
       $element = $this->addSpan($value, $id, 'moneySpan');
-      $script = $this->addScriptCode('
+      $this->addScriptCode('
         var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
         $("#'.$id.'").html(num.toMoney(0, ".", " ", "", "'.$format.'"));
       ');
