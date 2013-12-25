@@ -265,11 +265,9 @@
               $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
-            $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
-              $paidDiv->addLabel(' ');
-              $paidDiv->addLabel('Already paid', NULL, 'short');
-              $paid = $this->paid - ($this->getCost() - $this->getCost('tshirt'));
-              $paidDiv->addMoneySpan($paid * -1, NULL, config::$currencies[$defaultCurrency]['format']);
+            $goToPayment = $orderDiv->addParagraph('Go to ');
+              $goToPayment->addLink('#payment', 'the payment tab');
+              $goToPayment->addContent(' to pay or check payment status.');
             //}
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
