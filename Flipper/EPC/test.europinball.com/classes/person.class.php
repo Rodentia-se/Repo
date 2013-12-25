@@ -236,11 +236,6 @@
                 $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
 */
             }
-            $orderDiv->addScriptCode('
-              $(document).ready(function() {
-                function calcTshirts() {
-              });
-            ');
             $orderDiv->addChange('
               var el = this;
               var tshirtOrder_id = $(el).data("tshirtorder_id");
