@@ -209,8 +209,7 @@
               $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
               $gotoProfileP->addContent(' or ');
               $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
-              $gotoProfileP->addContent(' to make changes permanent, or you can just change the numbers here before paying. If you pay for anyone other than the player logged in, please include that information in the payment.');
-              //}
+              $gotoProfileP->addContent(' to make the changes permanent, or you can just change the numbers here before paying (changes will be reset when you leave this page).'); 
             //}
             $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
               $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
@@ -235,6 +234,7 @@
               }
             }
           //}
+          $paymentDiv->addParagraph('If you pay for anyone other than the player logged in, please include that information in the payment.', NULL, 'italic');
           return $paymentDiv;
         break;
         case 'tshirt':
