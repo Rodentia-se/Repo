@@ -204,7 +204,7 @@
             if ($title) {
               $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
             }
-            $curDiv = $div->addDiv($prefix.'paymentCurrencyDiv');
+            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
               $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
             //}
             $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
@@ -241,11 +241,11 @@
         case 'tshirts':
         case 'tshirtOrder':
         case 'tshirtOrders':
-          $div = new div($prefix.'TshirtEditDiv');
+          $tshirtsDiv = new div($prefix.'TshirtEditDiv');
           if ($title) {
-            $div->addH2('T-shirt orders', array('class' => 'entry-title'));
+            $tshirtsDiv->addH2('T-shirt orders', array('class' => 'entry-title'));
           }
-          $orderDiv = $div->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
+          $orderDiv = $tshirtsDiv->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
             $tshirtPerson = $orderDiv->addHidden('tshirtPerson_id', $this->id);
             $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
               $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
