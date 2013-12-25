@@ -196,12 +196,51 @@
     }
     
     public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $tournament = getTournament($tournament);
       switch ($type) {
+        case 'payment':
+        case 'payments':
+          $paymentDiv = new div($prefix.'PaymentDiv');
+            if ($title) {
+              $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
+            }
+            $curDiv = $div->addDiv($prefix.'paymentCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
+            //}
+            $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
+            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things at the ');
+              $gotoProfileBtn = $gotoProfileP->addClickButton('profile editor', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
+              $gotoProfileP->addContent(' or ');
+              $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
+              $gotoProfileP->addContent(' or you can just change the numbers here.');
+              //}
+            //}
+            $divisions = divisions($tournament);
+            foreach ($divisions as $division) {
+              if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
+                $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
+                  $cost = $person->getCost($division);
+                  $spinnerParams = array(
+                    'class' => 'divisionSpinner enterChange',
+                    'data-division_id' => $division->id,
+                    'data-eachcost' => $cost
+                  );
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                    $costs += $spinner->value * $spinner->{'data-eachcost'};
+                    $num += $spinner->value;
+                    $spinner->addTooltip('');
+                  //}
+                //}
+              }
+            }
+          //}
+          return $paymentDiv;
+        break;
         case 'tshirt':
         case 'tshirts':
         case 'tshirtOrder':
         case 'tshirtOrders':
-          $tournament = getTournament($tournament);
           $div = new div($prefix.'TshirtEditDiv');
           if ($title) {
             $div->addH2('T-shirt orders', array('class' => 'entry-title'));
@@ -211,9 +250,9 @@
             $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
               $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
             //}
-            $curDiv = $orderDiv->addDiv('tshirtCurrencyDiv');
-              $currencyChooser = $curDiv->addContent(getCurrencySelect('tshirt', TRUE));
-            //} 
+            $curDiv = $orderDiv->addDiv($prefix.'tshirtCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Tshirt', TRUE));
+            //}
             $tshirts = tshirts($tournament);
             foreach ($tshirts as $tshirt) {
               $tshirtDiv = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
@@ -231,11 +270,6 @@
                   $spinner->addTooltip('');
                 //}
               //}
-/*              $page->startDiv('totalDiv');
-                $page->addLabel('&nbsp;');
-                $page->addSpan('&nbsp;', NULL, 'short');
-                $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
-*/
             }
             $orderDiv->addChange('
               var el = this;
@@ -266,11 +300,10 @@
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
-            $goToPayment = $goToPaymentDiv->addParagraph('Go to the ');
-              $gotoPaymentBtn = $goToPayment->addClickButton('payment tab', NULL, NULL, FALSE, '
-                $("#paymenttabLink").click();
-              ');
-              $goToPayment->addContent(' to pay or check payment status.');
+              $goToPaymentP = $goToPaymentDiv->addParagraph('Go to the ');
+                $gotoPaymentBtn = $goToPaymentP->addClickButton('payment tab', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
+                $goToPaymentP->addContent(' to pay or check payment status.');
+              //}
             //}
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
