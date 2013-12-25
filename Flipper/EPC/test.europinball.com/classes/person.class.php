@@ -227,6 +227,7 @@
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
                   $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
+                  $num += $spinner->value;
                   $spinner->addTooltip('');
                 //}
               //}
@@ -259,9 +260,8 @@
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
-            $tshirtOrders = tshirtOrders($this, $tournament);
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
-              $subTotalDiv->addInput('tshirtsNumOfTshirts', count($tshirtOrders), 'text', 'Total', array('disabled' => TRUE, 'class' => 'short'));
+              $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
