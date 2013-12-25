@@ -5,7 +5,7 @@
     public function __construct($selector = NULL, $indents = 0) {
       if (substr($selector, 0, 1) == '#') {
         $this->addAfter(new change($selector, '
-          $("'.$selector.'_combobox")).val($(el).children(":selected").text());
+          $("'.$selector.'_combobox").val($(el).children(":selected").text());
         ', $indents));
       }
       parent::__construct($selector, 'combobox', 'command', NULL, NULL, $indents);
