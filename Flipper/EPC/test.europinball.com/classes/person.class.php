@@ -212,11 +212,11 @@
               $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
             //}
             $curDiv = $orderDiv->addDiv('tshirtCurrencyDiv');
-              $curDiv->addContent(getCurrencySelect('tshirt', TRUE));
+              $currencyChooser = $curDiv->addContent(getCurrencySelect('tshirt', TRUE));
             //} 
             $tshirts = tshirts($tournament);
             foreach ($tshirts as $tshirt) {
-              $tshirtDivs[$tshirt->id] = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
+              $tshirtDiv = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
                 $tshirtOrder = tshirtOrder($this, $tshirt);
                 $spinnerParams = array(
                   'class' => 'tshirtSpinner enterChange',
@@ -224,25 +224,29 @@
                   'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0),
                   'data-eachcost' => config::$tshirtCost
                 );
-                $spinner[$tshirt->id] = $tshirtDivs[$tshirt->id]->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $spinner[$tshirt->id]->addTooltip('');
-                  $spinner[$tshirt->id]->addChange('
+                $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
+                  $moneySpan = $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->{'data-eachcost'});
+                  $spinner->addTooltip('');
+                  $spinner->addChange('
                     var el = this;
                     var tshirtOrder_id = $(el).data("tshirtorder_id");
+                    var number = $(el).val();
+                    var each = $(el).data("eachcost");
                     $(el).tooltipster("update", "Updating order...").tooltipster("show");
-                    $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: $(el).val(), tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+                    $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
                     .done(function(data) {
                       $(el).tooltipster("update", data.reason).tooltipster("show");
                       if (data.newId || data.newId == 0) {
                         $(el).data("tshirtorder_id", data.newId);
                       }
+                      $("#'.$moneySpan->id.'Amount").html((+ number * each));
+                      $("#'.$currencyChooser->id.'").change();
                     })
                   ');
                 //}
                 debug($spinner[$tshirt->id]->value, 'val');
                 debug($spinner[$tshirt->id]->data-eachcost, 'each');
                 debug($spinner[$tshirt->id]->{'data-eachcost'}, 'each');
-                $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->{'data-eachcost'});
               //}
             }
           //}
