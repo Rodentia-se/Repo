@@ -239,12 +239,6 @@
             $orderDiv->addScriptCode('
               $(document).ready(function() {
                 function calcTshirts() {
-                  var cost = 0;
-                  $(".tshirtSpinner").each(function() {
-                    cost += parseInt($("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
-                  });
-                  return cost;
-                }
               });
             ');
             $orderDiv->addChange('
@@ -260,6 +254,10 @@
                   $(el).data("tshirtorder_id", data.newId);
                 }
                 $("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
+                var cost = 0;
+                $(".tshirtSpinner").each(function() {
+                  cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(calcTshirts());
                 $("#'.$currencyChooser->id.'").change();
               })
