@@ -33,13 +33,17 @@
               $("#" + this.id + "_combobox").val(currency);
             });
             $(".currencySpan").html(currency);
+            $(".currencyInput").val(currency);
             var format = $("#currency_" + $(this).val()).data("format")
             $(".moneySpan").each(function() {
               $(this).html(parseInt($(this).html().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
             });
+            $(".moneyInput").each(function() {
+              $(this).val(parseInt($(this).val().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
+            });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif")
           })
-          .first().change();
+          .val(curVal).first().change();
         });
       '));
     }
