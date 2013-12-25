@@ -270,7 +270,6 @@
               $gotoPaymentBtn = $goToPayment->addClickButton('payment tab', NULL, NULL, FALSE, '
                 $("#paymenttabLink").click();
               ');
-              debug($gotoPaymentBtn);
               $goToPayment->addContent(' to pay or check payment status.');
             //}
           //}
