@@ -253,10 +253,10 @@
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
-            $subTotalDiv = $orderDiv->addDiv('subTotalDiv');
+            $subTotalDiv = $orderDiv->addDiv($prefix.'SubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
-              $subTotalDiv->addMoneySpan($costs, 'subTotal', config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+              $subTotalDiv->addMoneySpan($costs, $prefix.'SubTotal', config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             $paidDiv = $orderDiv->addDiv('paidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addSpan('Already paid', NULL, 'short');
