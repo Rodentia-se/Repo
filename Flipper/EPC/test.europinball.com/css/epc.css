@@ -23,8 +23,8 @@
   z-index: -1;
 }
 
-input[id$="Currency_combobox"] {
-  width: 50px;
+input[id $= "Currency_combobox"] {
+  width: 50px; 
 }
 
 #payPalForm {
