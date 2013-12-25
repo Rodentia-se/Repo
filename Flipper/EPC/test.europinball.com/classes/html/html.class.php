@@ -574,14 +574,14 @@
           } else if ($this->params[$param] === TRUE) {
             return ($string) ? $param.'="1"' : TRUE;
           } else {
-            if ($this->contentParam) {
-              return ($string) ? $this->contentParam.'="'.$this->contents[0].'"' : $this->contents[0];
-            } else {
-              return FALSE;
-            }
+            return FALSE;
           }
         } else {
-          return FALSE;
+          if ($this->contentParam) {
+            return ($string) ? $this->contentParam.'="'.$this->contents[0].'"' : $this->contents[0];
+          } else {
+            return FALSE;
+          }
         }
       } else {
         if (count($this->params) > 0 ) {
