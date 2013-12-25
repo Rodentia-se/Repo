@@ -212,7 +212,7 @@
               $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
             //}
             $curDiv = $orderDiv->addDiv('tshirtCurrencyDiv');
-              $curDiv->addContent(getCurrencySelect('tshirt'));
+              $curDiv->addContent(getCurrencySelect('tshirt', TRUE));
             //} 
             $tshirts = tshirts($tournament);
             foreach ($tshirts as $tshirt) {
