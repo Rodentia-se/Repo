@@ -158,6 +158,10 @@
           $page->addContent($volDiv->getHtml());
         } 
         if (in_array('payment', config::$editSections)) {
+          $paymentDiv = new div('payment');
+          $paymentDiv->addContent($person->getEdit('payment', 'Payment options'));
+          $page->addContent($paymentDiv->getHtml());
+/*
           $page->startDiv('payment');
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
@@ -245,6 +249,7 @@
             $page->closeDiv();
             $page->addInput($person->id, 'payment_person_id', NULL, 'hidden');
             $page->addInput($person->name, 'payment_person_name', NULL, 'hidden');
+            */
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
