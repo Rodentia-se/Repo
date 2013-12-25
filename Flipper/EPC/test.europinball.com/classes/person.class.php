@@ -225,7 +225,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->{'data-eachcost'});
+                  $moneySpan = $tshirtDivs->addMoneySpan($spinner->value * $spinner->{'data-eachcost'});
                   $spinner->addTooltip('');
                   $spinner->addChange('
                     var el = this;
