@@ -258,7 +258,7 @@
                 $(".tshirtSpinner").each(function() {
                   cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
                 });
-                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(calcTshirts());
+                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
