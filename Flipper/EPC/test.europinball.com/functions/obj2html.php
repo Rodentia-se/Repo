@@ -37,5 +37,8 @@
           .first().change();
         });
       '));
-    return $select;
+      return $select;
+    }
   }
+
+?>
