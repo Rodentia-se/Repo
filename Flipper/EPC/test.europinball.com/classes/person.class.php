@@ -257,11 +257,12 @@
                   num += parseInt($(this).val());
                 });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
+                $(".numOfTshirts").val(num);
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
-              $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short'));
+              $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $paidDiv = $orderDiv->addDiv($prefix.'tshirtsPaidDiv');
