@@ -241,7 +241,7 @@
                         $(el).data("tshirtorder_id", data.newId);
                       }
                       $("#'.$moneySpan->id.'Amount").html((+ number * each));
-                      $("#tshirtsSubTotal").html(calcTshirts());
+                      //$("#tshirtsSubTotal").html(calcTshirts());
                       $("#'.$currencyChooser->id.'").change();
                     })
                   ');
