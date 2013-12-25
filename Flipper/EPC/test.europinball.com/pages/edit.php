@@ -161,7 +161,7 @@
           $page->startDiv('payment');
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
-              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', NULL, 'Currency', config::$defaultCurrency);
+              $page->addContent(getCurrencySelect('payment')->getHtml());
             $page->closeDiv();
             $page->startDiv('itemsDiv');
               $divisions = divisions('active');
@@ -328,31 +328,6 @@
             firstField.focus();
           }
         });
-        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
-      ');
-      $page->addInput(config::$defaultCurrency, 'curCode', 'curCode', 'hidden', 'curCodes');
-      foreach(config::$acceptedCurrencies as $currency) {
-        $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-        $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
-      }
-      $page->addScript('
-        try {
-          var curVal = dataStore.getItem("curVal");
-        } catch(e) {
-          var curVal = 0;
-        };
-        curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
-        $("#currency").val(curVal)
-        .combobox()
-        .change(function(){
-//          $(".currency").val($(this).val());
-          dataStore.setItem("curVal", $(this).val());
-          $(".curCodes").val($(this).children(":selected").text());
-          $(".curCodeSpans").html($(this).children(":selected").text());
-          $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
-          $(".cost").change();
-        })
-        .change();
       ');
     } else {
       $page->startDiv();

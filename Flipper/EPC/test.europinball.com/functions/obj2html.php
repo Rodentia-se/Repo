@@ -25,14 +25,15 @@
           };
           curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
           $(".currencyChooser").change(function() {
+            var currency = $("#currency_" + $(this).val()).val().toUpperCase();
             dataStore.setItem("curVal", $(this).val());
             $(".currencyChooser").val($(this).val());
-            $(".curCode").val($("#currency_" + $(this).val()).val());
-            $(".curCodeSpan").html($("#currency_" + $(this).val()).val());
+            $(".currencySpan").html(currency);
             var format = $("#currency_" + $(this).val()).data("format")
             $(".moneySpan").each(function() {
               $(this).html(parseInt($(this).html().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
             });
+            $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif")
           })
           .first().change();
         });

@@ -748,7 +748,7 @@
     
     public function addMoneySpan($value = 0, $id = NULL, $format = '€ §') {
       $id = ($id) ? $id : $this->id.'MoneySpan';
-      $element = $this->addSpan($value, $id, 'currency');
+      $element = $this->addSpan($value, $id, 'moneySpan');
       $script = $this->addScriptCode('
         var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
         $("#'.$id.'").html(num.toMoney(0, ".", " ", "", "'.$format.'"));

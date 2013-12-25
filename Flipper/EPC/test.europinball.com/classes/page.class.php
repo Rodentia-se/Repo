@@ -110,8 +110,6 @@
             $(this).change();
           }
         });
-      ');
-      $footer .= self::getScript('
         $("#mainContent").tooltipster({
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
@@ -120,11 +118,10 @@
           timer: 10000
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
-      ');
-      $footer .= self::getScript('
         $(document).ajaxError(function(event, jqHXR, settings, error) {
           showMsg("Fail: " + error + " trying " + settings.url);
         });
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
       $footer .= '
           </body>
