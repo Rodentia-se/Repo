@@ -34,9 +34,10 @@
             });
             $(".currencySpan").html(currency);
             $(".currencyInput").val(currency);
-            var format = $("#currency_" + $(this).val()).data("format")
+            var format = $("#currency_" + $(this).val()).data("format");
+            var rate = parseInt($("#currency_" + $(this).val()).data("rate"));
             $(".moneySpan").each(function() {
-              $(this).html(parseInt($(this).html().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
+              $(this).html((+ parseInt($("#" + this.id + "Amount").html().replace(/[^0-9]/g, "")) * rate).toMoney(0, ".", " ", "", format));
             });
             $(".moneyInput").each(function() {
               $(this).val(parseInt($(this).val().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
