@@ -240,7 +240,7 @@
                   ');
                 //}
                 debug($spinner[$tshirt->id]->value, 'val');
-                debug($spinner[$tshirt->id]->data-eachcost, 'each');
+                debug($spinner[$tshirt->id]->{data-eachcost}, 'each');
                 $tshirtDivs[$tshirt->id]->addMoneySpan($spinner[$tshirt->id]->value * $spinner[$tshirt->id]->data-eachcost);
               //}
             }
