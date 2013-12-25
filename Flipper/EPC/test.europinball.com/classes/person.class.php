@@ -259,7 +259,7 @@
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
-            $tshirtOrders = tshirtOrder($this, $tournament);
+            $tshirtOrders = tshirtOrders($this, $tournament);
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addInput('tshirtsNumOfTshirts', count($tshirtOrders), 'short', 'Total', array('disabled' => TRUE));
