@@ -265,8 +265,10 @@
               $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
-            $goToPayment = $orderDiv->addParagraph('Go to ');
-              $goToPayment->addLink('#payment', 'the payment tab');
+            $goToPayment = $orderDiv->addParagraph('Go to the ');
+              $goToPayment->addClickButton('payment tab', NULL, NULL, FALSE, '
+                $("#paymenttabLink").click();
+              ');
               $goToPayment->addContent(' to pay or check payment status.');
             //}
           //}
