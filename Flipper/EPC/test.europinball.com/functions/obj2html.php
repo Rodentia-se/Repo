@@ -25,9 +25,13 @@
           };
           curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
           $(".currencyChooser").change(function() {
-            var currency = $("#currency_" + $(this).val()).val().toUpperCase();
-            dataStore.setItem("curVal", $(this).val());
-            $(".currencyChooser").val($(this).val());
+            var curVal = $(this).val();
+            var currency = $("#currency_" + curVal).val().toUpperCase();
+            dataStore.setItem("curVal", curVal);
+            $(".currencyChooser").each(function() {
+              $(this).val(curVal);
+              $("#" + this.id + "_combobox").val(currency);
+            });
             $(".currencySpan").html(currency);
             var format = $("#currency_" + $(this).val()).data("format")
             $(".moneySpan").each(function() {
