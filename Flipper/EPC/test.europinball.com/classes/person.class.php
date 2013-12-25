@@ -225,7 +225,8 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'});
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                  $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $spinner->addTooltip('');
                   $spinner->addChange('
                     var el = this;
@@ -240,12 +241,38 @@
                         $(el).data("tshirtorder_id", data.newId);
                       }
                       $("#'.$moneySpan->id.'Amount").html((+ number * each));
+                      $("#tshirtsSubTotal").html(calcTshirts());
                       $("#'.$currencyChooser->id.'").change();
                     })
                   ');
                 //}
               //}
+/*              $page->startDiv('totalDiv');
+                $page->addLabel('&nbsp;');
+                $page->addSpan('&nbsp;', NULL, 'short');
+                $page->addSpan($costs - $person->paid, 'total', 'currency sum bold');
+*/
             }
+            $subTotalDiv = $orderDiv->addDiv('subTotalDiv');
+              $subTotalDiv->addLabel(' ');
+              $subTotalDiv->addSpan(' ', NULL, 'short');
+              $subTotalDiv->addMoneySpan($costs, 'subTotal', config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+            $paidDiv = $orderDiv->addDiv('paidDiv');
+              $paidDiv->addLabel(' ');
+              $paidDiv->addSpan('Already paid', NULL, 'short');
+              $paid = $person->paid - ($person->getCost() - $person->getCost('tshirt'));
+              $paidDiv->addMoneySpan($paid * -1, 'paid', config::$currencies[$defaultCurrency]['format']);
+            $orderDiv->addScriptCode('
+              $(document).ready(function() {
+                function calcTshirts() {
+                  var cost = 0;
+                  $(".tshirtSpinner").each(function() {
+                    cost += parseInt($("#tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                  });
+                  return cost;
+                }
+              });
+            ')
           //}
           $div->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $div;

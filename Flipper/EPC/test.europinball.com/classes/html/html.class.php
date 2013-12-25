@@ -746,10 +746,10 @@
       return $element;
     }
     
-    public function addMoneySpan($value = 0, $id = NULL, $format = '€ §') {
+    public function addMoneySpan($value = 0, $id = NULL, $format = '€ §', array $params = NULL) {
       $id = ($id) ? $id : $this->id.'MoneySpan';
       $this->addSpan($value, $id.'Amount', 'hidden');
-      $element = $this->addSpan($value, $id, 'moneySpan');
+      $element = $this->addSpan($value, $id, 'moneySpan', NULL, $params);
       $this->addScriptCode('
         var num = parseInt($("#'.$id.'").html().replace(/[^0-9]/g, ""));
         $("#'.$id.'").html(num.toMoney(0, ".", " ", "", "'.$format.'"));
