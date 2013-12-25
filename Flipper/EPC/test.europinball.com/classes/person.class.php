@@ -204,16 +204,16 @@
             if ($title) {
               $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
             }
-            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
-              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
-            //}
             $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
-            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things at the ');
-              $gotoProfileBtn = $gotoProfileP->addClickButton('profile editor', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
+            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
+              $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
               $gotoProfileP->addContent(' or ');
               $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
-              $gotoProfileP->addContent(' or you can just change the numbers here.');
+              $gotoProfileP->addContent(' to make changes permanent, or you can just change the numbers here before paying. If you pay for anyone other than the player logged in, please include that information in the payment.');
               //}
+            //}
+            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
             //}
             $divisions = divisions($tournament);
             foreach ($divisions as $division) {
