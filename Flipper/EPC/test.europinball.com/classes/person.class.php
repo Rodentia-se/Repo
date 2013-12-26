@@ -313,7 +313,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $prefix.'TshirtOrder_'.$tshirt->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;
                   $spinner->addTooltip('');
@@ -332,11 +332,11 @@
                 if (data.newId || data.newId == 0) {
                   $(el).data("tshirtorder_id", data.newId);
                 }
-                $("#" + this.id + "MoneySpanAmount").html((+ number * each));
+                $("#" + this.id + "_moneySpanAmount").html((+ number * each));
                 var cost = 0;
                 var num = 0;
                 $(".tshirtSpinner").each(function() {
-                  cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
+                  cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
                   num += parseInt($(this).val());
                 });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
