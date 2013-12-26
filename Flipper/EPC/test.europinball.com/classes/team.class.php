@@ -119,11 +119,15 @@
           left join team t on tp.team_id = t.id
           where t.id = :id
             and tp.tournamentEdition_id = :tournament
-            and '.(($asPlayers) ? 'p' : 'o').'.tournamentDivision_id = :division
         ';
         $values[':id'] = $this->id;
         $values[':tournament'] = $tournament->id;
-        $values[':division'] = $division->id;
+        if ($asPlayers) {
+          $query .= '
+            and o.tournamentDivision_id = :division
+          ';
+          $values[':division'] = $division->id;
+        }
         debug($query);
         $members = $this->db->select($query, $values, 'person');
         if (count($members) > 0) {
