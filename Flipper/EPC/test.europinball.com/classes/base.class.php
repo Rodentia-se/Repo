@@ -237,7 +237,7 @@
         $nameDiv->addLabel('Name');
         $nameDiv->addSpan($this->name);
       }
-      $left->addContent($extra->getHtml());
+      $left->addContent($extra);
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto());

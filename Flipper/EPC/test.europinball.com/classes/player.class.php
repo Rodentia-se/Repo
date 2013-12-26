@@ -255,10 +255,9 @@
 
     public function getInfo($extra = NULL) {
       if ($this->team) {
-        $extra .= $this->team->getMembers(NULL, TRUE, TRUE);
-        debug($extra);
+        $membersDiv = $this->team->getMembers(NULL, TRUE, TRUE);
       }
-      return parent::getInfo($extra);
+      return parent::getInfo($membersDiv);
     }
 
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
