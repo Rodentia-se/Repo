@@ -50,6 +50,7 @@
               $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
             }
             $("#payPalAmount").val(toPay * rate);
+            $(".totalSpans").html(toPay * rate);
          })
           .val(curVal).first().change();
         });
