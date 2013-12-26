@@ -332,7 +332,7 @@
                 if (data.newId || data.newId == 0) {
                   $(el).data("tshirtorder_id", data.newId);
                 }
-                $("#" + this.id + "_moneySpanAmount").html((+ number * each));
+                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
                 var cost = 0;
                 var num = 0;
                 $(".tshirtSpinner").each(function() {
