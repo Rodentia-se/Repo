@@ -277,7 +277,7 @@
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(toPay);
                 $("#payPalAmount").html(toPay);
-                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay!");
+                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
               }
               $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
