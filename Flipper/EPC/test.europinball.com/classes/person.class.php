@@ -235,6 +235,7 @@
                 //}
               }
             }
+            $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
               $tshirtOrders = tshirtOrders($this, $tournament);
               foreach ($tshirtOrders as $tshirtOrder) {
@@ -276,11 +277,13 @@
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
               $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? '' : 'hidden'));
+              $paidDiv->addSpan(' You have already paid too much.', $prefix.'PaidTooMuch', (($costs - $this->paid < 0) ? '' : 'hidden'));
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
               $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
-              $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
           //}
           $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment.', NULL, 'italic');
