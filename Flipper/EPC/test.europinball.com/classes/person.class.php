@@ -342,6 +342,7 @@
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
                 $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
+                $("#PaymentTshirts").change();
                 $("#'.$currencyChooser->id.'").change();
               });
             ', '.tshirtSpinner');
