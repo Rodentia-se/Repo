@@ -207,7 +207,7 @@
       return FALSE;
     }
 
-    public static function getMemberInfo($tournament = NULL, $asPlayers = TRUE, $type = 'div') {
+    public function getMemberInfo($tournament = NULL, $asPlayers = TRUE, $type = 'div') {
       if ($this->team) {
         return $this->team->getMemberInfo($tournament, $asPlayers, $type);
       } else {
