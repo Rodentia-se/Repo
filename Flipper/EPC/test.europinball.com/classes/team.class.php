@@ -140,7 +140,7 @@
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         if (count($members) > 0) {
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-          $membersDiv->addLabel('Members');
+          $membersDiv->addLabel('Members', NULL, 'left');
           $memberSpan = $membersDiv->addDiv(NULL, 'right');
           $memberSpan->block = TRUE;
           foreach($members as $member) {
