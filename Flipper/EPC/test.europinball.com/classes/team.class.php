@@ -128,6 +128,10 @@
           '; 
           $values[':division'] = $division->id;
         }
+        debug($query, 'Q');
+        debug($this->id, 'team');
+        debug($tournament->id, 'tournament');
+        debug($division->id, 'division');
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         debug($members, 'TEAM');
         if (count($members) > 0) {
