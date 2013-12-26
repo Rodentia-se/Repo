@@ -240,17 +240,17 @@
             foreach ($tshirtOrders as $tshirtOrder) {
               $tshirtNum += $tshirtOrder->number;
             }
-            $cost = $this->getCost('tshirt');
-            $spinnerParams = array(
-              'class' => 'divisionSpinner enterChange',
-              'data-division_id' => $division->id,
-              'data-eachcost' => $cost
-            );
-            $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
-              $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
-              $costs += $spinner->value * $spinner->{'data-eachcost'};
-              $num += $spinner->value;
-              $spinner->addTooltip('');
+            $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
+              $spinnerParams = array(
+                'class' => 'numOfTshirts enterChange',
+                'data-eachcost' => config::$tshirtCost
+              );
+              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                $costs += $spinner->value * $spinner->{'data-eachcost'};
+                $num += $spinner->value;
+                $spinner->addTooltip('');
+              //}
             //}
           //}
           $paymentDiv->addParagraph('If you pay for anyone other than the player logged in, please include that information in the payment.', NULL, 'italic');
