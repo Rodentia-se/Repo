@@ -123,7 +123,7 @@
       $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
-        $members = players($this->team);
+        $members = ($asPlayers) ? players($this->team) : persons($this->team);
         if ($members) {
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $membersDiv->addLabel('Members', NULL, NULL, 'left');
