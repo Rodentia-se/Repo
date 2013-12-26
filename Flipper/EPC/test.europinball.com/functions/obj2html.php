@@ -44,8 +44,8 @@
             });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif");
             var toPay = $("#PaymentTotalDivMoneySpanAmount").html();
-            $("#payPalAmount").val(toPay * rate);
-            $(".totalSpans").html(toPay * rate);
+            $("#payPalAmount").val(Math.ceil(toPay * rate));
+            $(".totalSpans").html(Math.ceil(toPay * rate));
          })
           .val(curVal).first().change();
         }); 
