@@ -318,6 +318,11 @@
               $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
           //}
+          $paymentDiv->addScriptCode('
+            $(document).ready(function() {
+              $("#PaymentTshirts").change();
+            });
+          ');
           $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
           return $paymentDiv;
         break;
