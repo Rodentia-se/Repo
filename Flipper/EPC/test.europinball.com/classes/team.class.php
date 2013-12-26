@@ -124,7 +124,7 @@
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
         $members = ($asPlayers) ? players($this) : persons($this);
-        if ($members) {
+        if ($members && count($members) > 0) {
           $div = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $div->addLabel('Members', NULL, NULL, 'left');
           $membersDiv = $div->addDiv(NULL, 'right');
