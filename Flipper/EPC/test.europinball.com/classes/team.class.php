@@ -125,10 +125,9 @@
         if ($asPlayers) {
           $query .= '
             and o.tournamentDivision_id = :division
-          ';
+          '; 
           $values[':division'] = $division->id;
         }
-        debug($query);
         $members = $this->db->select($query, $values, 'person');
         if (count($members) > 0) {
           return $members;
