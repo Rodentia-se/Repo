@@ -33,7 +33,7 @@
           $data = $where;
         }
       }
-      if (isTeam($data) {
+      if (isTeam($data)) {
         $tournament = ($this->tournamentEdition) ? $this->tournamentEdition : getTournament();
         $division = getDivision($tournament, 'main');
         if (isDivision($division)) {
