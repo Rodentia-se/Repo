@@ -158,11 +158,11 @@
           $page->addContent($volDiv->getHtml());
         } 
         if (in_array('payment', config::$editSections)) {
-          $paymentDiv = new div('payment');
-          $paymentDiv->addContent($person->getEdit('payment', 'Payment options'));
-          $page->addContent($paymentDiv->getHtml());
-/*
           $page->startDiv('payment');
+            $paymentDiv = new div('paymentDiv');
+            $paymentDiv->addContent($person->getEdit('payment', 'Payment options'));
+            $page->addContent($paymentDiv->getHtml());
+/*
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
               $page->addContent(getCurrencySelect('payment')->getHtml());
