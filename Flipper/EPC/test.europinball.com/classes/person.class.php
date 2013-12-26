@@ -236,11 +236,11 @@
                 //}
               }
             }
-            $tshirtOrders = tshirtOrders($this, $tournament);
-            foreach ($tshirtOrders as $tshirtOrder) {
-              $tshirtNum += $tshirtOrder->number;
-            }
             $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
+              $tshirtOrders = tshirtOrders($this, $tournament);
+              foreach ($tshirtOrders as $tshirtOrder) {
+                $tshirtNum += $tshirtOrder->number;
+              }
               $spinnerParams = array(
                 'class' => 'numOfTshirts enterChange',
                 'data-eachcost' => config::$tshirtCost
@@ -251,6 +251,10 @@
                 $num += $spinner->value;
                 $spinner->addTooltip('');
               //}
+            //}
+            $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
+              $subTotalDiv->addInput($prefix.'PaymentNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
           //}
           $paymentDiv->addParagraph('If you pay for anyone other than the player logged in, please include that information in the payment.', NULL, 'italic');
@@ -265,7 +269,7 @@
             $tshirtsDiv->addH2('T-shirt orders', array('class' => 'entry-title'));
           }
           $orderDiv = $tshirtsDiv->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
-            $tshirtPerson = $orderDiv->addHidden('tshirtPerson_id', $this->id);
+            $tshirtPerson = $orderDiv->addHidden($prefix.'tshirtPerson_id', $this->id);
             $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
               $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
             //}
@@ -310,12 +314,13 @@
                   num += parseInt($(this).val());
                 });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
-              $subTotalDiv->addInput('tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
+              $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
             $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
