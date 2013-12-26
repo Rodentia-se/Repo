@@ -276,7 +276,7 @@
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(toPay);
-                $("#payPalAmount").html(toPay);
+                $("#payPalAmount").val(toPay);
                 $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
               }
               $("#'.$currencyChooser->id.'").change();

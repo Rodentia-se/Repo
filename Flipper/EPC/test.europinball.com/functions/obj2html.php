@@ -49,7 +49,8 @@
             } else {
               $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
             }
-          })
+            $("#payPalAmount").val(toPay);
+         })
           .val(curVal).first().change();
         });
       '));
