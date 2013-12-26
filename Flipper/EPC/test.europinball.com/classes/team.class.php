@@ -121,6 +121,7 @@
         ';
         $values[':id'] = $this->id;
         $values[':tournament'] = $tournament->id;
+        debug($query);
         $members = $this->db->select($query, $values, 'person');
         if (count($members) > 0) {
           return $members;
