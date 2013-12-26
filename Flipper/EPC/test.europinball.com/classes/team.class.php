@@ -119,7 +119,7 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembers($tournament = NULL, $asPlayers = TRUE) {
+    public function getMembers($tournament = NULL, $asPlayers = TRUE, $asInfo = FALSE) {
       $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
@@ -139,26 +139,18 @@
         }
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         if (count($members) > 0) {
-          return $members;
+          foreach($members as $member) {
+            $memberLinks[] = $member->getLink();
+          }
+          $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
+          $membersDiv->addLabel('Members');
+          $membersDiv->addSpan(implode($memberLinks, '<br />'));
+          return ($asInfo) ? $membersDiv : $members;
         }
       }
       return FALSE;
     }
     
-    public function getInfo($extra = NULL) {
-      $members = $this->getMembers();
-      if($members) {
-        foreach($members as $member) {
-          $memberLinks[] = $member->getLink();
-        }
-        $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-        $membersDiv->addLabel('Members');
-        $membersDiv->addSpan(implode($memberLinks, '<br />'));
-      }
-      debug($membersDiv);
-      return parent::getInfo($membersDiv.$extra);
-    }
-
     public function getPhotoIcon($icon = NULL) {
       $icon = ($icon) ? $icon : $this->getPhoto(FALSE, TRUE, FALSE);
       return parent::getPhotoIcon($icon);
