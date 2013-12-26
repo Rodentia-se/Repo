@@ -33,6 +33,27 @@
           $data = $where;
         }
       }
+      if (isTeam($data) {
+        $tournament = ($this->tournamentEdition) ? $this->tournamentEdition : getTournament();
+        $division = getDivision($tournament, 'main');
+        if (isDivision($division)) {
+          $query = ((static::$objClass == 'player') ? player::$select : person::$select).'
+            left join teamPerson tp on tp.person_id = '.((static::$objClass == 'player') ? 'p' : 'o').'.id
+            left join team t on tp.team_id = t.id
+            where t.id = :id
+              and tp.tournamentEdition_id = :tournament
+          ';
+          $values[':id'] = $data->id;
+          $values[':tournament'] = $tournament->id;
+          if (static::$objClass == 'player') {
+            $query .= '
+              and o.tournamentDivision_id = :division
+            '; 
+            $values[':division'] = $division->id;
+          }
+          $data = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
+        }
+      }
       parent::__construct($data, $prop, $cond);
     }
     

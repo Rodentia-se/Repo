@@ -208,7 +208,7 @@
 
     public function getRegRow($array = FALSE) {
       if ($this->team) {
-        $members = $this->team->getMembers();
+        $members = players($this->team);
         unset($memberLinks);
         if($members) {
           foreach($members as $member) {
