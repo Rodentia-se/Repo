@@ -206,6 +206,7 @@
     }
     
     public function getIcon($anchor = TRUE, $defaults = FALSE) {
+      debug($extra);
       $photo = $this->getPhoto($defaults, TRUE, FALSE);
       $icon = '<img src="'.$photo.'" class="icon" title="Click to view '.$this->name.'">';
       $link = ($anchor) ? $this->getLink('object', TRUE, FALSE, FALSE, $defaults, $icon) : $icon;
