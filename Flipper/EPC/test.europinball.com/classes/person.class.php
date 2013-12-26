@@ -264,7 +264,7 @@
               var cost = 0;
               var num = 0;
               $(".paymentSpinner").each(function() {
-                cost += $("#" + this.id + "_moneySpanAmount").html();
+                cost += (+ $("#" + this.id + "_moneySpanAmount").html());
               });
               $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
               var toPay = cost - (+ $("#PaymentPaidDivMoneySpanAmount").html() * -1);
