@@ -294,6 +294,7 @@
               } else {
                 $("#TshirtsOrderMore").hide();
               }
+              $("#payPalMsg").val("ID: " + $("#paymentPerson_id").val() + ", Main: " + $("#Payment_15").val() + ", T-shirts: " + $("#PaymentTshirts").val());
               $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
@@ -377,7 +378,6 @@
                 $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
                 $("#PaymentTshirts").change();
-                $("#'.$currencyChooser->id.'").change();
               });
             ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');

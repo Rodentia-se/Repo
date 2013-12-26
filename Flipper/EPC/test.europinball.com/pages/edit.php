@@ -269,9 +269,9 @@
                     $page->addInput('1', NULL, 'no_shipping', 'hidden');
                     $page->addInput(config::$baseHref.'/payment-ok/', NULL, 'return', 'hidden');
                     $page->addInput(config::$baseHref.'/payment-cancel/', NULL, 'cancel_return', 'hidden');
-                    $page->addInput('Who/what you are paying for', NULL, 'cn', 'hidden');
+                    $page->addInput('Who/what you are paying for?', NULL, 'cn', 'hidden');
                     $page->addInput('Pay for', NULL, 'on0', 'hidden');
-                    $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden', 'payMsg');
+                    $page->addInput("Person ID: '.$person->id.'", 'payPalMsg', 'os0', 'hidden', 'payMsg');
                     $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'currencyInput');
                     $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                   $page->closeForm();
