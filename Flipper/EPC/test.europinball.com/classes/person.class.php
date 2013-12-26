@@ -369,7 +369,7 @@
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
-            $toPay = $costs - $this->paid;
+            $toPay = $this->paid - $this->getCost();
             $orderMoreNum = ($toPay > 0) ? floor($toPay / config::$tshirtCost) : 0;
             $orderMoreDiv = $orderDiv->addDiv($prefix.'tshirtsOrderMore');
               $orderMoreP = $orderMoreDiv->addParagraph('You have already paid enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
