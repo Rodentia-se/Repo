@@ -212,7 +212,7 @@
       return ($link) ? $link : FALSE;
     }
 
-    public function getInfo($extra = NULL) {
+    public function getInfo() {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
@@ -223,10 +223,14 @@
             if (!$html) {
               $html = $this->${$prop.'Name'};
             }
-          } else {
+          } else if (method_exists($this, $prop)) {
+            $html = $this->$prop();
+          } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-          if ($html) {
+          if (isHtml($html)) {
+            $left->addContent($html);
+          } else if (is($html)) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
             $nameDiv->addSpan($html)->escape = FALSE;
@@ -237,7 +241,6 @@
         $nameDiv->addLabel('Name');
         $nameDiv->addSpan($this->name);
       }
-      $left->addContent($extra);
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto());

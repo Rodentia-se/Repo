@@ -119,25 +119,11 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembers($tournament = NULL, $asPlayers = TRUE, $asInfo = FALSE) {
+    public function getMembersInfo($tournament = NULL, $type = 'div', $asPlayers = TRUE) {
       $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
-        $query = (($asPlayers) ? player::$select : person::$select).'
-          left join teamPerson tp on tp.person_id = '.(($asPlayers) ? 'p' : 'o').'.id
-          left join team t on tp.team_id = t.id
-          where t.id = :id
-            and tp.tournamentEdition_id = :tournament
-        ';
-        $values[':id'] = $this->id;
-        $values[':tournament'] = $tournament->id;
-        if ($asPlayers) {
-          $query .= '
-            and o.tournamentDivision_id = :division
-          '; 
-          $values[':division'] = $division->id;
-        }
-        $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
+        $members = players($this->team);
         if ($members) {
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $membersDiv->addLabel('Members', NULL, NULL, 'left');
@@ -147,7 +133,7 @@
             $memberSpan->addLink($member->getLink('object', FALSE), $member->name);
             $memberSpan->addBr();
           }
-          return ($asInfo) ? $membersDiv : $members;
+          return ($type == 'div') ? $membersDiv : $members;
         }
       }
       return FALSE;

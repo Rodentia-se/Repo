@@ -135,7 +135,8 @@
       'region',
       'country',
       'continent',
-      'IFPA' => 'ifpaLink'
+      'IFPA' => 'ifpaLink',
+      'members' => 'getMemberInfo'
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
@@ -206,6 +207,14 @@
       return FALSE;
     }
 
+    public static function getMemberInfo($tournament = NULL, $asPlayers = TRUE, $type = 'div') {
+      if ($this->team) {
+        return $this->team->getMemberInfo($tournament, $asPlayers, $type);
+      } else {
+        return FALSE;
+      }
+    }
+    
     public function getRegRow($array = FALSE) {
       if ($this->team) {
         $members = players($this->team);
@@ -251,13 +260,6 @@
         return ($array) ? $return : (object) $return;
       }
       return FALSE;
-    }
-
-    public function getInfo($extra = NULL) {
-      if ($this->team) {
-        $membersDiv = $this->team->getMembers(NULL, TRUE, TRUE);
-      }
-      return parent::getInfo($membersDiv);
     }
 
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
