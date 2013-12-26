@@ -329,6 +329,7 @@
                 $goToPaymentP->addContent(' to pay or check payment status.');
               //}
             //}
+            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payment tab.', NULL, 'italic');
           //}
           $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $tshirtsDiv;
