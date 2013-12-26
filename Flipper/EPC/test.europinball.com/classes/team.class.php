@@ -131,8 +131,8 @@
           foreach($members as $member) {
             $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
             $membersDiv->addBr();
+            debug($membersDiv);
           }
-          debug($div);
           return ($type == 'div') ? $div : $members;
         }
       }
