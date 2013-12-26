@@ -267,12 +267,12 @@
                 cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
               $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
-              var toPay = cost - (+ parseInt($("#PaymentPaidDivMoneySpanAmount").html()) * -1);
+              var toPay = cost - (+ $("#PaymentPaidDivMoneySpanAmount").html() * -1);
               $("#PaidTooMuchAmount").html((+ toPay * -1));
               if (toPay > 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
-                $("#PaymentTotalDivMoneySpanAmount").html(toPay);
+                $("#PaymentTotalDivMoneySpanAmount").html(Math.ceil(toPay));
                 $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
                 $("#TshirtsOrderMore").hide();
               } else if (toPay == 0) {
