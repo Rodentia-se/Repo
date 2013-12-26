@@ -18,6 +18,14 @@
     }
   }
   
+  function now($time = TRUE) {
+    return ($time) ? date('Y-m-d H:i:s') : date('Y-m-d');
+  }
+  
+  function today() {
+    return now(FALSE);
+  }
+  
   function is($string ) {
     return ($string || $string === 0 || $string === "0") ? TRUE : FALSE;
   }
