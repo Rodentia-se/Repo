@@ -249,7 +249,7 @@
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
-            $orderDiv->addChange('
+            $paymentDiv->addChange('
               var el = this;
               var number = $(el).val();
               var each = $(el).data("eachcost");
