@@ -263,7 +263,7 @@
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
-              $totalDiv->addSpan(' ', NULL, 'short');
+              $totalDiv->addLabel('To pay', NULL, NULL, 'short');
               $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
           //}
