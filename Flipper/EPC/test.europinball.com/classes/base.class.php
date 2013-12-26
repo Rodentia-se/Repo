@@ -230,7 +230,7 @@
           }
           if (isDiv($html)) {
             $left->addContent($html);
-          if ($html) {
+          } else if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
             $nameDiv->addSpan($html)->escape = FALSE;
