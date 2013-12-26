@@ -142,7 +142,7 @@
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $membersDiv->addLabel('Members');
           $memberSpan = $membersDiv->addSpan();
-          $memberSpan->inlineBlock = TRUE;
+          $memberSpan->block = TRUE;
           foreach($members as $member) {
             $memberSpan->addLink($member->getLink('object', FALSE), $member->name);
             $memberSpan->addBr();
