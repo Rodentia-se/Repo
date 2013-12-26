@@ -268,12 +268,12 @@
               });
               $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
               var toPay = cost - (+ parseInt($("#PaymentPaidDivMoneySpanAmount").html()) * -1);
+              $("#PaidTooMuchAmount").html((+ toPay * -1));
               if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
               } else if (toPay < 0) {
-                $("#PaidTooMuchAmount").html((+ toPay * -1));
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
