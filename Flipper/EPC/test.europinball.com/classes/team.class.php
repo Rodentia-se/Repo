@@ -132,6 +132,7 @@
             $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
             $membersDiv->addBr();
           }
+          debug($div);
           return ($type == 'div') ? $div : $members;
         }
       }
