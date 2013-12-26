@@ -223,7 +223,7 @@
                 $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
                   $cost = $this->getCost($division);
                   $spinnerParams = array(
-                    'class' => 'divisionSpinner enterChange',
+                    'class' => 'paymentSpinner enterChange',
                     'data-division_id' => $division->id,
                     'data-eachcost' => $cost
                   );
@@ -231,7 +231,6 @@
                     $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
-                    $spinner->addTooltip('');
                   //}
                 //}
               }
@@ -242,15 +241,32 @@
                 $tshirtNum += $tshirtOrder->number;
               }
               $spinnerParams = array(
-                'class' => 'numOfTshirts enterChange',
+                'class' => 'numOfTshirts paymentSpinner enterChange',
                 'data-eachcost' => config::$tshirtCost
               );
               $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
                 $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
-                $spinner->addTooltip('');
               //}
             //}
+/*            $orderDiv->addChange('
+              var el = this;
+              var number = $(el).val();
+              var each = $(el).data("eachcost");
+              $("#" + this.id + "MoneySpanAmount").html((+ number * each));
+                var cost = 0;
+                var num = 0;
+                $(".tshirtSpinner").each(function() {
+                  cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                  num += parseInt($(this).val());
+                });
+                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
+                $(".numOfTshirts").val(num);
+                $("#'.$currencyChooser->id.'").change();
+              })
+            ', '.paymentSpinner');
+ */
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
@@ -316,7 +332,7 @@
                 if (data.newId || data.newId == 0) {
                   $(el).data("tshirtorder_id", data.newId);
                 }
-                $("#'.$prefix.'tshirtsDiv_" + $(el).data("tshirt_id") + "MoneySpanAmount").html((+ number * each));
+                $("#" + this.id + "MoneySpanAmount").html((+ number * each));
                 var cost = 0;
                 var num = 0;
                 $(".tshirtSpinner").each(function() {
