@@ -63,14 +63,10 @@
             }
          })
           .val(curVal).first().change();
-        });
+        }); 
       '));
     }
     return $select;
   }
-            $orderMoreNum = ($toPay > 0) ? floor($toPay / config::$tshirtCost) : 0;
-            $orderMoreDiv = $orderDiv->addDiv($prefix.'tshirtsOrderMore');
-              $orderMoreP = $orderMoreDiv->addParagraph('You have already paid enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
-              $orderMoreP->addSpan($orderMoreNum, $prefix.'TshirtsOrderMoreNum');
 
 ?>
