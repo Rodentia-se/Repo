@@ -293,7 +293,7 @@
                 $(".totalSpans").html(0);
               }
               var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
-              orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum;
+              orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentTshirts").val());
               $("#TshirtsOrderMoreNum").html(orderMoreNum);
               if (orderMoreNum) {
                 $("#TshirtsOrderMore").show();
