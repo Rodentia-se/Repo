@@ -264,7 +264,7 @@
                     $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
                     $page->addInput(config::$payPalItem, NULL, 'item_name', 'hidden');
                     $page->addInput('1', NULL, 'item_number', 'hidden');
-                    $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
+                    $page->addInput($costs - $person->paid, 'payPalAmount', 'amount', 'hidden', 'totals');
                     $page->addInput(config::$payPalPageStyle, NULL, 'page_style', 'hidden');
                     $page->addInput('1', NULL, 'no_shipping', 'hidden');
                     $page->addInput(config::$baseHref.'/payment-ok/', NULL, 'return', 'hidden');
