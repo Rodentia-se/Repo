@@ -235,7 +235,6 @@
                 //}
               }
             }
-            $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
               $tshirtOrders = tshirtOrders($this, $tournament);
               foreach ($tshirtOrders as $tshirtOrder) {
@@ -268,6 +267,7 @@
               })
             ', '.paymentSpinner');
  */
+            $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
