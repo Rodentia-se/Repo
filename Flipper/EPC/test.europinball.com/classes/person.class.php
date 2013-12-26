@@ -387,7 +387,7 @@
             $toBuyFor = $this->paid - $this->getCost();
             $orderMoreNum = ($toBuyFor > 0) ? floor($toBuyFor / config::$tshirtCost) : 0;
             $orderMoreDiv = $orderDiv->addDiv($prefix.'tshirtsOrderMore');
-              $orderMoreP = $orderMoreDiv->addParagraph('You have already paid enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
+              $orderMoreP = $orderMoreDiv->addParagraph('You have already paid (or are going to pay) enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
               $orderMoreP->addSpan($orderMoreNum, $prefix.'TshirtsOrderMoreNum');
               $orderMoreP->addContent(' more T-shirts.');
             $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
