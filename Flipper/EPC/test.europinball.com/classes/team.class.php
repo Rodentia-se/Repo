@@ -128,7 +128,7 @@
           '; 
           $values[':division'] = $division->id;
         }
-        $members = $this->db->select($query, $values, 'person');
+        $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         if (count($members) > 0) {
           return $members;
         }
