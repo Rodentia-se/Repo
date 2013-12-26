@@ -249,24 +249,20 @@
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
-/*            $orderDiv->addChange('
+            $orderDiv->addChange('
               var el = this;
               var number = $(el).val();
               var each = $(el).data("eachcost");
               $("#" + this.id + "MoneySpanAmount").html((+ number * each));
                 var cost = 0;
                 var num = 0;
-                $(".tshirtSpinner").each(function() {
-                  cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
-                  num += parseInt($(this).val());
+                $(".paymentSpinner").each(function() {
+                  cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
                 });
-                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
-                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
-                $(".numOfTshirts").val(num);
+                $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
                 $("#'.$currencyChooser->id.'").change();
               })
             ', '.paymentSpinner');
- */
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
               $subTotalDiv->addLabel(' ');
@@ -288,7 +284,7 @@
               $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
           //}
-          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment.', NULL, 'italic');
+          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message.', NULL, 'italic');
           return $paymentDiv;
         break;
         case 'tshirt':
@@ -341,7 +337,7 @@
                 var cost = 0;
                 var num = 0;
                 $(".tshirtSpinner").each(function() {
-                  cost += parseInt($("#'.$prefix.'tshirtsDiv_" + $(this).data("tshirt_id") + "MoneySpanAmount").html());
+                  cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
                   num += parseInt($(this).val());
                 });
                 $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
