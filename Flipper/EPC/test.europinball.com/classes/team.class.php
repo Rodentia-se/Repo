@@ -140,9 +140,9 @@
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         if (count($members) > 0) {
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-          $membersDiv->inline = TRUE;
           $membersDiv->addLabel('Members');
           $memberLinksDiv = $membersDiv->addDiv();
+          $memberLinksDiv->inline = TRUE;
           foreach($members as $member) {
             $memberLinksDiv->addLink($member->getLink('object', FALSE), $member->name);
             $memberLinksDiv->addBr();
