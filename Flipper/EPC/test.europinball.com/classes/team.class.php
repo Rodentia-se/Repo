@@ -111,7 +111,7 @@
     }
 
     public function getMembers($tournament = NULL, $asPlayers = TRUE) {
-      $tournament = (isTournament($tournament)) ? $tournament : (($tournament) ? tournament($tournament) : tournament('current'));
+      $tournament = getTournament($tournament);
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
         $query = (($asPlayers) ? player::$select : person::$select).'
