@@ -260,7 +260,7 @@
                 cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
               $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
-              var toPay = cost - parseInt($("#PaymentPaidDivMoneySpanAmount").html());
+              var toPay = cost - (+ parseInt($("#PaymentPaidDivMoneySpanAmount").html()) * -1);
               if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
