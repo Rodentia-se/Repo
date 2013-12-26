@@ -18,7 +18,7 @@
         $arrClass = $obj::$arrClass;
         $objs = $arrClass($tournament);
         debug($objs);
-        $div->addContent($objs->getSelectObj($arrClass, $object));
+        $div->addContent($objs->getSelectObj());
       }
       $div->addContent($object->getInfo());
     } else {
