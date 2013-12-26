@@ -43,6 +43,9 @@
               $(this).val(parseInt($(this).val().replace(/[^0-9\-]/g, "") * rate).toMoney(0, ".", " ", "", format));
             });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif");
+            var toPay = $("#PaymentTotalDivMoneySpanAmount").html();
+            $("#payPalAmount").val(toPay * rate);
+            $(".totalSpans").html(toPay * rate);
          })
           .val(curVal).first().change();
         }); 

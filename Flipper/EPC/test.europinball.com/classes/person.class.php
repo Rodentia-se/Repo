@@ -274,23 +274,17 @@
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(toPay);
                 $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
-                $("#payPalAmount").val(toPay * rate);
-                $(".totalSpans").html(toPay * rate);
                 $("#TshirtsOrderMore").hide();
               } else if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
-                $("#payPalAmount").val(0);
-                $(".totalSpans").html(0);
               } else {
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
-                $("#payPalAmount").val(0);
-                $(".totalSpans").html(0);
               }
               var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
               orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentTshirts").val());
