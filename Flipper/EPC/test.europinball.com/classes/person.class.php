@@ -259,7 +259,22 @@
               $(".paymentSpinner").each(function() {
                 cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
-              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
+              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount|").html(cost);
+              var toPay = cost - parseInt($("#PaymentPaidDivMoneySpanAmount").html());
+              if (toPay == 0) {
+                $(".paidTooMuch").hide();
+                $(".paidAll").show();
+                $("#PaymentTotalDivMoneySpanAmount").html(0);
+              } else if (toPay < 0) {
+                $("#paidTooMuch").html((+ toPay * -1));
+                $(".paidTooMuch").show();
+                $(".paidAll").hide();
+                $("#PaymentTotalDivMoneySpanAmount").html(0);
+              } else {
+                $(".paidTooMuch").hide();
+                $(".paidAll").hide();
+                $("#PaymentTotalDivMoneySpanAmount").html(toPay);
+              }
               $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
@@ -272,10 +287,10 @@
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
               $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
-              $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? '' : 'hidden'));
-              $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? '' : 'hidden'));
-              $paidDiv->addMoneySpan($costs - $this->paid, $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? '' : 'hidden')));
-              $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? '' : 'hidden'));
+              $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? 'paidAll' : 'hidden paidAll'));
+              $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
+              $paidDiv->addMoneySpan($costs - $this->paid, $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch')));
+              $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
