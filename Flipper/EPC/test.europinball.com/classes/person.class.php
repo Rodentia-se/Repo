@@ -228,7 +228,7 @@
                     'data-eachcost' => $cost
                   );
                   $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
-                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
                   //}
@@ -245,7 +245,7 @@
                 'data-eachcost' => config::$tshirtCost
               );
               $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
-                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
@@ -253,11 +253,11 @@
               var el = this;
               var number = $(el).val();
               var each = $(el).data("eachcost");
-              $("#" + this.id + "MoneySpanAmount").html((+ number * each));
+              $("#" + el.id + "_moneySpanAmount").html((+ number * each));
               var cost = 0;
               var num = 0;
               $(".paymentSpinner").each(function() {
-                cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
+                cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
               $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
               $("#'.$currencyChooser->id.'").change();
@@ -313,7 +313,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $prefix.'TshirtOrder_'.$tshirt->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;
                   $spinner->addTooltip('');
