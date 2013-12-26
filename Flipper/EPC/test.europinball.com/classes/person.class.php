@@ -261,7 +261,7 @@
                 });
                 $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
                 $("#'.$currencyChooser->id.'").change();
-              })
+              });
             ', '.paymentSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
@@ -344,7 +344,7 @@
                 $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
                 $("#'.$currencyChooser->id.'").change();
-              })
+              });
             ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
