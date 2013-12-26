@@ -228,7 +228,7 @@
                     'data-eachcost' => $cost
                   );
                   $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
-                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
                   //}
@@ -245,7 +245,7 @@
                 'data-eachcost' => config::$tshirtCost
               );
               $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
-                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
@@ -270,17 +270,17 @@
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
             $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
-              $paidDiv->addMoneySpan($this->paid, NULL, config::$currencies[$defaultCurrency]['format']);
+              $paidDiv->addMoneySpan($this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
               $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
-              $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+              $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
           //}
           $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment.', NULL, 'italic');
@@ -313,7 +313,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;
                   $spinner->addTooltip('');
@@ -347,7 +347,7 @@
             ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
             //}
             $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
               $goToPaymentP = $goToPaymentDiv->addParagraph('Go to the ');
