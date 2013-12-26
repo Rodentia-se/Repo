@@ -259,7 +259,7 @@
               $(".paymentSpinner").each(function() {
                 cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
-              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount|").html(cost);
+              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
               var toPay = cost - parseInt($("#PaymentPaidDivMoneySpanAmount").html());
               if (toPay == 0) {
                 $(".paidTooMuch").hide();
