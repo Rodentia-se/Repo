@@ -258,7 +258,7 @@
             //}
             $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
               $paidDiv->addLabel(' ');
-              $paidDiv->addLabel('Already paid', NULL, 'short');
+              $paidDiv->addLabel('Already paid', NULL, NULL, 'short');
               $paidDiv->addMoneySpan($this->paid, NULL, config::$currencies[$defaultCurrency]['format']);
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
