@@ -1016,6 +1016,8 @@
         foreach ($content as $part) {
           $html .= static::contentToHtml($part, $escape, $entities);
         }
+      } else if ($content == ' ') {
+        $html = '&nbsp;';
       } else {
         $html = ($entities) ? htmlentities($content) : (($escape) ? htmlspecialchars($content) : $content);
       }
