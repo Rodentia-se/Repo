@@ -206,7 +206,6 @@
     }
     
     public function getIcon($anchor = TRUE, $defaults = FALSE) {
-      debug($extra);
       $photo = $this->getPhoto($defaults, TRUE, FALSE);
       $icon = '<img src="'.$photo.'" class="icon" title="Click to view '.$this->name.'">';
       $link = ($anchor) ? $this->getLink('object', TRUE, FALSE, FALSE, $defaults, $icon) : $icon;
@@ -214,6 +213,7 @@
     }
 
     public function getInfo($extra = NULL) {
+      debug($extra);
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
