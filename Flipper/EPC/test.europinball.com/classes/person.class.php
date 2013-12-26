@@ -209,10 +209,12 @@
             }
             $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
             $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
+/*
               $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#profiletabLink").click();');
               $gotoProfileP->addContent(' or ');
+              */
               $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#tshirtstabLink").click();');
-              $gotoProfileP->addContent(' tabs (to make the changes permanent), or you can just change the numbers here before paying (changes will be reset when you leave this page).'); 
+              $gotoProfileP->addContent(' tab (to also order T-shirt sizes), or you can just change the numbers here before paying (you will need to order T-shirt sizes later).'); 
             //}
             $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
               $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
