@@ -253,6 +253,13 @@
       return FALSE;
     }
 
+    public function getInfo($extra = NULL) {
+      if ($this->team) {
+        $extra = $this->team->getInfo($extra);
+      }
+      return parent::getInfo($extra);
+    }
+
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       if ($this->team_id) {
         $team = team($this->team_id);

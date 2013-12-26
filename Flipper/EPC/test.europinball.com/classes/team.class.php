@@ -155,7 +155,7 @@
           $membersDiv->addLabel('Members');
           $membersDiv->addSpan(implode($memberLinks, '<br />'));
         }
-      return parent::getInfo($membersDiv);
+      return parent::getInfo($membersDiv.$extra);
     }
 
     public function getPhotoIcon($icon = NULL) {
