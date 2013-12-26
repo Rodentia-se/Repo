@@ -278,7 +278,9 @@
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
               $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
               $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? '' : 'hidden'));
-              $paidDiv->addSpan(' You have already paid too much.', $prefix.'PaidTooMuch', (($costs - $this->paid < 0) ? '' : 'hidden'));
+              $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? '' : 'hidden'));
+              $paidDiv->addMoneySpan($costs - $this->paid, $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? '' : 'hidden')));
+              $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? '' : 'hidden'));
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
