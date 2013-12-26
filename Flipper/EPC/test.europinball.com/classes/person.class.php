@@ -231,7 +231,9 @@
                     'data-division_id' => $division->id,
                     'data-eachcost' => $cost
                   );
-                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
+                  $player = player($this, $division);
+                  $divisionNum = ($player) ? 1 : 0;
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
                     $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
