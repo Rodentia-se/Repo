@@ -43,24 +43,6 @@
               $(this).val(parseInt($(this).val().replace(/[^0-9\-]/g, "") * rate).toMoney(0, ".", " ", "", format));
             });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif");
-            var toPay = $("#PaymentTotalDivMoneySpanAmount").html();
-            if (toPay > 0) {
-              $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
-              $("#payPalAmount").val(toPay * rate);
-              $(".totalSpans").html(toPay * rate);
-              $("#TshirtsOrderMore").hide();
-            } else {
-              $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
-              $("#payPalAmount").val(0);
-              $(".totalSpans").html(0);
-            }
-            var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
-            $("#TshirtsOrderMoreNum").html(orderMoreNum);
-            if (orderMoreNum) {
-              $("#TshirtsOrderMore").show();
-            } else {
-              $("#TshirtsOrderMore").hide();
-            }
          })
           .val(curVal).first().change();
         }); 
