@@ -265,15 +265,19 @@
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#payPalImg").prop("disabled", true);
               } else if (toPay < 0) {
                 $("#PaidTooMuchAmount").html((+ toPay * -1));
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#payPalImg").prop("disabled", true);
               } else {
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(toPay);
+                $("#payPalAmount").html(toPay);
+                $("#payPalImg").prop("disabled", false);
               }
               $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
