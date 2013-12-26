@@ -42,7 +42,13 @@
             $(".moneyInput").each(function() {
               $(this).val(parseInt($(this).val().replace(/[^0-9\-]/g, "")).toMoney(0, ".", " ", "", format));
             });
-            $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif")
+            $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif");
+            var toPay = $("#PaymentTotalDivMoneySpanAmount").html();
+            if (toPay > 0) {
+              $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
+            } else {
+              $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
+            }
           })
           .val(curVal).first().change();
         });
