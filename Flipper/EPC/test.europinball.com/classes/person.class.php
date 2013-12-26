@@ -248,12 +248,11 @@
               $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
                 $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
-                $num += $spinner->value;
                 $spinner->addTooltip('');
               //}
             //}
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
-              $subTotalDiv->addInput($prefix.'PaymentNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
+              $subTotalDiv->addLabel(' ', NULL, NULL, 'short');
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
           //}
