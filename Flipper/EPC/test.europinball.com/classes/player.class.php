@@ -256,6 +256,7 @@
     public function getInfo($extra = NULL) {
       if ($this->team) {
         $extra .= $this->team->getMembers(NULL, TRUE, TRUE);
+        debug($extra);
       }
       return parent::getInfo($extra);
     }
