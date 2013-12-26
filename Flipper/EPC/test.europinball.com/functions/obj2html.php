@@ -37,10 +37,10 @@
             var format = $("#currency_" + $(this).val()).data("format");
             var rate = $("#currency_" + $(this).val()).data("rate");
             $(".moneySpan").each(function() { 
-              $(this).html((+ parseInt($("#" + this.id + "Amount").html().replace(/[^0-9]/g, "")) * rate).toMoney(0, ".", " ", "", format));
+              $(this).html((+ parseInt($("#" + this.id + "Amount").html().replace(/[^0-9\-]/g, "")) * rate).toMoney(0, ".", " ", "", format));
             });
             $(".moneyInput").each(function() {
-              $(this).val(parseInt($(this).val().replace(/[^0-9]/g, "")).toMoney(0, ".", " ", "", format));
+              $(this).val(parseInt($(this).val().replace(/[^0-9\-]/g, "")).toMoney(0, ".", " ", "", format));
             });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif")
           })
