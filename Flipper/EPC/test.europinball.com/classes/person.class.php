@@ -258,12 +258,12 @@
             //}
             $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
               $paidDiv->addLabel(' ');
-              $paidDiv->addLabel('Already paid', NULL, NULL, 'short');
+              $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
               $paidDiv->addMoneySpan($this->paid, NULL, config::$currencies[$defaultCurrency]['format']);
             //}
             $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
               $totalDiv->addLabel(' ');
-              $totalDiv->addLabel('To pay', NULL, NULL, 'short');
+              $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
               $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
           //}
