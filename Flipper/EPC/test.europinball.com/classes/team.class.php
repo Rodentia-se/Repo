@@ -147,14 +147,15 @@
     
     public function getInfo($extra = NULL) {
       $members = $this->getMembers();
-        if($members) {
-          foreach($members as $member) {
-            $memberLinks[] = $member->getLink();
-          }
-          $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-          $membersDiv->addLabel('Members');
-          $membersDiv->addSpan(implode($memberLinks, '<br />'));
+      if($members) {
+        foreach($members as $member) {
+          $memberLinks[] = $member->getLink();
         }
+        $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
+        $membersDiv->addLabel('Members');
+        $membersDiv->addSpan(implode($memberLinks, '<br />'));
+      }
+      debug($membersDiv);
       return parent::getInfo($membersDiv.$extra);
     }
 
