@@ -125,15 +125,14 @@
       if (isTournament($tournament)) {
         $members = ($asPlayers) ? players($this->team) : persons($this->team);
         if ($members) {
-          $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-          $membersDiv->addLabel('Members', NULL, NULL, 'left');
-          $memberSpan = $membersDiv->addDiv(NULL, 'right');
-          $memberSpan->block = TRUE;
+          $div = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
+          $div->addLabel('Members', NULL, NULL, 'left');
+          $membersDiv = $div->addDiv(NULL, 'right');
           foreach($members as $member) {
-            $memberSpan->addLink($member->getLink('object', FALSE), $member->name);
-            $memberSpan->addBr();
+            $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
+            $membersDiv->addBr();
           }
-          return ($type == 'div') ? $membersDiv : $members;
+          return ($type == 'div') ? $div : $members;
         }
       }
       return FALSE;
