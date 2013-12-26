@@ -144,13 +144,14 @@
     }
     
     public function getCost($type = NULL) {
-      if (!$type || isTournament($type) || in_array($type, array_merge(array('active', 'current'), config::$divisions))) {
-        $divisions = divisions((($type) ? $type : 'active'));
-      } else {
-        $divisions = divisions(($type && $type != 'all') ? $type : 'active');
+      if (!$type || isTournament($type) || in_array($type, array('active', 'current'))) {
+        $tournament = getTournament($type);
+        $divisions = divisions($tournament);
+      } else if (in_array($type, config::$activeDivisions)) {
+        $divisions = array(division($type));
       }
       $cost = 0;
-      if ($type != 'tshirts' && $divisions && count($divisions) > 0) {
+      if ($type != 'tshirts' && $divisions) {
         foreach ($divisions as $division) {
           $player = player($this, $division);
           if ($player) {
@@ -158,9 +159,11 @@
           }
         }
       }
-      if (!$type || $type == 'all' || $type == 'tshirts') {
-//        $cost += count(tshirts($person)) * config::$tshirtCost;
-        $cost += 1 * config::$tshirtCost;
+      if (isTournament($tournament) || !$type || $type == 'all' || $type == 'tshirts') {
+        $tshirtOrders = tshirtOrders($this, $tournament);
+        foreach ($tshirtOrders as $tshirtOrder) {
+          $cost += $tshirtOrder->number * config::$tshirtCost;
+        }
       }
       return $cost;
     }
@@ -209,7 +212,7 @@
               $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#profiletabLink").click();');
               $gotoProfileP->addContent(' or ');
               $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#tshirtstabLink").click();');
-              $gotoProfileP->addContent(' to make the changes permanent, or you can just change the numbers here before paying (changes will be reset when you leave this page).'); 
+              $gotoProfileP->addContent(' tabs (to make the changes permanent), or you can just change the numbers here before paying (changes will be reset when you leave this page).'); 
             //}
             $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
               $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
@@ -233,6 +236,22 @@
                 //}
               }
             }
+            $tshirtOrders = tshirtOrders($this, $tournament);
+            foreach ($tshirtOrders as $tshirtOrder) {
+              $tshirtNum += $tshirtOrder->number;
+            }
+            $cost = $this->getCost('tshirt');
+            $spinnerParams = array(
+              'class' => 'divisionSpinner enterChange',
+              'data-division_id' => $division->id,
+              'data-eachcost' => $cost
+            );
+            $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, 1, 'text', ucfirst($division->type), $spinnerParams);
+              $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, NULL, config::$currencies[$defaultCurrency]['format']);
+              $costs += $spinner->value * $spinner->{'data-eachcost'};
+              $num += $spinner->value;
+              $spinner->addTooltip('');
+            //}
           //}
           $paymentDiv->addParagraph('If you pay for anyone other than the player logged in, please include that information in the payment.', NULL, 'italic');
           return $paymentDiv;
