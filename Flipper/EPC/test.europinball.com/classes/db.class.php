@@ -62,7 +62,7 @@
           return FALSE;
         }
       }
-      return ($class) ? $this->getRows($sth, $class) : $this->getRows($sth);
+      return $this->getRows($sth, $class);
     }
     
     protected function getRow($sth, $class = null) {
@@ -77,15 +77,6 @@
       }
     }
     
-    protected function getValue($query, $values = NULL) {
-      $sth = $this->action($query, $values);
-      if ($sth) {
-        return $sth->fetchColumn();
-      } else {
-        return FALSE;
-      }
-    }
-
     protected function getRows($sth, $class = null) {
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
@@ -96,6 +87,15 @@
         return $objs;
       }
       return FALSE;
+    }
+
+    protected function getValue($query, $values = NULL) {
+      $sth = $this->action($query, $values);
+      if ($sth) {
+        return $sth->fetchColumn();
+      } else {
+        return FALSE;
+      }
     }
 
     public function getObject($query, $class = NULL) {

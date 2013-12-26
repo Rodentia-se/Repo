@@ -129,6 +129,7 @@
           $values[':division'] = $division->id;
         }
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
+        debug($members, 'TEAM');
         if (count($members) > 0) {
           return $members;
         }
