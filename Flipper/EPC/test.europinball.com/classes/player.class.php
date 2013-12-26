@@ -210,6 +210,7 @@
       if ($this->team) {
         $members = players($this->team);
         unset($memberLinks);
+        debug($members);
         if($members) {
           foreach($members as $member) {
             $memberLinks[] = $member->getLink();
