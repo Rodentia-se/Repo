@@ -213,7 +213,6 @@
     }
 
     public function getInfo($extra = NULL) {
-      debug($extra);
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
@@ -235,10 +234,10 @@
         }
       } else {
         $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-        $left->addContent($extra);
         $nameDiv->addLabel('Name');
         $nameDiv->addSpan($this->name);
       }
+      $left->addContent($extra);
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto());
