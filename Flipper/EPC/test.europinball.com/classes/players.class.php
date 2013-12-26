@@ -36,22 +36,14 @@
       if (isTeam($data)) {
         $tournament = ($this->tournamentEdition) ? $this->tournamentEdition : getTournament();
         $division = getDivision($tournament, 'main');
-        if (isDivision($division)) {
-          $query = ((static::$objClass == 'player') ? player::$select : person::$select).'
+        if (isTournament($tournament)) {
+          $data = '
             left join teamPerson tp on tp.person_id = '.((static::$objClass == 'player') ? 'p' : 'o').'.id
             left join team t on tp.team_id = t.id
-            where t.id = :id
-              and tp.tournamentEdition_id = :tournament
+            where t.id = '.$data->id.'
+              and tp.tournamentEdition_id = '.$tournament->id.'
+              '.((static::$objClass == 'player') ? 'and o.tournamentDivision_id = '.$division->id : '').'
           ';
-          $values[':id'] = $data->id;
-          $values[':tournament'] = $tournament->id;
-          if (static::$objClass == 'player') {
-            $query .= '
-              and o.tournamentDivision_id = :division
-            '; 
-            $values[':division'] = $division->id;
-          }
-          $data = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         }
       }
       parent::__construct($data, $prop, $cond);
