@@ -11,6 +11,7 @@
     public static $select;
     public static $parents = array();
     public static $children = array();
+    public static $prefixes = array();
     public static $cols = array();
     public static $selfParent = FALSE;
     public static $validators = array();
@@ -76,6 +77,11 @@
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
               $objSearch[$searchTable.'_id'] = $search->id;
             }
+            if (isObj($depth) && isId($depth->id)) {
+              $depthClass = get_class($depth);
+              $depthTable = (property_exists($depth, 'table')) ? $depthClass::$table : $depthClass;
+              $objSearch[$depthTable.'_id'] = $depth->id;
+            }
             $obj = $this->db->getObjectByProps(get_class($this), $objSearch);
           } else if (is($data)) {
             $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
@@ -114,18 +120,6 @@
       }
     }
     
-    public function save($propagate = FALSE) {
-      if ($this->id) {
-        $return = $this->update();
-      } else {
-        $return = $this->add();
-      }
-      if ($propagate) {
-        // Propagate
-      }
-      return $return;
-    }
-    
     public function setProp($prop, $value = NULL) {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->getColNames();
@@ -158,6 +152,7 @@
 
     protected function update() {
       if ($this->id) {
+        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
         $cols = $this->getColNames();
         $query = 'update '.$table.' set ';
         $array = $this->getQueryArray($cols, ', ');
@@ -174,6 +169,18 @@
       $array = $this->getQueryArray($cols, ', ', FALSE);
       $query .= $array['update'];
       return $this->db->insert($query, $array['values']);
+    }
+    
+    public function save($propagate = FALSE) {
+      if ($this->id) {
+        $return = $this->update();
+      } else {
+        $return = $this->add();
+      }
+      if ($propagate) {
+        // Propagate
+      }
+      return $return;
     }
     
     protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = TRUE) {
@@ -320,6 +327,7 @@
       if ($this->id) {
         $delete = (property_exists($this, 'delete')) ? static::$delete : 'delete from '.$table.' where id = :id';
         if ($this->db->delete($delete, array('id' => $this->id))) {
+          unset(static::$instances['ID'.$this->id]);
           if ($propagate) {
             foreach (static::$children as $class => $target) {
               if (isAssoc($target)) {

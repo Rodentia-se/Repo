@@ -11,7 +11,7 @@
   padding-top: 15px;
 }
 
-#clearer {
+.clearer {
   clear: both;
   padding-bottom: 15px;
 }
@@ -21,10 +21,6 @@
   width: 1px;
   position: relative;
   z-index: -1;
-}
-
-#currency_combobox {
-  width: 50px;
 }
 
 #payPalForm {
@@ -71,7 +67,7 @@ img.popupPhoto {
   max-height: 570px;
 }
 
-span.currency {
+span.payment {
   width: 60px;
   text-align: right;
   display: inline-block;
@@ -85,6 +81,7 @@ span.sum {
 .preview {
   max-width: 450px;
   max-heigth: 900px;
+  cursor: pointer;
 }
 
 .label {
@@ -99,6 +96,10 @@ span.sum {
 
 label.short {
   width: 92px;
+}
+
+label.veryShort {
+  width: 50px;
 }
 
 input[type=text], input[type=password] { 
@@ -119,8 +120,19 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
+input.custom-combobox-input {
+  margin: 0;
+  padding: 4px;
+  height: 18px;
+  width: 174px;
+}
+
 input.short {
   width: 86px;
+}
+
+input.veryShort {
+  width: 36px;
 }
 
 div.noInput {
@@ -175,6 +187,16 @@ td.icon img {
   float: right;
 }
 
+.leftHalf {
+  float: left;
+  width: 50%;
+}
+
+.rightHalf {
+  float: right;
+  width: 50%;
+}
+
 .nowrap {
   white-space: nowrap;
 }
@@ -190,4 +212,8 @@ td.icon img {
 .transparent {
   background: transparent;
   border: 0;
+}
+
+input[id $= "Currency_combobox"] {
+  width: 50px; 
 }

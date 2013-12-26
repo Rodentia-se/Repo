@@ -11,8 +11,8 @@
     if ($person->receptionist) {
       if (isDivision($division)) {
         $calc = $person->db->seqWaiting();
-        if ($calc) {
-          $json = success('Waiting list recalculated');
+        if (is($calc)) {
+          $json = success('Waiting list recalculated for '.$calc.' players');
         } else {
           $json = failure('Waiting list recalculation failed');
         }

@@ -144,13 +144,14 @@
     }
     
     public function getCost($type = NULL) {
-      if (!$type || isTournament($type) || in_array($type, array_merge(array('active', 'current'), config::$divisions))) {
-        $divisions = divisions((($type) ? $type : 'active'));
-      } else {
-        $divisions = divisions(($type && $type != 'all') ? $type : 'active');
+      if (!$type || isTournament($type) || in_array($type, array('active', 'current'))) {
+        $tournament = getTournament($type);
+        $divisions = divisions($tournament);
+      } else if (isDivision($type) || in_array($type, config::$activeDivisions)) {
+        $divisions = array(division($type));
       }
       $cost = 0;
-      if ($type != 'tshirts' && $divisions && count($divisions) > 0) {
+      if ($type != 'tshirts' && $divisions) {
         foreach ($divisions as $division) {
           $player = player($this, $division);
           if ($player) {
@@ -158,9 +159,11 @@
           }
         }
       }
-      if (!$type || $type == 'all' || $type == 'tshirts') {
-//        $cost += count(tshirts($person)) * config::$tshirtCost;
-        $cost += 1 * config::$tshirtCost;
+      if (isTournament($tournament) || !$type || $type == 'all' || $type == 'tshirts') {
+        $tshirtOrders = tshirtOrders($this, $tournament);
+        foreach ($tshirtOrders as $tshirtOrder) {
+          $cost += $tshirtOrder->number * config::$tshirtCost;
+        }
       }
       return $cost;
     }
@@ -195,40 +198,253 @@
       return false;
     }
     
-    public function getEdit($title = 'Edit profile', $tournament = NULL, $prefix = NULL) {
-      foreach (config::$activeSingleDivisions as $divisionType) {
-        $player = ($this->id) ? player($this, $divisionType) : NULL;
-        $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
+    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $tournament = getTournament($tournament);
+      switch ($type) {
+        case 'payment':
+        case 'payments':
+          $paymentDiv = new div($prefix.'PaymentDiv');
+            if ($title) {
+              $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
+            }
+            $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
+            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
+/*
+              $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#profiletabLink").click();');
+              $gotoProfileP->addContent(' or ');
+              */
+              $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#tshirtstabLink").click();');
+              $gotoProfileP->addContent(' tab (to also order T-shirt sizes), or you can just change the numbers here before paying (you will need to order T-shirt sizes before ');
+              $gotoProfileP->addSpan('January 15th', NULL, 'bold');
+              $gotoProfileP->addContent(').');
+            //}
+            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
+            //}
+            $divisions = divisions($tournament);
+            foreach ($divisions as $division) {
+              if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
+                $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
+                  $cost = $this->getCost($division);
+                  $spinnerParams = array(
+                    'class' => 'paymentSpinner enterChange',
+                    'data-division_id' => $division->id,
+                    'data-eachcost' => $cost
+                  );
+                  $player = player($this, $division);
+                  $divisionNum = ($player) ? 1 : 0;
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                    $costs += $spinner->value * $spinner->{'data-eachcost'};
+                    $num += $spinner->value;
+                  //}
+                //}
+              }
+            }
+            $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
+              $tshirtOrders = tshirtOrders($this, $tournament);
+              $tshirtNum = 0;
+              foreach ($tshirtOrders as $tshirtOrder) {
+                $tshirtNum += $tshirtOrder->number;
+              }
+              $spinnerParams = array(
+                'class' => 'numOfTshirts paymentSpinner enterChange',
+                'data-eachcost' => config::$tshirtCost
+              );
+              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                $costs += $spinner->value * $spinner->{'data-eachcost'};
+              //}
+            //}
+            $paymentDiv->addChange('
+              var el = this;
+              var number = $(el).val();
+              var each = $(el).data("eachcost");
+              $("#" + el.id + "_moneySpanAmount").html((+ number * each));
+              var cost = 0;
+              var num = 0;
+              $(".paymentSpinner").each(function() {
+                cost += (+ $("#" + this.id + "_moneySpanAmount").html());
+              });
+              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
+              var toPay = cost - (+ $("#PaymentPaidDivMoneySpanAmount").html() * -1);
+              $("#PaidTooMuchAmount").html((+ toPay * -1));
+              if (toPay > 0) {
+                $(".paidTooMuch").hide();
+                $(".paidAll").hide();
+                $("#PaymentTotalDivMoneySpanAmount").html(Math.ceil(toPay));
+                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
+                $("#TshirtsOrderMore").hide();
+              } else if (toPay == 0) {
+                $(".paidTooMuch").hide();
+                $(".paidAll").show();
+                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
+              } else {
+                $(".paidTooMuch").show();
+                $(".paidAll").hide();
+                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
+              }
+              var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
+              orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentTshirts").val());
+              $("#TshirtsOrderMoreNum").html(orderMoreNum);
+              if (orderMoreNum) {
+                $("#TshirtsOrderMore").show();
+              } else {
+                $("#TshirtsOrderMore").hide();
+              }
+              $("#payPalMsg").val("ID: " + $("#paymentPerson_id").val() + ", Main: " + $("#Payment_15").val() + ", T-shirts: " + $("#PaymentTshirts").val());
+              $("#'.$currencyChooser->id.'").change();
+            ', '.paymentSpinner');
+            $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
+            $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
+              $subTotalDiv->addLabel(' ');
+              $subTotalDiv->addSpan(' ', NULL, 'short');
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+            //}
+            $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
+              $paidDiv->addLabel(' ');
+              $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
+              $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? 'paidAll' : 'hidden paidAll'));
+              $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
+              $paidDiv->addMoneySpan((+ ($costs - $this->paid) * -1), $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch')));
+              $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
+            //}
+            $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
+              $totalDiv->addLabel(' ');
+              $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
+              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+            //}
+          //}
+          $paymentDiv->addScriptCode('
+            $(document).ready(function() {
+              $("#PaymentTshirts").change();
+            });
+          ');
+          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
+          return $paymentDiv;
+        break;
+        case 'tshirt':
+        case 'tshirts':
+        case 'tshirtOrder':
+        case 'tshirtOrders':
+          $tshirtsDiv = new div($prefix.'TshirtEditDiv');
+          if ($title) {
+            $tshirtsDiv->addH2('T-shirt orders', array('class' => 'entry-title'));
+          }
+          $orderDiv = $tshirtsDiv->addDiv($prefix.'TshirtOrdersDiv', 'leftHalf');
+            $tshirtPerson = $orderDiv->addHidden($prefix.'tshirtPerson_id', $this->id);
+            $paragraph = $orderDiv->addParagraph('Please order your T-shirts below. Each T-shirt costs ');
+              $costSpan = $paragraph->addMoneySpan(config::$tshirtCost, $prefix.'tshirtCostSpan', config::$currencies[config::$defaultCurrency]['format']);
+            //}
+            $curDiv = $orderDiv->addDiv($prefix.'tshirtCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Tshirt', TRUE));
+            //}
+            $tshirts = tshirts($tournament);
+            foreach ($tshirts as $tshirt) {
+              $tshirtDiv = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
+                $tshirtOrder = tshirtOrder($this, $tshirt);
+                $spinnerParams = array(
+                  'class' => 'tshirtSpinner enterChange',
+                  'data-tshirt_id' => $tshirt->id,
+                  'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0),
+                  'data-eachcost' => config::$tshirtCost
+                );
+                $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $costs += $spinner->value * $spinner->{'data-eachcost'};
+                  $num += $spinner->value;
+                  $spinner->addTooltip('');
+                //}
+              //}
+            }
+            $orderDiv->addChange('
+              var el = this;
+              var tshirtOrder_id = $(el).data("tshirtorder_id");
+              var number = $(el).val();
+              var each = $(el).data("eachcost");
+              $(el).tooltipster("update", "Updating order...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.newId || data.newId == 0) {
+                  $(el).data("tshirtorder_id", data.newId);
+                }
+                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
+                var cost = 0;
+                var num = 0;
+                $(".tshirtSpinner").each(function() {
+                  cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
+                  num += parseInt($(this).val());
+                });
+                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
+                $(".numOfTshirts").val(num);
+                $("#PaymentTshirts").change();
+              });
+            ', '.tshirtSpinner');
+            $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
+              $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+            //}
+            $toBuyFor = $this->paid - $this->getCost();
+            $orderMoreNum = ($toBuyFor > 0) ? floor($toBuyFor / config::$tshirtCost) : 0;
+            $orderMoreDiv = $orderDiv->addDiv($prefix.'tshirtsOrderMore');
+              $orderMoreP = $orderMoreDiv->addParagraph('You have already paid (or are going to pay) enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
+              $orderMoreP->addSpan($orderMoreNum, $prefix.'TshirtsOrderMoreNum');
+              $orderMoreP->addContent(' more T-shirts.');
+            $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
+              $goToPaymentP = $goToPaymentDiv->addParagraph('Go to the ');
+                $gotoPaymentBtn = $goToPaymentP->addClickButton('payment tab', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
+                $goToPaymentP->addContent(' to pay or check payment status.');
+              //}
+            //}
+            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payment tab.', NULL, 'italic');
+          //}
+          $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
+          return $tshirtsDiv;
+        break;
+        case 'profile':
+        case 'player':
+        case 'person':
+        default:
+          foreach (config::$activeSingleDivisions as $divisionType) {
+            $player = ($this->id) ? player($this, $divisionType) : NULL;
+            $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
+          }
+          $genders = genders('all');
+          $cities = cities('all');
+          $regions = regions('all');
+          $countries = countries('all');
+          $continents = continents('all');
+          return '
+            <div id="editDiv">
+            	<h2 class="entry-title">'.(($title) ? $title : 'Edit profile').'</h2>
+              <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
+              '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
+              <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
+              <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
+              <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
+              <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
+              <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
+              <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
+              <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
+              <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
+              <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
+              <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
+              <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
+              <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
+              <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
+              <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
+              <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
+              <div>'.page::getLabel('Divisions').$checkboxes.'</div>
+              <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
+            </div>
+          ';
+        break;
       }
-      $genders = genders('all');
-      $cities = cities('all');
-      $regions = regions('all');
-      $countries = countries('all');
-      $continents = continents('all');
-      return '
-        <div id="editDiv">
-        	<h2 class="entry-title">'.$title.'</h2>
-          <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
-          '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
-          <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
-          <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
-          <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
-          <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-          <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
-          <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
-          <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
-          <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-          <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
-          <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
-          <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
-          <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-          <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
-          <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
-          <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
-          <div>'.page::getLabel('Divisions').$checkboxes.'</div>
-          <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-        </div>
-      ';
     }
     
     public function getUid() {

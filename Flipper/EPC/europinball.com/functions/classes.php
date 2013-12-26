@@ -97,14 +97,22 @@
     return (isGroup($divisions) && get_class($divisions) == 'divisions');
   }
   
-  function getDivision($obj) {
+  function getDivision($obj = 'main') {
+    $obj = ($obj) ? $obj : 'main';
     $division = division($obj);
     if (isDivision($division)) {
       return $division;
     }
     $tournament = tournament($obj);
     if (isTournament($tournament)) {
-      return division($tournament);
+      $division = division($tournament);
+      if (isDivision($division)) {
+        return $division;
+      }
+    }
+    $division = division('main');
+    if (isDivision($division)) {
+      return $division;
     }
     return FALSE;
   }
@@ -432,6 +440,23 @@
     return (isGroup($tournaments) && get_class($tournaments) == 'tournaments');
   }
   
+  function getTournament($obj = 'active') {
+    $obj = ($obj) ? $obj : 'active';
+    $tournament = tournament($obj);
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    $tournament = tournament('active');
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    $tournament = tournament('current');
+    if (isTournament($tournament)) {
+      return $tournament;
+    }
+    return FALSE;
+  }
+
   function tshirt($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new tshirt($data, $search, $depth);
     return obj($obj);

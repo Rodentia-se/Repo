@@ -17,7 +17,8 @@
         this.input = $( "<input>" )
           .appendTo( this.wrapper )
           .val( value )
-          .attr( "title", "" )
+          .attr( "type", "text")
+          .attr( "title", "")
           .attr( "id", this.element.attr("id") + "_combobox")
           .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
           .autocomplete({

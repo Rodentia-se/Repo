@@ -147,12 +147,8 @@
         }
         if (in_array('t-shirts', config::$editSections)) {
           $tshirtDiv = new div('tshirts');
-            $tshirtDiv->indents = 3;
-            $paragraph = $tshirtDiv->addParagraph('You will soon be able to order this T-shirt for ');
-              $costSpan = $paragraph->addSpan(config::$tshirtCost, 'tshirtCostSpan');
-            $jquery = new jquery('#tshirtCostSpan', 'html', 'code', array('parseInt($("#tshirtCostSpan").html()).toMoney(0, ".", " ", "", "'.config::$currencies[config::$defaultCurrency]['format'].'")' => FALSE));
-            $tshirtDiv->addContent($jquery);
-            $tshirtDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg');
+          $tshirtDiv->addContent($person->getEdit('tshirts', 'T-shirt orders'));
+          $tshirtDiv->addDiv(NULL, 'clearer');
           $page->addContent($tshirtDiv->getHtml());
         }
         if (in_array('volunteer', config::$editSections)) {
@@ -160,35 +156,17 @@
             $volDiv->indents = 3;
             $paragraph = $volDiv->addParagraph('Volunteer registration will open in short.');
           $page->addContent($volDiv->getHtml());
-        }
+        } 
         if (in_array('payment', config::$editSections)) {
           $page->startDiv('payment');
+            $paymentDiv = new div('paymentDiv');
+            $paymentDiv->addContent($person->getEdit('payment', 'Payment options'));
+            $page->addContent($paymentDiv->getHtml());
+/*
             $page->addH2('Payment options');
             $page->startDiv('currencyDiv');
-              $page->addSimpleSelect(config::$acceptedCurrencies, 'currency', 'currency', NULL, 'Currency', config::$defaultCurrency);
-              foreach(config::$acceptedCurrencies as $currency) {
-                $page->addInput(config::$currencies[$currency]['format'], config::$currencies[$currency]['shortName'].'Format',  config::$currencies[$currency]['shortName'].'Format', 'hidden');
-                $page->addInput(config::$currencies[$currency]['rate'], config::$currencies[$currency]['shortName'].'Rate',  config::$currencies[$currency]['shortName'].'Rate', 'hidden');
-              }
+              $page->addContent(getCurrencySelect('payment')->getHtml());
             $page->closeDiv();
-            $page->addScript('
-              try {
-                var curVal = dataStore.getItem("curVal");
-              } catch(e) {
-                var curVal = 0;
-              };
-              curVal = (parseInt(curVal)) ? parseInt(curVal) : 0;
-              $("#currency").val(curVal)
-              .combobox()
-              .change(function(){
-                dataStore.setItem("curVal", $(this).val());
-                $(".curCodes").val($(this).children(":selected").text())
-                $(".curCodeSpans").html($(this).children(":selected").text())
-                $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + $(this).children(":selected").text() +".gif")
-                $(".cost").change();
-              })
-              .change();
-            ');
             $page->startDiv('itemsDiv');
               $divisions = divisions('active');
               foreach ($divisions as $division) {
@@ -207,8 +185,7 @@
               $payMsg .= implode($payMsgs, ', ');
               if (config::$tshirts && config::$tshirtCost > 0) {
                 $page->startDiv('TshirtDiv');
-//                  $num = count(tshirts($person));
-$num = 1;
+                  $num = count(tshirtOrders($person, $tournament));
                   $cost = $person->getCost('tshirts');
                   $costs += $cost;
                   $page->addInput($num, 'tshirtNum', 'tshirtNum', 'text', 'cost short', 'T-shirts');
@@ -240,9 +217,9 @@ $num = 1;
                 $(".cost").change(function() {
                   var num = parseInt($(this).val().replace(/[^0-9]/g, ""));
                   var each = parseInt($("#" + this.id.replace("Num", "Each")).val().replace(/[^0-9]/g, ""));
-                  var rate = $("#" + $("#currency").children(":selected").text() + "Rate").val();
+                  var rate = $("#" + $("#curCode").val() + "Rate").val();
                   var cost = num * each * rate;
-                  var format = $("#" + $("#currency").children(":selected").text() + "Format").val();
+                  var format = $("#" + $("#curCode").val() + "Format").val();
                   $("#" + this.id.replace("Num", "Cost")).html(cost.toMoney(0, ".", " ", "", format));
                   var costs = 0;
                   var payMsg = $("#payment_person_name").val() + " (ID: " + $("#payment_person_id").val() + ") is paying for ";
@@ -272,6 +249,7 @@ $num = 1;
             $page->closeDiv();
             $page->addInput($person->id, 'payment_person_id', NULL, 'hidden');
             $page->addInput($person->name, 'payment_person_name', NULL, 'hidden');
+            */
             $page->startDiv('payTabs');
               $page->startUl();
                 foreach(config::$paymentOptions as $paymentOption) {
@@ -286,15 +264,15 @@ $num = 1;
                     $page->addInput('1', NULL, 'undefined_quantity', 'hidden');
                     $page->addInput(config::$payPalItem, NULL, 'item_name', 'hidden');
                     $page->addInput('1', NULL, 'item_number', 'hidden');
-                    $page->addInput($costs - $person->paid, NULL, 'amount', 'hidden', 'totals');
+                    $page->addInput($costs - $person->paid, 'payPalAmount', 'amount', 'hidden', 'totals');
                     $page->addInput(config::$payPalPageStyle, NULL, 'page_style', 'hidden');
                     $page->addInput('1', NULL, 'no_shipping', 'hidden');
                     $page->addInput(config::$baseHref.'/payment-ok/', NULL, 'return', 'hidden');
                     $page->addInput(config::$baseHref.'/payment-cancel/', NULL, 'cancel_return', 'hidden');
-                    $page->addInput('Who/what you are paying for', NULL, 'cn', 'hidden');
+                    $page->addInput('Who/what you are paying for?', NULL, 'cn', 'hidden');
                     $page->addInput('Pay for', NULL, 'on0', 'hidden');
-                    $page->addInput($payMsg, 'payPalMsg', 'os0', 'hidden', 'payMsg');
-                    $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'curCodes');
+                    $page->addInput("Person ID: '.$person->id.'", 'payPalMsg', 'os0', 'hidden', 'payMsg');
+                    $page->addInput(config::$defaultCurrency, NULL, 'currency_code', 'hidden', 'currencyInput');
                     $page->addContent('<input type="image" src="'.config::$baseHref.'/images/paypal_'.config::$defaultCurrency.'.gif" border="0" name="submit" alt="Click to pay" title="Click to pay" id="payPalImg">');
                   $page->closeForm();
                   $page->addParagraph('We are using PayPal for credit card payments. To pay using a normal credit card, click the button and choose "I don\'t have a PayPal account" or similar on the following pages. We accept Visa, Mastercard, Discover and American Express, as well as PayPal payments.');
@@ -302,7 +280,7 @@ $num = 1;
               }
               if (in_array('International bank transfer', config::$paymentOptions)) {
                 $page->startDiv(preg_replace('/[^a-zA-Z0-9]/', '', 'International bank transfer'));
-                  $page->addParagraph('Pay <span class="curCodeSpans bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
+                  $page->addParagraph('Pay <span class="currencySpan bold">'.config::$defaultCurrency.'</span> <span class="totalSpans bold">'.(+$costs - $person->paid).'</span> to BIC/SWIFT address <span class="bold">'.config::$swiftAddress.'</span>, IBAN number <span class="bold">'.config::$ibanAccount.'</span>'.((config::$bank) ? ' in '.config::$bank : '').((config::$paymentReciever) ? '. Payment receiver is '.config::$paymentReciever : '').'.');
                   $page->addParagraph('Please include information on who you are and what you pay for.');
                 $page->closeDiv();
               }
@@ -332,7 +310,7 @@ $num = 1;
                 }
               });
             ');
-          $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
+            $page->addParagraph('Payment registration is a manual process. Please allow up to a few days before your payment is registered in our system.',  NULL, 'italic');
           $page->closeDiv();
         }
       $page->closeDiv();
@@ -355,7 +333,6 @@ $num = 1;
             firstField.focus();
           }
         });
-        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
     } else {
       $page->startDiv();

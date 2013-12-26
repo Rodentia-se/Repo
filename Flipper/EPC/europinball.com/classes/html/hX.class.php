@@ -3,7 +3,7 @@
   class hX extends html {
     
     public function __construct($hLevel = 1, $contents = NULL, array $params = NULL) {
-      $this->settings['hLevel'] = ($hLevel && is_int($hLevel) && $hLevel < 5) ? $hLevel : 1;
+      $this->settings['hLevel'] = ($hLevel && is_int($hLevel) && $hLevel < 7) ? $hLevel : 1;
       $this->inlineBlock = TRUE;
       parent::__construct('h'.$this->settings['hLevel'], $contents, $params);
     }

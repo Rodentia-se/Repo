@@ -127,7 +127,7 @@
           }
           $this->accessories['script'] = new click('#'.$this->id, '$("#'.$this->form->id.'").submit();', static::$indents);
         } else {
-          $this->accessories['script'] = (isHtml($script)) ? $script : new click($script);
+          $this->accessories['script'] = (isHtml($script)) ? $script : new click('#'.$this->id, $script, static::$indents);
         }
         return isHtml($this->accessories['script']);
       } else {
@@ -141,15 +141,15 @@
         if ($form && $this->form) {
           if ($this->insideForm) {
             $this->form->addContent($this, $this);
-            return ($script) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml();
+            return ($script && $this->script) ? $this->form->getHtml().$this->script->getHtml() : $this->form->getHtml();
           } else {
-            return ($script) ? $this->form->getHtml().parent::getHtml().$this->script->getHtml() : $this->form->getHtml().parent::getHtml();
+            return ($script && $this->script) ? $this->form->getHtml().parent::getHtml().$this->script->getHtml() : $this->form->getHtml().parent::getHtml();
           }
         } else {
-          return parent::getHtml();
+          return ($script && $this->script) ? parent::getHtml().$this->script->getHtml() : parent::getHtml();
         }
       } else {
-        return parent::getHtml().(($this->form) ? $this->form->getHtml().(($this->script) ? $this->script->getHtml() : '') : '');
+        return parent::getHtml().(($form && $this->form) ? $this->form->getHtml().(($script && $this->script) ? $this->script->getHtml() : '') : '');
       }
     }
     

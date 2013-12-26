@@ -136,6 +136,16 @@
       }
     }
     
+    public function addSpinner($props = NULL, $selector = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
+      $element = new spinner($props, $selector, $indents);
+      $this->addClasses('short');
+      $this->settings['spinner'] = TRUE;
+      $this->addAfter($element);
+      return $element;
+    }
+    
     public function getHtml($label = TRUE, $input = TRUE) {
       if ($input) {
         if ($label && $this->accessories['label']) {

@@ -60,7 +60,7 @@
         $sth = $this->query($query);
         if (!$sth) {
           return FALSE;
-        }        
+        }
       }
       return ($class) ? $this->getRows($sth, $class) : $this->getRows($sth);
     }
@@ -72,6 +72,15 @@
       } else if ($rowCount == 1) {
         $obj = $sth->fetchObject();
         return $obj;
+      } else {
+        return FALSE;
+      }
+    }
+    
+    protected function getValue($query, $values = NULL) {
+      $sth = $this->action($query, $values);
+      if ($sth) {
+        return $sth->fetchColumn();
       } else {
         return FALSE;
       }
@@ -101,7 +110,8 @@
     
     protected function getObjectsByPropsHelper($class, $props, $cond = 'and') {
       foreach ($props as $key => $value) {
-        $key = (preg_match('/\./', $key)) ? $key : 'o.'.$key; 
+        $prefix = (property_exists($class, 'prefixes')) ? (($class::$prefixes[$key]) ? $class::$prefixes[$key] : 'o') : 'o';
+        $key = (preg_match('/\./', $key)) ? $key : $prefix.'.'.$key; 
         if ($where) {
           $query .= ' '.$cond.' '.$key.(($value === NULL) ? ' is ' : ' = ').self::getAlias($key);
           $values[self::getAlias($key)] = $value;
@@ -219,7 +229,13 @@
           set player.waiting = if(players.seq > '.config::$participationLimit[$division->type].', players.seq - '.config::$participationLimit[$division->type].', NULL)
         ';
       }
-      return $this->update($query);
+      $return = $this->update($query);
+      if ($return) {
+        $query = 'select max(waiting) from player where tournamentDivision_id = '.$division->id;
+        return $this->getValue($query);
+      } else {
+        return FALSE;
+      }
     } 
 
   }

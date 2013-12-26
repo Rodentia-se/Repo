@@ -73,7 +73,7 @@
 
     public function getFooter() {
       $person = person('login');
-      $footer = self::getDivStart('clearer');
+      $footer = self::getDivStart(NULL, 'clearer');
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
         if ($this->loggedin()) {
@@ -105,8 +105,11 @@
             $("#" + this.form.id.replace("Form", "Button")).click();
           }
         });
-      ');
-      $footer .= self::getScript('
+        $(".enterChange").keypress(function(e) {
+          if (e.keyCode == $.ui.keyCode.ENTER) {
+            $(this).change();
+          }
+        });
         $("#mainContent").tooltipster({
           theme: ".tooltipster-light",
           content: "'.config::$msg.'",
@@ -115,6 +118,10 @@
           timer: 10000
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
+        $(document).ajaxError(function(event, jqHXR, settings, error) {
+          showMsg("Fail: " + error + " trying " + settings.url);
+        });
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
       ');
       $footer .= '
           </body>

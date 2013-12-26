@@ -3,11 +3,14 @@
   abstract class group extends ArrayObject {
     
     public static $objClass = 'group';
+    public static $order = array();
+/*
     public static $order = array(
       'prop' => 'name',
       'type' => 'string',
       'dir' => 'asc'
     );
+*/
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       parent::__construct();
@@ -34,21 +37,24 @@
             $objs[] = $this->db->getObjectById(static::$objClass, $obj);
           }
         }
-      } else if (is_object($data) && $data->id && is_string($prop)) {
+      } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
-      } else if (is_object($data) && $data->id) {
+      } else if (isObj($data) && $data->id) {
         if (get_class($data) == static::$objClass) {
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;
         } else {
-          if (isObj($search)) {
+          if (isObj($prop) && $prop->id) {
             $props = array(
-              (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id',
-              (property_exists($search, 'table')) ? get_class_vars(get_class($search))['table'].'_id' : get_class($search).'_id'
+              ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
+              ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($prop)).'_id' => $prop->id
             );
-            $vals = array($data->id, $search->id);
-            $objs = $this->db->getObjectsByProps(static::$objClass, $props, $vals);
+            if (isObj($cond) && $cond->id) {
+              $props[((property_exists($cond, 'table')) ? get_class_vars(get_class($cond))['table'] : get_class($cond)).'_id'] = $cond->id;
+              $cond = NULL;
+            }
+            $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
           } else {
             $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
             $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
