@@ -214,7 +214,9 @@
               $gotoProfileP->addContent(' or ');
               */
               $gotoTshirtBtn = $gotoProfileP->addClickButton('T-shirt orders', NULL, NULL, FALSE, '$("#tshirtstabLink").click();');
-              $gotoProfileP->addContent(' tab (to also order T-shirt sizes), or you can just change the numbers here before paying (you will need to order T-shirt sizes later).'); 
+              $gotoProfileP->addContent(' tab (to also order T-shirt sizes), or you can just change the numbers here before paying (you will need to order T-shirt sizes before ');
+              $gotoProfileP->addSpan('January 15th', NULL, 'bold');
+              $gotoProfileP->addContent(').');
             //}
             $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
               $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
