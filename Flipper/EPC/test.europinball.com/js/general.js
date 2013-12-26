@@ -24,6 +24,10 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep, symbol
   //extracting the absolute value of the integer part of the number and converting to string
   i = parseInt(n = Math.abs(n).toFixed(c)) + '',
   j = ((j = i.length) > 3) ? j % 3 : 0;
+  if (n == 28 || n == -28) {
+    alert(n);
+    alert(sign);
+  }
   var num = sign + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : '');
   return f.replace(/§/, num);
 }
