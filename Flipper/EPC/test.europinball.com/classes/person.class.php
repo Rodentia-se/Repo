@@ -147,7 +147,7 @@
       if (!$type || isTournament($type) || in_array($type, array('active', 'current'))) {
         $tournament = getTournament($type);
         $divisions = divisions($tournament);
-      } else if (in_array($type, config::$activeDivisions)) {
+      } else if (isDivision($type) || in_array($type, config::$activeDivisions)) {
         $divisions = array(division($type));
       }
       $cost = 0;
