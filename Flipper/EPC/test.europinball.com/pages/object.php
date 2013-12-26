@@ -13,6 +13,12 @@
   if (isObj($obj, TRUE)) {
     $object = $obj($id);
     if ($object) {
+      $tournament = getTournament();
+      if (isTournament($tournament)) {
+        $arrClass = $obj::$arrClass;
+        $objs = $arrClass($tournament);
+        $div->addContent($objs->getSelectObj($arrClass, $object));
+      }
       $div->addContent($object->getInfo());
     } else {
       $div->addParagraph('Could not find the '.$obj.' you are looking for. Please try again.');
