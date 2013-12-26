@@ -46,9 +46,8 @@
             }
           } else if ($tshirtOrder_id == 0) {
             if ($number) {
-              debug($tshirt);
               $tshirtOrder = tshirtOrder(array(
-                'name' => $tshirt->tournamentName.', '.$person->shortName.': '.$tshirt->colorName.' '.strtoupper($tshirt->size),
+                'name' => $tshirt->tournamentEdition->Name.', '.$person->shortName.': '.$tshirt->color->name.' '.strtoupper($tshirt->size),
                 'person_id' => $person->id,
                 'tournamentTShirt_id' => $tshirt->id,
                 'number' => $number,
