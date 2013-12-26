@@ -119,7 +119,7 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembersInfo($tournament = NULL, $type = 'div', $asPlayers = TRUE) {
+    public function getMemberInfo($tournament = NULL, $type = 'div', $asPlayers = TRUE) {
       $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {

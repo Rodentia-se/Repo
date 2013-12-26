@@ -208,9 +208,7 @@
     }
 
     public function getMemberInfo($tournament = NULL, $asPlayers = TRUE, $type = 'div') {
-      debug('HRJ');
       if ($this->team) {
-      debug('HEJ');
         return $this->team->getMemberInfo($tournament, $asPlayers, $type);
       } else {
         return FALSE;
