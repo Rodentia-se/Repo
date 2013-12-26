@@ -143,7 +143,7 @@
           $membersDiv->addLabel('Members');
           $membersSpan = $membersDiv->addSpan();
           foreach($members as $member) {
-            $membersSpan->addLink($member->getLink('object', FALSE));
+            $membersSpan->addLink($member->getLink('object', FALSE), $member->name);
             $membersSpan->addBr();
           }
           return ($asInfo) ? $membersDiv : $members;
