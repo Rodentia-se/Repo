@@ -241,6 +241,7 @@
             }
             $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
               $tshirtOrders = tshirtOrders($this, $tournament);
+              $tshirtNum = 0;
               foreach ($tshirtOrders as $tshirtOrder) {
                 $tshirtNum += $tshirtOrder->number;
               }
