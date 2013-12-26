@@ -62,7 +62,7 @@
         }
       } else if ($data && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
-      } else if (is_string($data) && preg_match('/^where /', trim($data))) {
+      } else if (is_string($data) && (preg_match('/^where /', trim($data)) || preg_match('/^left join/', trim($data)))) {
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       } else if ($data == 'all') {
         $class = static::$objClass;
