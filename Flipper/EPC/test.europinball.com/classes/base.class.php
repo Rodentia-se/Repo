@@ -228,10 +228,8 @@
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-/*          if (isHtml($html)) {
+          if (isDiv($html)) {
             $left->addContent($html);
-          } else if (is($html)) {
-            */
           if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
