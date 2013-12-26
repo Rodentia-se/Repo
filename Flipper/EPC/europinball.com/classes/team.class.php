@@ -52,6 +52,15 @@
       )
     );
     
+    public static $infoProps = array(
+      'name',
+      'tag',
+      'city',
+      'region',
+      'country',
+      'continent',
+    );
+
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
@@ -110,8 +119,9 @@
       parent::__construct($data, $search, $depth);
     }
 
-    public function getMembers($tournament = NULL, $asPlayers = TRUE) {
-      $tournament = (isTournament($tournament)) ? $tournament : (($tournament) ? tournament($tournament) : tournament('current'));
+    public function getMembers($tournament = NULL, $asPlayers = TRUE, $asInfo = FALSE) {
+      $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
+      $division = division($tournament, 'main');
       if (isTournament($tournament)) {
         $query = (($asPlayers) ? player::$select : person::$select).'
           left join teamPerson tp on tp.person_id = '.(($asPlayers) ? 'p' : 'o').'.id
@@ -121,14 +131,28 @@
         ';
         $values[':id'] = $this->id;
         $values[':tournament'] = $tournament->id;
-        $members = $this->db->select($query, $values, 'person');
-        if (count($members) > 0) {
-          return $members;
+        if ($asPlayers) {
+          $query .= '
+            and o.tournamentDivision_id = :division
+          '; 
+          $values[':division'] = $division->id;
+        }
+        $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
+        if ($members) {
+          $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
+          $membersDiv->addLabel('Members', NULL, NULL, 'left');
+          $memberSpan = $membersDiv->addDiv(NULL, 'right');
+          $memberSpan->block = TRUE;
+          foreach($members as $member) {
+            $memberSpan->addLink($member->getLink('object', FALSE), $member->name);
+            $memberSpan->addBr();
+          }
+          return ($asInfo) ? $membersDiv : $members;
         }
       }
       return FALSE;
     }
-
+    
     public function getPhotoIcon($icon = NULL) {
       $icon = ($icon) ? $icon : $this->getPhoto(FALSE, TRUE, FALSE);
       return parent::getPhotoIcon($icon);
