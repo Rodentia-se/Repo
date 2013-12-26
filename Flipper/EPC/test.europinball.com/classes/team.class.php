@@ -123,7 +123,7 @@
       $tournament = ($tournament) ? getTournament($tournament) : (($this->tournamentEdition) ? $this->tournamentEdition : getTournament());
       $division = division($tournament, 'main');
       if (isTournament($tournament)) {
-        $members = ($asPlayers) ? players($this->team) : persons($this->team);
+        $members = ($asPlayers) ? players($this) : persons($this);
         if ($members) {
           $div = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $div->addLabel('Members', NULL, NULL, 'left');
@@ -131,7 +131,6 @@
           foreach($members as $member) {
             $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
             $membersDiv->addBr();
-            debug($membersDiv);
           }
           return ($type == 'div') ? $div : $members;
         }
