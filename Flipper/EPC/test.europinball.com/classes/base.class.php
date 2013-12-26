@@ -217,6 +217,7 @@
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
         foreach (static::$infoProps as $label => $prop) {
+          debug(method_exists($this, $prop));
           $html = FALSE;
           if (isObj($this->$prop)) {
             $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
