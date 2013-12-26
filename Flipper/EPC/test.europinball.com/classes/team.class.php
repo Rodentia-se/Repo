@@ -139,12 +139,13 @@
         }
         $members = $this->db->select($query, $values, (($asPlayers) ? 'player' : 'person'));
         if (count($members) > 0) {
-          foreach($members as $member) {
-            $memberLinks[] = $member->getLink();
-          }
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $membersDiv->addLabel('Members');
-          $membersDiv->addSpan(implode($memberLinks, '<br />'));
+          $membersSpan = $membersDiv->addSpan();
+          foreach($members as $member) {
+            $membersSpan->addLink($member->getLink());
+            $membersSpan->addBr();
+          }
           return ($asInfo) ? $membersDiv : $members;
         }
       }
