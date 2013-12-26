@@ -256,8 +256,18 @@
               $subTotalDiv->addSpan(' ', NULL, 'short');
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
+            $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
+              $paidDiv->addLabel(' ');
+              $paidDiv->addLabel('Already paid', NULL, 'short');
+              $paidDiv->addMoneySpan($this->paid, NULL, config::$currencies[$defaultCurrency]['format']);
+            //}
+            $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
+              $totalDiv->addLabel(' ');
+              $totalDiv->addSpan(' ', NULL, 'short');
+              $totalDiv->addMoneySpan($costs - $this->paid, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
+            //}
           //}
-          $paymentDiv->addParagraph('If you pay for anyone other than the player logged in, please include that information in the payment.', NULL, 'italic');
+          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment.', NULL, 'italic');
           return $paymentDiv;
         break;
         case 'tshirt':
