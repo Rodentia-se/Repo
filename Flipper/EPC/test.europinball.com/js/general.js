@@ -21,6 +21,7 @@ Number.prototype.toMoney = function(decimals, decimal_sep, thousands_sep, symbol
   s = (typeof symbol === 'undefined') ? '$' : symbol, //if you don't want to use a symbol separator you can pass empty string as symbol
   f = (format) ? format : ((symbol) ? symbol + ' §' : '§'), //If format is supplied as a string with an § in it, the § will be replaced with the number and the symbol parameter will not be used
   sign = (n < 0) ? '-' : '',
+  alert(sign);
   //extracting the absolute value of the integer part of the number and converting to string
   i = parseInt(n = Math.abs(n).toFixed(c)) + '',
   j = ((j = i.length) > 3) ? j % 3 : 0;
