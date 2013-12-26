@@ -266,7 +266,7 @@
                 $(".paidAll").show();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
               } else if (toPay < 0) {
-                $("#paidTooMuch").html((+ toPay * -1));
+                $("#PaidTooMuchAmount").html((+ toPay * -1));
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
                 $("#PaymentTotalDivMoneySpanAmount").html(0);
