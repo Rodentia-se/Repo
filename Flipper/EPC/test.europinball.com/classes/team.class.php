@@ -52,6 +52,15 @@
       )
     );
     
+    public static $infoProps = array(
+      'name',
+      'tag',
+      'city',
+      'region',
+      'country',
+      'continent',
+    );
+
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
@@ -134,6 +143,19 @@
         }
       }
       return FALSE;
+    }
+    
+    public function getInfo($extra = NULL) {
+      $members = $this->getMembers();
+        if($members) {
+          foreach($members as $member) {
+            $memberLinks[] = $member->getLink();
+          }
+          $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
+          $membersDiv->addLabel('Members');
+          $membersDiv->addSpan(implode($memberLinks, '<br />'));
+        }
+      return parent::getInfo($membersDiv);
     }
 
     public function getPhotoIcon($icon = NULL) {

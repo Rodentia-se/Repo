@@ -212,7 +212,7 @@
       return ($link) ? $link : FALSE;
     }
 
-    public function getInfo() {
+    public function getInfo($extra = NULL) {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
@@ -234,6 +234,7 @@
         }
       } else {
         $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+        $left->addContent($extra);
         $nameDiv->addLabel('Name');
         $nameDiv->addSpan($this->name);
       }
