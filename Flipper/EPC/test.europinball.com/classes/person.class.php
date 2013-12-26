@@ -259,7 +259,7 @@
               $(".paymentSpinner").each(function() {
                 cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
               });
-              $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
+              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
               $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
