@@ -53,7 +53,7 @@
               $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               $("#payPalAmount").val(0);
               $(".totalSpans").html(0);
-              var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') ? : 0;
+              var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
               if (orderMoreNum) {
                 $("#TshirtsOrderMoreNum").html(orderMoreNum);
                 $("#TshirtsOrderMore").show();
