@@ -254,14 +254,13 @@
               var number = $(el).val();
               var each = $(el).data("eachcost");
               $("#" + this.id + "MoneySpanAmount").html((+ number * each));
-                var cost = 0;
-                var num = 0;
-                $(".paymentSpinner").each(function() {
-                  cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
-                });
-                $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
-                $("#'.$currencyChooser->id.'").change();
+              var cost = 0;
+              var num = 0;
+              $(".paymentSpinner").each(function() {
+                cost += parseInt($("#" + this.id + "MoneySpanAmount").html());
               });
+              $("#'.$prefix.'PaymentSubTotalDivMoneySpan").html(cost);
+              $("#'.$currencyChooser->id.'").change();
             ', '.paymentSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
