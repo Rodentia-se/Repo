@@ -252,7 +252,8 @@
               //}
             //}
             $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
-              $subTotalDiv->addLabel(' ', NULL, NULL, 'short');
+              $subTotalDiv->addLabel(' ');
+              $subTotalDiv->addSpan(' ', NULL, 'short');
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum'));
             //}
           //}
