@@ -141,11 +141,11 @@
         if (count($members) > 0) {
           $membersDiv = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $membersDiv->addLabel('Members');
-          $memberLinksDiv = $membersDiv->addDiv();
-          $memberLinksDiv->inline = TRUE;
+          $memberSpan = $membersDiv->addSpan();
+          $memberSpan->inlineBlock = TRUE;
           foreach($members as $member) {
-            $memberLinksDiv->addLink($member->getLink('object', FALSE), $member->name);
-            $memberLinksDiv->addBr();
+            $memberSpan->addLink($member->getLink('object', FALSE), $member->name);
+            $memberSpan->addBr();
           }
           return ($asInfo) ? $membersDiv : $members;
         }
