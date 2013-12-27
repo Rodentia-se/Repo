@@ -5,8 +5,8 @@
     public function __construct($name = NULL, $options = NULL, $selected = NULL, $label = TRUE, array $params = NULL) {
       $this->name = $name;
       $this->addOptions($options);
-      $this->selectOption($selected);
-      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : ((isHtml($selected)) ? $selected->id : ((is_object($selected)) ? $selected->name : $selected)));
+      $selectedValue = $this->selectOption($selected);
+      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $selectedValue);
       parent::__construct($name, NULL, 'select', $label, $params);
     }
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
