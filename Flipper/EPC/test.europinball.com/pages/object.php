@@ -18,7 +18,9 @@
         $arrClass = $obj::$arrClass;
         $objs = $arrClass($context);
         $selectDiv = $div->addDiv();
-        $selectDiv->addContent($objs->getSelectObj(NULL, $object));
+        $select = $objs->getSelectObj(NULL, $object);
+        $select->addCombobox();
+        $selectDiv->addContent($select);
       }
       $div->addContent($object->getInfo());
     } else {
