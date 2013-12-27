@@ -13,10 +13,10 @@
   if (isObj($obj, TRUE)) {
     $object = $obj($id);
     if ($object) {
-      $tournament = getTournament();
-      if (isTournament($tournament)) {
+      $context = ($obj == 'player') ? getDivision(tournamentDivision) : getTournament();
+      if (isTournament($context) || isDivision($context)) {
         $arrClass = $obj::$arrClass;
-        $objs = $arrClass($tournament);
+        $objs = $arrClass($context);
         debug($objs);
         $div->addContent($objs->getSelectObj());
       }
