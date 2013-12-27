@@ -45,6 +45,7 @@
           where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
             and pl.id is not null
         ';
+        debug($data);
         $prop = NULL;
       } else {
         if (isAssoc($data)) {
