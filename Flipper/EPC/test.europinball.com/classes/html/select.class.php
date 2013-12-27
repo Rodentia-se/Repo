@@ -191,9 +191,6 @@
           }
         }
       }
-      debug($selected);
-      debug($chosen);
-      debug($opt);
       return $chosen;
     }
     
