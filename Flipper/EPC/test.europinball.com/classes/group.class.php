@@ -295,7 +295,7 @@
         }
       }
       foreach ($this as $obj) {
-        $row = new tr());
+        $row = new tr();
         foreach ($headers as $header) {
           if (isObj($obj->$prop)) {
             $link = $obj->$prop->getLink('object', FALSE);
