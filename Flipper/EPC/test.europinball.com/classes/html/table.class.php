@@ -15,7 +15,7 @@
         } else {
           $tbody = new tbody();
           foreach ($this->contents as $key => $content) {
-            if (getClass($content) == 'tr') {
+            if (get_class($content) == 'tr') {
               $tbody->addTr($content);
             } else {
               warning('Table body object at index '.$key.' is not a table row! ('.get_class($content).')');
@@ -34,7 +34,7 @@
         } else {
           $thead = new thead();
           foreach ($this->headers as $key => $header) {
-            if (getClass($header) == 'tr') {
+            if (get_class($header) == 'tr') {
               $thead->addTr($header);
             } else {
               warning('Table header object at index '.$key.' is not a table row! ('.get_class($header).')');
