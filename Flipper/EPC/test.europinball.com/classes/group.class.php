@@ -308,6 +308,8 @@
             $row->addTd($obj->$prop());
           } else if(is($obj->$prop)){
             $row->addTd((string) $obj->$prop);
+          } else {
+            $row->addTd();
           }
         }
         $tbody[] = $row;
