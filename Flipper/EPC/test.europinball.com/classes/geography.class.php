@@ -9,10 +9,7 @@
         foreach (static::$infoChildren as $childArrayClass) {
           $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
           $children = $childArrayClass($this);
-          foreach ($children as $child) {
-            $rows[] = getRegRow();
-          }
-          $table = $childrenDiv->addTable();
+          $tabs->addContent($children->getTable());
         }
         $playerDiv = $tabs->addDiv('playerDiv');
       //}

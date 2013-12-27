@@ -281,7 +281,7 @@
       return new select($name, $options, $selectedOption, $label, $params);
     }
     
-    public function getTable(array $headers = NULL, $id = NULL, $class = NULL) {
+    public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
       if (!$headers && $headers !== FALSE) {
         foreach (static::$infoProps as $label => $prop) {
           $thead[] = new th(((isId($label)) ? ucfirst($prop) : $label));
