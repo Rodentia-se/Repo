@@ -55,10 +55,11 @@
         }
         if ($context) {
           $table = (property_exists($this, 'table')) ? static::$table.'_id' : static::$objClass.'_id';
+          $class = static::$objClass;
           $data = '
             left join player pl 
               on pl.'.$table.'_id = o.id
-              '.(($parentClass::$selfParent) ? ' or parent'.ucfirst($table).'_id = o.id').'
+              '.(($class::$selfParent) ? ' or parent'.ucfirst($table).'_id = o.id' : '').'
             where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
               and pl.id is not null
           ';
