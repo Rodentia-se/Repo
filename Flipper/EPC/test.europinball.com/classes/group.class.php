@@ -41,9 +41,10 @@
         $data = '
           left join player pl 
             on pl.'.$column.' = o.id
-            '.(($class::$selfParent) ? ' or parent'.ucfirst($column).'_id = o.id' : '').'
+            '.(($class::$selfParent) ? ' or parent'.ucfirst($column).' = o.id' : '').'
           where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
             and pl.id is not null
+          group by o.id
         ';
         debug($data);
         $prop = NULL;
