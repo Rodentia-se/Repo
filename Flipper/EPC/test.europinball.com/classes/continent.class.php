@@ -4,6 +4,8 @@
 
     public static $instances;
     public static $arrClass = 'continents';
+    
+    public static $selfParent = FALSE;
 
     public static $select = '
       select 
