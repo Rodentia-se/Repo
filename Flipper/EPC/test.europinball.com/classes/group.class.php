@@ -308,7 +308,7 @@
             $row[] = new td((string) $obj->$prop);
           }
         }
-        $rows[] = $row;
+        $rows[] = new tr($row);
       }
       $table = new table($rows, $headers, $id, $class);
       return $table;
