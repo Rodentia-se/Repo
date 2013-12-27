@@ -19,7 +19,7 @@
       } 
       $this->db = base::$_db;
       if (isGeo(static::$objClass, TRUE)) {
-        debug(1);
+        debug(1, 'DIE', true);
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
         debug(2);
           $tournament = tournament($data);
@@ -41,9 +41,9 @@
           $context = division($tournament, $data);
         }
       }
-        debug(7);
+        debug(7, 'DIE', true);
       if ($context) {
-        debug(8,'DIE', true);
+        debug(8, 'DIE', true);
         $class = static::$objClass;
         $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
         $data = '
