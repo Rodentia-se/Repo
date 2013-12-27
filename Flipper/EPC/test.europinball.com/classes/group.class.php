@@ -286,17 +286,17 @@
         $class = static::$objClass;
         $thead = new tr();
         foreach ($class::$infoProps as $label => $prop) {
-          $headers[] = $prop;
+          $headers[$label] = $prop;
           $thead->addTh(((isId($label)) ? ucfirst($prop) : $label));
         }
       } else {
-        foreach ($headers as $header) {
-          $thead->addTh($header);
+        foreach ($headers as $label => $prop) {
+          $thead->addTh(((isId($label)) ? ucfirst($prop) : $label));
         }
       }
       foreach ($this as $obj) {
         $row = new tr();
-        foreach ($headers as $header) {
+        foreach ($headers as $prop) {
           if (isObj($obj->$prop)) {
             $link = $obj->$prop->getLink('object', FALSE);
             if ($link) {
