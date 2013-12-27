@@ -8,7 +8,7 @@
       $tabs = new tabs(NULL, 'childrenTabs');
         foreach (static::$infoChildren as $childArrayClass) {
           $div = $tabs->addDiv($childArrayClass.'Div');
-          $children = $childArrayClass()
+          $children = $childArrayClass();
         }
         $playerDiv = $tabs->addDiv('playerDiv');
       //}
