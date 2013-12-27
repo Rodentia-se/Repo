@@ -237,9 +237,16 @@
           }
         }
       } else {
-        $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-        $nameDiv->addLabel('Name');
-        $nameDiv->addSpan($this->name);
+        $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($object->tournamentDivision) : getTournament();
+        if (isTournament($context) || isDivision($context)) {
+          $arrClass = $obj::$arrClass;
+          $objs = $arrClass($context);
+          $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+          $select = $objs->getSelectObj(get_class($this).'_Select', $object, 'Name');
+          $select->addCombobox();
+          $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
+          $select->addFocus('#'.$select->id.'_combobox');
+          $selectDiv->addContent($select);
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
