@@ -37,6 +37,33 @@
             $objs[] = $this->db->getObjectById(static::$objClass, $obj);
           }
         }
+      } else if (isGeo(static::$objClass, TRUE) && (isTournament($data) || isDivision($data) || in_array($data, array_merge(config::$divisions, array('active', 'current'))))) {
+        if (isTournament($data) || in_array($data, array('active', 'current'))) {
+          $tournament = tournament($data);
+          $context = $tournament;
+          if (isDivision($prop)) {
+            $context = $prop;
+          } else if (in_array($prop, config::$divisions)) {
+            $context = division($tournament, $prop);
+          }
+        } 
+        if (isDivision($data)) {
+          $context = $data;
+        } else if (in_array($data, config::$divisions)) {
+          $tournament = getTournament($prop);
+          $context = division($tournament, $data);
+        }
+        if ($context) {
+          $table = (property_exists($this, 'table')) ? static::$table.'_id' : static::$objClass.'_id';
+          $data = '
+            left join player pl 
+              on pl.'.$table.'_id = o.id
+              '.(($parentClass::$selfParent) ? ' or parent'.ucfirst($table).'_id = o.id').'
+            where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
+              and pl.id is not null
+          ';
+          $prop = NULL;
+        }
       } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (isObj($data) && $data->id) {
