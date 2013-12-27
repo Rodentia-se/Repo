@@ -225,6 +225,22 @@
             }
           } else if (method_exists($this, $prop)) {
             $html = $this->$prop();
+          } else if ($prop == 'name') {
+            $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($object->tournamentDivision) : getTournament();
+            if (isTournament($context) || isDivision($context)) {
+              $arrClass = static::$arrClass;
+              $objs = $arrClass($context);
+              $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+              $select = $objs->getSelectObj(get_class($this).'_Select', $object, 'Name');
+              $select->addCombobox();
+              $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
+              $select->addFocus('#'.$select->id.'_combobox');
+              $selectDiv->addContent($select);
+            } else {
+              $nameDiv = $left->addDiv();
+              $nameDiv->addLabel('Name');
+              $nameDiv->addSpan($this->name);
+            }
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
@@ -239,7 +255,7 @@
       } else {
         $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($object->tournamentDivision) : getTournament();
         if (isTournament($context) || isDivision($context)) {
-          $arrClass = $obj::$arrClass;
+          $arrClass = static::$arrClass;
           $objs = $arrClass($context);
           $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
           $select = $objs->getSelectObj(get_class($this).'_Select', $object, 'Name');
