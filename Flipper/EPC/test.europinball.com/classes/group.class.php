@@ -19,23 +19,31 @@
       } 
       $this->db = base::$_db;
       if (isGeo(static::$objClass, TRUE)) {
+        debug(1);
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
+        debug(2);
           $tournament = tournament($data);
           $context = $tournament;
           if (isDivision($prop)) {
+        debug(3);
             $context = $prop;
           } else if (in_array($prop, config::$divisions)) {
+        debug(4);
             $context = division($tournament, $prop);
           }
         } 
         if (isDivision($data)) {
+        debug(5);
           $context = $data;
         } else if (in_array($data, config::$divisions)) {
+        debug(6);
           $tournament = getTournament($prop);
           $context = division($tournament, $data);
         }
       }
+        debug(7);
       if ($context) {
+        debug(8);
         $class = static::$objClass;
         $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
         $data = '
@@ -47,6 +55,7 @@
         ';
         $prop = NULL;
       } else {
+        debug(9);
         if (isAssoc($data)) {
           $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
         } else if (is_array($data) || isGroup($data)) {
