@@ -46,8 +46,7 @@
             and pl.id is not null
           group by o.id
         ';
-        debug($data);
-        $prop = NULL;
+        $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       } else {
         if (isAssoc($data)) {
           $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
