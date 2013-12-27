@@ -18,8 +18,7 @@
         base::$_db = new db();
       } 
       $this->db = base::$_db;
-        debug(isGeo(static::$objClass, TRUE), 'DIE', true);
-      if (isGeo(static::$objClass, TRUE) && $data) {
+      if ($data && isGeo(static::$objClass, TRUE)) {
         debug(1, 'DIE', true);
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
         debug(2);
