@@ -283,7 +283,8 @@
     
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
       if (!$headers && $headers !== FALSE) {
-        foreach (static::$infoProps as $label => $prop) {
+        $class = static::$objClass;
+        foreach ($class::$infoProps as $label => $prop) {
           $thead[] = new th(((isId($label)) ? ucfirst($prop) : $label));
         }
       } else {
