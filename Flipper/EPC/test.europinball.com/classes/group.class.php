@@ -43,7 +43,7 @@
       }
         debug(7);
       if ($context) {
-        debug(8);
+        debug(8,'DIE', true);
         $class = static::$objClass;
         $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
         $data = '
