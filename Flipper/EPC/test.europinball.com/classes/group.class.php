@@ -244,7 +244,7 @@
         $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
         $options[] = $option;
       }
-      return new select($name, $options, NULL, $label, $params);
+      return new select($name, $options, $selected, $label, $params);
     }
     
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
