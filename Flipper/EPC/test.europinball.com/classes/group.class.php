@@ -243,8 +243,11 @@
         $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
         $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
         $options[] = $option;
+        if ($selected_id == $obj->id) {
+          $selectedOption = $option;
+        }
       }
-      return new select($name, $options, $selected, $label, $params);
+      return new select($name, $options, $selectedOption, $label, $params);
     }
     
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
