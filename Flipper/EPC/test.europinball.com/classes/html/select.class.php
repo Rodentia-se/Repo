@@ -175,7 +175,6 @@
           if (!$chosen && $selected && ($option === $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
             $chosen = $key;
-            $opt = $option;
           } else {
             $option->selected = FALSE;
           }
@@ -185,6 +184,7 @@
             if (!$chosen && $key == $selected) {
               $option->selected = TRUE;
               $chosen = $key;
+            $opt = $option;
             } else {
               $option->selected = FALSE;
             }
