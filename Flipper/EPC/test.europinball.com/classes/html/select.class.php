@@ -6,7 +6,7 @@
       $this->name = $name;
       $this->addOptions($options);
       $this->selectOption($selected);
-      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : ((isHtml($selected)) ? $selected->value : ((is_object($selected)) ? $selected->name : $selected)));
+      $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : ((isHtml($selected)) ? $selected->id : ((is_object($selected)) ? $selected->name : $selected)));
       parent::__construct($name, NULL, 'select', $label, $params);
     }
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
@@ -174,7 +174,7 @@
         foreach ($this->contents as $key => $option) {
           if (!$chosen && $selected && ($option === $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
-            $chosen = TRUE;
+            $chosen = $key;
           } else {
             $option->selected = FALSE;
           }
@@ -183,7 +183,7 @@
           foreach ($this->contents as $key => $option) {
             if (!$chosen && $key == $selected) {
               $option->selected = TRUE;
-              $chosen = TRUE;
+              $chosen = $key;
             } else {
               $option->selected = FALSE;
             }
