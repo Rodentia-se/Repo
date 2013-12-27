@@ -22,7 +22,7 @@
         $select->addCombobox();
         $select->addChange('
           location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());
-        ')
+        ');
         $selectDiv->addContent($select);
       }
       $div->addContent($object->getInfo());
