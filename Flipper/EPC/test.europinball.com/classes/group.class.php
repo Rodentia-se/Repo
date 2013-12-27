@@ -34,20 +34,19 @@
           $tournament = getTournament($prop);
           $context = division($tournament, $data);
         }
-        if ($context) {
-          $table = (property_exists($this, 'table')) ? static::$table.'_id' : static::$objClass.'_id';
-          $class = static::$objClass;
-          $data = '
-            left join player pl 
-              on pl.'.$table.'_id = o.id
-              '.(($class::$selfParent) ? ' or parent'.ucfirst($table).'_id = o.id' : '').'
-            where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
-              and pl.id is not null
-          ';
-          $prop = NULL;
-        }
       }
-      if (!context) {
+      if ($context) {
+        $class = static::$objClass;
+        $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
+        $data = '
+          left join player pl 
+            on pl.'.$column.' = o.id
+            '.(($class::$selfParent) ? ' or parent'.ucfirst($column).'_id = o.id' : '').'
+          where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
+            and pl.id is not null
+        ';
+        $prop = NULL;
+      } else {
         if (isAssoc($data)) {
           $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
         } else if (is_array($data) || isGroup($data)) {
