@@ -2,7 +2,7 @@
 
   class table extends html {
     
-    public function __construct($rows = NULL, $headers, $id = NULL, $class = NULL, array $params = NULL) {
+    public function __construct($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $this->addHeader($headers);
       parent::__construct('table', $rows, $params, $id, $class, NULL);
     }

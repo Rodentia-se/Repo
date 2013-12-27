@@ -908,6 +908,42 @@
       $this->addContent($element);
       return $element;
     }
+    
+    public function addTable($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new table($rows, $headers, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTbody($rows = NULL, array $params = NULL) {
+      $element = new tbody($rows, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addThead($rows = NULL, array $params = NULL) {
+      $element = new thead($rows, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTr($cells = NULL, array $params = NULL) {
+      $element = new tr($cells, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTh($contents = NULL, array $params = NULL) {
+      $element = new th($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTd($contents = NULL, array $params = NULL) {
+      $element = new td($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
 
     public function addScript($source = NULL, array $params = NULL) {
       $element = new script($source, $params);
