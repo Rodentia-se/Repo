@@ -308,9 +308,9 @@
             $row[] = new td((string) $obj->$prop);
           }
         }
-        $rows[] = new tr($row);
+        $tbody[] = new tr($row);
       }
-      $table = new table($rows, $headers, $id, $class);
+      $table = new table($tbody, $thead, $id, $class);
       return $table;
     }
       
