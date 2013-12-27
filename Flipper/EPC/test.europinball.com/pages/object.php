@@ -21,7 +21,7 @@
         $select = $objs->getSelectObj(NULL, $object);
         $select->addCombobox();
         $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
-        $select->addFocus('"'.$select->id.'_combobox');
+        $select->addFocus('#'.$select->id.'_combobox');
         $selectDiv->addContent($select);
       }
       $div->addContent($object->getInfo());
