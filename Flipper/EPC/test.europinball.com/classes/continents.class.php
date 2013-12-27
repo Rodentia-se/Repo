@@ -11,7 +11,7 @@
         if (isDivision($prop)) {
           $context = $prop;
         } else if (in_array($prop, config::$divisions)) {
-          $context = division($tournament, $prop)
+          $context = division($tournament, $prop);
         }
       } 
       if (isDivision($data)) {
