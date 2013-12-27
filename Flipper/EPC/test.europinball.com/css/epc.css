@@ -78,6 +78,10 @@ span.sum {
   border-top: 1px #4F4F4F solid;
 } 
 
+span.info {
+  margin-left: 5px;
+}
+
 .preview {
   max-width: 450px;
   max-heigth: 900px;

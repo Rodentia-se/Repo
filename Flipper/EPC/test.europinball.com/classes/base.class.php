@@ -249,7 +249,7 @@
           } else if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-            $nameDiv->addSpan($html)->escape = FALSE;
+            $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
         }
       } else {
