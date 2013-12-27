@@ -284,31 +284,33 @@
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
       if (!$headers && $headers !== FALSE) {
         $class = static::$objClass;
+        $thead = new tr();
         foreach ($class::$infoProps as $label => $prop) {
           $headers[] = $prop;
-          $thead[] = new th(((isId($label)) ? ucfirst($prop) : $label));
+          $thead->addTh(((isId($label)) ? ucfirst($prop) : $label));
         }
       } else {
         foreach ($headers as $header) {
-          $thead[] = new th($header);
+          $thead->addTh($header);
         }
       }
       foreach ($this as $obj) {
+        $row = new tr());
         foreach ($headers as $header) {
           if (isObj($obj->$prop)) {
             $link = $obj->$prop->getLink('object', FALSE);
             if ($link) {
-              $row[] = new td(new link($link, $obj->$prop->name));
+              $row->addTd(new link($link, $obj->$prop->name));
             } else {
-              $row[] = new td($obj->${$prop.'Name'});
+              $row->addTd($obj->${$prop.'Name'});
             }
           } else if (method_exists($obj, $prop)) {
-            $row[] = new td($obj->$prop());
+            $row->addTd($obj->$prop());
           } else if(is($obj->$prop)){
-            $row[] = new td((string) $obj->$prop);
+            $row->addTd((string) $obj->$prop);
           }
         }
-        $tbody[] = new tr($row);
+        $tbody[] = $row;
       }
       $table = new table($tbody, $thead, $id, $class);
       return $table;
