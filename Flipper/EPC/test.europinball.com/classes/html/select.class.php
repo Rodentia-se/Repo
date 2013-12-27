@@ -190,6 +190,7 @@
           }
         }
       }
+      debug($chosen);
       return $chosen;
     }
     
