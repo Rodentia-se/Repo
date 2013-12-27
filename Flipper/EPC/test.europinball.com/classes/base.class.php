@@ -226,14 +226,14 @@
           } else if (method_exists($this, $prop)) {
             $html = $this->$prop();
           } else if ($prop == 'name') {
-            $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($object->tournamentDivision) : getTournament();
+            $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
             if (isTournament($context) || isDivision($context)) {
               $arrClass = static::$arrClass;
               $objs = $arrClass($context);
               $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-              $select = $objs->getSelectObj(get_class($this).'_Select', $object, 'Name');
+              $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
               $select->addCombobox();
-              $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
+              $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
               $select->addFocus('#'.$select->id.'_combobox');
               $selectDiv->addContent($select);
             } else {
@@ -253,14 +253,14 @@
           }
         }
       } else {
-        $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($object->tournamentDivision) : getTournament();
+        $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
         if (isTournament($context) || isDivision($context)) {
           $arrClass = static::$arrClass;
           $objs = $arrClass($context);
           $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-          $select = $objs->getSelectObj(get_class($this).'_Select', $object, 'Name');
+          $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
           $select->addCombobox();
-          $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
+          $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
           $select->addFocus('#'.$select->id.'_combobox');
           $selectDiv->addContent($select);
         } else {
