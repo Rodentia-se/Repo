@@ -247,6 +247,11 @@
           $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
           $select->addFocus('#'.$select->id.'_combobox');
           $selectDiv->addContent($select);
+        } else {
+          $nameDiv = $left->addDiv();
+          $nameDiv->addLabel('Name');
+          $nameDiv->addSpan($this->name);
+        }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
