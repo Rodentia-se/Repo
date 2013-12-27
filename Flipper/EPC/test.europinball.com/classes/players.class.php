@@ -38,8 +38,10 @@
         $division = getDivision($tournament, 'main');
         if (isTournament($tournament)) {
           $data = '
-            left join teamPerson tp on tp.person_id = '.((static::$objClass == 'player') ? 'p' : 'o').'.id
-            left join team t on tp.team_id = t.id
+            left join teamPerson tp 
+              on tp.person_id = '.((static::$objClass == 'player') ? 'p' : 'o').'.id
+            left join team t 
+              on tp.team_id = t.id
             where t.id = '.$data->id.'
               and tp.tournamentEdition_id = '.$tournament->id.'
               '.((static::$objClass == 'player') ? 'and o.tournamentDivision_id = '.$division->id : '').'

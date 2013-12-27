@@ -33,6 +33,13 @@
       'person' => 'continent'
     );
 
+    public static $infoChildren = array(
+      'countries',
+      'regions',
+      'cities',
+      'players'
+    );
+
     public function getCountries() {
       return $this->db->getObjectsByParent('country', $this);
     }
