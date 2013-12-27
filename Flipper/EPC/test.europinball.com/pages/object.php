@@ -20,9 +20,8 @@
         $selectDiv = $div->addDiv();
         $select = $objs->getSelectObj(NULL, $object);
         $select->addCombobox();
-        $select->addChange('
-          location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());
-        ');
+        $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.$obj.'&id=" + $(this).val());');
+        $select->addFocus();
         $selectDiv->addContent($select);
       }
       $div->addContent($object->getInfo());
