@@ -285,6 +285,7 @@
       if (!$headers && $headers !== FALSE) {
         $class = static::$objClass;
         foreach ($class::$infoProps as $label => $prop) {
+          $headers[] = $prop;
           $thead[] = new th(((isId($label)) ? ucfirst($prop) : $label));
         }
       } else {
