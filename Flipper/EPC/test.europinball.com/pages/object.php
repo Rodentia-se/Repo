@@ -17,7 +17,7 @@
       if (isTournament($context) || isDivision($context)) {
         $arrClass = $obj::$arrClass;
         $objs = $arrClass($context);
-        $div->addContent($objs->getSelectObj());
+        $div->addContent($objs->getSelectObj(NULL, $object));
       }
       $div->addContent($object->getInfo());
     } else {
