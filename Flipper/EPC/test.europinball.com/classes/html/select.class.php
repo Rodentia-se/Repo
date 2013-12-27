@@ -181,7 +181,7 @@
         }
         if (!$chosen) {
           foreach ($this->contents as $key => $option) {
-            if (!$chosen && $key == $selected) {
+            if (!$chosen && $key === $selected) {
               $option->selected = TRUE;
               $chosen = $key;
             $opt = $option;
