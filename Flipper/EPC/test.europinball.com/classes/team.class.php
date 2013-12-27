@@ -126,8 +126,8 @@
         $members = ($asPlayers) ? players($this) : persons($this);
         if ($members && count($members) > 0) {
           $div = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
-          $div->addLabel('Members', NULL, NULL, 'left');
-          $membersDiv = $div->addSpan(NULL, '');
+          $div->addLabel('Members');
+          $membersDiv = $div->addSpan(NULL, 'info');
           foreach($members as $member) {
             $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
             $membersDiv->addBr();

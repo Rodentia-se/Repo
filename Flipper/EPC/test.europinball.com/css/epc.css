@@ -79,7 +79,8 @@ span.sum {
 } 
 
 span.info {
-  margin-left: 5px;
+  margin-left: 9px;
+  position: absolute;
 }
 
 .preview {
