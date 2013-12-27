@@ -13,7 +13,7 @@
   if (isObj($obj, TRUE)) {
     $object = $obj($id);
     if ($object) {
-      $context = ($obj == 'player') ? getDivision(tournamentDivision) : getTournament();
+      $context = (get_class($object) == 'player') ? division(tournamentDivision) : getTournament();
       if (isTournament($context) || isDivision($context)) {
         $arrClass = $obj::$arrClass;
         $objs = $arrClass($context);
