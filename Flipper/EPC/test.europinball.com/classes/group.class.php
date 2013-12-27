@@ -41,7 +41,6 @@
           $context = division($tournament, $data);
         }
       }
-        debug(7, 'DIE', true);
       if ($context) {
         debug(8, 'DIE', true);
         $class = static::$objClass;
