@@ -14,6 +14,7 @@
     $object = $obj($id);
     if ($object) {
       $div->addContent($object->getInfo());
+      $div->addCOntent($object->getChildrenTabs());
     } else {
       $div->addParagraph('Could not find the '.$obj.' you are looking for. Please try again.');
     }

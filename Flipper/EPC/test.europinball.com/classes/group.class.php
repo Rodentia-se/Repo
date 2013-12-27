@@ -281,6 +281,37 @@
       return new select($name, $options, $selectedOption, $label, $params);
     }
     
+    public function getTable(array $headers = NULL, $id = NULL, $class = NULL) {
+      if (!$headers && $headers !== FALSE) {
+        foreach (static::$infoProps as $label => $prop) {
+          $thead[] = new th(((isId($label)) ? ucfirst($prop) : $label));
+        }
+      } else {
+        foreach ($headers as $header) {
+          $thead[] = new th($header);
+        }
+      }
+      foreach ($this as $obj) {
+        foreach ($headers as $header) {
+          if (isObj($obj->$prop)) {
+            $link = $obj->$prop->getLink('object', FALSE);
+            if ($link) {
+              $row[] = new td(new link($link, $obj->$prop->name));
+            } else {
+              $row[] = new td($obj->${$prop.'Name'});
+            }
+          } else if (method_exists($obj, $prop)) {
+            $row[] = new td($obj->$prop());
+          } else if(is($obj->$prop)){
+            $row[] = new td((string) $obj->$prop);
+          }
+        }
+        $rows[] = $row;
+      }
+      $table = new table($rows, $headers, $id, $class);
+      return $table;
+    }
+      
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
       $return = FALSE;
       $prop = ($prop) ? $prop : ((property_exists($this, 'order') && static::$order['prop']) ? static::$order['prop'] : (($this[0]->sortName) ? 'sortName' : 'name')) ;

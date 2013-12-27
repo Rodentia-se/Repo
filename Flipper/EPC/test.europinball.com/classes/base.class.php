@@ -219,8 +219,10 @@
         foreach (static::$infoProps as $label => $prop) {
           $html = FALSE;
           if (isObj($this->$prop)) {
-            $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
-            if (!$html) {
+            $link = $this->$prop->getLink('object', FALSE);
+            if ($link) {
+              $html = new link($link, $this->$prop->name);
+            } else {
               $html = $this->${$prop.'Name'};
             }
           } else if (method_exists($this, $prop)) {
