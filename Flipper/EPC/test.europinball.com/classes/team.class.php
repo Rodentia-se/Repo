@@ -127,7 +127,7 @@
         if ($members && count($members) > 0) {
           $div = new div($this->id.'_'.get_class($this).'_teamMembersDiv');
           $div->addLabel('Members', NULL, NULL, 'left');
-          $membersDiv = $div->addSpan(NULL, 'right');
+          $membersDiv = $div->addSpan(NULL, '');
           foreach($members as $member) {
             $membersDiv->addLink($member->getLink('object', FALSE), $member->name);
             $membersDiv->addBr();
