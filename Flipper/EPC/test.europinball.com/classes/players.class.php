@@ -51,6 +51,38 @@
       parent::__construct($data, $prop, $cond);
     }
     
+    public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
+      if (!$headers && $headers !== FALSE) {
+        if ($division->team) {
+          if ($division->national) {
+            $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
+          } else {
+            $headers = array('Name', 'Tag', 'Members', 'Picture');
+          }
+        } else {
+          $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
+        }
+        $thead = new tr();
+        foreach ($headers as $label) {
+          $thead->addTh($label);
+        }
+      }
+      foreach ($this as $obj) {
+        $tbody[] = $obj->getTr();
+      }
+      $table = new table($tbody, $thead, $id, $class);
+      return $table;
+    }
+
+      $tabs = new tabs(NULL, 'childrenTabs');
+        foreach (static::$infoChildren as $childArrayClass) {
+          $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
+          $children = $childArrayClass($this);
+          $childrenDiv->addContent($children->getTable());
+        }
+      //}
+      return $tabs;
+
   }
 
 ?>

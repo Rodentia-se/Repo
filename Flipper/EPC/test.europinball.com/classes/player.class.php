@@ -215,7 +215,19 @@
       }
     }
     
+    public function getTr($headers = NULL) {
+      // @todo: Handle custom headers
+      $cells = $this->getRegRow(TRUE);
+      $tr = new tr();
+      foreach ($cells as $cell) {
+        $tr->addTd($cell);
+      }
+      return $tr;
+    }
+
     public function getRegRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
       if ($this->team) {
         $members = players($this->team);
         unset($memberLinks);
@@ -231,7 +243,7 @@
             $this->shortName,
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
-            $this->team->getPhotoIcon(),
+            $this->team->getPhotoIcon()
           );
           return ($array) ? $return : (object) $return;
         } else {
@@ -239,7 +251,7 @@
             $this->getLink(),
             $this->shortName,
             $memberCell,
-            $this->team->getPhotoIcon(),
+            $this->team->getPhotoIcon()
           );
           return ($array) ? $return : (object) $return;
         }
