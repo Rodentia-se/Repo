@@ -17,7 +17,7 @@
       $div->addDiv(NULL, 'clearer');
       $childrenTabs = $object->getChildrenTabs();
       if ($childrenTabs) {
-        $div->addContent($object->getChildrenTabs());
+        $div->addContent($childrenTabs);
       }
     } else {
       $div->addParagraph('Could not find the '.$obj.' you are looking for. Please try again.');
