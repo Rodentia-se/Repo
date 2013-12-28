@@ -66,7 +66,7 @@
             on pl.'.$column.' = o.id
             '.(($class::$selfParent) ? ' or pl.parent'.ucfirst($column).' = o.id' : '').'
           where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
-            '.((isObj($$secondParam)) ? 'and '.$secondColumn.' = '.$secondId : '').'
+            '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
             and pl.id is not null
           group by o.id
         ';
