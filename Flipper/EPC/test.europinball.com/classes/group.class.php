@@ -34,7 +34,7 @@
           $tournament = getTournament($prop);
           $context = division($tournament, $data);
         }
-        $secondParam = 'search';
+        $secondParam = 'prop';
       }
       if ($prop && isGeo(static::$objClass, TRUE)) {
         if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
