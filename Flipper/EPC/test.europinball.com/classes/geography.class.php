@@ -8,9 +8,11 @@
       $tournament = getTournament($tournament);
       $tabs = new tabs(NULL, 'childrenTabs');
         foreach (static::$infoChildren as $childArrayClass) {
-          $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
           $children = $childArrayClass($tournament, $this);
-          $childrenDiv->addContent($children->getTable());
+          if ($children && count($children) > 0) {
+            $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
+            $childrenDiv->addContent($children->getTable());
+          }
         }
       //}
       return $tabs;
