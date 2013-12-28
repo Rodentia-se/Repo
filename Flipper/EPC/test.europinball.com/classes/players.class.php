@@ -83,6 +83,8 @@
           debug($division);
           $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->type)));
           $table = $div->addTable($tbody[$divisionId], $thead);
+          $division = division(17);
+          debug($division);
         }
       }
       return $tabs;
