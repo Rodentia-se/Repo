@@ -80,7 +80,7 @@
           foreach ($headers as $label) {
             $thead->addTh($label);
           }
-          $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => $division->divisionName));
+          $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => usfirst($division->type)));
           $table = $div->addTable($tbody[$divisionId], $thead);
         }
       }
