@@ -22,6 +22,7 @@
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
           $tournament = tournament($data);
           $context = $tournament;
+          $secondParam = 'prop';
           if (isDivision($prop)) {
             $context = $prop;
           } else if (in_array($prop, config::$divisions)) {
@@ -30,17 +31,18 @@
         } 
         if (isDivision($data)) {
           $context = $data;
-        } else if (in_array($data, config::$divisions)) {
+           $secondParam = 'prop';
+       } else if (in_array($data, config::$divisions)) {
           $tournament = getTournament($prop);
           $context = division($tournament, $data);
+          $secondParam = 'prop';
         }
-        $secondParam = 'prop';
-        debug($secondParam);
       }
       if ($prop && isGeo(static::$objClass, TRUE)) {
         if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
           $tournament = tournament($prop);
           $context = $tournament;
+          $secondParam = 'data';
           if (isDivision($prop)) {
             $context = $prop;
           } else if (in_array($prop, config::$divisions)) {
@@ -49,12 +51,12 @@
         } 
         if (isDivision($prop)) {
           $context = $prop;
+          $secondParam = 'data';
         } else if (in_array($prop, config::$divisions)) {
           $tournament = getTournament($prop);
           $context = division($tournament, $prop);
+          $secondParam = 'data';
         }
-        $secondParam = 'data';
-        debug($secondParam);
       }
       if ($context) {
         $class = static::$objClass;
