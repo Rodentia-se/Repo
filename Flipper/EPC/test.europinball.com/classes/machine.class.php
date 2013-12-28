@@ -8,7 +8,7 @@
     public static $select = '
       select 
         o.id as id,
-        g.íd as game_id,
+        g.id as game_id,
         g.name as name,
         g.name as fullName,
         g.acronym as acronym,
