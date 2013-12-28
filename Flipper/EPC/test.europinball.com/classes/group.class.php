@@ -20,7 +20,6 @@
       $this->db = base::$_db;
       if ($data && isGeo(static::$objClass, TRUE)) {
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
-          debug($prop);
           $tournament = tournament($data);
           $context = $tournament;
           if (isDivision($prop)) {
@@ -36,6 +35,7 @@
           $context = division($tournament, $data);
         }
         $secondParam = 'prop';
+        debug($secondParam);
       }
       if ($prop && isGeo(static::$objClass, TRUE)) {
         if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
