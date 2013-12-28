@@ -519,12 +519,12 @@
   }
   
   function isObj($obj, $string = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && $string && class_exists($obj)) ? new $obj() : $obj;
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
     return $obj instanceof base;
   }
   
   function isHtml($obj, $string = FALSE) {
-    $obj = (is_string($obj) && class_exists($obj) && $string && class_exists($obj)) ? new $obj() : $obj;
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
     return $obj instanceof html;
   }
   
