@@ -28,7 +28,7 @@
           } else if (in_array($prop, config::$divisions)) {
             $context = division($tournament, $prop);
           }
-        } 
+        }
         if (isDivision($data)) {
           $context = $data;
            $secondParam = 'prop';

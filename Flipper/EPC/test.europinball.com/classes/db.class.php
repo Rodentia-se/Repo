@@ -121,7 +121,6 @@
           $where = true;
         }
       }
-      debug($query);
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
