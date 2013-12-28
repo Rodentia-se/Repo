@@ -67,6 +67,10 @@ img.popupPhoto {
   max-height: 570px;
 }
 
+img.infoImg {
+  max-width: 400px;
+}
+
 span.payment {
   width: 60px;
   text-align: right;
