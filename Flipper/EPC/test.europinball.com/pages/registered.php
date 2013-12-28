@@ -121,7 +121,7 @@
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
-            '.(($class == 'players') = '$("#'.$division->shortName.'_reloadButton").click(function() {
+            '.(($class == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
               tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
             });' : '').'
           ');
