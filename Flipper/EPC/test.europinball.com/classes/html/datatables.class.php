@@ -12,6 +12,11 @@
           'iDisplayLength' => -1,
           'aLengthMenu' => '[[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]'
         ), (array) $props);
+        $this->addAfter(new scriptCode('
+          $(document).ready(function() {
+            $("'.$selector.'").css("width", "");
+          });
+        ');
       parent::__construct($selector, 'dataTable', 'object', NULL, $props, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
