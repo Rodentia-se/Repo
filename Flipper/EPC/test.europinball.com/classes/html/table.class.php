@@ -45,6 +45,13 @@
       }
       return NULL;
     }
+    
+    public function addDatatables(array $props = NULL, $indents = 0) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $element = new datatables('#'.$this->id, $props, $indents);
+      $this->addAfter($element);
+      return $element;
+    }
 
   }
   

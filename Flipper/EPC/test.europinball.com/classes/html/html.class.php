@@ -915,6 +915,14 @@
       return $element;
     }
 
+    public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $element = new table($rows, $headers, $id, $class, $params);
+      $element->addDatatables('#'.$element->id, $props, $indents);
+      $this->addContent($element);
+      return $element;
+    }
+    
     public function addTbody($rows = NULL, array $params = NULL) {
       $element = new tbody($rows, $params);
       $this->addContent($element);

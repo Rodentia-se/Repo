@@ -81,7 +81,39 @@
             $thead->addTh($label);
           }
           $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->divisionName)));
-          $table = $div->addTable($tbody[$divisionId], $thead);
+          $table = $div->addDatatables($tbody[$divisionId], $thead);
+/*
+          	  "sPaginationType": "full_numbers",
+              '.(($division->team) ? '"aoColumnDefs": [
+                {"sClass": "icon", "aTargets": [ 4 ] }
+              ],' : '"aoColumnDefs": [
+                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                { "bVisible": false, "aTargets": [ 6 ] },
+                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                { "bVisible": false, "aTargets": [ 4 ] },
+                {"sClass": "icon", "aTargets": [ 5 ] },
+                {"sClass": "icon", "aTargets": [ 8 ] }
+              ],').'
+              "fnDrawCallback": function() {
+                $(".photoPopup").each(function() {
+                  $(this).dialog({
+                    autoOpen: false,
+                    modal: true, 
+                    width: "auto",
+                    height: "auto"
+                  });
+                });
+                $("#'.$division->shortName.'Table").css("width", "");
+                $(".photoIcon").click(function() {
+                  var photoDiv = $(this).data("photodiv");
+                  $("#" + photoDiv).dialog("open");
+                  $(document).on("click", ".ui-widget-overlay", function() {
+                    $("#" + photoDiv).dialog("close");
+                  });
+                });
+                return true;
+              },
+*/
         }
       }
       return $tabs;
