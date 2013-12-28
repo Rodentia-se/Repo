@@ -70,6 +70,7 @@
             and pl.id is not null
           group by o.id
         ';
+        debug($data);
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       } else {
         if (isAssoc($data)) {
