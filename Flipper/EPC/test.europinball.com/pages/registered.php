@@ -126,7 +126,7 @@
             });' : '').'
           ');
         } else {
-          $page->addParagraph('No players have registered for the '.$division->divisionName);
+          $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
         }
       $page->closeDiv();
     }
