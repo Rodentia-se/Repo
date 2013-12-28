@@ -3,8 +3,8 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $class = ($class) ? $class : (($_REQUEST['obj']) ? $_REQUEST['obj'] : 'players');
-  $class = (isGroup($class, TRUE)) ? $class : ((isObj($class, TRUE)) ? $class::$arrClass : 'players');
+  $type = ($type) ? $type : (($_REQUEST['obj']) ? $_REQUEST['obj'] : 'players');
+  $type = (isGroup($type, TRUE)) ? $type : ((isObj($type, TRUE)) ? $type::$arrClass : 'players');
 
   if (isId($_REQUEST['tournament_id'])) {
     $tournament = tournament($_REQUEST['tournament_id']);
@@ -23,7 +23,7 @@
     error('No divisions found!', NULL, FALSE, TRUE);
   }
 
-  switch ($class) {
+  switch ($type) {
     case 'players':
       $title = 'players and teams';
       $divisions->filter('includeInStats');
@@ -43,7 +43,7 @@
       $title = 'game manufacturers';
     break;
     default:
-      $title = $class;
+      $title = $type;
     break;
   }
 
@@ -53,13 +53,13 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.ucfirst($class).'">'.$division->divisionName.'</a>');
+        $page->addLi('<a href="#'.$division->shortName.ucfirst($type).'">'.$division->divisionName.'</a>');
       }
     $page->closeUl();
     foreach ($divisions as $division) {
-      $objs = $class($division);
+      $objs = $type($division);
       $rows = array();
-      $page->startDiv($division->shortName.ucfirst($class));
+      $page->startDiv($division->shortName.ucfirst($type));
         if (count($objs) > 0) {
           if ($division->team) {
             if ($division->national) {
@@ -73,7 +73,7 @@
           foreach ($objs as $obj) {
             $rows[] = $obj->getRegRow(TRUE);
           }
-          if ($class == 'players') {
+          if ($type == 'players') {
             $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main' && config::$participationLimit[$division->type]) ? ' <span class="right">The maximum number of players is '.config::$participationLimit[$division->type].'.</span>' : ''));
           }
           $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
@@ -86,7 +86,7 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
-              '.(($class == 'players') ? (($division->team) ? '"aoColumnDefs": [
+              '.(($type == 'players') ? (($division->team) ? '"aoColumnDefs": [
                 {"sClass": "icon", "aTargets": [ 4 ] }
               ],' : '"aoColumnDefs": [
                 { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
@@ -121,7 +121,7 @@
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
-            '.(($class == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
+            '.(($type == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
               tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
             });' : '').'
           ');

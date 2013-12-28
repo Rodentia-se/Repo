@@ -9,7 +9,7 @@ function customTemplate($page) {
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
 	  break;
 		case 'machines':
-      $class = 'games';
+      $type = 'machines';
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
 	  break;
 		case 'editplayer':
