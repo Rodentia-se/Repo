@@ -57,7 +57,7 @@
         if (!in_array($obj->tournamentDivision_id, $divisionIds)) {
           $divisionIds[] = $obj->tournamentDivision_id;
         }
-        $tbody[$this->tournamentDivision_id][] = $obj->getTr();
+        $tbody[$obj->tournamentDivision_id][] = $obj->getTr();
       }
       if (!$headers && $headers !== FALSE) {
         if ($this->team) {
