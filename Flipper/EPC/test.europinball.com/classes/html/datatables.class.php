@@ -4,7 +4,7 @@
     
     public function __construct($selector = NULL, array $props = NULL, $indents = 0) {
         $type = 'object';
-        $defaultProps = array_merge(array(
+        $props = array_merge(array(
           'bProcessing' => TRUE,
           'bJQueryUI' => TRUE,
           'sPaginationType' => 'full_numbers',
