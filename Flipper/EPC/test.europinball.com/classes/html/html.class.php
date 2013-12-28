@@ -44,7 +44,7 @@
       } else {
         html::$ids[] = $params['id'];
       }
-      $params['data-title'] = (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id']));
+      $params['data-title'] = ((is($params['data-title']) ? $params['data-title'] : (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id'])));
       $class = mergeToArray($class, $params['class']);
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
