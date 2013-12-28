@@ -85,6 +85,27 @@
               ]',
           );
         }
+        $tableProps['fnDrawCallback'] = '
+          function() {
+            $(this).css("width", "");
+            $(".photoPopup").each(function() {
+              $(this).dialog({
+                autoOpen: false,
+                modal: true, 
+                width: "auto",
+                height: "auto"
+              });
+            });
+            $(".photoIcon").click(function() {
+              var photoDiv = $(this).data("photodiv");
+              $("#" + photoDiv).dialog("open");
+              $(document).on("click", ".ui-widget-overlay", function() {
+                $("#" + photoDiv).dialog("close");
+              });
+            });
+            return true;
+          },
+        ';
         if (count($divisionIds) > 1) {
           $tabs = new tabs(NULL, 'divisionTabs');
         } else {
@@ -100,16 +121,7 @@
           $table = $div->addDatatables($tbody[$divisionId], $thead, $divisionId.'_divisionTable', NULL, NULL, $tableProps);
 /*
     public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
-              '.(($division->team) ? '"aoColumnDefs": [
-                {"sClass": "icon", "aTargets": [ 4 ] }
-              ],' : '"aoColumnDefs": [
-                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
-                { "bVisible": false, "aTargets": [ 6 ] },
-                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                { "bVisible": false, "aTargets": [ 4 ] },
-                {"sClass": "icon", "aTargets": [ 5 ] },
-                {"sClass": "icon", "aTargets": [ 8 ] }
-              ],').'
+
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
