@@ -119,43 +119,11 @@
           }
           $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->divisionName)));
           $table = $div->addDatatables($tbody[$divisionId], $thead, $divisionId.'_divisionTable', NULL, NULL, $tableProps);
-/*
-    public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
-
-              "fnDrawCallback": function() {
-                $(".photoPopup").each(function() {
-                  $(this).dialog({
-                    autoOpen: false,
-                    modal: true, 
-                    width: "auto",
-                    height: "auto"
-                  });
-                });
-                $("#'.$division->shortName.'Table").css("width", "");
-                $(".photoIcon").click(function() {
-                  var photoDiv = $(this).data("photodiv");
-                  $("#" + photoDiv).dialog("open");
-                  $(document).on("click", ".ui-widget-overlay", function() {
-                    $("#" + photoDiv).dialog("close");
-                  });
-                });
-                return true;
-              },
-*/
         }
       }
       return $tabs;
     }
-/*
-      $tabs = new tabs(NULL, 'childrenTabs');
-        foreach (static::$infoChildren as $childArrayClass) {
-          $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
-          $children = $childArrayClass($this);
-          $childrenDiv->addContent($children->getTable());
-        }
-      //}
-      return $tabs;
-*/
+
   }
 
 ?>

@@ -343,6 +343,7 @@
         $tbody[] = $row;
       }
       $table = new table($tbody, $thead, $id, $class);
+      $table->addDatatables();
       return $table;
     }
       
