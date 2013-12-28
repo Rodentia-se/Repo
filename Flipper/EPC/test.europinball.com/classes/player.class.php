@@ -220,7 +220,7 @@
       $cells = $this->getRegRow(TRUE);
       $tr = new tr();
       foreach ($cells as $cell) {
-        $tr->addTd($cell);
+        $tr->addTd($cell)->escape = FALSE;
       }
       return $tr;
     }
