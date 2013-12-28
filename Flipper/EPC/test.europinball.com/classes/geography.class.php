@@ -9,7 +9,7 @@
       $tabs = new tabs(NULL, 'childrenTabs');
         foreach (static::$infoChildren as $childArrayClass) {
           $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
-          $children = $childArrayClass($this, $tournament);
+          $children = $childArrayClass($tournament, $this);
           $childrenDiv->addContent($children->getTable());
         }
       //}
