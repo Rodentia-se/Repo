@@ -96,8 +96,9 @@
             $thead->addTh($label);
           }
           $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->divisionName)));
-          $table = $div->addDatatables($tbody[$divisionId], $thead);
+          $table = $div->addDatatables($tbody[$divisionId], $thead, $divisionId.'_divisionTable', NULL, NULL, $tableProps);
 /*
+    public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
               '.(($division->team) ? '"aoColumnDefs": [
                 {"sClass": "icon", "aTargets": [ 4 ] }
               ],' : '"aoColumnDefs": [
