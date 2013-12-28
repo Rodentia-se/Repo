@@ -74,16 +74,16 @@
         } else {
           $tabs = new div('playerDiv');
         }
+        debug($tbody);
         foreach($divisionIds as $divisionId) {
           $division = division($divisionId);
           $thead = new tr();
           foreach ($headers as $label) {
             $thead->addTh($label);
           }
-          $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->type)));
+          $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->divisionName)));
           $table = $div->addTable($tbody[$divisionId], $thead);
           $division = division(17);
-          debug($division);
         }
       }
       return $tabs;
