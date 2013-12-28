@@ -59,6 +59,7 @@
         }
         $tbody[$obj->tournamentDivision_id][] = $obj->getTr();
       }
+      sort($divisionIds);
       if (!$headers && $headers !== FALSE) {
         if ($this->team) {
           if ($this->national) {
