@@ -24,6 +24,7 @@
   }
   
   $page->addContent($div);
+  $page->datatables = TRUE;
   
   $page->submit();
 
