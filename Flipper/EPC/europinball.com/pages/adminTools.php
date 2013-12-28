@@ -22,7 +22,7 @@
               $(el).tooltipster("update", data.reason).tooltipster("show");
             })
           ');
-          $playerDiv->addParagraph('More coming soon...');
+          $playerDiv->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
           $userDiv->title = 'Users';

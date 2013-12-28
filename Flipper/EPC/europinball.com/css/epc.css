@@ -67,6 +67,10 @@ img.popupPhoto {
   max-height: 570px;
 }
 
+img.infoImg {
+  max-width: 400px;
+}
+
 span.payment {
   width: 60px;
   text-align: right;
@@ -77,6 +81,11 @@ span.payment {
 span.sum {
   border-top: 1px #4F4F4F solid;
 } 
+
+span.info {
+  margin-left: 9px;
+  position: absolute;
+}
 
 .preview {
   max-width: 450px;

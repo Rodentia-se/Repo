@@ -44,7 +44,7 @@
       } else {
         html::$ids[] = $params['id'];
       }
-      $params['data-title'] = (is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id']));
+      $params['data-title'] = (is($params['data-title'])) ? $params['data-title'] : ((is($params['title'])) ? $params['title'] : preg_replace('/'.ucfirst($this->element).'$/', '', ucfirst($params['id'])));
       $class = mergeToArray($class, $params['class']);
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
@@ -905,6 +905,50 @@
     
     public function addClickButton($value = 'submit', $name = NULL, $url = NULL, $form = TRUE, $script = TRUE, array $params = NULL) {
       $element = new clickButton($value, $name, $url, $form, $script, $params);
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public function addTable($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $element = new table($rows, $headers, $id, $class, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
+      $indents = (is($indents)) ? $indents : static::$indents;
+      $element = new table($rows, $headers, $id, $class, $params);
+      $element->addDatatables($props, $indents);
+      $this->addContent($element);
+      return $element;
+    }
+    
+    public function addTbody($rows = NULL, array $params = NULL) {
+      $element = new tbody($rows, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addThead($rows = NULL, array $params = NULL) {
+      $element = new thead($rows, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTr($cells = NULL, array $params = NULL) {
+      $element = new tr($cells, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTh($contents = NULL, array $params = NULL) {
+      $element = new th($contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addTd($contents = NULL, array $params = NULL) {
+      $element = new td($contents, $params);
       $this->addContent($element);
       return $element;
     }

@@ -212,37 +212,74 @@
       return ($link) ? $link : FALSE;
     }
 
-    public function getInfo($extra = NULL) {
+    public function getInfo() {
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
         foreach (static::$infoProps as $label => $prop) {
           $html = FALSE;
           if (isObj($this->$prop)) {
-            $html = new link($this->$prop->getLink('object', FALSE), $this->$prop->name);
-            if (!$html) {
+            $link = $this->$prop->getLink('object', FALSE);
+            if ($link) {
+              $html = new link($link, $this->$prop->name);
+            } else {
               $html = $this->${$prop.'Name'};
             }
-          } else {
+          } else if (method_exists($this, $prop)) {
+            $html = $this->$prop();
+          } else if ($prop == 'name') {
+            $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
+            if (isTournament($context) || isDivision($context)) {
+              $arrClass = static::$arrClass;
+              $objs = $arrClass($context);
+              $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+              $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
+              $select->addCombobox();
+              $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
+              $select->addFocus('#'.$select->id.'_combobox');
+              $selectDiv->addContent($select);
+            } else {
+              $nameDiv = $left->addDiv();
+              $nameDiv->addLabel('Name');
+              $nameDiv->addSpan($this->name);
+            }
+          } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-          if ($html) {
+          if (isHtml($html) && get_class($html) == 'div') {
+            $left->addContent($html);
+          } else if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
-            $nameDiv->addSpan($html)->escape = FALSE;
+            $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
         }
       } else {
-        $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-        $nameDiv->addLabel('Name');
-        $nameDiv->addSpan($this->name);
+        $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
+        if (isTournament($context) || isDivision($context)) {
+          $arrClass = static::$arrClass;
+          $objs = $arrClass($context);
+          $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
+          $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
+          $select->addCombobox();
+          $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
+          $select->addFocus('#'.$select->id.'_combobox');
+          $selectDiv->addContent($select);
+        } else {
+          $nameDiv = $left->addDiv();
+          $nameDiv->addLabel('Name');
+          $nameDiv->addSpan($this->name);
+        }
       }
-      $left->addContent($extra);
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
-        $right->addImg($this->getPhoto());
+        $right->addImg($this->getPhoto(), $this->name, array('class' => 'infoImg'));
       }
       return $info;
+    }
+    
+    public function getChildrenTabs() {
+      return NULL;
     }
     
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {

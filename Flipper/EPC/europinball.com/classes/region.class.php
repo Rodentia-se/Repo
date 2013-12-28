@@ -58,6 +58,11 @@
       'continent'
     );
 
+    public static $infoChildren = array(
+      'cities',
+      'players'
+    );
+
     public function getCities() {
       return $this->db->getObjectsByParent('city', $this);
     }

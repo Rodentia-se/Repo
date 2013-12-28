@@ -184,7 +184,6 @@
             if (!$chosen && $key === $selected) {
               $option->selected = TRUE;
               $chosen = $key;
-            $opt = $option;
             } else {
               $option->selected = FALSE;
             }

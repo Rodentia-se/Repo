@@ -4,6 +4,8 @@
 
     public static $instances;
     public static $arrClass = 'continents';
+    
+    public static $selfParent = FALSE;
 
     public static $select = '
       select 
@@ -31,6 +33,13 @@
       'team' => 'continent',
       'volunteer' => 'continent',
       'person' => 'continent'
+    );
+
+    public static $infoChildren = array(
+      'countries',
+      'regions',
+      'cities',
+      'players'
     );
 
     public function getCountries() {

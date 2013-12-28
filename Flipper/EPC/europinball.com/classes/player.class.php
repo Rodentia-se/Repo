@@ -135,7 +135,8 @@
       'region',
       'country',
       'continent',
-      'IFPA' => 'ifpaLink'
+      'IFPA' => 'ifpaLink',
+      'members' => 'getMemberInfo'
     );
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
@@ -177,7 +178,7 @@
           if ($this->ifpa_id) {
             return '<a href="http://www.ifpapinball.com/player.php?player_id='.$this->ifpa_id.'" target="_new">'.(($this->ifpaRank && $this->ifpaRank != 0) ? $this->ifpaRank : 'Unranked').'</a>';
           } else {
-            return 'Unranked';
+            return FALSE;
           }
         break;
         default:
@@ -206,11 +207,31 @@
       return FALSE;
     }
 
-    public function getRegRow($array = FALSE) {
+    public function getMemberInfo($tournament = NULL, $asPlayers = TRUE, $type = 'div') {
       if ($this->team) {
-        $members = $this->team->getMembers();
+        return $this->team->getMemberInfo($tournament, $asPlayers, $type);
+      } else {
+        return FALSE;
+      }
+    }
+    
+    public function getTr($headers = NULL) {
+      // @todo: Handle custom headers
+      $cells = $this->getRegRow(TRUE);
+      $tr = new tr();
+      foreach ($cells as $cell) {
+        $tr->addTd($cell)->escape = FALSE;
+      }
+      return $tr;
+    }
+
+    public function getRegRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      if ($this->team) {
+        $members = players($this->team);
         unset($memberLinks);
-        if($members) {
+        if($members && count($members) > 0) {
           foreach($members as $member) {
             $memberLinks[] = $member->getLink();
           }
@@ -222,7 +243,7 @@
             $this->shortName,
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
-            $this->team->getPhotoIcon(),
+            $this->team->getPhotoIcon()
           );
           return ($array) ? $return : (object) $return;
         } else {
@@ -230,7 +251,7 @@
             $this->getLink(),
             $this->shortName,
             $memberCell,
-            $this->team->getPhotoIcon(),
+            $this->team->getPhotoIcon()
           );
           return ($array) ? $return : (object) $return;
         }
@@ -251,13 +272,6 @@
         return ($array) ? $return : (object) $return;
       }
       return FALSE;
-    }
-
-    public function getInfo($extra = NULL) {
-      if ($this->team) {
-        $membersDiv = $this->team->getMembers(NULL, TRUE, TRUE);
-      }
-      return parent::getInfo($membersDiv);
     }
 
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {

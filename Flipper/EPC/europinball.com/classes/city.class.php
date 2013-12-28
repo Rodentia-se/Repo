@@ -52,6 +52,10 @@
       'country',
       'continent'
     );
+    
+    public static $infoChildren = array(
+      'players'
+    );
 
     public function getLocations() {
       return $this->db->getObjectsByParent('location', $this);

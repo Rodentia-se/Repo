@@ -14,6 +14,11 @@
     $object = $obj($id);
     if ($object) {
       $div->addContent($object->getInfo());
+      $div->addDiv(NULL, 'clearer');
+      $childrenTabs = $object->getChildrenTabs();
+      if ($childrenTabs) {
+        $div->addContent($childrenTabs);
+      }
     } else {
       $div->addParagraph('Could not find the '.$obj.' you are looking for. Please try again.');
     }
@@ -22,6 +27,7 @@
   }
   
   $page->addContent($div);
+  $page->datatables = TRUE;
   
   $page->submit();
 

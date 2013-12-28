@@ -60,6 +60,12 @@
       'continent'
     );
 
+    public static $infoChildren = array(
+      'regions',
+      'cities',
+      'players'
+    );
+
     public function getRegions() {
       return $this->db->getObjectsByParent('region', $this);
     }

@@ -92,7 +92,7 @@
             $codes = array();
             foreach ($this->jquery['props'] as $prop => $val) {
               if ($prop) {
-                if (is_string($val) && substr(trim($val), 0, 8) != 'function') {
+                if (is_string($val) && substr(trim($val), 0, 8) != 'function' && substr(trim($val), 0, 1) != '{' && substr(trim($val), 0, 1) != '[') {
                   $delimiter = '"';
                 } else {
                   $delimiter = '';

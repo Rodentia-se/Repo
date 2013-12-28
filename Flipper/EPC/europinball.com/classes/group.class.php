@@ -18,70 +18,129 @@
         base::$_db = new db();
       } 
       $this->db = base::$_db;
-      if (isAssoc($data)) {
-        $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
-      } else if (is_array($data) || isGroup($data)) {
-        $class = get_class($this);
-        $objs = new $class();
-        foreach ($data as $obj) {
-          if ($obj->id) {
-            if (get_class($obj) == static::$objClass) {
-              $objs[] = $obj;
-            } else {
-              if (!is_string($prop)) {
-                $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id';
-              }
-              $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
-            }
-          } else if (is_int($obj)) {
-            $objs[] = $this->db->getObjectById(static::$objClass, $obj);
+      if ($data && isGeo(static::$objClass, TRUE)) {
+        if (isTournament($data) || in_array($data, array('active', 'current'))) {
+          $tournament = tournament($data);
+          $context = $tournament;
+          $secondParam = 'prop';
+          if (isDivision($prop)) {
+            $context = $prop;
+          } else if (in_array($prop, config::$divisions)) {
+            $context = division($tournament, $prop);
           }
+        } 
+        if (isDivision($data)) {
+          $context = $data;
+           $secondParam = 'prop';
+       } else if (in_array($data, config::$divisions)) {
+          $tournament = getTournament($prop);
+          $context = division($tournament, $data);
+          $secondParam = 'prop';
         }
-      } else if (isObj($data) && $data->id && is_string($prop)) {
-        $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
-      } else if (isObj($data) && $data->id) {
-        if (get_class($data) == static::$objClass) {
+      }
+      if ($prop && isGeo(static::$objClass, TRUE)) {
+        if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
+          $tournament = tournament($prop);
+          $context = $tournament;
+          $secondParam = 'data';
+          if (isDivision($prop)) {
+            $context = $prop;
+          } else if (in_array($prop, config::$divisions)) {
+            $context = division($tournament, $prop);
+          }
+        } 
+        if (isDivision($prop)) {
+          $context = $prop;
+          $secondParam = 'data';
+        } else if (in_array($prop, config::$divisions)) {
+          $tournament = getTournament($prop);
+          $context = division($tournament, $prop);
+          $secondParam = 'data';
+        }
+      }
+      if ($context) {
+        $class = static::$objClass;
+        $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
+        if (isObj($$secondParam)) {
+          $secondColumn = (property_exists($$secondParam, 'table')) ? get_class_vars(get_class($$secondParam))['table'].'_id' : get_class($$secondParam).'_id';
+          $secondId = $$secondParam->id;
+        }
+        $data = '
+          left join player pl 
+            on pl.'.$column.' = o.id
+            '.(($class::$selfParent) ? ' or pl.parent'.ucfirst($column).' = o.id' : '').'
+          where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
+            '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
+            and pl.id is not null
+          group by o.id
+        ';
+        $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
+      } else {
+        if (isAssoc($data)) {
+          $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
+        } else if (is_array($data) || isGroup($data)) {
           $class = get_class($this);
           $objs = new $class();
-          $objs[] = $data;
-        } else {
-          if (isObj($prop) && $prop->id) {
-            $props = array(
-              ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
-              ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($prop)).'_id' => $prop->id
-            );
-            if (isObj($cond) && $cond->id) {
-              $props[((property_exists($cond, 'table')) ? get_class_vars(get_class($cond))['table'] : get_class($cond)).'_id'] = $cond->id;
-              $cond = NULL;
+          foreach ($data as $obj) {
+            if ($obj->id) {
+              if (get_class($obj) == static::$objClass) {
+                $objs[] = $obj;
+              } else {
+                if (!is_string($prop)) {
+                  $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'].'_id' : get_class($data).'_id';
+                }
+                $objs = $objs->array_merge($this->db->getObjectsByProp(static::$objClass, $prop, $obj->id));
+              }
+            } else if (is_int($obj)) {
+              $objs[] = $this->db->getObjectById(static::$objClass, $obj);
             }
-            $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
-          } else {
-            $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
-            $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
           }
-        }
-      } else if ($data && is_string($prop)) {
-        $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
-      } else if (is_string($data) && preg_match('/^where /', trim($data))) {
-        $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
-      } else if ($data == 'all') {
-        $class = static::$objClass;
-        $query = $class::$select;
-        $objs = $this->db->getObjects($query, $class);
-      } else if (in_array($data, array('login', 'auth'))) {
-        $person = person($data);
-        if ($person) {
-          $objs = $this->db->getObjectsByProp(static::$objClass, 'person_id', $person->id);
-        }
-      } else if (in_array($data, array('active', 'current'))) {
-        $tournament = tournament($data);
-        if ($tournament) {
-          $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentEdition_id', $tournament->id);
-        }
-      } else if (in_array($data, config::$divisions)) {
-        $division = division($data);
-        if ($division) {
-          $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
+        } else if (isObj($data) && $data->id && is_string($prop)) {
+          $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
+        } else if (isObj($data) && $data->id) {
+          if (get_class($data) == static::$objClass) {
+            $class = get_class($this);
+            $objs = new $class();
+            $objs[] = $data;
+          } else {
+            if (isObj($prop) && $prop->id) {
+              $props = array(
+                ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
+                ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($prop)).'_id' => $prop->id
+              );
+              if (isObj($cond) && $cond->id) {
+                $props[((property_exists($cond, 'table')) ? get_class_vars(get_class($cond))['table'] : get_class($cond)).'_id'] = $cond->id;
+                $cond = NULL;
+              }
+              $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
+            } else {
+              $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
+              $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
+            }
+          }
+        } else if ($data && is_string($prop)) {
+          $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data);
+        } else if (is_string($data) && (preg_match('/^where /', trim($data)) || preg_match('/^left join/', trim($data)))) {
+          $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
+        } else if ($data == 'all') {
+          $class = static::$objClass;
+          $query = $class::$select;
+          $objs = $this->db->getObjects($query, $class);
+        } else if (in_array($data, array('login', 'auth'))) {
+          $person = person($data);
+          if ($person) {
+            $objs = $this->db->getObjectsByProp(static::$objClass, 'person_id', $person->id);
+          }
+        } else if (in_array($data, array('active', 'current'))) {
+          $tournament = tournament($data);
+          if ($tournament) {
+            $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentEdition_id', $tournament->id);
+          }
+        } else if (in_array($data, config::$divisions)) {
+          $division = division($data);
+          if ($division) {
+            $objs = $this->db->getObjectsByProp(static::$objClass, 'tournamentDivision_id', $division->id);
+          }
         }
       }
       if ($objs) {
@@ -243,10 +302,51 @@
         $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
         $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
         $options[] = $option;
+        if ($selected_id == $obj->id) {
+          $selectedOption = $option;
+        }
       }
-      return new select($name, $options, $selected, $label, $params);
+      return new select($name, $options, $selectedOption, $label, $params);
     }
     
+    public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
+      if (!$headers && $headers !== FALSE) {
+        $class = static::$objClass;
+        $thead = new tr();
+        foreach ($class::$infoProps as $label => $prop) {
+          $headers[$label] = $prop;
+          $thead->addTh(((isId($label)) ? ucfirst($prop) : $label));
+        }
+      } else {
+        foreach ($headers as $label => $prop) {
+          $thead->addTh(((isId($label)) ? ucfirst($prop) : $label));
+        }
+      }
+      foreach ($this as $obj) {
+        $row = new tr();
+        foreach ($headers as $prop) {
+          if (isObj($obj->$prop)) {
+            $link = $obj->$prop->getLink('object', FALSE);
+            if ($link) {
+              $row->addTd(new link($link, $obj->$prop->name));
+            } else {
+              $row->addTd($obj->${$prop.'Name'});
+            }
+          } else if (method_exists($obj, $prop)) {
+            $row->addTd($obj->$prop());
+          } else if(is($obj->$prop)){
+            $row->addTd((string) $obj->$prop);
+          } else {
+            $row->addTd();
+          }
+        }
+        $tbody[] = $row;
+      }
+      $table = new table($tbody, $thead, $id, $class);
+      $table->addDatatables();
+      return $table;
+    }
+      
     public function order($prop = NULL, $type = NULL, $direction = NULL, $case = FALSE, $keepkeys = FALSE) {
       $return = FALSE;
       $prop = ($prop) ? $prop : ((property_exists($this, 'order') && static::$order['prop']) ? static::$order['prop'] : (($this[0]->sortName) ? 'sortName' : 'name')) ;
