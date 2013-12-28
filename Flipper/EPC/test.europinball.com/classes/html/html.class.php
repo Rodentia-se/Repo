@@ -918,7 +918,7 @@
     public function addDatatables($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL, array $props = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $element = new table($rows, $headers, $id, $class, $params);
-      $element->addDatatables('#'.$element->id, $props, $indents);
+      $element->addDatatables($props, $indents);
       $this->addContent($element);
       return $element;
     }
