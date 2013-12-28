@@ -53,7 +53,7 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.ucfirst($class)'">'.$division->divisionName.'</a>');
+        $page->addLi('<a href="#'.$division->shortName.ucfirst($class).'">'.$division->divisionName.'</a>');
       }
     $page->closeUl();
     foreach ($divisions as $division) {
