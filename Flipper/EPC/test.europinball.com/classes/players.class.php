@@ -53,8 +53,8 @@
     
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
       if (!$headers && $headers !== FALSE) {
-        if ($division->team) {
-          if ($division->national) {
+        if ($this->team) {
+          if ($this->national) {
             $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
           } else {
             $headers = array('Name', 'Tag', 'Members', 'Picture');
@@ -73,7 +73,7 @@
       $table = new table($tbody, $thead, $id, $class);
       return $table;
     }
-
+/*
       $tabs = new tabs(NULL, 'childrenTabs');
         foreach (static::$infoChildren as $childArrayClass) {
           $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
@@ -82,7 +82,7 @@
         }
       //}
       return $tabs;
-
+*/
   }
 
 ?>
