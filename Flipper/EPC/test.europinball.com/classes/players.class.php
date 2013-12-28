@@ -66,8 +66,23 @@
           } else {
             $headers = array('Name', 'Tag', 'Members', 'Picture');
           }
+          $tableProps = array(
+            'aoColumnDefs' => '[
+                {"sClass": "icon", "aTargets": [ 4 ] }
+              ]',
+          );
         } else {
           $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
+          $tableProps = array(
+            'aoColumnDefs' => '[
+                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                { "bVisible": false, "aTargets": [ 6 ] },
+                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                { "bVisible": false, "aTargets": [ 4 ] },
+                {"sClass": "icon", "aTargets": [ 5 ] },
+                {"sClass": "icon", "aTargets": [ 8 ] }
+              ]',
+          );
         }
         if (count($divisionIds) > 1) {
           $tabs = new tabs(NULL, 'divisionTabs');
@@ -83,7 +98,6 @@
           $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => ucfirst($division->divisionName)));
           $table = $div->addDatatables($tbody[$divisionId], $thead);
 /*
-          	  "sPaginationType": "full_numbers",
               '.(($division->team) ? '"aoColumnDefs": [
                 {"sClass": "icon", "aTargets": [ 4 ] }
               ],' : '"aoColumnDefs": [
