@@ -273,7 +273,7 @@
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       if ($this->getPhoto()) {
-        $right->addImg($this->getPhoto());
+        $right->addImg($this->getPhoto(), $this->name, array('class' => 'infoImg'));
       }
       return $info;
     }
