@@ -54,6 +54,7 @@
           $context = division($tournament, $prop);
         }
         $secondParam = 'data';
+        debug($secondParam);
       }
       if ($context) {
         $class = static::$objClass;
