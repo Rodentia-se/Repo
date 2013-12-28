@@ -52,6 +52,13 @@
     }
     
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
+      $divisionIds = array();
+      foreach ($this as $obj) {
+        if (!in_array($obj->tournamentDivision_id, $divisionIds)) {
+          $divisionIds[] = $obj->tournamentDivision_id;
+        }
+        $tbody[$this->tournamentDivision_id][] = $obj->getTr();
+      }
       if (!$headers && $headers !== FALSE) {
         if ($this->team) {
           if ($this->national) {
@@ -62,16 +69,22 @@
         } else {
           $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
         }
-        $thead = new tr();
-        foreach ($headers as $label) {
-          $thead->addTh($label);
+        if (count($divisionIds) > 1) {
+          $tabs = new tabs(NULL, 'divisionTabs');
+        } else {
+          $tabs = new div('playerDiv');
+        }
+        foreach($divisionIds as $divisionId) {
+          $division = division($divisionId);
+          $thead = new tr();
+          foreach ($headers as $label) {
+            $thead->addTh($label);
+          }
+          $div = $tabs->addDiv($divisionId.'_divisionDiv', NULL, array('data-title' => $division->name));
+          $table = $div->addTable($tbody[$divisionId], $thead);
         }
       }
-      foreach ($this as $obj) {
-        $tbody[] = $obj->getTr();
-      }
-      $table = new table($tbody, $thead, $id, $class);
-      return $table;
+      return $tabs;
     }
 /*
       $tabs = new tabs(NULL, 'childrenTabs');
