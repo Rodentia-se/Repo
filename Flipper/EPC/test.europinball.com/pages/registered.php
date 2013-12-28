@@ -86,7 +86,7 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
-              '.(($class == 'player') ? (($division->team) ? '"aoColumnDefs": [
+              '.(($class == 'players') ? (($division->team) ? '"aoColumnDefs": [
                 {"sClass": "icon", "aTargets": [ 4 ] }
               ],' : '"aoColumnDefs": [
                 { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
