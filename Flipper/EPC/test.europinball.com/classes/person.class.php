@@ -388,6 +388,7 @@
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $subTotalDiv->style = 'margin-bottom: 15px;';
             //}
             $toBuyFor = $this->paid - $this->getCost();
             $orderMoreNum = ($toBuyFor > 0) ? floor($toBuyFor / config::$tshirtCost) : 0;
