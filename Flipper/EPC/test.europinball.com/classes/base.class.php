@@ -278,6 +278,10 @@
       return $info;
     }
     
+    public function getChildrenTabs() {
+      return NULL;
+    }
+    
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       return $this->getLink('photo', $anchor, $thumbnail, FALSE, $defaults);
     }
