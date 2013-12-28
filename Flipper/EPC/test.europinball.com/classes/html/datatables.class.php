@@ -16,7 +16,7 @@
           $(document).ready(function() {
             $("'.$selector.'").css("width", "");
           });
-        ');
+        '));
       parent::__construct($selector, 'dataTable', 'object', NULL, $props, $indents);
     }
 //    jquery public function __construct($selector = NULL, $tool = NULL, $jqtype = NULL, $contents = NULL, array $props = NULL, $indents = 0) {
