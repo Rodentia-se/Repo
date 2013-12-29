@@ -65,14 +65,25 @@
             if ($division->team) {
               if ($division->national) {
                 $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
+                $aoColumnDefs = '{"sClass": "icon", "aTargets": [ 4 ] }';
               } else {
                 $headers = array('Name', 'Tag', 'Members', 'Picture');
+                $aoColumnDefs = '{"sClass": "icon", "aTargets": [ 3 ] }';
               }
             } else {
               $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
+              $aoColumnDefs = '
+                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                { "bVisible": false, "aTargets": [ 6 ] },
+                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                { "bVisible": false, "aTargets": [ 4 ] },
+                {"sClass": "icon", "aTargets": [ 5 ] },
+                {"sClass": "icon", "aTargets": [ 8 ] }
+              ';
             }
           } else if ($type == 'machines') {
             $headers = array('Name', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
+            $aoColumnDefs = '{"sClass": "icon", "aTargets": [ 5 ] }';
           }
           foreach ($objs as $obj) {
             $rows[] = $obj->getRegRow(TRUE);
@@ -90,16 +101,9 @@
               "bDestroy": true,
               "bJQueryUI": true,
           	  "sPaginationType": "full_numbers",
-              '.(($type == 'players') ? (($division->team) ? '"aoColumnDefs": [
-                {"sClass": "icon", "aTargets": [ 4 ] }
-              ],' : '"aoColumnDefs": [
-                { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
-                { "bVisible": false, "aTargets": [ 6 ] },
-                { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                { "bVisible": false, "aTargets": [ 4 ] },
-                {"sClass": "icon", "aTargets": [ 5 ] },
-                {"sClass": "icon", "aTargets": [ 8 ] }
-              ],') : '').'
+              '.(($aoColumnDefs) ? '"aoColumnDefs": [
+                '.$aoColumnDefs.'
+              ],' : '').'
               "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({

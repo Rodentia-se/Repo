@@ -21,6 +21,7 @@
             $page->addH2('Register player');
             $page->addParagraph('Unfortunately we could not add you to the tournament, since it is already full.');
             $page->addParagraph('We have added you to the waiting list, and we will contact you if a spot becomes available for you.');
+            $page->addParagraph('MAKE SURE YOU HAVE YOUR CORRECT EMAIL ADDRESS REGISTERED, or we will not be able to reach you.', NULL, 'bold');
             $page->addClickButton('Update your info', 'update', NULL, TRUE, 'edit');
             $page->focus('updateButton');
           } else {
