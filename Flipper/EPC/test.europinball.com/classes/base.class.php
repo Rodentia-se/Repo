@@ -246,7 +246,9 @@
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-              die('hej');
+          debug('hej');
+          debug(isHtml($html), 'html');
+          die('hej');
           if (isHtml($html) && get_class($html) == 'div') {
             $left->addContent($html);
           } else if ($html) {
