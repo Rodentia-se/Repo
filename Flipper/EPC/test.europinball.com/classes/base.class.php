@@ -246,9 +246,6 @@
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-          debug('hej');
-          debug(get_class($html), 'html');
-          die('hej');
           if (isHtml($html) && get_class($html) == 'div') {
             $left->addContent($html);
           } else if ($html) {
@@ -257,6 +254,7 @@
             $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
         }
+          die('hej');
       } else {
         $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
         if (isTournament($context) || isDivision($context)) {
