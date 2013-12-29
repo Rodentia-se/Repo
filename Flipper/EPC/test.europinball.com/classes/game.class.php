@@ -1,6 +1,6 @@
 <?php
 
-  class machine extends base {
+  class game extends base {
         
     public static $instances;
     public static $arrClass = 'machines';
