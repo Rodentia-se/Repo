@@ -247,8 +247,8 @@
             $html = (string) $this->$prop;
           }
           if (isHtml($html) && get_class($html) == 'div') {
-            $left->addContent($html);
               die('hej');
+            $left->addContent($html);
           } else if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
