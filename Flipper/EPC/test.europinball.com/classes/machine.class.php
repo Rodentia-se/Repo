@@ -86,7 +86,7 @@
           } else {
             return FALSE;
           }
-          return ($url && $anchor) ? '<a href="'.$url.'" target="_new"><img src="'.config::$baseHref.'/images/textbook_icon.png" alt="Rules" title="Rules" class="icon"></a>' : $url;
+          return ($url && $anchor) ? '<a href="'.$url.'" target="_new" border="0"><img src="'.config::$baseHref.'/images/textbook_icon.png" alt="Rules" title="Rules" class="icon" border="0"></a>' : $url;
         break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
