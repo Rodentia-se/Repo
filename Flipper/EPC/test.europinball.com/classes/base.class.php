@@ -234,7 +234,6 @@
               $objs = $arrClass($context);
               $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
               $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
-              die('hej');
               $select->addCombobox();
               $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
               $select->addFocus('#'.$select->id.'_combobox');
@@ -255,6 +254,7 @@
             $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
         }
+              die('hej');
       } else {
         $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
         if (isTournament($context) || isDivision($context)) {
