@@ -52,7 +52,7 @@
           } else {
             return FALSE;
           }
-          return ($url && $anchor) ? '<a href="'.$url.'" target="_new">'.$this->ipdb.'</a>' : $url;
+          return ($url && $anchor) ? '<a href="'.$url.'" target="_blank">'.$this->ipdb.'</a>' : $url;
         break;
         case 'rules':
           if ($this->rules) {
@@ -60,7 +60,7 @@
           } else {
             return FALSE;
           }
-          return ($url && $anchor) ? '<a href="'.$url.'" target="_new"><img src="'.config::$baseHref.'/images/textbook_icon.png" alt="Rules" title="Rules" class="icon"></a>' : $url;
+          return ($url && $anchor) ? '<a href="'.$url.'" target="_blank"><img src="'.config::$baseHref.'/images/textbook_icon.png" alt="Rules" title="Rules" class="icon"></a>' : $url;
         break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
