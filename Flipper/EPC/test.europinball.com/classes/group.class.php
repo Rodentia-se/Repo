@@ -145,7 +145,7 @@
             and m.id is not null
           group by o.id
         ';
-        debug($query);
+        debug($data);
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
         debug($objs);
       } else {
