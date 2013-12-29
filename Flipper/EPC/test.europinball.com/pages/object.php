@@ -15,6 +15,8 @@
     if ($object) {
       if ($obj == 'machine') {
         $object = $object->game;
+        $obj = 'game';
+        $id = $object->id;
       }
       $div->addContent($object->getInfo());
       $div->addDiv(NULL, 'clearer');
