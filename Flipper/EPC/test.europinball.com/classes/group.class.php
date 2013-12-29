@@ -145,9 +145,7 @@
             and m.id is not null
           group by o.id
         ';
-        debug($data);
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
-        debug($objs);
       } else {
         debug(16);
         if (isAssoc($data)) {
@@ -224,6 +222,9 @@
         }
       }
       $this->order();
+      if (get_class($this) == 'games') {
+        debug($this);
+      }
     }
     
     public function toArray($allArrays = FALSE, $recursive = FALSE) {
