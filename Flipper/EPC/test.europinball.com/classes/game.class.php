@@ -7,7 +7,7 @@
 
     public static $select = '
       select 
-        o.íd as id,
+        o.id as id,
         o.name as name,
         o.name as fullName,
         o.acronym as acronym,
