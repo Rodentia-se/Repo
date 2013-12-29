@@ -233,8 +233,8 @@
               $arrClass = static::$arrClass;
               $objs = $arrClass($context);
               $selectDiv = $left->addDiv($this->id.'_'.get_class($this).'_NameDiv');
-              die('hej');
               $select = $objs->getSelectObj(get_class($this).'_Select', $this, 'Name');
+              die('hej');
               $select->addCombobox();
               $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
               $select->addFocus('#'.$select->id.'_combobox');
