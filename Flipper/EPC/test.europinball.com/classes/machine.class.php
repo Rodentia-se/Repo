@@ -73,20 +73,8 @@
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
         case 'ipdb':
-          if ($this->ipdb) {
-            $url = 'http://www.ipdb.org/machine.cgi?id='.$this->ipdb;
-          } else {
-            return FALSE;
-          }
-          return ($url && $anchor) ? '<a href="'.$url.'" target="_new">'.$this->ipdb.'</a>' : $url;
-        break;
         case 'rules':
-          if ($this->rules) {
-            $url = $this->rules;
-          } else {
-            return FALSE;
-          }
-          return ($url && $anchor) ? '<a href="'.$url.'" target="_new"><img src="'.config::$baseHref.'/images/textbook_icon.png" alt="Rules" title="Rules" class="icon"></a>' : $url;
+          return $this->game->getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
