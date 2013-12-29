@@ -217,6 +217,7 @@
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
         foreach (static::$infoProps as $label => $prop) {
+          debug($prop);
           $html = FALSE;
           if (isObj($this->$prop)) {
             $link = $this->$prop->getLink('object', FALSE);
@@ -253,7 +254,6 @@
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
             $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
-          die('hej');
         }
       } else {
         $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
