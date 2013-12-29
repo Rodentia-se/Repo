@@ -246,8 +246,8 @@
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
-          if (isHtml($html) && get_class($html) == 'div') {
               die('hej');
+          if (isHtml($html) && get_class($html) == 'div') {
             $left->addContent($html);
           } else if ($html) {
             $nameDiv = $left->addDiv($this->id.'_'.get_class($this).'_'.ucfirst($prop).'Div');
