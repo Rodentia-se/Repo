@@ -59,53 +59,40 @@
         }
       }
       if ($data && isGame(static::$objClass, TRUE)) {
-        debug(1);
         if (isTournament($data) || in_array($data, array('active', 'current'))) {
-        debug(2);
           $tournament = tournament($data);
           $gameContext = $tournament;
           $secondParam = 'prop';
           if (isDivision($prop)) {
-        debug(3);
             $gameContext = $prop;
           } else if (in_array($prop, config::$divisions)) {
-        debug(4);
             $gameContext = division($tournament, $prop);
           }
         }
-        debug(5);
         if (isDivision($data)) {
-        debug(6);
           $gameContext = $data;
           $secondParam = 'prop';
        } else if (in_array($data, config::$divisions)) {
-        debug(7);
           $tournament = getTournament($prop);
           $gameContext = division($tournament, $data);
           $secondParam = 'prop';
         }
       }
       if ($prop && isGame(static::$objClass, TRUE)) {
-        debug(8);
         if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
-        debug(9);
           $tournament = tournament($prop);
           $gameContext = $tournament;
           $secondParam = 'data';
           if (isDivision($prop)) {
-        debug(10);
             $gameContext = $prop;
           } else if (in_array($prop, config::$divisions)) {
-        debug(11);
             $gameContext = division($tournament, $prop);
           }
         } 
         if (isDivision($prop)) {
-        debug(12);
           $gameContext = $prop;
           $secondParam = 'data';
         } else if (in_array($prop, config::$divisions)) {
-        debug(13);
           $tournament = getTournament($prop);
           $gameContext = division($tournament, $prop);
           $secondParam = 'data';
@@ -129,11 +116,9 @@
         ';
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       } else if ($gameContext) {
-        debug(14);
         $class = static::$objClass;
         $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
         if (isObj($$secondParam)) {
-        debug(15);
           $secondColumn = (property_exists($$secondParam, 'table')) ? get_class_vars(get_class($$secondParam))['table'].'_id' : get_class($$secondParam).'_id';
           $secondId = $$secondParam->id;
         }
@@ -147,7 +132,6 @@
         ';
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
       } else {
-        debug(16);
         if (isAssoc($data)) {
           $objs = $this->db->getObjectsByProps(static::$objClass, $data, $cond);
         } else if (is_array($data) || isGroup($data)) {
@@ -222,9 +206,6 @@
         }
       }
       $this->order();
-      if (get_class($this) == 'games') {
-        debug($this);
-      }
     }
     
     public function toArray($allArrays = FALSE, $recursive = FALSE) {
