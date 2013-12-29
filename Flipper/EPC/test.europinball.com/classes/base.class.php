@@ -253,8 +253,8 @@
             $nameDiv->addLabel(((isId($label)) ? ucfirst($prop) : $label));
             $nameDiv->addSpan($html, NULL, 'info')->escape = FALSE;
           }
-        }
           die('hej');
+        }
       } else {
         $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
         if (isTournament($context) || isDivision($context)) {
