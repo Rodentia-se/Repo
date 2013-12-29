@@ -13,6 +13,9 @@
   if (isObj($obj, TRUE)) {
     $object = $obj($id);
     if ($object) {
+      if ($obj == 'machine') {
+        $object = $object->game;
+      }
       $div->addContent($object->getInfo());
       $div->addDiv(NULL, 'clearer');
       $childrenTabs = $object->getChildrenTabs();

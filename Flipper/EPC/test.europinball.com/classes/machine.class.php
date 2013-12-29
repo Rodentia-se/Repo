@@ -44,7 +44,7 @@
       'set' => 'machine',
       'score' => 'machine'
     );
-
+    
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers
       $cells = $this->getRegRow(TRUE);
