@@ -146,6 +146,7 @@
           group by o.id
         ';
         $objs = $this->db->getObjectsByWhere(static::$objClass, $data);
+        debug($objs);
       } else {
         debug(16);
         if (isAssoc($data)) {
