@@ -238,7 +238,6 @@
               $select->addChange('location.assign("'.config::$baseHref.'//object/?obj='.get_class($this).'&id=" + $(this).val());');
               $select->addFocus('#'.$select->id.'_combobox');
               $selectDiv->addContent($select);
-              die('hej');
             } else {
               $nameDiv = $left->addDiv();
               $nameDiv->addLabel('Name');
@@ -247,6 +246,8 @@
           } else if(is($this->$prop)){
             $html = (string) $this->$prop;
           }
+                        die('hej');
+
           if (isHtml($html) && get_class($html) == 'div') {
             $left->addContent($html);
           } else if ($html) {
