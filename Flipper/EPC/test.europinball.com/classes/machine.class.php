@@ -61,8 +61,8 @@
       $return = array(
         $this->getLink(),
         $this->shortName,
-        (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) = $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
-        (is_object($this->owner)) ? (($this->owner->getLink()) = $this->owner->getLink() : $this->owner->name) : $this->ownerName,
+        (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) ? $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
+        (is_object($this->owner)) ? (($this->owner->getLink()) ? $this->owner->getLink() : $this->owner->name) : $this->ownerName,
         ($this->ipdb) ? $this->getLink('ipdb') : '',
         ($this->rules) ? $this->getLink('rules') : '',
         $this->year
