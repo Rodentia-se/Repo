@@ -247,7 +247,7 @@
             $html = (string) $this->$prop;
           }
           debug('hej');
-          debug(isHtml($html), 'html');
+          debug(get_class($html), 'html');
           die('hej');
           if (isHtml($html) && get_class($html) == 'div') {
             $left->addContent($html);
