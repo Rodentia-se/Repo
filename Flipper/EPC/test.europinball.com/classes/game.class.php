@@ -41,7 +41,7 @@
     }
 
     public function getRulesLink() {
-      return $this->getRulesLink('ipdb');
+      return $this->getLink('rules');
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
