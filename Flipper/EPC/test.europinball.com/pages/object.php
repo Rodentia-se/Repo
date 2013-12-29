@@ -12,11 +12,9 @@
   
   if (isObj($obj, TRUE)) {
     $object = $obj($id);
-    debug($object);
     if ($object) {
       if ($obj == 'machine') {
         $object = $object->game;
-        debug($object);
       }
       $div->addContent($object->getInfo());
       $div->addDiv(NULL, 'clearer');
