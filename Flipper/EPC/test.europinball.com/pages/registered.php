@@ -61,14 +61,18 @@
       $rows = array();
       $page->startDiv($division->shortName.ucfirst($type));
         if (count($objs) > 0) {
-          if ($division->team) {
-            if ($division->national) {
-              $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
+          if ($type == 'players') {
+            if ($division->team) {
+              if ($division->national) {
+                $headers = array('Name', 'Tag', 'Country', 'Members', 'Picture');
+              } else {
+                $headers = array('Name', 'Tag', 'Members', 'Picture');
+              }
             } else {
-              $headers = array('Name', 'Tag', 'Members', 'Picture');
+              $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
             }
-          } else {
-            $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
+          } else if ($type == 'machines') {
+            $headers = array('Name', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
           }
           foreach ($objs as $obj) {
             $rows[] = $obj->getRegRow(TRUE);

@@ -45,6 +45,30 @@
       'score' => 'machine'
     );
 
+    public function getTr($headers = NULL) {
+      // @todo: Handle custom headers
+      $cells = $this->getRegRow(TRUE);
+      $tr = new tr();
+      foreach ($cells as $cell) {
+        $tr->addTd($cell)->escape = FALSE;
+      }
+      return $tr;
+    }
+
+    public function getRegRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $return = array(
+        $this->getLink(),
+        $this->shortName,
+        (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) = $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
+        (is_object($this->owner)) ? (($this->owner->getLink()) = $this->owner->getLink() : $this->owner->name) : $this->ownerName,
+        ($this->ipdb) ? $this->getLink('ipdb') : '',
+        ($this->rules) ? $this->getLink('rules') : '',
+        $this->year
+      );
+      return ($array) ? $return : (object) $return;
+    }
   }
 
 ?>
