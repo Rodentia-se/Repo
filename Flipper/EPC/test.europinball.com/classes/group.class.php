@@ -78,7 +78,7 @@
           $secondParam = 'prop';
         }
       }
-      if ($prop && isGeo(static::$objClass, TRUE)) {
+      if ($prop && isGame(static::$objClass, TRUE)) {
         if (isTournament($prop) || in_array($prop, array('active', 'current'))) {
           $tournament = tournament($prop);
           $gameContext = $tournament;
