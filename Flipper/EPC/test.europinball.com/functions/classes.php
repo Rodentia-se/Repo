@@ -22,6 +22,7 @@
   }
   
   function isCity($city) {
+    $city = (is_string($city) && class_exists($city) && $string) ? new $city() : $city;
     return (isObj($city) && get_class($city) == 'city');
   }
 
@@ -38,7 +39,8 @@
     return ($data === FALSE) ? FALSE : new colors($data, $search);
   }
   
-  function isColor($color) {
+  function isColor($city) {
+    $city = (is_string($city) && class_exists($city) && $string) ? new $city() : $city;
     return (isObj($color) && get_class($color) == 'color');
   }
 
@@ -56,6 +58,7 @@
   }
 
   function isContinent($continent) {
+    $continent = (is_string($continent) && class_exists($continent) && $string) ? new $continent() : $continent;
     return (isObj($continent) && get_class($continent) == 'continent');
   }
 
@@ -73,6 +76,7 @@
   }
 
   function isCountry($country) {
+    $country = (is_string($country) && class_exists($country) && $string) ? new $country() : $country;
     return (isObj($country) && get_class($country) == 'country');
   }
 
@@ -90,6 +94,7 @@
   }
 
   function isDivision($division) {
+    $division = (is_string($division) && class_exists($division) && $string) ? new $division() : $division;
     return (isObj($division) && get_class($division) == 'division');
   }
 
@@ -127,6 +132,7 @@
   }
 
   function isEntry($entry) {
+    $entry = (is_string($entry) && class_exists($entry) && $string) ? new $entry() : $entry;
     return (isObj($entry) && get_class($entry) == 'entry');
   }
 
@@ -143,7 +149,8 @@
     return ($data === FALSE) ? FALSE : new games($data, $search);
   }
 
-  function isGame($game) {
+  function isGame($game, $string = FALSE) {
+    $game = (is_string($game) && class_exists($game) && $string) ? new $game() : $game;
     return (isObj($game) && get_class($game) == 'game');
   }
 
@@ -161,6 +168,7 @@
   }
 
   function isGender($gender) {
+    $gender = (is_string($gender) && class_exists($gender) && $string) ? new $gender() : $gender;
     return (isObj($gender) && get_class($gender) == 'gender');
   }
 
@@ -178,6 +186,7 @@
   }
 
   function isLocation($location) {
+    $location = (is_string($location) && class_exists($location) && $string) ? new $location() : $location;
     return (isObj($location) && get_class($location) == 'location');
   }
 
@@ -195,6 +204,7 @@
   }
 
   function isMachine($machine) {
+    $machine = (is_string($machine) && class_exists($machine) && $string) ? new $machine() : $machine;
     return (isObj($machine) && get_class($machine) == 'machine');
   }
 
@@ -212,6 +222,7 @@
   }
 
   function isManufacturer($manufacturer) {
+    $manufacturer = (is_string($manufacturer) && class_exists($manufacturer) && $string) ? new $manufacturer() : $manufacturer;
     return (isObj($manufacturer) && get_class($manufacturer) == 'manufacturer');
   }
 
@@ -229,6 +240,7 @@
   }
 
   function isMatch($match) {
+    $match = (is_string($match) && class_exists($match) && $string) ? new $match() : $match;
     return (isObj($match) && get_class($match) == 'match');
   }
 
@@ -246,6 +258,7 @@
   }
 
   function isMatchPlayer($matchPlayer) {
+    $matchPlayer = (is_string($matchPlayer) && class_exists($matchPlayer) && $string) ? new $matchPlayer() : $matchPlayer;
     return (isObj($matchPlayer) && get_class($matchPlayer) == 'matchPlayer');
   }
 
@@ -263,6 +276,7 @@
   }
   
   function isOwner($owner) {
+    $owner = (is_string($owner) && class_exists($owner) && $string) ? new $owner() : $owner;
     return (isObj($owner) && get_class($owner) == 'owner');
   }
 
@@ -280,6 +294,7 @@
   }
 
   function isPeriod($period) {
+    $period = (is_string($period) && class_exists($period) && $string) ? new $period() : $period;
     return (isObj($period) && get_class($period) == 'period');
   }
 
@@ -297,6 +312,7 @@
   }
 
   function isPerson($person) {
+    $person = (is_string($person) && class_exists($person) && $string) ? new $person() : $person;
     return (isObj($person) && get_class($person) == 'person');
   }
 
@@ -314,6 +330,7 @@
   }
 
   function isPlayer($player) {
+    $player = (is_string($player) && class_exists($player) && $string) ? new $player() : $player;
     return (isObj($player) && get_class($player) == 'player');
   }
 
@@ -331,6 +348,7 @@
   }
 
   function isQualGroup($qualGroup) {
+    $qualGroup = (is_string($qualGroup) && class_exists($qualGroup) && $string) ? new $qualGroup() : $qualGroup;
     return (isObj($qualGroup) && get_class($qualGroup) == 'qualGroup');
   }
 
@@ -348,6 +366,7 @@
   }
 
   function isRegion($region) {
+    $region = (is_string($region) && class_exists($region) && $string) ? new $region() : $region;
     return (isObj($region) && get_class($region) == 'region');
   }
 
@@ -365,6 +384,7 @@
   }
 
   function isScore($score) {
+    $score = (is_string($score) && class_exists($score) && $string) ? new $score() : $score;
     return (isObj($score) && get_class($score) == 'score');
   }
 
@@ -382,6 +402,7 @@
   }
 
   function isMatchSet($set) {
+    $set = (is_string($set) && class_exists($set) && $string) ? new $set() : $set;
     return (isObj($set) && get_class($set) == 'set');
   }
 
@@ -399,6 +420,7 @@
   }
 
   function isTask($task) {
+    $task = (is_string($task) && class_exists($task) && $string) ? new $task() : $task;
     return (isObj($task) && get_class($task) == 'task');
   }
 
@@ -416,6 +438,7 @@
   }
 
   function isTeam($team) {
+    $team = (is_string($team) && class_exists($team) && $string) ? new $team() : $team;
     return (isObj($team) && get_class($team) == 'team');
   }
 
@@ -433,6 +456,7 @@
   }
 
   function isTournament($tournament) {
+    $tournament = (is_string($tournament) && class_exists($tournament) && $string) ? new $tournament() : $tournament;
     return (isObj($tournament) && get_class($tournament) == 'tournament');
   }
 
@@ -467,6 +491,7 @@
   }
 
   function isTshirt($tshirt) {
+    $tshirt = (is_string($tshirt) && class_exists($tshirt) && $string) ? new $tshirt() : $tshirt;
     return (isObj($tshirt) && get_class($tshirt) == 'tshirt');
   }
 
@@ -484,6 +509,7 @@
   }
 
   function isTshirtOrder($tshirtOrder) {
+    $tshirtOrder = (is_string($tshirtOrder) && class_exists($tshirtOrder) && $string) ? new $tshirtOrder() : $tshirtOrder;
     return (isObj($tshirtOrder) && get_class($tshirtOrder) == 'tshirtOrder');
   }
 
@@ -501,6 +527,7 @@
   }
 
   function isVolunteer($volunteer) {
+    $volunteer = (is_string($volunteer) && class_exists($volunteer) && $string) ? new $volunteer() : $volunteer;
     return (isObj($volunteer) && get_class($volunteer) == 'volunteer');
   }
 
