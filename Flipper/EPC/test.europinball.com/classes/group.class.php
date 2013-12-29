@@ -140,7 +140,7 @@
         $data = '
           left join machine m 
             on m.'.$column.' = o.id
-          where m.tournament'.((isTournament($geoContext)) ? 'Edition' : 'Division').'_id = '.$gameContext->id.'
+          where m.tournament'.((isTournament($gameContext)) ? 'Edition' : 'Division').'_id = '.$gameContext->id.'
             '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
             and m.id is not null
           group by o.id
