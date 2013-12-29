@@ -12,7 +12,6 @@
         o.name as fullName,
         o.shortName as shortName,
         o.shortName as acronym,
-        o.national as national,
         o.contactPerson_id as contactPerson_id,
         o.telephoneNumber as telephoneNumber,
         o.mobileNumber as mobileNumber,
@@ -30,7 +29,7 @@
         o.account as account,
         o.paid as paid,
         o.comment as comment
-      from team o
+      from owner o
     ';
     
     public static $parents = array(
