@@ -364,10 +364,6 @@
         }
         self::$parentDepth--;
       }
-      if (get_class($this) == 'game') {
-        debug($this);
-        debug($depth);
-      }
     }
     
     public function delete($propagate = TRUE) {
