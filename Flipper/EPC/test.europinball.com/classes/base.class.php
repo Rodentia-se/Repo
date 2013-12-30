@@ -272,6 +272,18 @@
         }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
+      $person = person('login');
+      if ($person && $person->admin) {
+        $props = array(
+          'ID' => 'id',
+          'Person ID' => 'person_id',
+          'Team ID' => 'team_id',
+          'Game ID' => 'game_id'
+        );
+        $div = $left->addDiv();
+        $div->addLabel('Name');
+        $div->addSpan($this->name);
+      }
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto(), $this->name, array('class' => 'infoImg'));
       }
