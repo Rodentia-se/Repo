@@ -46,6 +46,32 @@
       'machine' => 'owner'
     );
 
+    public static $infoProps = array(
+      'name',
+      'city',
+      'region',
+      'country',
+      'continent'
+    );
+    
+    public static $infoChildren = array(
+      'machines'
+    );
+
+    public function getChildrenTabs($tournament = 'active') {
+      $tournament = getTournament($tournament);
+      $tabs = new tabs(NULL, 'childrenTabs');
+        foreach (static::$infoChildren as $childArrayClass) {
+          $children = $childArrayClass($tournament, $this);
+          if ($children && count($children) > 0) {
+            $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
+            $childrenDiv->addContent($children->getTable());
+          }
+        }
+      //}
+      return $tabs;
+    }
+
   }
 
 ?>

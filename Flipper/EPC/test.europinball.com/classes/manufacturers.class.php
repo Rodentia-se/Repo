@@ -59,8 +59,8 @@
           group by o.id
         ';
         $prop = NULL;
-        parent::__construct($data, $prop, $cond);
       }
+      parent::__construct($data, $prop, $cond);
     }
     
   }
