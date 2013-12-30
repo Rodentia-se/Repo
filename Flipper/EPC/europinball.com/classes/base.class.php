@@ -348,7 +348,7 @@
     }
 
     protected function populate($depth = NULL) {
-      $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
+      $depth = ($depth || $depth === 0) ? $depth : config::$parentDepth;
       if (self::$parentDepth < $depth) {
         self::$parentDepth++;
         foreach (static::$parents as $field => $class) {
