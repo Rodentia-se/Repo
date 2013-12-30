@@ -32,7 +32,7 @@
       'acronym',
       'manufacturer',
       'IPDB' => 'getIpdbLink',
-      'rules' => 'getRulesLink',
+      'Rules' => 'getRulesLink',
       'year'
     );
     
