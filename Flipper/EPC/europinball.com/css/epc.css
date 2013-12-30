@@ -169,6 +169,9 @@ span.short {
 
 .icon {
   height: 16px;
+}
+
+img.icon {
   cursor: pointer;
 }
 
