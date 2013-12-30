@@ -60,11 +60,7 @@
         $tbody[$obj->tournamentDivision_id][] = $obj->getTr();
       }
       sort($divisionIds);
-      if (count($divisionIds) > 1) {
-        $tabs = new tabs(NULL, 'divisionTabs');
-      } else {
-        $tabs = new div('playerDiv');
-      }
+      $tabs = new tabs(NULL, 'divisionTabs');
       foreach($divisionIds as $divisionId) {
         $division = division($divisionId);
         if ($division->team) {
