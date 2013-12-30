@@ -285,7 +285,7 @@
           if ($this->$prop) {
             $div = $left->addDiv();
             $div->addLabel($key);
-            $div->addSpan($this->$prop, NULL; 'ïnfo');
+            $div->addSpan($this->$prop, NULL, 'ïnfo');
           }
         }
       }
