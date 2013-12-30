@@ -364,7 +364,7 @@
         }
         self::$parentDepth--;
       }
-      if (get_class($this) == 'machine') {
+      if (get_class($this) == 'game') {
         debug($this);
       }
     }
