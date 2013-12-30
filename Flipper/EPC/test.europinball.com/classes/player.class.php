@@ -250,7 +250,7 @@
         } else {
           $return = array(
             $this->getLink(),
-            $this->shortName,
+            $this->getLink('shortName'),
             $memberCell,
             $this->team->getPhotoIcon()
           );
@@ -259,7 +259,7 @@
       } else {
         $return = array(
           $this->getLink(),
-          $this->shortName,
+          $this->getLink('shortName'),
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
           (is_object($this->country)) ? $this->country->name : $this->countryName,

@@ -74,7 +74,6 @@
       switch ($type) {
         case 'ipdb':
         case 'rules':
-        case 'shortName':
           return $this->game->getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
         default:
