@@ -331,6 +331,8 @@
             $url = NULL;
           }
         break;
+        case 'shortName':
+          $text = ($text) ? $text : $this->shortName;
         case 'object':
           $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : NULL;
         break;

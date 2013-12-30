@@ -41,7 +41,7 @@
       // @todo: Change to object
       $return = array(
         $this->getLink(),
-        $this->shortName,
+        $this->getLink('shortName'),
         (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) ? $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
         ($this->ipdb) ? $this->getLink('ipdb') : '',
         ($this->rules) ? $this->getLink('rules') : '',
