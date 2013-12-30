@@ -9,6 +9,7 @@
     }
 
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
+      debug('huff');
       $divisionIds = array();
       foreach ($this as $obj) {
         if (!in_array($obj->tournamentDivision_id, $divisionIds)) {
