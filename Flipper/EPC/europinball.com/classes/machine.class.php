@@ -8,7 +8,7 @@
     public static $select = '
       select 
         o.id as id,
-        g.íd as game_id,
+        g.id as game_id,
         g.name as name,
         g.name as fullName,
         g.acronym as acronym,
@@ -44,6 +44,44 @@
       'set' => 'machine',
       'score' => 'machine'
     );
+    
+    public function getTr($headers = NULL) {
+      // @todo: Handle custom headers
+      $cells = $this->getRegRow(TRUE);
+      $tr = new tr();
+      foreach ($cells as $cell) {
+        $tr->addTd($cell)->escape = FALSE;
+      }
+      return $tr;
+    }
+
+    public function getRegRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $return = array(
+        $this->getLink(),
+        (($this->game) ? $this->game->getPhotoIcon() : ''),
+        $this->getLink('shortName'),
+        (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) ? $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
+        (is_object($this->owner)) ? (($this->owner->getLink()) ? $this->owner->getLink() : $this->owner->name) : $this->ownerName,
+        ($this->ipdb) ? $this->getLink('ipdb') : '',
+        ($this->rules) ? $this->getLink('rules') : '',
+        $this->year
+      );
+      return ($array) ? $return : (object) $return;
+    }
+
+    public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
+      switch ($type) {
+        case 'ipdb':
+        case 'rules':
+          return $this->game->getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
+        default:
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
+      }
+    }
 
   }
 

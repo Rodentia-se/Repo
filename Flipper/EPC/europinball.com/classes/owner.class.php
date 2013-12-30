@@ -12,7 +12,6 @@
         o.name as fullName,
         o.shortName as shortName,
         o.shortName as acronym,
-        o.national as national,
         o.contactPerson_id as contactPerson_id,
         o.telephoneNumber as telephoneNumber,
         o.mobileNumber as mobileNumber,
@@ -30,7 +29,7 @@
         o.account as account,
         o.paid as paid,
         o.comment as comment
-      from team o
+      from owner o
     ';
     
     public static $parents = array(
@@ -46,6 +45,32 @@
     public static $children = array(
       'machine' => 'owner'
     );
+
+    public static $infoProps = array(
+      'name',
+      'city',
+      'region',
+      'country',
+      'continent'
+    );
+    
+    public static $infoChildren = array(
+      'machines'
+    );
+
+    public function getChildrenTabs($tournament = 'active') {
+      $tournament = getTournament($tournament);
+      $tabs = new tabs(NULL, 'childrenTabs');
+        foreach (static::$infoChildren as $childArrayClass) {
+          $children = $childArrayClass($tournament, $this);
+          if ($children && count($children) > 0) {
+            $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
+            $childrenDiv->addContent($children->getTable());
+          }
+        }
+      //}
+      return $tabs;
+    }
 
   }
 

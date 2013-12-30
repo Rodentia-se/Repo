@@ -1,6 +1,6 @@
 <?php
 
-  class regions extends group {
+  class regions extends geoGroup {
     
     public static $objClass = 'region';
     

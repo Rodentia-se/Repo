@@ -1,6 +1,6 @@
 <?php
 
-  class countries extends group {
+  class countries extends geoGroup {
     
     public static $objClass = 'country';
     

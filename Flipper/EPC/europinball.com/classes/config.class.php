@@ -19,6 +19,7 @@
     public static $activeDivisions = array('main', 'eighties', 'nationalTeam');
     public static $activeSingleDivisions = array('main', 'eighties');
     public static $activeTeamDivisions = array('nationalTeam');
+    public static $showEmptyDivisions = FALSE;
     
     public static $paymentOptions = array('Credit card', 'International bank transfer');
     public static $payPalAccount = 'alessio.Crisantemi@gmail.com';

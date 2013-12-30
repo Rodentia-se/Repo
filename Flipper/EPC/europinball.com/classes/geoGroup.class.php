@@ -1,9 +1,9 @@
 <?php
 
-  class manufacturers extends group {
-    
-    public static $objClass = 'manufacturer';
-    
+  class geoGroup extends group {
+
+    public static $objClass = 'geography';
+
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       if (isTournament($data) || in_array($data, array('active', 'current'))) {
         $tournament = tournament($data);
@@ -49,13 +49,12 @@
           $secondId = $$secondParam->id;
         }
         $data = '
-          left join game g
-            on g.'.$column.' = o.id
-          left join machine m 
-            on m.game_id = g.id
-          where m.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
+          left join player pl 
+            on pl.'.$column.' = o.id
+            '.(($class::$selfParent) ? ' or pl.parent'.ucfirst($column).' = o.id' : '').'
+          where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
             '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
-            and m.id is not null
+            and pl.id is not null
           group by o.id
         ';
         $prop = NULL;

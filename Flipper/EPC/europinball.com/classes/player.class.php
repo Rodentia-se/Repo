@@ -176,13 +176,14 @@
       switch ($type) {
         case 'ifpa':
           if ($this->ifpa_id) {
-            return '<a href="http://www.ifpapinball.com/player.php?player_id='.$this->ifpa_id.'" target="_new">'.(($this->ifpaRank && $this->ifpaRank != 0) ? $this->ifpaRank : 'Unranked').'</a>';
+            $url = 'http://www.ifpapinball.com/player.php?player_id='.$this->ifpa_id;
           } else {
             return FALSE;
           }
+          return ($url && $anchor) ? '<a href="'.$url.'" target="_new">'.(($this->ifpaRank && $this->ifpaRank != 0) ? $this->ifpaRank : 'Unranked').'</a>' : $url;
         break;
         default:
-          return parent::getLink($type, $anchor, $thumbnail);
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
       }
     }
@@ -240,7 +241,7 @@
         if ($this->team->national) {
           $return = array(
             $this->getLink(),
-            $this->shortName,
+            $this->getLink('shortName'),
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
             $this->team->getPhotoIcon()
@@ -249,7 +250,7 @@
         } else {
           $return = array(
             $this->getLink(),
-            $this->shortName,
+            $this->getLink('shortName'),
             $memberCell,
             $this->team->getPhotoIcon()
           );
@@ -258,12 +259,12 @@
       } else {
         $return = array(
           $this->getLink(),
-          $this->shortName,
+          $this->getLink('shortName'),
           (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
           (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
           (is_object($this->country)) ? $this->country->name : $this->countryName,
           (is_object($this->country)) ? $this->country->getIcon() : $this->countryName,
-          (($this->ifpaRank) ? $this->ifpaRank : 100000),
+          (($this->ifpaRank) ? $this->ifpaRank : (($this->getLink('ifpa')) ? 99000 : 100000)),
           str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
           (($this->person) ? $this->person->getPhotoIcon() : ''),
           (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),

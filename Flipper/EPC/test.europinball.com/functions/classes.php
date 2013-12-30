@@ -540,6 +540,11 @@
     return $group instanceof group;
   }
 
+  function isGeoGroup($group, $string = FALSE) {
+    $group = (is_string($group) && class_exists($group) && $string) ? new $group() : $group;
+    return $group instanceof geoGroup;
+  }
+
   function isGeo($obj, $string = FALSE) {
     $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
     return $obj instanceof geography;

@@ -70,6 +70,8 @@
       return $this->db->getObjectsByParent('region', $this);
     }
 
+  // @todo: Add national team to getInfo()
+
   }
 
 ?>

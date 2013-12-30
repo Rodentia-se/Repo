@@ -8,6 +8,10 @@ function customTemplate($page) {
 		case 'players':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
 	  break;
+		case 'machines':
+      $type = 'machines';
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
+	  break;
 		case 'edit':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/edit.php');
 	  break;
