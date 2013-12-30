@@ -25,7 +25,7 @@
     );
 
     public static $infoChildren = array(
-      'games'
+      'machines'
     );
 
     public function getChildrenTabs($tournament = 'active') {
