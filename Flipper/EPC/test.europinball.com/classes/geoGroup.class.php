@@ -18,7 +18,7 @@
       if (isDivision($data)) {
         $context = $data;
         $secondParam = 'prop';
-     } else if (in_array($data, config::$divisions)) {
+      } else if (in_array($data, config::$divisions)) {
         $tournament = getTournament($prop);
         $context = division($tournament, $data);
         $secondParam = 'prop';
@@ -41,23 +41,24 @@
         $context = division($tournament, $prop);
         $secondParam = 'data';
       }
-    if ($context) {
-      $class = static::$objClass;
-      $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
-      if (isObj($$secondParam)) {
-        $secondColumn = (property_exists($$secondParam, 'table')) ? get_class_vars(get_class($$secondParam))['table'].'_id' : get_class($$secondParam).'_id';
-        $secondId = $$secondParam->id;
+      if ($context) {
+        $class = static::$objClass;
+        $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
+        if (isObj($$secondParam)) {
+          $secondColumn = (property_exists($$secondParam, 'table')) ? get_class_vars(get_class($$secondParam))['table'].'_id' : get_class($$secondParam).'_id';
+          $secondId = $$secondParam->id;
+        }
+        $data = '
+          left join player pl 
+            on pl.'.$column.' = o.id
+            '.(($class::$selfParent) ? ' or pl.parent'.ucfirst($column).' = o.id' : '').'
+          where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
+            '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
+            and pl.id is not null
+          group by o.id
+        ';
+        $prop = NULL;
       }
-      $data = '
-        left join player pl 
-          on pl.'.$column.' = o.id
-          '.(($class::$selfParent) ? ' or pl.parent'.ucfirst($column).' = o.id' : '').'
-        where pl.tournament'.((isTournament($context)) ? 'Edition' : 'Division').'_id = '.$context->id.'
-          '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
-          and pl.id is not null
-        group by o.id
-      ';
-      $prop = NULL;
       parent::__construct($data, $prop, $cond);
     }
     
