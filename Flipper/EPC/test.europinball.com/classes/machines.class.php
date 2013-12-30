@@ -29,7 +29,7 @@
           'aoColumnDefs' => '[
             {"sClass": "icon", "aTargets": [ 5 ] }
           ]',
-          'fnDrawCallback' = '
+          'fnDrawCallback' => '
             function() {
               $(this).css("width", "");
               $(".photoPopup").each(function() {
