@@ -142,8 +142,8 @@
           } else {
             $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
           }
-        }
-      $page->closeDiv();
+        $page->closeDiv();
+      }
     }
   $page->closeDiv();
   $page->addScript('
