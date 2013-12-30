@@ -87,7 +87,7 @@
             $headers = array('Name', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
             $aoColumnDefs = '{"sClass": "icon", "aTargets": [ 5 ] }';
           }
-          foreach ($objs as $obj) {
+          foreach ($objs[$division->id] as $obj) {
             $rows[] = $obj->getRegRow(TRUE);
           }
           if ($type == 'players') {
