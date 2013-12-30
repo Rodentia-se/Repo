@@ -37,6 +37,7 @@
     );
     
     public function getRegRow($array = FALSE) {
+      debug($this);
       // @todo: Handle custom headers
       // @todo: Change to object
       $return = array(
