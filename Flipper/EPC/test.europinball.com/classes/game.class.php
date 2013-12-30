@@ -36,6 +36,20 @@
       'year'
     );
     
+    public function getRegRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $return = array(
+        $this->getLink(),
+        $this->shortName,
+        (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) ? $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
+        ($this->ipdb) ? $this->getLink('ipdb') : '',
+        ($this->rules) ? $this->getLink('rules') : '',
+        $this->year
+      );
+      return ($array) ? $return : (object) $return;
+    }
+
     public function getIpdbLink() {
       return $this->getLink('ipdb');
     }
