@@ -57,7 +57,7 @@
             '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
             and m.id is not null
           group by o.id
-        ';¨
+        ';
         $prop = NULL;
         parent::__construct($data, $prop, $cond);
       }
