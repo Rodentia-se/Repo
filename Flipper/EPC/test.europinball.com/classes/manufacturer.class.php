@@ -24,9 +24,35 @@
       'machine' => 'manufacturer'
     );
 
+    public static $infoProps = array(
+      'name',
+      'URL' => 'getUrlLink'
+    );
+    
     public static $infoChildren = array(
       'machines'
     );
+
+    public function getUrlLink() {
+      return $this->getLink('url');
+    }
+
+    public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
+      switch ($type) {
+        case 'url':
+          if ($this->url) {
+            $url = $this->url;
+            $text = (strlen($this->url) < 50) ? $this->url : substr($this->url, 0, 50).'...';
+          } else {
+            return FALSE;
+          }
+          return ($url && $anchor) ? '<a href="'.$url.'" target="_blank">'.$text.'</a>' : $url;
+        break;
+        default:
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
+      }
+    }
 
     public function getChildrenTabs($tournament = 'active') {
       $tournament = getTournament($tournament);
