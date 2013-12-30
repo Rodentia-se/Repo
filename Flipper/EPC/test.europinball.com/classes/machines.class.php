@@ -1,6 +1,6 @@
 <?php
 
-  class machines extends games {
+  class machines extends group {
     
     public static $objClass = 'machine';
     
