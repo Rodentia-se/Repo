@@ -268,7 +268,7 @@
         } else {
           $nameDiv = $left->addDiv();
           $nameDiv->addLabel('Name');
-          $nameDiv->addSpan($this->name);
+          $nameDiv->addSpan($this->name, NULL, 'info');
         }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
@@ -285,7 +285,7 @@
           if ($this->$prop) {
             $div = $left->addDiv();
             $div->addLabel($key);
-            $div->addSpan($this->$prop);
+            $div->addSpan($this->$prop, NULL; 'ïnfo');
           }
         }
       }
