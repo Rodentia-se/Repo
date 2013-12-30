@@ -241,7 +241,7 @@
         if ($this->team->national) {
           $return = array(
             $this->getLink(),
-            $this->shortName,
+            $this->getLink('shortName'),
             (is_object($this->country)) ? $this->country->getLink() : $this->countryName,
             $memberCell,
             $this->team->getPhotoIcon()
