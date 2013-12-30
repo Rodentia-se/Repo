@@ -348,7 +348,6 @@
     }
 
     protected function populate($depth = NULL) {
-      debug($this);
       $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
       if (self::$parentDepth < $depth) {
         self::$parentDepth++;
@@ -364,6 +363,9 @@
           }
         }
         self::$parentDepth--;
+      }
+      if (get_class($this) == 'game') {
+        debug($this);
       }
     }
     
