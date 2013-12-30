@@ -213,7 +213,6 @@
     }
 
     public function getInfo() {
-      debug($this);
       $info = new div($this->id.'_'.get_class($this).'_InfoDiv');
       $left = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivLeft', 'left');
       if (static::$infoProps) {
@@ -349,6 +348,7 @@
     }
 
     protected function populate($depth = NULL) {
+      debug($this);
       $depth = ($depth || $depth == 0) ? $depth : config::$parentDepth;
       if (self::$parentDepth < $depth) {
         self::$parentDepth++;
