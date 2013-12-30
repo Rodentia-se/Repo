@@ -20,11 +20,11 @@
       $tabs = new tabs(NULL, 'divisionTabs');
       foreach($divisionIds as $divisionId) {
         $division = division($divisionId);
-        $headers = array('Name', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year', 'Photo');
+        $headers = array('Name', 'Photo', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
         $tableProps = array(
           'aoColumnDefs' => '[
-            {"sClass": "icon", "aTargets": [ 5 ] },
-            {"sClass": "icon", "aTargets": [ 7 ] }
+            {"sClass": "icon", "aTargets": [ 1 ] },
+            {"sClass": "icon", "aTargets": [ 5 ] }
           ]',
           'fnDrawCallback' => '
             function() {

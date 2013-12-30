@@ -85,10 +85,10 @@
                 ';
               }
             } else if ($type == 'machines') {
-              $headers = array('Name', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year', 'Photo');
+              $headers = array('Name', 'Photo', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
               $aoColumnDefs = '
-                {"sClass": "icon", "aTargets": [ 5 ] },
-                {"sClass": "icon", "aTargets": [ 7 ] }
+                {"sClass": "icon", "aTargets": [ 1 ] },
+                {"sClass": "icon", "aTargets": [ 5 ] }
               ';
             }
             foreach ($objs[$division->id] as $obj) {
