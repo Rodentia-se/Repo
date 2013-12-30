@@ -282,9 +282,11 @@
           'Game ID' => 'game_id'
         );
         foreach ($props as $key => $prop) {
-          $div = $left->addDiv();
-          $div->addLabel($key);
-          $div->addSpan($prop);
+          if ($this->$prop) {
+            $div = $left->addDiv();
+            $div->addLabel($key);
+            $div->addSpan($this->$prop);
+          }
         }
       }
       if ($this->getPhoto()) {
