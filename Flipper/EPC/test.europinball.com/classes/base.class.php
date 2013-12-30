@@ -280,9 +280,11 @@
           'Team ID' => 'team_id',
           'Game ID' => 'game_id'
         );
-        $div = $left->addDiv();
-        $div->addLabel('Name');
-        $div->addSpan($this->name);
+        foreach ($props as $key => $prop) {
+          $div = $left->addDiv();
+          $div->addLabel($key);
+          $div->addSpan($prop);
+        }
       }
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto(), $this->name, array('class' => 'infoImg'));
