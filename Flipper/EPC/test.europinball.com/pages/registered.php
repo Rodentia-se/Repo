@@ -53,14 +53,16 @@
   $page->startDiv('tabs');
     $page->startUl();
       foreach ($divisions as $division) {
-        $page->addLi('<a href="#'.$division->shortName.ucfirst($type).'">'.$division->divisionName.'</a>');
+        $objs[$division->id] = $type($division);
+        if (count($objs[$division->id]) > 0) {
+          $page->addLi('<a href="#'.$division->shortName.ucfirst($type).'">'.$division->divisionName.'</a>');
+        }
       }
-    $page->closeUl();
-    foreach ($divisions as $division) {
-      $objs = $type($division);
-      $rows = array();
-      $page->startDiv($division->shortName.ucfirst($type));
-        if (count($objs) > 0) {
+      $page->closeUl();
+      foreach ($divisions as $division) {
+        $rows = array();
+        if (count($objs[$division->id]) > 0) {
+          $page->startDiv($division->shortName.ucfirst($type));
           if ($type == 'players') {
             if ($division->team) {
               if ($division->national) {
