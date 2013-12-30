@@ -42,7 +42,7 @@
         case 'url':
           if ($this->url) {
             $url = $this->url;
-            $text = (strlen($this->url) < 40) ? $this->url : substr($this->url, 0, 40).'...';
+            $text = (strlen($this->url) < 40) ? $this->url : substr($this->url, 0, 37).'...';
           } else {
             return FALSE;
           }
