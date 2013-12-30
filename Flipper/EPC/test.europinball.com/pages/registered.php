@@ -88,7 +88,7 @@
               $headers = array('Name', 'Photo', 'Acronym', 'Manufacturer', 'Owner', 'IPDB', 'Rules', 'Year');
               $aoColumnDefs = '
                 {"sClass": "icon", "aTargets": [ 1 ] },
-                {"sClass": "icon", "aTargets": [ 5 ] }
+                {"sClass": "icon", "aTargets": [ 6 ] }
               ';
             }
             foreach ($objs[$division->id] as $obj) {

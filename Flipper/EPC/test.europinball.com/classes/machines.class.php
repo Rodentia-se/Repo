@@ -24,7 +24,7 @@
         $tableProps = array(
           'aoColumnDefs' => '[
             {"sClass": "icon", "aTargets": [ 1 ] },
-            {"sClass": "icon", "aTargets": [ 5 ] }
+            {"sClass": "icon", "aTargets": [ 6 ] }
           ]',
           'fnDrawCallback' => '
             function() {
