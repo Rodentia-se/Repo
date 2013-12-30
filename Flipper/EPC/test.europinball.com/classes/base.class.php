@@ -366,6 +366,7 @@
       }
       if (get_class($this) == 'game') {
         debug($this);
+        debug($depth);
       }
     }
     
