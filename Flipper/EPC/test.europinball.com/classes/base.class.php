@@ -273,7 +273,7 @@
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
       $person = person('login');
-      if ($person && $person->admin) {
+      if ($person && $person->receptionist) {
         $props = array(
           'ID' => 'id',
           'Person ID' => 'person_id',
