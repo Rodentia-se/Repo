@@ -60,7 +60,7 @@
       // @todo: Change to object
       $return = array(
         $this->getLink(),
-        $this->getPhotoIcon() : ''),
+        $this->getPhotoIcon(),
         $this->getLink('shortName'),
         (is_object($this->manufacturer)) ? (($this->manufacturer->getLink()) ? $this->manufacturer->getLink() : $this->manufacturer->name) : $this->manufacturerName,
         (is_object($this->owner)) ? (($this->owner->getLink()) ? $this->owner->getLink() : $this->owner->name) : $this->ownerName,
