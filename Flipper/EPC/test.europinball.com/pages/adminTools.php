@@ -151,7 +151,28 @@
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
-          $otherDiv->addParagraph('Coming soon...');
+            $geoTabs = $otherDiv->addTabs('geoTabs');
+              $citiesDiv = $geoTabs->addDiv('cities');
+                $cities = cities('all');
+                $citiesDiv->addH2('Merge city duplicates');
+                  $citiesRemoveDiv->addDiv();
+                  $citiesDupesRemoveSelect = $cities->getSelectObj('citiesDupesRemove', NULL, 'Remove this city:', array('class' => 'dupeSelect'));
+                  $citiesRemoveDiv->addContent($citiesDupesRemoveSelect);
+                  $citiesRemoveDiv->addLabel('City ID:', NULL, 'short');
+                  $citiesDupesRemoveIDSpan = $citiesRemoveDiv->addSpan('none', 'citiesDupesRemoveIDSpan');
+                //}
+              //}
+              $regionsDiv = $geoTabs->addDiv('regions');
+              //}
+              $countriesDiv = $geoTabs->addDiv('countries');
+              //}
+              $continentsDiv = $geoTabs->addDiv('continents');
+              //}
+            //}
+          //}
+          $otherDiv->addChange('
+            $("#" + this.id + "IDSpan").html($(this).val());
+          ');
         //}
       //}
       $page->addContent($tabs);
