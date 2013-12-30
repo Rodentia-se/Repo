@@ -45,23 +45,6 @@
       'score' => 'machine'
     );
     
-    public static $infoProps = array(
-      'name',
-      'acronym',
-      'manufacturer',
-      'IPDB' => 'getIpdbLink',
-      'Rules' => 'getRulesLink',
-      'year'
-    );
-
-    public function getIpdbLink() {
-      return $this->getLink('ipdb');
-    }
-
-    public function getRulesLink() {
-      return $this->getLink('rules');
-    }
-
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers
       $cells = $this->getRegRow(TRUE);
