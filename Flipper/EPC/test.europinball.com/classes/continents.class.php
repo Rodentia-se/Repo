@@ -1,6 +1,6 @@
 <?php
 
-  class continents extends group {
+  class continents extends geoGroup {
     
     public static $objClass = 'continent';
     
