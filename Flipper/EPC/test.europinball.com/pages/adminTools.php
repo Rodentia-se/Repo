@@ -172,7 +172,7 @@
                   //}
                   $geoDiv->addLabel(' ');
                   $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
-                  $mergeButton->{'data-geoclass'} = $geoClass;
+                  $mergeButton->{'data-geoclass'} = $arrClass;
                   $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
                 //}
               } 
@@ -181,6 +181,10 @@
           $otherDiv->addChange('
             $("#" + this.id + "IDSpan").html($(this).val());
           ', '.dupeSelect');
+          $otherDiv->addClick('
+            alert($("#" + $(this).data("geoclass") + "DupesRemove").val());
+            alert($("#" + $(this).data("geoclass") + "DupesKeep").val());
+          ', '.mergeButton');
         //}
       //}
       $page->addContent($tabs);
