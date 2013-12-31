@@ -158,29 +158,22 @@
                   debug(microtime(true), 'before');
                   $objs = $arrClass('all');
                   debug(microtime(true), 'after');
-                  ${$geoClass.'Div'}->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
+                  $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
                     foreach(array('Remove', 'Keep') as $action) {
-                      ${$geoClass.$action.'Div'} = ${$geoClass.'Div'}->addDiv();
-                        debug(microtime(true), 'beforeSel');
-                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
-                        debug(microtime(true), 'beforeSel2');
-                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
-                        debug(microtime(true), 'beforeSel3');
-                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
-                        debug(microtime(true), 'afterSel');
-                        ${$geoClass.$action.'Sel'}->addCombobox();
-                        debug(microtime(true), 'beforeContent');
-                        ${$geoClass.$action.'Div'}->addContent(${$geoClass.$action.'Sel'});
-                        debug(microtime(true), 'afterContent');
-                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
-                        ${$geoClass.$action.'IDSpan'} = ${$geoClass.$action.'Div'}->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
+                      $actionDiv} = $geoDiv->addDiv();
+                  debug(microtime(true), 'beforeSel');
+                        $actionSel = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
+                  debug(microtime(true), 'afterSel');
+                        $actionDiv->addContent($actionSel);
+                        $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
+                        $$actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
                     } 
                   //}
-                  ${$geoClass.'Div'}->addLabel(' ');
-                  ${$geoClass.'MergeButton'} = ${$geoClass.'Div'}->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
-                  ${$geoClass.'MergeButton'}->{'data-geoclass'} = $geoClass;
-                  ${$geoClass.'Div'}->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
+                  $geoDiv->addLabel(' ');
+                  $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
+                  $mergeButton->{'data-geoclass'} = $geoClass;
+                  $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
                 //}
               } 
             //}
