@@ -154,7 +154,7 @@
             $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
               foreach (array('city', 'region') as $geoClass) {
                 $arrClass = $geoClass::$arrClass;
-                ${$geoClass.'Div'} = $geoTabs->addDiv($arrClass.'Div');
+                $geoDiv = $geoTabs->addDiv($arrClass.'Div');
                   debug(microtime(true), 'before');
                   $objs = $arrClass('all');
                   debug(microtime(true), 'after');
