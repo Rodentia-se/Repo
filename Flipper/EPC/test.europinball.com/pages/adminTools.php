@@ -202,8 +202,8 @@
                   });
                   $removeSel.val(0);
                   $keepSel.val(0);
-                  $removeSel.change();
-                  $keepSel.change();
+                  $("#" + arrClass + "DupesRemove_combobox").val("Choose...");
+                  $("#" + arrClass + "DupesKeep_combobox").val("Choose...");
                   $("#" + arrClass + "DupesRemove_combobox").focus();
                   $("#" + arrClass + "DupesRemove_combobox").select();
                 }
