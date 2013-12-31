@@ -19,6 +19,7 @@
       $sth = $this->action($query, $values);
       if ($sth) {
         $rowCount = $sth->rowCount();
+        debug($rowCount, 'rows');
         return ($rowCount === 0) ? TRUE : $rowCount;
       } else {
         return FALSE;
