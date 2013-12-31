@@ -43,6 +43,8 @@
     public function __get($prop) {
       if (array_key_exists($prop, $this->jquery)) {
         return $this->jquery[$prop];
+      } else if (is_array($this->jquery['props']) && array_key_exists($prop, $this->jquery['props'])) {
+        return $this->jquery['props'][$prop];
       } else {
         return parent::__get($prop);
       }
@@ -51,6 +53,8 @@
     public function __set($prop, $value) {
       if (array_key_exists($prop, $this->jquery)) {
         $this->jquery[$prop] = $value;
+      } else if (is_array($this->jquery['props']) && array_key_exists($prop, $this->jquery['props'])) {
+        $this->jquery['props'][$prop] = $value;
       } else {
         parent::__set($prop, $value);
       }
@@ -59,6 +63,8 @@
     public function __isset($prop) {
       if (array_key_exists($prop, $this->jquery)) {
         return isset($this->jquery[$prop]);
+      } else if (is_array($this->jquery['props']) && array_key_exists($prop, $this->jquery['props'])) {
+        return isset($this->jquery['props'][$prop]);
       } else {
         return parent::__isset($prop);
       }
@@ -67,6 +73,8 @@
     public function __unset($prop) {
       if (array_key_exists($prop, $this->jquery)) {
         unset($this->jquery[$prop]);
+      } else if (is_array($this->jquery['props']) && array_key_exists($prop, $this->jquery['props'])) {
+        unset($this->$this->jquery['props'][$prop]);
       } else {
         parent::__unset($prop);
       }

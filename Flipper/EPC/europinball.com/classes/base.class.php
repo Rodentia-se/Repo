@@ -183,13 +183,13 @@
       return $return;
     }
     
-    protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = TRUE) {
+    protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = FALSE) {
       $obj = get_object_vars($this);
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (property_exists($this, 'table') && static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = $col .(($nuls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
-        $values[db::getAlias($col)] = $obj[$prop];
+        $updates[] = $col .(($nulls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $values[db::getAlias($col)] = (isObj($obj[$prop])) ? $obj[$prop]->name : $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
@@ -268,10 +268,26 @@
         } else {
           $nameDiv = $left->addDiv();
           $nameDiv->addLabel('Name');
-          $nameDiv->addSpan($this->name);
+          $nameDiv->addSpan($this->name, NULL, 'info');
         }
       }
       $right = $info->addDiv($this->id.'_'.get_class($this).'_InfoDivRight', 'right');
+      $person = person('login');
+      if ($person && $person->receptionist) {
+        $props = array(
+          'ID' => 'id',
+          'Person ID' => 'person_id',
+          'Team ID' => 'team_id',
+          'Game ID' => 'game_id'
+        );
+        foreach ($props as $key => $prop) {
+          if ($this->$prop) {
+            $div = $left->addDiv();
+            $div->addLabel($key);
+            $div->addSpan($this->$prop, NULL, 'info');
+          }
+        }
+      }
       if ($this->getPhoto()) {
         $right->addImg($this->getPhoto(), $this->name, array('class' => 'infoImg'));
       }

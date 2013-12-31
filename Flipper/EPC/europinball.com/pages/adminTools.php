@@ -151,7 +151,68 @@
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
-          $otherDiv->addParagraph('Coming soon...');
+            $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
+              foreach (array('city', 'region') as $geoClass) {
+                $arrClass = $geoClass::$arrClass;
+                $geoDiv = $geoTabs->addDiv($arrClass.'Div');
+                  $objs = $arrClass('all');
+                  $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
+                    $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
+                    $geoDiv->addFocus('#'.$actionSel['Remove']->id.'_combobox', TRUE);
+                    $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
+                    $actionSel['Keep']->contents = $actionSel['Remove']->contents;
+                    $actionSel['Keep']->escape = FALSE;
+                    foreach(array('Remove', 'Keep') as $action) {
+                      $actionDiv = $geoDiv->addDiv();
+                        $actionSel[$action]->addCombobox();
+                        $actionDiv->addContent($actionSel[$action]);
+                        $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
+                        $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
+                      //}
+                    } 
+                  //}
+                  $geoDiv->addLabel(' ');
+                  $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
+                  $mergeButton->{'data-geoclass'} = $geoClass;
+                  $mergeButton->{'data-arrclass'} = $arrClass;
+                  $tooltip = $mergeButton->addTooltip('');
+                  $tooltip->timer = 8000;
+                  $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button. Properties from the first city will be transfered to the second city only if the property is empty for the second city.', NULL, 'italic');
+                //}
+              } 
+            //}
+          //}
+          $otherDiv->addChange('
+            $("#" + this.id + "IDSpan").html($(this).val());
+          ', '.dupeSelect');
+          $otherDiv->addClick('
+            var el = this;
+            var geoClass = $(this).data("geoclass");
+            var arrClass = $(this).data("arrclass");
+            var $removeSel = $("#" + arrClass + "DupesRemove");
+            var $keepSel = $("#" + arrClass + "DupesKeep");
+            if ($removeSel.val() && $keepSel.val) {
+              $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show").tooltipster("timer", 15000);
+                if (data.valid) {
+                  $("." + geoClass + "Select option[value=\'" + $removeSel.val() + "\']").each(function() {
+                    alert(this.text);
+                    $(this).remove();
+                  });
+                  $removeSel.val(0);
+                  $keepSel.val(0);
+                  $("#" + arrClass + "DupesRemove_combobox").val("Choose...");
+                  $("#" + arrClass + "DupesKeep_combobox").val("Choose...");
+                  $("#" + arrClass + "DupesRemove_combobox").focus();
+                  $("#" + arrClass + "DupesRemove_combobox").select();
+                }
+              })
+            } else {
+              $(el).tooltipster("update", "Please choose " + arrClass + " to remove and to keep...").tooltipster("show");
+            }
+          ', '.mergeButton');
         //}
       //}
       $page->addContent($tabs);

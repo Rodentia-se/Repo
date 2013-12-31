@@ -5,6 +5,8 @@
     public static $instances;
     public static $arrClass = 'scores';
 
+    public static $table = 'qualScore';
+
     public static $select = '
       select 
         o.id as id,
