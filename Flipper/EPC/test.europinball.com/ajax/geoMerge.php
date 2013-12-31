@@ -27,7 +27,7 @@
                       $save = $keepObj->save();
                       if ($save) {
                         $merge = $keepObj->merge($removeObj, FALSE);
-                        if (!$failure) {
+                        if ($merge) {
                           $delete = $removeObj->delete(FALSE);
                           if ($delete) {
                             $json = success('Merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
@@ -35,7 +35,7 @@
                             $json = failure('It seems the merging operation succeeded, but could not remove '.$removeObj->name.' ID '.$remove.' after the merge');
                           }
                         } else {
-                          $json = failure('Something went wrong trying to update the '.$failure.' table');
+                          $json = failure('Something went wrong trying to merge '.$obj.' ID '.$keep.' and '.$remove);
                         }
                       } else {
                         $json = failure('Could not save '.$keepObj.' ID '.$keep);
