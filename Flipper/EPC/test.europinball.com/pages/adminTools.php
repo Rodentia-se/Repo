@@ -173,7 +173,7 @@
           //}
           $otherDiv->addChange('
             $("#" + this.id + "IDSpan").html($(this).val());
-          ');
+          ', '.dupeSelect');
         //}
       //}
       $page->addContent($tabs);
