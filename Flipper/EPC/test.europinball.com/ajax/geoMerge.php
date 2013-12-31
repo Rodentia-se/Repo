@@ -24,12 +24,11 @@
                       foreach ($props as $prop) {
                         $keepObj->$prop = ($keepObj->$prop) ? $keepObj->$prop : $removeObj->$prop;
                       }
-                      $keepObj->altName = 'huff';
                       $save = $keepObj->save();
                       if ($save) {
                         foreach ($obj::$children as $childClass => $column) {
                           $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
-/*                          $query = '
+                          $query = '
                             update '.$table.'
                               set '.$column.'_id = '.$keepObj->id.',
                               '.$column.' = "'.$keepObj->name.'"
@@ -38,8 +37,7 @@
                           $update = $keepObj->db->update($query);
                           if (!$update) {
                             $failure = $table;
-                          } */
-                          debug($table);
+                          }
                         }
                         if (!$failure) {
 //                          $delete = $removeObj->delete();
