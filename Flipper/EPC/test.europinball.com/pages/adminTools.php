@@ -177,7 +177,7 @@
                   $mergeButton->{'data-arrclass'} = $arrClass;
                   $tooltip = $mergeButton->addTooltip('');
                   $tooltip->timer = 8000;
-                  $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
+                  $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button. Properties from the first city will be transfered to the second city only if the property is empty for the second city.', NULL, 'italic');
                 //}
               } 
             //}
