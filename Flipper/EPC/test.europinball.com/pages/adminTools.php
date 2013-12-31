@@ -166,7 +166,7 @@
                   debug(microtime(true), 'afterSel');
                         $actionDiv->addContent($actionSel);
                         $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
-                        $$actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
+                        $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
                     } 
                   //}
