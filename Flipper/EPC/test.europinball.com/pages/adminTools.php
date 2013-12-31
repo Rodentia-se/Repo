@@ -194,7 +194,7 @@
               $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
               .done(function(data) {
-                $(el).tooltipster("update", data.reason).tooltipster("show");
+                $(el).tooltipster("update", data.reason).tooltipster("show").tooltipster("timer", 5000);
                 if (data.valid) {
                   $("." + geoClass + "Select option[value=\'" + $removeSel.val() + "\']").each(function() {
                     alert(this.text);
