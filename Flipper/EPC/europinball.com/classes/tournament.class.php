@@ -29,6 +29,8 @@
       'location' => 'location'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'match' => 'tournamentEdition',
       'machine' => 'tournamentEdition',
@@ -52,6 +54,7 @@
         'field' => 'tournamentEdition'
       )
     );
+*/
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       if (is_string($data) && ($data == 'current' || $data == 'active') && $search == config::NOSEARCH) {

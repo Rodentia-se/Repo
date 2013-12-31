@@ -34,13 +34,15 @@
       'player' => 'player'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'score' => array(
         'field' => 'qualEntry',
         'delete' => TRUE
       )
     );
-
+*/
 
     public function populate() {
       parent::populate();

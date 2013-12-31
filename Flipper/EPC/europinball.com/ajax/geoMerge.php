@@ -26,29 +26,8 @@
                       }
                       $save = $keepObj->save();
                       if ($save) {
-                        foreach ($obj::$children as $childClass => $column) {
-                          $child = new $childClass();
-                          $childColumns = $child->getColNames();
-                          if (in_array($column, $childColumns)) {
-                            $nameLine = $column.' = "'.$keepObj->name.'"';
-                          } else if (in_array($column.'name', $childColumns)) {
-                            $nameLine = $column.'Name = "'.$keepObj->name.'"';
-                          } else if (in_array($column.'_name', $childColumns)) {
-                            $nameLine = $column.'_name = "'.$keepObj->name.'"';
-                          }
-                          $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
-                          $query = '
-                            update '.$table.'
-                              set '.$column.'_id = '.$keepObj->id.',
-                              '.$nameLine.'
-                            where '.$column.'_id = '.$removeObj->id.'
-                          ';
-                          $update = $keepObj->db->update($query);
-                          if (!$update) {
-                            $failure = $table;
-                          }
-                        }
-                        if (!$failure) {
+                        $merge = $keepObj->merge($removeObj, FALSE);
+                        if ($merge) {
                           $delete = $removeObj->delete(FALSE);
                           if ($delete) {
                             $json = success('Merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
@@ -56,7 +35,7 @@
                             $json = failure('It seems the merging operation succeeded, but could not remove '.$removeObj->name.' ID '.$remove.' after the merge');
                           }
                         } else {
-                          $json = failure('Something went wrong trying to update the '.$failure.' table');
+                          $json = failure('Something went wrong trying to merge '.$obj.' ID '.$keep.' and '.$remove);
                         }
                       } else {
                         $json = failure('Could not save '.$keepObj.' ID '.$keep);

@@ -19,10 +19,13 @@
     
     public static $parents = array();
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'game' => 'manufacturer',
       'machine' => 'manufacturer'
     );
+*/
 
     public static $infoProps = array(
       'name',

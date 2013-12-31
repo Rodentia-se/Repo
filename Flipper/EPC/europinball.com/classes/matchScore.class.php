@@ -29,9 +29,12 @@
       'machine' => 'machine'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'matchScore' => 'matchPlayer'
     );
+*/
 
   }
 

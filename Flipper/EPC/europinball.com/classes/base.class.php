@@ -182,6 +182,35 @@
       }
       return $return;
     }
+
+    public function merge($removeObj, $delete = TRUE) {
+      foreach (static::$children as $idColumn => $targets) {
+        foreach ($targets['classes'] as $childClass) {
+          $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
+          $fieldLines = array();
+          foreach($targets['fields'] as $prop => $column) {
+            $fieldLines[] = $column.' = "'.$this->$prop.'"';
+          }
+          $fieldLines = implode(",\n", $fieldLines);
+          $query = '
+            update '.$table.'
+              set '.$idColumn.' = '.$this->id.',
+              '.$fieldLines.'
+            where '.$idColumn.' = '.$removeObj->id.'
+          ';
+          $update = $this->db->update($query);
+          if (!$update) {
+            $failure = TRUE;
+            return FALSE;
+          }
+        }
+      }
+      if ($delete) {
+        $remove = $removeObj->delete(FALSE);
+        return ($remove) ? TRUE : FALSE;
+      }
+      return TRUE;
+    }
     
     protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = FALSE) {
       $obj = get_object_vars($this);
@@ -389,6 +418,8 @@
         if ($this->db->delete($delete, array('id' => $this->id))) {
           unset(static::$instances['ID'.$this->id]);
           if ($propagate) {
+            // @todo: deletion propagation
+/*
             foreach (static::$children as $class => $target) {
               if (isAssoc($target)) {
                 $field = ($target['field']) ? $target['field'] : $field;
@@ -406,6 +437,7 @@
                 }
               }
             }
+            */
           }
           return TRUE;
         } else {

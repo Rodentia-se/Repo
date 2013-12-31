@@ -35,21 +35,14 @@
     );
     
     public static $children = array(
-      'city' => 'region',
-      'city' => 'parentRegion',
-      'region' => 'parentRegion',
-      'location' => 'region',
-      'location' => 'parentRegion',
-      'owner' => 'region',
-      'owner' => 'parentRegion',
-      'person' => 'region',
-      'person' => 'parentRegion',
-      'player' => 'region',
-      'player' => 'parentRegion',
-      'team' => 'region',
-      'team' => 'parentRegion',
-      'volunteer' => 'region',
-      'volunteer' => 'parentRegion'
+      'region_id' => array(
+        'classes' => array('city', 'location', 'owner', 'person', 'player', 'team', 'volunteer'),
+        'fields' => array('name' => 'region')
+      ),
+      'parentRegion_id' => array(
+        'classes' => array('city', 'region', 'location', 'owner', 'person', 'player', 'team', 'volunteer'),
+        'fields' => array('name' => 'parentRegion')
+      )
     );
 
     public static $infoProps = array(

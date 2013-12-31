@@ -93,6 +93,8 @@
       'continent' => 'continent'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'matchPlayer' => 'player',
       'matchScore' => 'player',
@@ -111,6 +113,7 @@
         'field' => 'player'
       )
     );
+*/
     
     public static $cols = array(
       'initials' => 'shortName',

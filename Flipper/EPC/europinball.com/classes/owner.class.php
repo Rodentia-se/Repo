@@ -42,9 +42,12 @@
       'continent' => 'continent'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'machine' => 'owner'
     );
+*/
 
     public static $infoProps = array(
       'name',

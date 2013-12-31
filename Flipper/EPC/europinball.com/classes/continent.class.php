@@ -24,15 +24,10 @@
     );
     
     public static $children = array(
-      'location' => 'continent',
-      'city' => 'continent',
-      'region' => 'continent',
-      'country' => 'continent',
-      'owner' => 'continent',
-      'player' => 'continent',
-      'team' => 'continent',
-      'volunteer' => 'continent',
-      'person' => 'continent'
+      'country_id' => array(
+        'classes' => array('city', 'region', 'country', 'location', 'owner', 'person', 'player', 'team', 'volunteer'),
+        'fields' => array('name' => 'continent')
+      )
     );
 
     public static $infoChildren = array(

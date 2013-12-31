@@ -34,9 +34,12 @@
       'country' => 'country'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'matchScore' => 'matchPlayer'
     );
+*/
 
   }
 

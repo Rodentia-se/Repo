@@ -32,18 +32,14 @@
     );
     
     public static $children = array(
-      'country' => 'capitalCity',
-      'region' => 'capitalCity',
-      'location' => 'city',
-      'owner' => 'city',
-      'person' => 'city',
-      'player' => 'city',
-      'team' => 'city',
-      'volunteer' => 'city',
-      'matchPlayer' => 'city',
-      'matchScore' => 'city',
-      'entry' => 'city',
-      'score' => 'city'
+      'capitalCity_id' => array(
+        'classes' => array('region', 'country'),
+        'fields' => array('name' => 'capitalCity')
+      ),
+      'city_id' => array(
+        'classes' => array('location', 'owner', 'person', 'player', 'team', 'volunteer', 'matchPlayer', 'matchScore', 'entry', 'score'),
+        'fields' => array('name' => 'city')
+      )
     );
 
     public static $infoProps = array(
