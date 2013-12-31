@@ -38,7 +38,9 @@
           $loading = $paymentDiv->addLoading();
                   debug(microtime(true), 'payment1');
           $persons = persons(tournament('active'));
+                  debug(microtime(true), 'payment1.5');
             $select = $persons->getSelectObj();
+                  debug(microtime(true), 'payment1.75');
             $select->addCombobox();
             $paymentDiv->addContent($select);
             $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
