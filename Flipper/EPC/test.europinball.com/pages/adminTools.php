@@ -155,11 +155,15 @@
               foreach (array('city', 'region') as $geoClass) {
                 $arrClass = $geoClass::$arrClass;
                 ${$geoClass.'Div'} = $geoTabs->addDiv($arrClass.'Div');
+                  debug(microtime(true), 'before');
                   $objs = $arrClass('all');
+                  debug(microtime(true), 'after');
                   ${$geoClass.'Div'}->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
                     foreach(array('Remove', 'Keep') as $action) {
                       ${$geoClass.$action.'Div'} = ${$geoClass.'Div'}->addDiv();
+                        debug(microtime(true), 'beforeSel');
                         ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
+                        debug(microtime(true), 'afterSel');
                         ${$geoClass.$action.'Sel'}->addCombobox();
                         ${$geoClass.$action.'Div'}->addContent(${$geoClass.$action.'Sel'});
                         ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
