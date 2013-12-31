@@ -164,6 +164,7 @@
                   debug(microtime(true), 'beforeSel');
                         $actionSel = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
                   debug(microtime(true), 'afterSel');
+                        $actionSel->addCombobox();
                         $actionDiv->addContent($actionSel);
                         $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
                         $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
