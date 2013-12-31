@@ -199,7 +199,7 @@
               $("#" + arrClass + "DupesRemove").val(0);
               $("#" + arrClass + "DupesKeep").val(0);
               $("#" + arrClass + "DupesRemove_combobox").val("Choose...");
-              $("#" + arrClass + "DupesKeep_combobox").val(Choose...);
+              $("#" + arrClass + "DupesKeep_combobox").val("Choose...");
             })
           ', '.mergeButton');
         //}
