@@ -165,7 +165,7 @@
                         ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
                         ${$geoClass.$action.'IDSpan'} = ${$geoClass.$action.'Div'}->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
-                    }
+                    } 
                   //}
                   ${$geoClass.'Div'}->addLabel(' ');
                   ${$geoClass.'MergeButton'} = ${$geoClass.'Div'}->addButton('Merge', $geoClass.'MergeButton', 'mergeButton');
