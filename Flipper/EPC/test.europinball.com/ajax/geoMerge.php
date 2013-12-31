@@ -32,7 +32,7 @@
                             update '.$table.'
                               set '.$column.'_id = '.$keepObj->id.',
                               '.$column.' = "'.$keepObj->name.'"
-                            where '.$column.'_id = '.$removeObj->id'
+                            where '.$column.'_id = '.$removeObj->id.'
                           ';
                           $update = $keepObj->db->update($query);
                           if (!$update) {
