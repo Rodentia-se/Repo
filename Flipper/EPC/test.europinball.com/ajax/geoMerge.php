@@ -26,28 +26,7 @@
                       }
                       $save = $keepObj->save();
                       if ($save) {
-                        foreach ($obj::$children as $childClass => $column) {
-                          $child = new $childClass();
-                          $childColumns = $child->getColNames();
-                          if (in_array($column, $childColumns)) {
-                            $nameLine = $column.' = "'.$keepObj->name.'"';
-                          } else if (in_array($column.'name', $childColumns)) {
-                            $nameLine = $column.'Name = "'.$keepObj->name.'"';
-                          } else if (in_array($column.'_name', $childColumns)) {
-                            $nameLine = $column.'_name = "'.$keepObj->name.'"';
-                          }
-                          $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
-                          $query = '
-                            update '.$table.'
-                              set '.$column.'_id = '.$keepObj->id.',
-                              '.$nameLine.'
-                            where '.$column.'_id = '.$removeObj->id.'
-                          ';
-                          $update = $keepObj->db->update($query);
-                          if (!$update) {
-                            $failure = $table;
-                          }
-                        }
+                        $merge = $keepObj->merge($removeObj, FALSE);
                         if (!$failure) {
                           $delete = $removeObj->delete(FALSE);
                           if ($delete) {

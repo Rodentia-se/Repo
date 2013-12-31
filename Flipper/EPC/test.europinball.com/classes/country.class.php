@@ -32,27 +32,14 @@
     );
 
     public static $children = array(
-      'location' => 'country',
-      'location' => 'parentCountry',
-      'city' => 'country',
-      'city' => 'parentCountry',
-      'region' => 'country',
-      'region' => 'parentCountry',
-      'owner' => 'country',
-      'owner' => 'parentCountry',
-      'person' => 'country',
-      'person' => 'parentCountry',
-      'player' => 'country',
-      'player' => 'parentCountry',
-      'team' => 'country',
-      'team' => 'parentCountry',
-      'volunteer' => 'country',
-      'volunteer' => 'parentCountry',
-      'country' => 'parentCountry',
-      'matchPlayer' => 'country',
-      'matchScore' => 'country',
-      'entry' => 'country',
-      'score' => 'country'
+      'country_id' => array(
+        'classes' => array('city', 'region', 'location', 'owner', 'person', 'player', 'team', 'volunteer', 'matchPlayer', 'matchScore', 'entry', 'score'),
+        'fields' => array('name' => 'country')
+      ),
+      'parentCountry_id' => array(
+        'classes' => array('city', 'region', 'country', 'location', 'owner', 'person', 'player', 'team', 'volunteer'),
+        'fields' => array('name' => 'parentCountry')
+      )
     );
 
     public static $infoProps = array(
