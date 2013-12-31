@@ -188,19 +188,22 @@
             var el = this;
             var geoClass = $(this).data("geoclass");
             var arrClass = $(this).data("arrclass");
+            var $removeSel = $("#" + arrClass + "DupesRemove");
+            var $keepSel = $("#" + arrClass + "DupesKeep");
             $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
-            $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $("#" + arrClass + "DupesRemove").val(), keep: $("#" + arrClass + "DupesKeep").val()})
+            $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
             .done(function(data) {
               $(el).tooltipster("update", data.reason).tooltipster("show");
               if (data.valid) {
-                $("." + arrClass + "dupeSelect option[value=\'" + $("#" + arrClass + "DupesRemove").val() + "\']").each(function() {
+                $("." + arrClass + "dupeSelect option[value=\'" + $removeSel.val() + "\']").each(function() {
+                  alert(this.text);
                   $(this).remove();
                 });
               }
-              $("#" + arrClass + "DupesRemove").val(0);
-              $("#" + arrClass + "DupesKeep").val(0);
-              $("#" + arrClass + "DupesRemove_combobox").val("Choose...");
-              $("#" + arrClass + "DupesKeep_combobox").val("Choose...");
+              $removeSel.val(0);
+              $keepSel.val(0);
+              $removeSel.focus();
+              $removeSel.select();
             })
           ', '.mergeButton');
         //}
