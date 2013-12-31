@@ -190,21 +190,27 @@
             var arrClass = $(this).data("arrclass");
             var $removeSel = $("#" + arrClass + "DupesRemove");
             var $keepSel = $("#" + arrClass + "DupesKeep");
-            $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
-            $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
-            .done(function(data) {
-              $(el).tooltipster("update", data.reason).tooltipster("show");
-              if (data.valid) {
-                $("." + geoClass + "Select option[value=\'" + $removeSel.val() + "\']").each(function() {
-                  alert(this.text);
-                  $(this).remove();
-                });
-                $removeSel.val(0);
-                $keepSel.val(0);
-                $removeSel.focus();
-                $removeSel.select();
-              }
-            })
+            if ($removeSel.val() && $keepSel.val) {
+              $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.valid) {
+                  $("." + geoClass + "Select option[value=\'" + $removeSel.val() + "\']").each(function() {
+                    alert(this.text);
+                    $(this).remove();
+                  });
+                  $removeSel.val(0);
+                  $keepSel.val(0);
+                  $removeSel.change();
+                  $keepSel.change();
+                  $("#" + arrClass + "DupesRemove_combobox").focus();
+                  $("#" + arrClass + "DupesRemove_combobox").select();
+                }
+              })
+            } else {
+              $(el).tooltipster("update", "Please choose " + arrClass + " to remove and to keep...").tooltipster("show");
+            }
           ', '.mergeButton');
         //}
       //}
