@@ -187,6 +187,7 @@
       foreach (static::$children as $idColumn => $targets) {
         foreach ($targets['classes'] as $childClass) {
           $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
+          $fieldLines = array();
           foreach($targets['fields'] as $prop => $column) {
             $fieldLines[] = $column.' = "'.$this->$prop.'"';
           }
