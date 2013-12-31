@@ -43,6 +43,7 @@
                               '.$nameLine.'
                             where '.$column.'_id = '.$removeObj->id.'
                           ';
+                          debug($query);
                           $update = $keepObj->db->update($query);
                           if (!$update) {
                             $failure = $table;
