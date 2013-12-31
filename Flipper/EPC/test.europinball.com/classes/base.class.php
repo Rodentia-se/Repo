@@ -418,6 +418,8 @@
         if ($this->db->delete($delete, array('id' => $this->id))) {
           unset(static::$instances['ID'.$this->id]);
           if ($propagate) {
+            // @todo: deletion propagation
+/*
             foreach (static::$children as $class => $target) {
               if (isAssoc($target)) {
                 $field = ($target['field']) ? $target['field'] : $field;
@@ -435,6 +437,7 @@
                 }
               }
             }
+            */
           }
           return TRUE;
         } else {
