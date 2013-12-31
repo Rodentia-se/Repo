@@ -157,8 +157,8 @@
                 $geoDiv = $geoTabs->addDiv($arrClass.'Div');
                   $objs = $arrClass('all');
                   $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
-                    $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect'));
-                    $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':', array('class' => 'dupeSelect'));
+                    $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect '.$arrClass.'DupeSelect'));
+                    $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':', array('class' => 'dupeSelect '.$arrClass.'DupeSelect'));
                     $actionSel['Keep']->contents = $actionSel['Remove']->contents;
                     $actionSel['Keep']->escape = FALSE;
                     foreach(array('Remove', 'Keep') as $action) {
@@ -172,7 +172,9 @@
                   //}
                   $geoDiv->addLabel(' ');
                   $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
-                  $mergeButton->{'data-geoclass'} = $arrClass;
+                  $mergeButton->{'data-geoclass'} = $geoClass;
+                  $mergeButton->{'data-arrclass'} = $arrClass;
+                  $mergeButton->addTooltip('');
                   $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
                 //}
               } 
@@ -182,8 +184,23 @@
             $("#" + this.id + "IDSpan").html($(this).val());
           ', '.dupeSelect');
           $otherDiv->addClick('
-            alert($("#" + $(this).data("geoclass") + "DupesRemove").val());
-            alert($("#" + $(this).data("geoclass") + "DupesKeep").val());
+            var el = this;
+            var geoClass = $(this).data("geoclass");
+            var arrClass = $(this).data("arrclass");
+            $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
+            $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $("#" + arrClass + "DupesRemove").val(), keep: $("#" + arrClass + "DupesKeep").val()})
+            .done(function(data) {
+              $(el).tooltipster("update", data.reason).tooltipster("show");
+              if (data.valid) {
+                $("." + arrClass + "dupeSelect option[value=\'" + $("#" + arrClass + "DupesRemove").val() + "\']").each(function() {
+                  $(this).remove();
+                });
+              }
+              $("#" + arrClass + "DupesRemove").val(0);
+              $("#" + arrClass + "DupesKeep").val(0);
+              $("#" + arrClass + "DupesRemove_combobox").val("Choose...");
+              $("#" + arrClass + "DupesKeep_combobox").val(Choose...);
+            })
           ', '.mergeButton');
         //}
       //}
