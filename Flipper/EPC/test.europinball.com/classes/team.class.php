@@ -40,6 +40,8 @@
       'continent' => 'continent'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'player' => array(
         'field' => 'team',
@@ -51,6 +53,7 @@
         'delete' => TRUE
       )
     );
+*/
     
     public static $infoProps = array(
       'name',

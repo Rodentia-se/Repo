@@ -34,6 +34,8 @@
       'continent' => 'continent'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'tournament' => array(
         'table' => 'tournament',
@@ -41,6 +43,7 @@
       ),
       'tournament' => 'location'
     );
+*/
 
   }
 

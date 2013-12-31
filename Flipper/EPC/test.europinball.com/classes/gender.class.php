@@ -18,10 +18,13 @@
     
     public static $parents = array();
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'player' => 'gender',
       'volunteer' => 'gender'
     );
+*/
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       parent::__construct($data, $search, $depth);

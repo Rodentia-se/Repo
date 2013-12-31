@@ -39,11 +39,14 @@
       'owner' => 'owner'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'matchScore' => 'machine',
       'set' => 'machine',
       'score' => 'machine'
     );
+*/
     
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers

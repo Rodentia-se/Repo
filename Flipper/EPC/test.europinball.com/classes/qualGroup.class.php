@@ -26,6 +26,8 @@
       'tournamentDivision' => 'division'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'player' => 'qualGroup',
       'team' => 'qualGroup',
@@ -34,6 +36,7 @@
         'delete' => TRUE
       )
     );
+*/
 
 
   }

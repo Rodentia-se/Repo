@@ -23,9 +23,12 @@
       'manufacturer' => 'manufacturer'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'machine' => 'game'
     );
+*/
 
     public static $infoProps = array(
       'name',

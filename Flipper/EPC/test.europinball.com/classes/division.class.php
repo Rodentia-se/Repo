@@ -41,6 +41,8 @@
       'tournamentEdition' => 'tournament'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'machine' => array(
         'field' => 'tournamentDivision',
@@ -65,6 +67,7 @@
       'entry' => 'tournamentDivision',
       'score' => 'tournamentDivision'
     );
+*/
     
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $aliases = array('current', 'active');

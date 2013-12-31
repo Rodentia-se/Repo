@@ -58,6 +58,8 @@
       'continent' => 'continent'
     );
     
+    // @todo: Fix children
+/*
     public static $children = array(
       'period' => array(
         'table' => 'volunteerPeriod',
@@ -65,6 +67,7 @@
         'delete' => TRUE
       )
     );
+*/
 
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('login', 'auth');

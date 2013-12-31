@@ -21,6 +21,8 @@
       'tournamentEdition' => 'tournament'
     );
 
+    // @todo: Fix children
+/*
     public static $children = array(
       'volunteerNeed' => array(
         'table' => 'volunteerNeed',
@@ -31,6 +33,7 @@
         'field' => 'task'
       )
     );
+*/
 
   }
 
