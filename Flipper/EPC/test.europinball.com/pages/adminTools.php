@@ -168,8 +168,8 @@
                   debug(microtime(true), 'afterSel');
                     foreach(array('Remove', 'Keep') as $action) {
                       $actionDiv = $geoDiv->addDiv();
-                        $actionSel->addCombobox();
-                        $actionDiv->addContent($actionSel);
+                        $actionSel[$action]->addCombobox();
+                        $actionDiv->addContent($actionSel[$action]);
                         $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
                         $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
