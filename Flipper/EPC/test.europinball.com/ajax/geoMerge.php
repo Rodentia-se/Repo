@@ -16,7 +16,7 @@
             $removeObj = $obj($remove);
             if (isGeo($removeObj)) {
               if ($keep) {
-                if ($keep == $remove) {
+                if ($keep != $remove) {
                   $keepObj = $obj($keep);
                   if (isGeo($keepObj)) {
                     $props = $removeObj->getColNames();
