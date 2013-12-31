@@ -163,6 +163,10 @@
                       ${$geoClass.$action.'Div'} = ${$geoClass.'Div'}->addDiv();
                         debug(microtime(true), 'beforeSel');
                         ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
+                        debug(microtime(true), 'beforeSel2');
+                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
+                        debug(microtime(true), 'beforeSel3');
+                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
                         debug(microtime(true), 'afterSel');
                         ${$geoClass.$action.'Sel'}->addCombobox();
                         debug(microtime(true), 'beforeContent');
