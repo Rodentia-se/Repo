@@ -190,6 +190,8 @@
       $page->addContent($paragraph);
     }
   }
+                        debug(microtime(true), 'beforeSubmit');
   $page->submit();
+                        debug(microtime(true), 'afterSubmit');
 
 ?>
