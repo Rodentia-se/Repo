@@ -160,7 +160,7 @@
                   debug(microtime(true), 'after');
                   $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
                     foreach(array('Remove', 'Keep') as $action) {
-                      $actionDiv} = $geoDiv->addDiv();
+                      $actionDiv = $geoDiv->addDiv();
                   debug(microtime(true), 'beforeSel');
                         $actionSel = $objs->getSelectObj($arrClass.'Dupes'.$action, NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
                   debug(microtime(true), 'afterSel');
