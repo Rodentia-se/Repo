@@ -24,9 +24,7 @@
                       foreach ($props as $prop) {
                         $keepObj->$prop = ($keepObj->$prop) ? $keepObj->$prop : $removeObj->$prop;
                       }
- //                     $save = $keepObj->save();
- debug($keepObj);
- $save = TRUE;
+                      $save = $keepObj->save();
                       if ($save) {
                         foreach ($obj::$children as $childClass => $column) {
                           $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
