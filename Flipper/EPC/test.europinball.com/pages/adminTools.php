@@ -151,7 +151,7 @@
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
-            $geoTabs = $otherDiv->addTabs(NULL; 'geoTabs');
+            $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
               foreach (array('city', 'region', 'country', 'continent') as $geoClass) {
                 $arrClass = $geoClass::$arrClass;
                 ${$geoClass.'Div'} = $geoTabs->addDiv($arrClass.'Div');
