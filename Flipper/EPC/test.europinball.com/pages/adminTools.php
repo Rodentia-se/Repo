@@ -168,7 +168,8 @@
                     }
                   //}
                   ${$geoClass.'Div'}->addLabel(' ');
-                  ${$geoClass.'Div'}->addButton('Merge');
+                  ${$geoClass.'MergeButton') = ${$geoClass.'Div'}->addButton('Merge', $geoClass.'MergeButton', 'mergeButton');
+                  ${$geoClass.'MergeButton')->data-geoclass = $geoClass;
                   ${$geoClass.'Div'}->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'ïtalic');
                 //}
               }
