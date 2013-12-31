@@ -162,7 +162,7 @@
                         ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action.'Sel', NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
                         ${$geoClass.$action.'Sel'}->addCombobox();
                         ${$geoClass.$action.'Div'}->addContent(${$geoClass.$action.'Sel'});
-                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:');
+                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
                         ${$geoClass.$action.'IDSpan'} = ${$geoClass.$action.'Div'}->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
                     }
