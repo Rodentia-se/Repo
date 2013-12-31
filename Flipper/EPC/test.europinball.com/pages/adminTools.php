@@ -36,25 +36,30 @@
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
+                  debug(microtime(true), 'payment1');
           $persons = persons(tournament('active'));
             $select = $persons->getSelectObj();
             $select->addCombobox();
             $paymentDiv->addContent($select);
             $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
           //}
+                  debug(microtime(true), 'payment2');
           $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
           //}
+                  debug(microtime(true), 'payment3');
           $costsDiv = $paymentDiv->addDiv('costsDiv');
             $costsDiv->addLabel('Should pay:');
             $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
           //}
+                  debug(microtime(true), 'payment4');
           $payDiv = $paymentDiv->addDiv('payDiv');
             $payDiv->addLabel('Left to pay:');
             $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
             $paySpan->addClasses('sum');
           //}
+                  debug(microtime(true), 'payment5');
           $setDiv = $paymentDiv->addDiv();
             $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
             $setPaid->disabled = TRUE;
@@ -116,6 +121,7 @@
             });
           ');
         //}
+                  debug(microtime(true), 'payment6');
         $teamDiv = $tabs->addDiv('teamDiv');
           $teamDiv->title = 'Teams';
           $teamDiv->addH2($teamDiv->title, array('class' => 'entry-title'));
