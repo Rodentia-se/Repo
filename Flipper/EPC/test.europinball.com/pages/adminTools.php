@@ -3,6 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
+                  debug(microtime(true), 'top');
   $page = new page('Admin tools');
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
@@ -10,6 +11,7 @@
     if ($volunteer->admin) {
       $tabs = new tabs(NULL, 'adminTabs');
         $playerDiv = $tabs->addDiv('playerDiv');
+                  debug(microtime(true), 'player');
           $playerDiv->title = 'Players';
           $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
           $waitingButton = $playerDiv->addButton('Recalculate waiting list');
@@ -30,6 +32,7 @@
           $userDiv->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
+                  debug(microtime(true), 'payment');
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
@@ -149,6 +152,7 @@
           $tshirtDiv->addParagraph('Coming soon...');
         //}
         $otherDiv = $tabs->addDiv('otherDiv');
+                  debug(microtime(true), 'other');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
             $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
