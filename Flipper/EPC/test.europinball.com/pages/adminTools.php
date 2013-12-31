@@ -152,7 +152,7 @@
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
             $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
-              foreach (array('city', 'region', 'country', 'continent') as $geoClass) {
+              foreach (array('city', 'region') as $geoClass) {
                 $arrClass = $geoClass::$arrClass;
                 ${$geoClass.'Div'} = $geoTabs->addDiv($arrClass.'Div');
                   $objs = $arrClass('all');
@@ -162,7 +162,7 @@
                         ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action.'Sel', NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
                         ${$geoClass.$action.'Sel'}->addCombobox();
                         ${$geoClass.$action.'Div'}->addContent(${$geoClass.$action.'Sel'});
-                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
+                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass).' ID:');
                         ${$geoClass.$action.'IDSpan'} = ${$geoClass.$action.'Div'}->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
                       //}
                     }
