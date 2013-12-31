@@ -151,24 +151,24 @@
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
-            $geoTabs = $otherDiv->addTabs('geoTabs');
-              $citiesDiv = $geoTabs->addDiv('cities');
-                $cities = cities('all');
-                $citiesDiv->addH2('Merge city duplicates', array('class' => 'entry-title'));
-                  $citiesRemoveDiv = $citiesDiv->addDiv();
-                  $citiesDupesRemoveSelect = $cities->getSelectObj('citiesDupesRemove', NULL, 'Remove this city:', array('class' => 'dupeSelect'));
-                  $citiesDupesRemoveSelect->addCombobox();
-                  $citiesRemoveDiv->addContent($citiesDupesRemoveSelect);
-                  $citiesRemoveDiv->addLabel('City ID:', NULL, NULL, 'short');
-                  $citiesDupesRemoveIDSpan = $citiesRemoveDiv->addSpan('none', 'citiesDupesRemoveIDSpan');
+            $geoTabs = $otherDiv->addTabs(NULL; 'geoTabs');
+              foreach (array('city', 'region', 'country', 'continent') as $geoClass) {
+                $arrClass = $geoClass::$arrClass;
+                ${$geoClass.'Div'} = $geoTabs->addDiv($arrClass.'Div');
+                  $objs = $arrClass('all');
+                  ${$geoClass.'Div'}->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
+                    foreach(array('Remove', 'Keep') as $action) {
+                      ${$geoClass.$action.'Div'} = ${$geoClass.'Div'}->addDiv();
+                        ${$geoClass.$action.'Sel'} = $objs->getSelectObj($arrClass.'Dupes'.$action.'Sel', NULL, $action.' this '.$geoClass.':', array('class' => 'dupeSelect'));
+                        ${$geoClass.$action.'Sel'}->addCombobox();
+                        ${$geoClass.$action.'Div'}->addContent(${$geoClass.$action.'Sel'});
+                        ${$geoClass.$action.'Div'}->addLabel(ucfirst($geoClass.' ID:', NULL, NULL, 'short');
+                        ${$geoClass.$action.'IDSpan'} = ${$geoClass.$action.'Div'}->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
+                      //}
+                    }
+                  //}
                 //}
-              //}
-              $regionsDiv = $geoTabs->addDiv('regions');
-              //}
-              $countriesDiv = $geoTabs->addDiv('countries');
-              //}
-              $continentsDiv = $geoTabs->addDiv('continents');
-              //}
+              }
             //}
           //}
           $otherDiv->addChange('
