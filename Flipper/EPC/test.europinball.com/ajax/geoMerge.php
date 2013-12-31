@@ -9,7 +9,7 @@
 
   $person = person('login');
   if ($person) {
-    if ($loginPerson->admin) {
+    if ($person->admin) {
       if ($obj) {
         if (isGeo($obj, TRUE)) {
           if ($remove) {
