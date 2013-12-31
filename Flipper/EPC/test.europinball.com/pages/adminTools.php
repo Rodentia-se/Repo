@@ -3,7 +3,6 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-                  debug(microtime(true), 'top');
   $page = new page('Admin tools');
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
@@ -11,7 +10,6 @@
     if ($volunteer->admin) {
       $tabs = new tabs(NULL, 'adminTabs');
         $playerDiv = $tabs->addDiv('playerDiv');
-                  debug(microtime(true), 'player');
           $playerDiv->title = 'Players';
           $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
           $waitingButton = $playerDiv->addButton('Recalculate waiting list');
@@ -32,36 +30,28 @@
           $userDiv->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
-                  debug(microtime(true), 'payment');
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
-                  debug(microtime(true), 'payment1');
           $persons = persons(tournament('active'));
-                  debug(microtime(true), 'payment1.5');
             $select = $persons->getSelectObj();
-                  debug(microtime(true), 'payment1.75');
             $select->addCombobox();
             $paymentDiv->addContent($select);
             $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
           //}
-                  debug(microtime(true), 'payment2');
           $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
           //}
-                  debug(microtime(true), 'payment3');
           $costsDiv = $paymentDiv->addDiv('costsDiv');
             $costsDiv->addLabel('Should pay:');
             $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
           //}
-                  debug(microtime(true), 'payment4');
           $payDiv = $paymentDiv->addDiv('payDiv');
             $payDiv->addLabel('Left to pay:');
             $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
             $paySpan->addClasses('sum');
           //}
-                  debug(microtime(true), 'payment5');
           $setDiv = $paymentDiv->addDiv();
             $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
             $setPaid->disabled = TRUE;
@@ -123,7 +113,6 @@
             });
           ');
         //}
-                  debug(microtime(true), 'payment6');
         $teamDiv = $tabs->addDiv('teamDiv');
           $teamDiv->title = 'Teams';
           $teamDiv->addH2($teamDiv->title, array('class' => 'entry-title'));
@@ -160,24 +149,20 @@
           $tshirtDiv->addParagraph('Coming soon...');
         //}
         $otherDiv = $tabs->addDiv('otherDiv');
-                  debug(microtime(true), 'other');
           $otherDiv->title = 'Other';
           $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
             $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
               foreach (array('city', 'region') as $geoClass) {
                 $arrClass = $geoClass::$arrClass;
                 $geoDiv = $geoTabs->addDiv($arrClass.'Div');
-                  debug(microtime(true), 'before');
                   $objs = $arrClass('all');
-                  debug(microtime(true), 'after');
                   $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
-                  debug(microtime(true), 'beforeSel');
                     $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect'));
-                  debug(microtime(true), 'beforeClone');
                     $actionSel['Keep'] = clone $actionSel['Remove'];
                     $actionSel['Keep']->id = $arrClass.'DupesKeep';
+                    $actionSel['Keep']->name = $arrClass.'DupesKeep';
+                    $actionSel['Keep']->{'data-title'} = $arrClass.'DupesKeep';
                     $actionSel['Keep']->label = 'Keep this '.$geoClass.':';
-                  debug(microtime(true), 'afterSel');
                     foreach(array('Remove', 'Keep') as $action) {
                       $actionDiv = $geoDiv->addDiv();
                         $actionSel[$action]->addCombobox();
@@ -206,8 +191,6 @@
       $page->addContent($paragraph);
     }
   }
-                        debug(microtime(true), 'beforeSubmit');
   $page->submit();
-                        debug(microtime(true), 'afterSubmit');
 
 ?>
