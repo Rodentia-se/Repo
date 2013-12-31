@@ -200,15 +200,15 @@
           $update = $this->db->update($query);
           if (!$update) {
             $failure = TRUE;
-            error('Merge failed at table'.$table);
+            return FALSE;
           }
         }
       }
-      if (!$failure) {
-        $delete = $removeObj->delete(FALSE);
-        $failure = (bool) !$delete;
+      if ($delete) {
+        $remove = $removeObj->delete(FALSE);
+        return ($remove) ? TRUE : FALSE;
       }
-      return (bool) !$failure;
+      return TRUE;
     }
     
     protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = FALSE) {
