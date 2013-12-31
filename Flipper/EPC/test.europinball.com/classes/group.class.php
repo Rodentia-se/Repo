@@ -239,6 +239,7 @@
         $selected_id = array_keys($selected)[0];
       }
       $options[] = new option('Choose...', 0, !$selected);
+                  debug(microtime(true), 'beforeLoop');
       foreach ($this as $obj) {
         $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
         $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
@@ -247,6 +248,7 @@
           $selectedOption = $option;
         }
       }
+                  debug(microtime(true), 'afterLoop');
       return new select($name, $options, $selectedOption, $label, $params);
     }
     
