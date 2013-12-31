@@ -158,11 +158,8 @@
                   $objs = $arrClass('all');
                   $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
                     $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect'));
-                    $actionSel['Keep'] = clone $actionSel['Remove'];
-                    $actionSel['Keep']->id = $arrClass.'DupesKeep';
-                    $actionSel['Keep']->name = $arrClass.'DupesKeep';
-                    $actionSel['Keep']->{'data-title'} = $arrClass.'DupesKeep';
-                    $actionSel['Keep']->label = 'Keep this '.$geoClass.':';
+                    $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':');
+                    $actionSel['Keep']->contents = $actionSel['Remove']->contents;
                     foreach(array('Remove', 'Keep') as $action) {
                       $actionDiv = $geoDiv->addDiv();
                         $actionSel[$action]->addCombobox();
