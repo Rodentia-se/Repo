@@ -154,11 +154,12 @@
             $geoTabs = $otherDiv->addTabs('geoTabs');
               $citiesDiv = $geoTabs->addDiv('cities');
                 $cities = cities('all');
-                $citiesDiv->addH2('Merge city duplicates');
+                $citiesDiv->addH2('Merge city duplicates', array('class' => 'entry-title'));
                   $citiesRemoveDiv = $citiesDiv->addDiv();
                   $citiesDupesRemoveSelect = $cities->getSelectObj('citiesDupesRemove', NULL, 'Remove this city:', array('class' => 'dupeSelect'));
+                  $citiesDupesRemoveSelect->addCombobox();
                   $citiesRemoveDiv->addContent($citiesDupesRemoveSelect);
-                  $citiesRemoveDiv->addLabel('City ID:', NULL, 'short');
+                  $citiesRemoveDiv->addLabel('City ID:', NULL, NULL, 'short');
                   $citiesDupesRemoveIDSpan = $citiesRemoveDiv->addSpan('none', 'citiesDupesRemoveIDSpan');
                 //}
               //}
