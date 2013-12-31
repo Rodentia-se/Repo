@@ -27,11 +27,20 @@
                       $save = $keepObj->save();
                       if ($save) {
                         foreach ($obj::$children as $childClass => $column) {
+                          $child = new $childClass();
+                          $childColumns = $child->getColNames();
+                          if (in_array($column, $childColumns)) {
+                            $nameLine = $column.' = "'.$keepObj->name.'"';
+                          } else if (in_array($column.'name', $childColumns)) {
+                            $nameLine = $column.'Name = "'.$keepObj->name.'"';
+                          } else if (in_array($column.'_name', $childColumns)) {
+                            $nameLine = $column.'_name = "'.$keepObj->name.'"';
+                          }
                           $table = (property_exists($childClass, 'table')) ? $childClass::$table : $childClass;
                           $query = '
                             update '.$table.'
                               set '.$column.'_id = '.$keepObj->id.',
-                              '.$column.' = "'.$keepObj->name.'"
+                              '.$nameLine.'
                             where '.$column.'_id = '.$removeObj->id.'
                           ';
                           $update = $keepObj->db->update($query);
@@ -40,7 +49,7 @@
                           }
                         }
                         if (!$failure) {
-//                          $delete = $removeObj->delete();
+//                          $delete = $removeObj->delete(FALSE);
 $delete = TRUE;
                           if ($delete) {
                             $json = success('Merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
