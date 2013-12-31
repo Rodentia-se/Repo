@@ -34,11 +34,11 @@
     public static $children = array(
       'capitalCity_id' => array(
         'classes' => array('region', 'country'),
-        'fields' => array('capitalCity')
+        'fields' => array('name' => 'capitalCity')
       ),
       'city_id' => array(
         'classes' => array('location', 'owner', 'person', 'player', 'team', 'volunteer', 'matchPlayer', 'matchScore', 'entry', 'score'),
-        'fields' => array('city')
+        'fields' => array('name' => 'city')
       )
     );
 

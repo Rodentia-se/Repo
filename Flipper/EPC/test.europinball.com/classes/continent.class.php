@@ -26,7 +26,7 @@
     public static $children = array(
       'country_id' => array(
         'classes' => array('city', 'region', 'country', 'location', 'owner', 'person', 'player', 'team', 'volunteer'),
-        'fields' => array('name' => 'country')
+        'fields' => array('name' => 'continent')
       )
     );
 
