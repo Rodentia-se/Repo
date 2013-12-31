@@ -155,7 +155,7 @@
               $citiesDiv = $geoTabs->addDiv('cities');
                 $cities = cities('all');
                 $citiesDiv->addH2('Merge city duplicates');
-                  $citiesRemoveDiv->addDiv();
+                  $citiesRemoveDiv = $citiesDiv->addDiv();
                   $citiesDupesRemoveSelect = $cities->getSelectObj('citiesDupesRemove', NULL, 'Remove this city:', array('class' => 'dupeSelect'));
                   $citiesRemoveDiv->addContent($citiesDupesRemoveSelect);
                   $citiesRemoveDiv->addLabel('City ID:', NULL, 'short');
