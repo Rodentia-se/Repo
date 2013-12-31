@@ -176,7 +176,7 @@
                   $mergeButton->{'data-geoclass'} = $geoClass;
                   $mergeButton->{'data-arrclass'} = $arrClass;
                   $tooltip = $mergeButton->addTooltip('');
-                  $tooltip->timer = 15000;
+                  $tooltip->timer = 8000;
                   $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button.', NULL, 'italic');
                 //}
               } 
