@@ -49,8 +49,7 @@
                           }
                         }
                         if (!$failure) {
-//                          $delete = $removeObj->delete(FALSE);
-$delete = TRUE;
+                          $delete = $removeObj->delete(FALSE);
                           if ($delete) {
                             $json = success('Merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
                           } else {
