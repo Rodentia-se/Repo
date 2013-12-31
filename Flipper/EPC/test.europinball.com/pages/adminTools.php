@@ -199,11 +199,11 @@
                   alert(this.text);
                   $(this).remove();
                 });
+                $removeSel.val(0);
+                $keepSel.val(0);
+                $removeSel.focus();
+                $removeSel.select();
               }
-              $removeSel.val(0);
-              $keepSel.val(0);
-              $removeSel.focus();
-              $removeSel.select();
             })
           ', '.mergeButton');
         //}
