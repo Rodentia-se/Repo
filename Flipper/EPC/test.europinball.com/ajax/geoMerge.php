@@ -24,6 +24,7 @@
                       foreach ($props as $prop) {
                         $keepObj->$prop = ($keepObj->$prop) ? $keepObj->$prop : $removeObj->$prop;
                       }
+                      $keepObj->altName = 'huff';
                       $save = $keepObj->save();
                       if ($save) {
                         foreach ($obj::$children as $childClass => $column) {
