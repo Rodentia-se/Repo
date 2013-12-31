@@ -198,7 +198,6 @@
                 $(el).tooltipster("update", data.reason).tooltipster("show").tooltipster("timer", 15000);
                 if (data.valid) {
                   $("." + geoClass + "Select option[value=\'" + $removeSel.val() + "\']").each(function() {
-                    alert(this.text);
                     $(this).remove();
                   });
                   $removeSel.val(0);
