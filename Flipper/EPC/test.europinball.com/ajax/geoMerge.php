@@ -25,6 +25,7 @@
                         $keepObj->$prop = ($keepObj->$prop) ? $keepObj->$prop : $removeObj->$prop;
                       }
  //                     $save = $keepObj->save();
+ debug($keepObj);
  $save = TRUE;
                       if ($save) {
                         foreach ($obj::$children as $childClass => $column) {
