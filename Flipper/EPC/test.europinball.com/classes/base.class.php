@@ -183,13 +183,13 @@
       return $return;
     }
     
-    protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = TRUE) {
+    protected function getQueryArray($cols = NULL, $cond = 'or', $nulls = FALSE) {
       $obj = get_object_vars($this);
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (property_exists($this, 'table') && static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = $col .(($nuls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
-        $values[db::getAlias($col)] = $obj[$prop];
+        $updates[] = $col .(($nulls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $values[db::getAlias($col)] = (isObj($obj[$prop])) ? $obj[$prop]->name : $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
     }
