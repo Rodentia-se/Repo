@@ -1139,7 +1139,7 @@
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
       $clone = clone $this;
-      $this->addParams($params);
+      $this->addParams($params); 
       $this->addClasses($class);
       $this->id = $id;
       return $clone;
