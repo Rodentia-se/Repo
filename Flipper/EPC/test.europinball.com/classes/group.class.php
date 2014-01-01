@@ -4,6 +4,7 @@
     
     public static $objClass = 'group';
     public static $order = array();
+    public static $all = array();
 /*
     public static $order = array(
       'prop' => 'name',
