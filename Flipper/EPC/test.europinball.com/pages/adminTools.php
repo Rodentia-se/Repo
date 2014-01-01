@@ -36,10 +36,8 @@
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
-            $select = $personsSel->getClone('Persons', $prefix.'Persons');
-            $select->id = $prefix.'Persons';
-            $select->addCombobox();
-            $paymentDiv->addContent($select);
+            $paymentSelect = $paymentDiv->addContent($personsSel->getClone('Persons', $prefix.'Persons'));
+            $paymentSelect->addCombobox();
             $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
           //}
           $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
