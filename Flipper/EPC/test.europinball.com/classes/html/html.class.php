@@ -542,7 +542,7 @@
       } else {
         if ($props === $this->contentParam) {
           $this->contents[0] = $value;
-        } else {
+        } else if ($props) {
           $this->params[$props] = $value;
         }
       }
