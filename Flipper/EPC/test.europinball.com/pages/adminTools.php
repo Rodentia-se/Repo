@@ -13,10 +13,15 @@
     $loading = $adminDiv->addLoading();
     if ($volunteer->admin) {
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
-        $playerDiv = $tabs->addDiv('playerDiv');
-          $playerDiv->title = 'Players';
-          $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
-          $waitingButton = $playerDiv->addButton('Recalculate waiting list');
+        $prefix = 'players';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          $profileSelect = ${$prefix.'Div'}->addContent($personsSel->getClone('Edit profile', $prefix.'Profile'));
+          $profileSelect->addCombobox();
+          ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
+          $profileSelect->addIdSpan('Person ID:');
+          $waitingButton = ${$prefix.'Div'}->addButton('Recalculate waiting list');
           $waitingButton->addTooltip('');
           $waitingButton->addClick('
             var el = this;
@@ -26,7 +31,7 @@
               $(el).tooltipster("update", data.reason).tooltipster("show");
             })
           ');
-          $playerDiv->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
           $userDiv->title = 'Users';
