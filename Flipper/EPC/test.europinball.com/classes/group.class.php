@@ -223,7 +223,7 @@
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
       if ($this->select) {
-        $select = $this->select->getClone($label, $name, NULL, array $params = NULL);
+        $select = $this->select->getClone($label, $name, NULL, $params);
         $select->selectOption($selected);
         return $select;
       } else {
