@@ -7,14 +7,14 @@
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
-        debug(count($players), 'players');
+        debug(count($players), 'players1');
 
   if ($obj) {
     if ($id) {
       $object = $obj($id);
       if ($object) {
         $players = players($object);
-        debug(count($players), 'players');
+        debug(count($players), 'players2');
       }
     }
   } else if ($id) {
@@ -22,12 +22,12 @@
   } else if ($search) {
     $players = players($search);
   }
-        debug(count($players), 'players');
+        debug(count($players), 'players3');
   if ($player) {
     $players = players($player);
   }
 
-        debug(count($players), 'players');
+        debug(count($players), 'players4');
   switch ($type) {
     case 'registered':
       if ($players && count($players) > 0) {
@@ -81,7 +81,7 @@
       jsonEcho($json);
     break;
     case 'profileEdit':
-      debug($players, 'players');
+      debug($players, 'players5');
       if (isPlayer($players[0])) {
         echo $players[0]->getEdit('profile');
       } else {
@@ -89,6 +89,6 @@
       }
     break;
   }
-        debug(count($players), 'players');
+        debug(count($players), 'players6');
 
 ?>
