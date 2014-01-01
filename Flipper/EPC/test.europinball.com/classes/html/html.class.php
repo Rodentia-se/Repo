@@ -1139,9 +1139,9 @@
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
       $clone = clone $this;
-      $this->addParams($params); 
-      $this->addClasses($class);
-      $this->id = $id;
+      $clone->addParams($params); 
+      $clone->addClasses($class);
+      $clone->id = $id;
       return $clone;
     }
 
