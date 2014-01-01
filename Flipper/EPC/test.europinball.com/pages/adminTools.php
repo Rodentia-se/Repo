@@ -18,8 +18,8 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
-            $profileSelect = $persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile');
-            $profileSelect2 = $persons->getSelectObj($prefix.'Profile2', NULL, 'Edit profile');
+            $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile'));
+            $profileSelect2 = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile2', NULL, 'Edit profile'));
             $profileSelect2->delOptions();
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
