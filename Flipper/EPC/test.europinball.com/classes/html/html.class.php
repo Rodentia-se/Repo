@@ -204,12 +204,14 @@
           static::$indenter = $value;
         break;
         case 'id':
-          if (in_array($value, html::$ids)) {
-            error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE, TRUE);
+          $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
+          if (in_array($id, html::$ids)) {
+            error('Duplicate ID detected! ('.$id.')', NULL, FALSE, TRUE);
           } else {
-            html::$ids[] = $value;
+            html::$ids[] = $id;
           }
-          $this->params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
+          html::$ids = array_diff(html::$ids, array($this->params['id']));
+          $this->params['id'] = $id;
         break;
         default:
           if (array_key_exists($prop, $this->settings)) {
@@ -1138,8 +1140,8 @@
       $htmlClass = get_class($this);
       $clone = clone $this;
       $this->addParams($params);
-      $this->id = $id;
       $this->addClasses($class);
+      $this->id = $id;
       return $clone;
     }
 
