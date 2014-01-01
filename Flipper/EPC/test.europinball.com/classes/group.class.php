@@ -230,7 +230,6 @@
         $selected = array_keys($selected)[0];
       }
       if (!$this->select) {
-      } else {
         $name = ($name) ? $name : get_class($this);
         $label = ($label) ? $label : ucfirst($name);
         $params['id'] = ($params['id']) ? $params['id'] : $name;
