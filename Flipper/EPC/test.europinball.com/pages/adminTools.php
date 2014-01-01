@@ -21,16 +21,17 @@
           $profileSelect->addCombobox();
           ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
           $profileSelect->addIdSpan('Person ID:');
-          $waitingButton = ${$prefix.'Div'}->addButton('Recalculate waiting list');
-          $waitingButton->addTooltip('');
-          $waitingButton->addClick('
-            var el = this;
-            $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
-            $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
-            .done(function(data) {
-              $(el).tooltipster("update", data.reason).tooltipster("show");
-            })
-          ');
+          $waitingDiv = ${$prefix.'Div'}->addDiv();
+            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+            $waitingButton->addTooltip('');
+            $waitingButton->addClick('
+              var el = this;
+              $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+              })
+            ');
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
