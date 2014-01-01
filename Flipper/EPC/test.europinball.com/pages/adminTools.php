@@ -9,8 +9,10 @@
     $volunteer = volunteer('login');
     $persons = persons(tournament('active'));
     $personsSel = $persons->getSelectObj();
+    $adminDiv = new div('adminDiv');
+    $loading = $adminDiv->addLoading();
     if ($volunteer->admin) {
-      $tabs = new tabs(NULL, 'adminTabs');
+      $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $playerDiv = $tabs->addDiv('playerDiv');
           $playerDiv->title = 'Players';
           $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
@@ -35,7 +37,6 @@
           $prefix = 'payment';
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
-          $loading = $paymentDiv->addLoading();
             $paymentSelect = $paymentDiv->addContent($personsSel->getClone('Persons', $prefix.'Persons'));
             $paymentSelect->addCombobox();
             $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
@@ -193,6 +194,7 @@
             var $removeSel = $("#" + arrClass + "DupesRemove");
             var $keepSel = $("#" + arrClass + "DupesKeep");
             if ($removeSel.val() && $keepSel.val) {
+              $("body").addClass("modal");
               $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
               .done(function(data) {
@@ -210,6 +212,7 @@
                   $("#" + arrClass + "DupesRemove_combobox").focus();
                   $("#" + arrClass + "DupesRemove_combobox").select();
                 }
+                $("body").removeClass("modal");
               })
             } else {
               $(el).tooltipster("update", "Please choose " + arrClass + " to remove and to keep...").tooltipster("show");
