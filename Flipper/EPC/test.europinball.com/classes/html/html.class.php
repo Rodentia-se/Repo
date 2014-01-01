@@ -1134,7 +1134,7 @@
       return $before.$open.$html.$close.$after;
     }
     
-    public function clone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+    public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
       $clone = new $htmlClass();
       debug(get_class_vars($this));
