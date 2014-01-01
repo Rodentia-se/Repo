@@ -7,12 +7,14 @@
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
+        debug(count($players), 'players');
 
   if ($obj) {
     if ($id) {
       $object = $obj($id);
       if ($object) {
         $players = players($object);
+        debug(count($players), 'players');
       }
     }
   } else if ($id) {
@@ -20,10 +22,12 @@
   } else if ($search) {
     $players = players($search);
   }
+        debug(count($players), 'players');
   if ($player) {
     $players = players($player);
   }
 
+        debug(count($players), 'players');
   switch ($type) {
     case 'registered':
       if ($players && count($players) > 0) {
@@ -85,5 +89,6 @@
       }
     break;
   }
+        debug(count($players), 'players');
 
 ?>
