@@ -18,7 +18,9 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
-            $profileSelect = $profileSelectDiv->addClone($personsSel, 'Edit profile', $prefix.'Profile');
+            $profileSelect = $persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile');
+            $profileSelect2 = $persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile');
+            $profileSelect2->delOptions();
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
             $profileSelect->addChange('
