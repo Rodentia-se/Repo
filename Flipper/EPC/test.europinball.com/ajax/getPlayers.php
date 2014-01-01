@@ -7,12 +7,14 @@
   $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
-  
+        debug($players, 'players');
+
   if ($obj) {
     if ($id) {
       $object = $obj($id);
       if ($object) {
         $players = players($object);
+      debug($players, 'players');
       }
     }
   } else if ($id) {
