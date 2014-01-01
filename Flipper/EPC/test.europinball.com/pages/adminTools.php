@@ -21,9 +21,19 @@
             $profileSelect = $profileSelectDiv->addClone($personsSel, 'Edit profile', $prefix.'Profile');
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
+            $profileSelect->addChange('
+              $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+              .done(function(data) {
+                $("#" + this.id + "EditDiv").html(data);
+              })
+            ');
             ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
+  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
+  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
+  $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
+  $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;          //}
+          $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
           //}
-          $profileEditDiv = ${$prefix.'Div'}->addDiv();
           $waitingDiv = ${$prefix.'Div'}->addDiv();
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');

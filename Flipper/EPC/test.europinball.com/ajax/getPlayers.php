@@ -77,8 +77,10 @@
       jsonEcho($json);
     break;
     case 'edit':
-      if ($player) {
-        echo $player->getEdit('profile');
+      if ($players[0]) {
+        echo $players[0]->getEdit('profile');
+      } else {
+        echo 'Could not find player to edit';
       }
     break;
   }
