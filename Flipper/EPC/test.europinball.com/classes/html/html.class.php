@@ -1137,7 +1137,7 @@
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
       $clone = new $htmlClass();
-      debug(get_class_vars(get_class($this)));
+      debug(get_object_vars($this));
       foreach(array('befores', 'headers', 'contents', 'footers', 'afters') as $prop) {
         $clone->$prop = $this->$prop;
       }
