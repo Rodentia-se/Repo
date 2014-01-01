@@ -76,6 +76,11 @@
       }
       jsonEcho($json);
     break;
+    case 'edit':
+      if ($player) {
+        echo $player->getEdit('profile');
+      }
+    break;
   }
 
 ?>

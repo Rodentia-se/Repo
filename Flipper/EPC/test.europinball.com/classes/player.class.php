@@ -195,7 +195,7 @@
       if (!is_object($this->person)) {
         $this->populate(1);
       }
-      if (!is_object($this->person)) {
+      if (is_object($this->person)) {
         return $this->person->setUsername($username);
       }
       return FALSE;
@@ -205,7 +205,7 @@
       if (!is_object($this->person)) {
         $this->populate(1);
       }
-      if (!is_object($this->person)) {
+      if (is_object($this->person)) {
         return $this->person->setPaid($amount);
       }
       return FALSE;
@@ -219,6 +219,16 @@
       }
     }
     
+    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      if (!is_object($this->person)) {
+        $this->populate(1);
+      }
+      if (is_object($this->person)) {
+        return $this->person->getEdit($type, $title, $tournament, $prefix);
+      }
+      return FALSE;
+    }
+
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers
       $cells = $this->getRegRow(TRUE);
