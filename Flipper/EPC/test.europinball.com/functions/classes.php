@@ -8,7 +8,7 @@
     }
   });
   
-  function obj($class = 'base', $data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function obj($class = 'base', $data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     $obj = new $class($data, $search, $depth);
     return ($obj->failed) ? FALSE : $obj;
   }
@@ -26,7 +26,7 @@
     }
   }
 
-  function city($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function city($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -43,7 +43,7 @@
     return (isGroup($cities) && get_class($cities) == 'cities');
   }
 
-  function color($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function color($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -60,7 +60,7 @@
     return (isGroup($colors) && get_class($colors) == 'colors');
   }
 
-  function continent($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function continent($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -77,7 +77,7 @@
     return (isGroup($continents) && get_class($continents) == 'continents');
   }
 
-  function country($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function country($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -94,7 +94,7 @@
     return (isGroup($countries) && get_class($countries) == 'countries');
   }
 
-  function division($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function division($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -131,7 +131,7 @@
     return FALSE;
   }
   
-  function entry($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function entry($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -148,7 +148,7 @@
     return (isGroup($entries) && get_class($entries) == 'entries');
   }
   
-  function game($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function game($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -165,7 +165,7 @@
     return (isGroup($games) && get_class($games) == 'games');
   }
   
-  function gender($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function gender($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -182,7 +182,7 @@
     return (isGroup($genders) && get_class($genders) == 'genders');
   }
   
-  function location($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function location($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -199,7 +199,7 @@
     return (isGroup($locations) && get_class($locations) == 'locations');
   }
   
-  function machine($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function machine($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -216,7 +216,7 @@
     return (isGroup($machines) && get_class($machines) == 'machines');
   }
   
-  function manufacturer($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function manufacturer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -233,7 +233,7 @@
     return (isGroup($manufacturers) && get_class($manufacturers) == 'manufacturers');
   }
   
-  function match($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function match($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -250,7 +250,7 @@
     return (isGroup($matches) && get_class($matches) == 'matches');
   }
   
-  function matchPlayer($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function matchPlayer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -267,7 +267,7 @@
     return (isGroup($matchPlayers) && get_class($matchPlayers) == 'matchPlayers');
   }
   
-  function owner($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function owner($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
   
@@ -284,7 +284,7 @@
     return (isGroup($owners) && get_class($owners) == 'owners');
   }
   
-  function period($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function period($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -301,7 +301,7 @@
     return (isGroup($periods) && get_class($periods) == 'periods');
   }
   
-  function person($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function person($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -318,7 +318,7 @@
     return (isGroup($persons) && get_class($persons) == 'persons');
   }
   
-  function player($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function player($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -335,7 +335,7 @@
     return (isGroup($players) && get_class($players) == 'players');
   }
   
-  function qualGroup($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function qualGroup($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -352,7 +352,7 @@
     return (isGroup($qualGroups) && get_class($qualGroups) == 'qualGroups');
   }
   
-  function region($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function region($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -369,7 +369,7 @@
     return (isGroup($regions) && get_class($regions) == 'regions');
   }
   
-  function score($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function score($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -386,7 +386,7 @@
     return (isGroup($scores) && get_class($scores) == 'scores');
   }
   
-  function set($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function set($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -403,7 +403,7 @@
     return (isGroup($sets) && get_class($sets) == 'sets');
   }
   
-  function task($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function task($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -420,7 +420,7 @@
     return (isGroup($tasks) && get_class($tasks) == 'tasks');
   }
   
-  function team($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function team($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -437,7 +437,7 @@
     return (isGroup($teams) && get_class($teams) == 'teams');
   }
   
-  function tournament($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function tournament($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -471,7 +471,7 @@
     return FALSE;
   }
 
-  function tshirt($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function tshirt($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -488,7 +488,7 @@
     return (isGroup($tshirts) && get_class($tshirts) == 'tshirts');
   }
   
-  function tshirtOrder($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function tshirtOrder($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
@@ -505,7 +505,7 @@
     return (isGroup($tshirtOrders) && get_class($tshirtOrders) == 'tshirtOrders');
   }
   
-  function volunteer($data = NULL, $search = config::NOSEARCH, $depth = config::$parentDepth) {
+  function volunteer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
