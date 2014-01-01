@@ -229,10 +229,7 @@
       } else if (is_array($selected)) {
         $selected = array_keys($selected)[0];
       }
-      if ($this->select) {
-        $select = $this->select->getClone($label, $name, NULL, $params);
-        $select->selectOption($selected);
-        return $select;
+      if (!$this->select) {
       } else {
         $name = ($name) ? $name : get_class($this);
         $label = ($label) ? $label : ucfirst($name);
@@ -246,11 +243,11 @@
             $selected = $option;
           }
         }
-        $this->select = new select($name, $options, NULL, $label, $params);
-        $select = $this->select->getClone($label, $name, NULL, $params);
-        $select->selectOption($selected);
-        return $select;
+        $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
+      $select = $this->select->getClone($label, $name, NULL, $params);
+      $select->selectOption($selected);
+      return $select;
     }
     
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
