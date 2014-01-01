@@ -77,7 +77,7 @@
       jsonEcho($json);
     break;
     case 'profileEdit':
-      debug($players);
+      debug($players, 'players');
       if (isPlayer($players[0])) {
         echo $players[0]->getEdit('profile');
       } else {
