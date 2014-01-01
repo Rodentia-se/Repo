@@ -21,8 +21,8 @@
           $profileSelect->addCombobox();
           ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
           $profileSelect->addIdSpan('Person ID:');
-          $waitingDiv = ${$prefix.'Div'}->addDiv();
-            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+          $waitingP = ${$prefix.'Div'}->addParagraph();
+            $waitingButton = $waitingP->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
             $waitingButton->addClick('
               var el = this;
