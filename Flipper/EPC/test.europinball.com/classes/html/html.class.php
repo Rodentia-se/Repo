@@ -1137,13 +1137,12 @@
     }
     
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
-      $htmlClass = get_class($this);
       debug($this->contents[0], 'orig');
       $clone = clone $this;
+      debug($clone->contents, 'clone');
       $clone->addParams($params); 
       $clone->addClasses($class);
       $clone->id = $id;
-      debug($clone->contents, 'clone');
       return $clone;
     }
 
