@@ -1143,12 +1143,20 @@
       $clone->addParams($params); 
       $clone->addClasses($class);
       $clone->id = $id;
-      debug($clone->contents[0], 'orig');
+      debug($clone->contents[0], 'clone');
       return $clone;
     }
 
     public function __toString() {
       return $this->getHtml();
+    }
+    
+    public function __clone() {
+      foreach ($this as $key => $val) {
+        if (is_object($val) || (is_array($val))) {
+          $this->{$key} = unserialize(serialize($val));
+        }
+      }
     }
     
     protected function debug($obj, $title, $die, $stop) {
