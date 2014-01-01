@@ -1136,33 +1136,9 @@
     
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
-      $clone = new $htmlClass();
-      debug(get_object_vars($this));
-      foreach(array('befores', 'headers', 'contents', 'footers', 'afters') as $prop) {
-        $clone->$prop = $this->$prop;
-      }
-      /*
-      foreach(array('params', 'classes', 'css', 'accessories', 'settings', ''))
-    protected $params = array();
-    protected $classes = array();
-    protected $css = array();
-    protected $accessories = array();
-    protected $settings = array(
-      'display' => 'block',
-      'hidden' => FALSE,
-      'escape' => TRUE,
-      'entities' => FALSE,
-      'disabled' => FALSE
-    );
-    public $localIndents;
-    public $element = 'span';
-    public $selfClose = FALSE;
-    public $crlf = "\n";
-    public $contentCrlf = "\n";
-    public $contentParam = FALSE;
-    */
+      $clone = clone $this;
       $this->addParams($params);
-      $this->params['id'] = $id;
+      $this->id = $id;
       $this->addClasses($class);
       return $clone;
     }
