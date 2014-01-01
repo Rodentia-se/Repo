@@ -1136,6 +1136,12 @@
       return $before.$open.$html.$close.$after;
     }
     
+    public function addClone($html, $spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $clone = $html->getClone($spec, $id, $class, $params);
+      $this->addContent($clone);
+      return $clone;
+    }
+    
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $clone = clone $this;
       $clone->addParams($params); 

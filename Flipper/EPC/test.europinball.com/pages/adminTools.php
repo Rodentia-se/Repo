@@ -17,12 +17,14 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          $profileSelect = ${$prefix.'Div'}->addContent($personsSel->getClone('Edit profile', $prefix.'Profile'));
-          $profileSelect->addCombobox();
-          ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
-          $profileSelect->addIdSpan('Person ID:');
-          $waitingP = ${$prefix.'Div'}->addParagraph();
-            $waitingButton = $waitingP->addButton('Recalculate waiting list');
+          $profileSelectDiv = ${$prefix.'Div'}->addDiv();
+            $profileSelect = $profileSelectDiv->addClone($personsSel, 'Edit profile', $prefix.'Profile');
+            $profileSelect->addCombobox();
+            ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
+            $profileSelect->addIdSpan('Person ID:');
+          //}
+          $waitingDiv = ${$prefix.'Div'}->addDiv();
+            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
             $waitingButton->addClick('
               var el = this;
