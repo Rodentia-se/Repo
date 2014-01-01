@@ -38,7 +38,7 @@
           $loading = $paymentDiv->addLoading();
             $paymentSelect = $paymentDiv->addContent($personsSel->getClone('Persons', $prefix.'Persons'));
             $paymentSelect->addCombobox();
-            $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
+            $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
           //}
           $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
@@ -59,12 +59,12 @@
             $setPaid->addChange('
               var el = this;
               $("body").addClass("modal");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", value: $(el).val()})
+              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$paymentSelect->id.'").val(), prop: "paid", value: $(el).val()})
               .done(function(data) {
                 if (data.valid) {
-                  $("#'.$select->id.'").change();
+                  $("#'.$paymentSelect->id.'").change();
                   setTimeout(function() {
-                    $("#'.$select->id.'_combobox").focus().select()
+                    $("#'.$paymentSelect->id.'_combobox").focus().select()
                   }, 500);
                 } else {
                   showMsg(data.reason);
@@ -72,7 +72,7 @@
               });
             ');
           //}
-          $select->addChange('
+          $paymentSelect->addChange('
             $("body").addClass("modal");
             var num = 3;
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
