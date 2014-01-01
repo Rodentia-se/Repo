@@ -1143,7 +1143,7 @@
       $clone->addParams($params); 
       $clone->addClasses($class);
       $clone->id = $id;
-      debug($clone->contents[0], 'clone');
+      debug($clone->contents, 'clone');
       return $clone;
     }
 
