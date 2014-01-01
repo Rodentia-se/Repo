@@ -194,7 +194,7 @@
     }
     
     public function getClone($label = NULL, $id = NULL, $class = NULL, array $params = NULL) {
-      $clone = parent::clone($spec, $id, $class, $params);
+      $clone = parent::getClone($spec, $id, $class, $params);
       $clone->label = $label;
       return $clone;
     }
