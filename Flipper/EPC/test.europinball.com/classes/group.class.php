@@ -222,6 +222,13 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
+      if (isObj($selected)) {
+        $selected = $selected->id;
+      } else if (isId($selected)) {
+        $selected = $selected;
+      } else if (is_array($selected)) {
+        $selected = array_keys($selected)[0];
+      }
       if ($this->select) {
         $select = $this->select->getClone($label, $name, NULL, $params);
         $select->selectOption($selected);
@@ -230,24 +237,19 @@
         $name = ($name) ? $name : get_class($this);
         $label = ($label) ? $label : ucfirst($name);
         $params['id'] = ($params['id']) ? $params['id'] : $name;
-        if (isObj($selected)) {
-          $selected_id = $selected->id;
-        } else if (isId($selected)) {
-          $selected_id = $selected;
-        } else if (is_array($selected)) {
-          $selected_id = array_keys($selected)[0];
-        }
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {
-          $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
-          $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
+          $selected = (isId($selected)) ? $selected : (($obj->name == $selected) ? $obj->id : NULL);
+          $option = new option($obj->name, $obj->id, (($selected === $obj->id) ? TRUE : FALSE));
           $options[] = $option;
-          if ($selected_id == $obj->id) {
-            $selectedOption = $option;
+          if ($selected == $obj->id) {
+            $selected = $option;
           }
         }
-        $this->select = new select($name, $options, $selectedOption, $label, $params);
-        return $this->select;
+        $this->select = new select($name, $options, NULL, $label, $params);
+        $select = $this->select->getClone($label, $name, NULL, $params);
+        $select->selectOption($selected);
+        return $select;
       }
     }
     
