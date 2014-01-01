@@ -76,8 +76,9 @@
       }
       jsonEcho($json);
     break;
-    case 'edit':
-      if ($players[0]) {
+    case 'profileEdit':
+      debug($players);
+      if (isPlayer($players[0])) {
         echo $players[0]->getEdit('profile');
       } else {
         echo 'Could not find player to edit';
