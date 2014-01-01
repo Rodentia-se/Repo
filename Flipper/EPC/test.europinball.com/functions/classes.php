@@ -12,13 +12,26 @@
     return ($obj->failed) ? FALSE : $obj;
   }
 
+  function objs($class = 'group', $data = NULL, $search = NULL, $cond = 'and') {
+    if ($data == 'all') {
+      if (!$clas::$all){
+        $class::$all = new $class($data, $search, $cond);
+      }
+      return $class::$all;
+    } else if ($data === FALSE) {
+      return FALSE;
+    } else {
+      return new $class($data, $search, $cond);
+    }
+  }
+
   function city($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new city($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function cities($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new cities($data, $search);
+  function cities($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
   
   function isCity($city, $string = FALSE) {
@@ -31,12 +44,12 @@
   }
 
   function color($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new color($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function colors($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new colors($data, $search);
+  function colors($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
   
   function isColor($city, $string = FALSE) {
@@ -49,12 +62,12 @@
   }
 
   function continent($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new continent($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function continents($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new continents($data, $search);
+  function continents($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isContinent($continent, $string = FALSE) {
@@ -67,12 +80,12 @@
   }
 
   function country($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new country($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function countries($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new countries($data, $search);
+  function countries($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isCountry($country, $string = FALSE) {
@@ -85,12 +98,12 @@
   }
 
   function division($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new division($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function divisions($data = NULL, $prop = NULL) {
-    return ($data === FALSE) ? FALSE : new divisions($data, $prop);
+  function divisions($data = NULL, $prop = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isDivision($division, $string = FALSE) {
@@ -123,12 +136,12 @@
   }
   
   function entry($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new entry($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function entries($data = NULL, $prop = NULL) {
-    return ($data === FALSE) ? FALSE : new entries($data, $prop);
+  function entries($data = NULL, $prop = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isEntry($entry, $string = FALSE) {
@@ -141,12 +154,12 @@
   }
   
   function game($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new game($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function games($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new games($data, $search);
+  function games($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isGame($game, $string = FALSE) {
@@ -159,12 +172,12 @@
   }
   
   function gender($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new gender($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function genders($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new genders($data, $search);
+  function genders($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isGender($gender, $string = FALSE) {
@@ -177,12 +190,12 @@
   }
   
   function location($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new location($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function locations($data = NULL, $prop = NULL) {
-    return ($data === FALSE) ? FALSE : new locations($data, $prop);
+  function locations($data = NULL, $prop = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isLocation($location, $string = FALSE) {
@@ -195,12 +208,12 @@
   }
   
   function machine($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new machine($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function machines($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new machines($data, $search);
+  function machines($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isMachine($machine, $string = FALSE) {
@@ -213,12 +226,12 @@
   }
   
   function manufacturer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new manufacturer($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function manufacturers($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new manufacturers($data, $search);
+  function manufacturers($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isManufacturer($manufacturer, $string = FALSE) {
@@ -231,12 +244,12 @@
   }
   
   function match($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new match($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function matches($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new matches($data, $search);
+  function matches($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isMatch($match, $string = FALSE) {
@@ -249,12 +262,12 @@
   }
   
   function matchPlayer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new matchPlayer($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function matchPlayers($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new matchPlayers($data, $search);
+  function matchPlayers($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isMatchPlayer($matchPlayer, $string = FALSE) {
@@ -267,12 +280,12 @@
   }
   
   function owner($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new owner($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
   
-  function owners($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new owners($data, $search);
+  function owners($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
   
   function isOwner($owner, $string = FALSE) {
@@ -285,12 +298,12 @@
   }
   
   function period($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new period($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function periods($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new periods($data, $search);
+  function periods($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isPeriod($period, $string = FALSE) {
@@ -303,12 +316,12 @@
   }
   
   function person($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new person($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function persons($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new persons($data, $search);
+  function persons($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isPerson($person, $string = FALSE) {
@@ -321,12 +334,12 @@
   }
   
   function player($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new player($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function players($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new players($data, $search);
+  function players($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isPlayer($player, $string = FALSE) {
@@ -339,12 +352,12 @@
   }
   
   function qualGroup($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new qualGroup($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function qualGroups($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new qualGroups($data, $search);
+  function qualGroups($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isQualGroup($qualGroup, $string = FALSE) {
@@ -357,12 +370,12 @@
   }
   
   function region($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new region($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function regions($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new regions($data, $search);
+  function regions($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isRegion($region, $string = FALSE) {
@@ -375,12 +388,12 @@
   }
   
   function score($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new score($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function scores($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new scores($data, $search);
+  function scores($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isScore($score, $string = FALSE) {
@@ -393,12 +406,12 @@
   }
   
   function set($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new set($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function sets($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new sets($data, $search);
+  function sets($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isMatchSet($set, $string = FALSE) {
@@ -411,12 +424,12 @@
   }
   
   function task($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new task($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function tasks($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new tasks($data, $search);
+  function tasks($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isTask($task, $string = FALSE) {
@@ -429,12 +442,12 @@
   }
   
   function team($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new team($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function teams($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new teams($data, $search);
+  function teams($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isTeam($team, $string = FALSE) {
@@ -447,12 +460,12 @@
   }
   
   function tournament($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new tournament($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function tournaments($data = NULL, $prop = NULL) {
-    return ($data === FALSE) ? FALSE : new tournaments($data, $prop);
+  function tournaments($data = NULL, $prop = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isTournament($tournament, $string = FALSE) {
@@ -482,12 +495,12 @@
   }
 
   function tshirt($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new tshirt($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function tshirts($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new tshirts($data, $search);
+  function tshirts($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isTshirt($tshirt, $string = FALSE) {
@@ -500,12 +513,12 @@
   }
   
   function tshirtOrder($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new tshirtOrder($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function tshirtOrders($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new tshirtOrders($data, $search);
+  function tshirtOrders($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isTshirtOrder($tshirtOrder, $string = FALSE) {
@@ -518,12 +531,12 @@
   }
   
   function volunteer($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
-    $obj = new volunteer($data, $search, $depth);
+    $obj = new __FUNCTION__($data, $search, $depth);
     return obj($obj);
   }
 
-  function volunteers($data = NULL, $search = NULL) {
-    return ($data === FALSE) ? FALSE : new volunteers($data, $search);
+  function volunteers($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
   }
 
   function isVolunteer($volunteer, $string = FALSE) {
