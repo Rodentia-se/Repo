@@ -206,7 +206,7 @@
         case 'id':
           $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
           if (in_array($id, html::$ids) && $id != $this->params['id']) {
-            error('Duplicate ID detected! ('.$id.' = '.$this->params['id'].')', NULL, FALSE, TRUE);
+            error('Duplicate ID detected! ('.$id.')', NULL, FALSE, TRUE);
           } else {
             html::$ids[] = $id;
           }
@@ -1138,10 +1138,12 @@
     
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $htmlClass = get_class($this);
+      debug(count($this->contents), 'orig');
       $clone = clone $this;
       $clone->addParams($params); 
       $clone->addClasses($class);
       $clone->id = $id;
+      debug(count($clone->contents), 'orig');
       return $clone;
     }
 
