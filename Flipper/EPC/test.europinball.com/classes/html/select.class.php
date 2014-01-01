@@ -197,7 +197,7 @@
       $span = new span('none', $this->id.'IDSpan');
       if (isHtml($label) && get_class($label) == 'label') {
         $spanLabel = $label;
-      else if ($label) {
+      } else if ($label) {
         $spanLabel = new label($label, NULL, NULL, 'short');
       }
       if ($spanLabel) {
