@@ -423,7 +423,7 @@
           $regions = regions('all');
           $countries = countries('all');
           $continents = continents('all');
-          $div = new div($prefix.'editDiv')
+          $div = new div($prefix.'editDiv');
           return '
             <div id="editDiv">
             	<h2 class="entry-title">'.(($title) ? $title : 'Edit profile').'</h2>
