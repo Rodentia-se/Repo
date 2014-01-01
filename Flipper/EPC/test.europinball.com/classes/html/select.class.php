@@ -193,6 +193,23 @@
       return $chosen;
     }
     
+    public function addIdSpan($label = 'ID:') {
+      $span = new span('none', $this->id.'IDSpan');
+      if (isHtml($label) && get_class($label) == 'label') {
+        $spanLabel = $label;
+      else if ($label) {
+        $spanLabel = new label($label, NULL, NULL, 'short');
+      }
+      if ($spanLabel) {
+        $this->addAfter($spanLabel);
+      }
+      $this->addAfter($span);
+      $this->addChange('
+        $("#" + this.id + "IDSpan").html($(this).val());
+      ');
+      return $span;
+    }
+    
     public function getClone($label = NULL, $name = NULL, $class = NULL, array $params = NULL) {
       $clone = parent::getClone($label, $name, $class, $params);
       $clone->name = $name;
