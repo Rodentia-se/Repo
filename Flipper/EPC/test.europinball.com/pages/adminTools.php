@@ -28,10 +28,7 @@
               })
             ');
             ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
-  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
-  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered')) ? $_REQUEST['type'] : null;
-  $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
-  $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;          //}
+          //}
           $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
           //}
           $waitingDiv = ${$prefix.'Div'}->addDiv();
