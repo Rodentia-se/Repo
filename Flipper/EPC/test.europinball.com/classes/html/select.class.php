@@ -193,8 +193,8 @@
       return $chosen;
     }
     
-    public function addIdSpan($label = 'ID:') {
-      $span = new span('none', $this->id.'IDSpan');
+    public function addValueSpan($label = 'ID:') {
+      $span = new span('none', $this->id.'ValueSpan');
       if (isHtml($label) && get_class($label) == 'label') {
         $spanLabel = $label;
       } else if ($label) {
@@ -205,7 +205,7 @@
       }
       $this->addAfter($span);
       $this->addChange('
-        $("#" + this.id + "IDSpan").html($(this).val());
+        $("#" + this.id + "ValueSpan").html($(this).val());
       ');
       return $span;
     }

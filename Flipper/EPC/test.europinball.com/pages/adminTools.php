@@ -20,9 +20,10 @@
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
             $profileSelect = $profileSelectDiv->addClone($personsSel, 'Edit profile', $prefix.'Profile');
             $profileSelect->addCombobox();
+            $profileSelect->addValueSpan('Person ID:');
             ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
-            $profileSelect->addIdSpan('Person ID:');
           //}
+          $profileEditDiv = ${$prefix.'Div'}->addDiv();
           $waitingDiv = ${$prefix.'Div'}->addDiv();
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
@@ -34,6 +35,7 @@
                 $(el).tooltipster("update", data.reason).tooltipster("show");
               })
             ');
+          //}
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
