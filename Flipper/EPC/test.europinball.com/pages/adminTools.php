@@ -7,6 +7,8 @@
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
+    $persons = persons(tournament('active'));
+    $personsSel = $persons->getSelectObj();
     if ($volunteer->admin) {
       $tabs = new tabs(NULL, 'adminTabs');
         $playerDiv = $tabs->addDiv('playerDiv');
@@ -30,11 +32,11 @@
           $userDiv->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
+          $prefix = 'payment';
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
           $loading = $paymentDiv->addLoading();
-          $persons = persons(tournament('active'));
-            $select = $persons->getSelectObj();
+            $select = $personsSel->clone('Persons', $prefix.'Persons');
             $select->addCombobox();
             $paymentDiv->addContent($select);
             $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
