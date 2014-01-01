@@ -28,7 +28,7 @@
                 $("#" + el.id + "EditDiv").html(data);
               })
             ');
-            ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
+            ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
           //}
           $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
           //}
