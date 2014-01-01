@@ -540,7 +540,7 @@
           $this->addParams($prop, $val);
         }
       } else {
-        if ($props == $this->contentParam) {
+        if ($props === $this->contentParam) {
           $this->contents[0] = $value;
         } else {
           $this->params[$props] = $value;
