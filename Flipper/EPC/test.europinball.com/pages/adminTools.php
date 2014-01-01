@@ -22,9 +22,10 @@
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
             $profileSelect->addChange('
+              var el = this;
               $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
               .done(function(data) {
-                $("#" + this.id + "EditDiv").html(data);
+                $("#" + el.id + "EditDiv").html(data);
               })
             ');
             ${$prefix.'Div'}->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
