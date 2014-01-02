@@ -245,7 +245,7 @@
         $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
       $select = $this->select->getClone($label, $name, NULL, $params);
-      debug(isId($selected), 'selected');
+      debug(get_class($selected), 'selected');
       debug($selected, 'selected');
       $select->selectOption($selected);
       return $select;
