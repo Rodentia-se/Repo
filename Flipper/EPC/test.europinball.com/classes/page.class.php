@@ -125,12 +125,19 @@
           showMsg("Fail: " + error + " trying " + settings.url);
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true);
-        $(".toCopy").click(function() {
+        $(".toCopy").tooltipster({
+          theme: ".tooltipster-light",
+          content: "Copied text to clipboard",
+          trigger: "custom",
+          position: "top",
+          timer: 3000
+        })
+        .click(function() {
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
             copy: $(this).text(),
             afterCopy: function() {
-              showMsg("Copied to clipboard");
+              $(this).tooltipster("show");
             }
           });
         });
