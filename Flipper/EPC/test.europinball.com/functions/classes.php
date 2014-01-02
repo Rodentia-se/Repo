@@ -19,6 +19,7 @@
       if (!$class::$all){
         $class::$all = new $class('all');
       }
+      debug(get_class($class::$all));
       return $class::$all;
     } else if ($data === FALSE) {
       return FALSE;
