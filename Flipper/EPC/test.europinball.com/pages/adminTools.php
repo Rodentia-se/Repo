@@ -50,7 +50,7 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //}
-          ${$prefix.'Div'}->->addH2('Email addresses', array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
           $mailAddresses = $persons->array_map(function($person){
             if ($person->mailAddress) {
