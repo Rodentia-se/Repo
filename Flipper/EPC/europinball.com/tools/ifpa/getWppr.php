@@ -8,7 +8,7 @@
   $division = division($division_id);
   
   $players = players($division);
-  $players->order('wpprPlace');
+  $players->order('wpprPlace', 'numeric');
   $players->filter('wpprPlace', TRUE);
     
   echo "Tournament Name,Date,Finishing Position,Player,Country,IFPA ID\n";
