@@ -555,10 +555,10 @@
           if ($param == 'style') {
              if (count($this->css) > 0) {
               $this->style = trim($this->style);
-              $this->style = ($this->style && substr($this->style, -1) != ';') ? trim($this->style).';' : trim($this->style);
+              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.'; '.$this->getCss() : $this->style.' '.$this->getCss();
             }
             if ($this->style && $this->style != " ") {
-              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : trim($this->style.' '.$this->getCss());
+              return ($string) ? 'style="'.trim($this->style).'"' : trim($this->style);
             } else {
               return NULL;
             }
