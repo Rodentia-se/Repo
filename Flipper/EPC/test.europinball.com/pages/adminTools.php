@@ -192,7 +192,7 @@
             } else if ($owner->contactPerson->mailAddress) {
               return $owner->contactPerson->mailAddress;
             }
-          });
+          }));
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
           ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
