@@ -129,9 +129,11 @@
           $(this).select();
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
-            copy: $(this).text()
+            copy: $(this).text(),
+            aftercopy: function() {
+              showMsg("Copied to clipboard");
+            }
           });
-          showMsg("Copied to clipboard");
         });
       ');
       $footer .= '
