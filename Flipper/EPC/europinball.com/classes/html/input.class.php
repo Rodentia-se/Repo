@@ -31,7 +31,7 @@
       }
       $classes = $params['class'];
       unset($params['class']);
-      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name, $classes);
+      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $params['id'], $classes);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
@@ -45,7 +45,7 @@
           return $this->params['data-previous'];
         break;
         case 'label':
-          return $this->accessories['$prop'];
+          return $this->accessories[$prop];
         break;
         default:
           return parent::__get($prop);

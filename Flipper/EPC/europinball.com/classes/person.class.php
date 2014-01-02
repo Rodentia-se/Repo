@@ -349,8 +349,9 @@
             foreach ($tshirts as $tshirt) {
               $tshirtDiv = $orderDiv->addDiv($prefix.'tshirtsDiv_'.$tshirt->id);
                 $tshirtOrder = tshirtOrder($this, $tshirt);
+                $spinnerClass = 'tshirtSpinner';
                 $spinnerParams = array(
-                  'class' => 'tshirtSpinner enterChange',
+                  'class' => $spinnerClass.' enterChange',
                   'data-tshirt_id' => $tshirt->id,
                   'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0),
                   'data-eachcost' => config::$tshirtCost
@@ -363,31 +364,6 @@
                 //}
               //}
             }
-            $orderDiv->addChange('
-              var el = this;
-              var tshirtOrder_id = $(el).data("tshirtorder_id");
-              var number = $(el).val();
-              var each = $(el).data("eachcost");
-              $(el).tooltipster("update", "Updating order...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
-              .done(function(data) {
-                $(el).tooltipster("update", data.reason).tooltipster("show");
-                if (data.newId || data.newId == 0) {
-                  $(el).data("tshirtorder_id", data.newId);
-                }
-                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
-                var cost = 0;
-                var num = 0;
-                $(".tshirtSpinner").each(function() {
-                  cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
-                  num += parseInt($(this).val());
-                });
-                $("#'.$prefix.'tshirtsSubTotalDivMoneySpanAmount").html(cost);
-                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
-                $(".numOfTshirts").val(num);
-                $("#PaymentTshirts").change();
-              });
-            ', '.tshirtSpinner');
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
               $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
@@ -406,6 +382,31 @@
               //}
             //}
             $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payment tab.', NULL, 'italic');
+            $orderDiv->addChange('
+              var el = this;
+              var tshirtOrder_id = $(el).data("tshirtorder_id");
+              var number = $(el).val();
+              var each = $(el).data("eachcost");
+              $(el).tooltipster("update", "Updating order...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.newId || data.newId == 0) {
+                  $(el).data("tshirtorder_id", data.newId);
+                }
+                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
+                var cost = 0;
+                var num = 0;
+                $(".'.$spinnerClass.'").each(function() {
+                  cost += parseInt($("#" + this.id + "_moneySpanAmount").html());
+                  num += parseInt($(this).val());
+                });
+                $("#'.$subTotalDiv->id.'MoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
+                $(".numOfTshirts").val(num);
+                $("#PaymentTshirts").change();
+              });
+            ', '.'.$spinnerClass);
           //}
           $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $tshirtsDiv;
@@ -414,39 +415,156 @@
         case 'player':
         case 'person':
         default:
-          foreach (config::$activeSingleDivisions as $divisionType) {
-            $player = ($this->id) ? player($this, $divisionType) : NULL;
-            $checkboxes .= page::getInput(($player), $prefix.$divisionType, $divisionType, 'checkbox', 'edit', ucfirst($divisionType), FALSE, ((in_array($divisionType, config::$editDivisions)) ? FALSE : TRUE));
-          }
-          $genders = genders('all');
-          $cities = cities('all');
-          $regions = regions('all');
-          $countries = countries('all');
-          $continents = continents('all');
-          return '
-            <div id="editDiv">
-            	<h2 class="entry-title">'.(($title) ? $title : 'Edit profile').'</h2>
-              <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
-              '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
-              <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
-              <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
-              <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
-              <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-              <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
-              <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
-              <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
-              <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-              <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
-              <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
-              <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
-              <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-              <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
-              <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
-              <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
-              <div>'.page::getLabel('Divisions').$checkboxes.'</div>
-              <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-            </div>
-          ';
+          $comboboxClass = 'combobox';
+          $editClass = 'edit';
+          $dateClass = 'date';
+          $profileDiv = new div($prefix.'editDiv');
+            $profileDiv->addH2((($title) ? $title : 'Edit profile'), array('class' => 'entry-title'));
+            $profileDiv->addParagraph('Note: All changes below are INSTANT when you press enter or move away from the field.', NULL, 'italic');
+            if ($player->waiting) {
+              $profileDiv->addParagraph($this->name.' is on the WAITING LIST for this tournament, and we will be contacted if a participation sport becomes available (make sure the contact information below is correct).');
+            }
+            $fields = array(
+              'firstName' => 'First name',
+              'lastName' => 'Last name',
+              'shortName' => 'Tag',
+              'streetAddress' => 'Address',
+              'zipCode' => 'ZIP',
+              'telephoneNumber' => 'Phone',
+              'mobileNumber' => 'Cell phone',
+              'mailAddress' => 'Emil',
+              'birthDate' => 'Born',
+            );
+            foreach ($fields as $field => $label) {
+              $editDivs[$field] = new div($prefix.$field.'Div');
+                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? 'date ' : '').$editClass));
+              //}
+            }
+            $profileDiv->addContent($editDivs['firstName']);
+            $profileDiv->addContent($editDivs['lastName']);
+            $profileDiv->addContent($editDivs['shortName']);
+            $div = $profileDiv->addDiv($prefix.'gender_idDiv');
+              $sel = $div->addContent(genders('all')->getSelectObj('gender_id', $this->gender_id, 'Gender', array('class' => $comboboxClass)));
+              $sel->id = $prefix.'gender_id';
+            //}
+            $profileDiv->addContent($editDivs['streetAddress']);
+            $profileDiv->addContent($editDivs['zipCode']);
+            foreach (array('city' => 'cities', 'region' => 'regions') as $geo => $geoArr) {
+              $sel = $div->addDoublebox($geoArr('all')->getSelectObj($geo.'_id', $this->{$geo.'_id'}, ucfirst($geo), array('class' => $comboboxClass)), FALSE, $geo);
+              //}
+            }
+            foreach (array('country' => 'countries', 'continent' => 'continents') as $geo => $geoArr) {
+              $div = $profileDiv->addDiv($prefix.$geo.'_idDiv');
+                $sel = $div->addContent($geoArr('all')->getSelectObj($geo.'_id', $this->{$geo.'_id'}, ucfirst($geo), array('class' => $comboboxClass)));
+              //}
+            } 
+            $profileDiv->addContent($editDivs['telephoneNumber']);
+            $profileDiv->addContent($editDivs['mobileNumber']);
+            $profileDiv->addContent($editDivs['mailAddress']);
+            $div = $profileDiv->addDiv($prefix.'divisionsDiv', 'divisionsDiv');
+              $div->addLabel('Divisions', NULL, NULL, 'normal');
+              foreach (config::$activeSingleDivisions as $divisionType) {
+                $player = ($this->id) ? player($this, $divisionType) : NULL;
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($player), array('id' => $prefix.$divisionType, 'class' => $editClass));
+              }
+            //}
+            $box['main']->disabled = TRUE;
+            $box['main']->checked = TRUE;
+            $profileDiv->addContent($editDivs['birthDate']);
+            $profileDiv->addScriptCode('
+              $(".'.$comboboxClass.'").combobox()
+              .change(function(){
+                var el = this;
+                var combobox = document.getElementById(el.id + "_combobox");
+                $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
+                .done(function(data) {
+                  $(combobox).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(combobox).val($(el).children(":selected").text())
+                    if (data.parents) {
+                      $.each(data.parents, function(key, geo) {
+                        if (!stop) {
+                          if (data.parent_obj == geo) {
+                            if (data.parent_id != $("#" + geo + "_id").val()) {
+                              $("#'.$prefix.'" + geo + "_id").val(data.parent_id);
+                              $("#'.$prefix.'" + geo + "_id").change();
+                            }
+                            var stop = true;
+                          } else if ($("#'.$prefix.'" + geo + "_id").val() != 0) {
+                            $("#'.$prefix.'" + geo + "_id").val(0);
+                            $("#'.$prefix.'" + geo + "_id_combobox").val("");
+                          }
+                        }
+                      });
+                    }
+                    $(el).data("previous", $(el).val());
+                  } else {
+                    $(el).val($(el).data("previous"));
+                  }
+                })
+                .fail(function(jqHXR,status,error) {
+                  $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+                })
+              });
+              $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
+                if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+                  $("#" + this.id.replace("_combobox", "")).val(0);
+                  $("#" + this.id.replace("_combobox", "")).change();
+                }
+              })
+              .tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                trigger: "custom",
+                position: "right",
+                offsetX: 38,
+                timer: 3000
+              });
+              $(".'.$editClass.'").change(function(){
+                var el = this;
+                if (el.id == "'.$prefix.'shortName") {
+                  $(el).val($(el).val().toUpperCase());
+                } 
+                var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
+                var region_id = (this.id == "'.$prefix.'city") ? $("#'.$prefix.'region_id").val() : null;
+                var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
+                var continent_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'continent_id").val() : null;
+                $(el).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
+                  } else {
+                    if ($(el).is(":checkbox")) {
+                      el.checked = ($(el).data("previous"));
+                    } else {
+                      $(el).val($(el).data("previous"));
+                    }
+                  }
+                })
+                .fail(function(jqHXR,status,error) {
+                  $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+                })
+              })
+              .tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                position: "right",
+                trigger: "custom",
+                timer: 3000
+              });
+              $(".'.$dateClass.'").datepicker({
+                dateFormat: "yy-mm-dd",
+                yearRange: "-100:-0",
+                defaultDate: "-30y",
+                changeYear: true, 
+                changeMonth: true 
+              });
+            ');
+          //}
+          return $profileDiv;
         break;
       }
     }

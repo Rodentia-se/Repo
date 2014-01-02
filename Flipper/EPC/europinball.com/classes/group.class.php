@@ -4,6 +4,8 @@
     
     public static $objClass = 'group';
     public static $order = array();
+    public static $all = array();
+    public $select;
 /*
     public static $order = array(
       'prop' => 'name',
@@ -93,17 +95,11 @@
       $this->order();
     }
     
-    public function toArray($allArrays = FALSE, $recursive = FALSE) {
-      $array = array();
-      foreach ($this as $obj) {
-        $array[] = ($allArrays) ? $obj->toArray($recursive) : $obj;
-      }
-      return $array;
-    }
-    
     public function __call($func, $argv) {
       if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
+      } else if (in_array($func, array('array_map'))) {
+        return call_user_func_array($func, array_merge($argv, array($this->getArrayCopy())));
       } else {
         return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
       }
@@ -228,26 +224,26 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
-      $name = ($name) ? $name : get_class($this);
-      $label = ($label) ? $label : ucfirst($name);
-      $params['id'] = ($params['id']) ? $params['id'] : $name;
       if (isObj($selected)) {
-        $selected_id = $selected->id;
-      } else if (isId($selected)) {
-        $selected_id = $selected;
+        $selected = $selected->id;
       } else if (is_array($selected)) {
-        $selected_id = array_keys($selected)[0];
+        $selected = array_keys($selected)[0];
       }
-      $options[] = new option('Choose...', 0, !$selected);
-      foreach ($this as $obj) {
-        $selected_id = ($selected_id) ? $selected_id : (($obj->name == $selected) ? $obj->id : NULL);
-        $option = new option($obj->name, $obj->id, (($selected_id == $obj->id) ? TRUE : FALSE));
-        $options[] = $option;
-        if ($selected_id == $obj->id) {
-          $selectedOption = $option;
+      if (!$this->select) {
+        $name = ($name) ? $name : get_class($this);
+        $label = ($label) ? $label : ucfirst($name);
+        $params['id'] = ($params['id']) ? $params['id'] : $name;
+        $options[] = new option('Choose...', 0, !$selected);
+        foreach ($this as $obj) {
+          $selected = (isId($selected)) ? $selected : (($obj->name === $selected) ? $obj->id : NULL);
+          $option = new option($obj->name, $obj->id);
+          $options[] = $option;
         }
+        $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
-      return new select($name, $options, $selectedOption, $label, $params);
+      $select = $this->select->getClone($label, $name, NULL, $params);
+      $select->selectOption($selected);
+      return $select;
     }
     
     public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
@@ -340,5 +336,13 @@
       return ($fail) ? FALSE : TRUE;
     }
 
+    public function toArray($allArrays = FALSE, $recursive = FALSE) {
+      $array = array();
+      foreach ($this as $obj) {
+        $array[] = ($allArrays) ? $obj->toArray($recursive) : $obj;
+      }
+      return $array;
+    }
+    
   }
 ?>

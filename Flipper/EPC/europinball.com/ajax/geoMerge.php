@@ -30,7 +30,7 @@
                         if ($merge) {
                           $delete = $removeObj->delete(FALSE);
                           if ($delete) {
-                            $json = success('Merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
+                            $json = success('Successfully merged '.$removeObj->name.' ID '.$remove.' into '.$keepObj->name.' ID '.$keep.'. '.$removeObj->name.' ID '.$remove.' has been removed.');
                           } else {
                             $json = failure('It seems the merging operation succeeded, but could not remove '.$removeObj->name.' ID '.$remove.' after the merge');
                           }

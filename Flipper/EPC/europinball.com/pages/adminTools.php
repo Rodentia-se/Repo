@@ -7,22 +7,59 @@
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
+    $persons = persons(tournament('active'));
+    $adminDiv = new div('adminDiv');
+    $loading = $adminDiv->addLoading();
     if ($volunteer->admin) {
-      $tabs = new tabs(NULL, 'adminTabs');
-        $playerDiv = $tabs->addDiv('playerDiv');
-          $playerDiv->title = 'Players';
-          $playerDiv->addH2($playerDiv->title, array('class' => 'entry-title'));
-          $waitingButton = $playerDiv->addButton('Recalculate waiting list');
-          $waitingButton->addTooltip('');
-          $waitingButton->addClick('
-            var el = this;
-            $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
-            $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
-            .done(function(data) {
-              $(el).tooltipster("update", data.reason).tooltipster("show");
-            })
-          ');
-          $playerDiv->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+      $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
+        $prefix = 'players';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          $profileSelectDiv = ${$prefix.'Div'}->addDiv();
+            $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile'));
+            $profileSelect->addCombobox();
+            $profileSelect->addValueSpan('Person ID:');
+            $profileSelect->addChange('
+              var el = this;
+              if ($(el).val() == 0) {
+                $("#" + el.id + "EditDiv").html("");
+              } else {
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "EditDiv").html(data);
+                  $("body").removeClass("modal");
+                });
+              }
+            ');
+            ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
+          //}
+          $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
+          //}
+          $waitingDiv = ${$prefix.'Div'}->addDiv();
+            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+            $waitingButton->addTooltip('');
+            $waitingButton->addClick('
+              var el = this;
+              $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+              })
+            ');
+            $waitingButton->addCss('margin-top', '15px');
+          //}
+          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
+;
+          $mailAddresses = $persons->array_map(function($person){
+            if ($person->mailAddress) {
+              return $person->mailAddress;
+            }
+          });
+          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
           $userDiv->title = 'Users';
@@ -30,14 +67,12 @@
           $userDiv->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
+          $prefix = 'payment';
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
-          $loading = $paymentDiv->addLoading();
-          $persons = persons(tournament('active'));
-            $select = $persons->getSelectObj();
-            $select->addCombobox();
-            $paymentDiv->addContent($select);
-            $paymentDiv->addFocus('#'.$select->id.'_combobox', TRUE);
+            $paymentSelect = $paymentDiv->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
+            $paymentSelect->addCombobox();
+            $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
           //}
           $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
@@ -58,12 +93,12 @@
             $setPaid->addChange('
               var el = this;
               $("body").addClass("modal");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$select->id.'").val(), prop: "paid", value: $(el).val()})
+              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$paymentSelect->id.'").val(), prop: "paid", value: $(el).val()})
               .done(function(data) {
                 if (data.valid) {
-                  $("#'.$select->id.'").change();
+                  $("#'.$paymentSelect->id.'").change();
                   setTimeout(function() {
-                    $("#'.$select->id.'_combobox").focus().select()
+                    $("#'.$paymentSelect->id.'_combobox").focus().select()
                   }, 500);
                 } else {
                   showMsg(data.reason);
@@ -71,7 +106,7 @@
               });
             ');
           //}
-          $select->addChange('
+          $paymentSelect->addChange('
             $("body").addClass("modal");
             var num = 3;
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
@@ -192,6 +227,7 @@
             var $removeSel = $("#" + arrClass + "DupesRemove");
             var $keepSel = $("#" + arrClass + "DupesKeep");
             if ($removeSel.val() && $keepSel.val) {
+              $("body").addClass("modal");
               $(el).tooltipster("update", "Merging " + arrClass + "...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/geoMerge.php", {obj: geoClass, remove: $removeSel.val(), keep: $keepSel.val()})
               .done(function(data) {
@@ -209,6 +245,7 @@
                   $("#" + arrClass + "DupesRemove_combobox").focus();
                   $("#" + arrClass + "DupesRemove_combobox").select();
                 }
+                $("body").removeClass("modal");
               })
             } else {
               $(el).tooltipster("update", "Please choose " + arrClass + " to remove and to keep...").tooltipster("show");
@@ -216,7 +253,7 @@
           ', '.mergeButton');
         //}
       //}
-      $page->addContent($tabs);
+      $page->addContent($adminDiv);
     } else {
       $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);

@@ -103,6 +103,18 @@ span.info {
   margin-right: 10px;
 }
 
+.divisionsDiv .label:not(.normal) {
+  width: auto;
+}
+
+label.long {
+  width: 200px;
+}
+
+label.normal {
+  width: 130px;
+}
+
 label.short {
   width: 92px;
 }

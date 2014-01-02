@@ -204,12 +204,14 @@
           static::$indenter = $value;
         break;
         case 'id':
-          if (in_array($value, html::$ids)) {
-            error('Duplicate ID detected! ('.$params['id'].')', NULL, FALSE, TRUE);
+          $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
+          if (in_array($id, html::$ids) && $id != $this->params['id']) {
+            error('Duplicate ID detected! ('.$id.')', NULL, FALSE);
           } else {
-            html::$ids[] = $value;
+            html::$ids[] = $id;
           }
-          $this->params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
+          html::$ids = array_diff(html::$ids, array($this->params['id']));
+          $this->params['id'] = $id;
         break;
         default:
           if (array_key_exists($prop, $this->settings)) {
@@ -538,9 +540,9 @@
           $this->addParams($prop, $val);
         }
       } else {
-        if ($props == $this->contentParam) {
+        if ($props === $this->contentParam) {
           $this->contents[0] = $value;
-        } else {
+        } else if ($props) {
           $this->params[$props] = $value;
         }
       }
@@ -553,10 +555,10 @@
           if ($param == 'style') {
              if (count($this->css) > 0) {
               $this->style = trim($this->style);
-              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.'; '.$this->getCss() : $this->style.' '.$this->getCss();
             }
             if ($this->style && $this->style != " ") {
-              return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : trim($this->style.' '.$this->getCss());
+              return ($string) ? 'style="'.trim($this->style).'"' : trim($this->style);
             } else {
               return NULL;
             }
@@ -865,6 +867,12 @@
       $this->addContent($element);
       return $element;
     }
+
+    public function addDoublebox($select, $combobox = TRUE, $inputId = NULL, array $params = NULL) {
+      $element = new doublebox($select, $combobox, $inputId, $params);
+      $this->addContent($element);
+      return $element;
+    }
     
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
@@ -1133,9 +1141,31 @@
       */
       return $before.$open.$html.$close.$after;
     }
+    
+    public function addClone($html, $spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $clone = $html->getClone($spec, $id, $class, $params);
+      $this->addContent($clone);
+      return $clone;
+    }
+    
+    public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      $clone = clone $this;
+      $clone->addParams($params);
+      $clone->addClasses($class.' '.$params['class']);
+      $clone->id = ($id) ? $id : (($params['id']) ? $params['id'] : static::newId());
+      return $clone;
+    }
 
     public function __toString() {
       return $this->getHtml();
+    }
+    
+    public function __clone() {
+      foreach ($this as $key => $val) {
+        if (is_object($val) || (is_array($val))) {
+          $this->{$key} = unserialize(serialize($val));
+        }
+      }
     }
     
     protected function debug($obj, $title, $die, $stop) {

@@ -3,6 +3,7 @@
   class tournaments extends group {
     
     public static $objClass = 'tournament';
+    public static $all = array();
     public static $order = array(
       'prop' => 'id',
       'type' => 'numeric',
