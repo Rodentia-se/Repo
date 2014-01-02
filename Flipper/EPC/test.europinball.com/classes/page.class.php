@@ -13,6 +13,7 @@
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'combobox' => 'contrib/jquery.combobox.js',
       'forms' => 'contrib/jquery.form.min.js',
+      'clip' => 'contrib/jquery.zclip.min.js',
       'tooltipster' => 'contrib/jquery.tooltipster.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
@@ -23,6 +24,7 @@
     public $jqueryui = TRUE;
     public $tooltipster = TRUE;
     public $combobox = TRUE;
+    public $clip = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
     public $modal = FALSE;
@@ -122,7 +124,15 @@
         $(document).ajaxError(function(event, jqHXR, settings, error) {
           showMsg("Fail: " + error + " trying " + settings.url);
         });
-        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true);
+        $(".toCopy").click("
+          $(this).select();
+          $(this).zclip({
+            path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
+            copy: $(this).text();
+          });
+          showMsg("Copied to clipboard");
+        ")
       ');
       $footer .= '
           </body>
