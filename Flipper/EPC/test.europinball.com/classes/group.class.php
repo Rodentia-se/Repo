@@ -222,6 +222,7 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
+      debug(isId($selected), 'selected');
       debug($selected, 'selected');
       if (isObj($selected)) {
         $selected = $selected->id;
@@ -244,6 +245,7 @@
         $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
       $select = $this->select->getClone($label, $name, NULL, $params);
+      debug(isId($selected), 'selected');
       debug($selected, 'selected');
       $select->selectOption($selected);
       return $select;
