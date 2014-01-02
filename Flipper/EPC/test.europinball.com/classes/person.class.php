@@ -437,10 +437,9 @@
             );
             foreach ($fields as $field => $label) {
               $editDivs[$field] = new div($prefix.$field.'Div');
-                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => $editClass));
+                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? 'date ' : '').$editClass));
               //}
             }
-            $editDivs['birthDate']->addClasses('date');
             $profileDiv->addContent($editDivs['firstName']);
             $profileDiv->addContent($editDivs['lastName']);
             $profileDiv->addContent($editDivs['shortName']);
