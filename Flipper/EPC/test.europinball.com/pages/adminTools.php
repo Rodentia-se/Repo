@@ -68,15 +68,11 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //$waitingDiv
-          $mailAddresses = array_filter($persons->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            }
-          }));
+          $mailAddresses = $persons->getAllOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $persons->getAllOf('mailAddress')), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
             ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
           }
         //${$prefix.'Div'}
@@ -186,17 +182,13 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('Coming soon...');
           $owners = owners('active');
-          $mailAddresses = array_filter($owners->array_map(function($owner){
-            if ($owner->mailAddress) {
-              return $owner->mailAddress;
-            } else if ($owner->contactPerson->mailAddress) {
-              return $owner->contactPerson->mailAddress;
-            }
-          }));
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          $mailAddresses = $owners->getAllOf('mailAddress');
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('Coming soon...');
+          }
         //${$prefix.'Div'}
         $prefix = 'scores';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
@@ -215,30 +207,26 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-          $mailAddresses = $volunteers->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            }
-          });
-          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          $mailAddresses = $volunteers->getAllOf('mailAddress');
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('Coming soon...');
+          }
         //${$prefix.'Div'}
         $prefix = 't-shirts';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
-          $mailAddresses = $tshirtOrders->array_map(function($order){
-            if ($order->person->mailAddress) {
-              return $order->person->mailAddress;
-            }
-          });
-          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          $mailAddresses = $volunteers->getAllOf('mailAddress');
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('Coming soon...');
+          }
         //${$prefix.'Div'}
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
