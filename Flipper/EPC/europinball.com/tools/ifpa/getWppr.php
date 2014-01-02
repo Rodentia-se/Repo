@@ -1,5 +1,5 @@
 <?php
-  define('__ROOT__', dirname(dirname(__FILE__))); 
+  define('__ROOT__', dirname(dirname(dirname(__FILE__)))); 
   require_once(__ROOT__.'/functions/init.php');
   
   header('Content-Type: text/plain; charset=utf-8');
