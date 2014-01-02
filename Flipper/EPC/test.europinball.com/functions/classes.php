@@ -14,12 +14,10 @@
   }
 
   function objs($class = 'group', $data = NULL, $search = NULL, $cond = 'and') {
-    debug($class);
     if ($data == 'all') {
       if (!$class::$all){
         $class::$all = new $class('all');
       }
-      debug(get_class($class::$all));
       return $class::$all;
     } else if ($data === FALSE) {
       return FALSE;
