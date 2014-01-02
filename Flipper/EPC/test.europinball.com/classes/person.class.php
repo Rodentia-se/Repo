@@ -465,7 +465,7 @@
               $div->addLabel('Divisions', NULL, NULL, 'normal');
               foreach (config::$activeSingleDivisions as $divisionType) {
                 $player = ($this->id) ? player($this, $divisionType) : NULL;
-                $box[$divisionType] = $div->addCheckbox($divisionType, ($player), array('id' => $prefix.$divisionType));
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($player), array('id' => $prefix.$divisionType, 'class' => $editClass));
               }
             //}
             $box['main']->disabled = TRUE;
