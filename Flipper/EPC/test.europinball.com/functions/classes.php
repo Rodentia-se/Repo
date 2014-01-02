@@ -14,7 +14,6 @@
   }
 
   function objs($class = 'group', $data = NULL, $search = NULL, $cond = 'and') {
-    debug($class);
     if ($data == 'all') {
       if (!$class::$all){
         $class::$all = new $class($data, $search, $cond);
