@@ -422,7 +422,7 @@
             $profileDiv->addH2((($title) ? $title : 'Edit profile'), array('class' => 'entry-title'));
             $profileDiv->addParagraph('Note: All changes below are INSTANT when you press enter or move away from the field.', NULL, 'italic');
             if ($player->waiting) {
-              $profileDiv->addParagraph('You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.');
+              $profileDiv->addParagraph($this->name.' is on the WAITING LIST for this tournament, and we will be contacted if a participation sport becomes available (make sure the contact information below is correct).');
             }
             $fields = array(
               'firstName' => 'First name',
@@ -471,32 +471,6 @@
             $box['main']->disabled = TRUE;
             $box['main']->checked = TRUE;
             $profileDiv->addContent($editDivs['birthDate']);
-/*
-          return '
-            <div id="editDiv">
-            	<h2 class="entry-title">'.(($title) ? $title : 'Edit profile').'</h2>
-              <p class="italic">Note: All changes below are INSTANT when you press enter or move away from the field.</p>
-              '.(($player->waiting) ? '<p>You are on the WAITING LIST for this tournament, and we will contact you id a participation sport becomes available for you.</p>' : '').'
-              <div>'.page::getInput($this->firstName, $prefix.'firstName', 'firstName', 'text', 'edit', 'First name').'</div>
-              <div>'.page::getInput($this->lastName, $prefix.'lastName', 'lastName', 'text', 'edit', 'Last name').'</div>
-              <div>'.page::getInput($this->shortName, $prefix.'shortName', 'shortName', 'text', 'edit', 'Tag').'</div>
-              <div>'.$genders->getSelect('gender_id', 'combobox', 'Gender', $this->gender_id).'</div>
-              <div>'.page::getInput($this->streetAddress, $prefix.'streetAddress', 'streetAddress', 'text', 'edit', 'Address').'</div>
-              <div>'.page::getInput($this->zipCode, $prefix.'zipCode', 'zipCode', 'text', 'edit', 'ZIP').'</div>
-              <div id="cityDiv">'.page::getInput(NULL, $prefix.'city', 'city', 'text', 'edit', 'New city', TRUE).'</div>
-              <div id="city_idDiv">'.$cities->getSelect('city_id', 'combobox', 'City', $this->city_id, TRUE).'</div>
-              <div id="regionDiv">'.page::getInput(NULL, $prefix.'region', 'region', 'text', 'edit', 'New region', TRUE).'</div>
-              <div id="region_idDiv">'.$regions->getSelect('region_id', 'combobox', 'Region', $this->region_id, TRUE).'</div>
-              <div>'.$countries->getSelect('country_id', 'combobox', 'Country', $this->country_id).'</div>
-              <div>'.$continents->getSelect('continent_id', 'combobox', 'Continent', $this->continent_id).'</div>
-              <div>'.page::getInput($this->telephoneNumber, $prefix.'telephoneNumber', 'telephoneNumber', 'text', 'edit', 'Phone').'</div>
-              <div>'.page::getInput($this->mobileNumber, $prefix.'mobileNumber', 'mobileNumber', 'text', 'edit', 'Cell phone').'</div>
-              <div>'.page::getInput($this->mailAddress, $prefix.'mailAddress', 'mailAddress', 'text', 'edit', 'Email').'</div>
-              <div>'.page::getLabel('Divisions').$checkboxes.'</div>
-              <div>'.page::getInput($this->birthDate, $prefix.'birthDate', 'birthDate', 'text', 'edit date', 'Born').'</div>
-            </div>
-          ';
-*/
             $profileDiv->addScriptCode('
               $(".'.$comboboxClass.'").combobox()
               .change(function(){
