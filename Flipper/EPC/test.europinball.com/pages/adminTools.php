@@ -22,10 +22,16 @@
             $profileSelect->addValueSpan('Person ID:');
             $profileSelect->addChange('
               var el = this;
-              $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
-              .done(function(data) {
-                $("#" + el.id + "EditDiv").html(data);
-              })
+              if ($(el).val() == 0) {
+                $("#" + el.id + "EditDiv").html("");
+              } else {
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "EditDiv").html(data);
+                  $("body").removeClass("modal");
+                });
+              }
             ');
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
           //}
