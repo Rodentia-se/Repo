@@ -50,14 +50,14 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //}
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
+;
           $mailAddresses = $persons->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
             }
           });
-          debug(count(array_filter($mailAddresses)));
           $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
