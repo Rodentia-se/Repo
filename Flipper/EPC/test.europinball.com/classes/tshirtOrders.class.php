@@ -23,8 +23,6 @@
           $secondId = $$secondParam->id;
         }
         $data = '
-          left join tournamentTShirt tt 
-            on o.tournamentTShirt_id = tt.id
           where tt.tournamentEdition_id = '.$context->id.'
             '.((isObj($$secondParam)) ? 'and o.'.$secondColumn.' = '.$secondId : '').'
             and tt.id is not null
