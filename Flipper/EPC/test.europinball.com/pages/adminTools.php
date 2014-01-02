@@ -52,10 +52,11 @@
           //}
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
           $mailAddresses = $persons->array_map(function($person){
-            return $person->mailAddress;
+            if ($person->mailAddress) {
+              return $person->mailAddress;
+            }
           });
-          debug($mailAddresses);
-          $mailP = ${$prefix.'Div'}->addParagraph();
+          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');
