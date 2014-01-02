@@ -30,8 +30,11 @@
         $this->contentParam = FALSE;
       }
       $classes = $params['class'];
+      if ($type == 'select') {
+        debug($classes, 'classes');
+      }
       unset($params['class']);
-      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $name, $classes);
+      parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $params['id'], $classes);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
     
