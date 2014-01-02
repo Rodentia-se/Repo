@@ -1150,9 +1150,9 @@
     
     public function getClone($spec = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $clone = clone $this;
-      $clone->addParams($params); 
-      $clone->addClasses($class);
-      $clone->id = $id;
+      $clone->addParams($params);
+      $clone->addClasses($class.' '.$params['class']);
+      $clone->id = ($id) ? $id : (($params['id']) ? $params['id'] : static::newId());
       return $clone;
     }
 
