@@ -22,13 +22,12 @@
             $profileSelect->addValueSpan('Person ID:');
             $profileSelect->addChange('
               var el = this;
-              if ($(el).val() == 0) {
-                $("#" + el.id + "EditDiv").html("");
-                $("#" + el.id + "PhotoDiv").html("");
-              } else {
+              $("#" + el.id + "Tabs").hide();
+              if ($(el).val() != 0) {
                 $("body").addClass("modal");
                 var modals = 0;
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+                $("#" + el.id + "Tabs").show();
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   modals++;
@@ -48,7 +47,7 @@
             ');
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
           //$profileSelectDiv
-          $profileTabs = ${$prefix.'Div'}->addTabs();
+          $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
             $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv');
             //$profileEditDiv
             $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv');
