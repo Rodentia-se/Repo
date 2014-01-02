@@ -206,7 +206,7 @@
         case 'id':
           $id = preg_replace('/[^a-zA-Z0-9_\-]/', '', $value);
           if (in_array($id, html::$ids) && $id != $this->params['id']) {
-        error('Duplicate ID detected! ('.$id.')', NULL, FALSE);
+            error('Duplicate ID detected! ('.$id.')', NULL, FALSE);
           } else {
             html::$ids[] = $id;
           }
