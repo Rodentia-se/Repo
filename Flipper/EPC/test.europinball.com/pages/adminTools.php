@@ -68,15 +68,17 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //$waitingDiv
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-          $mailAddresses = $persons->array_map(function($person){
+          $mailAddresses = array_filter($persons->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
             }
-          });
-          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
-          ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+          }));
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+          }
         //${$prefix.'Div'}
         $prefix = 'users';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
