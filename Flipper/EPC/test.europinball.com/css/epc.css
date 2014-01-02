@@ -103,7 +103,7 @@ span.info {
   margin-right: 10px;
 }
 
-.divisionsDiv .label {
+.divisionsDiv .label:not(.normal) {
   width: auto;
 }
 
