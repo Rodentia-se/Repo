@@ -452,6 +452,7 @@
             foreach (array('city' => 'cities', 'region' => 'regions') as $geo => $geoArr) {
               $sel = $div->addDoublebox($geoArr('all')->getSelectObj($geo.'_id', $this->{$geo.'_id'}, ucfirst($geo), array('class' => $comboboxClass)), FALSE, $geo);
               //}
+              debug(count($geoArr('all')), 'geo');
             }
             foreach (array('country' => 'countries', 'continent' => 'continents') as $geo => $geoArr) {
               $div = $profileDiv->addDiv($prefix.$geo.'_idDiv');
