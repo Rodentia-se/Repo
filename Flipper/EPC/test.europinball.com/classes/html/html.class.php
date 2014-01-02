@@ -60,6 +60,9 @@
         }
       }
       $this->addParams($params);
+      if ($this->element == 'select') {
+        debug($class, 'html class');
+      }
       $this->addClasses($class);
       $this->addCss($css);
       if (is($contents)) {
