@@ -69,7 +69,7 @@
             $waitingButton->addCss('margin-top', '15px');
           //$waitingDiv
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
           $mailAddresses = $persons->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
@@ -185,7 +185,7 @@
           ${$prefix.'Div'}->addParagraph('Coming soon...');
           $owners = owners('active');
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address can be copied from here: ');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
           $mailAddresses = $owners->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
@@ -214,7 +214,7 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address can be copied from here: ');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
           $mailAddresses = $volunteers->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
@@ -229,7 +229,7 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address can be copied from here: ');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
           $mailAddresses = $tshirtOrders->array_map(function($order){
             if ($order->person->mailAddress) {
               return $order->person->mailAddress;
