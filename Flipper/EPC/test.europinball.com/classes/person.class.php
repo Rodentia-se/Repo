@@ -471,7 +471,6 @@
             $box['main']->disabled = TRUE;
             $box['main']->checked = TRUE;
             $profileDiv->addContent($editDivs['birthDate']);
-          //}
 /*
           return '
             <div id="editDiv">
@@ -498,98 +497,100 @@
             </div>
           ';
 */
-          $profileDiv->addScriptCode('
-            $(".'.$comboboxClass.'").combobox()
-            .change(function(){
-              var el = this;
-              var combobox = document.getElementById(el.id + "_combobox");
-              $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
-              .done(function(data) {
-                $(combobox).tooltipster("update", data.reason).tooltipster("show");
-                if (data.valid) {
-                  $(combobox).val($(el).children(":selected").text())
-                  if (data.parents) {
-                    $.each(data.parents, function(key, geo) {
-                      if (!stop) {
-                        if (data.parent_obj == geo) {
-                          if (data.parent_id != $("#" + geo + "_id").val()) {
-                            $("#'.$prefix.'" + geo + "_id").val(data.parent_id);
-                            $("#'.$prefix.'" + geo + "_id").change();
+            $profileDiv->addScriptCode('
+              $(".'.$comboboxClass.'").combobox()
+              .change(function(){
+                var el = this;
+                var combobox = document.getElementById(el.id + "_combobox");
+                $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
+                .done(function(data) {
+                  $(combobox).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(combobox).val($(el).children(":selected").text())
+                    if (data.parents) {
+                      $.each(data.parents, function(key, geo) {
+                        if (!stop) {
+                          if (data.parent_obj == geo) {
+                            if (data.parent_id != $("#" + geo + "_id").val()) {
+                              $("#'.$prefix.'" + geo + "_id").val(data.parent_id);
+                              $("#'.$prefix.'" + geo + "_id").change();
+                            }
+                            var stop = true;
+                          } else if ($("#'.$prefix.'" + geo + "_id").val() != 0) {
+                            $("#'.$prefix.'" + geo + "_id").val(0);
+                            $("#'.$prefix.'" + geo + "_id_combobox").val("");
                           }
-                          var stop = true;
-                        } else if ($("#'.$prefix.'" + geo + "_id").val() != 0) {
-                          $("#'.$prefix.'" + geo + "_id").val(0);
-                          $("#'.$prefix.'" + geo + "_id_combobox").val("");
                         }
-                      }
-                    });
-                  }
-                  $(el).data("previous", $(el).val());
-                } else {
-                  $(el).val($(el).data("previous"));
-                }
-              })
-              .fail(function(jqHXR,status,error) {
-                $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
-              })
-            });
-            $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
-              if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
-                $("#" + this.id.replace("_combobox", "")).val(0);
-                $("#" + this.id.replace("_combobox", "")).change();
-              }
-            })
-            .tooltipster({
-              theme: ".tooltipster-light",
-              content: "Updating the database...",
-              trigger: "custom",
-              position: "right",
-              offsetX: 38,
-              timer: 3000
-            });
-            $(".'.$editClass.'").change(function(){
-              var el = this;
-              if (el.id == "'.$prefix.'shortName") {
-                $(el).val($(el).val().toUpperCase());
-              } 
-              var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
-              var region_id = (this.id == "'.$prefix.'city") ? $("#'.$prefix.'region_id").val() : null;
-              var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
-              var continent_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'continent_id").val() : null;
-              $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
-              .done(function(data) {
-                $(el).tooltipster("update", data.reason).tooltipster("show");
-                if (data.valid) {
-                  $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
-                } else {
-                  if ($(el).is(":checkbox")) {
-                    el.checked = ($(el).data("previous"));
+                      });
+                    }
+                    $(el).data("previous", $(el).val());
                   } else {
                     $(el).val($(el).data("previous"));
                   }
+                })
+                .fail(function(jqHXR,status,error) {
+                  $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+                })
+              });
+              $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
+                if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+                  $("#" + this.id.replace("_combobox", "")).val(0);
+                  $("#" + this.id.replace("_combobox", "")).change();
                 }
               })
-              .fail(function(jqHXR,status,error) {
-                $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+              .tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                trigger: "custom",
+                position: "right",
+                offsetX: 38,
+                timer: 3000
+              });
+              $(".'.$editClass.'").change(function(){
+                var el = this;
+                if (el.id == "'.$prefix.'shortName") {
+                  $(el).val($(el).val().toUpperCase());
+                } 
+                var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
+                var region_id = (this.id == "'.$prefix.'city") ? $("#'.$prefix.'region_id").val() : null;
+                var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
+                var continent_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'continent_id").val() : null;
+                $(el).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
+                  } else {
+                    if ($(el).is(":checkbox")) {
+                      el.checked = ($(el).data("previous"));
+                    } else {
+                      $(el).val($(el).data("previous"));
+                    }
+                  }
+                })
+                .fail(function(jqHXR,status,error) {
+                  $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
+                })
               })
-            })
-            .tooltipster({
-              theme: ".tooltipster-light",
-              content: "Updating the database...",
-              position: "right",
-              trigger: "custom",
-              timer: 3000
-            });
-            $(".'.$dateClass.'").datepicker({
-              dateFormat: "yy-mm-dd",
-              yearRange: "-100:-0",
-              defaultDate: "-30y",
-              changeYear: true, 
-              changeMonth: true 
-            });
-          ');
+              .tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                position: "right",
+                trigger: "custom",
+                timer: 3000
+              });
+              $(".'.$dateClass.'").datepicker({
+                dateFormat: "yy-mm-dd",
+                yearRange: "-100:-0",
+                defaultDate: "-30y",
+                changeYear: true, 
+                changeMonth: true 
+              });
+            ');
+          //}
+          return $profileDiv;
         break;
       }
     }
