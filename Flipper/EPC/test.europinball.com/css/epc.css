@@ -195,6 +195,11 @@ td.icon img {
   position: absolute;
 }
 
+.toCopy {
+  font-family: Consolas, "Courier New", Courier, Monospace;
+	background-color: #f4f4f4;
+}
+
 .italic {
   font-style: italic;  
 }

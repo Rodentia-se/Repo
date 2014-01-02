@@ -75,7 +75,7 @@
               return $person->mailAddress;
             }
           });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //${$prefix.'Div'}
         $prefix = 'users';
@@ -193,7 +193,7 @@
               return $person->contactPerson->mailAddress;
             }
           });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
           ${$prefix.'Div'}->addParagraph('Coming soon...');
         //${$prefix.'Div'}
         $prefix = 'scores';
@@ -220,7 +220,7 @@
               return $person->mailAddress;
             }
           });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
           ${$prefix.'Div'}->addParagraph('Coming soon...');
         //${$prefix.'Div'}
         $prefix = 't-shirts';
@@ -235,7 +235,7 @@
               return $order->person->mailAddress;
             }
           });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
           ${$prefix.'Div'}->addParagraph('Coming soon...');
         //${$prefix.'Div'}
         $otherDiv = $tabs->addDiv('otherDiv');
