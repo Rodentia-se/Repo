@@ -53,6 +53,7 @@
             //$profileEditDiv
             $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv');
             //$photoSelectDiv
+            $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
         $waitingDiv = ${$prefix.'Div'}->addDiv();
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
