@@ -222,8 +222,8 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
-      debug(isId($selected), 'selected');
-      debug($selected, 'selected');
+      debug(isId($selected), 'selected2');
+      debug($selected, 'selected3');
       if (isObj($selected)) {
         $selected = $selected->id;
       } else if (is_array($selected)) {
@@ -235,18 +235,21 @@
         $params['id'] = ($params['id']) ? $params['id'] : $name;
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {
-          $selected = (isId($selected)) ? $selected : (($obj->name == $selected) ? $obj->id : NULL);
+      debug(get_class($selected), 'selected4');
+          $selected = (isId($selected)) ? $selected : (($obj->name === $selected) ? $obj->id : NULL);
+      debug(get_class($selected), 'selected5');
           $option = new option($obj->name, $obj->id);
           $options[] = $option;
           if ($selected == $obj->id) {
             $selected = $option;
           }
+      debug(get_class($selected), 'selected6');
         }
         $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
       $select = $this->select->getClone($label, $name, NULL, $params);
-      debug(get_class($selected), 'selected');
-      debug($selected, 'selected');
+      debug(get_class($selected), 'selected7');
+      debug($selected, 'selected8');
       $select->selectOption($selected);
       return $select;
     }
