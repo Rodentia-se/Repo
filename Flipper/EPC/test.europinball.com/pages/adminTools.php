@@ -52,7 +52,6 @@
           //}
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
-;
           $mailAddresses = $persons->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
@@ -61,10 +60,11 @@
           $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
-        $userDiv = $tabs->addDiv('userDiv');
-          $userDiv->title = 'Users';
-          $userDiv->addH2($userDiv->title, array('class' => 'entry-title'));
-          $userDiv->addParagraph('Coming soon...');
+        $prefix = 'users';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
         $paymentDiv = $tabs->addDiv('paymentDiv');
           $prefix = 'payment';
@@ -148,40 +148,61 @@
             });
           ');
         //}
-        $teamDiv = $tabs->addDiv('teamDiv');
-          $teamDiv->title = 'Teams';
-          $teamDiv->addH2($teamDiv->title, array('class' => 'entry-title'));
-          $teamDiv->addParagraph('Coming soon...');
+        $prefix = 'teams';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $qualGroupsDiv = $tabs->addDiv('qualGroupsDiv');
-          $qualGroupsDiv->title = 'Groups';
-          $qualGroupsDiv->addH2($qualGroupsDiv->title, array('class' => 'entry-title'));
-          $qualGroupsDiv->addParagraph('Coming soon...');
+        $prefix = 'groups';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $gameDiv = $tabs->addDiv('gameDiv');
-          $gameDiv->title = 'Games';
-          $gameDiv->addH2($gameDiv->title, array('class' => 'entry-title'));
-          $gameDiv->addParagraph('Coming soon...');
+        $prefix = 'games';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $scoresDiv = $tabs->addDiv('scoresDiv');
-          $scoresDiv->title = 'Scores';
-          $scoresDiv->addH2($scoresDiv->title, array('class' => 'entry-title'));
-          $scoresDiv->addParagraph('Coming soon...');
+        $prefix = 'scores';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $resultsDiv = $tabs->addDiv('resultsDiv');
-          $resultsDiv->title = 'Results';
-          $resultsDiv->addH2($resultsDiv->title, array('class' => 'entry-title'));
-          $resultsDiv->addParagraph('Coming soon...');
+        $prefix = 'results';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $volDiv = $tabs->addDiv('volDiv');
-          $volDiv->title = 'Volunteers';
-          $volDiv->addH2($volDiv->title, array('class' => 'entry-title'));
-          $volDiv->addParagraph('Coming soon...');
+        $prefix = 'volunteers';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          $volunteers = volunteers('active');
+          $mailAddresses = $volunteers->array_map(function($person){
+            if ($person->mailAddress) {
+              return $person->mailAddress;
+            }
+          });
+          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
-        $tshirtDiv = $tabs->addDiv('tshirtDiv');
-          $tshirtDiv->title = 'T-shirts';
-          $tshirtDiv->addH2($tshirtDiv->title, array('class' => 'entry-title'));
-          $tshirtDiv->addParagraph('Coming soon...');
+        $prefix = 't-shirts';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          $tshirtOrders = tshirtOrders('active');
+          $mailAddresses = $tshirtOrders->array_map(function($person){
+            if ($person->mailAddress) {
+              return $person->mailAddress;
+            }
+          });
+          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
         $otherDiv = $tabs->addDiv('otherDiv');
           $otherDiv->title = 'Other';
