@@ -27,12 +27,12 @@
                 $("body").addClass("modal");
                 var modals = 0;
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
-                $("#" + el.id + "Tabs").show();
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   modals++;
                   if (modals == 2) {
                     $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
                   }
                 });
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "photo", id: $(this).val()})
@@ -41,6 +41,7 @@
                   modals++;
                   if (modals == 2) {
                     $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
                   }
                 });
               }
