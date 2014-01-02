@@ -74,7 +74,7 @@
           $prefix = 'payment';
           $paymentDiv->title = 'Payments';
           $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
-            $paymentSelect = $paymentDiv->addContent($personsSel->getClone('Persons', $prefix.'Persons'));
+            $paymentSelect = $paymentDiv->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
             $paymentSelect->addCombobox();
             $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
           //}
