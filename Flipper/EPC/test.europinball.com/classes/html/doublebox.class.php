@@ -7,11 +7,11 @@
       $inputId = ($inputId) ? $inputId : $select->id.'Add';
       $inputLabel = ($inputLabel) ? $inputLabel : (($select->label) ? $select->label->getText() : 'New');
       $inputDiv = new div($inputId.'Div', 'hidden');
-        $input = $inputDiv->addInput($this->id.'Add', $label, 'text', $inputLabel, $params);
+        $input = $inputDiv->addInput($inputId, $label, 'text', $inputLabel, $params);
         $closeIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove '.strtolower($inputLabel), array('class' => 'closeIcon'));
         $closeIcon->addClick('
           $("#'.$inputDiv->id.'").hide();
-          $("#'.$selectDiv_id.'").show().find("input").first().focus().select();
+          $("#'.$id.'").show().find("input").first().focus().select();
           $("#'.$input->id.'").val("'.$label.'");
         ');
         $inputDiv->addFooter($closeIcon);
@@ -22,7 +22,7 @@
       }
       $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add '.strtolower($inputLabel), array('class' => 'addIcon'));
       $addIcon->addCLick('
-        $("#'.$selectDiv_id.'").hide();
+        $("#'.$id.'").hide();
         $("#'.$inputDiv->id.'").show().find("input").first().focus().select();
       ');
       $this->addFooter($addIcon);
