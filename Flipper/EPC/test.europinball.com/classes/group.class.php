@@ -235,15 +235,16 @@
         $params['id'] = ($params['id']) ? $params['id'] : $name;
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {
-      debug(get_class($selected), 'selected4');
+          debug(get_class($selected), 'selected4');
           $selected = (isId($selected)) ? $selected : (($obj->name === $selected) ? $obj->id : NULL);
-      debug(get_class($selected), 'selected5');
+          debug(get_class($selected), 'selected5');
           $option = new option($obj->name, $obj->id);
           $options[] = $option;
           if ($selected == $obj->id) {
+            debug(get_class($option), 'option');
             $selected = $option;
           }
-      debug(get_class($selected), 'selected6');
+          debug(get_class($selected), 'selected6');
         }
         $this->select = new select(NULL, $options, NULL, NULL, $params);
       }
