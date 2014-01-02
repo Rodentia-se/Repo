@@ -3,6 +3,7 @@
   class scores extends group {
     
     public static $objClass = 'score';
+    public static $all = array();
     public static $order = array(
       'prop' => 'points',
       'type' => 'numeric',

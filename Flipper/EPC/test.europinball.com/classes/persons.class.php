@@ -3,6 +3,7 @@
   class persons extends players {
     
     public static $objClass = 'person';
+    public static $all = array();
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       if (isPlayers($data) || isDivision($data) || isTournament($data)) {

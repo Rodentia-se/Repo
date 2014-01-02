@@ -3,6 +3,7 @@
   class tasks extends group {
     
     public static $objClass = 'task';
+    public static $all = array();
     public static $order = array(
       'prop' => 'id',
       'type' => 'numeric',

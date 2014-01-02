@@ -3,6 +3,7 @@
   class sets extends group {
     
     public static $objClass = 'set';
+    public static $all = array();
     public static $order = array(
       'prop' => 'id',
       'type' => 'numeric',

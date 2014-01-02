@@ -3,6 +3,7 @@
   class players extends group {
     
     public static $objClass = 'player';
+    public static $all = array();
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       if (!$prop && (is_string($data) || is_int($data))) {

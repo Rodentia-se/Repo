@@ -3,6 +3,7 @@
   class games extends group {
     
     public static $objClass = 'game';
+    public static $all = array();
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       if (isTournament($data) || in_array($data, array('active', 'current'))) {

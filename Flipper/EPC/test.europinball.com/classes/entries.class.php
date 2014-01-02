@@ -3,6 +3,7 @@
   class entries extends group {
     
     public static $objClass = 'entry';
+    public static $all = array();
     public static $order = array(
       'prop' => 'bestPoints',
       'type' => 'numeric',
