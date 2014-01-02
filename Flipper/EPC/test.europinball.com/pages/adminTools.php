@@ -43,7 +43,6 @@
               })
             ');
             $waitingButton->addCss('margin-top', '15px');
-            debug($waitingButton);
           //}
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
