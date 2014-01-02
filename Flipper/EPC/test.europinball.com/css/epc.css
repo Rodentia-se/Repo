@@ -103,6 +103,18 @@ span.info {
   margin-right: 10px;
 }
 
+.divisionsDiv .label {
+  width: auto;
+}
+
+label.long {
+  width: 200px;
+}
+
+label.normal {
+  width: 130px;
+}
+
 label.short {
   width: 92px;
 }
@@ -111,9 +123,6 @@ label.veryShort {
   width: 50px;
 }
 
-.divisionsDiv .label {
-  width: auto;
-}
 
 input[type=text], input[type=password] { 
   color: #4F4F4F;
