@@ -25,12 +25,12 @@
               $("#" + el.id + "Tabs").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                var modals = 0;
+                var modals = 2;
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
-                  modals++;
-                  if (modals == 2) {
+                  modals--;
+                  if (modals == 0) {
                     $("body").removeClass("modal");
                     $("#" + el.id + "Tabs").show();
                   }
@@ -38,8 +38,8 @@
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "photo", id: $(this).val()})
                 .done(function(data) {
                   $("#" + el.id + "PhotoDiv").html(data);
-                  modals++;
-                  if (modals == 2) {
+                  modals--;
+                  if (modals == 0) {
                     $("body").removeClass("modal");
                     $("#" + el.id + "Tabs").show();
                   }
@@ -55,7 +55,7 @@
             //$photoSelectDiv
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
-        $waitingDiv = ${$prefix.'Div'}->addDiv();
+          $waitingDiv = ${$prefix.'Div'}->addDiv();
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
             $waitingButton->addClick('
@@ -80,7 +80,7 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //${$prefix.'Div'}
         $paymentDiv = $tabs->addDiv('paymentDiv');
           $prefix = 'payment';
@@ -124,11 +124,11 @@
           //$setDiv
           $paymentSelect->addChange('
             $("body").addClass("modal");
-            var num = 3;
+            var modals = 3;
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -140,8 +140,8 @@
             });
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "costs"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -152,8 +152,8 @@
             });
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "toPay"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -168,39 +168,39 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //${$prefix.'Div'}
         $prefix = 'groups';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //${$prefix.'Div'}
         $prefix = 'games';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
           $owners = owners('active');
           $mailAddresses = $owners->getAllOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
             ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
-            ${$prefix.'Div'}->addParagraph('Coming soon...');
+            ${$prefix.'Div'}->addParagraph('More coming soon...');
           }
         //${$prefix.'Div'}
         $prefix = 'scores';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //${$prefix.'Div'}
         $prefix = 'results';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //${$prefix.'Div'}
         $prefix = 'volunteers';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
@@ -212,7 +212,7 @@
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
             ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
-            ${$prefix.'Div'}->addParagraph('Coming soon...');
+            ${$prefix.'Div'}->addParagraph('More coming soon...');
           }
         //${$prefix.'Div'}
         $prefix = 't-shirts';
@@ -225,7 +225,7 @@
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
             ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
-            ${$prefix.'Div'}->addParagraph('Coming soon...');
+            ${$prefix.'Div'}->addParagraph('More coming soon...');
           }
         //${$prefix.'Div'}
         $otherDiv = $tabs->addDiv('otherDiv');
