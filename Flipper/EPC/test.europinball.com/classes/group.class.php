@@ -225,8 +225,6 @@
       debug($selected, 'selected');
       if (isObj($selected)) {
         $selected = $selected->id;
-      } else if (isId($selected)) {
-        $selected = $selected;
       } else if (is_array($selected)) {
         $selected = array_keys($selected)[0];
       }
@@ -237,7 +235,7 @@
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {
           $selected = (isId($selected)) ? $selected : (($obj->name == $selected) ? $obj->id : NULL);
-          $option = new option($obj->name, $obj->id, (($selected === $obj->id) ? TRUE : FALSE));
+          $option = new option($obj->name, $obj->id);
           $options[] = $option;
           if ($selected == $obj->id) {
             $selected = $option;
