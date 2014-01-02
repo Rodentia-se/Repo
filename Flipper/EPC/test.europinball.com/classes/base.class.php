@@ -532,6 +532,7 @@
                 $("#'.$prefix.'thumb").on("click", function() {
                   $("#'.$prefix.'imageUpload").trigger("click");
                 });
+                $("#'.$prefix.'submitImg").button();
               }); 
             </script>
           </form>
