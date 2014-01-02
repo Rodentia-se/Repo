@@ -48,6 +48,7 @@
   }
 
   $page = new page('Registered '.$title);
+  $page->modal = TRUE;
   
   $page->addH2('Registered '.$title);
   $page->startDiv('tabs');
@@ -138,6 +139,7 @@
               '.(($type == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
                 tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
               });' : '').'
+              $("body").removeClass("modal");
             ');
           } else {
             $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));

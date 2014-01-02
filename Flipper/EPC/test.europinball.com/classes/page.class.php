@@ -25,6 +25,7 @@
     public $combobox = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
+    public $modal = FALSE;
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
@@ -61,7 +62,7 @@
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
-          <body>
+          <body'.(($this->modal) ? ' class="modal"' : '').'>
       ';
       return $header;
     }
