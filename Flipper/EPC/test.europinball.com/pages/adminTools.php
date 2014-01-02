@@ -33,7 +33,8 @@
             debug(microtime(TRUE), 'before select 7');
             $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile7', NULL, 'Edit profile'));
             debug(microtime(TRUE), 'before select 8');
-            $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile8', NULL, 'Edit profile')->delOptions());
+            $huff = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile8', NULL, 'Edit profile'));
+            $huff->delOptions();
             debug(microtime(TRUE), 'before select 9');
             $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile9', NULL, 'Edit profile'));
             debug(microtime(TRUE), 'before select 10');
