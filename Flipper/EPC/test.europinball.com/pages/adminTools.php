@@ -32,7 +32,6 @@
           $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
           //}
           $waitingDiv = ${$prefix.'Div'}->addDiv();
-            $waitingDiv->addCss('margin-top', '15px');
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
             $waitingButton->addClick('
@@ -43,6 +42,7 @@
                 $(el).tooltipster("update", data.reason).tooltipster("show");
               })
             ');
+            $waitingButton->addCss('margin-top', '15px');
           //}
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
