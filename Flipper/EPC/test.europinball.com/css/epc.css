@@ -111,6 +111,10 @@ label.veryShort {
   width: 50px;
 }
 
+.divisionsDiv .label {
+  width: auto;
+}
+
 input[type=text], input[type=password] { 
   color: #4F4F4F;
   width: 210px;

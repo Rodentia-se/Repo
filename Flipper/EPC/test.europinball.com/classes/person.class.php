@@ -461,7 +461,7 @@
             $profileDiv->addContent($editDivs['telephoneNumber']);
             $profileDiv->addContent($editDivs['mobileNumber']);
             $profileDiv->addContent($editDivs['mailAddress']);
-            $div = $profileDiv->addDiv($prefix.'divisionsDiv');
+            $div = $profileDiv->addDiv($prefix.'divisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions');
               foreach (config::$activeSingleDivisions as $divisionType) {
                 $player = ($this->id) ? player($this, $divisionType) : NULL;
