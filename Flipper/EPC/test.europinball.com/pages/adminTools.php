@@ -32,7 +32,7 @@
           $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
           //}
           $waitingDiv = ${$prefix.'Div'}->addDiv();
-            $waitingButton->addCss('margin-top', '15px');
+            $waitingDiv->addCss('margin-top', '15px');
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
             $waitingButton->addClick('
