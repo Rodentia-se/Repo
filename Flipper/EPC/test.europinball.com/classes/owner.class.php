@@ -61,6 +61,11 @@
       'machines'
     );
 
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+      parent::__construct($data, $search, $depth);
+      $this->mailAddress = ($this->mailAddress) ? $this->mailAddress : (($this->person) ? $this->person->mailAddress : NULL);
+    }
+
     public function getChildrenTabs($tournament = 'active') {
       $tournament = getTournament($tournament);
       $tabs = new tabs(NULL, 'childrenTabs');

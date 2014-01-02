@@ -76,7 +76,7 @@
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $persons->getAllOf('mailAddress'), $prefix.'mailAddresses', 'toCopy');
             ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
           }
         //${$prefix.'Div'}
@@ -186,15 +186,15 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('Coming soon...');
           $owners = owners('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-          $mailAddresses = $owners->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            } else if ($person->contactPerson->mailAddress) {
-              return $person->contactPerson->mailAddress;
+          $mailAddresses = array_filter($owners->array_map(function($owner){
+            if ($owner->mailAddress) {
+              return $owner->mailAddress;
+            } else if ($owner->contactPerson->mailAddress) {
+              return $owner->contactPerson->mailAddress;
             }
           });
+          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
           ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)), $prefix.'mailAddresses', 'toCopy');
           ${$prefix.'Div'}->addParagraph('Coming soon...');
         //${$prefix.'Div'}
