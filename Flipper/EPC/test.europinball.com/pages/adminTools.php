@@ -210,7 +210,6 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
-          debug($tshirtOrders);
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address can be copied from here: ');
           $mailAddresses = $tshirtOrders->array_map(function($order){
