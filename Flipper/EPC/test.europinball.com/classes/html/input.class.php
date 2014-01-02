@@ -29,13 +29,7 @@
       if ($this instanceof checkbox) {
         $this->contentParam = FALSE;
       }
-      if ($type == 'select') {
-        debug($params['class'], $params['id'].' params-class');
-      }
       $classes = $params['class'];
-      if ($type == 'select') {
-        debug($classes, $params['id'].' classes');
-      }
       unset($params['class']);
       parent::__construct((($type == 'select') ? 'select' : 'input'), $value, $params, $params['id'], $classes);
     }
