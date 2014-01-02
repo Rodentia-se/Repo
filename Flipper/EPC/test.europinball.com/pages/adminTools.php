@@ -50,6 +50,12 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //}
+          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
+          $mailAddresses = $persons->array_map(function($person){
+            return $person->mailAddress;
+          });
+          debug($mailAddresses);
+          $mailP = ${$prefix.'Div'}->addParagraph();
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
         $userDiv = $tabs->addDiv('userDiv');

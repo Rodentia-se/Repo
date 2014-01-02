@@ -98,6 +98,8 @@
     public function __call($func, $argv) {
       if (!is_callable($func) || substr($func, 0, 6) !== 'array_') {
         throw new BadMethodCallException(__CLASS__.'->'.$func);
+      } else if (in_array($func, array('array_map'))) {
+        return call_user_func_array($func, array_merge($argv, array($this->getArrayCopy())));
       } else {
         return call_user_func_array($func, array_merge(array($this->getArrayCopy()), $argv));
       }
