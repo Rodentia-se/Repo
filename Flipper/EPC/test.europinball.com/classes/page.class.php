@@ -126,11 +126,10 @@
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true);
         $(".toCopy").click(function() {
-          $(this).select();
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
             copy: $(this).text(),
-            aftercopy: function() {
+            afterCopy: function() {
               showMsg("Copied to clipboard");
             }
           });
