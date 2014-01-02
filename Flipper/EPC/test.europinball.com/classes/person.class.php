@@ -462,6 +462,7 @@
             $profileDiv->addContent($editDivs['mobileNumber']);
             $profileDiv->addContent($editDivs['mailAddress']);
             $div = $profileDiv->addDiv($prefix.'divisionsDiv');
+              $div->addLabel('Divisions');
               foreach (config::$activeSingleDivisions as $divisionType) {
                 $player = ($this->id) ? player($this, $divisionType) : NULL;
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($player), array('id' => $prefix.$divisionType));
