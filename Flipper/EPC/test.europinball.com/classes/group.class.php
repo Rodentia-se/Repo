@@ -222,6 +222,7 @@
     }
     
     public function getSelectObj($name = NULL, $selected = NULL, $label = NULL, $params = NULL) {
+      debug(count($this));
       if (isObj($selected)) {
         $selected = $selected->id;
       } else if (isId($selected)) {
