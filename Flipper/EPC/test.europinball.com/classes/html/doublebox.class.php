@@ -2,12 +2,13 @@
 
   class doublebox extends html {
     
-    public function __construct($select, $combobox = TRUE, $inputId = NULL, array $params = NULL) {
+    public function __construct($select, $combobox = TRUE, $inputId = NULL, $inputLabel = NULL, array $params = NULL) {
       $id = ($params['id']) ? $id : $select->id.'Div';
       $inputId = ($inputId) ? $inputId : $select->id.'Add';
+      $inputLabel = ($inputLabel) ? $inputLabel : (($select->label) ? $select->label->getText() : 'New');
       $inputDiv = new div($inputId.'Div', 'hidden');
-        $input = $inputDiv->addInput($this->id.'Add', $label, 'text', $label, $params);
-        $closeIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove '.strtolower($label), array('class' => 'closeIcon'));
+        $input = $inputDiv->addInput($this->id.'Add', $label, 'text', $inputLabel, $params);
+        $closeIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove '.strtolower($inputLabel), array('class' => 'closeIcon'));
         $closeIcon->addClick('
           $("#'.$inputDiv->id.'").hide();
           $("#'.$selectDiv_id.'").show().find("input").first().focus().select();
@@ -19,7 +20,7 @@
       if ($combobox) {
         $select->addCombobox();
       }
-      $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add '.strtolower($label), array('class' => 'addIcon'));
+      $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add '.strtolower($inputLabel), array('class' => 'addIcon'));
       $addIcon->addCLick('
         $("#'.$selectDiv_id.'").hide();
         $("#'.$inputDiv->id.'").show().find("input").first().focus().select();

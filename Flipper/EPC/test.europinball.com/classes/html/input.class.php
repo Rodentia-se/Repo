@@ -45,7 +45,7 @@
           return $this->params['data-previous'];
         break;
         case 'label':
-          return $this->accessories['$prop'];
+          return $this->accessories[$prop];
         break;
         default:
           return parent::__get($prop);
