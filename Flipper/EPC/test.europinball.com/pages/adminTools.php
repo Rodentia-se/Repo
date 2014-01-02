@@ -165,6 +165,16 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('Coming soon...');
+          $owners = owners('active');
+          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address can be copied from here: ');
+          $mailAddresses = $owners->array_map(function($person){
+            if ($person->mailAddress) {
+              return $person->mailAddress;
+            }
+          });
+          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
+          ${$prefix.'Div'}->addParagraph('Coming soon...');
         //}
         $prefix = 'scores';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
