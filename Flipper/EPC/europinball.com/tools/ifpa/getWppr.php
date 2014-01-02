@@ -7,8 +7,8 @@
   $division_id = (isset($_REQUEST['division'])) ? $_REQUEST['division'] : 1;
   $division = division($division);
   
-  $prefix = ($division_id == 2) ? 'cl' : 'm';
   $players = players($division);
+  debug($players);
   $players->order('wpprPlace');
   
   echo "Tournament Name,Date,Finishing Position,Player,Country,IFPA ID\n";
