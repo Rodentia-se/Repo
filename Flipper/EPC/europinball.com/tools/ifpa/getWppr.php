@@ -6,6 +6,7 @@
   
   $division_id = (isset($_REQUEST['division'])) ? $_REQUEST['division'] : 1;
   $division = division($division);
+  debug($division);
   
   $players = players($division);
   debug($players);
