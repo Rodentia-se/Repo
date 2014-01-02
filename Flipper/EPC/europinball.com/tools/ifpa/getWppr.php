@@ -5,12 +5,11 @@
   header('Content-Type: text/plain; charset=utf-8');
   
   $division_id = (isset($_REQUEST['division'])) ? $_REQUEST['division'] : 1;
-  $division = division($division);
+  $division = division($division_id);
   debug($division);
   
   $players = players($division);
   debug($players);
-  $players->order('wpprPlace');
   
   echo "Tournament Name,Date,Finishing Position,Player,Country,IFPA ID\n";
   foreach ($players as $player) {
