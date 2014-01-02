@@ -9,7 +9,8 @@
   
   $players = players($division);
   $players->order('wpprPlace');
-  
+  $players->filter('wpprPlace', TRUE);
+    
   echo "Tournament Name,Date,Finishing Position,Player,Country,IFPA ID\n";
   foreach ($players as $player) {
     echo 'European Pinball Championships '.(($division == 2) ? 'Classics ' : '').'2013,2013-09-13,'.$player->wpprPlace.','.$player->name.','.$player->countryName.','.$player->ifpa_id."\n";
