@@ -332,7 +332,7 @@
         if ($obj->$prop) {
           return $obj->$prop;
         }
-      });
+      }));
     }
     
     function delete() {
