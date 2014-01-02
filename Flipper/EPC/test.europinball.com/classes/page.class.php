@@ -125,14 +125,14 @@
           showMsg("Fail: " + error + " trying " + settings.url);
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true);
-        $(".toCopy").click("
+        $(".toCopy").click(function() {
           $(this).select();
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
             copy: $(this).text();
           });
           showMsg("Copied to clipboard");
-        ")
+        });
       ');
       $footer .= '
           </body>
