@@ -129,7 +129,7 @@
           $(this).select();
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
-            copy: $(this).text();
+            copy: $(this).text()
           });
           showMsg("Copied to clipboard");
         });
