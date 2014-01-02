@@ -171,6 +171,8 @@
           $mailAddresses = $owners->array_map(function($person){
             if ($person->mailAddress) {
               return $person->mailAddress;
+            } else if ($person->contactPerson->mailAddress) {
+              return $person->contactPerson->mailAddress;
             }
           });
           $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
