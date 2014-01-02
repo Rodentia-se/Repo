@@ -555,12 +555,9 @@
           if ($param == 'style') {
              if (count($this->css) > 0) {
               $this->style = trim($this->style);
-              $this->style = ($this->style && substr($this->style, -1) != ';') ? $this->style.';' : $this->style;
+              $this->style = ($this->style && substr($this->style, -1) != ';') ? trim($this->style).';' : trim($this->style);
             }
             if ($this->style && $this->style != " ") {
-              if ($this->id == 'Recalculatewaitinglist') {
-                debug(trim($this->style.' '.$this->getCss()), 'style');
-              }
               return ($string) ? 'style="'.trim($this->style.' '.$this->getCss()).'"' : trim($this->style.' '.$this->getCss());
             } else {
               return NULL;
