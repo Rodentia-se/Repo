@@ -3,7 +3,7 @@
   class doublebox extends html {
     
     public function __construct($select, $combobox = TRUE, $inputId = NULL, array $params = NULL) {
-      $id = ($params['id'] ? $id : $select->id.'Div';
+      $id = ($params['id']) ? $id : $select->id.'Div';
       $inputId = ($inputId) ? $inputId : $select->id.'Add';
       $inputDiv = new div($inputId.'Div', 'hidden');
         $input = $inputDiv->addInput($this->id.'Add', $label, 'text', $label, $params);
