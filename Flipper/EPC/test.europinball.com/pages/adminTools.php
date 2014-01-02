@@ -57,6 +57,7 @@
               return $person->mailAddress;
             }
           });
+          debug(count(array_filter($mailAddresses)));
           $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
         //}
