@@ -229,6 +229,16 @@
       return FALSE;
     }
 
+    public function getPhotoEdit($prefix = NULL, $class = NULL) {
+      if (!is_object($this->person)) {
+        $this->populate(1);
+      }
+      if (is_object($this->person)) {
+        return $this->person->getPhotoEdit($prefix, $class);
+      }
+      return FALSE;
+    }
+
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers
       $cells = $this->getRegRow(TRUE);

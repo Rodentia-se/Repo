@@ -411,7 +411,11 @@
           $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $tshirtsDiv;
         break;
+        case 'photo':
+          return $this->getPhotoEdit($prefix);
+        break;
         case 'profile':
+        case 'edit':
         case 'player':
         case 'person':
         default:

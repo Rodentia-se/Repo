@@ -76,9 +76,10 @@
       }
       jsonEcho($json);
     break;
+    case 'photo':
     case 'edit':
       if (isPlayer($players[0])) {
-        echo $players[0]->getEdit('profile');
+        echo $players[0]->getEdit($type);
       } else {
         echo 'Could not find player to edit';
       }
