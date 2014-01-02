@@ -451,8 +451,7 @@
             $profileDiv->addContent($editDivs['streetAddress']);
             $profileDiv->addContent($editDivs['zipCode']);
             foreach (array('city' => 'cities', 'region' => 'regions') as $geo => $geoArr) {
-              $div = $profileDiv->addDiv($prefix.$geo.'_idDiv');
-                $sel = $div->addDoublebox($geoArr('all')->getSelectObj($geo.'_id', $this->{$geo.'_id'}, ucfirst($geo), array('class' => $comboboxClass)), FALSE, $geo);
+              $sel = $div->addDoublebox($geoArr('all')->getSelectObj($geo.'_id', $this->{$geo.'_id'}, ucfirst($geo), array('class' => $comboboxClass)), FALSE, $geo);
               //}
             }
             foreach (array('country' => 'countries', 'continent' => 'continents') as $geo => $geoArr) {
@@ -463,12 +462,12 @@
             $profileDiv->addContent($editDivs['telephoneNumber']);
             $profileDiv->addContent($editDivs['mobileNumber']);
             $profileDiv->addContent($editDivs['mailAddress']);
-            foreach (config::$activeSingleDivisions as $divisionType) {
-              $div = $profileDiv->addDiv($prefix.'divisionsDiv');
+            $div = $profileDiv->addDiv($prefix.'divisionsDiv');
+              foreach (config::$activeSingleDivisions as $divisionType) {
                 $player = ($this->id) ? player($this, $divisionType) : NULL;
-                $box[$division->shortName] = $div->addCheckbox($division->shortName, ($player), array('id' => $prefix.$divisionType));
-              //}
-            }
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($player), array('id' => $prefix.$divisionType));
+              }
+            //}
             $box['main']->disabled = TRUE;
             $box['main']->checked = TRUE;
             $profileDiv->addContent($editDivs['birthDate']);
