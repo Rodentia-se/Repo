@@ -867,6 +867,12 @@
       $this->addContent($element);
       return $element;
     }
+
+    public function addDoublebox($select, $combobox = TRUE, $inputId = NULL, array $params = NULL) {
+      $element = new doublebox($select, $combobox, $inputId, $params);
+      $this->addContent($element);
+      return $element;
+    }
     
     public function addInput($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL) {
       $element = new input($name, $value, $type, $label, $params);
