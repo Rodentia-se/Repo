@@ -454,7 +454,7 @@
               //}
               debug($geoArr.' '.count($geoArr('all')), 'geo');
               $cities = cities('all');
-              debug(count($cities));
+              debug(get_class($cities));
             }
             foreach (array('country' => 'countries', 'continent' => 'continents') as $geo => $geoArr) {
               $div = $profileDiv->addDiv($prefix.$geo.'_idDiv');
