@@ -236,7 +236,8 @@
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {
           debug(get_class($selected), 'selected4');
-          $selected = (isId($selected)) ? $selected : (($obj->name === $selected) ? $obj->id : NULL);
+          debug(isId($selected))
+          $selected = (isId($selected) || isHtml($selected)) ? $selected : (($obj->name === $selected) ? $obj->id : NULL);
           debug(get_class($selected), 'selected5');
           $option = new option($obj->name, $obj->id);
           $options[] = $option;
