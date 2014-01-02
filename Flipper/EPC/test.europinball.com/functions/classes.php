@@ -17,7 +17,7 @@
     debug($class);
     if ($data == 'all') {
       if (!$class::$all){
-        $class::$all = new $class($data, $search, $cond);
+        $class::$all = new $class('all');
       }
       return $class::$all;
     } else if ($data === FALSE) {
