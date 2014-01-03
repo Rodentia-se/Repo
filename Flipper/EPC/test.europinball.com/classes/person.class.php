@@ -474,11 +474,11 @@
               $adminLevels = adminLevels('all');
               $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', $this->adminLevel_id, 'Administrator level'));
                 $adminLevelSelect->addCombobox();
-                $adminLevelSelect->addTooltip('');
+                $adminLevelSelect->addTooltip('', TRUE, 0, '#'.$adminLevelSelect->id.'_combobox');
                 $adminLevelSelect->addChange('
                   var el = this;
                   if ($(el).val() != 0) {
-                    $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
+                    $("#" + el.id + "_combobox").tooltipster("update", "Changing administrator level...").tooltipster("show");
                     $("body").addClass("modal");
                     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
                     .done(function(data) {
@@ -486,7 +486,7 @@
                         $(el).val($(el).data("previous"));
                       }
                       $("body").removeClass("modal");
-                      $(el).tooltipster("update", data.reason).tooltipster("show");
+                      $("#" + el.id + "_combobox").tooltipster("update", data.reason).tooltipster("show");
                       $("#" + el.id + "_combobox").val($(el).children(":selected").text());
                     });
                   }
