@@ -486,7 +486,7 @@
                     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
                     .done(function(data) {
                       if (data.valid) {
-                        $(el).data("previous") = $(el).val();
+                        $(el).data("previous", $(el).val());
                       } else {
                         $(el).val($(el).data("previous"));
                       }
