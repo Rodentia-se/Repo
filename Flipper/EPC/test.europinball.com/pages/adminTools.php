@@ -91,15 +91,15 @@
                 $("body").addClass("modal");
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(el).val()})
                 .done(function(data) {
-                  $("#" + el.id + "EditDiv").html(data);
                   $("#" + el.id + "EditDiv").show();
+                  $("#" + el.id + "EditDiv").html(data);
                   $("body").removeClass("modal");
                 });
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$usersSelectDiv
-          ${$prefix.'EditDiv'} = ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
+          ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
           //$usersEditDiv
           ${$prefix.'Div'}->addParagraph('More coming soon...');
         //Users
