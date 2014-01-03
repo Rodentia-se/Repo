@@ -9,7 +9,7 @@
     $volunteer = volunteer('login');
     $persons = persons(tournament('active'));
     $adminDiv = new div('adminDiv');
-    if ($volunteer->admin) {
+    if ($volunteer->receptionist) {
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $prefix = 'players';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
@@ -320,7 +320,7 @@
       //$tabs
       $page->addContent($adminDiv);
     } else {
-      $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
+      $paragraph = new paragraph('You need to be an administrator or receptionist to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
     }
   }
