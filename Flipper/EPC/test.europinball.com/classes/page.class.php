@@ -124,7 +124,13 @@
         $(document).ajaxError(function(event, jqHXR, settings, error) {
           showMsg("Fail: " + error + " trying " + settings.url);
         });
-        $(".custom-combobox-input").autocomplete("option", "autoFocus", true);
+        $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
+        .on("autocompleteclose", function(event, ui) {
+          if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+            $("#" + this.id.replace("_combobox", "")).val(0);
+            $("#" + this.id.replace("_combobox", "")).change();
+          }
+        })
         $(".toCopy").tooltipster({
           theme: ".tooltipster-light",
           content: "Copied text to clipboard",

@@ -477,18 +477,21 @@
                 $adminLevelSelect->addTooltip('');
                 $adminLevelSelect->addChange('
                   var el = this;
-                  $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
-                  $("body").addClass("modal");
-                  $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
-                  .done(function(data) {
-                    if (!data.valid) {
-                      $(el).val($(el).data("previous"));
-                    }
-                    $("body").removeClass("modal");
-                    $(el).tooltipster("update", data.reason).tooltipster("show");
-                  });
+                  if $(el).val() != 0) {
+                    $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
+                    $("body").addClass("modal");
+                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
+                    .done(function(data) {
+                      if (!data.valid) {
+                        $(el).val($(el).data("previous"));
+                      }
+                      $("body").removeClass("modal");
+                      $(el).tooltipster("update", data.reason).tooltipster("show");
+                      $("#" + el.id + "_combobox").val($(el).children(":selected").text())
+                    });
+                  }
                 ');
-              //$adminLevelSelect
+              //$adminLevelSelectpa
             //$adminLevelDiv
           //$usersDiv
           return $usersDiv;
@@ -590,13 +593,7 @@
                   $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
               });
-              $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
-                if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
-                  $("#" + this.id.replace("_combobox", "")).val(0);
-                  $("#" + this.id.replace("_combobox", "")).change();
-                }
-              })
-              .tooltipster({
+              $(".custom-combobox-input").tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
                 trigger: "custom",
