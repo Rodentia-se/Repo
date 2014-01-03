@@ -116,7 +116,7 @@
                 ${$prefix.'MailDiv'}[$adminLevel->id]->{data-title} = ucfirst($adminLevel->name);
                 ${$prefix.'MailDiv'}[$adminLevel->id]->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
                 ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph('Email addresses to all volunteers with level '.$adminLevel->id.' or higher that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-                ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph(implode(', ', $volAddresses[$adminLevel->id), $prefix.'volAddresses_'.$adminLevel->id, 'toCopy');
+                ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph(implode(', ', $volAddresses[$adminLevel->id]), $prefix.'volAddresses_'.$adminLevel->id, 'toCopy');
                 ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph('More coming soon...')->style = 'margin-top: 15px';
               //${$prefix.'MailDiv'}
             }
