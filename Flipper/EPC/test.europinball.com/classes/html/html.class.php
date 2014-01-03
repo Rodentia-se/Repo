@@ -351,7 +351,7 @@
       }
     }
     
-    protected static function newId($prefix = NULL, $suffix = NULL) {
+    public static function newId($prefix = NULL, $suffix = NULL) {
       $id = $prefix.'id'.rand(0,10000).$suffix;
       while (in_array($id, html::$ids)) {
         $id = $prefix.'id'.rand(0,10000).$suffix;
