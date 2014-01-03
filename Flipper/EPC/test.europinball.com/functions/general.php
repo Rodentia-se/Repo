@@ -143,7 +143,7 @@
     header('Content-Type: application/json');
     echo($json);
     if (is($exit)) {
-      exit $exit;
+      exit($exit);
     }
     return TRUE;
   }
