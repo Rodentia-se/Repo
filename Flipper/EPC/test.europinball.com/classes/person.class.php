@@ -417,7 +417,7 @@
         case 'user':
         case 'users':
           $usersDiv = new div($prefix.'usersDiv');
-            $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv');
+            $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
               $userNameDiv->addSpan($this->username);
             //$userNameDiv
