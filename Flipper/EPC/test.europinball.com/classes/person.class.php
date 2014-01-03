@@ -472,7 +472,7 @@
             //$passwordDiv
             $adminLevelDiv = $usersDiv->addDiv($prefix.'usersAdminLevelDiv');
               $adminLevels = adminLevels('all');
-              $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', NULL, 'Administrator level'));
+              $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', $this->adminLevel_id, 'Administrator level'));
                 $adminLevelSelect->addCombobox();
                 $adminLevelSelect->addChange('
                   var el = this;
