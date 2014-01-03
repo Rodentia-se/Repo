@@ -77,10 +77,10 @@
               } else {
                 $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
                 $aoColumnDefs = '
-                  { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
-                  { "bVisible": false, "aTargets": [ 6 ] },
-                  { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                  { "bVisible": false, "aTargets": [ 4 ] },
+                  {"aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                  {"bVisible": false, "aTargets": [ 6 ] },
+                  {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                  {"bVisible": false, "aTargets": [ 4 ] },
                   {"sClass": "icon", "aTargets": [ 5 ] },
                   {"sClass": "icon", "aTargets": [ 8 ] }
                 ';
@@ -128,6 +128,7 @@
                       $("#" + photoDiv).dialog("close");
                     });
                   });
+                  $("body").removeClass("modal");
                   return true;
                 },
                 "oLanguage": {
@@ -139,7 +140,6 @@
               '.(($type == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
                 tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
               });' : '').'
-              $("body").removeClass("modal");
             ');
           } else {
             $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
