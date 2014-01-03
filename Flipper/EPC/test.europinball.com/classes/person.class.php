@@ -461,7 +461,7 @@
               //$adminLevelSelect
             //$adminLevelDiv
           //$usersDiv
-          return $usersDiv;
+          return 'hej';
         break;
         case 'profile':
         case 'edit':
