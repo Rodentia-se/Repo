@@ -71,7 +71,7 @@ img.infoImg {
   max-width: 400px;
 }
 
-span.payment {
+span.payments {
   width: 60px;
   text-align: right;
   display: inline-block;
@@ -158,6 +158,10 @@ input.veryShort {
 
 div.noInput {
   padding-top: 5px;
+}
+
+div.noInput span{
+  margin-left: 9px;
 }
 
 span.short {
