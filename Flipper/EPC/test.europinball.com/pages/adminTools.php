@@ -109,7 +109,7 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
             ${$prefix.'Select'}->addCombobox();
-            ${$prefix.'Div')->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$paymentSelect
           $paidDiv = ${$prefix.'Div'}->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
