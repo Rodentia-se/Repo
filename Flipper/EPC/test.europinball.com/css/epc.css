@@ -52,7 +52,7 @@ body.modal {
 }
 */
 
-body.modal div.modal {
+.modal div.modal {
   display: block;
 }
 
