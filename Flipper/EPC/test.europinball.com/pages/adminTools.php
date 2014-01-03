@@ -107,12 +107,14 @@
           ${$prefix.'MailTabs'} = ${$prefix.'Div'}->addTabs(NULL, $prefix.'MailTabs');
           $vols = clone $volunteers;
           foreach ($adminLevels as $adminLevel) {
-            $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
-            $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
+            if ($adminLeve->id > 15) {
+              $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
+              $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
+            }
           }
           foreach ($adminLevels as $adminLevel) {
             if ($volAddresses[$adminLevel->id]) {
-              ${$prefix.'MailDiv'}[$adminLevel->id] = ${$prefix.'MailTabs'}->addDiv($prefix.'MailDiv');
+              ${$prefix.'MailDiv'}[$adminLevel->id] = ${$prefix.'MailTabs'}->addDiv($prefix.'MailDiv_'.$adminLevel->id);
                 ${$prefix.'MailDiv'}[$adminLevel->id]->{data-title} = ucfirst($adminLevel->name);
                 ${$prefix.'MailDiv'}[$adminLevel->id]->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
                 ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph('Email addresses to all volunteers with level '.$adminLevel->id.' or higher that have registered their email address. Click in the box to copy the addresses to your clipboard.');
