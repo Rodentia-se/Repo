@@ -89,7 +89,7 @@
               $("#" + el.id + "EditDiv").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(this).val()})
+                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(el).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   $("#" + el.id + "EditDiv").show();
