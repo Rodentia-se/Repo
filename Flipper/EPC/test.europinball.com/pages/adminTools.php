@@ -4,12 +4,12 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Admin tools');
+  $page->modal = TRUE;
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
     $persons = persons(tournament('active'));
     $adminDiv = new div('adminDiv');
-    $loading = $adminDiv->addLoading();
     if ($volunteer->admin) {
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $prefix = 'players';

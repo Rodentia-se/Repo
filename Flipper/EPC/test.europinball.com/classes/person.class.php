@@ -689,7 +689,6 @@
     
     public function setAdminLevel($adminLevel = 1) {
       $adminLevel = adminLevel($adminLevel);
-      debug($adminLevel);
       if (!isAdminLevel($adminLevel)) {
         $adminLevel = adminLevel(1);
       }
