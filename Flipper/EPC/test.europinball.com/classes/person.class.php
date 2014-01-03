@@ -695,17 +695,13 @@
       }
       $tournament = getTournament();
       $volunteer = volunteer($this, $tournament);
-      debug($volunteer->id);
       if (!isVolunteer($volunteer)) {
         $volunteer = $this->addVolunteer($tournament);
-      debug($volunteer->id);
-      } else {
-        error('Could not add volunteer.');
       }
       if (isVolunteer($volunteer)) {
-        return $volunteer->setAdminLevel($adminLevel);
+        return $volunteer->setProp('AdminLevel_id', $adminLevel->id);
       } else {
-        error('This person is not a volunteer.');
+        error('Could not add '.$this->name.' as volunteer.');
       }
       return FALSE;
     }
