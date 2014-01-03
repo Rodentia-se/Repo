@@ -148,15 +148,23 @@
               }
             } else {
               $validator = person::validate($prop, $value, TRUE);
-              if ($validator->valid || ($prop == 'password' && $loginPerson->admin)) {
-                $change = $person->setProp($prop, $value);
-                if ($change) {
-                  $json = success((($value) ? 'Changed '.$prop.(($prop != 'password') ? ' to '.$value : '') : 'Removed '.$prop).' for '.$person->name, $loginPerson);
-                } else {
-                  $json = failure('Property assignment failed');
-                }
+              if ($prop == 'password' && $loginPerson->id != $person->id && !$loginPerson->receptionist) {
+                $json = failure('You need to be a receptionist or administrator to be able to change passwords');
               } else {
-                $json = failure($validator->reason);
+                if ($prop == 'adminLevel' && $loginPerson->receptionist < $value) {
+                  $json = failure('You can not grant priviliges to higher levels than your own.');
+                } else {
+                  if ($validator->valid || ($prop == 'password' && $loginPerson->admin)) {
+                    $change = $person->setProp($prop, $value);
+                    if ($change) {
+                      $json = success((($value) ? 'Changed '.$prop.(($prop != 'password') ? ' to '.$value : '') : 'Removed '.$prop).' for '.$person->name, $loginPerson);
+                    } else {
+                      $json = failure('Property assignment failed');
+                    }
+                  } else {
+                    $json = failure($validator->reason);
+                  }
+                }
               }
             }
           }
