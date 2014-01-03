@@ -487,7 +487,7 @@
                       }
                       $("body").removeClass("modal");
                       $(el).tooltipster("update", data.reason).tooltipster("show");
-                      $("#" + el.id + "_combobox").val($(el).children(":selected").text())
+                      $("#" + el.id + "_combobox").val($(el).children(":selected").text());
                     });
                   }
                 ');
