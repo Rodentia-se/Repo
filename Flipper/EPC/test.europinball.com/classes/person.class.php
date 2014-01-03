@@ -482,6 +482,9 @@
                   .done(function(data) {
                     $(el).tooltipster("update", data.reason).tooltipster("show");
                     $("body").removeClass("modal");
+                    if (!data.valid) {
+                      $(el).val($(el).data("previous"));
+                    }
                   });
                 ');
               //$adminLevelSelect
