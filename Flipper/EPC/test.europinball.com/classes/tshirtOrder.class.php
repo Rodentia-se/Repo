@@ -16,7 +16,8 @@
         o.person_id as person_id,
         ts.color_id as color_id,
         tc.name as colorName,
-        ts.size_id as size_id,
+        tz.id as size_id,
+        tz.name as sizeName,
         o.tournamentTShirt_id as tshirt_id,
         tt.tournamentEdition_id as tournamentEdition_id
       from personTShirt o 
