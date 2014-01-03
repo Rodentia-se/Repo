@@ -667,9 +667,8 @@
     }
     
     public function setProp($prop, $value = NULL) {
-      if (in_array($prop, $array('password', 'adminLevel'))) {
-        $function = 'set'.ucfirst($prop);
-        return $this->$function($value);
+      if (in_array($prop, array('password', 'adminLevel'))) {
+        return $this->{'set'.ucfirst($prop)}($value);
       } else {
         return parent::setProp($prop, $value);
       }
