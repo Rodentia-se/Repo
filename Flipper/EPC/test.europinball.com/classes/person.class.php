@@ -477,7 +477,7 @@
                 $adminLevelSelect->addTooltip('');
                 $adminLevelSelect->addChange('
                   var el = this;
-                  if $(el).val() != 0) {
+                  if ($(el).val() != 0) {
                     $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
                     $("body").addClass("modal");
                     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
