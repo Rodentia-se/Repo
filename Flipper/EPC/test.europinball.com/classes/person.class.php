@@ -201,6 +201,32 @@
       return false;
     }
     
+    public function addVolunteer($tournament = NULL, $hours = NULL, $size = NULL, $adminLevel = NULL) {
+      $tournament = getTournament($tournament);
+      $size = size($size);
+      $adminLevel = adminLevel($adminLevel);
+      $volunteer = volunteer($this, $tournament);
+      if (!$volunteer) {
+        $volunteer = volunteer((array) $this->getFlat(), config::NOSEARCH, 0);
+        unset($volunteer->id);
+        $volunteer->tournamentEdition_id = $tournament->id;
+        $volunteer->person_id = $this->id;
+        $volunteer->dateRegistered = date('Y-m-d');
+        $volunteer->hours = $hours;
+        $volunteer->size_id = ($size) ? $size->id : NULL;
+        $volunteer->size = ($size) ? $size->name : NULL;
+        $volunteer->adminLevel_id = ($adminLevel) ? $adminLevel->id : NULL;
+        $id = $volunteer->save();
+        if (isId($id)) {
+          $volunteer = volunteer($id);
+          if ($volunteer) {
+            return $id;
+          }
+        }
+      }
+      return false;
+    }
+
     public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
@@ -636,8 +662,37 @@
       return FALSE;
     }
 
-    public function setUsername($username = NULL) {
-      return $this->setProp('username', $username);
+    public function setPassword($password) {
+      if ($this->username) {
+        if ($password) {
+          return config::$login->SetPassword($this->getUid(), $password);
+        } else {
+          error('No password provided.');
+        }
+      } else {
+        error('This person has no user.');
+      }
+      return FALSE;
+    }
+    
+    public function setAdminLevel($adminLevel = 1) {
+      $adminLevel = adminLevel($adminLevel);
+      if (!isAdminLevel($adminLevel)) {
+        $adminLevel = adminLevel(1);
+      }
+      $tournament = getTournament();
+      $volunteer = volunteer($this, $tournament);
+      if (!isVolunteer($volunteer)) {
+        $volunteer = $this->addVolunteer($tournament);
+      } else {
+        error('Could not add volunteer.');
+      }
+      if (isVolunteer($volunteer)) {
+        return $volunteer->setAdminLevel($adminLevel);
+      } else {
+        error('This person is not a volunteer.');
+      }
+      return FALSE;
     }
     
     public function setNonce($nonce) {

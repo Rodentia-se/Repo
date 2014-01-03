@@ -25,7 +25,7 @@
 
   $tshirtOrders = tshirtOrders($person, $tournament);
   foreach ($tshirtOrders as $tshirtOrder) {
-    $orderDiv->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->size);
+    $orderDiv->addParagraph('Order ID '.$tshirtOrder->id.': '.$tshirtOrder->number.' of '.$tshirtOrder->colorName.' size '.$tshirtOrder->sizeName);
     $orderDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
   }
 

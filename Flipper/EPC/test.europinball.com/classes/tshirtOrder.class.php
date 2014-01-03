@@ -17,7 +17,6 @@
         ts.color_id as color_id,
         tc.name as colorName,
         ts.size_id as size_id,
-        tz.name as size,
         o.tournamentTShirt_id as tshirt_id,
         tt.tournamentEdition_id as tournamentEdition_id
       from personTShirt o 
@@ -31,7 +30,8 @@
       'tournamentEdition' => 'tournament',
       'person' => 'person',
       'color' => 'color',
-      'tshirt' => 'tshirt'
+      'tshirt' => 'tshirt',
+      'size' => 'size'
     );
 
     public static $children = array();
