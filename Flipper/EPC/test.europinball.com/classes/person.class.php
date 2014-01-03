@@ -481,11 +481,11 @@
                   $("body").addClass("modal");
                   $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
                   .done(function(data) {
-                    $(el).tooltipster("update", data.reason).tooltipster("show");
-                    $("body").removeClass("modal");
                     if (!data.valid) {
                       $(el).val($(el).data("previous"));
                     }
+                    $("body").removeClass("modal");
+                    $(el).tooltipster("update", data.reason).tooltipster("show");
                   });
                 ');
               //$adminLevelSelect
