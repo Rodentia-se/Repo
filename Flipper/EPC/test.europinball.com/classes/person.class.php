@@ -474,7 +474,7 @@
               $adminLevels = adminLevels('all');
               $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', $this->adminLevel_id, 'Administrator level'));
                 $adminLevelSelect->addCombobox();
-                $adminLevelSelect->addTooltip('', TRUE, 0, '#'.$adminLevelSelect->id.'_combobox');
+                $adminLevelSelect->addTooltip('', TRUE, '#'.$adminLevelSelect->id.'_combobox');
                 $adminLevelSelect->addChange('
                   var el = this;
                   if ($(el).val() != 0) {
