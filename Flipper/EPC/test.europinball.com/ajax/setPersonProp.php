@@ -151,7 +151,7 @@
               if ($prop == 'password' && $loginPerson->id != $person->id && !$loginPerson->receptionist) {
                 $json = failure('You need to be a receptionist or administrator to be able to change passwords');
               } else {
-                if ($prop == 'adminLevel' && $loginPerson->receptionist < $value) {
+                if ($prop == 'adminLevel' && $loginPerson->adminLevel_id < $value) {
                   $json = failure('You can not grant priviliges to higher levels than your own.');
                 } else {
                   if ($validator->valid || ($prop == 'password' && $loginPerson->admin)) {
