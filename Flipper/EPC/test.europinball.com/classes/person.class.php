@@ -474,6 +474,7 @@
               $adminLevels = adminLevels('all');
               $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', $this->adminLevel_id, 'Administrator level'));
                 $adminLevelSelect->addCombobox();
+                $adminLevelSelect->addTooltip('');
                 $adminLevelSelect->addChange('
                   var el = this;
                   $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
