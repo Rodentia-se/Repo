@@ -16,11 +16,13 @@
         tc.id as color_id,
         tc.name as colorName,
         tz.id as size_id,
+        tz.name as sizeName,
         ts.id as tshirt_id,
         o.tournamentEdition_id as tournamentEdition_id
       from tournamentTShirt o 
         left join tshirt ts on o.tshirt_id = ts.id
         left join color tc on ts.color_id = tc.id
+        left join size tz on ts.size_id = tz.id
     ';
     
     public static $parents = array(
