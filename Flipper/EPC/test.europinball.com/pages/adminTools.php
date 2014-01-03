@@ -98,7 +98,7 @@
             ');
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$usersSelectDiv
-          ${$prefix.'EditDiv'} = ${$prefix.'EditDiv'}->addDiv(${$prefix.'Select'}->id.'Div');
+          ${$prefix.'EditDiv'} = ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
           //$usersEditDiv
           ${$prefix.'Div'}->addParagraph('More coming soon...');
         //Users
