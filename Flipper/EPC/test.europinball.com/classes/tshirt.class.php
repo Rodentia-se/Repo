@@ -21,7 +21,6 @@
       from tournamentTShirt o 
         left join tshirt ts on o.tshirt_id = ts.id
         left join color tc on ts.color_id = tc.id
-        left join size tz on ts.size_id = tz.id
     ';
     
     public static $parents = array(

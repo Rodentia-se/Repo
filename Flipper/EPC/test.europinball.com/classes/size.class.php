@@ -7,8 +7,7 @@
     public static $select = '
       select
         o.id as id,
-        o.name as name,
-        o.comment as comment
+        o.name as name
       from size o
     ';
 
