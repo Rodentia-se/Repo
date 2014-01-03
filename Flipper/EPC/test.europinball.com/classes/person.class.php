@@ -681,13 +681,16 @@
     
     public function setAdminLevel($adminLevel = 1) {
       $adminLevel = adminLevel($adminLevel);
+      debug($adminLevel);
       if (!isAdminLevel($adminLevel)) {
         $adminLevel = adminLevel(1);
       }
       $tournament = getTournament();
       $volunteer = volunteer($this, $tournament);
+      debug($volunteer->id);
       if (!isVolunteer($volunteer)) {
         $volunteer = $this->addVolunteer($tournament);
+      debug($volunteer->id);
       } else {
         error('Could not add volunteer.');
       }
