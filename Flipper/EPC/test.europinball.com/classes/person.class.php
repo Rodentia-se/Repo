@@ -673,7 +673,7 @@
         return parent::setProp($prop, $value);
       }
     }
-
+ 
     public function setPassword($password) {
       if ($this->username) {
         if ($password) {
