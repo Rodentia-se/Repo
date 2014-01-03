@@ -80,9 +80,8 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('More coming soon...');
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit user settings'));
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Users', NULL, 'Edit user settings'));
             ${$prefix.'Select'}->addCombobox();
             ${$prefix.'Select'}->addValueSpan('Person ID:');
             ${$prefix.'Select'}->addChange('
@@ -94,7 +93,6 @@
                 .done(function(data) {
                   $("#" + el.id + "UserDiv").html(data).show();
                   $("body").removeClass("modal");
-                  }
                 });
               }
             ');
@@ -102,6 +100,7 @@
           //$usersSelectDiv
           ${$prefix.'EditDiv'} = ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'UserDiv');
           //$usersEditDiv
+          ${$prefix.'Div'}->addParagraph('More coming soon...');
         //Users
         $prefix = 'payments';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
