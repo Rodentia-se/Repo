@@ -459,7 +459,7 @@
                   if (confirm("You are about to change the password for '.$this->name.'. Is this what you want to do?")) {
                     $(el).tooltipster("update", "Setting password...").tooltipster("show");
                     $("body").addClass("modal");
-                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "password", value: $(el).val()})
+                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "password", value: $("#'.$newPassword->id.'").val()})
                     .done(function(data) {
                       $(el).tooltipster("update", data.reason).tooltipster("show");
                       $("body").removeClass("modal");
