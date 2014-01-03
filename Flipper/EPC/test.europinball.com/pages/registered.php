@@ -128,7 +128,7 @@
                       $("#" + photoDiv).dialog("close");
                     });
                   });
-                  $("body").removeClass("modal");
+                  $("#mainContent").removeClass("modal");
                   return true;
                 },
                 "oLanguage": {
