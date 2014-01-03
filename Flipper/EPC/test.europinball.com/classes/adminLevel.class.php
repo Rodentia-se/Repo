@@ -7,7 +7,7 @@
     public static $select = '
       select
         o.id as id,
-        o.mame as name,
+        o.name as name,
         o.comment as comment
       from adminLevel o
     ';
