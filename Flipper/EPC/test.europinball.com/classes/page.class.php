@@ -223,8 +223,8 @@
       foreach ($scriptSrcs as $script) {
         $htmlCode .= '<script type="text/javascript" src="'.config::$baseHref.'js/'.$script.'"></script>'."\n";
       }
-      $htmlCode .= ($this->modal) ? self::getScript('$("body").addClass("modal");') : '';
-//      $htmlCode .= ($this->modal) ? self::getScript('$("body").addClass("modal");', FALSE) : '';
+//      $htmlCode .= ($this->modal) ? self::getScript('$("body").addClass("modal");') : '';
+      $htmlCode .= ($this->modal) ? self::getScript('$("body").addClass("modal");', FALSE) : '';
       return ($array) ? array('scripts' => $scriptSrcs, 'htmlCode' => $htmlCode) : $htmlCode;
     }
 
