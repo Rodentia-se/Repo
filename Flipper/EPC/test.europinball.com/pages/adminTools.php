@@ -81,7 +81,7 @@
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Users', NULL, 'Edit user settings'));
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Edit user settings'));
             ${$prefix.'Select'}->addCombobox();
             ${$prefix.'Select'}->addValueSpan('Person ID:');
             ${$prefix.'Select'}->addChange('
@@ -91,14 +91,14 @@
                 $("body").addClass("modal");
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(this).val()})
                 .done(function(data) {
-                  $("#" + el.id + "UserDiv").html(data).show();
+                  $("#" + el.id + "Div").show().html(data);
                   $("body").removeClass("modal");
                 });
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$usersSelectDiv
-          ${$prefix.'EditDiv'} = ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'UserDiv');
+          ${$prefix.'EditDiv'} = ${$prefix.'EditDiv'}->addDiv(${$prefix.'Select'}->id.'Div');
           //$usersEditDiv
           ${$prefix.'Div'}->addParagraph('More coming soon...');
         //Users
