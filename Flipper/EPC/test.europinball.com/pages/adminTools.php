@@ -75,46 +75,67 @@
             ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
             ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
           }
-        //${$prefix.'Div'}
+        //Players
         $prefix = 'users';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('More coming soon...');
-        //${$prefix.'Div'}
-        $paymentDiv = $tabs->addDiv('paymentDiv');
-          $prefix = 'payment';
-          $paymentDiv->title = 'Payments';
-          $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
-          $paymentSelect = $paymentDiv->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
-            $paymentSelect->addCombobox();
-            $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit user settings'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Select'}->addValueSpan('Person ID:');
+            ${$prefix.'Select'}->addChange('
+              var el = this;
+              $("#" + el.id + "UserDiv").hide();
+              if ($(el).val() != 0) {
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "UserDiv").html(data).show();
+                  $("body").removeClass("modal");
+                  }
+                });
+              }
+            ');
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+          //$usersSelectDiv
+          ${$prefix.'EditDiv'} = ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'UserDiv');
+          //$usersEditDiv
+        //Users
+        $prefix = 'payments';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Div')->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$paymentSelect
-          $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
+          $paidDiv = ${$prefix.'Div'}->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
           //$paidDiv
-          $costsDiv = $paymentDiv->addDiv('costsDiv');
+          $costsDiv = ${$prefix.'Div'}->addDiv('costsDiv');
             $costsDiv->addLabel('Should pay:');
             $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
           //$costsDiv
-          $payDiv = $paymentDiv->addDiv('payDiv');
+          $payDiv = ${$prefix.'Div'}->addDiv('payDiv');
             $payDiv->addLabel('Left to pay:');
             $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
             $paySpan->addClasses('sum');
           //$payDiv
-          $setDiv = $paymentDiv->addDiv();
+          $setDiv = ${$prefix.'Div'}->addDiv();
             $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
             $setPaid->disabled = TRUE;
             $setPaid->addChange('
               var el = this;
               $("body").addClass("modal");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$paymentSelect->id.'").val(), prop: "paid", value: $(el).val()})
+              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.${$prefix.'Select'}->id.'").val(), prop: "paid", value: $(el).val()})
               .done(function(data) {
                 if (data.valid) {
-                  $("#'.$paymentSelect->id.'").change();
+                  $("#'.${$prefix.'Select'}->id.'").change();
                   setTimeout(function() {
-                    $("#'.$paymentSelect->id.'_combobox").focus().select()
+                    $("#'.${$prefix.'Select'}->id.'_combobox").focus().select()
                   }, 500);
                 } else {
                   showMsg(data.reason);
@@ -122,7 +143,7 @@
               });
             ');
           //$setDiv
-          $paymentSelect->addChange('
+          ${$prefix.'Select'}->addChange('
             $("body").addClass("modal");
             var modals = 3;
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})

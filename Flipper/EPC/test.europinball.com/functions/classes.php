@@ -26,6 +26,23 @@
     }
   }
 
+  function adminLevel($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    return obj(__FUNCTION__, $data, $search, $depth);
+  }
+
+  function adminLevels($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
+  }
+  
+  function isAdminLevel($adminLevel, $string = FALSE) {
+    $adminLevel = (is_string($adminLevel) && class_exists($adminLevel) && $string) ? new $adminLevel() : $adminLevel;
+    return (isObj($adminLevel) && get_class($adminLevel) == 'city');
+  }
+
+  function isAdminLevels($adminLevels) {
+    return (isGroup($adminLevels) && get_class($adminLevels) == 'adminLevels');
+  }
+
   function city($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }

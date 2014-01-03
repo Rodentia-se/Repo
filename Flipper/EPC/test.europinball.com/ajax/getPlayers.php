@@ -79,6 +79,8 @@
     break;
     case 'photo':
     case 'edit':
+    case 'user':
+    case 'users':
       if (isPlayer($players[0])) {
         echo $players[0]->getEdit($type);
       } else {

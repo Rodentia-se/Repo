@@ -206,12 +206,12 @@
       switch ($type) {
         case 'payment':
         case 'payments':
-          $paymentDiv = new div($prefix.'PaymentDiv');
+          $paymentsDiv = new div($prefix.'PaymentsDiv');
             if ($title) {
-              $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
+              $paymentsDiv->addH2('Payment options', array('class' => 'entry-title'));
             }
-            $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
-            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
+            $paymentsPerson = $paymentsDiv->addHidden('paymentsPerson_id', $this->id);
+            $gotoProfileP = $paymentsDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
 /*
               $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#profiletabLink").click();');
               $gotoProfileP->addContent(' or ');
@@ -221,113 +221,113 @@
               $gotoProfileP->addSpan('January 15th', NULL, 'bold');
               $gotoProfileP->addContent(').');
             //}
-            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
-              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
+            $curDiv = $paymentsDiv->addDiv($prefix.'paymentsCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payments', ((config::$tshirts) ? FALSE : TRUE)));
             //}
             $divisions = divisions($tournament);
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
-                $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
+                $divisionDiv = $paymentsDiv->addDiv($division->id.'_CostDiv');
                   $cost = $this->getCost($division);
                   $spinnerParams = array(
-                    'class' => 'paymentSpinner enterChange',
+                    'class' => 'paymentsSpinner enterChange',
                     'data-division_id' => $division->id,
                     'data-eachcost' => $cost
                   );
                   $player = player($this, $division);
                   $divisionNum = ($player) ? 1 : 0;
-                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
-                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payments_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
                   //}
                 //}
               }
             }
-            $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
+            $tshirtDiv = $paymentsDiv->addDiv($prefix.'PaymentsTshirtsDiv');
               $tshirtOrders = tshirtOrders($this, $tournament);
               $tshirtNum = 0;
               foreach ($tshirtOrders as $tshirtOrder) {
                 $tshirtNum += $tshirtOrder->number;
               }
               $spinnerParams = array(
-                'class' => 'numOfTshirts paymentSpinner enterChange',
+                'class' => 'numOfTshirts paymentsSpinner enterChange',
                 'data-eachcost' => config::$tshirtCost
               );
-              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
-                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentsTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
-            $paymentDiv->addChange('
+            $paymentsDiv->addChange('
               var el = this;
               var number = $(el).val();
               var each = $(el).data("eachcost");
               $("#" + el.id + "_moneySpanAmount").html((+ number * each));
               var cost = 0;
               var num = 0;
-              $(".paymentSpinner").each(function() {
+              $(".paymentsSpinner").each(function() {
                 cost += (+ $("#" + this.id + "_moneySpanAmount").html());
               });
-              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
-              var toPay = cost - (+ $("#PaymentPaidDivMoneySpanAmount").html() * -1);
+              $("#'.$prefix.'PaymentsSubTotalDivMoneySpanAmount").html(cost);
+              var toPay = cost - (+ $("#PaymentsPaidDivMoneySpanAmount").html() * -1);
               $("#PaidTooMuchAmount").html((+ toPay * -1));
               if (toPay > 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
-                $("#PaymentTotalDivMoneySpanAmount").html(Math.ceil(toPay));
-                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
+                $("#PaymentsTotalDivMoneySpanAmount").html(Math.ceil(toPay));
+                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!");
                 $("#TshirtsOrderMore").hide();
               } else if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
-                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#PaymentsTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               } else {
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
-                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#PaymentsTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               }
               var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
-              orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentTshirts").val());
+              orderMoreNum = ($("#PaymentsTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentsTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentsTshirts").val());
               $("#TshirtsOrderMoreNum").html(orderMoreNum);
               if (orderMoreNum) {
                 $("#TshirtsOrderMore").show();
               } else {
                 $("#TshirtsOrderMore").hide();
               }
-              $("#payPalMsg").val("ID: " + $("#paymentPerson_id").val() + ", Main: " + $("#Payment_15").val() + ", T-shirts: " + $("#PaymentTshirts").val());
+              $("#payPalMsg").val("ID: " + $("#paymentsPerson_id").val() + ", Main: " + $("#Payments_15").val() + ", T-shirts: " + $("#PaymentsTshirts").val());
               $("#'.$currencyChooser->id.'").change();
-            ', '.paymentSpinner');
+            ', '.paymentsSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
-            $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
+            $subTotalDiv = $paymentsDiv->addDiv($prefix.'PaymentsSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
             //}
-            $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
+            $paidDiv = $paymentsDiv->addDiv($prefix.'PaymentsPaidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
-              $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
               $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? 'paidAll' : 'hidden paidAll'));
               $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
               $paidDiv->addMoneySpan((+ ($costs - $this->paid) * -1), $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch')));
               $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
             //}
-            $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
+            $totalDiv = $paymentsDiv->addDiv($prefix.'PaymentsTotalDiv');
               $totalDiv->addLabel(' ');
               $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
-              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
             //}
           //}
-          $paymentDiv->addScriptCode('
+          $paymentsDiv->addScriptCode('
             $(document).ready(function() {
-              $("#PaymentTshirts").change();
+              $("#PaymentsTshirts").change();
             });
           ');
-          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
-          return $paymentDiv;
+          $paymentsDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
+          return $paymentsDiv;
         break;
         case 'tshirt':
         case 'tshirts':
@@ -357,7 +357,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;
                   $spinner->addTooltip('');
@@ -366,7 +366,7 @@
             }
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
               $subTotalDiv->style = 'margin-bottom: 15px;';
             //}
             $toBuyFor = $this->paid - $this->getCost();
@@ -375,13 +375,13 @@
               $orderMoreP = $orderMoreDiv->addParagraph('You have already paid (or are going to pay) enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
               $orderMoreP->addSpan($orderMoreNum, $prefix.'TshirtsOrderMoreNum');
               $orderMoreP->addContent(' more T-shirts.');
-            $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
-              $goToPaymentP = $goToPaymentDiv->addParagraph('Go to the ');
-                $gotoPaymentBtn = $goToPaymentP->addClickButton('payment tab', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
-                $goToPaymentP->addContent(' to pay or check payment status.');
+            $goToPaymentsDiv = $orderDiv->addDiv('goToPaymentsDiv');
+              $goToPaymentsP = $goToPaymentsDiv->addParagraph('Go to the ');
+                $gotoPaymentsBtn = $goToPaymentsP->addClickButton('payments tab', NULL, NULL, FALSE, '$("#paymentstabLink").click();');
+                $goToPaymentsP->addContent(' to pay or check payment status.');
               //}
             //}
-            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payment tab.', NULL, 'italic');
+            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payments tab.', NULL, 'italic');
             $orderDiv->addChange('
               var el = this;
               var tshirtOrder_id = $(el).data("tshirtorder_id");
@@ -402,9 +402,9 @@
                   num += parseInt($(this).val());
                 });
                 $("#'.$subTotalDiv->id.'MoneySpanAmount").html(cost);
-                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentsTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
-                $("#PaymentTshirts").change();
+                $("#PaymentsTshirts").change();
               });
             ', '.'.$spinnerClass);
           //}
@@ -413,6 +413,55 @@
         break;
         case 'photo':
           return $this->getPhotoEdit($prefix);
+        break;
+        case 'user':
+        case 'users':
+          $usersDiv = new div($prefix.'usersDiv');
+            $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv');
+              $userNameDiv->addLabel('Username');
+              $userNameDiv->addSpan($this->username);
+            //$userNameDiv
+            $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
+              $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
+              $setPasswordButton = $passwordDiv->addButton('Set password');
+              $setPasswordButton->addTooltip('');
+              $setPasswordButton->addClick('
+                var el = this;
+                if ($(el).val().length < 7) {
+                  $(el).tooltipster("update", "Please use at least 6 characters").tooltipster("show");
+                } else {
+                  if (confirm("You are about to change the password for ".$this->name.". Is this what you want to do?")) {
+                    $(el).tooltipster("update", "Setting password...").tooltipster("show");
+                    $("body").addClass("modal");
+                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "password", value: $(el).val()})
+                    .done(function(data) {
+                      $(el).tooltipster("update", data.reason).tooltipster("show");
+                      $("body").removeClass("modal");
+                    });
+                  } else {
+                    $(el).tooltipster("update", "Password not changed").tooltipster("show");
+                  }
+                }
+              ');
+            //$passwordDiv
+            $adminLevelDiv = $usersDiv->addDiv($prefix.'usersAdminLevelDiv');
+              $adminLevels = adminLevels('all');
+              $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', NULL, 'Administrator level'));
+                $adminLevelSelect->addCombobox();
+                $adminLevelSelect->addChange('
+                  var el = this;
+                  $(el).tooltipster("update", "Changing administrator level...").tooltipster("show");
+                  $("body").addClass("modal");
+                  $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
+                  .done(function(data) {
+                    $(el).tooltipster("update", data.reason).tooltipster("show");
+                    $("body").removeClass("modal");
+                  });
+                ');
+              //$adminLevelSelect
+            //$adminLevelDiv
+          //$usersDiv
+          return $usersDiv;
         break;
         case 'profile':
         case 'edit':

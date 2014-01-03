@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Register');
+  $page = new page('Password reset');
   
   $page->addH2('Password reset');
   
@@ -36,7 +36,7 @@
       }
     }
   }
-$person = person(1);
+
         if ($person && isId($person->id)) {
           if ($person->username) {
             $_SESSION['username'] = $person->username;
