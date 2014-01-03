@@ -91,9 +91,10 @@
                 $("body").addClass("modal");
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(el).val()})
                 .done(function(data) {
-                  $("#" + el.id + "EditDiv").show();
-                  $("body").removeClass("modal");
                   $("#" + el.id + "EditDiv").html(data);
+                  $("#" + el.id + "EditDiv").show();
+                  $(":button").button();
+                  $("body").removeClass("modal");
                 });
               }
             ');
