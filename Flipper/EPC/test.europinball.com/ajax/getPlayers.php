@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
-  $types = array('regSearch', 'registered', 'edit', 'photo');
+  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users');
   $type = (isset($_REQUEST['type']) && in_array($_REQUEST['type'], $types)) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
