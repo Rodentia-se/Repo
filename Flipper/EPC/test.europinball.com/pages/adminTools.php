@@ -86,12 +86,12 @@
             ${$prefix.'Select'}->addValueSpan('Person ID:');
             ${$prefix.'Select'}->addChange('
               var el = this;
-              $("#" + el.id + "UserDiv").hide();
+              $("#" + el.id + "EditDiv").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
                 $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(this).val()})
                 .done(function(data) {
-                  $("#" + el.id + "Div").show().html(data);
+                  $("#" + el.id + "EditDiv").show().html(data);
                   $("body").removeClass("modal");
                 });
               }
