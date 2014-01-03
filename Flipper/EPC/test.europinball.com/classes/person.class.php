@@ -654,6 +654,18 @@
       }
     }
     
+    public function getRegSearch() {
+      return array(
+        $this->name,
+        $this->shortName,
+        $this->cityName,
+        $this->countryName,
+        $this->getLink('ifpa'),
+        $this->getPhotoIcon(),
+        '<form id="'.$this->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="isMe"><input type="hidden" name="person_id" value="'.$this->id.'"><input type="button" id="'.$this->id.'_isMe" class="isMe" value="This is me!"></form>'
+      );
+    }
+    
     public function getUid() {
       if ($this->username) {
         $uid = config::$login->Uid($this->username);

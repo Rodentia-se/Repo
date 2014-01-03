@@ -132,7 +132,7 @@
     }
   }
   
-  function jsonEcho($obj) {
+  function jsonEcho($obj, $exit = FALSE) {
     if (isJson($obj)) {
       $json = $obj;
     } else if (is_object($obj) || is_array($obj)) {
@@ -142,6 +142,9 @@
     }
     header('Content-Type: application/json');
     echo($json);
+    if (is($exit)) {
+      exit $exit;
+    }
     return TRUE;
   }
 
