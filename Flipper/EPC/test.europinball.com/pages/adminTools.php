@@ -107,7 +107,7 @@
           ${$prefix.'MailTabs'} = ${$prefix.'Div'}->addTabs(NULL, $prefix.'MailTabs');
           $vols = clone $volunteers;
           foreach ($adminLevels as $adminLevel) {
-            if ($adminLeve->id > 15) {
+            if ($adminLevel->id > 15) {
               $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
               $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
             }
