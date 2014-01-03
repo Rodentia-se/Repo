@@ -699,7 +699,7 @@
         $volunteer = $this->addVolunteer($tournament);
       }
       if (isVolunteer($volunteer)) {
-        return $volunteer->setProp('AdminLevel_id', $adminLevel->id);
+        return $volunteer->setProp('adminLevel_id', $adminLevel->id);
       } else {
         error('Could not add '.$this->name.' as volunteer.');
       }
