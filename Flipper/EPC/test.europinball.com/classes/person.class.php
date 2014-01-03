@@ -117,7 +117,7 @@
         } else if (isDivision($data)) {
           $tournament = $data->tournament;
         } else if (isTournament($search)) {
-          $tournament = $search;
+          $tournament = $search; 
         } else if (isDivision($search)) {
           $tournament = $search->tournament;
         }
