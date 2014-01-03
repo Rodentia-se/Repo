@@ -463,6 +463,9 @@
                     .done(function(data) {
                       $(el).tooltipster("update", data.reason).tooltipster("show");
                       $("body").removeClass("modal");
+                      if (data.valid) {
+                        $("#'.$newPassword->id.'").val("");
+                      }
                     });
                   } else {
                     $(el).tooltipster("update", "Password not changed").tooltipster("show");
