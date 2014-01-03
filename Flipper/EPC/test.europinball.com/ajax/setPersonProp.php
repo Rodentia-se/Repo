@@ -151,7 +151,7 @@
               if ($validator->valid || ($prop == 'password' && $loginPerson->admin)) {
                 $change = $person->setProp($prop, $value);
                 if ($change) {
-                  $json = success((($value) ? 'Changed '.$prop.' to '.$value : 'Removed '.$prop).' for '.$person->name);
+                  $json = success((($value) ? 'Changed '.$prop.(($prop != 'password') ? ' to '.$value : '') : 'Removed '.$prop).' for '.$person->name);
                 } else {
                   $json = failure('Property assignment failed');
                 }
