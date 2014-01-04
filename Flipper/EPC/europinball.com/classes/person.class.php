@@ -501,7 +501,6 @@
               //$adminLevelSelectpa
             //$adminLevelDiv
           //$usersDiv
-          debug($this);
           return $usersDiv;
         break;
         case 'profile':
