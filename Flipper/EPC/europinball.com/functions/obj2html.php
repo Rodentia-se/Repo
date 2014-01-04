@@ -43,7 +43,7 @@
               $(this).val(parseInt($(this).val().replace(/[^0-9\-]/g, "") * rate).toMoney(0, ".", " ", "", format));
             });
             $("#payPalImg").attr("src", "'.config::$baseHref.'/images/paypal_" + currency +".gif");
-            var toPay = $("#PaymentTotalDivMoneySpanAmount").html();
+            var toPay = $("#PaymentsTotalDivMoneySpanAmount").html();
             $("#payPalAmount").val(Math.ceil(toPay * rate));
             $(".totalSpans").html(Math.ceil(toPay * rate));
          })
