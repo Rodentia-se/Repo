@@ -108,7 +108,7 @@
                 $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.'Game'.$field, 'class' => (($field == 'year') ? $dateClass.' ' : '').$editClass));
               //}
             }
-            $div = $editDiv->addDiv($editDiv.'GameManufacturer_idDiv');
+            $div = $editDiv->addDiv($prefix.'GameManufacturer_idDiv');
               $sel = $div->addContent(manufacturers('all')->getSelectObj('manufacturer_id', $this->manufacturer_id, 'Manufacturer', array('class' => $comboboxClass)));
               $sel->id = $prefix.'GameManufacturer_id';
             //}
