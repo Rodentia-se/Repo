@@ -126,7 +126,8 @@
      
     public function __set($prop, $value) {
           if ($value === 'THISISATEST') {
-            debug($this->{data-title}, 'current');
+            debug($this->data_title, 'current');
+            debug($this->params['data-title'], 'current');
             debug($prop, 'prop');
             debug($value, 'value');
           }
@@ -227,7 +228,8 @@
         break;
       }
           if ($value === 'THISISATEST') {
-            debug($this->{data-title}, 'new');
+            debug($this->data_title, 'new');
+            debug($this->params['data-title'], 'current');
           }
     }
     
