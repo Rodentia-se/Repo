@@ -27,7 +27,7 @@
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
                 var modals = 2;
-                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "edit", id: $(this).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   modals--;
@@ -36,7 +36,7 @@
                     $("#" + el.id + "Tabs").show();
                   }
                 });
-                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "photo", id: $(this).val()})
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "photo", id: $(this).val()})
                 .done(function(data) {
                   $("#" + el.id + "PhotoDiv").html(data);
                   modals--;
@@ -90,7 +90,7 @@
               $("#" + el.id + "EditDiv").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "'.$prefix.'", id: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$prefix.'", id: $(el).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   $("#" + el.id + "EditDiv").show();

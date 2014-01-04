@@ -137,9 +137,9 @@
                 "iDisplayLength": -1,
                 "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
               });
-              '.(($type == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
-                tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
-              });' : '').'
+              $("#'.$division->shortName.'_reloadButton").click(function() {
+                tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class='.$type.'&type=registered&data=division&data_id='.$division->id.'");
+              });
             ');
           } else {
             $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
