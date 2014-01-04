@@ -227,7 +227,7 @@
       return false;
     }
 
-    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+    public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
         case 'payment':
@@ -528,7 +528,7 @@
             );
             foreach ($fields as $field => $label) {
               $editDivs[$field] = new div($prefix.$field.'Div');
-                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? 'date ' : '').$editClass));
+                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? $dateClass.' ' : '').$editClass));
               //}
             }
             $profileDiv->addContent($editDivs['firstName']);
@@ -644,7 +644,8 @@
                 dateFormat: "yy-mm-dd",
                 yearRange: "-100:-0",
                 defaultDate: "-30y",
-                changeYear: true, 
+                changeYear: true,
+                showWeek: true,
                 changeMonth: true 
               });
             ');
