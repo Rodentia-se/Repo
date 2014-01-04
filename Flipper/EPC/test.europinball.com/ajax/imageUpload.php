@@ -22,7 +22,7 @@
             $tmp = $_FILES['imageUpload']['tmp_name'];
             $previewFile = $path.'/preview/'.$id.'.'.$ext;
             if (move_uploaded_file($tmp, $previewFile)) {
-              chmod($previewFile, 0664);
+//              chmod($previewFile, 0664);
               //          usleep(100000);
               echo '
                 <script src="'.config::$baseHref.'/js/contrib/jquery.form.min.js" type="text/javascript"></script>
