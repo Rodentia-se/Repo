@@ -76,7 +76,7 @@
         'sEcho' => $_REQUEST['sEcho'],
         'iTotalRecords' => count($objs),
         'iTotalDisplayRecords' => count($objs),
-        'aaData' => NULL
+        'aaData' => array()
       );
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
@@ -90,7 +90,7 @@
         'sEcho' => $_REQUEST['sEcho'],
         'iTotalRecords' => count($objs),
         'iTotalDisplayRecords' => count($objs),
-        'aaData' => NULL
+        'aaData' => array()
       );
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
