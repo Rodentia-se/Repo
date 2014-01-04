@@ -2,6 +2,8 @@
 
   class tabs extends html {
     
+    public static $debugRun;
+    
     public function __construct($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       parent::__construct('div', $contents, $params, $id, $class, NULL);
     }
