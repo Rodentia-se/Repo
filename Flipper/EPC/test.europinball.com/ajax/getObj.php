@@ -61,7 +61,7 @@
       }
     } else if (isGroup($class, TRUE)) {
       $data = objCheck($data, $data_id);
-      $search = objCheck($search, $search_id);
+      $search = objCheck($search, $search_id, 'search');
       $objs = $class($data, $search);
     } else {
       jsonEcho(failure('No such class'), TRUE);
@@ -75,7 +75,8 @@
       $json = (object) array(
         'sEcho' => $_REQUEST['sEcho'],
         'iTotalRecords' => count($objs),
-        'iTotalDisplayRecords' => count($objs)
+        'iTotalDisplayRecords' => count($objs),
+        'aaData' => NULL
       );
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
@@ -88,7 +89,8 @@
       $json = (object) array(
         'sEcho' => $_REQUEST['sEcho'],
         'iTotalRecords' => count($objs),
-        'iTotalDisplayRecords' => count($objs)
+        'iTotalDisplayRecords' => count($objs),
+        'aaData' => NULL
       );
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
