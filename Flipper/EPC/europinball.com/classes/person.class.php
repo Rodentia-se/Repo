@@ -132,8 +132,8 @@
       $this->volunteer = volunteer($this, $tournemant);
       if ($this->volunteer) {
         $this->volunteer_id = $this->volunteer->id;
-        $this->adminLevel_id = $this->volunteer->adminLevel_id;
-        $this->adminLevel = $this->volunteer->adminLevel;
+        $this->adminLevel_id = ($this->volunteer->adminLevel_id) ? $this->volunteer->adminLevel_id : 1;
+        $this->adminLevel = ($this->volunteer->adminLevel) ? $this->volunteer->adminLevel : adminLevel(1);
         $this->hereVol = $this->volunteer->here;
         $this->hours = $this->volunteer->hours;
         $this->alloc = $this->volunteer->alloc;
@@ -143,6 +143,7 @@
           $adminLevelName = $adminLevel->name;
           $this->$adminLevelName = $this->volunteer->$adminLevelName;
         }
+        $this->player = 1;
       }
       return $this->volunteer;
     }
@@ -443,7 +444,7 @@
         break;
         case 'user':
         case 'users':
-          $this->getVolunteer();
+          $this->getVolunteer($tournament);
           $usersDiv = new div($prefix.'usersDiv');
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
