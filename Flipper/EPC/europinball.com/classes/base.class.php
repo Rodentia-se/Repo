@@ -407,10 +407,18 @@
         foreach (static::$parents as $field => $class) {
           if ($this->{$field.'_id'}) {
             $this->{$field.'ParentDepth'} = self::$parentDepth;
+            if ($this->{$field.'_id'} == 4) {
+              debug($this, 'THISTHIS');
+              debug($class, 'CLASS');
+              debug($field, 'FIELD');
+            }
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}]->getFlat();
             } else {
               $this->$field = $class($this->{$field.'_id'}, config::NOSEARCH, $depth);
+            }
+            if ($this->{$field.'_id'} == 4) {
+              debug($this->$field, 'OBJ');
             }
             $this->{$field.'Name'} = $this->$field->name;
           }
