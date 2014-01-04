@@ -140,7 +140,7 @@
         $this->hoursDiff = $this->volunteer->hoursDiff;
         $adminLevels = adminLevels('all');
         foreach ($adminLevels as $adminLevel) {
-          $adminLevelName = $adminLevel->name
+          $adminLevelName = $adminLevel->name;
           $this->$adminLevelName = $this->volunteer->$adminLevelName;
         }
       }
