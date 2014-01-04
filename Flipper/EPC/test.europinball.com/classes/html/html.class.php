@@ -354,7 +354,7 @@
         default:
           if (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) {
             unset($this->params[preg_replace('/_/', '-', $prop)]);
-          } else if (array_key_exists($prop), $this->settings)) {
+          } else if (array_key_exists($prop, $this->settings)) {
             unset($this->settings[$prop]);
           }
         break;
