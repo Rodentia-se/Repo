@@ -80,12 +80,12 @@
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
         if ($this->loggedin()) {
-          $footer .= self::getDivStart('logoutFooter');
+          $footer .= self::getDivStart('logoutFooter', 'logXfooter');
           $footer .= self::getParagraph('You are logged in as '.$person->name.'. '.self::getButton('Log out', 'footerLogout').(($person->receptionist) ? ' You have access to <a href="'.config::$baseHref.'/admin-tools" class="buttonLink">Admin tools</a>': ''), NULL, 'italic');
           $footer .= self::getForm('footerLogout', array('action' => 'logout'));
           $footer .= self::getDivEnd();
         } else {
-          $footer .= self::getDivStart('loginFooter');
+          $footer .= self::getDivStart('loginFooter', 'logXfooter');
           $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Login">', NULL, 'italic');
           $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
           $footer .= self::getScript('
