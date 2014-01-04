@@ -127,6 +127,7 @@
               }
               $division = division($tournament, 'recreational');
               $machines = machines($this, $division);
+              debug($machines);
               $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
             //}
             $editDiv->addScriptCode('
