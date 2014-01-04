@@ -15,8 +15,8 @@
         foreach ($players as $player) {
           $data[] = $player->person;
         }
+        debug(count($data), 'huff');
       }
-      debug(count($data), 'huff');
       parent::__construct($data, $search, $depth);
     }
 
