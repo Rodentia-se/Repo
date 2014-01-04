@@ -116,6 +116,7 @@
               $div->addLabel('Divisions', NULL, NULL, 'normal');
               foreach (config::$activeDivisions as $divisionType) {
                 $division = division($tournament, $divisionType);
+                debug($division);
                 $machine = machine($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machine), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
               }
