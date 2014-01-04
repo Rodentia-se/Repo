@@ -31,9 +31,8 @@
         p.nonce as nonce,
         o.tournamentEdition_id as tournamentEdition_id,
         o.comment as comment,
-        o.adminLevel_id as adminLevel_id,
-        o.adminLevel_id as adminLevel,
-        if(o.adminLevel_id > 0, 1, null) as scorereader,
+        if (ifnull(o.adminLevel_id, 1) = 0, 1, ifnull(o.adminLevel_id, 1)) as adminLevel_id,
+        1 as player,
         if(o.adminLevel_id > 7, 1, null) as allreader,
         if(o.adminLevel_id > 15, 1, null) as scorekeeper,
         if(o.adminLevel_id > 23, 1, null) as receptionist,
@@ -48,6 +47,7 @@
 
     public static $parents = array(
       'person' => 'person',
+      'adminLevel' => 'adminLevel',
       'tournamentEdition' => 'tournament',
       'gender' => 'gender',
       'city' => 'city',
