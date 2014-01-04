@@ -518,7 +518,7 @@
             <input type="hidden" name="'.$prefix.'obj" id="'.$prefix.'obj" value="'.get_class($this).'">
             <input type="hidden" name="'.$prefix.'id" id="'.$prefix.'id" value="'.$this->id.'">
       	    <div id="'.$prefix.'preview">
-      		    <img src="'.$this->getPhoto().'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
+      		    <img src="'.$this->getPhoto().'?nocache='.rand(10000,20000).'" id="'.$prefix.'thumb" class="preview" alt="Preview of '.$this->name.'">
               <div id="'.$prefix.'imageLoader"></div>
       	    </div>
       	    <div id="'.$prefix.'uploadForm">
