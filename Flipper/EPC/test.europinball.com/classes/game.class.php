@@ -127,7 +127,8 @@
               .change(function(){
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
-                $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
+                $(combobox).tooltipster("update", "Game changes are not implemented yet...").tooltipster("show");
+/*                $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
                 $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
@@ -158,6 +159,7 @@
                   $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
               });
+              */
               $(".custom-combobox-input").tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
@@ -168,7 +170,8 @@
               });
               $(".'.$editClass.'").change(function(){
                 var el = this;
-                if (el.id == "'.$prefix.'shortName") {
+                $(el).tooltipster("update", "Game changes are not implemented yet...").tooltipster("show");
+/*                if (el.id == "'.$prefix.'shortName") {
                   $(el).val($(el).val().toUpperCase());
                 } 
                 var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
@@ -193,6 +196,7 @@
                   $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
               })
+              */
               .tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
