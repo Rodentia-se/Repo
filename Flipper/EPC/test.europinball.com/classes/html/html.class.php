@@ -216,7 +216,7 @@
         default:
           if ($prop == 'data-title') {
             debug($this->{data-title}, 'current');
-            debug($value}, 'value');
+            debug($value, 'value');
           }
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
