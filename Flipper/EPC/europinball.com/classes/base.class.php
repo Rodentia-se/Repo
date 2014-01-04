@@ -120,6 +120,14 @@
       }
     }
     
+    function getObj($type = NULL, $arg = NULL) {
+      if (method_exists($this, $type)) {
+        return $this->$type($arg);
+      } else {
+        return NULL;
+      }
+    }
+    
     public function setProp($prop, $value = NULL) {
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->getColNames();
@@ -532,6 +540,7 @@
                 $("#'.$prefix.'thumb").on("click", function() {
                   $("#'.$prefix.'imageUpload").trigger("click");
                 });
+                $("#'.$prefix.'submitImg").button();
               }); 
             </script>
           </form>

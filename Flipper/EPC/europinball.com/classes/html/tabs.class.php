@@ -2,6 +2,8 @@
 
   class tabs extends html {
     
+    public static $debugRun;
+    
     public function __construct($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       parent::__construct('div', $contents, $params, $id, $class, NULL);
     }
@@ -23,15 +25,15 @@
       } else if (isHtml($content)) {
         if (get_class($content) == 'div') {
           $div = $content;
-          $div->params['title'] = ($div->title) ? $div->title : ucfirst($div->id);
+          $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : ucfirst($div->id));
         } else {
           $div = new div((($content->id) ? $content->id.'_tab' : html::newId(NULL, '_tab')));
-          $div->params['title'] = ($content->title) ? $content->title : ucfirst(preg_replace('/_tab$/', '', $div->id));
+          $div->params['data-title'] = ($content->data_title) ? $content->data_title : (($content->title) ? $content->title : ucfirst(preg_replace('/_tab$/', '', $div->id)));
           $div->addContent($content);
         }
       } else {
         $div = new div(html::newId(NULL, '_tab'));
-        $div->params['title'] = preg_replace('/_tab$/', '', ucfirst($div->id));
+        $div->params['data-title'] = preg_replace('/_tab$/', '', ucfirst($div->id));
         $div->addContent($content);
       }
       return parent::addContent($div, $replace, $index);
@@ -42,7 +44,7 @@
         $ul = new ul();
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
-          $li->addLink('#'.$content->id, $content->title);
+          $li->addLink('#'.$content->id, $content->data_title);
         }
         return ($string) ? $ul->getHtml() : $ul;
       }

@@ -48,6 +48,7 @@
   }
 
   $page = new page('Registered '.$title);
+  $page->modal = TRUE;
   
   $page->addH2('Registered '.$title);
   $page->startDiv('tabs');
@@ -76,10 +77,10 @@
               } else {
                 $headers = array('Name', 'Tag', 'City', 'Region', 'Country sort', 'Country', 'IFPA Rank', 'IFPA', 'Photo', 'Waiting', 'Paid');
                 $aoColumnDefs = '
-                  { "aDataSort": [ 6 ], "aTargets": [ 7 ] },
-                  { "bVisible": false, "aTargets": [ 6 ] },
-                  { "aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                  { "bVisible": false, "aTargets": [ 4 ] },
+                  {"aDataSort": [ 6 ], "aTargets": [ 7 ] },
+                  {"bVisible": false, "aTargets": [ 6 ] },
+                  {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                  {"bVisible": false, "aTargets": [ 4 ] },
                   {"sClass": "icon", "aTargets": [ 5 ] },
                   {"sClass": "icon", "aTargets": [ 8 ] }
                 ';
@@ -94,9 +95,13 @@
             foreach ($objs[$division->id] as $obj) {
               $rows[] = $obj->getRegRow(TRUE);
             }
-            if ($type == 'players') {
-              $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main' && config::$participationLimit[$division->type]) ? ' <span class="right">The maximum number of players is '.config::$participationLimit[$division->type].'.</span>' : ''));
+            $reloadP = '<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">';
+            if ($type == 'players' && $division->type == 'main' && config::$participationLimit[$division->type]) {
+              $reloadP .= '<span class="right">The maximum number of players is '.config::$participationLimit[$division->type].'</span>';
+            } else if ($type == 'machines') {
+              $reloadP .= '<span class="right italic">Note: The list of machines is subject to change at any time</span>';
             }
+            $page->addParagraph($reloadP);
             $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
             $page->datatables = TRUE;
             $page->datatablesReload = TRUE;
@@ -127,6 +132,7 @@
                       $("#" + photoDiv).dialog("close");
                     });
                   });
+                  $("#mainContent").removeClass("modal");
                   return true;
                 },
                 "oLanguage": {
@@ -135,9 +141,9 @@
                 "iDisplayLength": -1,
                 "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
               });
-              '.(($type == 'players') ? '$("#'.$division->shortName.'_reloadButton").click(function() {
-                tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getPlayers.php?type=registered&obj=division&id='.$division->id.'");
-              });' : '').'
+              $("#'.$division->shortName.'_reloadButton").click(function() {
+                tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class='.$type.'&type=registered&data=division&data_id='.$division->id.'");
+              });
             ');
           } else {
             $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));

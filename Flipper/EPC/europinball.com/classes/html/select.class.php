@@ -174,6 +174,7 @@
         foreach ($this->contents as $key => $option) {
           if (!$chosen && $selected && ($option === $selected || $option->value == $selected || $option->getContent() == $selected)) {
             $option->selected = TRUE;
+            $this->params['data-previous'] = $option->value;
             $chosen = $key;
           } else {
             $option->selected = FALSE;
@@ -183,6 +184,7 @@
           foreach ($this->contents as $key => $option) {
             if (!$chosen && $key === $selected) {
               $option->selected = TRUE;
+              $this->params['data-previous'] = $option->value;
               $chosen = $key;
             } else {
               $option->selected = FALSE;

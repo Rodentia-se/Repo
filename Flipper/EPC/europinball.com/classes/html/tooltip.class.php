@@ -11,6 +11,7 @@
           'theme' => '.tooltipster-light',
           'trigger' => 'custom',
           'position' => 'right',
+          'offsetX' => 0,
           'timer' => 3000
         );
       } else {

@@ -327,6 +327,14 @@
       return $return;
     }
     
+    function getAllOf($prop = 'name') {
+      return array_unique(array_filter($this->array_map(function($obj) use ($prop) {
+        if ($obj->$prop) {
+          return $obj->$prop;
+        }
+      })));
+    }
+    
     function delete() {
       foreach ($this as $obj) {
         if (!$obj->delete()) {

@@ -26,6 +26,23 @@
     }
   }
 
+  function adminLevel($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    return obj(__FUNCTION__, $data, $search, $depth);
+  }
+
+  function adminLevels($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
+  }
+  
+  function isAdminLevel($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
+    return (isObj($obj) && get_class($obj) == 'adminLevel');
+  }
+
+  function isAdminLevels($objs) {
+    return (isGroup($objs) && get_class($objs) == 'adminLevels');
+  }
+
   function city($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
@@ -401,6 +418,23 @@
 
   function isSets($sets) {
     return (isGroup($sets) && get_class($sets) == 'sets');
+  }
+  
+  function size($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    return obj(__FUNCTION__, $data, $search, $depth);
+  }
+
+  function sizes($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
+  }
+
+  function isSize($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
+    return (isObj($obj) && get_class($obj) == 'size');
+  }
+
+  function isSizes($objs) {
+    return (isGroup($objs) && get_class($objs) == 'sizes');
   }
   
   function task($data = NULL, $search = config::NOSEARCH, $depth = NULL) {

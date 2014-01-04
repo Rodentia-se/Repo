@@ -4,39 +4,59 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Admin tools');
+  $page->forms = TRUE;
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
-    $persons = persons(tournament('active'));
+    $tournament = tournament('active');
+    $persons = persons($tournament);
+    $volunteers = volunteers($tournament);
     $adminDiv = new div('adminDiv');
-    $loading = $adminDiv->addLoading();
-    if ($volunteer->admin) {
+    if ($volunteer->receptionist) {
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $prefix = 'players';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
-            $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile'));
+            $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
             $profileSelect->addChange('
               var el = this;
-              if ($(el).val() == 0) {
-                $("#" + el.id + "EditDiv").html("");
-              } else {
+              $("#" + el.id + "Tabs").hide();
+              if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                $.post("'.config::$baseHref.'/ajax/getPlayers.php", {obj: "person", type: "edit", id: $(this).val()})
+                var modals = 2;
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "edit", id: $(this).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
-                  $("body").removeClass("modal");
+                  modals--;
+                  if (modals == 0) {
+                    $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
+                  }
+                });
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "photo", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "PhotoDiv").html(data);
+                  modals--;
+                  if (modals == 0) {
+                    $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
+                  }
                 });
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
-          //}
-          $profileEditDiv = ${$prefix.'Div'}->addDiv($profileSelect->id.'EditDiv');
-          //}
+          //$profileSelectDiv
+          $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
+            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv');
+            //$profileEditDiv
+            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv');
+            //$photoSelectDiv
+            $profileTabs->addCss('margin-top', '15px');
+          //}$profileTabs
           $waitingDiv = ${$prefix.'Div'}->addDiv();
             $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
             $waitingButton->addTooltip('');
@@ -49,70 +69,115 @@
               })
             ');
             $waitingButton->addCss('margin-top', '15px');
-          //}
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address can be copied from here: ');
-          $mailAddresses = $persons->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            }
-          });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
-          ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
-        //}
+          //$waitingDiv
+          $personMailAddresses = $persons->getAllOf('mailAddress');
+          if ($personMailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $personMailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+          }
+        //Players
         $prefix = 'users';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
-        $paymentDiv = $tabs->addDiv('paymentDiv');
-          $prefix = 'payment';
-          $paymentDiv->title = 'Payments';
-          $paymentDiv->addH2($paymentDiv->title, array('class' => 'entry-title'));
-            $paymentSelect = $paymentDiv->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
-            $paymentSelect->addCombobox();
-            $paymentDiv->addFocus('#'.$paymentSelect->id.'_combobox', TRUE);
-          //}
-          $paidDiv = $paymentDiv->addDiv('paidDiv', 'noInput');
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Edit user settings'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Select'}->addValueSpan('Person ID:');
+            ${$prefix.'Select'}->addChange('
+              var el = this;
+              $("#" + el.id + "EditDiv").hide();
+              if ($(el).val() != 0) {
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$prefix.'", id: $(el).val()})
+                .done(function(data) {
+                  $("#" + el.id + "EditDiv").html(data);
+                  $("#" + el.id + "EditDiv").show();
+                  $(":button").button();
+                  $("body").removeClass("modal");
+                });
+              }
+            ');
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+          //$usersSelectDiv
+          ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
+          //$usersEditDiv
+          $adminLevels = adminLevels('all');
+          $vols = clone $volunteers;
+          foreach ($adminLevels as $adminLevel) {
+            if ($adminLevel->id > 15) {
+              $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
+              $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
+            }
+            if ($volAddresses[$adminLevel->id]) {
+              $volAddressFound = TRUE;
+            }
+          }
+          if ($volAddressFound) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'MailTabs'} = ${$prefix.'Div'}->addTabs(NULL, $prefix.'MailTabs');
+          }
+          foreach ($adminLevels as $adminLevel) {
+            if ($volAddresses[$adminLevel->id]) {
+              ${$prefix.'MailDiv'}[$adminLevel->id] = ${$prefix.'MailTabs'}->addDiv($prefix.'MailDiv_'.$adminLevel->id, NULL, array('data-title' => ucfirst($adminLevel->name)));
+                ${$prefix.'MailDiv'}[$adminLevel->id]->addH2(ucfirst($adminLevel->name).' email addresses', array('class' => 'entry-title'));
+                ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph('Email addresses to all volunteers with level '.$adminLevel->id.' or higher that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+                ${$prefix.'MailDiv'}[$adminLevel->id]->addParagraph(implode(', ', $volAddresses[$adminLevel->id]), $prefix.'volAddresses_'.$adminLevel->id, 'toCopy');
+              //${$prefix.'MailDiv'}
+            }
+          }
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //Users
+        $prefix = 'payments';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+          //$paymentSelect
+          $paidDiv = ${$prefix.'Div'}->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
-          //}
-          $costsDiv = $paymentDiv->addDiv('costsDiv');
+          //$paidDiv
+          $costsDiv = ${$prefix.'Div'}->addDiv('costsDiv', 'noInput');
             $costsDiv->addLabel('Should pay:');
             $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
-          //}
-          $payDiv = $paymentDiv->addDiv('payDiv');
+          //$costsDiv
+          $payDiv = ${$prefix.'Div'}->addDiv('payDiv', 'noInput');
             $payDiv->addLabel('Left to pay:');
             $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
             $paySpan->addClasses('sum');
-          //}
-          $setDiv = $paymentDiv->addDiv();
+          //$payDiv
+          $setDiv = ${$prefix.'Div'}->addDiv();
             $setPaid = $setDiv->addInput('setPaid', 0, 'text', 'Set paid total', array('class' => 'short'));
             $setPaid->disabled = TRUE;
             $setPaid->addChange('
               var el = this;
               $("body").addClass("modal");
-              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.$paymentSelect->id.'").val(), prop: "paid", value: $(el).val()})
+              $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: $("#'.${$prefix.'Select'}->id.'").val(), prop: "paid", value: $(el).val()})
               .done(function(data) {
                 if (data.valid) {
-                  $("#'.$paymentSelect->id.'").change();
+                  $("#'.${$prefix.'Select'}->id.'").change();
                   setTimeout(function() {
-                    $("#'.$paymentSelect->id.'_combobox").focus().select()
+                    $("#'.${$prefix.'Select'}->id.'_combobox").focus().select()
                   }, 500);
                 } else {
                   showMsg(data.reason);
+                  $("body").removeClass("modal");
                 }
               });
             ');
-          //}
-          $paymentSelect->addChange('
+          //$setDiv
+          ${$prefix.'Select'}->addChange('
             $("body").addClass("modal");
-            var num = 3;
-            $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "paid"})
+            var modals = 3;
+            $.post("'.config::$baseHref.'/ajax/getProp.php", {class: "person", id: $(this).val(), prop: "paid"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -122,10 +187,10 @@
                 showMsg(data.reason);
               }
             });
-            $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "costs"})
+            $.post("'.config::$baseHref.'/ajax/getProp.php", {class: "person", id: $(this).val(), prop: "costs"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -134,10 +199,10 @@
                 showMsg(data.reason);
               }
             });
-            $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", id: $(this).val(), prop: "toPay"})
+            $.post("'.config::$baseHref.'/ajax/getProp.php", {class: "person", id: $(this).val(), prop: "toPay"})
             .done(function(data) {
-              num--;
-              if (num == 0) {
+              modals--;
+              if (modals == 0) {
                 $("body").removeClass("modal");
               }
               if (data.valid) {
@@ -150,114 +215,135 @@
         //}
         $prefix = 'teams';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //${$prefix.'Div'}
         $prefix = 'groups';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //${$prefix.'Div'}
         $prefix = 'games';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          $games = games($tournament);
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($games->getSelectObj($prefix.'Games', NULL, 'Edit game ettings'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Select'}->addValueSpan('Game ID:');
+            ${$prefix.'Select'}->addChange('
+              var el = this;
+              $("#" + el.id + "EditDiv").hide();
+              if ($(el).val() != 0) {
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "game", type: "edit", id: $(el).val()})
+                .done(function(data) {
+                  $("#" + el.id + "EditDiv").html(data);
+                  $("#" + el.id + "EditDiv").show();
+                  $(":button").button();
+                  $("body").removeClass("modal");
+                });
+              }
+            ');
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+          //$usersSelectDiv
+          ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
+          //$usersEditDiv
           $owners = owners('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address can be copied from here: ');
-          $mailAddresses = $owners->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            } else if ($person->contactPerson->mailAddress) {
-              return $person->contactPerson->mailAddress;
-            }
-          });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          $mailAddresses = $owners->getAllOf('mailAddress');
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+          }
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //${$prefix.'Div'}
         $prefix = 'scores';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //${$prefix.'Div'}
         $prefix = 'results';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        //${$prefix.'Div'}
         $prefix = 'volunteers';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address can be copied from here: ');
-          $mailAddresses = $volunteers->array_map(function($person){
-            if ($person->mailAddress) {
-              return $person->mailAddress;
-            }
-          });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
+          $mailAddresses = $volunteers->getAllOf('mailAddress');
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+          }
+        //${$prefix.'Div'}
         $prefix = 't-shirts';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->title, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
-          ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-          ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address can be copied from here: ');
-          $mailAddresses = $tshirtOrders->array_map(function($order){
-            if ($order->person->mailAddress) {
-              return $order->person->mailAddress;
-            }
-          });
-          $mailP = ${$prefix.'Div'}->addParagraph(implode(', ', array_filter($mailAddresses)));
-          ${$prefix.'Div'}->addParagraph('Coming soon...');
-        //}
-        $otherDiv = $tabs->addDiv('otherDiv');
-          $otherDiv->title = 'Other';
-          $otherDiv->addH2($otherDiv->title, array('class' => 'entry-title'));
-            $geoTabs = $otherDiv->addTabs(NULL, 'geoTabs');
-              foreach (array('city', 'region') as $geoClass) {
-                $arrClass = $geoClass::$arrClass;
-                $geoDiv = $geoTabs->addDiv($arrClass.'Div');
-                  $objs = $arrClass('all');
-                  $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
-                    $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
-                    $geoDiv->addFocus('#'.$actionSel['Remove']->id.'_combobox', TRUE);
-                    $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
-                    $actionSel['Keep']->contents = $actionSel['Remove']->contents;
-                    $actionSel['Keep']->escape = FALSE;
-                    foreach(array('Remove', 'Keep') as $action) {
-                      $actionDiv = $geoDiv->addDiv();
-                        $actionSel[$action]->addCombobox();
-                        $actionDiv->addContent($actionSel[$action]);
-                        $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
-                        $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
-                      //}
-                    } 
-                  //}
-                  $geoDiv->addLabel(' ');
-                  $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
-                  $mergeButton->{'data-geoclass'} = $geoClass;
-                  $mergeButton->{'data-arrclass'} = $arrClass;
-                  $tooltip = $mergeButton->addTooltip('');
-                  $tooltip->timer = 8000;
-                  $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button. Properties from the first city will be transfered to the second city only if the property is empty for the second city.', NULL, 'italic');
-                //}
-              } 
-            //}
-          //}
-          $otherDiv->addChange('
+          $mailAddresses = $tshirtOrders->getAllOf('mailAddress');
+          $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
+          if ($mailAddresses || $otherAddresses) {
+            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+          }
+          if ($mailAddresses) {
+            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+          }
+          if ($otherAddresses) {
+            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            ${$prefix.'Div'}->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
+          }
+          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
+        //${$prefix.'Div'}
+        $prefix = 'other';
+        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          $geoTabs = ${$prefix.'Div'}->addTabs(NULL, 'geoTabs');
+            foreach (array('city', 'region') as $geoClass) {
+              $arrClass = $geoClass::$arrClass;
+              $geoDiv = $geoTabs->addDiv($arrClass.'Div');
+                $objs = $arrClass('all');
+                $geoDiv->addH2('Merge '.$geoClass.' duplicates', array('class' => 'entry-title'));
+                  $actionSel['Remove'] = $objs->getSelectObj($arrClass.'DupesRemove', NULL, 'Remove this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
+                  $geoDiv->addFocus('#'.$actionSel['Remove']->id.'_combobox', TRUE);
+                  $actionSel['Keep'] = new select($arrClass.'DupesKeep', NULL, NULL, 'Keep this '.$geoClass.':', array('class' => 'dupeSelect '.$geoClass.'Select'));
+                  $actionSel['Keep']->contents = $actionSel['Remove']->contents;
+                  $actionSel['Keep']->escape = FALSE;
+                  foreach(array('Remove', 'Keep') as $action) {
+                    $actionDiv = $geoDiv->addDiv();
+                      $actionSel[$action]->addCombobox();
+                      $actionDiv->addContent($actionSel[$action]);
+                      $actionDiv->addLabel(ucfirst($geoClass).' ID:', NULL, NULL, 'short');
+                      $actionDiv->addSpan('none', $arrClass.'Dupes'.$action.'IDSpan');
+                    //$actionDiv
+                  } 
+                //$geoDiv
+                $geoDiv->addLabel(' ');
+                $mergeButton = $geoDiv->addButton('Merge', $geoClass.'MergeButton', array('class' => 'mergeButton'));
+                $mergeButton->{'data-geoclass'} = $geoClass;
+                $mergeButton->{'data-arrclass'} = $arrClass;
+                $tooltip = $mergeButton->addTooltip('');
+                $tooltip->timer = 8000;
+                $geoDiv->addParagraph('Anything now related to the first '.$geoClass.' will be changed to be related to the second '.$geoClass.' when you click the button. Properties from the first city will be transfered to the second city only if the property is empty for the second city.', NULL, 'italic');
+              //$geoDiv
+            } 
+          //$geoTabs
+          ${$prefix.'Div'}->addChange('
             $("#" + this.id + "IDSpan").html($(this).val());
           ', '.dupeSelect');
-          $otherDiv->addClick('
+          ${$prefix.'Div'}->addClick('
             var el = this;
             var geoClass = $(this).data("geoclass");
             var arrClass = $(this).data("arrclass");
@@ -288,11 +374,11 @@
               $(el).tooltipster("update", "Please choose " + arrClass + " to remove and to keep...").tooltipster("show");
             }
           ', '.mergeButton');
-        //}
-      //}
+        //$otherDiv
+      //$tabs
       $page->addContent($adminDiv);
     } else {
-      $paragraph = new paragraph('You need to be an administrator to access this page. Please logout and log back in as administrator.');
+      $paragraph = new paragraph('You need to be an administrator or receptionist to access this page. Please logout and log back in as administrator.');
       $page->addContent($paragraph);
     }
   }

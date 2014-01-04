@@ -47,6 +47,25 @@
       'score' => 'machine'
     );
 */
+
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+      if (isTournament($data) || in_array($data, array('active', 'current'))) {
+        $data = tournament($data);
+      } else if (isDivision($data) || in_array($data, config::$divisions)) {
+        $data = division($data);
+      }
+      if (isTournament($search) || in_array($search, array('active', 'current'))) {
+        $search = tournament($search);
+      } else if (isDivision($search) || in_array($search, config::$divisions)) {
+        $search = division($search);
+      }
+      if (isTournament($depth) || in_array($depth, array('active', 'current'))) {
+        $depth = tournament($depth);
+      } else if (isDivision($depth) || in_array($depth, config::$divisions)) {
+        $depth = division($depth);
+      }
+      parent::__construct($data, $search, $depth);
+    }
     
     public function getTr($headers = NULL) {
       // @todo: Handle custom headers

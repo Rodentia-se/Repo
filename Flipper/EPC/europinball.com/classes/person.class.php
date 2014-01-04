@@ -117,7 +117,7 @@
         } else if (isDivision($data)) {
           $tournament = $data->tournament;
         } else if (isTournament($search)) {
-          $tournament = $search;
+          $tournament = $search; 
         } else if (isDivision($search)) {
           $tournament = $search->tournament;
         }
@@ -201,17 +201,43 @@
       return false;
     }
     
-    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+    public function addVolunteer($tournament = NULL, $hours = NULL, $size = NULL, $adminLevel = NULL) {
+      $tournament = getTournament($tournament);
+      $size = size($size);
+      $adminLevel = adminLevel($adminLevel);
+      $volunteer = volunteer($this, $tournament);
+      if (!$volunteer) {
+        $volunteer = volunteer((array) $this->getFlat(), config::NOSEARCH, 0);
+        unset($volunteer->id);
+        $volunteer->tournamentEdition_id = $tournament->id;
+        $volunteer->person_id = $this->id;
+        $volunteer->dateRegistered = date('Y-m-d');
+        $volunteer->hours = $hours;
+        $volunteer->size_id = ($size) ? $size->id : NULL;
+        $volunteer->size = ($size) ? $size->name : NULL;
+        $volunteer->adminLevel_id = ($adminLevel) ? $adminLevel->id : NULL;
+        $id = $volunteer->save();
+        if (isId($id)) {
+          $volunteer = volunteer($id);
+          if ($volunteer) {
+            return $id;
+          }
+        }
+      }
+      return false;
+    }
+
+    public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
         case 'payment':
         case 'payments':
-          $paymentDiv = new div($prefix.'PaymentDiv');
+          $paymentsDiv = new div($prefix.'PaymentsDiv');
             if ($title) {
-              $paymentDiv->addH2('Payment options', array('class' => 'entry-title'));
+              $paymentsDiv->addH2('Payment options', array('class' => 'entry-title'));
             }
-            $paymentPerson = $paymentDiv->addHidden('paymentPerson_id', $this->id);
-            $gotoProfileP = $paymentDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
+            $paymentsPerson = $paymentsDiv->addHidden('paymentsPerson_id', $this->id);
+            $gotoProfileP = $paymentsDiv->addParagraph('The numbers below are derived from your division registrations and T-shirt orders. You can change things in the ');
 /*
               $gotoProfileBtn = $gotoProfileP->addClickButton('Profile editor', NULL, NULL, FALSE, '$("#profiletabLink").click();');
               $gotoProfileP->addContent(' or ');
@@ -221,113 +247,113 @@
               $gotoProfileP->addSpan('January 15th', NULL, 'bold');
               $gotoProfileP->addContent(').');
             //}
-            $curDiv = $paymentDiv->addDiv($prefix.'paymentCurrencyDiv');
-              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payment', ((config::$tshirts) ? FALSE : TRUE)));
+            $curDiv = $paymentsDiv->addDiv($prefix.'paymentsCurrencyDiv');
+              $currencyChooser = $curDiv->addContent(getCurrencySelect($prefix.'Payments', ((config::$tshirts) ? FALSE : TRUE)));
             //}
             $divisions = divisions($tournament);
             foreach ($divisions as $division) {
               if (property_exists('config', $division->type.'Cost') && config::${$division->type.'Cost'}) {
-                $divisionDiv = $paymentDiv->addDiv($division->id.'_CostDiv');
+                $divisionDiv = $paymentsDiv->addDiv($division->id.'_CostDiv');
                   $cost = $this->getCost($division);
                   $spinnerParams = array(
-                    'class' => 'paymentSpinner enterChange',
+                    'class' => 'paymentsSpinner enterChange',
                     'data-division_id' => $division->id,
                     'data-eachcost' => $cost
                   );
                   $player = player($this, $division);
                   $divisionNum = ($player) ? 1 : 0;
-                  $spinner = $divisionDiv->addSpinner($prefix.'Payment_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
-                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payments_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
+                    $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
                   //}
                 //}
               }
             }
-            $tshirtDiv = $paymentDiv->addDiv($prefix.'PaymentTshirtsDiv');
+            $tshirtDiv = $paymentsDiv->addDiv($prefix.'PaymentsTshirtsDiv');
               $tshirtOrders = tshirtOrders($this, $tournament);
               $tshirtNum = 0;
               foreach ($tshirtOrders as $tshirtOrder) {
                 $tshirtNum += $tshirtOrder->number;
               }
               $spinnerParams = array(
-                'class' => 'numOfTshirts paymentSpinner enterChange',
+                'class' => 'numOfTshirts paymentsSpinner enterChange',
                 'data-eachcost' => config::$tshirtCost
               );
-              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
-                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentsTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
+                $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
             //}
-            $paymentDiv->addChange('
+            $paymentsDiv->addChange('
               var el = this;
               var number = $(el).val();
               var each = $(el).data("eachcost");
               $("#" + el.id + "_moneySpanAmount").html((+ number * each));
               var cost = 0;
               var num = 0;
-              $(".paymentSpinner").each(function() {
+              $(".paymentsSpinner").each(function() {
                 cost += (+ $("#" + this.id + "_moneySpanAmount").html());
               });
-              $("#'.$prefix.'PaymentSubTotalDivMoneySpanAmount").html(cost);
-              var toPay = cost - (+ $("#PaymentPaidDivMoneySpanAmount").html() * -1);
+              $("#'.$prefix.'PaymentsSubTotalDivMoneySpanAmount").html(cost);
+              var toPay = cost - (+ $("#PaymentsPaidDivMoneySpanAmount").html() * -1);
               $("#PaidTooMuchAmount").html((+ toPay * -1));
               if (toPay > 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
-                $("#PaymentTotalDivMoneySpanAmount").html(Math.ceil(toPay));
-                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentTotalDivMoneySpan").html() + "!");
+                $("#PaymentsTotalDivMoneySpanAmount").html(Math.ceil(toPay));
+                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!");
                 $("#TshirtsOrderMore").hide();
               } else if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
-                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#PaymentsTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               } else {
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
-                $("#PaymentTotalDivMoneySpanAmount").html(0);
+                $("#PaymentsTotalDivMoneySpanAmount").html(0);
                 $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               }
               var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
-              orderMoreNum = ($("#PaymentTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentTshirts").val());
+              orderMoreNum = ($("#PaymentsTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentsTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentsTshirts").val());
               $("#TshirtsOrderMoreNum").html(orderMoreNum);
               if (orderMoreNum) {
                 $("#TshirtsOrderMore").show();
               } else {
                 $("#TshirtsOrderMore").hide();
               }
-              $("#payPalMsg").val("ID: " + $("#paymentPerson_id").val() + ", Main: " + $("#Payment_15").val() + ", T-shirts: " + $("#PaymentTshirts").val());
+              $("#payPalMsg").val("ID: " + $("#paymentsPerson_id").val() + ", Main: " + $("#Payments_15").val() + ", T-shirts: " + $("#PaymentsTshirts").val());
               $("#'.$currencyChooser->id.'").change();
-            ', '.paymentSpinner');
+            ', '.paymentsSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
-            $subTotalDiv = $paymentDiv->addDiv($prefix.'PaymentSubTotalDiv');
+            $subTotalDiv = $paymentsDiv->addDiv($prefix.'PaymentsSubTotalDiv');
               $subTotalDiv->addLabel(' ');
               $subTotalDiv->addSpan(' ', NULL, 'short');
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
             //}
-            $paidDiv = $paymentDiv->addDiv($prefix.'PaymentPaidDiv');
+            $paidDiv = $paymentsDiv->addDiv($prefix.'PaymentsPaidDiv');
               $paidDiv->addLabel(' ');
               $paidDiv->addLabel('Already paid:', NULL, NULL, 'short');
-              $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+              $paidDiv->addMoneySpan($this->paid * -1, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
               $paidDiv->addSpan(' You have already paid everything.', $prefix.'PaidAll', (($costs - $this->paid == 0) ? 'paidAll' : 'hidden paidAll'));
               $paidDiv->addSpan(' You have already paid ', $prefix.'PaidTooMuchPrefix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
               $paidDiv->addMoneySpan((+ ($costs - $this->paid) * -1), $prefix.'PaidTooMuch', config::$currencies[$defaultCurrency]['format'], array('class' => (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch')));
               $paidDiv->addSpan(' too much.', $prefix.'PaidTooMuchSuffix', (($costs - $this->paid < 0) ? 'paidTooMuch' : 'hidden paidTooMuch'));
             //}
-            $totalDiv = $paymentDiv->addDiv($prefix.'PaymentTotalDiv');
+            $totalDiv = $paymentsDiv->addDiv($prefix.'PaymentsTotalDiv');
               $totalDiv->addLabel(' ');
               $totalDiv->addLabel('To pay:', NULL, NULL, 'short');
-              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $totalDiv->addMoneySpan($toPay, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
             //}
           //}
-          $paymentDiv->addScriptCode('
+          $paymentsDiv->addScriptCode('
             $(document).ready(function() {
-              $("#PaymentTshirts").change();
+              $("#PaymentsTshirts").change();
             });
           ');
-          $paymentDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
-          return $paymentDiv;
+          $paymentsDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
+          return $paymentsDiv;
         break;
         case 'tshirt':
         case 'tshirts':
@@ -357,7 +383,7 @@
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
-                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payment'));
+                  $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;
                   $spinner->addTooltip('');
@@ -366,7 +392,7 @@
             }
             $subTotalDiv = $orderDiv->addDiv($prefix.'tshirtsSubTotalDiv');
               $subTotalDiv->addInput($prefix.'tshirtsNumOfTshirts', $num, 'text', 'Total', array('disabled' => TRUE, 'class' => 'short numOfTshirts'));
-              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payment'));
+              $subTotalDiv->addMoneySpan($costs, NULL, config::$currencies[$defaultCurrency]['format'], array('class' => 'sum payments'));
               $subTotalDiv->style = 'margin-bottom: 15px;';
             //}
             $toBuyFor = $this->paid - $this->getCost();
@@ -375,13 +401,13 @@
               $orderMoreP = $orderMoreDiv->addParagraph('You have already paid (or are going to pay) enough to order ', $prefix.'TshirtsOrderMore', (($orderMoreNum > 0) ? '' : 'hidden'));
               $orderMoreP->addSpan($orderMoreNum, $prefix.'TshirtsOrderMoreNum');
               $orderMoreP->addContent(' more T-shirts.');
-            $goToPaymentDiv = $orderDiv->addDiv('goToPaymentDiv');
-              $goToPaymentP = $goToPaymentDiv->addParagraph('Go to the ');
-                $gotoPaymentBtn = $goToPaymentP->addClickButton('payment tab', NULL, NULL, FALSE, '$("#paymenttabLink").click();');
-                $goToPaymentP->addContent(' to pay or check payment status.');
+            $goToPaymentsDiv = $orderDiv->addDiv('goToPaymentsDiv');
+              $goToPaymentsP = $goToPaymentsDiv->addParagraph('Go to the ');
+                $gotoPaymentsBtn = $goToPaymentsP->addClickButton('payments tab', NULL, NULL, FALSE, '$("#paymentstabLink").click();');
+                $goToPaymentsP->addContent(' to pay or check payment status.');
               //}
             //}
-            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payment tab.', NULL, 'italic');
+            $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payments tab.', NULL, 'italic');
             $orderDiv->addChange('
               var el = this;
               var tshirtOrder_id = $(el).data("tshirtorder_id");
@@ -402,16 +428,81 @@
                   num += parseInt($(this).val());
                 });
                 $("#'.$subTotalDiv->id.'MoneySpanAmount").html(cost);
-                $("#'.$prefix.'PaymentTshirtsDivMoneySpanAmount").html(cost);
+                $("#'.$prefix.'PaymentsTshirtsDivMoneySpanAmount").html(cost);
                 $(".numOfTshirts").val(num);
-                $("#PaymentTshirts").change();
+                $("#PaymentsTshirts").change();
               });
             ', '.'.$spinnerClass);
           //}
           $tshirtsDiv->addImg(config::$baseHref.'/images/objects/tshirt/2014.jpg', NULL, array('class' => 'rightHalf'));
           return $tshirtsDiv;
         break;
+        case 'photo':
+          return $this->getPhotoEdit($prefix);
+        break;
+        case 'user':
+        case 'users':
+          $usersDiv = new div($prefix.'usersDiv');
+            $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
+              $userNameDiv->addLabel('Username');
+              $userNameDiv->addSpan($this->username);
+            //$userNameDiv
+            $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
+              $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
+              $setPasswordButton = $passwordDiv->addButton('Set password');
+              $setPasswordButton->addTooltip('');
+              $setPasswordButton->addClick('
+                var el = this;
+                if ($(el).val().length < 7) {
+                  $(el).tooltipster("update", "Please use at least 6 characters").tooltipster("show");
+                } else {
+                  if (confirm("You are about to change the password for '.$this->name.'. Is this what you want to do?")) {
+                    $(el).tooltipster("update", "Setting password...").tooltipster("show");
+                    $("body").addClass("modal");
+                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "password", value: $("#'.$newPassword->id.'").val()})
+                    .done(function(data) {
+                      $(el).tooltipster("update", data.reason).tooltipster("show");
+                      $("body").removeClass("modal");
+                      if (data.valid) {
+                        $("#'.$newPassword->id.'").val("");
+                      }
+                    });
+                  } else {
+                    $(el).tooltipster("update", "Password not changed").tooltipster("show");
+                  }
+                }
+              ');
+            //$passwordDiv
+            $adminLevelDiv = $usersDiv->addDiv($prefix.'usersAdminLevelDiv');
+              $adminLevels = adminLevels('all');
+              $adminLevelSelect = $adminLevelDiv->addContent($adminLevels->getSelectObj($prefix.'usersAdminLevel', $this->adminLevel_id, 'Administrator level'));
+                $adminLevelSelect->addCombobox();
+                $adminLevelSelect->addTooltip('', TRUE, '#'.$adminLevelSelect->id.'_combobox')->offsetX = 38;
+                $adminLevelSelect->addChange('
+                  var el = this;
+                  if ($(el).val() != 0) {
+                    $("#" + el.id + "_combobox").tooltipster("update", "Changing administrator level...").tooltipster("show");
+                    $("body").addClass("modal");
+                    $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
+                    .done(function(data) {
+                      if (data.valid) {
+                        $(el).data("previous", $(el).val());
+                      } else {
+                        $(el).val($(el).data("previous"));
+                      }
+                      $("body").removeClass("modal");
+                      $("#" + el.id + "_combobox").tooltipster("update", data.reason).tooltipster("show");
+                      $("#" + el.id + "_combobox").val($(el).children(":selected").text());
+                    });
+                  }
+                ');
+              //$adminLevelSelectpa
+            //$adminLevelDiv
+          //$usersDiv
+          return $usersDiv;
+        break;
         case 'profile':
+        case 'edit':
         case 'player':
         case 'person':
         default:
@@ -437,7 +528,7 @@
             );
             foreach ($fields as $field => $label) {
               $editDivs[$field] = new div($prefix.$field.'Div');
-                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? 'date ' : '').$editClass));
+                $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.$field, 'class' => (($field == 'birthDate') ? $dateClass.' ' : '').$editClass));
               //}
             }
             $profileDiv->addContent($editDivs['firstName']);
@@ -507,13 +598,7 @@
                   $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
               });
-              $(".custom-combobox-input").on("autocompleteclose", function(event, ui) {
-                if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
-                  $("#" + this.id.replace("_combobox", "")).val(0);
-                  $("#" + this.id.replace("_combobox", "")).change();
-                }
-              })
-              .tooltipster({
+              $(".custom-combobox-input").tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
                 trigger: "custom",
@@ -559,7 +644,8 @@
                 dateFormat: "yy-mm-dd",
                 yearRange: "-100:-0",
                 defaultDate: "-30y",
-                changeYear: true, 
+                changeYear: true,
+                showWeek: true,
                 changeMonth: true 
               });
             ');
@@ -567,6 +653,18 @@
           return $profileDiv;
         break;
       }
+    }
+    
+    public function getRegSearch() {
+      return array(
+        $this->name,
+        $this->shortName,
+        $this->cityName,
+        $this->countryName,
+        $this->getLink('ifpa'),
+        $this->getPhotoIcon(),
+        '<form id="'.$this->id.'_isMeForm" method="POST"><input type="hidden" name="register" value="isMe"><input type="hidden" name="person_id" value="'.$this->id.'"><input type="button" id="'.$this->id.'_isMe" class="isMe" value="This is me!"></form>'
+      );
     }
     
     public function getUid() {
@@ -582,9 +680,44 @@
       }
       return FALSE;
     }
-
-    public function setUsername($username = NULL) {
-      return $this->setProp('username', $username);
+    
+    public function setProp($prop, $value = NULL) {
+      if (in_array($prop, array('password', 'adminLevel'))) {
+        return $this->{'set'.ucfirst($prop)}($value);
+      } else {
+        return parent::setProp($prop, $value);
+      }
+    }
+ 
+    public function setPassword($password) {
+      if ($this->username) {
+        if ($password) {
+          return config::$login->SetPassword($this->getUid(), $password);
+        } else {
+          error('No password provided.');
+        }
+      } else {
+        error('This person has no user.');
+      }
+      return FALSE;
+    }
+    
+    public function setAdminLevel($adminLevel = 1) {
+      $adminLevel = adminLevel($adminLevel);
+      if (!isAdminLevel($adminLevel)) {
+        $adminLevel = adminLevel(1);
+      }
+      $tournament = getTournament();
+      $volunteer = volunteer($this, $tournament);
+      if (!isVolunteer($volunteer)) {
+        $volunteer = $this->addVolunteer($tournament);
+      }
+      if (isVolunteer($volunteer)) {
+        return $volunteer->setProp('adminLevel_id', $adminLevel->id);
+      } else {
+        error('Could not add '.$this->name.' as volunteer.');
+      }
+      return FALSE;
     }
     
     public function setNonce($nonce) {

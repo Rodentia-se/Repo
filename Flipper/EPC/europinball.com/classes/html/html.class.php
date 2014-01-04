@@ -97,7 +97,7 @@
         case 'afters':
           return $this->getAfter();
         break;
-        case 'title': 
+        case 'title':
           return ($this->params['title']) ? $this->params['title'] : (($this->params['data-title']) ? $this->params['data-title'] : NULL);
         break;
         case 'class': 
@@ -119,12 +119,18 @@
           return static::$indenter;
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
+          return (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) ? $this->params[preg_replace('/_/', '-', $prop)] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
         break;
       }
     }
      
     public function __set($prop, $value) {
+          if ($value === 'THISISATEST') {
+            debug($this->data_title, 'current');
+            debug($this->params['data-title'], 'current');
+            debug($prop, 'prop');
+            debug($value, 'value');
+          }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -183,7 +189,7 @@
         case 'afters':
           return $this->addAfter($value, TRUE);
         break;
-        case 'title': 
+        case 'title':
           $this->params['title'] = $value;
           $this->params['data-title'] = $value;
         break;
@@ -217,10 +223,14 @@
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           } else {
-            $this->params[$prop] = $value;
+            $this->params[preg_replace('/_/', '-', $prop)] = $value;
           }
         break;
       }
+          if ($value === 'THISISATEST') {
+            debug($this->data_title, 'new');
+            debug($this->params['data-title'], 'current');
+          }
     }
     
     public function __isset($prop) {
@@ -271,7 +281,7 @@
           return isset(static::$indenter);
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]) : FALSE);
+          return (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) ? isset($this->params[preg_replace('/_/', '-', $prop)]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]) : FALSE);
         break;
       }
     }
@@ -342,8 +352,8 @@
           unset($this->params['id']);
         break;
         default:
-          if (array_key_exists($prop, $this->params)) {
-            unset($this->params[$prop]);
+          if (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) {
+            unset($this->params[preg_replace('/_/', '-', $prop)]);
           } else if (array_key_exists($prop, $this->settings)) {
             unset($this->settings[$prop]);
           }
@@ -351,7 +361,7 @@
       }
     }
     
-    protected static function newId($prefix = NULL, $suffix = NULL) {
+    public static function newId($prefix = NULL, $suffix = NULL) {
       $id = $prefix.'id'.rand(0,10000).$suffix;
       while (in_array($id, html::$ids)) {
         $id = $prefix.'id'.rand(0,10000).$suffix;
@@ -540,6 +550,7 @@
           $this->addParams($prop, $val);
         }
       } else {
+        $props = preg_replace('/_/', '-', $props);
         if ($props === $this->contentParam) {
           $this->contents[0] = $value;
         } else if ($props) {
@@ -551,6 +562,7 @@
 
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
+        $param = preg_replace('/_/', '-', $param);
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style') {
              if (count($this->css) > 0) {
@@ -605,15 +617,16 @@
       }
     }
     
-    function delParams($params = NULL, $value = NULL) {
-      if ($params == $this->contentParam && (!is($value) || $this->contents[0] == $value)) {
+    function delParams($param = NULL, $value = NULL) {
+      $param = preg_replace('/_/', '-', $param);
+      if ($param == $this->contentParam && (!is($value) || $this->contents[0] == $value)) {
           $this->contents = array();
           return TRUE;
       } else {
         if (count($this->params) > 0) {
-          if (is($params) && $param !== TRUE) {
-            if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
-              unset($this->params[$params]);
+          if (is($param) && $param !== TRUE) {
+            if (array_key_exists($param, $this->params) && (!is($value) || $this->params[$param] == $value)) {
+              unset($this->params[$param]);
             }
           } else if (count($this->css) > 0) {
             $this->params = array('style' => ' ');

@@ -13,6 +13,7 @@
       'datatablesEditable' => 'contrib/jquery.dataTables.editable.js',
       'combobox' => 'contrib/jquery.combobox.js',
       'forms' => 'contrib/jquery.form.min.js',
+      'clip' => 'contrib/jquery.zclip.min.js',
       'tooltipster' => 'contrib/jquery.tooltipster.js',
       'purl' => 'contrib/purl.js',
       'recaptcha' => 'contrib/recaptcha_ajax.js',
@@ -23,8 +24,10 @@
     public $jqueryui = TRUE;
     public $tooltipster = TRUE;
     public $combobox = TRUE;
+    public $clip = TRUE;
     public $ga = TRUE;
     public $recaptcha = FALSE;
+    public $modal = FALSE;
     public $content;
 
     public function __construct($title='EPC', $login = TRUE, $header = NULL, $footer = NULL) {
@@ -61,7 +64,7 @@
             <link rel="shortcut icon" href="'.config::$baseHref.'/images/favicon.ico" type="image/x-icon" />
             <title>'.$title.'</title>
           </head>
-          <body>
+          <body'.(($this->modal) ? ' class="modal"' : '').'>
       ';
       return $header;
     }
@@ -77,12 +80,12 @@
       $footer .= self::getDivEnd();
       if (!$this->loginAdded) {
         if ($this->loggedin()) {
-          $footer .= self::getDivStart('logoutFooter');
-          $footer .= self::getParagraph('You are logged in as '.$person->name.'. '.self::getButton('Log out', 'footerLogout'), NULL, 'italic');
+          $footer .= self::getDivStart('logoutFooter', 'logXfooter');
+          $footer .= self::getParagraph('You are logged in as '.$person->name.'. '.self::getButton('Log out', 'footerLogout').(($person->receptionist) ? ' You have access to <a href="'.config::$baseHref.'/admin-tools" class="buttonLink">Admin tools</a>': ''), NULL, 'italic');
           $footer .= self::getForm('footerLogout', array('action' => 'logout'));
           $footer .= self::getDivEnd();
         } else {
-          $footer .= self::getDivStart('loginFooter');
+          $footer .= self::getDivStart('loginFooter', 'logXfooter');
           $footer .= self::getParagraph('You are not logged in. <input type="button" id="footerLoginButton" value="Login">', NULL, 'italic');
           $footer .= self::getLogin('Please provide your login credentials', 'footer', NULL, TRUE);
           $footer .= self::getScript('
@@ -119,11 +122,36 @@
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
         $(document).ajaxError(function(event, jqHXR, settings, error) {
+          $("body").removeClass("modal");
           showMsg("Fail: " + error + " trying " + settings.url);
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
+        .on("autocompleteclose", function(event, ui) {
+          if ($("#" + this.id.replace("_combobox", "")).is("select") && $(this).val() == "" && $("#" + this.id.replace("_combobox", "")).val() != 0) {
+            $("#" + this.id.replace("_combobox", "")).val(0);
+            $("#" + this.id.replace("_combobox", "")).change();
+          }
+        })
+        $(".toCopy").tooltipster({
+          theme: ".tooltipster-light",
+          content: "Copied text to clipboard",
+          trigger: "custom",
+          position: "top",
+          timer: 3000
+        })
+        .click(function() {
+          $(this).zclip({
+            path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
+            copy: $(this).text(),
+            afterCopy: function() {
+              $(this).tooltipster("show");
+            }
+          });
+        });
       ');
-      $footer .= '
+      $element = new div(html::newId('Loading'), 'modal');
+      $element->addImg(config::$baseHref.'/images/ajax-loader-white.gif', 'Loading data...');
+      $footer .= $element->getHtml().'
           </body>
         </html>
       ';
@@ -634,7 +662,7 @@
     }
     
     public function getContent($header = TRUE, $footer = TRUE, $div = TRUE) {
-      $this->content = ($div) ? '<div id="mainContent" class="content">'.$this->content.'</div>' : $this->content;
+      $this->content = ($div) ? '<div id="mainContent" class="content'.(($this->modal) ? ' modal' : '').'">'.$this->content.'</div>' : $this->content;
       if ($header && !$this->header) {
         $this->addHeader($header);
       }

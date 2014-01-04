@@ -59,9 +59,8 @@
         coalesce(o.comment, p.comment) as comment,
         if(v.id is not null,1,0) as volunteer,
         v.id as volunteer_id,
-        v.adminLevel_id as adminLevel_id,
-        v.adminLevel_id as adminLevel,
-        if(v.adminLevel_id > 0, 1, null) as scorereader,
+        if(ifnull(v.adminLevel_id, 1) = 0, 1, ifnull(v.adminLevel_id, 1)) as adminLevel_id,
+        1 as player,
         if(v.adminLevel_id > 7, 1, null) as allreader,
         if(v.adminLevel_id > 15, 1, null) as scorekeeper,
         if(v.adminLevel_id > 23, 1, null) as receptionist,
@@ -81,6 +80,7 @@
     public static $parents = array(
       'person' => 'person',
       'team' => 'team',
+      'adminLevel' => 'adminLevel',
       'qualGroup' => 'qualGroup',
       'tournamentEdition' => 'tournament',
       'tournamentDivision' => 'division',
@@ -225,6 +225,16 @@
       }
       if (is_object($this->person)) {
         return $this->person->getEdit($type, $title, $tournament, $prefix);
+      }
+      return FALSE;
+    }
+
+    public function getPhotoEdit($prefix = NULL, $class = NULL) {
+      if (!is_object($this->person)) {
+        $this->populate(1);
+      }
+      if (is_object($this->person)) {
+        return $this->person->getPhotoEdit($prefix, $class);
       }
       return FALSE;
     }

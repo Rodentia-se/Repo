@@ -4,7 +4,8 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : null;
-  $type = (isset($_REQUEST['type']) && ($_REQUEST['type'] == 'regSearch' || $_REQUEST['type'] == 'registered' || $_REQUEST['type'] == 'edit')) ? $_REQUEST['type'] : null;
+  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users');
+  $type = (isset($_REQUEST['type']) && in_array($_REQUEST['type'], $types)) ? $_REQUEST['type'] : null;
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
 
@@ -76,9 +77,12 @@
       }
       jsonEcho($json);
     break;
+    case 'photo':
     case 'edit':
+    case 'user':
+    case 'users':
       if (isPlayer($players[0])) {
-        echo $players[0]->getEdit('profile');
+        echo $players[0]->getEdit($type);
       } else {
         echo 'Could not find player to edit';
       }
