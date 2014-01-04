@@ -5,6 +5,11 @@
 
   $page = new page('Admin tools');
 
+$div = new div();
+$player = player(2237);
+debug($player);
+
+/*
   $volunteer = volunteer('login');
 
   $div = new div('paymentDiv');
@@ -92,20 +97,11 @@
       showMsg("Fail: S: " + status + " E: " + error);
     });
   ');
-
+*/
   $page->addContent($div);
   $page->submit();
 
 
-
-  
-  
-  
-  
-  
-  
-  
-  $page->addContent($div);
 
 
 
