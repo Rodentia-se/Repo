@@ -4,11 +4,12 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $class = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-  $data = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : NULL;
-  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : NULL;
   $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
+  $data = (isset($_REQUEST['data'])) ? $_REQUEST['data'] : NULL;
+  $data_id = (isset($_REQUEST['data_id'])) ? $_REQUEST['data_id'] : NULL;
+  $search = (isset($_REQUEST['search'])) ? $_REQUEST['search'] : NULL;
+  $search_id = (isset($_REQUEST['search_id'])) ? $_REQUEST['search_id'] : NULL;
   $type = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : NULL;
-  $single = (isset($_REQUEST['single'])) ? TRUE : FALSE;
 
   $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users');
   if (!in_array($type, $types)) {
