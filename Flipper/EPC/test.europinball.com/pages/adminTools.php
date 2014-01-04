@@ -16,6 +16,7 @@
         $prefix = 'players';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
+          debug(${$prefix.'Div'});
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
             $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
