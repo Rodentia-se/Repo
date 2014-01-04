@@ -292,7 +292,7 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
           $mailAddresses = $tshirtOrders->getAllOf('mailAddress');
-          $otherAddresses = $personMailAddresses->array_diff($mailAddresses);
+          $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
           ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
