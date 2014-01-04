@@ -15,9 +15,9 @@
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $prefix = 'players';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = 'THISISATEST';
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = 'THISISATEST';
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
             $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
             $profileSelect->addCombobox();
@@ -80,8 +80,8 @@
         //Players
         $prefix = 'users';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Edit user settings'));
             ${$prefix.'Select'}->addCombobox();
@@ -132,8 +132,8 @@
         //Users
         $prefix = 'payments';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
             ${$prefix.'Select'}->addCombobox();
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
@@ -215,20 +215,20 @@
         //}
         $prefix = 'teams';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //${$prefix.'Div'}
         $prefix = 'groups';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //${$prefix.'Div'}
         $prefix = 'games';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $games = games($tournament);
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($games->getSelectObj($prefix.'Games', NULL, 'Edit game ettings'));
@@ -263,20 +263,20 @@
         //${$prefix.'Div'}
         $prefix = 'scores';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //${$prefix.'Div'}
         $prefix = 'results';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //${$prefix.'Div'}
         $prefix = 'volunteers';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
           $mailAddresses = $volunteers->getAllOf('mailAddress');
           if ($mailAddresses) {
@@ -288,8 +288,8 @@
         //${$prefix.'Div'}
         $prefix = 't-shirts';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $tshirtOrders = tshirtOrders('active');
           $mailAddresses = $volunteers->getAllOf('mailAddress');
           if ($mailAddresses) {
@@ -301,8 +301,8 @@
         //${$prefix.'Div'}
         $prefix = 'other';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->{data-title} = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->{data-title}, array('class' => 'entry-title'));
+          ${$prefix.'Div'}->data_title = ucfirst($prefix);
+          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $geoTabs = ${$prefix.'Div'}->addTabs(NULL, 'geoTabs');
             foreach (array('city', 'region') as $geoClass) {
               $arrClass = $geoClass::$arrClass;

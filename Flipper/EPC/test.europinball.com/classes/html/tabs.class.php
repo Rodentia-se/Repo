@@ -25,10 +25,10 @@
       } else if (isHtml($content)) {
         if (get_class($content) == 'div') {
           $div = $content;
-          $div->params['data-title'] = ($div->{data-title}) ? $div->{data-title} : (($div->title) ? $div->title : ucfirst($div->id));
+          $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : ucfirst($div->id));
         } else {
           $div = new div((($content->id) ? $content->id.'_tab' : html::newId(NULL, '_tab')));
-          $div->params['data-title'] = ($content->{data-title}) ? $content->{data-title} : (($content->title) ? $content->title : ucfirst(preg_replace('/_tab$/', '', $div->id)));
+          $div->params['data-title'] = ($content->data_title) ? $content->data_title : (($content->title) ? $content->title : ucfirst(preg_replace('/_tab$/', '', $div->id)));
           $div->addContent($content);
         }
       } else {
@@ -44,7 +44,7 @@
         $ul = new ul();
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
-          $li->addLink('#'.$content->id, $content->{data-title});
+          $li->addLink('#'.$content->id, $content->data_title);
         }
         return ($string) ? $ul->getHtml() : $ul;
       }
