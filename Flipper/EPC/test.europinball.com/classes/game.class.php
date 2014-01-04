@@ -100,7 +100,7 @@
               'name' => 'Name',
               'acronym' => 'Acronym',
               'ipdb' => 'IPDB',
-              'rules' => 'Ruls URL',
+              'rules' => 'Rules URL',
               'year' => 'Year'
             );
             foreach ($fields as $field => $label) {
