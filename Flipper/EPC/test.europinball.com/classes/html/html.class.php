@@ -125,6 +125,11 @@
     }
      
     public function __set($prop, $value) {
+          if ($value === 'THISISATEST') {
+            debug($this->{data-title}, 'current');
+            debug($prop, 'prop');
+            debug($value, 'value');
+          }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -214,21 +219,16 @@
           $this->params['id'] = $id;
         break;
         default:
-          if ($value === 'THISISATEST') {
-            debug($this->{data-title}, 'current');
-            debug($prop, 'prop');
-            debug($value, 'value');
-          }
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           } else {
             $this->params[$prop] = $value;
           }
-          if ($prop == 'data-title') {
-            debug($this->{data-title}, 'new');
-          }
         break;
       }
+          if ($value === 'THISISATEST') {
+            debug($this->{data-title}, 'new');
+          }
     }
     
     public function __isset($prop) {
