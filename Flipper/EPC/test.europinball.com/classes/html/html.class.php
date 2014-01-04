@@ -216,6 +216,7 @@
         default:
           if ($value == 'THISISATEST') {
             debug($this->{data-title}, 'current');
+            debug($prop, 'value');
             debug($value, 'value');
           }
           if (array_key_exists($prop, $this->settings)) {
