@@ -27,6 +27,9 @@
         $objs = new $class();
         foreach ($data as $obj) {
           if ($obj->id) {
+            if (get_class($data) == 'persons') {
+              debug($obj);
+            }
             if (get_class($obj) == static::$objClass) {
               $objs[] = $obj;
             } else {
