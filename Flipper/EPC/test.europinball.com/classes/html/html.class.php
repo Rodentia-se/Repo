@@ -119,7 +119,7 @@
           return static::$indenter;
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? $this->params[$prop] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
+          return (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) ? $this->params[preg_replace('/_/', '-', $prop)] : ((array_key_exists($prop, $this->settings)) ? $this->settings[$prop] : NULL);
         break;
       }
     }
@@ -281,7 +281,7 @@
           return isset(static::$indenter);
         break;
         default:
-          return (array_key_exists($prop, $this->params)) ? isset($this->params[$prop]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]) : FALSE);
+          return (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) ? isset($this->params[preg_replace('/_/', '-', $prop)]) : ((array_key_exists($prop, $this->settings)) ? isset($this->settings[$prop]) : FALSE);
         break;
       }
     }
@@ -354,8 +354,8 @@
         default:
           if (array_key_exists($prop, $this->params)) {
             unset($this->params[$prop]);
-          } else if (array_key_exists($prop, $this->settings)) {
-            unset($this->settings[$prop]);
+          } else if (array_key_exists(preg_replace('/_/', '-', $prop), $this->settings)) {
+            unset($this->settings[preg_replace('/_/', '-', $prop)]);
           }
         break;
       }
