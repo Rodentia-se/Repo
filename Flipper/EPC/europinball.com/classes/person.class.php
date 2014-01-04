@@ -145,7 +145,7 @@
         }
       } else {
         $this->adminLevel_id = 1;
-        $this->adminLevel = adminLeve(1);
+        $this->adminLevel = adminLevel(1);
         $this->player = 1;
       }
       return $this->volunteer;
@@ -505,7 +505,6 @@
               //$adminLevelSelectpa
             //$adminLevelDiv
           //$usersDiv
-          debug($this);
           return $usersDiv;
         break;
         case 'profile':
