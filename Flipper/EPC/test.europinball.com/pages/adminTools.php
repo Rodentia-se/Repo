@@ -142,11 +142,11 @@
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
           //$paidDiv
-          $costsDiv = ${$prefix.'Div'}->addDiv('costsDiv');
+          $costsDiv = ${$prefix.'Div'}->addDiv('costsDiv', 'noInput');
             $costsDiv->addLabel('Should pay:');
             $costsSpan = $costsDiv->addMoneySpan(0, 'costs', config::$currencies[config::$defaultCurrency]['format']);
           //$costsDiv
-          $payDiv = ${$prefix.'Div'}->addDiv('payDiv');
+          $payDiv = ${$prefix.'Div'}->addDiv('payDiv', 'noInput');
             $payDiv->addLabel('Left to pay:');
             $paySpan = $payDiv->addMoneySpan(0, 'pay', config::$currencies[config::$defaultCurrency]['format']);
             $paySpan->addClasses('sum');
