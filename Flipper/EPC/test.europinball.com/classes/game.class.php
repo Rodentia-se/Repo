@@ -205,7 +205,7 @@
                 max: '.date('yy').',
                 stop: function(event, ui) {
                   $(".'.$dateClass.'").change();
-                })
+                }
               });
             ');
           //}
