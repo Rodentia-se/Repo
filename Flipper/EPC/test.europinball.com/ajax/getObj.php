@@ -45,20 +45,24 @@
       if ($id) {
         if (isId($id)) {
           $obj = $class($id);
-          if (isObj($obj)) {
-            $arrClass = $class::$arrClass;
-            $objs = $arrClass($obj);
-          } else {
-            jsonEcho(failure('Could not find '.$class.' ID '.$id), TRUE);
-          }
         } else {
           jsonEcho(failure('Invalid '.$class.' ID '.$id), TRUE);
         }
       } else {
         $data = objCheck($data, $data_id);
         $search = objCheck($search, $search_id);
-        $objs = $class($data, $search);
+        $obj = $class($data, $search);
       }
+      if (isObj($obj)) {
+        $arrClass = $class::$arrClass;
+        $objs = $arrClass($obj);
+      } else {
+        jsonEcho(failure('Could not find the '.$class), TRUE);
+      }
+    } else if (isGroup($class)) {
+      $data = objCheck($data, $data_id);
+      $search = objCheck($search, $search_id);
+      $objs = $class($data, $search);
     } else {
       jsonEcho(failure('No such class'), TRUE);
     }
