@@ -239,7 +239,7 @@
               $("#" + el.id + "EditDiv").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                $.post("'.config::$baseHref.'/ajax/getGames.php", {obj: "person", type: "'.$prefix.'", id: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "game", type: "edit", id: $(el).val()})
                 .done(function(data) {
                   $("#" + el.id + "EditDiv").html(data);
                   $("#" + el.id + "EditDiv").show();
