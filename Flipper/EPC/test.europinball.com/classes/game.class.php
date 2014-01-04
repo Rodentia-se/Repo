@@ -125,7 +125,7 @@
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
               }
-              $division = division($tournament, 'recreational');
+              $division = division(18); // @todo: Remove hard coded division ID!
               $machines = machines($this, $division);
               debug($machines);
               $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
