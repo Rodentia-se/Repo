@@ -222,7 +222,7 @@
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           } else {
-            $this->params[$prop] = $value;
+            $this->params[preg_replace('/_/', '-', $prop)] = $value;
           }
         break;
       }
