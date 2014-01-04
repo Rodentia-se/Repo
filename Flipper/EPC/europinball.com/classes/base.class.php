@@ -414,8 +414,10 @@
             }
             if (is_object($class::$instances['ID'.$this->{$field.'_id'}])) {
               $this->$field = $class::$instances['ID'.$this->{$field.'_id'}]->getFlat();
+              debug('ARR');
             } else {
               $this->$field = $class($this->{$field.'_id'}, config::NOSEARCH, $depth);
+              debug('DB');
             }
             if ($this->{$field.'_id'} == 4) {
               debug($this->$field, 'OBJ');
