@@ -99,7 +99,7 @@
             $fields = array(
               'name' => 'Name',
               'acronym' => 'Acronym',
-              'ipdb_id' => 'IPDB',
+              'ipdb' => 'IPDB',
               'rules' => 'Ruls URL',
               'year' => 'Year'
             );
