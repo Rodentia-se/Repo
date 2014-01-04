@@ -328,11 +328,11 @@
     }
     
     function getAllOf($prop = 'name') {
-      return array_filter($this->array_map(function($obj) use ($prop) {
+      return array_unique(array_filter($this->array_map(function($obj) use ($prop) {
         if ($obj->$prop) {
           return $obj->$prop;
         }
-      }));
+      })));
     }
     
     function delete() {
