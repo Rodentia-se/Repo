@@ -214,9 +214,9 @@
           $this->params['id'] = $id;
         break;
         default:
-          if ($value == 'THISISATEST') {
+          if ($value === 'THISISATEST') {
             debug($this->{data-title}, 'current');
-            debug($prop, 'value');
+            debug($prop, 'prop');
             debug($value, 'value');
           }
           if (array_key_exists($prop, $this->settings)) {
