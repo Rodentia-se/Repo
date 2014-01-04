@@ -158,8 +158,8 @@
                 .fail(function(jqHXR,status,error) {
                   $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
-              });
               */
+              });
               $(".custom-combobox-input").tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
@@ -195,8 +195,8 @@
                 .fail(function(jqHXR,status,error) {
                   $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
-              })
               */
+              })
               .tooltipster({
                 theme: ".tooltipster-light",
                 content: "Updating the database...",
