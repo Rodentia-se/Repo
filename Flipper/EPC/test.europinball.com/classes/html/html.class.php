@@ -214,7 +214,7 @@
           $this->params['id'] = $id;
         break;
         default:
-          if ($prop == 'data-title') {
+          if ($value == 'THISISATEST') {
             debug($this->{data-title}, 'current');
             debug($value, 'value');
           }
