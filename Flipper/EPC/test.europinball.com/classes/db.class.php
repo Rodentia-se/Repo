@@ -131,9 +131,6 @@
     
     public function getObjectByProps($class, $props, $cond = 'and') {
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
-      if ($class == 'machine') {
-        debug($props);
-      }
       return $this->getRow($sth, $class);
     }
 

@@ -122,11 +122,12 @@
               $div->addLabel('Divisions', NULL, NULL, 'normal');
               foreach (config::$activeDivisions as $divisionType) {
                 $division = division($tournament, $divisionType);
-                $machine = machine($this, $division);
-                $box[$divisionType] = $div->addCheckbox($divisionType, ($machine), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
+                $machines = machines($this, $division);
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
               }
               $division = division($tournament, 'recreational');
-              $box['recreational'] = $div->addCheckbox('recreational', ($machine), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
+              $machines = machines($this, $division);
+              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
             //}
             $editDiv->addScriptCode('
               $(".'.$comboboxClass.'").combobox()
