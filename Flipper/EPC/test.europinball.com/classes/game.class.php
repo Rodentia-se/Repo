@@ -106,6 +106,12 @@
             foreach ($fields as $field => $label) {
               $editDivs[$field] = $editDiv->addDiv($prefix.'Game'.$field.'Div');
                 $editDivs[$field]->addInput($field, $this->$field, 'text', $label, array('id' => $prefix.'Game'.$field, 'class' => (($field == 'year') ? $dateClass.' ' : '').$editClass));
+                if ($field == 'rules') {
+                  $gameRulesSpan = $editDivs[$field]->addSpan(NULL, $prefix.'GameRulesSpan');
+                  if ($this->rules) {
+                    $gameRulesSpan->addLink($this->rules, $this->rules);
+                  }
+                }
               //}
             }
             $div = $editDiv->addDiv($prefix.'GameManufacturer_idDiv');
