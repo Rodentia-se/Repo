@@ -352,10 +352,10 @@
           unset($this->params['id']);
         break;
         default:
-          if (array_key_exists($prop, $this->params)) {
-            unset($this->params[$prop]);
-          } else if (array_key_exists(preg_replace('/_/', '-', $prop), $this->settings)) {
-            unset($this->settings[preg_replace('/_/', '-', $prop)]);
+          if (array_key_exists(preg_replace('/_/', '-', $prop), $this->params)) {
+            unset($this->params[preg_replace('/_/', '-', $prop)]);
+          } else if (array_key_exists($prop), $this->settings)) {
+            unset($this->settings[$prop]);
           }
         break;
       }
@@ -550,6 +550,7 @@
           $this->addParams($prop, $val);
         }
       } else {
+        $props = preg_replace('/_/', '-', $props);
         if ($props === $this->contentParam) {
           $this->contents[0] = $value;
         } else if ($props) {
@@ -561,6 +562,7 @@
 
     protected function getParams($param = NULL, $string = TRUE) {
       if ($param) {
+        $param = preg_replace('/_/', '-', $param);
         if (in_array($param, array_keys($this->params))) {
           if ($param == 'style') {
              if (count($this->css) > 0) {
@@ -615,15 +617,16 @@
       }
     }
     
-    function delParams($params = NULL, $value = NULL) {
-      if ($params == $this->contentParam && (!is($value) || $this->contents[0] == $value)) {
+    function delParams($param = NULL, $value = NULL) {
+      $param = preg_replace('/_/', '-', $param);
+      if ($param == $this->contentParam && (!is($value) || $this->contents[0] == $value)) {
           $this->contents = array();
           return TRUE;
       } else {
         if (count($this->params) > 0) {
-          if (is($params) && $param !== TRUE) {
-            if (array_key_exists($params, $this->params) && (!is($value) || $this->params[$params] == $value)) {
-              unset($this->params[$params]);
+          if (is($param) && $param !== TRUE) {
+            if (array_key_exists($param, $this->params) && (!is($value) || $this->params[$param] == $value)) {
+              unset($this->params[$param]);
             }
           } else if (count($this->css) > 0) {
             $this->params = array('style' => ' ');
