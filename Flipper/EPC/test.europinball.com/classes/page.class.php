@@ -122,6 +122,7 @@
         })
         '.((config::$msg) ? '.tooltipster("show");' :'').'
         $(document).ajaxError(function(event, jqHXR, settings, error) {
+          $("body").removeClass("modal");
           showMsg("Fail: " + error + " trying " + settings.url);
         });
         $(".custom-combobox-input").autocomplete("option", "autoFocus", true)
