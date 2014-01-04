@@ -95,8 +95,9 @@
             foreach ($objs[$division->id] as $obj) {
               $rows[] = $obj->getRegRow(TRUE);
             }
-            if ($type == 'players') {
-              $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">'.(($division->type == 'main' && config::$participationLimit[$division->type]) ? ' <span class="right">The maximum number of players is '.config::$participationLimit[$division->type].'.</span>' : ''));
+            $reloadP = $page->addParagraph('<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">');
+            if ($type == 'players' && $division->type == 'main' && config::$participationLimit[$division->type]) {
+              $reloadP->addSpan('The maximum number of players is '.config::$participationLimit[$division->type], NULL, 'right');
             }
             $page->addTable($division->shortName.'Table', $headers, $rows, 'regTable');
             $page->datatables = TRUE;
