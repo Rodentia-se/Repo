@@ -62,7 +62,6 @@
       }
     } else if (isGroup($class, TRUE)) {
       $data = objCheck($data, $data_id);
-      debug($data);
       $search = objCheck($search, $search_id, 'search');
       $objs = $class($data, $search);
     } else {
