@@ -206,7 +206,7 @@
               });
               $(".'.$dateClass.'").spinner({
                 min: 1920,
-                max: '.date('yy').',
+                max: '.date('Y').',
                 stop: function(event, ui) {
                   $(".'.$dateClass.'").change();
                 }
