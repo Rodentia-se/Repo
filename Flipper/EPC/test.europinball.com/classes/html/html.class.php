@@ -214,10 +214,17 @@
           $this->params['id'] = $id;
         break;
         default:
+          if ($prop == 'data-title') {
+            debug($this->{data-title}, 'current');
+            debug($value}, 'value');
+          }
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           } else {
             $this->params[$prop] = $value;
+          }
+          if ($prop == 'data-title') {
+            debug($this->{data-title}, 'new');
           }
         break;
       }
