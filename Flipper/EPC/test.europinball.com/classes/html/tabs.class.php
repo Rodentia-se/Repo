@@ -44,10 +44,6 @@
         $ul = new ul();
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
-          if (!self::$debugRun) {
-            debug($content);
-            self::$debugRun = TRUE;
-          }
           $li->addLink('#'.$content->id, $content->{data-title});
         }
         return ($string) ? $ul->getHtml() : $ul;
