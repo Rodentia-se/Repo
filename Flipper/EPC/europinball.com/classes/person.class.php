@@ -443,6 +443,7 @@
         break;
         case 'user':
         case 'users':
+          $this->getVolunteer();
           $usersDiv = new div($prefix.'usersDiv');
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
