@@ -8,7 +8,7 @@
     public static $select = '
       select
         o.id as id,
-        LOWER(o.name) as name,
+        o.name as name,
         o.comment as comment
       from adminLevel o
     ';

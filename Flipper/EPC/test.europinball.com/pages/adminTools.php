@@ -51,9 +51,9 @@
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
           //$profileSelectDiv
           $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
-            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv');
+            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv', NULL, array('data-title' => 'Player profile'));
             //$profileEditDiv
-            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv');
+            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
             //$photoSelectDiv
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs

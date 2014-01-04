@@ -134,15 +134,19 @@
         $this->volunteer_id = $this->volunteer->id;
         $this->adminLevel_id = $this->volunteer->adminLevel_id;
         $this->adminLevel = $this->volunteer->adminLevel;
-        $this->scorereader = $this->volunteer->scorereader;
-        $this->allreader = $this->volunteer->allreader;
-        $this->scorekeeper = $this->volunteer->scorekeeper;
-        $this->receptionist = $this->volunteer->receptionist;
-        $this->admin = $this->volunteer->admin;
         $this->hereVol = $this->volunteer->here;
         $this->hours = $this->volunteer->hours;
         $this->alloc = $this->volunteer->alloc;
         $this->hoursDiff = $this->volunteer->hoursDiff;
+        $adminLevels = adminLevels('all');
+        foreach ($adminLevels as $adminLevel) {
+          $adminLevelName = strtolower($adminLevel->name);
+          $this->$adminLevelName = $this->volunteer->$adminLevelName;
+        }
+      } else {
+        $this->adminLevel_id = 1;
+        $this->adminLevel = adminLevel('player');
+        $this->player = 1;
       }
       return $this->volunteer;
     }
@@ -443,6 +447,7 @@
         break;
         case 'user':
         case 'users':
+          $this->getVolunteer($tournament);
           $usersDiv = new div($prefix.'usersDiv');
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
@@ -569,7 +574,7 @@
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: el.id, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -617,7 +622,7 @@
                 var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
                 var continent_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'continent_id").val() : null;
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {

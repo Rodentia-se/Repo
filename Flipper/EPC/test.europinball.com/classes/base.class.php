@@ -61,7 +61,11 @@
               $this->_set($data);
             } else if (is_string($data)) {
               if ($data != 'empty' && $data != 'new') {
-                $this->failed = TRUE;
+                $search = 'name';
+                $obj = $this->db->getObjectByProp(get_class($this), $search, $data);
+                if (!$obj) {
+                  $this->failed = TRUE;
+                }
               }
             }
           }
