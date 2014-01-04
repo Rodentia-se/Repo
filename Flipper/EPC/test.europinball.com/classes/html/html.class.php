@@ -97,7 +97,7 @@
         case 'afters':
           return $this->getAfter();
         break;
-        case 'title': 
+        case 'title':
           return ($this->params['title']) ? $this->params['title'] : (($this->params['data-title']) ? $this->params['data-title'] : NULL);
         break;
         case 'class': 
@@ -183,7 +183,7 @@
         case 'afters':
           return $this->addAfter($value, TRUE);
         break;
-        case 'title': 
+        case 'title':
           $this->params['title'] = $value;
           $this->params['data-title'] = $value;
         break;
