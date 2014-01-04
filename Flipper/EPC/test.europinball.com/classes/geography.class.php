@@ -2,6 +2,7 @@
 
   abstract class geography extends base {
 
+    public static $instances;
     public static $parents = array();
 
     public function getChildrenTabs($tournament = 'active') {

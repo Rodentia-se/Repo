@@ -2,6 +2,7 @@
 
   class adminLevel extends base {
    
+    public static $instances;
     public static $arrClass = 'adminLevels';
 
     public static $select = '

@@ -2,6 +2,7 @@
 
   class size extends base {
    
+    public static $instances;
     public static $arrClass = 'sizes';
 
     public static $select = '
