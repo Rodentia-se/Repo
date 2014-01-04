@@ -15,7 +15,6 @@
       $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
         $prefix = 'players';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->data_title = 'THISISATEST';
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $profileSelectDiv = ${$prefix.'Div'}->addDiv();
