@@ -59,7 +59,7 @@
       } else {
         jsonEcho(failure('Could not find the '.$class), TRUE);
       }
-    } else if (isGroup($class)) {
+    } else if (isGroup($class, TRUE)) {
       $data = objCheck($data, $data_id);
       $search = objCheck($search, $search_id);
       $objs = $class($data, $search);
