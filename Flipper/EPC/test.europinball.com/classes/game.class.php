@@ -109,7 +109,7 @@
                 if ($field == 'rules') {
                   $gameRulesSpan = $editDivs[$field]->addSpan(NULL, $prefix.'GameRulesSpan');
                   if ($this->rules) {
-                    $gameRulesSpan->addLink($this->rules, $this->rules);
+                    $gameRulesSpan->addLink($this->rules, $this->rules)->addCss('white-space', 'nowrap');
                   }
                 }
               //}
