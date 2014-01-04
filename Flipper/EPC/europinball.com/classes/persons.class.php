@@ -13,8 +13,10 @@
         $data = new $class();
         foreach ($players as $player) {
           $data[] = $player->person;
+          if (get_class($player->person) == 'size') {
+            debug($player);
+          }
         }
-        debug($data, 'huff');
       }
       parent::__construct($data, $search, $depth);
     }
