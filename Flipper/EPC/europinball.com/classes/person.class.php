@@ -134,15 +134,14 @@
         $this->volunteer_id = $this->volunteer->id;
         $this->adminLevel_id = $this->volunteer->adminLevel_id;
         $this->adminLevel = $this->volunteer->adminLevel;
-        $this->scorereader = $this->volunteer->scorereader;
-        $this->allreader = $this->volunteer->allreader;
-        $this->scorekeeper = $this->volunteer->scorekeeper;
-        $this->receptionist = $this->volunteer->receptionist;
-        $this->admin = $this->volunteer->admin;
         $this->hereVol = $this->volunteer->here;
         $this->hours = $this->volunteer->hours;
         $this->alloc = $this->volunteer->alloc;
         $this->hoursDiff = $this->volunteer->hoursDiff;
+        $adminLevels = adminLevels('all');
+        foreach ($adminLevels as $adminLevel) {
+          $this->$adminLevel->name = $this->volunteer->$adminLevel->name;
+        }
       }
       return $this->volunteer;
     }
