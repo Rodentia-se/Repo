@@ -140,7 +140,7 @@
             $value = $class($value);
           }
           if (!isObj($value)) {
-            warning('Trying to set '.$prop.' to invalid object')
+            warning('Trying to set '.$prop.' to invalid object');
             return FALSE;
           }
         }
