@@ -152,8 +152,23 @@
       $return = clone $this;
       $return->filter($prop, $value, $out);
       return ($array) ? $return->toArray() : $return;
-    } 
+    }
     
+    public function flatten() {
+      foreach ($this as $obj) {
+        $this->flatten()
+      }
+    }
+    
+    public function getFlat() {
+      $class = get_class($this);
+      $objs = new $class();
+      foreach ($this as $obj) {
+        $objs[] = $obj->getFlat();
+      }
+      return $objs;
+    }
+
     public function filter($prop, $value = NULL, $out = FALSE) {
       foreach ($this as $index => $obj) {
         if (isAssoc($prop)) {
