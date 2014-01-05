@@ -164,7 +164,7 @@
                 var el = this;
                 var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: value})
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: value})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
