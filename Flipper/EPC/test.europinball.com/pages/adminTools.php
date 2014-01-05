@@ -290,7 +290,8 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-          $tshirtOrders = tshirtOrders('active');
+          $tshirtOrders = tshirtOrders($tournament);
+          $tshirts = tshirts($tournament);
           $mailAddresses = $tshirtOrders->getAllOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses) {
