@@ -8,9 +8,6 @@
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
   $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
 
-  $id = (isId($value)) ? $value : NULL;
-  $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
-  $person_id = (isId($_REQUEST['person_id'])) ? $_REQUEST['person_id'] : NULL;
   $region_id = (isId($_REQUEST['region_id'])) ? $_REQUEST['region_id'] : NULL;
   $country_id = (isId($_REQUEST['country_id'])) ? $_REQUEST['country_id'] : NULL;
   $continent_id = (isId($_REQUEST['continent_id'])) ? $_REQUEST['continent_id'] : NULL;
