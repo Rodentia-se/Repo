@@ -3,6 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
+  $page = new page('Test');
 
   $tests = array(
     'NULL' => NULL,
@@ -54,7 +55,7 @@
   $table = new table($rows, $headers);
   $page->addContent($table->getHtml());
   
-/*  $page = new page('Test');
+/*
 
   $div = new div('testDiv');
 
