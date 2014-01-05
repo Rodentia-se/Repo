@@ -738,6 +738,8 @@
             }
           }
         } else {
+          debug($adminLevelNames, 'names');
+          debug(static::$authorized, 'auth');
           if (in_array(static::$authorized, $adminLevelNames)) {
             $level = static::$authorized;
             return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
