@@ -142,17 +142,19 @@
               $(".'.$comboboxClass.'").combobox()
               .change(function(){
                 var el = this;
+                $("body").addClass("modal");
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
                 $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: $(el).val()})
                 .done(function(data) {
+                  $("body").removeClass("modal");
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
-                    $(combobox).val($(el).children(":selected").text())
                     $(el).data("previous", $(el).val());
                   } else {
                     $(el).val($(el).data("previous"));
                   }
+                  $(combobox).val($(el).children(":selected").text())
                 });
               });
               $(".custom-combobox-input").tooltipster({
@@ -165,6 +167,7 @@
               });
               $(".'.$editClass.'").change(function(){
                 var el = this;
+                $("body").addClass("modal");
                 var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
                 $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: value})
