@@ -148,6 +148,12 @@
       return FALSE;
     }
     
+    public function getFiltered($prop, $value = NULL, $out = FALSE, $array = FALSE) {
+      $return = clone $this;
+      $return->filter($prop, $value, $out);
+      return ($array) ? $return->toArray() : $return;
+    } 
+    
     public function filter($prop, $value = NULL, $out = FALSE) {
       foreach ($this as $index => $obj) {
         if (isAssoc($prop)) {

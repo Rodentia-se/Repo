@@ -12,6 +12,8 @@
         o.name as name,
         o.name as fullName,
         o.name as shortName,
+        o.number as number,
+        o.soldOnSite as soldOnSite,
         concat(tc.name, tz.id) as sortName,
         tc.id as color_id,
         tc.name as colorName,
@@ -32,6 +34,16 @@
     );
     
     public static $children = array();
+
+    public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+      parent::__construct($data, $search, $depth);
+      $tshirtOrders = tshirtOrders($this);
+      $this->reservers = count($tshirtOrders->getAllOf('person_id'));
+      $this->reserved = array_sum($tshirtOrders->getAllOf('number'));
+      $this->delivered = array_sum($tshirtOrders->getAllOf('numberDelivered'));
+      $this->inStock = (+ $this->number - ($this->delivered + $this->soldOnSite));
+      $this->forSale = (+ $this->inStock - $this->reserved);
+    }
 
   }
 
