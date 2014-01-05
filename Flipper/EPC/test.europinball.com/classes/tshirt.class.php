@@ -38,6 +38,7 @@
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       parent::__construct($data, $search, $depth);
       $tshirtOrders = tshirtOrders($this);
+      debug(count($tshirtOrders), 'count');
       $this->reservers = count($tshirtOrders->getAllOf('person_id'));
       $this->reserved = array_sum($tshirtOrders->getAllOf('number'));
       $this->delivered = array_sum($tshirtOrders->getAllOf('numberDelivered'));
