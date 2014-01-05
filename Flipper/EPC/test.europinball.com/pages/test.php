@@ -32,29 +32,33 @@
     '=== ""'
   );
   
+  $html = '<table><thead><tr>';
+  foreach ($headers as $header) {
+    $html .= '<th>'.$header.'</th>';
+  }
+  $html .= '</thead><tbody>';
   foreach ($tests as $var) {
-    $rows[] = array(
-      (string) strlen($var),
-      (string) is_null($var),
-      (string) isset($var),
-      (string) empty($var),
-      (string) ($var),
-      (string) is($var),
-      (string) isId($var),
-      (string) $var == FALSE,
-      (string) $var === FALSE,
-      (string) $var == NULL,
-      (string) $var === NULL,
-      (string) $var == 0,
-      (string) $var === 0,
-      (string) $var == "",
-      (string) $var === "",
-    );
+    $html .= '<tr>
+      <td>htmlentities('.(string) strlen($var)).'</td>
+      <td>htmlentities('.(string) is_null($var).'</td>
+      <td>htmlentities('.(string) isset($var).'</td>
+      <td>htmlentities('.(string) empty($var).'</td>
+      <td>htmlentities('.(string) ($var).'</td>
+      <td>htmlentities('.(string) is($var).'</td>
+      <td>htmlentities('.(string) isId($var).'</td>
+      <td>htmlentities('.(string) $var == FALSE.'</td>
+      <td>htmlentities('.(string) $var === FALSE.'</td>
+      <td>htmlentities('.(string) $var == NULL.'</td>
+      <td>htmlentities('.(string) $var === NULL.'</td>
+      <td>htmlentities('.(string) $var == 0.'</td>
+      <td>htmlentities('.(string) $var === 0.'</td>
+      <td>htmlentities('.(string) $var == "".'</td>
+      <td>htmlentities('.(string) $var === "".'</td>
+    </tr>';
   }
   
-  $table = new table($rows, $headers);
-  $page->addContent($table->getHtml());
-  
+  $html .= '</tbody></table>'
+  $page->addContent($html);
 /*
 
   $div = new div('testDiv');
