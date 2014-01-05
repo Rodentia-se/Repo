@@ -683,7 +683,7 @@
               if (in_array(static::$authorized[$prop], $adminLevelNames)) {
                 $level = static::$authorized[$prop];
                 return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
-              } else if ($isId(static::$authorized[$prop])) {
+              } else if (isId(static::$authorized[$prop])) {
                 return ($person->adminLevel_id >= static::$authorized[$prop]) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
               } else if (method_exists(get_called_class(), static::$authorized[$prop])) {
                 return call_user_func(get_called_class().'::'.static::$authorized[$prop], $person, $value, $obj);
@@ -727,7 +727,7 @@
           if (in_array(static::$authorized, $adminLevelNames)) {
             $level = static::$authorized;
             return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
-          } else if ($isId(static::$authorized)) {
+          } else if (isId(static::$authorized)) {
             return ($person->adminLevel_id >= static::$authorized) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
           } else if (method_exists(get_called_class(), static::$authorized)) {
             return call_user_func(get_called_class().'::'.static::$authorized, $person, $value, $obj);
