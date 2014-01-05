@@ -45,7 +45,7 @@
       $this->sold = (+ $this->reserved + $this->soldOnSite);
       $this->handedOut = (+ $this->delivered + $this->soldOnSite); 
       $this->inStock = (+ $this->number - $this->handedOut);
-      $this->forSale = (+ $this->inStock - $this->sold);
+      $this->forSale = (+ $this->number - $this->sold);
     }
 
   }
