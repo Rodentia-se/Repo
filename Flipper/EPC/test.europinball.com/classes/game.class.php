@@ -22,13 +22,20 @@
     public static $parents = array(
       'manufacturer' => 'manufacturer'
     );
-
+    
     // @todo: Fix children
 /*
     public static $children = array(
       'machine' => 'game'
     );
 */
+
+    public static $cols = array(
+      'game_ipdb_id' => 'ipdb',
+      'game_link_rulesheet' => 'rules',
+      'game_year_released' => 'year'
+    );
+    
 
     public static $infoProps = array(
       'name',

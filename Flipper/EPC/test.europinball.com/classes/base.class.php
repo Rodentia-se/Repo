@@ -132,6 +132,10 @@
       }
     }
     
+    protected function getColName($prop = NULL) {
+      return $prop;
+    }
+    
     public function setProp($prop, $value = NULL) {
       if (isObj($prop, TRUE)) {
         $prop = $prop.'_id';
