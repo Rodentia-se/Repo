@@ -349,14 +349,23 @@
       return $return;
     }
     
-    function getAllOf($prop = 'name') {
-      return array_unique(array_filter($this->array_map(function($obj) use ($prop) {
+    function getAllOf($prop = 'name', $unique = TRUE) {
+      $return = array_filter($this->array_map(function($obj) use ($prop) {
         if ($obj->$prop) {
           return $obj->$prop;
         }
-      })));
+      }));
+      return ($unique) ? array_unique($return) : $return;
     }
     
+    function getNoOf($prop = 'name') {
+      return count($this->getAllOf($prop, FALSE));
+    }
+
+    function getSumOf($prop = 'name') {
+      return array_sum($this->getAllOf($prop, FALSE));
+    }
+
     function delete() {
       foreach ($this as $obj) {
         if (!$obj->delete()) {
