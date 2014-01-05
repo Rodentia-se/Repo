@@ -119,7 +119,6 @@
                   $gameRulesSpan = $editDivs[$field]->addSpan(NULL, $prefix.'GameRulesSpan');
                   if ($this->rules) {
                     $gameRulesLink = $gameRulesSpan->addLink($this->rules, 'Show rules', array('target' => '_blank', 'class' => 'buttonLink'));
-                    $gameRulesLink->addCss('white-space', 'nowrap');
                   }
                 }
               //}
@@ -173,7 +172,7 @@
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
                     $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
-                    if ($el.name == "rules") {
+                    if (el.name == "rules") {
                       $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
                     }
                   } else {
