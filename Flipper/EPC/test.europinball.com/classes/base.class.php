@@ -608,6 +608,7 @@
       foreach (static::$parents as $field => $class) {
         unset($this->$field);
       }
+      return TRUE;
     }
     
     public function getFlat() {

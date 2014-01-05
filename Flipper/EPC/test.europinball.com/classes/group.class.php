@@ -156,8 +156,9 @@
     
     public function flatten() {
       foreach ($this as $obj) {
-        $this->flatten()
+        $this->flatten();
       }
+      return TRUE;
     }
     
     public function getFlat() {
