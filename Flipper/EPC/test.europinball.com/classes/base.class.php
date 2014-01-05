@@ -694,7 +694,7 @@
                 warning('Unknown method given as authorization.');
               }
             } else if (is_string(static::$authorized[$prop])) {
-              if (in_array(static::$authorized[$prop], $adminLevelNames)) {
+              if (in_array(ucfirst(static::$authorized[$prop]), $adminLevelNames)) {
                 $level = static::$authorized[$prop];
                 return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
               } else if (isId(static::$authorized[$prop])) {
@@ -725,7 +725,7 @@
                 warning('Unknown method given as authorization.');
               }
             } else if (is_string(static::$authorized['default'])) {
-              if (in_array(static::$authorized['default'], $adminLevelNames)) {
+              if (in_array(ucfirst(static::$authorized['default']), $adminLevelNames)) {
                 $level = static::$authorized['default'];
                 return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
               } else if ($isId(static::$authorized['default'])) {
@@ -738,9 +738,7 @@
             }
           }
         } else {
-          debug($adminLevelNames, 'names');
-          debug(static::$authorized, 'auth');
-          if (in_array(static::$authorized, $adminLevelNames)) {
+          if (in_array(ucfirst(static::$authorized), $adminLevelNames)) {
             $level = static::$authorized;
             return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
           } else if (isId(static::$authorized)) {
