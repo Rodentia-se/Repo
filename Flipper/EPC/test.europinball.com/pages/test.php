@@ -6,7 +6,7 @@
   $page = new page('Test');
 
   $tshirts = tshirts('active');
-  debug($tshirts);
+  debug($tshirts->getFlat());
 
   $page->addContent($html);
 /*
