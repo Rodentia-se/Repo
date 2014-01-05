@@ -188,6 +188,7 @@
                   $(".'.$dateClass.'").change();
                 }
               });
+              $(".buttonLink").button();
             ');
           //}
           return $editDiv;
