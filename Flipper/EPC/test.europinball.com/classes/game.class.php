@@ -46,7 +46,7 @@
       'year'
     );
     
-    public static $authorized = 'receptionist';
+    public static $authorized = 'admin';
     
     public function getRegRow($array = FALSE) {
       // @todo: Handle custom headers
