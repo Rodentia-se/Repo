@@ -42,6 +42,7 @@
       $this->reservers = count($tshirtOrders->getAllOf('person_id'));
       $this->reserved = array_sum($tshirtOrders->getAllOf('number'));
       $this->delivered = array_sum($tshirtOrders->getAllOf('numberDelivered'));
+debug($tshirtOrders->getAllOf('numberDelivered'));
       $this->sold = (+ $this->reserved + $this->soldOnSite);
       $this->handedOut = (+ $this->delivered + $this->soldOnSite); 
       $this->inStock = (+ $this->number - $this->handedOut);
