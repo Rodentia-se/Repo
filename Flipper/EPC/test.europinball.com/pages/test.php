@@ -48,7 +48,7 @@
       (string) $var === 0,
       (string) $var == "",
       (string) $var === "",
-    )
+    );
   }
   
   $table = new table($rows, $headers);
