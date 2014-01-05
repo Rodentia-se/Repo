@@ -10,7 +10,8 @@
     'FALSE' => FALSE,
     '0' => 0,
     '"0"' => "0",
-    '""' => ""
+    '""' => "",
+    '(bool)'
   );
   
   $headers = array(
@@ -54,6 +55,7 @@
     <td>'.htmlentities(var_export($var === 0, TRUE)).'</td>
     <td>'.htmlentities(var_export($var == "", TRUE)).'</td>
     <td>'.htmlentities(var_export($var === "", TRUE)).'</td>
+    <td>'.htmlentities(var_export((bool) $var, TRUE)).'</td>
   </tr>';
   foreach ($tests as $label => $var) {
     $html .= '<tr>
@@ -73,6 +75,7 @@
       <td>'.htmlentities(var_export($var === 0, TRUE)).'</td>
       <td>'.htmlentities(var_export($var == "", TRUE)).'</td>
       <td>'.htmlentities(var_export($var === "", TRUE)).'</td>
+      <td>'.htmlentities(var_export((bool) $var, TRUE)).'</td>
     </tr>';
   }
   
