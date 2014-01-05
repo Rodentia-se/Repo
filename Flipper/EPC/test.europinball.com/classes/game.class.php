@@ -151,7 +151,7 @@
                   if (data.valid) {
                     $(combobox).val($(el).children(":selected").text())
                     $(el).data("previous", $(el).val());
-                    if ($el.id == "rules") {
+                    if ($el.name == "rules") {
                       $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
                     }
                   } else {
