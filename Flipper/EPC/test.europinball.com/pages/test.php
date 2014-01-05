@@ -57,7 +57,7 @@
     </tr>';
   }
   
-  $html .= '</tbody></table>'
+  $html .= '</tbody></table>';
   $page->addContent($html);
 /*
 
