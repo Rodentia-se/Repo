@@ -15,7 +15,7 @@
   $country_id = (isId($_REQUEST['country_id'])) ? $_REQUEST['country_id'] : NULL;
   $continent_id = (isId($_REQUEST['continent_id'])) ? $_REQUEST['continent_id'] : NULL;
   
-  if (is($value) {
+  if (is($value)) {
     if ($prop) {
       $person = person('login');
       if ($person) {
