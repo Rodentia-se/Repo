@@ -111,7 +111,8 @@
                 if ($field == 'rules') {
                   $gameRulesSpan = $editDivs[$field]->addSpan(NULL, $prefix.'GameRulesSpan');
                   if ($this->rules) {
-                    $gameRulesSpan->addLink($this->rules, 'Show rules', array('target' => '_blank', 'class' => 'buttonLink'))->addCss('white-space', 'nowrap');
+                    $gameRulesLink = $gameRulesSpan->addLink($this->rules, 'Show rules', array('target' => '_blank', 'class' => 'buttonLink'));
+                    $gameRulesLink->addCss('white-space', 'nowrap');
                   }
                 }
               //}
@@ -143,6 +144,9 @@
                   if (data.valid) {
                     $(combobox).val($(el).children(":selected").text())
                     $(el).data("previous", $(el).val());
+                    if ($el.id == "rules") {
+                      $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
+                    }
                   } else {
                     $(el).val($(el).data("previous"));
                   }
