@@ -151,9 +151,6 @@
                   if (data.valid) {
                     $(combobox).val($(el).children(":selected").text())
                     $(el).data("previous", $(el).val());
-                    if ($el.name == "rules") {
-                      $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
-                    }
                   } else {
                     $(el).val($(el).data("previous"));
                   }
@@ -176,6 +173,9 @@
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
                     $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
+                    if ($el.name == "rules") {
+                      $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
+                    }
                   } else {
                     if ($(el).is(":checkbox")) {
                       el.checked = ($(el).data("previous"));
