@@ -349,7 +349,7 @@
       return $return;
     }
     
-    function getAllOf($prop = 'name', $unique = TRUE) {
+    function getListOf($prop = 'name', $unique = TRUE) {
       $return = array_filter($this->array_map(function($obj) use ($prop) {
         if ($obj->$prop) {
           return $obj->$prop;
@@ -358,12 +358,12 @@
       return ($unique) ? array_unique($return) : $return;
     }
     
-    function getNoOf($prop = 'name') {
-      return count($this->getAllOf($prop, FALSE));
+    function getNumOf($prop = 'name') {
+      return count($this->getListOf($prop, FALSE));
     }
 
     function getSumOf($prop = 'name') {
-      return array_sum($this->getAllOf($prop, FALSE));
+      return array_sum($this->getListOf($prop, FALSE));
     }
 
     function delete() {

@@ -70,7 +70,7 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //$waitingDiv
-          $personMailAddresses = $persons->getAllOf('mailAddress');
+          $personMailAddresses = $persons->getListOf('mailAddress');
           if ($personMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -109,7 +109,7 @@
           foreach ($adminLevels as $adminLevel) {
             if ($adminLevel->id > 15) {
               $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
-              $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
+              $volAddresses[$adminLevel->id] = $vols->getListOf('mailAddress');
             }
             if ($volAddresses[$adminLevel->id]) {
               $volAddressFound = TRUE;
@@ -253,7 +253,7 @@
           ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
           //$usersEditDiv
           $owners = owners('active');
-          $mailAddresses = $owners->getAllOf('mailAddress');
+          $mailAddresses = $owners->getListOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -278,7 +278,7 @@
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
-          $mailAddresses = $volunteers->getAllOf('mailAddress');
+          $mailAddresses = $volunteers->getListOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -295,7 +295,7 @@
             $row[] = array($tshirt->name, $tshirt->number, $tshirt->reservers, $tshirt->reserved, $tshirt->delivered, $tshirt->soldOnSite, $tshirt->inStock, $tshirt->forSale);
           }
           $tshirtOrders = tshirtOrders($tournament);
-          $mailAddresses = $tshirtOrders->getAllOf('mailAddress');
+          $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');

@@ -672,7 +672,7 @@
     
     public function authorize($person, $prop = NULL, $value = NULL, $obj = FALSE) {
       $adminLevels = adminLevels('all');
-      $adminLevelNames = $adminLevels->getAllOf();
+      $adminLevelNames = $adminLevels->getListOf();
       if (property_exists(get_called_class(), 'authorized')) {
         if (is_array(static::$authorized)) {
           if (static::$authorized[$prop]) {
