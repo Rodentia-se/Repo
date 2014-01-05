@@ -133,13 +133,22 @@
     }
     
     public function setProp($prop, $value = NULL) {
-      debug($prop, 'prop');
-      debug($value, 'value');
       if (isObj($prop, TRUE)) {
-        $prop = $prop.'_id';
-        if (isObj($value)) {
-          $value = $value->id;
+        if (!is_null($value)) {
+          if (!isObj($value)) {
+            $class = static::$parents[$prop];
+            $value = $class($value);
+          }
+          if (!isObj($value)) {
+            warning('Trying to set '.$prop.' to invalid object')
+            return FALSE;
+          }
         }
+        $prop = $prop.'_id';
+      }
+      if (isObj($value)) {
+        $valueObj = $value;
+        $value = $value->id;
       }
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->getColNames();
@@ -151,8 +160,13 @@
         $prop = ($props[$prop]) ? $props[$prop] : $prop;
       }
       if ($this->id && in_array($prop, $cols)) {
-        $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop).' where id = '.$this->id;
+        $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop);
         $values[db::getAlias($prop)] = $value;
+        if (substr($prop, -3) == '_id' && isObj($valueObj) && in_array(substr($prop, 0, -3), $cols)) {
+          $query .= ', '.substr($prop, 0, -3).' = '.db::getAlias(substr($prop, 0, -3));
+          $values[db::getAlias(substr($prop, 0, -3))] = $valueObj->name;
+        }
+        $query .= ' where id = '.$this->id;
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
