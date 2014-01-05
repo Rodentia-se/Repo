@@ -18,7 +18,14 @@
             if (get_class($content) == 'tr') {
               $tbody->addContent($content);
             } else {
-              warning('Table body object at index '.$key.' is not a table row! ('.get_class($content).')');
+              if (is_array($content)) {
+                $tr = $tbody->addTr();
+                foreach ($content as $cell) {
+                  $tr->addTd($cell);
+                }
+              } else {
+                warning('Table content object at index '.$key.' is not a table row or array! ('.get_class($header).')');
+              }
             }
           }
           return ($string) ? $tbody->getHtml() : $tbody;
@@ -37,7 +44,14 @@
             if (get_class($header) == 'tr') {
               $thead->addContent($header);
             } else {
-              warning('Table header object at index '.$key.' is not a table row! ('.get_class($header).')');
+              if (is_array($header)) {
+                $tr = $thead->addTr();
+                foreach ($header as $cell) {
+                  $tr->addTd($cell);
+                }
+              } else {
+                warning('Table header object at index '.$key.' is not a table row or array! ('.get_class($header).')');
+              }
             }
           }
           return ($string) ? $thead->getHtml() : $thead;

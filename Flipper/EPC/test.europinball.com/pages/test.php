@@ -33,7 +33,7 @@
     '(bool)'
   );
   
-  $html = '<table><thead><tr>';
+  $html = '<html><head><title>Bool tests</title></head><body><table><thead><tr>';
   foreach ($headers as $header) {
     $html .= '<th>'.$header.'</th>';
   }
@@ -79,7 +79,7 @@
     </tr>';
   }
   
-  $html .= '</tbody></table>';
+  $html .= '</tbody></table><p><a href="mailto:the@pal.pp.se">the@pal.pp.se</a></body></html>';
   $page->addContent($html);
 /*
 

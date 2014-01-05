@@ -30,6 +30,10 @@
     return ($string || $string === 0 || $string === "0") ? TRUE : FALSE;
   }
   
+  function isZero($string ) {
+    return ($string === 0 || $string === "0") ? TRUE : FALSE;
+  }
+  
   function mergeToArray($obj1 = NULL, $obj2 = NULL, $delimiter = ' ') {
     $obj1 = (is($obj1)) ? $obj1 : '';
     $obj2 = (is($obj2)) ? $obj2 : '';
@@ -162,6 +166,10 @@
     return output($reason, 'VALIDATION', NULL, $valid, (($obj) ? 'object' : 'bool'));
   }
   
+  function authorized($valid = TRUE, $reason = NULL, $obj = FALSE) {
+    return output($reason, 'AUTHORIZATION', NULL, $valid, (($obj) ? 'object' : 'bool'));
+  }
+  
   function validateDate($date, $obj = FALSE) {
     if ($date && !preg_match('/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/', $date)) {
       return validated(FALSE, 'The date is invalid. Please use ISO format YYYY-MM-DD.', $obj);
@@ -177,6 +185,14 @@
       return call_user_func(get_class($obj).'::validate', $prop, $value, $obj);
     } else if (isObj($class)) {
       return call_user_func($class.'::validate', $prop, $value, $obj);
+    }
+  }
+
+  function authorize($class, $person, $prop, $value, $obj = NULL) {
+    if (isObj($class, TRUE)) {
+      return call_user_func(get_class($obj).'::authorize', $person, $prop, $value, $obj);
+    } else if (isObj($class)) {
+      return call_user_func($class.'::authorize', $person, $prop, $value, $obj);
     }
   }
 ?>
