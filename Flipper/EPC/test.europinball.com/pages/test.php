@@ -37,8 +37,9 @@
     $html .= '<th>'.$header.'</th>';
   }
   $html .= '</thead><tbody>';
-  foreach ($tests as $var) {
+  foreach ($tests as $label => $var) {
     $html .= '<tr>
+      <td>'.htmlentities($label).'</td>
       <td>'.htmlentities((string) strlen($var)).'</td>
       <td>'.htmlentities((string) is_null($var)).'</td>
       <td>'.htmlentities((string) isset($var)).'</td>
