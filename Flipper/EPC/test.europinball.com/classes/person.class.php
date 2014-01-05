@@ -307,18 +307,15 @@
                 $(".paidTooMuch").hide();
                 $(".paidAll").hide();
                 $("#PaymentsTotalDivMoneySpanAmount").html(Math.ceil(toPay));
-                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!");
                 $("#TshirtsOrderMore").hide();
               } else if (toPay == 0) {
                 $(".paidTooMuch").hide();
                 $(".paidAll").show();
                 $("#PaymentsTotalDivMoneySpanAmount").html(0);
-                $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               } else {
                 $(".paidTooMuch").show();
                 $(".paidAll").hide();
                 $("#PaymentsTotalDivMoneySpanAmount").html(0);
-                $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
               }
               var orderMoreNum = ($("#PaidTooMuchAmount").html() > 0) ? Math.floor($("#PaidTooMuchAmount").html() / '.config::$tshirtCost.') : 0;
               orderMoreNum = ($("#PaymentsTshirts").val() > $("#tshirtsNumOfTshirts").val()) ? $("#PaymentsTshirts").val() - $("#tshirtsNumOfTshirts").val() : orderMoreNum - ($("#tshirtsNumOfTshirts").val() - $("#PaymentsTshirts").val());
@@ -330,6 +327,11 @@
               }
               $("#payPalMsg").val("ID: " + $("#paymentsPerson_id").val() + ", Main: " + $("#Payments_15").val() + ", T-shirts: " + $("#PaymentsTshirts").val());
               $("#'.$currencyChooser->id.'").change();
+              if (toPay > 0) {
+                $("#payPalImg").prop("disabled", false).prop("title", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!").prop("alt", "Click to pay " + $("#PaymentsTotalDivMoneySpan").html() + "!");
+              } else {
+                $("#payPalImg").prop("disabled", true).prop("title", "Nothing to pay!").prop("alt", "Nothing to pay!");
+              }
             ', '.paymentsSpinner');
             $toPay = ($costs - $this->paid > 0) ? $costs - $this->paid : 0;
             $subTotalDiv = $paymentsDiv->addDiv($prefix.'PaymentsSubTotalDiv');

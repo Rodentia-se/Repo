@@ -3,7 +3,58 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  $page = new page('Test');
+
+  $tests = array(
+    'NULL' => NULL,
+    'FALSE' => FALSE,
+    '0' => 0,
+    '"0"' => "0",
+    '""' => ""
+  }
+  
+  $headers = array(
+    'Content',
+    'strlen', 
+    'is_null', 
+    'isset', 
+    'empty', 
+    '($var)',
+    'is($var)',
+    'isId($var)',
+    '== FALSE', 
+    '=== FALSE', 
+    '== NULL', 
+    '=== NULL'
+    '== 0', 
+    '=== 0', 
+    '== ""',
+    '=== ""'
+  );
+  
+  foreach ($tests as $var) {
+    $rows[] = array(
+      (string) strlen($var),
+      (string) is_null($var),
+      (string) isset($var),
+      (string) empty($var),
+      (string) ($var),
+      (string) is($var),
+      (string) isId($var),
+      (string) $var == FALSE,
+      (string) $var === FALSE,
+      (string) $var == NULL,
+      (string) $var === NULL,
+      (string) $var == 0,
+      (string) $var === 0,
+      (string) $var == "",
+      (string) $var === "",
+    )
+  }
+  
+  $table = new table($rows, $headers);
+  $page->addContent($table->getHtml());
+  
+/*  $page = new page('Test');
 
   $div = new div('testDiv');
 
@@ -29,7 +80,7 @@
     $orderDiv->addDiv('colorDiv', NULL, array('style' => 'width: 100px; height: 100px; background-color: #'.$tshirtOrder->color->rgb));
   }
 
-
+*/
 
 
 
