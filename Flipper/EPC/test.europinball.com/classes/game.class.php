@@ -138,7 +138,7 @@
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.id, value: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
