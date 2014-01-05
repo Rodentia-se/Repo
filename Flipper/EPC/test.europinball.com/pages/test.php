@@ -37,6 +37,24 @@
     $html .= '<th>'.$header.'</th>';
   }
   $html .= '</thead><tbody>';
+  $html .= '<tr>
+    <td>$inexistent</td>
+    <td>'.htmlentities((string) strlen($var)).'</td>
+    <td>'.htmlentities((string) is_null($var)).'</td>
+    <td>'.htmlentities((string) isset($var)).'</td>
+    <td>'.htmlentities((string) empty($var)).'</td>
+    <td>'.htmlentities((string) ($var)).'</td>
+    <td>'.htmlentities((string) is($var)).'</td>
+    <td>'.htmlentities((string) isId($var)).'</td>
+    <td>'.htmlentities((string) $var == FALSE).'</td>
+    <td>'.htmlentities((string) $var === FALSE).'</td>
+    <td>'.htmlentities((string) $var == NULL).'</td>
+    <td>'.htmlentities((string) $var === NULL).'</td>
+    <td>'.htmlentities((string) $var == 0).'</td>
+    <td>'.htmlentities((string) $var === 0).'</td>
+    <td>'.htmlentities((string) $var == "").'</td>
+    <td>'.htmlentities((string) $var === "").'</td>
+  </tr>';
   foreach ($tests as $label => $var) {
     $html .= '<tr>
       <td>'.htmlentities($label).'</td>
