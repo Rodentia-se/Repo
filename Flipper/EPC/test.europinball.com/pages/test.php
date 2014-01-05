@@ -40,20 +40,20 @@
   foreach ($tests as $var) {
     $html .= '<tr>
       <td>'.htmlentities((string) strlen($var)).'</td>
-      <td>'.htmlentities((string) is_null($var).'</td>
-      <td>'.htmlentities((string) isset($var).'</td>
-      <td>'.htmlentities((string) empty($var).'</td>
-      <td>'.htmlentities((string) ($var).'</td>
-      <td>'.htmlentities((string) is($var).'</td>
-      <td>'.htmlentities((string) isId($var).'</td>
-      <td>'.htmlentities((string) $var == FALSE.'</td>
-      <td>'.htmlentities((string) $var === FALSE.'</td>
-      <td>'.htmlentities((string) $var == NULL.'</td>
-      <td>'.htmlentities((string) $var === NULL.'</td>
-      <td>'.htmlentities((string) $var == 0.'</td>
-      <td>'.htmlentities((string) $var === 0.'</td>
-      <td>'.htmlentities((string) $var == "".'</td>
-      <td>'.htmlentities((string) $var === "".'</td>
+      <td>'.htmlentities((string) is_null($var)).'</td>
+      <td>'.htmlentities((string) isset($var)).'</td>
+      <td>'.htmlentities((string) empty($var)).'</td>
+      <td>'.htmlentities((string) ($var)).'</td>
+      <td>'.htmlentities((string) is($var)).'</td>
+      <td>'.htmlentities((string) isId($var)).'</td>
+      <td>'.htmlentities((string) $var == FALSE).'</td>
+      <td>'.htmlentities((string) $var === FALSE).'</td>
+      <td>'.htmlentities((string) $var == NULL).'</td>
+      <td>'.htmlentities((string) $var === NULL).'</td>
+      <td>'.htmlentities((string) $var == 0).'</td>
+      <td>'.htmlentities((string) $var === 0).'</td>
+      <td>'.htmlentities((string) $var == "").'</td>
+      <td>'.htmlentities((string) $var === "").'</td>
     </tr>';
   }
   
