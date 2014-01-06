@@ -83,7 +83,7 @@
     );
     
     public static $participationLimit = array(
-      'main' => 176
+      'main' => 200
     );
     public static $tshirts = TRUE;
     public static $tshirtCost = 15;
