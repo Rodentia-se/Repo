@@ -335,7 +335,7 @@
             debug($paymentsNum);
             debug($paymentsSum - $paymentsNum);
             debug($paymentsSum - $paymentsNum * 30);
-            debug((+ $paymentsSum - $paymentsNum * 30));
+            debug((+ ($paymentsSum - $paymentsNum * 30) / 15));
             $tshirtsNum = (+ $paymentsSum - $paymentsNum * 30);
             $tshirtsNumDiv->addSpan('At least '.$tshirtsNum.' T-shirts'); 
           //$tshirtsNumDiv
