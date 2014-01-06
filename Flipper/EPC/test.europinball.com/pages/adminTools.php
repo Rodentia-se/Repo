@@ -151,6 +151,7 @@
             ${$prefix.'SumDiv'}->addLabel('Total payments');
             ${$prefix.'SumDiv'}->addSpan('€ '.$persons->getSumOf('paid'));
           //$paymentsSumDiv
+          ${$prefix.'Div'}->addH2('Change payment', array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
               ${$prefix.'Select'}->addCombobox();
