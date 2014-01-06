@@ -331,13 +331,8 @@
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
-            debug($paymentsSum);
-            debug($paymentsNum);
-            debug($paymentsSum - $paymentsNum);
-            debug($paymentsSum - $paymentsNum * 30);
-            debug(floor((+ ($paymentsSum - $paymentsNum * 30) / 15)));
-            $tshirtsNum = (+ $paymentsSum - $paymentsNum * 30);
-            $tshirtsNumDiv->addSpan('At least '.$tshirtsNum.' T-shirts'); 
+            $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
+            $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
