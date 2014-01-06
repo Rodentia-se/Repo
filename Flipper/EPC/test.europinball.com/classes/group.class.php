@@ -349,21 +349,27 @@
       return $return;
     }
     
-    function getListOf($prop = 'name', $unique = TRUE) {
+    function getListOf($prop = 'name', $value = TRUE, $unique = TRUE) {
       $return = array_filter($this->array_map(function($obj) use ($prop) {
-        if ($obj->$prop) {
-          return $obj->$prop;
+        if ($value === TRUE) {
+          if (isset($obj->$prop)) {
+            return $obj->$prop;
+          }
+        } else {
+          if ($obj->$prop == $value) {
+            return $obj->$prop;
+          }
         }
       }));
       return ($unique) ? array_unique($return) : $return;
     }
     
-    function getNumOf($prop = 'name') {
-      return count($this->getListOf($prop, FALSE));
+    function getNumOf($prop = 'name', $value = TRUE) {
+      return count($this->getListOf($prop, $value, FALSE));
     }
 
-    function getSumOf($prop = 'name') {
-      return array_sum($this->getListOf($prop, FALSE));
+    function getSumOf($prop = 'name', $value = TRUE) {
+      return array_sum($this->getListOf($prop, $value, FALSE));
     }
 
     function delete() {

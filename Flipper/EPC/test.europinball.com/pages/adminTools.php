@@ -135,10 +135,28 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-          ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
-            ${$prefix.'Select'}->addCombobox();
-            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
-          //$paymentSelect
+          ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'NumDiv'}->addLabel('Paid registrations');
+            ${$prefix.'NumDiv'}->addSpan($persons->getNumOf('paid'));
+          //$paymentsStatsDiv
+          ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'30NumDiv'}->addLabel('Paid €30');
+            ${$prefix.'30NumDiv'}->addSpan($persons->getNumOf('paid', 30));
+          //$paymentsStatsDiv
+          ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'45NumDiv'}->addLabel('Paid €45');
+            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45));
+          //$paymentsStatsDiv
+          ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'SumDiv'}->addLabel('Total payments');
+            ${$prefix.'SumDiv'}->addSpan($persons->getSumOf('paid'));
+          //$paymentsSumDiv
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
+              ${$prefix.'Select'}->addCombobox();
+              ${$prefix.'SelectDiv'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+            //$paymentSelect
+          //$paymentsSelectDiv
           $paidDiv = ${$prefix.'Div'}->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
