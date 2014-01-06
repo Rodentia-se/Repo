@@ -11,10 +11,10 @@
 
     public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
       debug('header', 'table');
-      if (get_class($content) != 'tr') {
+      if (@get_class($content) != 'tr') {
         debug(1, 'tableHeader');
         $obj = $this->headers[0];
-        if (get_class($obj) == 'tr') {
+        if (@get_class($obj) == 'tr') {
         debug(2, 'tableHeader');
           return $obj->addContent($content, $replace, $index);
         } else {
