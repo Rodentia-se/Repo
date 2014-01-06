@@ -287,31 +287,32 @@
           }
         //${$prefix.'Div'}
         $prefix = 't-shirts';
-        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->data_title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+        $tshirtsDiv = $tabs->addDiv($prefix.'Div');
+          $tshirtsDiv->data_title = ucfirst($prefix);
+          $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
           foreach ($tshirts as $tshirt) {
             $row[] = array($tshirt->name, $tshirt->number, $tshirt->reservers, $tshirt->reserved, $tshirt->delivered, $tshirt->soldOnSite, $tshirt->inStock, $tshirt->forSale);
           }
-//          ${$prefix.'Div'}->addDatatables($rows, $headers);
+          $tshirtsDiv->addTable($rows, $headers)->addDatatables();
+          $
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses) {
-            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            $tshirtsDiv->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           }
           if ($mailAddresses) {
-            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
           }
           if ($otherAddresses) {
-            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
           }
-          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
-        //${$prefix.'Div'}
+          $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
+        //$tshirtsDiv
         $prefix = 'other';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
