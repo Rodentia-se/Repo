@@ -87,6 +87,8 @@
                 }
               } else {
                 warning('Table content object at index '.$key.' is not a table row or array! ('.get_class($header).')');
+                debug($content);
+                die();
               }
             }
           }
@@ -113,8 +115,6 @@
                 }
               } else {
                 warning('Table header object at index '.$key.' is not a table row or array! ('.get_class($header).')');
-                debug($content);
-                die();
               }
             }
           }
