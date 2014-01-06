@@ -36,7 +36,6 @@
       'game_year_released' => 'year'
     );
     
-
     public static $infoProps = array(
       'name',
       'acronym',
