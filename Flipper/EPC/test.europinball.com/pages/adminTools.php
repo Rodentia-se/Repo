@@ -295,7 +295,7 @@
           foreach ($tshirts as $tshirt) {
             $row[] = array($tshirt->name, $tshirt->number, $tshirt->reservers, $tshirt->reserved, $tshirt->delivered, $tshirt->soldOnSite, $tshirt->inStock, $tshirt->forSale);
           }
-          ${$prefix.'Div'}->addDatatables($rows, $headers);
+//          ${$prefix.'Div'}->addDatatables($rows, $headers);
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
