@@ -14,7 +14,7 @@
       if (get_class($content) != 'tr') {
         debug(1, 'tableHeader');
         $obj = $this->headers[0];
-        if (getClass($obj) == 'tr') {
+        if (get_class($obj) == 'tr') {
         debug(2, 'tableHeader');
           return $obj->addContent($content, $replace, $index);
         } else {
@@ -35,7 +35,7 @@
           $this->delContent($replace);
         }
         $obj = $content[reset($content)];
-        if (@getClass($obj) == 'tr') {
+        if (@get_class($obj) == 'tr') {
           foreach ($content as $part) {
             parent::addContent($part, NULL, $index);
             $index++;
@@ -52,7 +52,7 @@
         } else {
           $obj = $this->contents[end($this->contents)];
           reset($this->contents);
-          if (@getClass($obj) == 'tr') {
+          if (@get_class($obj) == 'tr') {
             return $obj->addContent($content, $replace, $index);
           } else {
             $tr = new tr($content);
