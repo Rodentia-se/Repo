@@ -350,7 +350,7 @@
     }
     
     function getListOf($prop = 'name', $value = TRUE, $operator = '==', $unique = TRUE) {
-      $return = array_filter($this->array_map(function($obj) use ($prop, $value) {
+      $return = array_filter($this->array_map(function($obj) use ($prop, $value, $operator) {
         if ($value === TRUE) {
           if (isset($obj->$prop)) {
             return $obj->$prop;
@@ -428,7 +428,6 @@
     }
     
     function getNumOf($prop = 'name', $value = TRUE, $operator = '==') {
-          debug($operator);
       return count($this->getListOf($prop, $value, $operator, FALSE));
     }
 
