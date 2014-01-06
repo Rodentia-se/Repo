@@ -140,12 +140,12 @@
             ${$prefix.'NumDiv'}->addSpan($persons->getNumOf('paid'));
           //$paymentsStatsDiv
           ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.'30NumDiv'}->addLabel('Paid €30');
+            ${$prefix.'30NumDiv'}->addLabel('Paid € 30');
             ${$prefix.'30NumDiv'}->addSpan($persons->getNumOf('paid', 30));
           //$paymentsStatsDiv
           ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.'45NumDiv'}->addLabel('Paid €45');
-            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45));
+            ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
+            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45, '>'));
           //$paymentsStatsDiv
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');

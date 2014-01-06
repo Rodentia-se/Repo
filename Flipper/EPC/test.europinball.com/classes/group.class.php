@@ -349,27 +349,90 @@
       return $return;
     }
     
-    function getListOf($prop = 'name', $value = TRUE, $unique = TRUE) {
+    function getListOf($prop = 'name', $value = TRUE, $operator = '==', $unique = TRUE) {
       $return = array_filter($this->array_map(function($obj) use ($prop, $value) {
         if ($value === TRUE) {
           if (isset($obj->$prop)) {
             return $obj->$prop;
           }
         } else {
-          if ($obj->$prop == $value) {
-            return $obj->$prop;
+          switch ($operator) {
+            case '>':
+            case 'gt':
+            case 'greater':
+            case 'greater than':
+            case 'over':
+              if ($obj->$prop > $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '<':
+            case 'lt'
+            case 'less':
+            case 'less than':
+            case 'under':
+            case 'below':
+              if ($obj->$prop < $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '>=':
+            case '=>':
+              if ($obj->$prop >= $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '<=':
+            case '=<':
+              if ($obj->$prop <= $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '===':
+              if ($obj->$prop === $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '!==':
+              if ($obj->$prop !== $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '!=':
+            case '<>':
+            case '><':
+            case 'not':
+            case 'is not':
+            case 'not equal':
+            case 'neq':
+            case '!eq':
+            case '!equal':
+              if ($obj->$prop === $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '=':
+            case '==':
+            case 'eq':
+            case 'equals':
+            case 'is':
+            default:
+              if ($obj->$prop == $value) {
+                return $obj->$prop;
+              }
+            break;
           }
         }
       }));
       return ($unique) ? array_unique($return) : $return;
     }
     
-    function getNumOf($prop = 'name', $value = TRUE) {
-      return count($this->getListOf($prop, $value, FALSE));
+    function getNumOf($prop = 'name', $value = TRUE, $operator = '==') {
+      return count($this->getListOf($prop, $value, $operator, FALSE));
     }
 
-    function getSumOf($prop = 'name', $value = TRUE) {
-      return array_sum($this->getListOf($prop, $value, FALSE));
+    function getSumOf($prop = 'name', $value = TRUE, $operator = '==') {
+      return array_sum($this->getListOf($prop, $value, $operator, FALSE));
     }
 
     function delete() {
