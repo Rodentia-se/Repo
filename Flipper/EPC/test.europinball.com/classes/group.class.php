@@ -356,7 +356,6 @@
             return $obj->$prop;
           }
         } else {
-          debug($operator);
           switch ($operator) {
             case '>':
             case 'gt':
@@ -429,6 +428,7 @@
     }
     
     function getNumOf($prop = 'name', $value = TRUE, $operator = '==') {
+          debug($operator);
       return count($this->getListOf($prop, $value, $operator, FALSE));
     }
 
