@@ -350,7 +350,7 @@
     }
     
     function getListOf($prop = 'name', $value = TRUE, $unique = TRUE) {
-      $return = array_filter($this->array_map(function($obj) use ($prop) {
+      $return = array_filter($this->array_map(function($obj) use ($prop, $value) {
         if ($value === TRUE) {
           if (isset($obj->$prop)) {
             return $obj->$prop;
