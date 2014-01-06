@@ -349,7 +349,11 @@
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
-          if ($mailAddresses || $otherAddresses) {
+          $tshirtsPaidPersons = $persons->getFiltered('paid', 30, TRUE);
+          $tshirtsPaidPersons->filter('paid', NULL, TRUE);
+          $tshirtsPaidAddresses = $tshirtsPaidPersons->getListOf('mailAddress');
+          $tshirtsPaidNotChosenAddresses = array_diff($tshirtsPaidAddresses, $mailAddresses);
+          if ($mailAddresses || $otherAddresses || $tshirtsPaidNotChosenAddresses) {
             $tshirtsDiv->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           }
           if ($mailAddresses) {
@@ -359,6 +363,10 @@
           if ($otherAddresses) {
             $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
             $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
+          }
+          if ($tshirtsPaidNotChosenAddresses) {
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have paid more than € 30 and have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
           }
           $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
         //$tshirtsDiv
