@@ -331,7 +331,7 @@
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
-            $tshirtsNum = (+ $paymentsSum - $paymentsSum * 30);
+            $tshirtsNum = $paymentsSum - $paymentsSum * 30;
             $tshirtsNumDiv->addSpan('At least '.$tshirtsNum.' T-shirts'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
