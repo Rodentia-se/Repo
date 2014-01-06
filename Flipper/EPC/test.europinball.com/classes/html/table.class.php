@@ -8,6 +8,54 @@
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
+    public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
+      if (@get_class($content) != 'tr' {
+        $obj = $this->headers[0];
+        if (@getClass($obj) == 'tr') {
+          return $obj->addContent($content, $replace, $index);
+        } else {
+          $tr = new tr($content);
+          $tr->type = 'thead';
+          return $this->addHeader(new $tr, $replace, $header);
+        }
+      } else {
+        return parent::addHeader($content, $replace, $index);
+      }
+    }
+
+    public function addContent($content = NULL, $replace = FALSE, $index = FALSE) {
+      if (is_array($content)) {
+        if ($replace) {
+          $this->delContent($replace);
+        }
+        $obj = $content[reset($content)];
+        if (@getClass($obj) == 'tr') {
+          foreach ($content as $part) {
+            parent::addContent($part, NULL, $index);
+            $index++;
+          }
+          return TRUE;
+        } else {
+          $tr = new tr($content);
+          $tr->type = 'tbody';
+          return $this->addContent($tr, $replace, $index);
+        }
+      } else {
+        if (@get_class($content) == 'tr' {
+          return parent::addContent($content, $replace, $index);
+        } else {
+          $obj = $this->contents[end($this->contents)];
+          if (@getClass($obj) == 'tr') {
+            return $obj->addContent($content, $replace, $index);
+          } else {
+            $tr = new tr($content);
+            $tr->type = 'tbody';
+            return $this->addContent($tr, $replace, $index);
+          }
+        }
+      }
+    }
+
     protected function getContent($index = NULL, $string = TRUE) {
       if ($this->contents) {
         if ($index) {
@@ -15,7 +63,7 @@
         } else {
           $tbody = new tbody();
           foreach ($this->contents as $key => $content) {
-            if (get_class($content) == 'tr') {
+            if (is_object($header) && get_class($content) == 'tr') {
               $tbody->addContent($content);
             } else {
               if (is_array($content)) {
@@ -41,7 +89,7 @@
         } else {
           $thead = new thead();
           foreach ($this->headers as $key => $header) {
-            if (get_class($header) == 'tr') {
+            if (is_object($header) && get_class($header) == 'tr') {
               $thead->addContent($header);
             } else {
               if (is_array($header)) {
