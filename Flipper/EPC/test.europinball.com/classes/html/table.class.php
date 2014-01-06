@@ -16,7 +16,7 @@
         } else {
           $tr = new tr($content);
           $tr->type = 'thead';
-          return $this->addHeader(new $tr, $replace, $header);
+          return $this->addHeader($tr, $replace, $header);
         }
       } else {
         return parent::addHeader($content, $replace, $index);
