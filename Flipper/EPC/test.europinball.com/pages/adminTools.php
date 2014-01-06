@@ -332,7 +332,7 @@
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
             $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
-            $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts'); 
+            $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts paid for'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
