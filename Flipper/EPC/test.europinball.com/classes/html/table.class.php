@@ -34,6 +34,7 @@
         if ($replace) {
           $this->delContent($replace);
         }
+        debug(reset($content));
         debug($content);
         $obj = $content[reset($content)];
         if (@get_class($obj) == 'tr') {
