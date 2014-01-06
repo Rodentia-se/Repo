@@ -137,19 +137,23 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'NumDiv'}->addLabel('Paid registrations');
-            ${$prefix.'NumDiv'}->addSpan($persons->getNumOf('paid').' players');
+            ${$prefix.'Num'} = $persons->getNumOf('paid');
+            ${$prefix.'NumDiv'}->addSpan(${$prefix.'Num'}.' players');
           //$paymentsStatsDiv
           ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'30NumDiv'}->addLabel('Paid € 30');
-            ${$prefix.'30NumDiv'}->addSpan($persons->getNumOf('paid', 30).' players');
+            ${$prefix.'30Num'} = $persons->getNumOf('paid', 30);
+            ${$prefix.'30NumDiv'}->addSpan(${$prefix.'30Num'}.' players');
           //$paymentsStatsDiv
           ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
-            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45, '>=').' players'); 
+            ${$prefix.'45Num'} = $persons->getNumOf('paid', 45, '>=');
+            ${$prefix.'45NumDiv'}->addSpan(${$prefix.'45Num'}.' players'); 
           //$paymentsStatsDiv
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');
-            ${$prefix.'SumDiv'}->addSpan('€ '.$persons->getSumOf('paid'));
+            ${$prefix.'Sum'} = $persons->getSumOf('paid');
+            ${$prefix.'SumDiv'}->addSpan('€ '.${$prefix.'Sum'});
           //$paymentsSumDiv
           ${$prefix.'Div'}->addH2('Change payment', array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
@@ -327,7 +331,7 @@
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
-            $tshirtsNum = (+ $tshirts45Num + $tshirts45Num * 2 + $tshirtsMoreNum * 3);
+            $tshirtsNum = (+ $paymentsSum - $paymentsSum * 30);
             $tshirtsNumDiv->addSpan('At least '.$tshirtsNum.' T-shirts'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
