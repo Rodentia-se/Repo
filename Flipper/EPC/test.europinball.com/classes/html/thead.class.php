@@ -3,6 +3,7 @@
   class thead extends tpart {
     
     public function __construct($rows = NULL, array $params = NULL) {
+      $debug('thead');
       if (is_array($row)) {
         foreach ($rows as $row) {
           if ($row->type == 'tbody') {

@@ -3,6 +3,7 @@
   class table extends html {
     
     public function __construct($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL) {
+      debug('table');
       $this->addHeader($headers);
       parent::__construct('table', $rows, $params, $id, $class, NULL);
     }
