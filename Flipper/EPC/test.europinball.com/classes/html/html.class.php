@@ -125,12 +125,6 @@
     }
      
     public function __set($prop, $value) {
-          if ($value === 'THISISATEST') {
-            debug($this->data_title, 'current');
-            debug($this->params['data-title'], 'current');
-            debug($prop, 'prop');
-            debug($value, 'value');
-          }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -227,10 +221,6 @@
           }
         break;
       }
-          if ($value === 'THISISATEST') {
-            debug($this->data_title, 'new');
-            debug($this->params['data-title'], 'current');
-          }
     }
     
     public function __isset($prop) {

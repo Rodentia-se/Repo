@@ -296,7 +296,6 @@
           foreach ($tshirts as $tshirt) {
             $rows[] = array($tshirt->name, $tshirt->number, $tshirt->reservers, $tshirt->reserved, $tshirt->delivered, $tshirt->soldOnSite, $tshirt->inStock, $tshirt->forSale);
           }
-          debug('beforeTable');
           $tshirtsDiv->addTable($rows, $headers)->addDatatables();
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');

@@ -3,28 +3,22 @@
   class table extends html {
     
     public function __construct($rows = NULL, $headers = NULL, $id = NULL, $class = NULL, array $params = NULL) {
-      debug('table');
       $this->addHeader($headers);
       parent::__construct('table', $rows, $params, $id, $class, NULL);
     }
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
     public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
-      debug('header', 'table');
       if (@get_class($content) != 'tr') {
-        debug(1, 'tableHeader');
         $obj = $this->headers[0];
         if (@get_class($obj) == 'tr') {
-        debug(2, 'tableHeader');
           return $obj->addContent($content, $replace, $index);
         } else {
-        debug(3, 'tableHeader');
           $tr = new tr($content);
           $tr->type = 'thead';
           return $this->addHeader($tr, $replace, $header);
         }
       } else {
-        debug(4, 'tableHeader');
         return parent::addHeader($content, $replace, $index);
       }
     }
@@ -87,8 +81,6 @@
                 }
               } else {
                 warning('Table content object at index '.$key.' is not a table row or array! ('.get_class($header).')');
-                debug($content);
-                die();
               }
             }
           }
