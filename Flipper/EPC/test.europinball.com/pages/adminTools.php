@@ -344,7 +344,7 @@
             $tshirtsResDiv->addLabel('Reserved');
             $tshirtsResDiv->addSpan($tshirtsRes.' T-shirts'); 
           //$tshirtsNumDiv
-          $tshirtsDiv->addH3('Details');
+          $tshirtsDiv->addH3('Details', array('class' => 'entry-title'));
           $tshirtsDiv->addTable($rows, $headers)->addDatatables();
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
