@@ -26,6 +26,7 @@
           )
         ) as fullName,
         coalesce(o.initials, p.initials) as shortName,
+        coalesce(o.initials, p.initials) as tag,
         coalesce(o.streetAddress, p.streetAddress) as streetAddress,
         coalesce(o.zipCode, p.zipCode) as zipCode,
         coalesce(o.gender_id, p.gender_id) as gender_id,

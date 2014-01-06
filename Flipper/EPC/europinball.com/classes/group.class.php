@@ -148,6 +148,28 @@
       return FALSE;
     }
     
+    public function getFiltered($prop, $value = NULL, $out = FALSE, $array = FALSE) {
+      $return = clone $this;
+      $return->filter($prop, $value, $out);
+      return ($array) ? $return->toArray() : $return;
+    }
+    
+    public function flatten() {
+      foreach ($this as $obj) {
+        $this->flatten();
+      }
+      return TRUE;
+    }
+    
+    public function getFlat() {
+      $class = get_class($this);
+      $objs = new $class();
+      foreach ($this as $obj) {
+        $objs[] = $obj->getFlat();
+      }
+      return $objs;
+    }
+
     public function filter($prop, $value = NULL, $out = FALSE) {
       foreach ($this as $index => $obj) {
         if (isAssoc($prop)) {
@@ -327,14 +349,92 @@
       return $return;
     }
     
-    function getAllOf($prop = 'name') {
-      return array_unique(array_filter($this->array_map(function($obj) use ($prop) {
-        if ($obj->$prop) {
-          return $obj->$prop;
+    function getListOf($prop = 'name', $value = TRUE, $operator = '==', $unique = TRUE) {
+      $return = array_filter($this->array_map(function($obj) use ($prop, $value, $operator) {
+        if ($value === TRUE) {
+          if (isset($obj->$prop)) {
+            return $obj->$prop;
+          }
+        } else {
+          switch ($operator) {
+            case '>':
+            case 'gt':
+            case 'greater':
+            case 'greater than':
+            case 'over':
+              if ($obj->$prop > $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '<':
+            case 'lt':
+            case 'less':
+            case 'less than':
+            case 'under':
+            case 'below':
+              if ($obj->$prop < $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '>=':
+            case '=>':
+              if ($obj->$prop >= $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '<=':
+            case '=<':
+              if ($obj->$prop <= $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '===':
+              if ($obj->$prop === $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '!==':
+              if ($obj->$prop !== $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '!=':
+            case '<>':
+            case '><':
+            case 'not':
+            case 'is not':
+            case 'not equal':
+            case 'neq':
+            case '!eq':
+            case '!equal':
+              if ($obj->$prop === $value) {
+                return $obj->$prop;
+              }
+            break;
+            case '=':
+            case '==':
+            case 'eq':
+            case 'equals':
+            case 'is':
+            default:
+              if ($obj->$prop == $value) {
+                return $obj->$prop;
+              }
+            break;
+          }
         }
-      })));
+      }));
+      return ($unique) ? array_unique($return) : $return;
     }
     
+    function getNumOf($prop = 'name', $value = TRUE, $operator = '==') {
+      return count($this->getListOf($prop, $value, $operator, FALSE));
+    }
+
+    function getSumOf($prop = 'name', $value = TRUE, $operator = '==') {
+      return array_sum($this->getListOf($prop, $value, $operator, FALSE));
+    }
+
     function delete() {
       foreach ($this as $obj) {
         if (!$obj->delete()) {

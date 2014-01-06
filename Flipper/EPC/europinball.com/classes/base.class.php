@@ -133,6 +133,23 @@
     }
     
     public function setProp($prop, $value = NULL) {
+      if (isObj($prop, TRUE)) {
+        if (!is_null($value)) {
+          if (!isObj($value)) {
+            $class = static::$parents[$prop];
+            $value = $class($value);
+          }
+          if (!isObj($value)) {
+            warning('Trying to set '.$prop.' to invalid object');
+            return FALSE;
+          }
+        }
+        $prop = $prop.'_id';
+      }
+      if (isObj($value)) {
+        $valueObj = $value;
+        $value = $value->id;
+      }
       $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
       $cols = $this->getColNames();
       if (!in_array($prop, $cols)) {
@@ -143,8 +160,13 @@
         $prop = ($props[$prop]) ? $props[$prop] : $prop;
       }
       if ($this->id && in_array($prop, $cols)) {
-        $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop).' where id = '.$this->id;
+        $query = 'update '.$table.' set '.$prop.' = '.db::getAlias($prop);
         $values[db::getAlias($prop)] = $value;
+        if (substr($prop, -3) == '_id' && isObj($valueObj) && in_array(substr($prop, 0, -3), $cols)) {
+          $query .= ', '.substr($prop, 0, -3).' = '.db::getAlias(substr($prop, 0, -3));
+          $values[db::getAlias(substr($prop, 0, -3))] = $valueObj->name;
+        }
+        $query .= ' where id = '.$this->id;
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
@@ -586,6 +608,7 @@
       foreach (static::$parents as $field => $class) {
         unset($this->$field);
       }
+      return TRUE;
     }
     
     public function getFlat() {
@@ -645,6 +668,98 @@
         }
       }
       return validated(TRUE, 'No validator found', $obj);
+    }
+    
+    public function authorize($person, $prop = NULL, $value = NULL, $obj = FALSE) {
+      $adminLevels = adminLevels('all');
+      $adminLevelNames = $adminLevels->getListOf();
+      if (property_exists(get_called_class(), 'authorized')) {
+        if (is_array(static::$authorized)) {
+          if (static::$authorized[$prop]) {
+            if (is_array(static::$authorized[$prop])) {
+              if (static::$authorized[$prop][0] == 'function') {
+                if (function_exists(static::$authorized[$prop][1])) {
+                  return call_user_func(static::$authorized[$prop][1], $this, $person, $value, $obj);
+                } else {
+                  warning('Non-existing function given as authorization.');
+                }
+              } else if (static::$authorized[$prop][0] == 'method') {
+                if (method_exists(get_called_class(), static::$authorized[$prop][1])) {
+                  return call_user_func(get_called_class().'::'.static::$authorized[$prop][1], $person, $value, $obj);
+                } else {
+                  warning('Non-existing method given as authorization.');
+                }
+              } else if (method_exists(static::$authorized[$prop][0], static::$authorized[$prop][1])) {
+                return call_user_func(static::$authorized[$prop][0]. '::'.static::$authorized[$prop][1], $person, $value, $obj);
+              } else {
+                warning('Unknown method given as authorization.');
+              }
+            } else if (is_string(static::$authorized[$prop])) {
+              if (in_array(ucfirst(static::$authorized[$prop]), $adminLevelNames)) {
+                $level = static::$authorized[$prop];
+                return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+              } else if (isId(static::$authorized[$prop])) {
+                return ($person->adminLevel_id >= static::$authorized[$prop]) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+              } else if (method_exists(get_called_class(), static::$authorized[$prop])) {
+                return call_user_func(get_called_class().'::'.static::$authorized[$prop], $person, $value, $obj);
+              } else if (function_exists(static::$authorized[$prop])) {
+                return call_user_func(static::$authorized[$prop], $person, $value, $obj);
+              }
+            }
+          } else {
+            if (is_array(static::$authorized['default'])) {
+              if (static::$authorized['default'][0] == 'function') {
+                if (function_exists(static::$authorized['default'][1])) {
+                  return call_user_func(static::$authorized['default'][1], $this, $person, $prop, $value, $obj);
+                } else {
+                  warning('Non-existing function given as authorization.');
+                }
+              } else if (static::$authorized['default'][0] == 'method') {
+                if (method_exists(get_called_class(), static::$authorized['default'][1])) {
+                  return call_user_func(get_called_class().'::'.static::$authorized['default'][1], $person, $prop, $value, $obj);
+                } else {
+                  warning('Non-existing method given as authorization.');
+                }
+              } else if (method_exists(static::$authorized['default'][0], static::$authorized['default'][1])) {
+                return call_user_func(static::$authorized['default'][0]. '::'.static::$authorized['default'][1], $person, $prop, $value, $obj);
+              } else {
+                warning('Unknown method given as authorization.');
+              }
+            } else if (is_string(static::$authorized['default'])) {
+              if (in_array(ucfirst(static::$authorized['default']), $adminLevelNames)) {
+                $level = static::$authorized['default'];
+                return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+              } else if ($isId(static::$authorized['default'])) {
+                return ($person->adminLevel_id >= static::$authorized['default']) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+              } else if (method_exists(get_called_class(), static::$authorized['default'])) {
+                return call_user_func(get_called_class().'::'.static::$authorized['default'], $person, $prop, $value, $obj);
+              } else if (function_exists(static::$authorized['default'])) {
+                return call_user_func(static::$authorized['default'], $person, $prop, $value, $obj);
+              }
+            }
+          }
+        } else {
+          if (in_array(ucfirst(static::$authorized), $adminLevelNames)) {
+            $level = static::$authorized;
+            return ($person->$level) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+          } else if (isId(static::$authorized)) {
+            return ($person->adminLevel_id >= static::$authorized) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Authorization denied', $obj);
+          } else if (method_exists(get_called_class(), static::$authorized)) {
+            return call_user_func(get_called_class().'::'.static::$authorized, $person, $value, $obj);
+          } else if (function_exists(static::$authorized)) {
+            return call_user_func(static::$authorized, $person, $value, $obj);
+          } else {
+            return (static::$authorized) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(TRUE, 'Authorization granted', $obj);
+          }
+        }
+      } else {
+        if (method_exists(get_called_class(), 'authorize'.ucfirst($prop))) {
+          return call_user_func(get_called_class().'::authorize'.ucfirst($prop), $person, $value, $obj);
+        } else if (function_exists('authorize'.ucfirst($prop))) {
+          return call_user_func('authorize'.ucfirst($prop), $person, $value, $obj);
+        }
+      }
+      return authorized(TRUE, 'No authorization found', $obj);
     }
 
     public function toArray($recursive = FALSE) {

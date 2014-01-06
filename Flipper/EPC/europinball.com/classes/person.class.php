@@ -92,6 +92,12 @@
       'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
     );
     
+    public static $authorized = array(
+      'adminLevel_id' => array('method', 'authorizeAdminLevel'),
+      'adminLevel' => array('method', 'authorizeAdminLevel'),
+      'default' => 'receptionist'
+    );
+    
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
      $persons = array('current', 'active', 'login', 'auth');
       if (is_string($data) && in_array($data, $persons) && $search === config::NOSEARCH) {
@@ -488,8 +494,9 @@
                 $adminLevelSelect->addTooltip('', TRUE, '#'.$adminLevelSelect->id.'_combobox')->offsetX = 38;
                 $adminLevelSelect->addChange('
                   var el = this;
+                  var combobox = document.getElementById(el.id + "_combobox");
                   if ($(el).val() != 0) {
-                    $("#" + el.id + "_combobox").tooltipster("update", "Changing administrator level...").tooltipster("show");
+                    $(combobox).tooltipster("update", "Changing administrator level...").tooltipster("show");
                     $("body").addClass("modal");
                     $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "adminLevel", value: $(el).val()})
                     .done(function(data) {
@@ -499,8 +506,8 @@
                         $(el).val($(el).data("previous"));
                       }
                       $("body").removeClass("modal");
-                      $("#" + el.id + "_combobox").tooltipster("update", data.reason).tooltipster("show");
-                      $("#" + el.id + "_combobox").val($(el).children(":selected").text());
+                      $(combobox).tooltipster("update", data.reason).tooltipster("show");
+                      $(combobox).val($(el).children(":selected").text());
                     });
                   }
                 ');
@@ -812,6 +819,10 @@
       } else {
         return validated(FALSE, 'Password is required to be at least 6 characters, including a number, a letter and one of !@#$', $obj);
       }
+    }
+    
+    public function authorizeAdminLevel($person, $value = NULL, $obj = FALSE) {
+      return ($person->adminLevel_id >= $this->adminLevel_id && $person->adminLevel_id >= $value) ? authorized(TRUE, 'Authorization granted', $obj) : authorized(FALSE, 'Admin level can not be changed above your own level', $obj);
     }
     
   }

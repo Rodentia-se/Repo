@@ -125,12 +125,6 @@
     }
      
     public function __set($prop, $value) {
-          if ($value === 'THISISATEST') {
-            debug($this->data_title, 'current');
-            debug($this->params['data-title'], 'current');
-            debug($prop, 'prop');
-            debug($value, 'value');
-          }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -227,10 +221,6 @@
           }
         break;
       }
-          if ($value === 'THISISATEST') {
-            debug($this->data_title, 'new');
-            debug($this->params['data-title'], 'current');
-          }
     }
     
     public function __isset($prop) {
@@ -958,18 +948,21 @@
 
     public function addTr($cells = NULL, array $params = NULL) {
       $element = new tr($cells, $params);
+      $element->type = get_class($this);
       $this->addContent($element);
       return $element;
     }
 
     public function addTh($contents = NULL, array $params = NULL) {
-      $element = new th($contents, $params);
+      $class = (get_class($this) == 'tbody' || $this->type == 'tbody') ? 'td' : 'th';
+      $element = new $class($contents, $params);
       $this->addContent($element);
       return $element;
     }
 
     public function addTd($contents = NULL, array $params = NULL) {
-      $element = new td($contents, $params);
+      $class = (get_class($this) == 'thead' || $this->type == 'thead') ? 'th' : 'td';
+      $element = new $class($contents, $params);
       $this->addContent($element);
       return $element;
     }

@@ -5,6 +5,7 @@
 
   $page = new page('Admin tools');
   $page->forms = TRUE;
+  $page->datatables = TRUE;
 
   if ($page->reqLogin('You need to be logged in to access this page. If you don\'t have a user, please go to the <a href="'.config::$baseHref.'/registration/">registration page</a>.')) {
     $volunteer = volunteer('login');
@@ -70,7 +71,7 @@
             ');
             $waitingButton->addCss('margin-top', '15px');
           //$waitingDiv
-          $personMailAddresses = $persons->getAllOf('mailAddress');
+          $personMailAddresses = $persons->getListOf('mailAddress');
           if ($personMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -109,7 +110,7 @@
           foreach ($adminLevels as $adminLevel) {
             if ($adminLevel->id > 15) {
               $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
-              $volAddresses[$adminLevel->id] = $vols->getAllOf('mailAddress');
+              $volAddresses[$adminLevel->id] = $vols->getListOf('mailAddress');
             }
             if ($volAddresses[$adminLevel->id]) {
               $volAddressFound = TRUE;
@@ -134,10 +135,33 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-          ${$prefix.'Select'} = ${$prefix.'Div'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
-            ${$prefix.'Select'}->addCombobox();
-            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
-          //$paymentSelect
+          ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'NumDiv'}->addLabel('Paid registrations');
+            ${$prefix.'Num'} = $persons->getNumOf('paid');
+            ${$prefix.'NumDiv'}->addSpan(${$prefix.'Num'}.' players');
+          //$paymentsStatsDiv
+          ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'30NumDiv'}->addLabel('Paid € 30');
+            ${$prefix.'30Num'} = $persons->getNumOf('paid', 30);
+            ${$prefix.'30NumDiv'}->addSpan(${$prefix.'30Num'}.' players');
+          //$paymentsStatsDiv
+          ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
+            ${$prefix.'45Num'} = $persons->getNumOf('paid', 45, '>=');
+            ${$prefix.'45NumDiv'}->addSpan(${$prefix.'45Num'}.' players'); 
+          //$paymentsStatsDiv
+          ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'SumDiv'}->addLabel('Total payments');
+            ${$prefix.'Sum'} = $persons->getSumOf('paid');
+            ${$prefix.'SumDiv'}->addSpan('€ '.${$prefix.'Sum'});
+          //$paymentsSumDiv
+          ${$prefix.'Div'}->addH2('Change payment', array('class' => 'entry-title'));
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
+              ${$prefix.'Select'}->addCombobox();
+              ${$prefix.'SelectDiv'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+            //$paymentSelect
+          //$paymentsSelectDiv
           $paidDiv = ${$prefix.'Div'}->addDiv('paidDiv', 'noInput');
             $paidDiv->addLabel('Paid:');
             $paidSpan = $paidDiv->addMoneySpan(0, 'paid', config::$currencies[config::$defaultCurrency]['format']);
@@ -253,7 +277,7 @@
           ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
           //$usersEditDiv
           $owners = owners('active');
-          $mailAddresses = $owners->getAllOf('mailAddress');
+          $mailAddresses = $owners->getListOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all game owners that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -278,7 +302,7 @@
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           $volunteers = volunteers('active');
-          $mailAddresses = $volunteers->getAllOf('mailAddress');
+          $mailAddresses = $volunteers->getListOf('mailAddress');
           if ($mailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
             ${$prefix.'Div'}->addParagraph('Email addresses to all volunteers that have registered their email address. Click in the box to copy the addresses to your clipboard.');
@@ -287,25 +311,57 @@
           }
         //${$prefix.'Div'}
         $prefix = 't-shirts';
-        ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
-          ${$prefix.'Div'}->data_title = ucfirst($prefix);
-          ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-          $tshirtOrders = tshirtOrders('active');
-          $mailAddresses = $tshirtOrders->getAllOf('mailAddress');
+        $tshirtsDiv = $tabs->addDiv($prefix.'Div');
+          $tshirtsDiv->data_title = ucfirst($prefix);
+          $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
+          $tshirts45NumDiv = $tshirtsDiv->addDiv();
+            $tshirts45NumDiv->addLabel('Paid € 45');
+            $tshirts45Num = $persons->getNumOf('paid', 45);
+            $tshirts45NumDiv->addSpan($tshirts45Num.' players'); 
+          //$tshirts45NumDiv
+          $tshirts60NumDiv = $tshirtsDiv->addDiv();
+            $tshirts60NumDiv->addLabel('Paid € 60');
+            $tshirts60Num = $persons->getNumOf('paid', 60);
+            $tshirts60NumDiv->addSpan($tshirts60Num.' players'); 
+          //$tshirts60NumDiv
+          $tshirtsMoreNumDiv = $tshirtsDiv->addDiv();
+            $tshirtsMoreNumDiv->addLabel('Paid more than € 60');
+            $tshirtsMoreNum = $persons->getNumOf('paid', 60, '>');
+            $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum.' players');
+          //$tshirtsMoreNumDiv
+          $tshirtsNumDiv = $tshirtsDiv->addDiv();
+            $tshirtsNumDiv->addLabel('Estimated');
+            $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
+            $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts paid for'); 
+          //$tshirtsNumDiv
+          $tshirts = tshirts($tournament);
+          $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
+          foreach ($tshirts as $tshirt) {
+            $rows[] = array($tshirt->name, $tshirt->number, $tshirt->reservers, $tshirt->reserved, $tshirt->delivered, $tshirt->soldOnSite, $tshirt->inStock, $tshirt->forSale);
+            $tshirtsRes += $tshirt->reserved;
+          }
+          $tshirtsResDiv = $tshirtsDiv->addDiv();
+            $tshirtsResDiv->addLabel('Reserved');
+            $tshirtsResDiv->addSpan($tshirtsRes.' T-shirts'); 
+          //$tshirtsNumDiv
+          $tshirtsDiv->addH3('Details', array('class' => 'entry-title'));
+          $tshirtsDiv->addTable($rows, $headers)->addDatatables();
+          $tshirtOrders = tshirtOrders($tournament);
+          $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses) {
-            ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            $tshirtsDiv->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
           }
           if ($mailAddresses) {
-            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
           }
           if ($otherAddresses) {
-            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
           }
-          ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
-        //${$prefix.'Div'}
+          $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
+        //$tshirtsDiv
         $prefix = 'other';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
