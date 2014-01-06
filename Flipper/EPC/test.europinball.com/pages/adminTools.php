@@ -310,6 +310,18 @@
         $tshirtsDiv = $tabs->addDiv($prefix.'Div');
           $tshirtsDiv->data_title = ucfirst($prefix);
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
+          $tshirts45NumDiv = $tshirtsDiv->addDiv();
+            $tshirts45NumDiv->addLabel('Paid € 45');
+            $tshirts45NumDiv->addSpan($persons->getNumOf('paid', 45)); 
+          //$tshirts45NumDiv
+          $tshirts60NumDiv = $tshirtsDiv->addDiv();
+            $tshirts60NumDiv->addLabel('Paid € 60');
+            $tshirts60NumDiv->addSpan($persons->getNumOf('paid', 60)); 
+          //$tshirts60NumDiv
+          $tshirtsMoreNumDiv = $tshirtsDiv->addDiv();
+            $tshirtsMoreNumDiv->addLabel('Paid more than € 60');
+            $tshirtsMoreNumDiv->addSpan($persons->getNumOf('paid', 60, '>')); 
+          //$tshirts60NumDiv
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
           foreach ($tshirts as $tshirt) {
