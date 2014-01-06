@@ -367,7 +367,7 @@
               }
             break;
             case '<':
-            case 'lt'
+            case 'lt':
             case 'less':
             case 'less than':
             case 'under':
