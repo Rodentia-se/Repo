@@ -312,16 +312,23 @@
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $tshirts45NumDiv = $tshirtsDiv->addDiv();
             $tshirts45NumDiv->addLabel('Paid € 45');
-            $tshirts45NumDiv->addSpan($persons->getNumOf('paid', 45)); 
+            $tshirts45Num = $persons->getNumOf('paid', 45);
+            $tshirts45NumDiv->addSpan($tshirts45Num); 
           //$tshirts45NumDiv
           $tshirts60NumDiv = $tshirtsDiv->addDiv();
             $tshirts60NumDiv->addLabel('Paid € 60');
-            $tshirts60NumDiv->addSpan($persons->getNumOf('paid', 60)); 
+            $tshirts60Num = $persons->getNumOf('paid', 60);
+            $tshirts60NumDiv->addSpan($tshirts60Num); 
           //$tshirts60NumDiv
           $tshirtsMoreNumDiv = $tshirtsDiv->addDiv();
             $tshirtsMoreNumDiv->addLabel('Paid more than € 60');
-            $tshirtsMoreNumDiv->addSpan($persons->getNumOf('paid', 60, '>')); 
-          //$tshirts60NumDiv
+            $tshirtsMoreNum = $persons->getNumOf('paid', 60, '>');
+            $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum); 
+          //$tshirtsMoreNumDiv
+          $tshirtsNum = $tshirtsDiv->addDiv();
+            $tshirtsNumDiv->addLabel('Estimated number');
+            $tshirtsNumDiv->addSpan('At least '.(+ $tshirts45Num + $tshirts45Num * 2 + $tshirtsMoreNum * 3).' T-shirts'); 
+          //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
           foreach ($tshirts as $tshirt) {
