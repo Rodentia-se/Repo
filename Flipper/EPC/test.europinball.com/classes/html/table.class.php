@@ -34,9 +34,7 @@
         if ($replace) {
           $this->delContent($replace);
         }
-        debug(reset($content));
-        debug($content);
-        $obj = $content[reset($content)];
+        $obj = $content[array_keys($content)[0]];
         if (@get_class($obj) == 'tr') {
           foreach ($content as $part) {
             parent::addContent($part, NULL, $index);
@@ -52,8 +50,7 @@
         if (@get_class($content) == 'tr') {
           return parent::addContent($content, $replace, $index);
         } else {
-          $obj = $this->contents[end($this->contents)];
-          reset($this->contents);
+          $obj = $this->contents[array_keys($this->contents)[count($this->contents) - 1]];
           if (@get_class($obj) == 'tr') {
             return $obj->addContent($content, $replace, $index);
           } else {
