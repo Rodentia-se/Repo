@@ -145,7 +145,7 @@
           //$paymentsStatsDiv
           ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
-            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45, '>'));
+            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 44, '>'));
           //$paymentsStatsDiv
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');
