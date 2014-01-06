@@ -137,15 +137,15 @@
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'NumDiv'}->addLabel('Paid registrations');
-            ${$prefix.'NumDiv'}->addSpan($persons->getNumOf('paid'));
+            ${$prefix.'NumDiv'}->addSpan($persons->getNumOf('paid').' players');
           //$paymentsStatsDiv
           ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'30NumDiv'}->addLabel('Paid € 30');
-            ${$prefix.'30NumDiv'}->addSpan($persons->getNumOf('paid', 30));
+            ${$prefix.'30NumDiv'}->addSpan($persons->getNumOf('paid', 30).' players');
           //$paymentsStatsDiv
           ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
-            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45, '>=')); 
+            ${$prefix.'45NumDiv'}->addSpan($persons->getNumOf('paid', 45, '>=').' players'); 
           //$paymentsStatsDiv
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');
@@ -313,17 +313,17 @@
           $tshirts45NumDiv = $tshirtsDiv->addDiv();
             $tshirts45NumDiv->addLabel('Paid € 45');
             $tshirts45Num = $persons->getNumOf('paid', 45);
-            $tshirts45NumDiv->addSpan($tshirts45Num); 
+            $tshirts45NumDiv->addSpan($tshirts45Num.' players'); 
           //$tshirts45NumDiv
           $tshirts60NumDiv = $tshirtsDiv->addDiv();
             $tshirts60NumDiv->addLabel('Paid € 60');
             $tshirts60Num = $persons->getNumOf('paid', 60);
-            $tshirts60NumDiv->addSpan($tshirts60Num); 
+            $tshirts60NumDiv->addSpan($tshirts60Num.' players'); 
           //$tshirts60NumDiv
           $tshirtsMoreNumDiv = $tshirtsDiv->addDiv();
             $tshirtsMoreNumDiv->addLabel('Paid more than € 60');
             $tshirtsMoreNum = $persons->getNumOf('paid', 60, '>');
-            $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum); 
+            $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum.' players');
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
