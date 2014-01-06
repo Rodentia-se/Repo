@@ -45,6 +45,7 @@
           return parent::addContent($content, $replace, $index);
         } else {
           $obj = $this->contents[end($this->contents)];
+          reset($this->contents);
           if (@getClass($obj) == 'tr') {
             return $obj->addContent($content, $replace, $index);
           } else {
