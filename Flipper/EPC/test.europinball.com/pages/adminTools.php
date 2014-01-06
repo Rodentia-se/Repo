@@ -149,7 +149,7 @@
           //$paymentsStatsDiv
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');
-            ${$prefix.'SumDiv'}->addSpan($persons->getSumOf('paid'));
+            ${$prefix.'SumDiv'}->addSpan('€ '.$persons->getSumOf('paid'));
           //$paymentsSumDiv
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
