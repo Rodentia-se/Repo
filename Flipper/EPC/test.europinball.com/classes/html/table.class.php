@@ -41,6 +41,14 @@
             $index++;
           }
           return TRUE;
+        } else if (is_array($obj)) {
+          foreach ($content as $part) {
+            $tr = new tr($part);
+            $tr->type = 'tbody';
+            $this->addContent($tr, NULL, $index);
+            $index++;
+          }
+          return TRUE;
         } else {
           debug($content);
           $tr = new tr($content);
