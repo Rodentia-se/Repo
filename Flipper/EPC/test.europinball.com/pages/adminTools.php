@@ -330,7 +330,7 @@
             $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum.' players');
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
-            $tshirtsNumDiv->addLabel('Estimated number');
+            $tshirtsNumDiv->addLabel('Estimated');
             $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
             $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts paid for'); 
           //$tshirtsNumDiv
