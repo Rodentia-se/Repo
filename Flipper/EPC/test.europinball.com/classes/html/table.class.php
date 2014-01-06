@@ -50,7 +50,6 @@
           }
           return TRUE;
         } else {
-          debug($content);
           $tr = new tr($content);
           $tr->type = 'tbody';
           return $this->addContent($tr, $replace, $index);
