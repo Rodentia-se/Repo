@@ -9,7 +9,7 @@
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
 
     public function addHeader($content = NULL, $replace = FALSE, $index = FALSE) {
-      if (@get_class($content) != 'tr' {
+      if (@get_class($content) != 'tr') {
         $obj = $this->headers[0];
         if (@getClass($obj) == 'tr') {
           return $obj->addContent($content, $replace, $index);
