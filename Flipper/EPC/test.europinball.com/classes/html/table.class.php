@@ -35,7 +35,6 @@
           $this->delContent($replace);
         }
         $obj = $content[array_keys($content)[0]];
-        debug($obj);
         if (@get_class($obj) == 'tr') {
           foreach ($content as $part) {
             parent::addContent($part, NULL, $index);

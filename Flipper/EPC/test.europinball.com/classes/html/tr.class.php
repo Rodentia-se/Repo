@@ -17,6 +17,7 @@
           $this->delContent($replace);
         }
         foreach ($content as $part) {
+          debug($part);
           $this->addContent($part, NULL, $index);
           $index++;
         }
