@@ -325,9 +325,10 @@
             $tshirtsMoreNum = $persons->getNumOf('paid', 60, '>');
             $tshirtsMoreNumDiv->addSpan($tshirtsMoreNum); 
           //$tshirtsMoreNumDiv
-          $tshirtsNum = $tshirtsDiv->addDiv();
+          $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated number');
-            $tshirtsNumDiv->addSpan('At least '.(+ $tshirts45Num + $tshirts45Num * 2 + $tshirtsMoreNum * 3).' T-shirts'); 
+            $tshirtsNum = (+ $tshirts45Num + $tshirts45Num * 2 + $tshirtsMoreNum * 3);
+            $tshirtsNumDiv->addSpan('At least '.$tshirtsNum.' T-shirts'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
           $headers = array('T-shirt', 'Total', 'Reservers', 'Reserved', 'Delivered', 'Sold on site', 'In stock', 'For sale');
