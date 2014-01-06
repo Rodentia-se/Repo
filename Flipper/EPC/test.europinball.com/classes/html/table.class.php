@@ -77,7 +77,7 @@
         } else {
           $tbody = new tbody();
           foreach ($this->contents as $key => $content) {
-            if (is_object($header) && get_class($content) == 'tr') {
+            if (@get_class($content) == 'tr') {
               $tbody->addContent($content);
             } else {
               if (is_array($content)) {
@@ -105,7 +105,7 @@
         } else {
           $thead = new thead();
           foreach ($this->headers as $key => $header) {
-            if (is_object($header) && get_class($header) == 'tr') {
+            if (@get_class($header) == 'tr') {
               $thead->addContent($header);
             } else {
               if (is_array($header)) {
