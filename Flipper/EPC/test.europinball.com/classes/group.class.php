@@ -356,6 +356,7 @@
             return $obj->$prop;
           }
         } else {
+          debug($operator);
           switch ($operator) {
             case '>':
             case 'gt':
