@@ -350,7 +350,7 @@
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
           $tshirtsPaidPersons = $persons->getFiltered('paid', 30, TRUE);
-          $tshirtsPaidPersons->filter('paid', NULL, TRUE);
+          $tshirtsPaidPersons->filter('paid', FALSE, TRUE);
           $tshirtsPaidAddresses = $tshirtsPaidPersons->getListOf('mailAddress');
           $tshirtsPaidNotChosenAddresses = array_diff($tshirtsPaidAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses || $tshirtsPaidAddresses || $tshirtsPaidNotChosenAddresses) {
