@@ -382,11 +382,26 @@
             $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));
             $checkbox->label = $division->divisionName;
             $checkbox->disabled = !$player;
-            $div->addHidden('adminNoWaiting'.$divisionType.'PlayerId', $player->id);
-            $div->addHidden('adminNoWaiting'.$divisionType.'DivisionId', $division->id);
+            $checkbox->data_playerid = $player->id;
+            $checkbox->addTooltip('');
             $div->addLabel('Current place:');
             $div->addSpan((($player) ? (($player->noWaiting) ? 'Excepted from list' : (($player->waiting) ? $player->waiting : 'Not in list' )) : 'Not registered for division'));
           }
+          $orderDiv->addChange('
+            var el = this;
+            $(el).tooltipster("update", "Updating order...").tooltipster("show");
+            $("body").addClass("modal");
+            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "noWaiting", value: el.checked})
+            .done(function(data) {
+              $(el).tooltipster("update", data.reason).tooltipster("show");
+              if (data.valid) {
+                $(el).data("previous", ((el.checked) ? 1 : 0));
+              } else {
+                el.checked = ($(el).data("previous"));
+              }
+              $("body").removeClass("modal");
+            });
+          ', '.nowaiting');
           return $adminDiv;
         break;
         case 'tshirt':
