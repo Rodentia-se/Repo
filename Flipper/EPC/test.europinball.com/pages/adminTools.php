@@ -56,19 +56,23 @@
             $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
-          $waitingDiv = ${$prefix.'Div'}->addDiv();
-            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
-            $waitingButton->addTooltip('');
-            $waitingButton->addClick('
-              var el = this;
-              $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
-              .done(function(data) {
-                $(el).tooltipster("update", data.reason).tooltipster("show");
-              })
-            ');
-            $waitingButton->addCss('margin-top', '15px');
-          //$waitingDiv
+          foreach (config::$activeSingleDivisions as $division_id) {
+            $division = division($division_id);
+            $waitingDiv = ${$prefix.'Div'}->addDiv();
+              $waitingDiv->addLabel($division->divisionName);
+              $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+              $waitingButton->addTooltip('');
+              $waitingButton->addClick('
+                var el = this;
+                $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {division_id: '.$division->id.'})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                })
+              ');
+              $waitingButton->addCss('margin-top', '15px');
+            //$waitingDiv
+          }
           $personMailAddresses = $persons->getListOf('mailAddress');
           if ($personMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
@@ -139,6 +143,7 @@
             ${$prefix.'NumDiv'}->addSpan(${$prefix.'Num'}.' players');
           //Num
           $paymentLevels = $persons->getListOf('paid');
+          sort($paymentLevels);
           foreach ($paymentLevels as $paymentLevel) {
             ${$prefix.$paymentLevel.'NumDiv'} = ${$prefix.'Div'}->addDiv();
               ${$prefix.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
@@ -311,8 +316,9 @@
           $tshirtsDiv->data_title = ucfirst($prefix);
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $paymentLevels = $persons->getListOf('paid');
+          sort($paymentLevels);
           foreach ($paymentLevels as $paymentLevel) {
-            if ($paymentLevel > config::$baselineCost + config::$tshirtCost) {
+            if ($paymentLevel >= config::$baselineCost + config::$tshirtCost) {
               ${$tshirtsDiv->id.$paymentLevel.'NumDiv'} = $tshirtsDiv->addDiv();
                 ${$tshirtsDiv->id.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
                 ${$tshirtsDiv->id.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
