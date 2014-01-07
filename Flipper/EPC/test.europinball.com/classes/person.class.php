@@ -391,7 +391,7 @@
             var el = this;
             $(el).tooltipster("update", "Updating order...").tooltipster("show");
             $("body").addClass("modal");
-            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "noWaiting", value: el.checked})
+            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "noWaiting", value: ((el.checked) ? 1 : 0)})
             .done(function(data) {
               $(el).tooltipster("update", data.reason).tooltipster("show");
               if (data.valid) {

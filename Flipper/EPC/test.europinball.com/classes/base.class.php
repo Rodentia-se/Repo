@@ -133,7 +133,6 @@
     }
     
     public function setProp($prop, $value = NULL) {
-      debug($value);
       if (isObj($prop, TRUE)) {
         if (!is_null($value)) {
           if (!isObj($value)) {
@@ -168,8 +167,6 @@
           $values[db::getAlias(substr($prop, 0, -3))] = $valueObj->name;
         }
         $query .= ' where id = '.$this->id;
-        debug($query, 'query');
-        debug($values, 'values');
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
