@@ -361,7 +361,7 @@
             $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
           }
           if ($tshirtsPaidAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have paid more than € 30, no matter if they have chosen T-shirts or not:');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, no matter if they have chosen T-shirts or not:');
             $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidAddresses', 'toCopy');
           }
           if ($tshirtsPaidNotChosenAddresses) {
