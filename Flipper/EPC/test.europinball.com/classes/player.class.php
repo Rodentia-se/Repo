@@ -51,6 +51,7 @@
         ifnull(p.paid, 0) as paid,
         o.payDate as payDate,
         o.waiting as waiting,
+        o.noWaiting as noWaiting,
         p.ifpa_id as ifpa_id,
         coalesce(o.ifpaRank, p.ifpaRank) as ifpaRank,
         p.username as username,

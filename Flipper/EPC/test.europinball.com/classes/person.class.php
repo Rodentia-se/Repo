@@ -368,6 +368,18 @@
           $paymentsDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
           return $paymentsDiv;
         break;
+        case 'admin':
+          $adminDiv = new div();
+          $players = players($this, $tournament);
+          foreach ($players as $player) {
+            $div = $adminDiv->addDiv($prefix.'waitingDiv');
+            $div->addLabel($player->tournamentDivision->divisionName);
+            $div->addCheckbox('noWaiting', $player->noWaiting, array('class' => 'nowaiting'));
+            $div->addLabel('Current place in waiting list');
+            $div->addSpan((($player->waiting) ? $player->waiting : 'Not in list'));
+          }
+          return $adminDiv;
+        break;
         case 'tshirt':
         case 'tshirts':
         case 'tshirtOrder':
