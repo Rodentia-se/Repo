@@ -56,6 +56,7 @@
             $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
+          ${$prefix.'Div'}->addH2('Waiting list', array('class' => 'entry-title'));
           foreach (config::$activeSingleDivisions as $division_id) {
             $division = division($division_id);
             $waitingDiv = ${$prefix.'Div'}->addDiv();
