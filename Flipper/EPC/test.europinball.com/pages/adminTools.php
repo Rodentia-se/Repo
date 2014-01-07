@@ -365,7 +365,7 @@
           }
           if ($tshirtsPaidAddresses) {
             $tshirtsDiv->addParagraph('Email addresses to all players that have paid more than € 30, no matter if they have chosen T-shirts or not.');
-            $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidAddresses', 'toCopy');
             $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
           }
           if ($tshirtsPaidNotChosenAddresses) {
