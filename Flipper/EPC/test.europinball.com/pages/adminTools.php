@@ -59,7 +59,7 @@
           ${$prefix.'Div'}->addH2('Waiting list', array('class' => 'entry-title'));
           foreach (config::$activeSingleDivisions as $division_id) {
             $division = division($division_id);
-            $players = player($division);
+            $players = players($division);
             $waitingDiv = ${$prefix.'Div'}->addDiv();
               $waitingDiv->addLabel($division->divisionName.':');
               $waitingButton = $waitingDiv->addButton('Recalculate waiting list', $division->id.'calcWaiting');
