@@ -60,8 +60,8 @@
           foreach (config::$activeSingleDivisions as $division_id) {
             $division = division($division_id);
             $waitingDiv = ${$prefix.'Div'}->addDiv();
-              $waitingDiv->addLabel($division->divisionName);
-              $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
+              $waitingDiv->addLabel($division->divisionName.':');
+              $waitingButton = $waitingDiv->addButton('Recalculate waiting list', $division->id.'calcWaiting');
               $waitingButton->addTooltip('');
               $waitingButton->addClick('
                 var el = this;
