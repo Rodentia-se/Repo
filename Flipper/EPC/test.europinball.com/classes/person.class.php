@@ -381,7 +381,6 @@
             $div = $adminDiv->addDiv(NULL, 'divisionsDiv'); 
             $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));
             $checkbox->label = $division->divisionName;
-            debug(!$player);
             $checkbox->disabled = !$player;
             $div->addHidden('adminNoWaiting'.$divisionType.'PlayerId', $player->id);
             $div->addHidden('adminNoWaiting'.$divisionType.'DivisionId', $division->id);

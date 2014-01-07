@@ -36,6 +36,7 @@
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
       $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
+      $params['disabled'] = ($params['disabled']) ? TRUE : FALSE;
       if (!$params['id']) {
         $params['id'] = static::newId(NULL, ucfirst($this->element));
       }
