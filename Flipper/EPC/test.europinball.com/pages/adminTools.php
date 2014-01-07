@@ -130,29 +130,48 @@
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //Users
         $prefix = 'payments';
+        $paymentLevels = $persons->getListOf('paid');
+        foreach ($paymentLevels as $paymentLevel) {
+          ${$prefix.$paymentLevel.'NumDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
+            ${$prefix.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
+            ${$prefix.$paymentLevel.'NumDiv'}->addSpan(${$prefix.$paymentLevel.'Num'}.' players');
+          //30Num
+        }
+/*
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'NumDiv'}->addLabel('Paid registrations');
+            $freeRiders = $persons->getNumOf('paid', '1');
             ${$prefix.'Num'} = $persons->getNumOf('paid');
-            ${$prefix.'NumDiv'}->addSpan(${$prefix.'Num'}.' players');
-          //$paymentsStatsDiv
+            ${$prefix.'NumDiv'}->addSpan((+ ${$prefix.'Num'} - $freeRiders).' players');
+          //Num
+          ${$prefix.'FreeDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'FreeDiv'}->addLabel('Playing for free');
+            ${$prefix.'FreeDiv'}->addSpan($freeRiders.' players');
+          //Free
+          ${$prefix.'TotalDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'TotalDiv'}->addLabel('Total');
+            ${$prefix.'TotalDiv'}->addSpan(${$prefix.'Num'}.' players');
+          //Total
           ${$prefix.'30NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'30NumDiv'}->addLabel('Paid € 30');
             ${$prefix.'30Num'} = $persons->getNumOf('paid', 30);
             ${$prefix.'30NumDiv'}->addSpan(${$prefix.'30Num'}.' players');
-          //$paymentsStatsDiv
+          //30Num
           ${$prefix.'45NumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'45NumDiv'}->addLabel('Paid € 45 or more');
             ${$prefix.'45Num'} = $persons->getNumOf('paid', 45, '>=');
             ${$prefix.'45NumDiv'}->addSpan(${$prefix.'45Num'}.' players'); 
-          //$paymentsStatsDiv
+          //45Num
+          */
           ${$prefix.'SumDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'SumDiv'}->addLabel('Total payments');
             ${$prefix.'Sum'} = $persons->getSumOf('paid');
             ${$prefix.'SumDiv'}->addSpan('€ '.${$prefix.'Sum'});
-          //$paymentsSumDiv
+          //Sum
           ${$prefix.'Div'}->addH2('Change payment', array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Persons'));
@@ -329,7 +348,7 @@
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated');
-            $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
+            $tshirtsNum = floor((+ ($paymentsSum - ($paymentsNum - $freeRiders) * 30) / 15));
             $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts paid for'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);

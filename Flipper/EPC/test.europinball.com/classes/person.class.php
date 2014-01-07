@@ -389,7 +389,7 @@
           }
           $adminDiv->addChange('
             var el = this;
-            $(el).tooltipster("update", "Updating order...").tooltipster("show");
+            $(el).tooltipster("update", "Updating waiting exception...").tooltipster("show");
             $("body").addClass("modal");
             $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "noWaiting", value: ((el.checked) ? 1 : 0)})
             .done(function(data) {
