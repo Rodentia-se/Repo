@@ -167,6 +167,8 @@
           $values[db::getAlias(substr($prop, 0, -3))] = $valueObj->name;
         }
         $query .= ' where id = '.$this->id;
+        debug($query, 'query');
+        debug($values, 'values');
         $update = $this->db->update($query, $values);
         if ($update) {
           $this->$prop = $value;
