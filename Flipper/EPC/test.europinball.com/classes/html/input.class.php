@@ -125,7 +125,7 @@
         return $this->accessories['label'];
       } else if (is($label)) {
         if (isHtml($this->accessories['label'])) {
-          html::$ids = array_filter(html::$ids, array($this->accessories['label']->id));
+          html::$ids = array_diff(html::$ids, array($this->accessories['label']->id));
         }
         if ($label === TRUE) {
           $this->accessories['label'] = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
@@ -135,7 +135,7 @@
         return isHtml($this->accessories['label']);
       } else {
         if (isHtml($this->accessories['label'])) {
-          html::$ids = array_filter(html::$ids, array($this->accessories['label']->id));
+          html::$ids = array_diff(html::$ids, array($this->accessories['label']->id));
         }
         $this->accessories['label'] = NULL;
         return TRUE;
