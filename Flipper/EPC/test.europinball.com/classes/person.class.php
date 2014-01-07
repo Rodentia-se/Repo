@@ -381,10 +381,11 @@
             $div = $adminDiv->addDiv(NULL, 'divisionsDiv'); 
             $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));
             $checkbox->label = $division->divisionName;
+            $checkbox->disabled = !$player;
             $div->addHidden('adminNoWaiting'.$divisionType.'PlayerId', $player->id);
             $div->addHidden('adminNoWaiting'.$divisionType.'DivisionId', $division->id);
             $div->addLabel('Current place:');
-            $div->addSpan((($player->waiting) ? $player->waiting : (($player->noWaiting) ? 'Excepted' : 'Not in list')));
+            $div->addSpan((( $player ? (($player->waiting) ? $player->waiting : (($player->noWaiting) ? 'Excepted' : 'Not in list')) : 'Not registered for division'));
           }
           return $adminDiv;
         break;
