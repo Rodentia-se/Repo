@@ -380,7 +380,7 @@
             $div = $adminDiv->addDiv(); 
             $div->addLabel($player->tournamentDivision->divisionName.':');
             $checkbox = $div->addCheckbox('adminNoWaiting'.$player->tournamentDivision->shortName, $player->noWaiting, array('class' => 'nowaiting'));
-            $checkbox->label = 'Excepted from list';
+            $checkbox->label = FALSE;
             $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'PlayerId', $player->id);
             $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'DivisionId', $player->tournamentDivision_id);
             $div->addLabel('Current place:');
