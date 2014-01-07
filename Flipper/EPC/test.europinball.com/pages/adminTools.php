@@ -317,7 +317,7 @@
                 ${$tshirtsDiv->id.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
                 ${$tshirtsDiv->id.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
                 ${$tshirtsDiv->id.$paymentLevel.'NumDiv'}->addSpan(${$tshirtsDiv->id.$paymentLevel.'Num'}.' players');
-                $tshirtsNum += (+ ${$tshirtsDiv->id.$paymentLevel.'Num'} * ($paymentLevel - config::$baselineCost));
+                $tshirtsNum += (+ ${$tshirtsDiv->id.$paymentLevel.'Num'} * ($paymentLevel - config::$baselineCost) / 15);
               //Num
             }
           }
