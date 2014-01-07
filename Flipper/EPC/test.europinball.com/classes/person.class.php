@@ -374,7 +374,7 @@
           foreach ($players as $player) {
             $div = $adminDiv->addDiv();
             $checkbox = $div->addCheckbox('adminNoWaiting'.$player->tournamentDivision->shortName, $player->noWaiting, array('class' => 'nowaiting'));
-            $checkbox->label = 'Excepted from list'
+            $checkbox->label = 'Excepted from list';
             $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'PlayerId', $player->id);
             $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'DivisionId', $player->tournamentDivision_id);
             $div->addLabel('Current place:');
