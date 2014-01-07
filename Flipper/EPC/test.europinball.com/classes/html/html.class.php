@@ -1057,6 +1057,10 @@
       return $element;
     }
     
+    public function show($show = TRUE) {
+      return $this->hide(!$show);
+    }
+    
     public function hide($hidden = TRUE) {
       if ($hidden) {
         $this->addCss('display', 'none');
@@ -1066,6 +1070,15 @@
         $this->settings['hidden'] = $hidden;
     }
 
+    public function enable($enable = TRUE) {
+      return $this->disable(!$enable);
+    }    
+    
+    public function disable($disable = TRUE) {
+      $this->params['disabled'] = ($disable) ? TRUE : FALSE;
+      return $this->params['disabled'];
+    }
+    
     protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
       if (isHtml($content)) {
         static::$indents++;

@@ -142,15 +142,6 @@
       }
     }
     
-    public function enable($enable = TRUE) {
-      return $this->disable(!$enable);
-    }    
-    
-    public function disable($disable = TRUE) {
-      $this->params['disabled'] = ($disable) ? TRUE : FALSE;
-      return $this->params['disabled'];
-    }
-    
     public function addSpinner($props = NULL, $selector = NULL, $indents = NULL) {
       $indents = (is($indents)) ? $indents : static::$indents;
       $selector = (is($selector)) ? ((isHtml($selector)) ? '#'.$selector->id : $selector) : '#'.$this->id;
