@@ -131,15 +131,15 @@
         //Users
         $prefix = 'payments';
         $paymentLevels = $persons->getListOf('paid');
-        foreach ($paymentLevels as $paymentLevel) {
-          ${$prefix.$paymentLevel.'NumDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
-            ${$prefix.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
-            ${$prefix.$paymentLevel.'NumDiv'}->addSpan(${$prefix.$paymentLevel.'Num'}.' players');
-          //30Num
-        }
-/*
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+          foreach ($paymentLevels as $paymentLevel) {
+            ${$prefix.$paymentLevel.'NumDiv'} = ${$prefix.'Div'}->addDiv();
+              ${$prefix.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
+              ${$prefix.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
+              ${$prefix.$paymentLevel.'NumDiv'}->addSpan(${$prefix.$paymentLevel.'Num'}.' players');
+            //30Num
+          }
+/*
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'NumDiv'} = ${$prefix.'Div'}->addDiv();
