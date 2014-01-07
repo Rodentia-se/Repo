@@ -68,7 +68,7 @@
                 $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {division_id: '.$division->id.'})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
-                })
+                }) 
               ');
               $waitingButton->addCss('margin-top', '15px');
             //$waitingDiv
