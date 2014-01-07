@@ -378,7 +378,7 @@
           $adminDiv->addParagraph('Click the checkboxes to except players from the waiting list for each division,', NULL, 'italic');
           foreach ($players as $player) {
             $div = $adminDiv->addDiv(); 
-            $div->addLabel($player->tournamentDivision->shortName.':');
+            $div->addLabel($player->tournamentDivision->divisionName.':');
             $checkbox = $div->addCheckbox('adminNoWaiting'.$player->tournamentDivision->shortName, $player->noWaiting, array('class' => 'nowaiting'));
             $checkbox->label = 'Excepted from list';
             $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'PlayerId', $player->id);
