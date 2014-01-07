@@ -133,6 +133,7 @@
     }
     
     public function setProp($prop, $value = NULL) {
+      debug($value);
       if (isObj($prop, TRUE)) {
         if (!is_null($value)) {
           if (!isObj($value)) {
