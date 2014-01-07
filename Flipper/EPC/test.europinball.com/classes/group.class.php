@@ -348,7 +348,7 @@
           if (isset($obj->$prop)) {
             return $obj->$prop;
           }
-        } else if (compare($obj->$prop, $value, $operator) {
+        } else if (compare($obj->$prop, $value, $operator)) {
           return $obj->$prop;
         }
       }));
