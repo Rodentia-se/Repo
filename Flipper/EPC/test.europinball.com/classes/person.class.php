@@ -385,7 +385,7 @@
             $div->addHidden('adminNoWaiting'.$divisionType.'PlayerId', $player->id);
             $div->addHidden('adminNoWaiting'.$divisionType.'DivisionId', $division->id);
             $div->addLabel('Current place:');
-            $div->addSpan((( $player ? (($player->waiting) ? $player->waiting : (($player->noWaiting) ? 'Excepted' : 'Not in list')) : 'Not registered for division'));
+            $div->addSpan((($player) ? (($player->noWaiting) ? 'Excepted from list' : (($player->waiting) ? $player->waiting : 'Not in list' )) : 'Not registered for division'));
           }
           return $adminDiv;
         break;
