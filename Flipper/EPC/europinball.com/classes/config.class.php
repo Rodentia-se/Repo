@@ -87,6 +87,7 @@
     );
     public static $tshirts = TRUE;
     public static $tshirtCost = 15;
+    public static $baselineCost = 30; // Anything above this will be considered as T-shirt payments.
     public static $qualGroups = TRUE;
     
     public static $editSections = array(
