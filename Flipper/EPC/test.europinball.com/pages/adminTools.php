@@ -363,11 +363,6 @@
             $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
             $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
           }
-          if ($otherAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not.');
-            $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
-            $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
-          }
           if ($tshirtsPaidAddresses) {
             $tshirtsDiv->addParagraph('Email addresses to all players that have paid more than € 30, no matter if they have chosen T-shirts or not.');
             $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
@@ -376,6 +371,11 @@
           if ($tshirtsPaidNotChosenAddresses) {
             $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any.');
             $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
+            $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
+          }
+          if ($otherAddresses) {
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not.');
+            $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
             $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
           }
           $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
