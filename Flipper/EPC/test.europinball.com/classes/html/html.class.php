@@ -126,9 +126,6 @@
     }
      
     public function __set($prop, $value) {
-            if ($prop = 'disabled') {
-              debug($this->params);
-            }
       switch ($prop) {
         case 'block':
           if ($value) {
@@ -226,13 +223,7 @@
           if (array_key_exists($prop, $this->settings)) {
             $this->settings[$prop] = $value;
           } else {
-            if ($prop = 'disabled') {
-              debug($this->params);
-            }
             $this->params[preg_replace('/_/', '-', $prop)] = $value;
-            if ($prop = 'disabled') {
-              debug($this->params);
-            }
           }
         break;
       }
