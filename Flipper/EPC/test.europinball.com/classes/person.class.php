@@ -387,7 +387,7 @@
             $div->addLabel('Current place:');
             $div->addSpan((($player) ? (($player->noWaiting) ? 'Excepted from list' : (($player->waiting) ? $player->waiting : 'Not in list' )) : 'Not registered for division'));
           }
-          $orderDiv->addChange('
+          $adminDiv->addChange('
             var el = this;
             $(el).tooltipster("update", "Updating order...").tooltipster("show");
             $("body").addClass("modal");
