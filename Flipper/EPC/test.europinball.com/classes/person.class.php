@@ -370,20 +370,20 @@
         break;
         case 'admin':
           $adminDiv = new div();
-          $players = players($this, $tournament);
           if ($title) {
             $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
           }
           $adminDiv->addH2('Waiting list', array('class' => 'entry-title'));
           $adminDiv->addParagraph('Click the checkboxes to except players from the waiting list for each division,', NULL, 'italic');
-          foreach ($players as $player) {
+          foreach (config::$activeSingleDivisions as $divisionType) {
+            $player = ($this->id) ? player($this, $divisionType) : NULL;
             $div = $adminDiv->addDiv(NULL, 'divisionsDiv'); 
-            $checkbox = $div->addCheckbox('adminNoWaiting'.$player->tournamentDivision->shortName, $player->noWaiting, array('class' => 'nowaiting'));
+            $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));
             $checkbox->label = $player->tournamentDivision->divisionName;
-            $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'PlayerId', $player->id);
-            $div->addHidden('adminNoWaiting'.$player->tournamentDivision->shortName.'DivisionId', $player->tournamentDivision_id);
+            $div->addHidden('adminNoWaiting'.$divisionType.'PlayerId', $player->id);
+            $div->addHidden('adminNoWaiting'.$divisionType.'DivisionId', $player->tournamentDivision_id);
             $div->addLabel('Current place:');
-            $div->addSpan((($player->waiting) ? $player->waiting : 'Not in list'));
+            $div->addSpan((($player->waiting) ? $player->waiting : (($player->noWaiting) ? 'Excepted' : 'Not in list')));
           }
           return $adminDiv;
         break;
