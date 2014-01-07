@@ -349,10 +349,7 @@
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
-          $tshirtsPaidPersons = $persons->getFiltered('paid', 30, TRUE);
-          debug(count($tshirtsPaidPersons), 'DEB1');
-          $tshirtsPaidPersons->filter('paid', 0, TRUE);
-          debug(count($tshirtsPaidPersons), 'DEB2');
+          $tshirtsPaidPersons = $persons->getFiltered('paid', 45, '>=');
           $tshirtsPaidAddresses = $tshirtsPaidPersons->getListOf('mailAddress');
           $tshirtsPaidNotChosenAddresses = array_diff($tshirtsPaidAddresses, $mailAddresses);
           if ($mailAddresses || $otherAddresses || $tshirtsPaidAddresses || $tshirtsPaidNotChosenAddresses) {
@@ -360,19 +357,19 @@
             $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
           }
           if ($mailAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen T-shirts, no matter if they paid for them or not.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen T-shirts, no matter if they paid for them or not;');
             $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
           }
           if ($tshirtsPaidAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have paid more than € 30, no matter if they have chosen T-shirts or not.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have paid more than € 30, no matter if they have chosen T-shirts or not:');
             $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidAddresses', 'toCopy');
           }
           if ($tshirtsPaidNotChosenAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any:');
             $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
           }
           if ($otherAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not:');
             $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
           }
           $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
