@@ -332,11 +332,14 @@
               $unset = TRUE;
             }
           }
-        } else {
-          if (compare($obj->$prop, $value, $operator) == $out) {
+        } else if ($operator === 'isset') {
+          if (isset($obj->$prop) == $out) {
             unset($this[$index]);
             $unset = TRUE;
           }
+        } else if (compare($obj->$prop, $value, $operator) == $out) {
+          unset($this[$index]);
+          $unset = TRUE;
         }
       }
       return $unset;
@@ -344,7 +347,7 @@
     
     function getListOf($prop = 'name', $value = TRUE, $operator = '==', $unique = TRUE) {
       $return = array_filter($this->array_map(function($obj) use ($prop, $value, $operator) {
-        if ($value === TRUE) {
+        if ($operator === 'isset') {
           if (isset($obj->$prop)) {
             return $obj->$prop;
           }

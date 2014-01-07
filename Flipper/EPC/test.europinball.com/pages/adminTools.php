@@ -109,7 +109,7 @@
           $vols = clone $volunteers;
           foreach ($adminLevels as $adminLevel) {
             if ($adminLevel->id > 15) {
-              $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
+              $vols[$adminLevel->id] = $vols->getFiltered($adminLevel->name);
               $volAddresses[$adminLevel->id] = $vols->getListOf('mailAddress');
             }
             if ($volAddresses[$adminLevel->id]) {
