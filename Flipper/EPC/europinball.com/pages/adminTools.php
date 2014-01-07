@@ -311,6 +311,7 @@
           $tshirtsDiv->data_title = ucfirst($prefix);
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $paymentLevels = $persons->getListOf('paid');
+          sort($paymentLevels);
           foreach ($paymentLevels as $paymentLevel) {
             if ($paymentLevel >= config::$baselineCost + config::$tshirtCost) {
               ${$tshirtsDiv->id.$paymentLevel.'NumDiv'} = $tshirtsDiv->addDiv();
