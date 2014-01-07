@@ -139,6 +139,7 @@
             ${$prefix.'NumDiv'}->addSpan(${$prefix.'Num'}.' players');
           //Num
           $paymentLevels = $persons->getListOf('paid');
+          sort($paymentLevels);
           foreach ($paymentLevels as $paymentLevel) {
             ${$prefix.$paymentLevel.'NumDiv'} = ${$prefix.'Div'}->addDiv();
               ${$prefix.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
