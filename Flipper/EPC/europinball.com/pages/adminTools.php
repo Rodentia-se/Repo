@@ -329,7 +329,8 @@
           //$tshirtsMoreNumDiv
           $tshirtsNumDiv = $tshirtsDiv->addDiv();
             $tshirtsNumDiv->addLabel('Estimated');
-            $tshirtsNum = floor((+ ($paymentsSum - $paymentsNum * 30) / 15));
+            $freeRiders = $persons->getNUmOf('paid', '1');
+            $tshirtsNum = floor((+ ($paymentsSum - ($paymentsNum - $freeRiders) * 30) / 15));
             $tshirtsNumDiv->addSpan($tshirtsNum.' T-shirts paid for'); 
           //$tshirtsNumDiv
           $tshirts = tshirts($tournament);
