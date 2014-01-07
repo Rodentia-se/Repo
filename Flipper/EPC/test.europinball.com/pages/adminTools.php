@@ -28,7 +28,7 @@
               $editScripts .= '
                 $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$editSection.'", id: $(this).val()})
                 .done(function(data) {
-                  $("#" + el.id + "'.ucfirst($editSections).'Div").html(data);
+                  $("#" + el.id + "'.ucfirst($editSection).'Div").html(data);
                   modals--;
                   if (modals == 0) {
                     $("body").removeClass("modal");
