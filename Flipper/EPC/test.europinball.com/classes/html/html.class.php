@@ -166,7 +166,12 @@
         case 'hidden':
           $this->hide($value);
         break;
-        case 'before':
+        case 'checked':
+          $this->check($value);
+        break;
+        case 'disabled':
+          $this->disable($value);
+        break;
         case 'befores':
           return $this->addBefore($value, TRUE);
         break;
@@ -1085,7 +1090,18 @@
     
     public function disable($disable = TRUE) {
       $this->params['disabled'] = ($disable) ? TRUE : FALSE;
-      return $this->params['disabled'];
+      $this->settings['disabled'] = ($disable) ? TRUE : FALSE;
+      return $this->settings['disabled'];
+    }
+    
+    public function uncheck($unchecked = TRUE) {
+      return $this->disable(!$unchecked);
+    }    
+    
+    public function check($checked = TRUE) {
+      $this->params['checked'] = ($checked) ? TRUE : FALSE;
+      $this->settings['checked'] = ($checked) ? TRUE : FALSE;
+      return $this->settings['checked'];
     }
     
     protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
