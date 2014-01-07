@@ -23,30 +23,27 @@
             $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
+            $editSections = array('edit', 'photo', 'admin');
+            foreach ($editSections as $editSection) {
+              $editScripts .= '
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$editSection.'", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "'.ucfirst($editSections).'Div").html(data);
+                  modals--;
+                  if (modals == 0) {
+                    $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
+                  }
+                });
+              ';
+            }
             $profileSelect->addChange('
               var el = this;
               $("#" + el.id + "Tabs").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                var modals = 2;
-                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "edit", id: $(this).val()})
-                .done(function(data) {
-                  $("#" + el.id + "EditDiv").html(data);
-                  modals--;
-                  if (modals == 0) {
-                    $("body").removeClass("modal");
-                    $("#" + el.id + "Tabs").show();
-                  }
-                });
-                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "photo", id: $(this).val()})
-                .done(function(data) {
-                  $("#" + el.id + "PhotoDiv").html(data);
-                  modals--;
-                  if (modals == 0) {
-                    $("body").removeClass("modal");
-                    $("#" + el.id + "Tabs").show();
-                  }
-                });
+                var modals = '.count($editSections).';
+                '.$editScripts.'
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
@@ -54,8 +51,9 @@
           $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
             $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv', NULL, array('data-title' => 'Player profile'));
             //$profileEditDiv
-            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
-            //$photoSelectDiv
+            $photoEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
+            //$photoEditDiv
+            $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
           $waitingDiv = ${$prefix.'Div'}->addDiv();
