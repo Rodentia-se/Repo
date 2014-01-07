@@ -11,7 +11,7 @@
   $search_id = (isset($_REQUEST['search_id'])) ? $_REQUEST['search_id'] : NULL;
   $type = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : NULL;
 
-  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users');
+  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users', 'admin');
   if (!in_array($type, $types)) {
     jsonEcho(failure('Invalid type '.$type), TRUE);
   }
@@ -100,6 +100,16 @@
       }
       jsonEcho($json);
     break;
+    case 'admin':
+      $person = person('login');
+      if ($person) {
+        if (!$person->admin) {
+          echo new paragraph('You are not authorized for this section.');
+          exit(1);
+        }
+      } else {
+        jsonEcho(failure('Could not identify you. Are you logged in?'), TRUE);
+      }
     case 'photo':
     case 'edit':
     case 'user':

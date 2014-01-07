@@ -148,54 +148,6 @@
       return FALSE;
     }
     
-    public function getFiltered($prop, $value = NULL, $out = FALSE, $array = FALSE) {
-      $return = clone $this;
-      $return->filter($prop, $value, $out);
-      return ($array) ? $return->toArray() : $return;
-    }
-    
-    public function flatten() {
-      foreach ($this as $obj) {
-        $this->flatten();
-      }
-      return TRUE;
-    }
-    
-    public function getFlat() {
-      $class = get_class($this);
-      $objs = new $class();
-      foreach ($this as $obj) {
-        $objs[] = $obj->getFlat();
-      }
-      return $objs;
-    }
-
-    public function filter($prop, $value = NULL, $out = FALSE) {
-      foreach ($this as $index => $obj) {
-        if (isAssoc($prop)) {
-          foreach ($prop as $key => $val) {
-            if (($obj->$prop == $val) == ($out)) {
-              unset($this[$index]);
-              $unset = TRUE;
-            }
-          }
-        } else if ($prop) {
-          if ($value) {
-            if (($obj->$prop == $value) == ($out)) {
-              unset($this[$index]);
-              $unset = TRUE;
-            }
-          } else {
-            if (($obj->$prop) == ($out)) {
-              unset($this[$index]);
-              $unset = TRUE;
-            }
-          }
-        }
-      }
-      return $unset;
-    }
-    
     public static function _getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE, $objs = NULL) {
       $group = new group();
       if ($objs && count($objs) > 0) {
@@ -349,79 +301,58 @@
       return $return;
     }
     
+    public function flatten() {
+      foreach ($this as $obj) {
+        $this->flatten();
+      }
+      return TRUE;
+    }
+    
+    public function getFlat() {
+      $class = get_class($this);
+      $objs = new $class();
+      foreach ($this as $obj) {
+        $objs[] = $obj->getFlat();
+      }
+      return $objs;
+    }
+
+    public function getFiltered($prop, $value = TRUE, $operator = '==', $out = FALSE, $array = FALSE) {
+      $return = clone $this;
+      $return->filter($prop, $value, $operator, $out);
+      return ($array) ? $return->toArray() : $return;
+    }
+    
+    public function filter($prop, $value = TRUE, $operator = '==', $out = FALSE) {
+      foreach ($this as $index => $obj) {
+        if (isAssoc($prop)) {
+          foreach ($prop as $key => $val) {
+            if (compare($obj->$prop, $val) == $out) {
+              unset($this[$index]);
+              $unset = TRUE;
+            }
+          }
+        } else if ($operator === 'isset') {
+          if (isset($obj->$prop) == $out) {
+            unset($this[$index]);
+            $unset = TRUE;
+          }
+        } else if (compare($obj->$prop, $value, $operator) == $out) {
+          unset($this[$index]);
+          $unset = TRUE;
+        }
+      }
+      return $unset;
+    }
+    
     function getListOf($prop = 'name', $value = TRUE, $operator = '==', $unique = TRUE) {
       $return = array_filter($this->array_map(function($obj) use ($prop, $value, $operator) {
-        if ($value === TRUE) {
+        if ($operator === 'isset') {
           if (isset($obj->$prop)) {
             return $obj->$prop;
           }
-        } else {
-          switch ($operator) {
-            case '>':
-            case 'gt':
-            case 'greater':
-            case 'greater than':
-            case 'over':
-              if ($obj->$prop > $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '<':
-            case 'lt':
-            case 'less':
-            case 'less than':
-            case 'under':
-            case 'below':
-              if ($obj->$prop < $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '>=':
-            case '=>':
-              if ($obj->$prop >= $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '<=':
-            case '=<':
-              if ($obj->$prop <= $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '===':
-              if ($obj->$prop === $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '!==':
-              if ($obj->$prop !== $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '!=':
-            case '<>':
-            case '><':
-            case 'not':
-            case 'is not':
-            case 'not equal':
-            case 'neq':
-            case '!eq':
-            case '!equal':
-              if ($obj->$prop === $value) {
-                return $obj->$prop;
-              }
-            break;
-            case '=':
-            case '==':
-            case 'eq':
-            case 'equals':
-            case 'is':
-            default:
-              if ($obj->$prop == $value) {
-                return $obj->$prop;
-              }
-            break;
-          }
+        } else if (compare($obj->$prop, $value, $operator)) {
+          return $obj->$prop;
         }
       }));
       return ($unique) ? array_unique($return) : $return;

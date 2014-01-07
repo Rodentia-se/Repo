@@ -368,6 +368,42 @@
           $paymentsDiv->addParagraph('If you wish to pay for anyone other than the player logged in, just change the numbers above before you pay, and please include that information in the payment message. There is no fee for the eighties division.', NULL, 'italic');
           return $paymentsDiv;
         break;
+        case 'admin':
+          $adminDiv = new div();
+          if ($title) {
+            $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
+          }
+          $adminDiv->addH2('Waiting list', array('class' => 'entry-title'));
+          $adminDiv->addParagraph('Click the checkboxes to except players from the waiting list for each division,', NULL, 'italic');
+          foreach (config::$activeSingleDivisions as $divisionType) {
+            $division = division($tournament, $divisionType);
+            $player = ($this->id) ? player($this, $division) : NULL;
+            $div = $adminDiv->addDiv(NULL, 'divisionsDiv'); 
+            $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));
+            $checkbox->label = $division->divisionName;
+            $checkbox->disabled = !$player;
+            $checkbox->data_playerid = $player->id;
+            $checkbox->addTooltip('');
+            $div->addLabel('Current place:');
+            $div->addSpan((($player) ? (($player->noWaiting) ? 'Excepted from list' : (($player->waiting) ? $player->waiting : 'Not in list' )) : 'Not registered for division'));
+          }
+          $adminDiv->addChange('
+            var el = this;
+            $(el).tooltipster("update", "Updating waiting exception...").tooltipster("show");
+            $("body").addClass("modal");
+            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "noWaiting", value: ((el.checked) ? 1 : 0)})
+            .done(function(data) {
+              $(el).tooltipster("update", data.reason).tooltipster("show");
+              if (data.valid) {
+                $(el).data("previous", ((el.checked) ? 1 : 0));
+              } else {
+                el.checked = ($(el).data("previous"));
+              }
+              $("body").removeClass("modal");
+            });
+          ', '.nowaiting');
+          return $adminDiv;
+        break;
         case 'tshirt':
         case 'tshirts':
         case 'tshirtOrder':

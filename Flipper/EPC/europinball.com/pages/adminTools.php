@@ -23,30 +23,27 @@
             $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
             $profileSelect->addCombobox();
             $profileSelect->addValueSpan('Person ID:');
+            $editSections = array('edit', 'photo', 'admin');
+            foreach ($editSections as $editSection) {
+              $editScripts .= '
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$editSection.'", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "'.ucfirst($editSection).'Div").html(data);
+                  modals--;
+                  if (modals == 0) {
+                    $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
+                  }
+                });
+              ';
+            }
             $profileSelect->addChange('
               var el = this;
               $("#" + el.id + "Tabs").hide();
               if ($(el).val() != 0) {
                 $("body").addClass("modal");
-                var modals = 2;
-                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "edit", id: $(this).val()})
-                .done(function(data) {
-                  $("#" + el.id + "EditDiv").html(data);
-                  modals--;
-                  if (modals == 0) {
-                    $("body").removeClass("modal");
-                    $("#" + el.id + "Tabs").show();
-                  }
-                });
-                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "photo", id: $(this).val()})
-                .done(function(data) {
-                  $("#" + el.id + "PhotoDiv").html(data);
-                  modals--;
-                  if (modals == 0) {
-                    $("body").removeClass("modal");
-                    $("#" + el.id + "Tabs").show();
-                  }
-                });
+                var modals = '.count($editSections).';
+                '.$editScripts.'
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
@@ -54,8 +51,9 @@
           $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
             $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv', NULL, array('data-title' => 'Player profile'));
             //$profileEditDiv
-            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
-            //$photoSelectDiv
+            $photoEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
+            //$photoEditDiv
+            $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
           $waitingDiv = ${$prefix.'Div'}->addDiv();
@@ -109,7 +107,7 @@
           $vols = clone $volunteers;
           foreach ($adminLevels as $adminLevel) {
             if ($adminLevel->id > 15) {
-              $vols[$adminLevel->id] = $vols->filter($adminLevel->name, TRUE);
+              $vols[$adminLevel->id] = $vols->getFiltered($adminLevel->name);
               $volAddresses[$adminLevel->id] = $vols->getListOf('mailAddress');
             }
             if ($volAddresses[$adminLevel->id]) {
@@ -349,15 +347,27 @@
           $tshirtOrders = tshirtOrders($tournament);
           $mailAddresses = $tshirtOrders->getListOf('mailAddress');
           $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
-          if ($mailAddresses || $otherAddresses) {
+          $tshirtsPaidPersons = $persons->getFiltered('paid', 45, '>=');
+          $tshirtsPaidAddresses = $tshirtsPaidPersons->getListOf('mailAddress');
+          $tshirtsPaidNotChosenAddresses = array_diff($tshirtsPaidAddresses, $mailAddresses);
+          if ($mailAddresses || $otherAddresses || $tshirtsPaidAddresses || $tshirtsPaidNotChosenAddresses) {
             $tshirtsDiv->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
           }
           if ($mailAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen their T-shirts and registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have chosen T-shirts, no matter if they paid for them or not;');
             $tshirtsDiv->addParagraph(implode(', ', $mailAddresses), $prefix.'mailAddresses', 'toCopy');
           }
+          if ($tshirtsPaidAddresses) {
+            $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, no matter if they have chosen T-shirts or not:');
+            $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidAddresses', 'toCopy');
+          }
+          if ($tshirtsPaidNotChosenAddresses) {
+            $tshirtsDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any:');
+            $tshirtsDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
+          }
           if ($otherAddresses) {
-            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen their T-shirts, but do have registered their email address. Click in the box to copy the addresses to your clipboard.');
+            $tshirtsDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not:');
             $tshirtsDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
           }
           $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;

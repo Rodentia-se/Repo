@@ -36,6 +36,7 @@
       static::$indents = $indents;
       $params['id'] = (is($id)) ? $id : $params['id'];
       $params['id'] = preg_replace('/[^a-zA-Z0-9_\-]/', '', $params['id']);
+      $params['disabled'] = ($params['disabled']) ? TRUE : FALSE;
       if (!$params['id']) {
         $params['id'] = static::newId(NULL, ucfirst($this->element));
       }
@@ -162,7 +163,12 @@
         case 'hidden':
           $this->hide($value);
         break;
-        case 'before':
+        case 'checked':
+          $this->check($value);
+        break;
+        case 'disabled':
+          $this->disable($value);
+        break;
         case 'befores':
           return $this->addBefore($value, TRUE);
         break;
@@ -1056,6 +1062,10 @@
       return $element;
     }
     
+    public function show($show = TRUE) {
+      return $this->hide(!$show);
+    }
+    
     public function hide($hidden = TRUE) {
       if ($hidden) {
         $this->addCss('display', 'none');
@@ -1065,6 +1075,26 @@
         $this->settings['hidden'] = $hidden;
     }
 
+    public function enable($enable = TRUE) {
+      return $this->disable(!$enable);
+    }    
+    
+    public function disable($disable = TRUE) {
+      $this->params['disabled'] = ($disable) ? TRUE : FALSE;
+      $this->settings['disabled'] = ($disable) ? TRUE : FALSE;
+      return $this->settings['disabled'];
+    }
+    
+    public function uncheck($unchecked = TRUE) {
+      return $this->disable(!$unchecked);
+    }    
+    
+    public function check($checked = TRUE) {
+      $this->params['checked'] = ($checked) ? TRUE : FALSE;
+      $this->settings['checked'] = ($checked) ? TRUE : FALSE;
+      return $this->settings['checked'];
+    }
+    
     protected static function contentToHtml($content, $escape = TRUE, $entities = FALSE) {
       if (isHtml($content)) {
         static::$indents++;

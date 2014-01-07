@@ -34,6 +34,59 @@
     return ($string === 0 || $string === "0") ? TRUE : FALSE;
   }
   
+  function compare($value1 = NULL, $value2 = TRUE, $operator = '==') {
+    switch ($operator) {
+      case '>':
+      case 'gt':
+      case 'greater':
+      case 'greater than':
+      case 'over':
+        return ($value1 > $value2) ? TRUE : FALSE;
+      break;
+      case '<':
+      case 'lt':
+      case 'less':
+      case 'less than':
+      case 'under':
+      case 'below':
+        return ($value1 < $value2) ? TRUE : FALSE;
+      break;
+      case '>=':
+      case '=>':
+        return ($value1 >= $value2) ? TRUE : FALSE;
+      break;
+      case '<=':
+      case '=<':
+        return ($value1 <= $value2) ? TRUE : FALSE;
+      break;
+      case '===':
+        return ($value1 === $value2) ? TRUE : FALSE;
+      break;
+      case '!==':
+        return ($value1 !== $value2) ? TRUE : FALSE;
+      break;
+      case '!=':
+      case '<>':
+      case '><':
+      case 'not':
+      case 'is not':
+      case 'not equal':
+      case 'neq':
+      case '!eq':
+      case '!equal':
+        return ($value1 != $value2) ? TRUE : FALSE;
+      break;
+      case '=':
+      case '==':
+      case 'eq':
+      case 'equals':
+      case 'is':
+      default:
+        return ($value1 == $value2) ? TRUE : FALSE;
+      break;
+    }
+  }
+  
   function mergeToArray($obj1 = NULL, $obj2 = NULL, $delimiter = ' ') {
     $obj1 = (is($obj1)) ? $obj1 : '';
     $obj2 = (is($obj2)) ? $obj2 : '';
