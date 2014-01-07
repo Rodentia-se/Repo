@@ -100,11 +100,20 @@
       }
       jsonEcho($json);
     break;
+    case 'admin':
+      $person = person('login');
+      if ($person) {
+        if (!$person->admin) {
+          echo new paragraph('You are not authorized for this section.');
+          exit(1);
+        }
+      } else {
+        jsonEcho(failure('Could not identify you. Are you logged in?'), TRUE);
+      }
     case 'photo':
     case 'edit':
     case 'user':
     case 'users':
-    case 'admin':
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
           echo $obj->getEdit($type);
