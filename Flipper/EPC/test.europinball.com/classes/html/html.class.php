@@ -126,6 +126,9 @@
     }
      
     public function __set($prop, $value) {
+            if ($prop = 'disabled') {
+              debug($this->params);
+            }
       switch ($prop) {
         case 'block':
           if ($value) {
