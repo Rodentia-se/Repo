@@ -12,7 +12,7 @@
       if (isDivision($division)) {
         $calc = $person->db->seqWaiting();
         if (is($calc)) {
-          $obj->number = $calc;
+          $obj = (object) array('number' => $calc);
           $json = success('Waiting list recalculated for '.$calc.' players', $obj);
         } else {
           $json = failure('Waiting list recalculation failed');
