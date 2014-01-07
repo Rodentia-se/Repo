@@ -312,7 +312,7 @@
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $paymentLevels = $persons->getListOf('paid');
           foreach ($paymentLevels as $paymentLevel) {
-            if ($paymentLevel > config::$baselineCost + config::$tshirtCost) {
+            if ($paymentLevel >= config::$baselineCost + config::$tshirtCost) {
               ${$tshirtsDiv->id.$paymentLevel.'NumDiv'} = $tshirtsDiv->addDiv();
                 ${$tshirtsDiv->id.$paymentLevel.'NumDiv'}->addLabel('Paid € '.$paymentLevel);
                 ${$tshirtsDiv->id.$paymentLevel.'Num'} = $persons->getNumOf('paid', $paymentLevel);
