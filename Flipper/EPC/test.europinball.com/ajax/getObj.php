@@ -11,7 +11,7 @@
   $search_id = (isset($_REQUEST['search_id'])) ? $_REQUEST['search_id'] : NULL;
   $type = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : NULL;
 
-  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users');
+  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users', 'admin');
   if (!in_array($type, $types)) {
     jsonEcho(failure('Invalid type '.$type), TRUE);
   }
@@ -104,6 +104,7 @@
     case 'edit':
     case 'user':
     case 'users':
+    case 'admin':
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
           echo $obj->getEdit($type);
