@@ -5,7 +5,7 @@
   if (!base::$_db) {
     base::$_db = new db();
   } 
-  $query = 'select id, ifpa_id, ifpa_rank from person where ifpa_id is not null and ifnull(password, 0) != "checked"';
+  $query = 'select id, ifpa_id, ifpaRank from person where ifpa_id is not null and ifnull(password, 0) != "checked"';
   $sth = base::$_db->query($query);
   $persons = base::$_db->getRows($sth);
 /*  
