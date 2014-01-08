@@ -11,8 +11,11 @@
     
     public function updateReq($req = TRUE) {
       foreach ($this as $person) {
-        $this->setProp('ifpaUpdateReq', (($req) ? 1 : 0));
+        if (!$this->setProp('ifpaUpdateReq', (($req) ? 1 : 0))) {
+          $fail = TRUE;
+        }
       }
+      return !$fail;
     }
 
   }
