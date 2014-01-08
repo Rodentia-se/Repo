@@ -199,6 +199,23 @@
     return (isGroup($genders) && get_class($genders) == 'genders');
   }
   
+  function ifpaPerson($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
+    return obj(__FUNCTION__, $data, $search, $depth);
+  }
+
+  function ifpaPersons($data = NULL, $search = NULL, $cond = 'and') {
+    return objs(__FUNCTION__, $data, $search, $cond);
+  }
+
+  function isIfpaPerson($obj, $string = FALSE) {
+    $obj = (is_string($obj) && class_exists($obj) && $string) ? new $obj() : $obj;
+    return (isObj($obj) && get_class($obj) == 'ifpaPerson');
+  }
+
+  function isIfpaPersons($objs) {
+    return (isGroup($objs) && get_class($objs) == 'ifpaPersons');
+  }
+  
   function location($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
     return obj(__FUNCTION__, $data, $search, $depth);
   }
