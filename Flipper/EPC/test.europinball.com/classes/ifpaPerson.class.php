@@ -2,6 +2,7 @@
 
   class ifpaPerson extends person {
 
+    public static $table = 'person';
     public static $instances;
     public static $arrClass = 'ifpaPersons';
 
