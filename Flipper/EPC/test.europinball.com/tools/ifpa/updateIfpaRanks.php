@@ -26,7 +26,7 @@
           echo "ERROR: IFPA rank NOT updated!\n";
         }
       } else {
-        echo 'No update needed';
+        echo "No update needed\n";
       }
     }
     echo '</pre>';
