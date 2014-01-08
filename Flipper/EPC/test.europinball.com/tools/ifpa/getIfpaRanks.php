@@ -5,7 +5,7 @@
   if (!base::$_db) {
     base::$_db = new db();
   } 
-  $persons = base::$_db->getObjectsByWhere('person', where ifpa_id is not null and ifnull(password, 0) != "checked");
+  $persons = base::$_db->getObjectsByWhere('person', 'where ifpa_id is not null and ifnull(password, 0) != "checked"');
 /*  
 //    @apache_setenv('no-gzip', 1);
     @ini_set('zlib.output_compression', 0);
