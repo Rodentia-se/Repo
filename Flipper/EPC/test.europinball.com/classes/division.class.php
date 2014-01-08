@@ -105,6 +105,31 @@
       return in_array($this->id, config::$activeDivisions);
     }
     
+    public function calcWaiting($number = NULL) {
+      $query = '
+        update player 
+          right join (
+            select @rownum := @rownum +1 seq, 
+              id AS pid, 
+              waiting
+            from player, 
+              (SELECT @rownum :=0)r
+            where tournamentDivision_id = '.$this->id.'
+             order by noWaiting desc, id asc
+            ) AS players
+            ON players.pid = player.id
+          set player.waiting = if(players.seq > '.(($number) ? $number : config::$participationLimit[$this->type]).', players.seq - '.(($number) ? $number : config::$participationLimit[$this->type]).', NULL)
+        ';
+      }
+      $return = $this->update($query);
+      if ($return) {
+        $query = 'select max(waiting) from player where tournamentDivision_id = '.$this->id;
+        return $this->getValue($query);
+      } else {
+        return FALSE;
+      }
+    } 
+    
   }
 
 ?>

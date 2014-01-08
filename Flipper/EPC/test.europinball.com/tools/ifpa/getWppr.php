@@ -15,4 +15,4 @@
   foreach ($players as $player) {
     echo 'European Pinball Championships '.$division->divisionName.' '.substr($division->tournamentEdition->startDate, 0, 4).','.$division->tournamentEdition->startDate.','.$player->wpprPlace.','.$player->name.','.$player->countryName.','.$player->ifpa_id."\n";
   }
- ?>  
+?>
