@@ -8,7 +8,7 @@
   }
   $query = 'select id, firstName, lastName, ifpa_id, ifpaRank from person where ifpa_id is not null and ifpaUpdateReq = 1';
   $persons = base::$_db->select($query, NULL, 'ifpaPerson');
-
+/*
 //    @apache_setenv('no-gzip', 1);
     @ini_set('zlib.output_compression', 0);
     @ini_set('implicit_flush', 1);
