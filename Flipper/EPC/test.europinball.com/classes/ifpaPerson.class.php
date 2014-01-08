@@ -24,6 +24,10 @@
       // @todo: ifpaPerson::__construct();
     }
   
+    public function updateRank($rank = NULL) {
+      $this->setProp('ifpaRank', (($rank) ? (int) $rank : 0));
+    }
+
   }
 
 ?>
