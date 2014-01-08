@@ -22,6 +22,7 @@
         if ($rank['rank'] != $person->ifpaRank) {
           echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
           if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
+            $person->unsetProp('ifpaUpdateReq');
             echo "IFPA rank updated.\n";
           } else {
             echo "ERROR: IFPA rank NOT updated!\n";
