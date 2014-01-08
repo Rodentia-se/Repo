@@ -25,7 +25,7 @@
         echo "ERROR: IFPA rank NOT updated!\n";
       }
     }
-    echo '</pre><br />';
+    echo '</pre>';
     $p++;
     for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
     ob_implicit_flush(1);
