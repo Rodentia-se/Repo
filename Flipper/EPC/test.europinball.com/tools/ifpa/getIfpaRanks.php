@@ -6,8 +6,8 @@
     base::$_db = new db();
   } 
   $query = 'select id, ifpa_id, ifpa_rank from person where ifpa_id is not null and ifnull(password, 0) != "checked"';
-  $sth = $this->query($query);
-  $persons = $this->getRows($sth);
+  $sth = base::$_db->query($query);
+  $persons = base::$_db->getRows($sth);
 /*  
 //    @apache_setenv('no-gzip', 1);
     @ini_set('zlib.output_compression', 0);
