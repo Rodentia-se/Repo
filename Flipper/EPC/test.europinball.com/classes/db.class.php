@@ -90,7 +90,7 @@
       return FALSE;
     }
 
-    protected function getValue($query, $values = NULL) {
+    public function getValue($query, $values = NULL) {
       $sth = $this->action($query, $values);
       if ($sth) {
         return $sth->fetchColumn();
