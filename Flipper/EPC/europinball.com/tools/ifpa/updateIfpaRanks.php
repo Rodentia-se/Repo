@@ -28,6 +28,7 @@
             echo "ERROR: IFPA rank NOT updated!\n";
           }
         } else {
+          $person->unsetProp('ifpaUpdateReq');
           echo "No update needed\n";
         }
       }
