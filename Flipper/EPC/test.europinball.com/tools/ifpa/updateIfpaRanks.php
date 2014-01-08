@@ -17,12 +17,16 @@
     var_dump($person);
     $rank = get_rank_from_id($person->ifpa_id);
     echo 'Found rank: '.$rank['rank']."\n";
-    if ($rank['rank'] || $rank['rank'] === 0 && $rank['rank'] != $person->ifpaRank) {
-      echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
-      if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
-        echo "IFPA rank updated.\n";
+    if ($rank['rank'] || $rank['rank'] === 0) {
+      if ($rank['rank'] != $person->ifpaRank) {
+        echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
+        if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
+          echo "IFPA rank updated.\n";
+        } else {
+          echo "ERROR: IFPA rank NOT updated!\n";
+        }
       } else {
-        echo "ERROR: IFPA rank NOT updated!\n";
+        echo 'No update needed';
       }
     }
     echo '</pre>';
