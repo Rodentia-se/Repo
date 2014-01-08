@@ -34,6 +34,6 @@
   
   getIfpaPlayers($dbh, true);
 */
-debug($persons);
+debug($objs);
   
 ?>
