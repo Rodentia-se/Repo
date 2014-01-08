@@ -19,7 +19,11 @@
     echo 'Found rank: '.$rank['rank']."\n";
     if ($rank['rank'] || $rank['rank'] === 0) {
       echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
-      $person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0));
+      if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
+        echo "IFPA rank updated.\n";
+      } else {
+        echo "ERROR: IFPA rank NOT updated!\n";
+      }
     }
     echo '</pre>';
     $p++;
