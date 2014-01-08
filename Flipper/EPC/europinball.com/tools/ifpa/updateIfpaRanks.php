@@ -34,9 +34,9 @@
       $p++;
       for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
       ob_implicit_flush(1);
-    } else {
-      echo 'Did not find persons with ifpaUpdateReq set. Nothing to do.';
     }
+  } else {
+    echo 'Did not find persons with ifpaUpdateReq set. Nothing to do.';
   }
     
 ?>
