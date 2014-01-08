@@ -34,7 +34,7 @@
     }
   
     public function updateRank($rank = NULL) {
-      $this->setProp('ifpaRank', (($rank) ? (int) $rank : 0));
+      return $this->setProp('ifpaRank', (($rank) ? (int) $rank : 0));
     }
 
   }
