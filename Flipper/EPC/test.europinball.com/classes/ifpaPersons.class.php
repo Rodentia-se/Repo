@@ -9,7 +9,7 @@
       parent::__construct($data, $prop, $cond);
     }
     
-    $this->updateRank($rank = NULL) {
+    public function updateRank($rank = NULL) {
       $this->setProp('ifpaRank', (($rank) ? (int) $rank : 0);
     }
 
