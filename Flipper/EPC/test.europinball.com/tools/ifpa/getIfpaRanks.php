@@ -2,7 +2,7 @@
   define('__ROOT__', dirname(dirname(dirname(__FILE__)))); 
   require_once(__ROOT__.'/functions/init.php');
   
-  $persons = persons('where o.ifpa_id is not null and ifnull(password, 0) != "checked"');
+  $persons = persons('where o.ifpa_id is not null and ifnull(password, 0) != "checked"', TRUE);
   
 //    @apache_setenv('no-gzip', 1);
     @ini_set('zlib.output_compression', 0);
