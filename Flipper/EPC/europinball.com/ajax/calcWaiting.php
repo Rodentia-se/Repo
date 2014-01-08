@@ -10,9 +10,10 @@
   if ($person) {
     if ($person->receptionist) {
       if (isDivision($division)) {
-        $calc = $person->db->seqWaiting();
+        $calc = $division->calcWaiting();
         if (is($calc)) {
-          $json = success('Waiting list recalculated for '.$calc.' players');
+          $obj = (object) array('number' => $calc);
+          $json = success('Waiting list recalculated for '.$calc.' players', $obj);
         } else {
           $json = failure('Waiting list recalculation failed');
         }

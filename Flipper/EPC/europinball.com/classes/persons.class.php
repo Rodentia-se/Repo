@@ -14,7 +14,7 @@
           $data[] = $player->person;
         }
       }
-      parent::__construct($data, $search, $depth);
+      parent::__construct($data, $prop, $cond);
     }
 
   }

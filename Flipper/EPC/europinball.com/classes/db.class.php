@@ -90,7 +90,7 @@
       return FALSE;
     }
 
-    protected function getValue($query, $values = NULL) {
+    public function getValue($query, $values = NULL) {
       $sth = $this->action($query, $values);
       if ($sth) {
         return $sth->fetchColumn();
@@ -212,33 +212,6 @@
       return FALSE;
     }
     
-    public function seqWaiting($division = 'main') {
-      $division = getDivision($division);
-      if (isDivision($division)) {
-        $query = '
-          update player 
-            right join (
-              select @rownum := @rownum +1 seq, 
-                id AS pid, 
-                waiting
-              from player, 
-                (SELECT @rownum :=0)r
-              where tournamentDivision_id = '.$division->id.'
-              order by noWaiting desc, id asc
-            ) AS players
-            ON players.pid = player.id
-          set player.waiting = if(players.seq > '.config::$participationLimit[$division->type].', players.seq - '.config::$participationLimit[$division->type].', NULL)
-        ';
-      }
-      $return = $this->update($query);
-      if ($return) {
-        $query = 'select max(waiting) from player where tournamentDivision_id = '.$division->id;
-        return $this->getValue($query);
-      } else {
-        return FALSE;
-      }
-    } 
-
   }
 
 ?>

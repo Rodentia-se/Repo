@@ -56,19 +56,31 @@
             $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
             $profileTabs->addCss('margin-top', '15px');
           //}$profileTabs
-          $waitingDiv = ${$prefix.'Div'}->addDiv();
-            $waitingButton = $waitingDiv->addButton('Recalculate waiting list');
-            $waitingButton->addTooltip('');
-            $waitingButton->addClick('
-              var el = this;
-              $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {})
-              .done(function(data) {
-                $(el).tooltipster("update", data.reason).tooltipster("show");
-              })
-            ');
-            $waitingButton->addCss('margin-top', '15px');
-          //$waitingDiv
+          ${$prefix.'Div'}->addH2('Waiting list', array('class' => 'entry-title'));
+          foreach (config::$activeSingleDivisions as $division_id) {
+            $division = division($division_id);
+            $players = players($division);
+            $waitingDiv = ${$prefix.'Div'}->addDiv();
+              $waitingDiv->addLabel($division->divisionName.':');
+              $waitingButton = $waitingDiv->addButton('Recalculate waiting list', $division->id.'calcWaiting');
+              $waitingButton->addTooltip('');
+              $waitingButton->addCss('margin-top', '15px');
+              $waitingDiv->addLabel('Number of players:');
+              $calcSpan = $waitingDiv->addSpan($players->getNumOf('waiting'));
+              $waitingDiv->addSpan(' players');
+              $waitingButton->addClick('
+                var el = this;
+                $(el).tooltipster("update", "Recalculating waiting list...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/calcWaiting.php", {division_id: '.$division->id.'})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $("#'.$calcSpan->id.'").html(data.number);
+                  }
+                }) 
+              ');
+            //$waitingDiv
+          }
           $personMailAddresses = $persons->getListOf('mailAddress');
           if ($personMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
