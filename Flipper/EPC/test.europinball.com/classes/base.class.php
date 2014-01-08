@@ -180,8 +180,10 @@
     }
     
     public function getColNames() {
-        $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
-        return $this->db->getColNames($table);
+      debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);        
+      debug($this);
+      $table = (property_exists($this, 'table')) ? static::$table : get_class($this);
+      return $this->db->getColNames($table);
     }
 
     protected function update() {
