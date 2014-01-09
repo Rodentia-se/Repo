@@ -12,27 +12,33 @@
   @ini_set('zlib.output_compression', 0);
   @ini_set('implicit_flush', 1);
 
-  foreach ($persons as $person) {
-    echo '<pre>';
-    var_dump($person);
-    $rank = get_rank_from_id($person->ifpa_id);
-    echo 'Found rank: '.$rank['rank']."\n";
-    if ($rank['rank'] || $rank['rank'] === 0) {
-      if ($rank['rank'] != $person->ifpaRank) {
-        echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
-        if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
-          echo "IFPA rank updated.\n";
+  if ($persons && count($persons) >0) {
+    foreach ($persons as $person) {
+      echo '<pre>';
+      var_dump($person);
+      $rank = get_rank_from_id($person->ifpa_id);
+      echo 'Found rank: '.$rank['rank']."\n";
+      if ($rank['rank'] || $rank['rank'] === 0) {
+        if ($rank['rank'] != $person->ifpaRank) {
+          echo 'Setting rank to: '.(($rank['rank'] != -1) ? $rank['rank'] : 0)."\n";
+          if ($person->updateRank((($rank['rank'] != -1) ? $rank['rank'] : 0))) {
+            $person->unsetProp('ifpaUpdateReq');
+            echo "IFPA rank updated.\n";
+          } else {
+            echo "ERROR: IFPA rank NOT updated!\n";
+          }
         } else {
-          echo "ERROR: IFPA rank NOT updated!\n";
+          $person->unsetProp('ifpaUpdateReq');
+          echo "No update needed\n";
         }
-      } else {
-        echo "No update needed\n";
       }
+      echo '</pre>';
+      $p++;
+      for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
+      ob_implicit_flush(1);
     }
-    echo '</pre>';
-    $p++;
-    for ($i = 0; $i < ob_get_level(); $i++) { ob_end_flush(); }
-    ob_implicit_flush(1);
+  } else {
+    echo 'Did not find persons with ifpaUpdateReq set. Nothing to do.';
   }
     
 ?>

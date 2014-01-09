@@ -495,7 +495,12 @@
           $usersDiv = new div($prefix.'usersDiv');
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
-              $userNameDiv->addSpan($this->username);
+              if ($this->username) {
+                $userNameDiv->addSpan($this->username);
+              } else {
+                $usersNewUsernameSpan = $userNameDiv->addSpan(NULL, $prefix.'usersNewUsernameSpan');
+                $usersNewUsernameSpan->addButton('Add login credentials');
+              }
             //$userNameDiv
             $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
               $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');

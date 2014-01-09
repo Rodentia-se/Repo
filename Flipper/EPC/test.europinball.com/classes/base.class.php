@@ -132,6 +132,10 @@
       }
     }
     
+    public function unsetProp($prop) {
+      return $this->setProp($prop, NULL);
+    }
+    
     public function setProp($prop, $value = NULL) {
       if (isObj($prop, TRUE)) {
         if (!is_null($value)) {
