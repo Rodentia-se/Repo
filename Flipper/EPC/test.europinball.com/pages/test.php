@@ -5,8 +5,8 @@
 
   $page = new page('Test');
 
-  $tshirts = tshirts('active');
-  debug($tshirts->getFlat());
+  debug(config::$login->Uid('zelina'));
+  debug(config::$login->Uid('stefano'));
 
   $page->addContent($html);
 /*
