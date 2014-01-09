@@ -444,14 +444,14 @@
           content: "The passwords do not match...",
           trigger: "custom",
           position: "right",
-          timer: 3000
+          timer: 8000
         });
         $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster({
           theme: ".tooltipster-light",
           content: "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...",
           trigger: "custom",
           position: "right",
-          timer: 3000
+          timer: 8000
         });
       ');
       if ($dialog) {
