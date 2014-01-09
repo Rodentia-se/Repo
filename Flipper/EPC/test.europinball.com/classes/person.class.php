@@ -511,6 +511,14 @@
                 $usersNewUsernameButton->addClick('
                   $("#'.$prefix.'newUserDiv").dialog("open");
                 ');
+              }
+            //$userNameDiv
+            $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
+              $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
+              $setPasswordButton = $passwordDiv->addButton('Set password');
+              if (!$this->username) {
+                $newPassword->disabled = TRUE;
+                $setPasswordButton->disabled = TRUE;
                 $newUserDialogDiv->addScriptCode('
                   $(document).ready(function() {
                     $("#'.$prefix.'newUserForm").submit(function (event) {
@@ -530,6 +538,8 @@
                         $("body").removeClass("modal"); 
                         if (data.valid) {
                           $("#'.$usersNewUsernameDiv->id.'").html(data.username);
+                          $("#'.$newPassword->id.'").prop("disabled", false);
+                          $("#'.$setPasswordButton->id.'").prop("disabled", false);
                         }
                       });
                       event.preventDefault();
@@ -537,12 +547,6 @@
                   });
                 ');
               }
-            //$userNameDiv
-            $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
-              $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
-              $newPassword->disabled = ($this->username) ? FALSE : TRUE;
-              $setPasswordButton = $passwordDiv->addButton('Set password');
-              $setPasswordButton->disabled = ($this->username) ? FALSE : TRUE;
               $setPasswordButton->addTooltip(''); 
               $setPasswordButton->addClick('
                 var el = this;
