@@ -93,22 +93,6 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-          if ($_REQUEST['action'] == 'newUser') {
-            $person_id = $_REQUEST['person_id'];
-            if (isId($person_id)) {
-              $person = person($person_id);
-              if ($person) {
-                if ($person->username) {
-                  ${$prefix.'Div'}->addParagraph('Successfully created login credentials for '.$person->name);
-                } else {
-                  ${$prefix.'Div'}->addParagraph('Something went wrong trying to create login credentials for '.$person->name.'. Please note any error messgaes above or below.');
-                  if ($_REQUEST['msg']) {
-                    ${$prefix.'Div'}->addParagraph($_REQUEST['msg']);
-                  }
-                }
-              }
-            }
-          }
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
             ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($persons->getSelectObj($prefix.'Persons', NULL, 'Edit user settings'));
             ${$prefix.'Select'}->addCombobox();
