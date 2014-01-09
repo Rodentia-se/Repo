@@ -823,6 +823,10 @@
       return $this->setProp('paid', $amount);
     }
 
+    public function setUsername($username = NULL) {
+      return $this->setProp('username', $username);
+    }
+
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
       switch ($type) {
         case 'ifpa':
