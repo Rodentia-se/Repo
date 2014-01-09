@@ -515,12 +515,12 @@
                       var password = $("#'.$prefix.'username").val();
                       $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
                       $("body").addClass("modal");
-                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', prop: "password", value: $("#'.$newPassword->id.'").val()})
+                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', username: username, password: password})
                       .done(function(data) {
                         $(el).tooltipster("update", data.reason).tooltipster("show");
                         $("body").removeClass("modal");
                         if (data.valid) {
-                          $("#'.$newPassword->id.'").val("");
+                          $("#'.$prefix.'UsernameDiv").val("");
                         }
                       });
                     } else {
