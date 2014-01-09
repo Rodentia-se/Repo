@@ -496,19 +496,36 @@
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
               if ($this->username) {
-                $userNameDiv->addSpan($this->username);
+                $userNameDiv->addSpan($this->username, $prefix.'UsernameDiv');
               } else {
-                $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
-                $usersNewUsernameButton = $usersNewUsernameSpan->addButton('Add login credentials');
+                $prefix = 'adminUsers';
+                $usersNewUsernameDiv = $userNameDiv->addSpan('No username found! ', $prefix.'UsernameDiv');
+                $usersNewUsernameButton = $usersNewUsernameDiv->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
-                $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, 'adminUsers', NULL, TRUE, $autoopen = FALSE));
+                $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
                 $newUserDialogDiv->escape = FALSE;
                 $usersNewUsernameButton->addClick('
-                  $("#adminUsersnewUserDiv").dialog("open");
+                  $("#'.$prefix.'newUserDiv").dialog("open");
                 ');
                 $newUserDialogDiv->addScriptCode('
                   $(document).ready(function() {
-                    $("#adminUsersnewUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
+                    $("#'.$prefix.'newUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
+                    $("#'.$prefix.'newUserForm").submit(function () {
+                      var username = $("#'.$prefix.'username").val();
+                      var password = $("#'.$prefix.'username").val();
+                      $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
+                      $("body").addClass("modal");
+                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', prop: "password", value: $("#'.$newPassword->id.'").val()})
+                      .done(function(data) {
+                        $(el).tooltipster("update", data.reason).tooltipster("show");
+                        $("body").removeClass("modal");
+                        if (data.valid) {
+                          $("#'.$newPassword->id.'").val("");
+                        }
+                      });
+                    } else {
+                      $(el).tooltipster("update", "Password not changed").tooltipster("show");
+                    }
                   });
                 ');
               }
