@@ -875,11 +875,7 @@
       if (!preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
         return validated(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
-        $person = person(array('username' => $username), TRUE);
-        $currentPerson = person('current');
-        if ($person && $currentPerson && $currentPerson->id === $person->id) {
-          return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
-        } else if ($person) {
+        if (config::$login->Uid($username)) {
           return validated(FALSE, 'Username is already taken.', $obj);
         } else {
           return validated(TRUE, 'Username is up for grabs.', $obj);
