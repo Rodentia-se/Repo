@@ -120,6 +120,7 @@
             ON players.pid = player.id
           set player.waiting = if(players.seq > '.(($number) ? $number : config::$participationLimit[$this->type]).', players.seq - '.(($number) ? $number : config::$participationLimit[$this->type]).', NULL)
       ';
+      debug($query);
       $return = $this->update($query);
       if ($return) {
         $query = 'select max(waiting) from player where tournamentDivision_id = '.$this->id;
