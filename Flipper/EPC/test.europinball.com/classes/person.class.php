@@ -504,6 +504,7 @@
             //$userNameDiv
             $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
               $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
+              $newPassword->disabled = ($this->username) ? FALSE : TRUE;
               $setPasswordButton = $passwordDiv->addButton('Set password');
               $setPasswordButton->disabled = ($this->username) ? FALSE : TRUE;
               $setPasswordButton->addTooltip('');
