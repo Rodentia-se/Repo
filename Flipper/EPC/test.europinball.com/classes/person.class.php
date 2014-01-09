@@ -517,12 +517,12 @@
                       $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
                       $("body").addClass("modal");
                       $.post("'.config::$baseHref.'/ajax/setCredentials.php", {
+                        action: "newUser",
                         person_id: '.$this->id.', 
                         username: $("#'.$prefix.'username").val(),
                         password: $("#'.$prefix.'password").val(),
                         verifyPassword: $("#'.$prefix.'verifyPassword").val(),
                         nonce: $("#"'.$prefix.'nonce").val(),
-                        action: "newUser",
                         noLogin: 1
                       })
                       .done(function(data) {
