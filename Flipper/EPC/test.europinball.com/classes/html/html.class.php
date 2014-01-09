@@ -101,6 +101,9 @@
         case 'title':
           return ($this->params['title']) ? $this->params['title'] : (($this->params['data-title']) ? $this->params['data-title'] : NULL);
         break;
+        case 'dataTitle':
+          return $this->params['data-title'];
+        break;
         case 'class': 
           return $this->getClasses(NULL, TRUE);
         break;
@@ -191,6 +194,7 @@
         break;
         case 'title':
           $this->params['title'] = $value;
+        case 'dataTitle':
           $this->params['data-title'] = $value;
         break;
         case 'class': 
@@ -260,6 +264,9 @@
         case 'title': 
           return ($this->params['title'] || $this->params['data-title']) ? TRUE : FALSE;
         break;
+        case 'dataTitle':
+          return isset($this->params['data-title']);
+        break;
         case 'class': 
         case 'classes': 
           return (count($this->classes) > 0) ? TRUE : FALSE;
@@ -325,6 +332,7 @@
         break;
         case 'title': 
           unset($this->params['title']);
+        case 'dataTitle':
           unset($this->params['data-title']);
         break;
         case 'class': 
