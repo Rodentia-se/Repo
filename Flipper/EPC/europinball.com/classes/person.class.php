@@ -499,7 +499,7 @@
                 $userNameDiv->addSpan($this->username, $prefix.'UsernameSpan');
               } else {
                 $prefix = 'adminUsers';
-                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
+                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv');
                 $usersNewUsernameDiv->addCss('width', '222px');
                 $usersNewUsernameDiv->inlineBlock = TRUE;
                 $usersNewUsernameDiv->addCss('display', 'inline-block');
