@@ -459,17 +459,25 @@
             $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payments tab.', NULL, 'italic');
             $orderDiv->addChange('
               var el = this;
-              var tshirtOrder_id = $(el).data("tshirtorderid");
-              var number = $(el).val();
               var each = $(el).data("eachcost");
               $(el).tooltipster("update", "Updating order...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirtid"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {
+                number: $(el).val(), 
+                tshirt_id: $(el).data("tshirtid"), 
+                tshirtOrder_id: $(el).data("tshirtorderid"), 
+                person_id: $("#'.$tshirtPerson->id.'").val()
+              })
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
                 if (data.newId || data.newId == 0) {
-                  $(el).data("tshirtorder_id", data.newId);
+                  $(el).data("tshirtorderid", data.newId);
                 }
-                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
+                if (data.valid) {
+                  $(el).data("previous", $(el).val());
+                } else {
+                  $(el).val($(el).data("previous"));
+                }
+                $("#" + el.id + "_moneySpanAmount").html((+ $(el).val() * each));
                 var cost = 0;
                 var num = 0;
                 $(".'.$spinnerClass.'").each(function() {
