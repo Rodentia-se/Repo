@@ -391,13 +391,13 @@
             //}
           }
           if ($tshirtsPaidNotChosenAddresses) {
-            $tshirtMailPaidNotChosenDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paid', NULL, array('data-title' => 'Paid, but no choices'));
+            $tshirtMailPaidNotChosenDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paidNoChosen', NULL, array('data-title' => 'Paid, but no choices'));
               $tshirtMailPaidNotChosenDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any:');
               $tshirtMailPaidNotChosenDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
             //}
           }
           if ($otherAddresses) {
-            $tshirtMailOtherDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paid', NULL, array('data-title' => 'No choices'));
+            $tshirtMailOtherDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_other', NULL, array('data-title' => 'No choices'));
               $tshirtMailOtherDiv->addParagraph('Email addresses to all players that have NOT chosen T-shirts, no matter if they paid or not:');
               $tshirtMailOtherDiv->addParagraph(implode(', ', $otherAddresses), $prefix.'otherAddresses', 'toCopy');
             //}
