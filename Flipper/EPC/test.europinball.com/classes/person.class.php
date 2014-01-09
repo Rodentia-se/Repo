@@ -502,6 +502,7 @@
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
                 $usersNewUsernameDiv->addCss('width', '210px');
                 $usersNewUsernameDiv->inlineBlock = TRUE;
+                $usersNewUsernameDiv->addCss('display', 'inline-block');
                 $usersNewUsernameDiv->addSpan('No username found!');
                 $usersNewUsernameButton = $userNameDiv->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
