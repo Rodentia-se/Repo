@@ -517,14 +517,14 @@
                       $("body").addClass("modal");
                       $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', username: username, password: password})
                       .done(function(data) {
-                        $(el).tooltipster("update", data.reason).tooltipster("show");
+                        $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
                         $("body").removeClass("modal");
                         if (data.valid) {
                           $("#'.$prefix.'UsernameDiv").val("");
                         }
                       });
                     } else {
-                      $(el).tooltipster("update", "Password not changed").tooltipster("show");
+                      $("#'.$prefix.'username").tooltipster("update", "Password not changed").tooltipster("show");
                     }
                   });
                 ');
