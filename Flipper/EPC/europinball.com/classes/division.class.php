@@ -111,16 +111,16 @@
           right join (
             select @rownum := @rownum +1 seq, 
               id AS pid, 
-              waiting
+              ifnull(waiting, 0)
             from player, 
               (SELECT @rownum :=0)r
-            where tournamentDivision_id = '.$this->id.'
-             order by noWaiting desc, id asc
+            where player.tournamentDivision_id = '.$this->id.'
+             order by ifnull(player.noWaiting, 0) desc, player.id asc
             ) AS players
             ON players.pid = player.id
           set player.waiting = if(players.seq > '.(($number) ? $number : config::$participationLimit[$this->type]).', players.seq - '.(($number) ? $number : config::$participationLimit[$this->type]).', NULL)
       ';
-      $return = $this->update($query);
+      $return = $this->db->update($query);
       if ($return) {
         $query = 'select max(waiting) from player where tournamentDivision_id = '.$this->id;
         return $this->db->getValue($query);
