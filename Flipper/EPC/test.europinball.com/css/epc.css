@@ -168,6 +168,10 @@ div.noInput span{
   margin-left: 9px;
 }
 
+div.noInput div span{
+  margin-left: 6px;
+}
+
 span.short {
   display: inline-block;
   width: 102px;
