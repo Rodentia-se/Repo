@@ -500,6 +500,29 @@
               } else {
                 $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
                 $usersNewUsernameSpan->addButton('Add login credentials');
+                $newUserDialog = $userNameDiv->addContent(page::getNewUser($title = 'Please choose a new username and password for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE);
+                $usersNewUsernameSpan->addClick('
+                  var el = this;
+                  if ($(el).val().length < 7) {
+                    $(el).tooltipster("update", "Please use at least 6 characters").tooltipster("show");
+                  } else {
+                    if (confirm("You are about to change the password for '.$this->name.'. Is this what you want to do?")) {
+                      $(el).tooltipster("update", "Setting password...").tooltipster("show");
+                      $("body").addClass("modal");
+                      $.post("'.config::$baseHref.'/ajax/setPersonProp.php", {person_id: '.$this->id.', prop: "password", value: $("#'.$newPassword->id.'").val()})
+                      .done(function(data) {
+                        $(el).tooltipster("update", data.reason).tooltipster("show");
+                        $("body").removeClass("modal");
+                        if (data.valid) {
+                          $("#'.$newPassword->id.'").val("");
+                        }
+                      });
+                    } else {
+                      $(el).tooltipster("update", "Password not changed").tooltipster("show");
+                    }
+                  }
+                ');
+              //$passwordDiv
               }
             //$userNameDiv
             $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
