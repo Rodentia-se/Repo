@@ -462,6 +462,7 @@
             width: 400,
             buttons: {
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
+                alert("hej");
                 if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                     if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
