@@ -501,7 +501,7 @@
                 $prefix = 'adminUsers';
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv');
                 $usersNewUsernameDiv->addSpan('No username found!');
-                $usersNewUsernameButton = $usersNewUsernameSpan->addButton('Add login credentials');
+                $usersNewUsernameButton = $usersNewUsernameDiv->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
                 $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
                 $newUserDialogDiv->escape = FALSE;
