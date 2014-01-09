@@ -115,7 +115,7 @@
             from player, 
               (SELECT @rownum :=0)r
             where player.tournamentDivision_id = '.$this->id.'
-             order by player.noWaiting desc, player.id asc
+             order by ifnull(player.noWaiting, 0) desc, player.id asc
             ) AS players
             ON players.pid = player.id
           set player.waiting = if(players.seq > '.(($number) ? $number : config::$participationLimit[$this->type]).', players.seq - '.(($number) ? $number : config::$participationLimit[$this->type]).', NULL)
