@@ -9,6 +9,8 @@
   $username = (isset($_REQUEST['username'])) ? $_REQUEST['username'] : NULL;
   $password = (isset($_REQUEST['password'])) ? $_REQUEST['password'] : NULL;
 
+  $loginPerson = person('login');
+
   if ($person_id) {
     if (isId($person_id)) {
       $person = person($person_id);
