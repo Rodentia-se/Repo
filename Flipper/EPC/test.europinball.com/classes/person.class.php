@@ -500,7 +500,7 @@
               } else {
                 $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
                 $usersNewUsernameSpan->addButton('Add login credentials');
-                $newUserDialog = $userNameDiv->addContent(page::getNewUser($title = 'Please choose a new username and password for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE);
+                $newUserDialog = $userNameDiv->addContent(page::getNewUser($title = 'Please choose a new username and password for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE));
                 $usersNewUsernameSpan->addClick('
                   var el = this;
                   if ($(el).val().length < 7) {
