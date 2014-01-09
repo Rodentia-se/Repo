@@ -518,7 +518,7 @@
                       $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', username: username, password: password})
                       .done(function(data) {
                         $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
-                        $("body").removeClass("modal");
+                        $("body").removeClass("modal"); 
                         if (data.valid) {
                           $("#'.$prefix.'UsernameDiv").html(data.username);
                         }
