@@ -123,6 +123,7 @@
       debug($query);
       $return = $this->update($query);
       if ($return) {
+        return $return;
         $query = 'select max(waiting) from player where tournamentDivision_id = '.$this->id;
         return $this->db->getValue($query);
       } else {
