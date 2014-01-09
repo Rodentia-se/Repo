@@ -881,10 +881,8 @@
           return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
         } else if ($person) {
           return validated(FALSE, 'Username is already taken.', $obj);
-        } else if (config::$login->ValidateUsername($username)) {
-          return validated(TRUE, 'Username is up for grabs.', $obj);
         } else {
-          return validated(FALSE, 'Username not accepted by system', $obj);
+          return validated(TRUE, 'Username is up for grabs.', $obj);
         }
       }
     }
