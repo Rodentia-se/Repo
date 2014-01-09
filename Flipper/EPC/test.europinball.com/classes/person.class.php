@@ -520,7 +520,7 @@
                         $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
                         $("body").removeClass("modal");
                         if (data.valid) {
-                          $("#'.$prefix.'UsernameDiv").val("");
+                          $("#'.$prefix.'UsernameDiv").html(data.username);
                         }
                       });
                     } else {
