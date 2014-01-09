@@ -522,7 +522,7 @@
                         username: $("#'.$prefix.'username").val(),
                         password: $("#'.$prefix.'password").val(),
                         verifyPassword: $("#'.$prefix.'verifyPassword").val(),
-                        nonce: $("#"'.$prefix.'nonce").val(),
+                        nonce: $("#'.$prefix.'nonce").val(),
                         noLogin: 1
                       })
                       .done(function(data) {
