@@ -539,7 +539,7 @@
                           $("#'.$usersNewUsernameButton->id.'").hide();
                           $("#'.$newPassword->id.'").prop("disabled", false);
                           $("#'.$setPasswordButton->id.'").button("enable");
-                          $("'.$prefix.'UsernameSpan").tooltipster({
+                          $("#'.$prefix.'UsernameSpan").tooltipster({
                             theme: ".tooltipster-light",
                             content: data.reason,
                             trigger: "custom",
