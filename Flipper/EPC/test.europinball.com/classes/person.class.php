@@ -500,8 +500,8 @@
               } else {
                 $prefix = 'adminUsers';
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
-                $usersNewUsernameDiv->addCss('width', '300px');
-                $usersNewUsernameDiv->addContent('No username found!');
+                $usersNewUsernameDiv->addCss('width', '210px');
+                $usersNewUsernameDiv->addSpan('No username found!');
                 $usersNewUsernameButton = $userNameDiv->addButton('Add login credentials');
                 $usersNewUsernameButton->addCss('float', 'right');
                 $newUserDialogDiv = $userNameDiv->addDiv();
