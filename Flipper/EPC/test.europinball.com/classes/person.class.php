@@ -501,7 +501,7 @@
                 $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
                 $usersNewUsernameSpan->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
-                $newUserDialogDiv->addContent(page::getNewUser($title = 'Please choose a new username and password for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE));
+                $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE));
                 $newUserDialogDiv->escape = FALSE;
                 $usersNewUsernameSpan->addClick('
                   $("#newUserDiv").dialog("open");
