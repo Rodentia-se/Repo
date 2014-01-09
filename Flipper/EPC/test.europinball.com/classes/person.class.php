@@ -504,11 +504,11 @@
                 $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, 'adminUsers', NULL, TRUE, $autoopen = FALSE));
                 $newUserDialogDiv->escape = FALSE;
                 $usersNewUsernameButton->addClick('
-                  $("#newUserDiv").dialog("open");
+                  $("#adminUsersnewUserDiv").dialog("open");
                 ');
                 $newUserDialogDiv->addScriptCode('
                   $(document).ready(function() {
-                    $("#newUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
+                    $("#adminUsersnewUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
                   });
                 ');
               }
