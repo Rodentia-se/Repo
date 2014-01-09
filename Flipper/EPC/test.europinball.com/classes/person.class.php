@@ -500,7 +500,7 @@
               } else {
                 $prefix = 'adminUsers';
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
-                $usersNewUsernameDiv->addCss('width', '210px');
+                $usersNewUsernameDiv->addCss('width', '222px');
                 $usersNewUsernameDiv->inlineBlock = TRUE;
                 $usersNewUsernameDiv->addCss('display', 'inline-block');
                 $usersNewUsernameDiv->addSpan('No username found!');
@@ -513,13 +513,18 @@
                 ');
                 $newUserDialogDiv->addScriptCode('
                   $(document).ready(function() {
-                    $("#'.$prefix.'newUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
                     $("#'.$prefix.'newUserForm").submit(function (event) {
-                      var username = $("#'.$prefix.'username").val();
-                      var password = $("#'.$prefix.'username").val();
                       $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
                       $("body").addClass("modal");
-                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {person_id: '.$this->id.', username: username, password: password})
+                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {
+                        person_id: '.$this->id.', 
+                        username: $("#'.$prefix.'username").val(),
+                        password: $("#'.$prefix.'password").val(),
+                        verifyPassword: $("#'.$prefix.'verifyPassword").val(),
+                        nonce: $("#"'.$prefix.'nonce").val(),
+                        action: "newUser",
+                        noLogin: 1
+                      })
                       .done(function(data) {
                         $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
                         $("body").removeClass("modal"); 

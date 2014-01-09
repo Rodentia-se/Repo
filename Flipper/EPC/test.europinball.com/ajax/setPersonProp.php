@@ -3,6 +3,24 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
   
+  debug($_REQUEST);
+  debug($_SESSION);
+  $person = person('login');
+  debug($person);
+  $person = person($_REQUEST['person_id');
+  debug($person);
+
+/*
+  
+                        action: "newUser",
+                        person_id: '.$this->id.', 
+                        username: $("#'.$prefix.'username").val(),
+                        password: $("#'.$prefix.'password").val(),
+                        verifyPassword: $("#'.$prefix.'verifyPassword").val(),
+                        nonce: $("#"'.$prefix.'nonce").val(),
+                        noLogin: 1
+
+
   $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
   $id = (isId($value)) ? $value : NULL;
   $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
@@ -182,5 +200,5 @@
   }
   
   jsonEcho($json);
-  
+  /*
 ?>
