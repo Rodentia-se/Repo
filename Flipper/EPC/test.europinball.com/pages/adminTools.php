@@ -103,7 +103,7 @@
                 } else {
                   ${$prefix.'Div'}->addParagraph('Something went wrong trying to create login credentials for '.$person->name.'. Please note any error messgaes above or below.');
                   if ($_REQUEST['msg']) {
-                    ${$prefix.'Div'}->addParagraph($_REQUEST['msg');
+                    ${$prefix.'Div'}->addParagraph($_REQUEST['msg']);
                   }
                 }
               }
