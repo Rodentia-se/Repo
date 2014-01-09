@@ -496,7 +496,7 @@
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
               if ($this->username) {
-                $userNameDiv->addSpan($this->username, $prefix.'UsernameDiv');
+                $userNameDiv->addSpan($this->username, $prefix.'UsernameSpan');
               } else {
                 $prefix = 'adminUsers';
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
@@ -536,11 +536,11 @@
                         $("body").removeClass("modal"); 
                         if (data.valid) {
                           $("#'.$prefix.'newUserDiv").dialog("close");
-                          $("#'.$usersNewUsernameDiv->id.'").html(data.username);
+                          $("#'.$usersNewUsernameDiv->id.'").html("<span id=\''.$prefix.'UsernameSpan\'>" + data.username + "</span>");
                           $("#'.$usersNewUsernameButton->id.'").hide();
                           $("#'.$newPassword->id.'").prop("disabled", false);
                           $("#'.$setPasswordButton->id.'").button("enable");
-                          $("#usersPersons_combobox").tooltipster("update", data.reason).tooltipster("show");
+                          $("#'.$prefix.'UsernameSpan").tooltipster("update", data.reason).tooltipster("show");
                         }
                       });
                       event.preventDefault();
