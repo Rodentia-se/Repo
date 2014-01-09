@@ -24,7 +24,8 @@
                 if ($loginPerson->id === $person->id || $loginPerson->receptionist) {
                   $newUser = config::$login->addUser($username, $password, $person);
                   if ($newUser) {
-                    $json = success('Added user '.$username.' for '.$person->name);
+                    $info = (object) array('username' => $username);
+                    $json = success('Added user '.$username.' for '.$person->name, $info);
                   } else {
                     $json = failure('User could not be added: '.config::$msg);
                   }
