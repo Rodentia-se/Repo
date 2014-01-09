@@ -510,7 +510,7 @@
                 $newUserDialogDiv->addScriptCode('
                   $(document).ready(function() {
                     $("#'.$prefix.'newUserForm").append("<input type=\"hidden\" name=\"noLogin\" value=\"1\">");
-                    $("#'.$prefix.'newUserForm").submit(function () {
+                    $("#'.$prefix.'newUserForm").submit(function (event) {
                       var username = $("#'.$prefix.'username").val();
                       var password = $("#'.$prefix.'username").val();
                       $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
@@ -523,6 +523,7 @@
                           $("#'.$prefix.'UsernameDiv").html(data.username);
                         }
                       });
+                      event.preventDefault();
                     });
                   });
                 ');
