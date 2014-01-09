@@ -501,8 +501,10 @@
                 $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
                 $usersNewUsernameSpan->addButton('Add login credentials');
                 $newUserDialog = $userNameDiv->addContent(page::getNewUser($title = 'Please choose a new username and password for '.$this->name, $this->id, NULL, NULL, TRUE, $autoopen = FALSE));
+                $newUserDialog->entities = FALSE;
                 $usersNewUsernameSpan->addClick('
-                  var el = this;
+                  $("#newUserDiv").dialog("open");
+/*                  var el = this;
                   if ($(el).val().length < 7) {
                     $(el).tooltipster("update", "Please use at least 6 characters").tooltipster("show");
                   } else {
@@ -520,7 +522,7 @@
                     } else {
                       $(el).tooltipster("update", "Password not changed").tooltipster("show");
                     }
-                  }
+                  }*/
                 ');
               //$passwordDiv
               }
