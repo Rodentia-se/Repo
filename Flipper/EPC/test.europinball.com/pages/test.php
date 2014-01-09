@@ -6,7 +6,7 @@
   $page = new page('Test');
 
   debug(config::$login->Uid('zelina'));
-  debug(config::$login->Uid('stefano'));
+  debug(config::$login->Uid('stefanoA'));
 
   $page->addContent($html);
 /*
