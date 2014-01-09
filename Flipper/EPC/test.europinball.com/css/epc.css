@@ -148,7 +148,11 @@ input[type=text], input[type=password] {
 input[yype=text]:disabled, input[type=password]:disabled {
   opacity: .35;
   filter: Alpha(Opacity=35);
-  background-image: none;  
+  background-image: none;
+}
+
+:disabled {
+  cursor: not-allowed;
 }
 
 input.custom-combobox-input {
