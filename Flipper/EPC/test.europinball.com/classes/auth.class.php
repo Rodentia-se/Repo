@@ -463,7 +463,7 @@
             buttons: {
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
                 alert("hej");
-                if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
+                if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                 alert("1");
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                 alert("2");
