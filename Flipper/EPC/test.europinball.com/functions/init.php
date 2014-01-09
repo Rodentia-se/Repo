@@ -11,16 +11,16 @@
       unset($_SESSION['msg']);
     }
 
-  if (isset($_REQUEST['debug'])) {
-    config::$debug = (bool) $_REQUEST['debug'];
-    config::$showWarnings = (bool) $_REQUEST['debug'];
-    config::$showErrors = (bool) $_REQUEST['debug'];
-  }
-
   if (isset($_REQUEST['noError'])) {
     config::$debug = FALSE;
     config::$showWarnings = FALSE;
     config::$showErrors = FALSE;
+  }
+
+  if (isset($_REQUEST['debug'])) {
+    config::$debug = (bool) $_REQUEST['debug'];
+    config::$showWarnings = (bool) $_REQUEST['debug'];
+    config::$showErrors = (bool) $_REQUEST['debug'];
   }
 
   $path = explode('/', $_SERVER['PHP_SELF']);
