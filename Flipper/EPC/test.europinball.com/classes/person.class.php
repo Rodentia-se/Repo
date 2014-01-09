@@ -499,7 +499,7 @@
                 $userNameDiv->addSpan($this->username, $prefix.'UsernameDiv');
               } else {
                 $prefix = 'adminUsers';
-                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput'');
+                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
                 $usersNewUsernameDiv->addCss('width', '300px');
                 $usersNewUsernameDiv->addContent('No username found!');
                 $usersNewUsernameButton = $userNameDiv->addButton('Add login credentials');
