@@ -496,10 +496,10 @@
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
               if ($this->username) {
-                $userNameDiv->addSpan($this->username, $prefix.'UsernameDiv');
+                $userNameDiv->addDiv($this->username, $prefix.'UsernameDiv');
               } else {
                 $prefix = 'adminUsers';
-                $usersNewUsernameDiv = $userNameDiv->addSpan('No username found! ', $prefix.'UsernameDiv');
+                $usersNewUsernameDiv = $userNameDiv->addDiv('No username found! ', $prefix.'UsernameDiv');
                 $usersNewUsernameButton = $usersNewUsernameDiv->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
                 $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
