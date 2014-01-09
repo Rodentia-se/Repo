@@ -416,9 +416,9 @@
     }
     
     public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE, $new = FALSE, $person_id = NULL) {
-      $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv');
+      $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv', $class, (($dialog) ? $title : NULL));
+        $form .= (!$dialog) ? page::getH4($title) : '';
         $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
-          $form .= page::getH2($title);
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');

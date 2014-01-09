@@ -531,15 +531,18 @@
                         password: $("#'.$prefix.'password").val(),
                         verifyPassword: $("#'.$prefix.'verifyPassword").val(),
                         nonce: $("#'.$prefix.'nonce").val(),
-                        noLogin: 1
+                        noLogin: 1,
+                        noError: 1
                       })
                       .done(function(data) {
-                        $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
-                        $("body").removeClass("modal"); 
-                        if (data.valid) {
-                          $("#'.$usersNewUsernameDiv->id.'").html(data.username);
-                          $("#'.$newPassword->id.'").prop("disabled", false);
-                          $("#'.$setPasswordButton->id.'").prop("disabled", false);
+                        if (typeof data.reason !== "undefined") {
+                          $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
+                          $("body").removeClass("modal"); 
+                          if (data.valid) {
+                            $("#'.$usersNewUsernameDiv->id.'").html(data.username);
+                            $("#'.$newPassword->id.'").prop("disabled", false);
+                            $("#'.$setPasswordButton->id.'").prop("disabled", false);
+                          }
                         }
                       });
                       event.preventDefault();

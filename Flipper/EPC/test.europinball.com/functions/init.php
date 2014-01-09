@@ -12,9 +12,15 @@
     }
 
   if (isset($_REQUEST['debug'])) {
-    config::$debug = ($_REQUEST['debug']);
-    config::$showWarnings = ($_REQUEST['debug']);
-    config::$showErrors = ($_REQUEST['debug']);
+    config::$debug = (bool) $_REQUEST['debug'];
+    config::$showWarnings = (bool) $_REQUEST['debug'];
+    config::$showErrors = (bool) $_REQUEST['debug'];
+  }
+
+  if (isset($_REQUEST['noError'])) {
+    config::$debug = FALSE;
+    config::$showWarnings = FALSE;
+    config::$showErrors = FALSE;
   }
 
   $path = explode('/', $_SERVER['PHP_SELF']);
