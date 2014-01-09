@@ -17,6 +17,7 @@
 
     public function update($query, $values = NULL) {
       $sth = $this->action($query, $values);
+      debug($sth);
       if ($sth) {
         $rowCount = $sth->rowCount();
         return ($rowCount === 0) ? TRUE : $rowCount;
