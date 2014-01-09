@@ -499,7 +499,8 @@
                 $userNameSpan->addSpan($this->username, $prefix.'UsernameDiv');
               } else {
                 $prefix = 'adminUsers';
-                $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'UsernameDiv');
+                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv');
+                $usersNewUsernameDiv->addSpan('No username found!');
                 $usersNewUsernameButton = $usersNewUsernameSpan->addButton('Add login credentials');
                 $newUserDialogDiv = $userNameDiv->addDiv();
                 $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
@@ -520,7 +521,7 @@
                         $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
                         $("body").removeClass("modal"); 
                         if (data.valid) {
-                          $("#'.$prefix.'UsernameDiv").html(data.username);
+                          $("#'.$usersNewUsernameDiv->id.'").html(data.username);
                         }
                       });
                       event.preventDefault();
