@@ -378,6 +378,12 @@
             $tshirtsDiv->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
             $tshirtMailTabs = $tshirtsDiv->addTabs(NULL, 'tshirtMailTabs');
           }
+          if ($tshirtsPaidNotChosenAddresses) {
+            $tshirtMailPaidNotChosenDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paidNoChosen', NULL, array('data-title' => 'Paid, but no choices'));
+              $tshirtMailPaidNotChosenDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any:');
+              $tshirtMailPaidNotChosenDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
+            //}
+          }
           if ($mailAddresses) {
             $tshirtMailChosenDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_chosen', NULL, array('data-title' => 'Made choices'));
               $tshirtMailChosenDiv->addParagraph('Email addresses to all players that have chosen T-shirts, no matter if they paid for them or not;');
@@ -388,12 +394,6 @@
             $tshirtMailPaidDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paid', NULL, array('data-title' => 'Paid'));
               $tshirtMailPaidDiv->addParagraph('Email addresses to all players that have paid for T-shirts, no matter if they have chosen T-shirts or not:');
               $tshirtMailPaidDiv->addParagraph(implode(', ', $tshirtsPaidAddresses), $prefix.'tshirtsPaidAddresses', 'toCopy');
-            //}
-          }
-          if ($tshirtsPaidNotChosenAddresses) {
-            $tshirtMailPaidNotChosenDiv = $tshirtMailTabs->addDiv('tshirtMailDiv_paidNoChosen', NULL, array('data-title' => 'Paid, but no choices'));
-              $tshirtMailPaidNotChosenDiv->addParagraph('Email addresses to all players that have paid for T-shirts, but NOT chosen any:');
-              $tshirtMailPaidNotChosenDiv->addParagraph(implode(', ', $tshirtsPaidNotChosenAddresses), $prefix.'tshirtsPaidNotChosenAddresses', 'toCopy');
             //}
           }
           if ($otherAddresses) {
