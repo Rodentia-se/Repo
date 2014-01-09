@@ -145,6 +145,16 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
+input[yype=text]:disabled, input[type=password]:disabled {
+  opacity: .35;
+  filter: Alpha(Opacity=35);
+  background-image: none;
+}
+
+:disabled {
+  cursor: not-allowed;
+}
+
 input.custom-combobox-input {
   margin: 0;
   padding: 4px;
@@ -166,6 +176,10 @@ div.noInput {
 
 div.noInput span{
   margin-left: 9px;
+}
+
+div.noInput div span{
+  margin-left: 6px;
 }
 
 span.short {

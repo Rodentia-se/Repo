@@ -109,7 +109,7 @@
       return FALSE;
     }
     
-    protected function addUser($username, $password, $person = NULL) {
+    public function addUser($username, $password, $person = NULL) {
       if (!preg_match('/ /', $username)) {
         if (preg_match('/^[a-zA-Z0-9\-_]+$/', $username)) {
           if (strlen($username) > 2) {
@@ -264,7 +264,9 @@
                   if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
                     $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
                     if ($this->IsAuthSuccess()) {
-                      $this->setLogin();
+                      if (!$_REQUEST['noLogin']) {
+                        $this->setLogin();
+                      }
                       if ($uid) {
                         $this->DeleteUser($uid);
                       }
@@ -414,9 +416,9 @@
     }
     
     public static function getUserEdit($title = 'Change credentials', $prefix = NULL, $class = NULL, $dialog = FALSE, $autoopen = FALSE, $new = FALSE, $person_id = NULL) {
-      $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv');
+      $form = page::getDivStart($prefix.(($new) ? 'new' : 'change').'UserDiv', $class, (($dialog) ? $title : NULL));
+        $form .= (!$dialog) ? page::getH4($title) : '';
         $form .= page::getFormStart($prefix.(($new) ? 'new' : 'change').'UserForm');
-          $form .= page::getH2($title);
           $form .= ($new) ? '' : page::getParagraph('Changing username requires changing the password too.', NULL, 'italic');
           $form .= page::getInput(config::$login->nonce, $prefix.'nonce', 'nonce', 'hidden');
           $form .= page::getInput((($new) ? 'new' : 'change').'User', $prefix.'action', 'action', 'hidden');
@@ -442,14 +444,14 @@
           content: "The passwords do not match...",
           trigger: "custom",
           position: "right",
-          timer: 3000
+          timer: 8000
         });
         $("#'.$prefix.(($new) ? 'u' : 'newU').'sername").tooltipster({
           theme: ".tooltipster-light",
           content: "Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores...",
           trigger: "custom",
           position: "right",
-          timer: 3000
+          timer: 8000
         });
       ');
       if ($dialog) {
@@ -460,7 +462,7 @@
             width: 400,
             buttons: {
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
-                if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
+                if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                     if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
                       if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val().length > 5) {

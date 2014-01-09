@@ -495,12 +495,67 @@
           $usersDiv = new div($prefix.'usersDiv');
             $userNameDiv = $usersDiv->addDiv($prefix.'usersUsermameDiv', 'noInput');
               $userNameDiv->addLabel('Username');
-              $userNameDiv->addSpan($this->username);
+              if ($this->username) {
+                $userNameDiv->addSpan($this->username, $prefix.'UsernameSpan');
+              } else {
+                $prefix = 'adminUsers';
+                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
+                $usersNewUsernameDiv->addCss('width', '222px');
+                $usersNewUsernameDiv->inlineBlock = TRUE;
+                $usersNewUsernameDiv->addCss('display', 'inline-block');
+                $usersNewUsernameDiv->addSpan('No username found!');
+                $usersNewUsernameButton = $userNameDiv->addButton('Add login credentials');
+                $newUserDialogDiv = $userNameDiv->addDiv();
+                $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
+                $newUserDialogDiv->escape = FALSE;
+                $usersNewUsernameButton->addClick('
+                  $("#'.$prefix.'newUserDiv").dialog("open");
+                ');
+              }
             //$userNameDiv
             $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
               $newPassword = $passwordDiv->addInput('password', NULL, 'password', 'Set password');
               $setPasswordButton = $passwordDiv->addButton('Set password');
-              $setPasswordButton->addTooltip('');
+              if (!$this->username) {
+                $newPassword->disabled = TRUE;
+                $setPasswordButton->disabled = TRUE;
+                $newUserDialogDiv->addScriptCode('
+                  $(document).ready(function() {
+                    $("#'.$prefix.'newUserForm").submit(function (event) {
+                      $("#'.$prefix.'username").tooltipster("update", "Adding user...").tooltipster("show");
+                      $("body").addClass("modal");
+                      $.post("'.config::$baseHref.'/ajax/setCredentials.php", {
+                        person_id: '.$this->id.', 
+                        username: $("#'.$prefix.'username").val(),
+                        password: $("#'.$prefix.'password").val(),
+                        nonce: $("#'.$prefix.'nonce").val()
+                      })
+                      .done(function(data) {
+                        $("#'.$prefix.'username").tooltipster("update", data.reason).tooltipster("show");
+                        $("body").removeClass("modal"); 
+                        if (data.valid) {
+                          $("#'.$prefix.'newUserDiv").dialog("close");
+                          $("#'.$usersNewUsernameDiv->id.'").html("<span id=\''.$prefix.'UsernameSpan\'>" + data.username + "</span>");
+                          $("#'.$usersNewUsernameButton->id.'").hide();
+                          $("#'.$newPassword->id.'").prop("disabled", false);
+                          $("#'.$setPasswordButton->id.'").button("enable");
+                          $("#'.$prefix.'UsernameSpan").tooltipster({
+                            theme: ".tooltipster-light",
+                            content: data.reason,
+                            trigger: "custom",
+                            position: "right",
+                            offsetX: 0,
+                            timer: 5000
+                          });
+                          $("#'.$prefix.'UsernameSpan").tooltipster("show");
+                        }
+                      });
+                      event.preventDefault();
+                    });
+                  });
+                ');
+              }
+              $setPasswordButton->addTooltip(''); 
               $setPasswordButton->addClick('
                 var el = this;
                 if ($(el).val().length < 7) {
@@ -779,6 +834,10 @@
       return $this->setProp('paid', $amount);
     }
 
+    public function setUsername($username = NULL) {
+      return $this->setProp('username', $username);
+    }
+
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE) {
       switch ($type) {
         case 'ifpa':
@@ -831,16 +890,10 @@
       if (!preg_match('/^[a-zA-Z0-9\-_]{3,32}$/', $username)) {
         return validated(FALSE, 'Username must be at least three characters and can only include a-Z, A-Z, 0-9, dashes and underscores.', $obj);
       } else {
-        $person = person('username', $username);
-        $currentPerson = person('current');
-        if ($person && $currentPerson && $currentPerson->id == $person->id) {
-          return validated(TRUE, 'Username is already yours, you didn\'t change it.', $obj);
-        } else if ($person) {
+        if (config::$login->Uid($username)) {
           return validated(FALSE, 'Username is already taken.', $obj);
-        } else if (config::$login->ValidateUsername($username)) {
-          return validated(TRUE, 'Username is up for grabs.', $obj);
         } else {
-          return validated(FALSE, 'Username not accepted by system', $obj);
+          return validated(TRUE, 'Username is up for grabs.', $obj);
         }
       }
     }
