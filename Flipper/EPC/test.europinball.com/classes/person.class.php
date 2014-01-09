@@ -498,7 +498,7 @@
               if ($this->username) {
                 $userNameDiv->addSpan($this->username);
               } else {
-                $usersNewUsernameSpan = $userNameDiv->addSpan(NULL, $prefix.'usersNewUsernameSpan');
+                $usersNewUsernameSpan = $userNameDiv->addSpan('No username found! ', $prefix.'usersNewUsernameSpan');
                 $usersNewUsernameSpan->addButton('Add login credentials');
               }
             //$userNameDiv
