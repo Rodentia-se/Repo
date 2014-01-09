@@ -264,7 +264,9 @@
                   if ($this->addUser($_REQUEST['username'], $_REQUEST['password'], $person)) {
                     $this->Authenticate($_REQUEST['username'], $_REQUEST['password']);
                     if ($this->IsAuthSuccess()) {
-                      $this->setLogin();
+                      if (!$_REQUEST['noLogin']) {
+                        $this->setLogin();
+                      }
                       if ($uid) {
                         $this->DeleteUser($uid);
                       }
