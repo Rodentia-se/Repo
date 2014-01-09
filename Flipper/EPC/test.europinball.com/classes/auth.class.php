@@ -464,10 +464,13 @@
               "'.(($new) ? 'Register' : 'Submit changes').'": function() {
                 alert("hej");
                 if ($.trim($("#'.$prefix.(($new) ? 'u' : 'newU').'username").val()).length > 0 && $.trim($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val()).length > 0) {
+                alert("1");
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
+                alert("2");
                     if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
+                alert("3");
                       if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val().length > 5) {
-                alert("på dig");
+                alert("4");
                         $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
                       } else {
                         $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The password must be at least six characters long...").tooltipster("show");
