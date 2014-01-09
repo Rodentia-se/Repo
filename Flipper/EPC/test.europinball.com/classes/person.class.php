@@ -427,8 +427,8 @@
                 $spinnerClass = 'tshirtSpinner';
                 $spinnerParams = array(
                   'class' => $spinnerClass.' enterChange',
-                  'data-tshirt_id' => $tshirt->id,
-                  'data-tshirtorder_id' => (($tshirtOrder) ? $tshirtOrder->id : 0),
+                  'data-tshirtid' => $tshirt->id,
+                  'data-tshirtorderid' => (($tshirtOrder) ? $tshirtOrder->id : 0),
                   'data-eachcost' => config::$tshirtCost
                 );
                 $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
@@ -459,17 +459,25 @@
             $orderDiv->addParagraph('Note that changing anything above will be reflected in the T-shirts field on the payments tab.', NULL, 'italic');
             $orderDiv->addChange('
               var el = this;
-              var tshirtOrder_id = $(el).data("tshirtorder_id");
-              var number = $(el).val();
               var each = $(el).data("eachcost");
               $(el).tooltipster("update", "Updating order...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {number: number, tshirt_id: $(el).data("tshirt_id"), tshirtOrder_id: tshirtOrder_id, person_id: $("#'.$tshirtPerson->id.'").val()})
+              $.post("'.config::$baseHref.'/ajax/tshirtOrder.php", {
+                number: $(el).val(), 
+                tshirt_id: $(el).data("tshirtid"), 
+                tshirtOrder_id: $(el).data("tshirtorderid"), 
+                person_id: $("#'.$tshirtPerson->id.'").val()
+              })
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
                 if (data.newId || data.newId == 0) {
-                  $(el).data("tshirtorder_id", data.newId);
+                  $(el).data("tshirtorderid", data.newId);
                 }
-                $("#" + el.id + "_moneySpanAmount").html((+ number * each));
+                if (data.valid) {
+                  $(el).data("previous", $(el).val());
+                } else {
+                  $(el).val($(el).data("previous"));
+                }
+                $("#" + el.id + "_moneySpanAmount").html((+ $(el).val() * each));
                 var cost = 0;
                 var num = 0;
                 $(".'.$spinnerClass.'").each(function() {
@@ -499,7 +507,7 @@
                 $userNameDiv->addSpan($this->username, $prefix.'UsernameSpan');
               } else {
                 $prefix = 'adminUsers';
-                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv', 'noInput');
+                $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv');
                 $usersNewUsernameDiv->addCss('width', '222px');
                 $usersNewUsernameDiv->inlineBlock = TRUE;
                 $usersNewUsernameDiv->addCss('display', 'inline-block');
