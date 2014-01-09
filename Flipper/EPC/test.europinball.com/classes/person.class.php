@@ -544,7 +544,7 @@
                             content: data.reason,
                             trigger: "custom",
                             position: "right",
-                            offsetX: 0,
+                            offsetX: 222,
                             timer: 5000
                           });
                           $("#'.$prefix.'UsernameSpan").tooltipster("show");
