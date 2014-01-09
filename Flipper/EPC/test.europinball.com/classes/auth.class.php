@@ -467,6 +467,7 @@
                   if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val() == $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").val()) {
                     if ($("#'.$prefix.(($new) ? 'u' : 'newU').'sername").val().match(/^[a-zA-Z0-9\-_]{3,32}$/)) {
                       if ($("#'.$prefix.(($new) ? 'p' : 'newP').'assword").val().length > 5) {
+                alert("på dig");
                         $("#'.$prefix.(($new) ? 'new' : 'change').'UserForm").submit();
                       } else {
                         $("#'.$prefix.'verify'.(($new) ? '' : 'New').'Password").tooltipster("update", "The password must be at least six characters long...").tooltipster("show");
