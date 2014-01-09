@@ -154,6 +154,9 @@
         break;
         case 'inlineBlock':
           if ($value) {
+            if ($this->id == 'adminUsersUsernameDiv') {
+              debug('hej');
+            }
             $this->settings['display'] = 'inline-block';
             $this->crlf = "\n";
             $this->contentCrlf = '';
