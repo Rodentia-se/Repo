@@ -523,9 +523,7 @@
                           $("#'.$prefix.'UsernameDiv").html(data.username);
                         }
                       });
-                    } else {
-                      $("#'.$prefix.'username").tooltipster("update", "Password not changed").tooltipster("show");
-                    }
+                    });
                   });
                 ');
               }
