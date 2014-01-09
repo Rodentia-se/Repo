@@ -2,6 +2,8 @@
 
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
+
+    config::$debug = TRUE;
   
   debug($_REQUEST);
   debug($_SESSION);
