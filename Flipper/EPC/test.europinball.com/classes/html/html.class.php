@@ -157,9 +157,6 @@
             $this->settings['display'] = 'inline-block';
             $this->crlf = "\n";
             $this->contentCrlf = '';
-            if ($this->id == 'adminUsersUsernameDiv') {
-              debug($this->settings);
-            }
           } else {
             $this->settings['display'] = 'block';
             $this->crlf = "\n";
