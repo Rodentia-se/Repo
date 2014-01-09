@@ -7,7 +7,7 @@
   debug($_SESSION);
   $person = person('login');
   debug($person);
-  $person = person($_REQUEST['person_id');
+  $person = person($_REQUEST['person_id']);
   debug($person);
 
 /*
