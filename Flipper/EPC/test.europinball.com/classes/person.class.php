@@ -511,7 +511,7 @@
                 $usersNewUsernameButton->addClick('
                   $("#'.$prefix.'newUserDiv").dialog("open");
                 ');
-                $usersNewUsernameButton->addTooltip('');
+                $userNameDiv->addTooltip('', '#'.$usersNewUsernameDiv->id);
               }
             //$userNameDiv
             $passwordDiv = $usersDiv->addDiv($prefix.'usersPasswordDiv');
@@ -540,7 +540,7 @@
                           $("#'.$usersNewUsernameButton->id.'").hide();
                           $("#'.$newPassword->id.'").prop("disabled", false);
                           $("#'.$setPasswordButton->id.'").button("enable");
-                          $("#'.$usersNewUsernameButton->id.'").tooltipster("update", data.reason).tooltipster("show");
+                          $("#'.$usersNewUsernameDiv->id.'").tooltipster("update", data.reason).tooltipster("show");
                         }
                       });
                       event.preventDefault();
