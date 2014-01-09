@@ -537,8 +537,9 @@
                         if (data.valid) {
                           $("#'.$prefix.'newUserDiv").dialog("close");
                           $("#'.$usersNewUsernameDiv->id.'").html(data.username);
+                          $("#'.$usersNewUsernameButton->.'").hide();
                           $("#'.$newPassword->id.'").prop("disabled", false);
-                          $("#'.$setPasswordButton->id.'").prop("disabled", false);
+                          $("#'.$setPasswordButton->id.'").button("enable");
                           $("#'.$usersNewUsernameButton->id.'").tooltipster("update", data.reason).tooltipster("show");
                         }
                       });
