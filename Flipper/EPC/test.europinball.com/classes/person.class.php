@@ -500,8 +500,10 @@
               } else {
                 $prefix = 'adminUsers';
                 $usersNewUsernameDiv = $userNameDiv->addDiv($prefix.'UsernameDiv');
+                $usersNewUsernameDiv->addCss('width', '300px');
                 $usersNewUsernameDiv->addContent('No username found!');
-                $usersNewUsernameButton = $usersNewUsernameDiv->addButton('Add login credentials');
+                $usersNewUsernameButton = $userNameDiv->addButton('Add login credentials');
+                $usersNewUsernameButton->addCss('float', 'right');
                 $newUserDialogDiv = $userNameDiv->addDiv();
                 $newUserDialogDiv->addContent(page::getNewUser($title = 'Add login for '.$this->name, $this->id, $prefix, NULL, TRUE, $autoopen = FALSE));
                 $newUserDialogDiv->escape = FALSE;
