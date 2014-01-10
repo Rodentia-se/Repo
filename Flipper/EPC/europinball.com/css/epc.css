@@ -219,7 +219,8 @@ td.icon img {
 
 @-moz-document url-prefix() {
   td.icon img { 
-  position: static;
+    position: static;
+  }
 }
 
 .toCopy {
