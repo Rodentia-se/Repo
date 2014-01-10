@@ -217,6 +217,11 @@ td.icon img {
   position: absolute;
 }
 
+@-moz-document url-prefix() {
+  td.icon img { 
+  position: static;
+}
+
 .toCopy {
   font-family: Consolas, "Courier New", Courier, Monospace;
 	background-color: #f4f4f4;
