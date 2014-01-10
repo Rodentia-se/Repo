@@ -211,16 +211,11 @@ img.icon {
 
 td.icon {
   padding: 1px 10px !important;
+  vertical-align: top;
 }
 
 td.icon img {
-  position: absolute;
-}
-
-@-moz-document url-prefix() {
-  td.icon img { 
-    position: static;
-  }
+  display: block;
 }
 
 .toCopy {
