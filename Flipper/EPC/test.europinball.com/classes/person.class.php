@@ -203,7 +203,7 @@
           $player = player($id);
           if ($player) {
             if ($player->waiting) {
-              $this->db->seqWaiting();
+              $division->calcWaiting();
             }
             return $id;
           }
