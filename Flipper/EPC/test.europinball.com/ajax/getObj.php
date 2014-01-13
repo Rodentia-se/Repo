@@ -110,6 +110,7 @@
       } else {
         jsonEcho(failure('Could not identify you. Are you logged in?'), TRUE);
       }
+    case 'members':
     case 'photo':
     case 'edit':
     case 'user':
