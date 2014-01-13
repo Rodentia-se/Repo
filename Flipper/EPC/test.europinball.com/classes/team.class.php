@@ -192,7 +192,11 @@
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
           $members = persons($this, $tournament);
-          debug($members);
+          $persons = persons($tournament);
+          debug(count($persons));
+          foreach ($members as $member) {
+            
+          }
           $membersDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $membersDiv;
         break;
