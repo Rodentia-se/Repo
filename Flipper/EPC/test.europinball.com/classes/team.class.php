@@ -195,7 +195,7 @@
           return $membersDiv;
         break;
         case 'admin':
-          $adminDiv = new div();
+          $adminDiv = new div('teamAdminDiv');
           if ($title) {
             $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
           }
