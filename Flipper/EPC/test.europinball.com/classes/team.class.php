@@ -186,8 +186,13 @@
       switch ($type) {
         case 'members':
         case 'member':
+          $membersDiv = new div();
+          if ($title) {
+            $membersDiv->addH2('Admin options', array('class' => 'entry-title'));
+          }
           $members = players($this, $tournament);
           debug($members);
+          return $membersDiv;
         break;
         case 'admin':
           $adminDiv = new div();
