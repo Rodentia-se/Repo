@@ -260,9 +260,9 @@
                 ${$prefix.$subPrefix.'Select'} = ${$prefix.$subPrefix.'SelectDiv'}->addContent($teams->getSelectObj($prefix.$subPrefix.'teams', NULL, 'Teams'));
                 ${$prefix.$subPrefix.'Select'}->addCombobox();
                 ${$prefix.$subPrefix.'Select'}->addValueSpan('Team ID:');
-                $editSections = ($division->national) ? array('edit', 'members', 'admin') : array('edit', 'photo', 'members', 'admin');
-                foreach ($editSections as $editSection) {
-                  $editScripts .= '
+                ${$prefix.'editSections'} = ($division->national) ? array('edit', 'members', 'admin') : array('edit', 'photo', 'members', 'admin');
+                foreach (${$prefix.'editSections'} as $editSection) {
+                  ${$prefix.'editScripts'} .= '
                     $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "team", type: "'.$editSection.'", id: $(this).val()})
                     .done(function(data) {
                       $("#" + el.id + "'.ucfirst($editSection).'Div").html(data);
@@ -279,8 +279,8 @@
                   $("#" + el.id + "Tabs").hide();
                   if ($(el).val() != 0) {
                     $("body").addClass("modal");
-                    var modals = '.count($editSections).';
-                    '.$editScripts.'
+                    var modals = '.count(${$prefix.'editSections'}).';
+                    '.${$prefix.'editScripts'}.'
                   }
                 ');
                 ${$prefix.'Div'}->addFocus('#'.${$prefix.$subPrefix.'Select'}->id.'_combobox', TRUE);
