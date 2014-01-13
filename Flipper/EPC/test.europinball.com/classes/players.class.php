@@ -35,7 +35,7 @@
         }
       }
       if (isTeam($data)) {
-        $tournament = ($this->tournamentEdition) ? $this->tournamentEdition : getTournament($prop);
+        $tournament = ($this->tournamentEdition) ? $this->tournamentEdition : getTournament($prop); 
         $division = getDivision($tournament, 'main');
         if (isTournament($tournament)) {
           $data = '
