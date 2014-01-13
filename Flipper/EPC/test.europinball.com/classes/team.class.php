@@ -189,7 +189,7 @@
           $membersDiv = new div();
           $membersDiv->addH2('Admin options', array('class' => 'entry-title'));
           $members = players($this, $tournament);
-          debug($members);
+          debug($members, 'members');
           return $membersDiv;
         break;
         case 'admin':
