@@ -125,6 +125,10 @@
           $where = true;
         }
       }
+      if ($class == 'team') {
+        debug($query);
+        debug($values);
+      }
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
