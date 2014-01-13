@@ -273,7 +273,7 @@
                 var el = this;
                 var combobox = document.getElementById(el.id + "_combobox");
                 $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.id, value: $(el).val()})
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: $(el).val()})
                 .done(function(data) {
                   $(combobox).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -299,9 +299,6 @@
                     $(el).val($(el).data("previous"));
                   }
                 })
-                .fail(function(jqHXR,status,error) {
-                  $(combobox).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
-                })
               });
               $(".custom-combobox-input").tooltipster({
                 theme: ".tooltipster-light",
@@ -321,7 +318,7 @@
                 var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
                 var continent_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'continent_id").val() : null;
                 $(el).tooltipster("update", "Updating the database...").tooltipster("show");
-                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.id, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: value, region_id: region_id, country_id: country_id, continent_id: continent_id})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
@@ -333,9 +330,6 @@
                       $(el).val($(el).data("previous"));
                     }
                   }
-                })
-                .fail(function(jqHXR,status,error) {
-                  $(el).tooltipster("update", "Fail: S: " + status + " E: " + error).tooltipster("show");
                 })
               })
               .tooltipster({
