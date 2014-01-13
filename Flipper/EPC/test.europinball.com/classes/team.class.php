@@ -237,9 +237,8 @@
         case 'team':
         default:
           $prefix = $prefix.'Team';
-          $comboboxClass = 'combobox';
-          $editClass = 'edit';
-          $dateClass = 'date';
+          $comboboxClass = $prefix.'combobox';
+          $editClass = $prefix.'edit';
           $profileDiv = new div($prefix.'EditDiv');
             $profileDiv->addH2((($title) ? $title : 'Edit profile'), array('class' => 'entry-title'));
             $profileDiv->addParagraph('Note: All changes below are INSTANT when you press enter or move away from the field.', NULL, 'italic');
