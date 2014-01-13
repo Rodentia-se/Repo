@@ -64,6 +64,13 @@
       'continent',
     );
 
+    public static $validators = array(
+      'dateRegistered' => 'validateDate',
+      'shortName' => '/^[a-zA-Z0-9 \-]{1,3}$/',
+      'initials' => '/^[a-zA-Z0-9 \-]{1,3}$/',
+      'tag' => '/^[a-zA-Z0-9 \-]{1,3}$/'
+    );
+
     public function __construct($data = NULL, $search = config::NOSEARCH, $depth = NULL) {
       $persons = array('current', 'active', 'login', 'auth');
       $divisions = array_merge(array('current', 'active'), config::$divisions);
