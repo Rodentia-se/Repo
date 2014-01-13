@@ -188,7 +188,7 @@
         case 'member':
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
-          $members = players($this);
+          $members = players($this, $tournament);
           debug($members, 'members');
           return $membersDiv;
         break;
