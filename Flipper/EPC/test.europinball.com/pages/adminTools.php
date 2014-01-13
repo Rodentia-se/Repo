@@ -252,7 +252,7 @@
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
           ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
-            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($teams->getSelectObj($prefix.'Teams', NULL, 'Teams'));
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($teams->getSelectObj($prefix.'teams', NULL, 'Teams'));
             ${$prefix.'Select'}->addCombobox();
             ${$prefix.'Select'}->addValueSpan('Team ID:');
             $editSections = array('edit', 'photo', 'members', 'admin');
@@ -280,7 +280,7 @@
             ');
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
           //$teamsSelectDiv
-          $teamEditTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
+          $teamEditTabs = ${$prefix.'Div'}->addTabs(NULL, ${$prefix.'Select'}.'Tabs', 'hidden');
             $teamEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'EditDiv', NULL, array('data-title' => 'Team profile'));
             //$teamEditDiv
             $teamPhotoEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'PhotoDiv', NULL, array('data-title' => 'Team photo/logo'));
