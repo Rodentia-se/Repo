@@ -248,8 +248,6 @@
           ');
         //}
         $prefix = 'teams';
-        debug($teams);
-        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);        
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
