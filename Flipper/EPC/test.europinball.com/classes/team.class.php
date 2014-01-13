@@ -187,18 +187,14 @@
         case 'members':
         case 'member':
           $membersDiv = new div();
-          if ($title) {
-            $membersDiv->addH2('Admin options', array('class' => 'entry-title'));
-          }
+          $membersDiv->addH2('Admin options', array('class' => 'entry-title'));
           $members = players($this, $tournament);
           debug($members);
           return $membersDiv;
         break;
         case 'admin':
           $adminDiv = new div('teamAdminDiv');
-          if ($title) {
-            $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
-          }
+          $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
           return $adminDiv;
           break;
           $adminDiv->addH2('Waiting list', array('class' => 'entry-title'));
