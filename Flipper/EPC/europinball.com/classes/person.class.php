@@ -373,7 +373,7 @@
           if ($title) {
             $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
           }
-          $adminDiv->addH2('Waiting list', array('class' => 'entry-title'));
+          $adminDiv->addH2('Waiting list ('.$this->name.')', array('class' => 'entry-title'));
           $adminDiv->addParagraph('Click the checkboxes to except players from the waiting list for each division,', NULL, 'italic');
           foreach (config::$activeSingleDivisions as $divisionType) {
             $division = division($tournament, $divisionType);

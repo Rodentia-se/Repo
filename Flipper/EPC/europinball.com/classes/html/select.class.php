@@ -196,7 +196,7 @@
     }
     
     public function addValueSpan($label = 'Value:') {
-      $span = new span('none', $this->id.'ValueSpan');
+      $span = new span((($this->params['data-previous']) ? $this->params['data-previous'] : 'none'), $this->id.'ValueSpan');
       if (isHtml($label) && get_class($label) == 'label') {
         $spanLabel = $label;
       } else if ($label) {
