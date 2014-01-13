@@ -191,12 +191,13 @@
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
           $members = players($this, $tournament);
-          debug($members, 'members');
+          $membersDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $membersDiv;
         break;
         case 'admin':
           $adminDiv = new div('teamAdminDiv');
           $adminDiv->addH2('Admin options', array('class' => 'entry-title'));
+          $adminDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $adminDiv;
           break;
           $adminDiv->addH2('Waiting list', array('class' => 'entry-title'));
