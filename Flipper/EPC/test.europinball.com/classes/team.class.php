@@ -205,10 +205,6 @@
           $adminDiv->addParagraph('Click the checkboxes to except players from the waiting list for each division,', NULL, 'italic');
           foreach (config::$activeSingleDivisions as $divisionType) {
             $division = division($tournament, $divisionType);
-            debug ($division);
-            echo '<pre>';
-            var_dump($division);
-            echo '</pre>';
             $player = ($this->id) ? player($this, $division) : NULL;
             $div = $adminDiv->addDiv(NULL, 'divisionsDiv'); 
             $checkbox = $div->addCheckbox('adminNoWaiting'.$divisionType, $player->noWaiting, array('class' => 'nowaiting'));

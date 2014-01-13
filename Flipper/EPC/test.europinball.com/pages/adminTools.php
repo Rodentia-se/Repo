@@ -254,6 +254,11 @@
             $teamDivisionTabs = ${$prefix.'Div'}->addTabs(NULL, ${$prefix.'Div'}->id.'Tabs');
             foreach (config::$activeTeamDivisions as $divisionType) {
               $division = division($tournament, $divisionType);
+            debug ($division);
+            echo '<pre>';
+            var_dump($division);
+            echo '</pre>';
+
               $subPrefix = $divisionType;
               $teams = teams($tournament, $divisionType);
               ${$prefix.$subPrefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
