@@ -184,6 +184,11 @@
     public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
+        case 'members':
+        case 'member':
+          $members = players($this, $tournament);
+          debug($members);
+        break;
         case 'admin':
           $adminDiv = new div();
           if ($title) {
