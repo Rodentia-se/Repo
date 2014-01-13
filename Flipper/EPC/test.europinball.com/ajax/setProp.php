@@ -163,7 +163,7 @@
                       $validator = $class::validate($prop, $value, TRUE);
                       if ($validator->valid || ($prop === 'password' && $loginPerson->admin)) {
                         if ($obj->setProp($prop, $value)) {
-                          $json = success((($value) ? 'Changed '.$prop.(($prop != 'password') ? ' to '.$value : '') : 'Removed '.$prop).' for '.(($prop == 'name') ? '.$class.' ID '.$obj->id : $obj->name));
+                          $json = success((($value) ? 'Changed '.$prop.(($prop != 'password') ? ' to '.$value : '') : 'Removed '.$prop).' for '.(($prop == 'name') ? $class.' ID '.$obj->id : $obj->name));
                         } else {
                           $json = failure('Property assignment failed');
                         }
