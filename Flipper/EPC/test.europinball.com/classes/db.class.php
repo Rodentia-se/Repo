@@ -79,9 +79,6 @@
     }
     
     protected function getRows($sth, $class = null) {
-      if ($class == 'team') {
-        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);        
-      }
       $rowCount = $this->getRowCount();
       if ($rowCount > 0) {
         $objs = ($class) ? new $class::$arrClass() : array();
