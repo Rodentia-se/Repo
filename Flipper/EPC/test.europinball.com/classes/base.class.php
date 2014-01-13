@@ -80,7 +80,6 @@
               $searchClass = get_class($search);
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
               $objSearch[$searchTable.'_id'] = $search->id;
-              debug($objSearch);
             }
             if (isObj($depth) && isId($depth->id)) {
               $depthClass = get_class($depth);
