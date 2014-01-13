@@ -125,11 +125,6 @@
           $where = true;
         }
       }
-      if ($class == 'team') {
-        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);        
-        debug($query);
-        debug($values);
-      }
       $sth = $this->prepare($query);
       if (!$sth->execute($values)) {
         return FALSE;
