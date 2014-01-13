@@ -189,17 +189,32 @@
       switch ($type) {
         case 'members':
         case 'member':
+          $comboboxClass = $prefix.'MembersCombobox';
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
           $members = persons($this, $tournament);
           $persons = ($this->national) ? persons($tournament, $this->country) : persons($tournament);
-          debug(count($persons));
           for ($i = 0; $i < $this->tournamentDivision->teamMembers; $i++) {
             ${$prefix.$i.'SelectDiv'} = $membersDiv->addDiv();
-              ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'member'));
+              ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'member', array('class' => $comboboxClass)));
               ${$prefix.$i.'Select'}->addCombobox();
               ${$prefix.$i.'Select'}->addValueSpan('Person ID:');
           }
+          $membersDiv->addScriptCode('
+            $(".'.$comboboxClass.'").change(function(){
+              var el = this;
+              var combobox = document.getElementById(el.id + "_combobox");
+              $(combobox).tooltipster("update", "Not implemented yet, coming soon...").tooltipster("show");
+            });
+            $(".custom-combobox-input").tooltipster({
+              theme: ".tooltipster-light",
+              content: "Not implemented yet, coming soon...",
+              trigger: "custom",
+              position: "right",
+              offsetX: 38,
+              timer: 3000
+            });
+          ');
           $membersDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $membersDiv;
         break;
