@@ -195,6 +195,7 @@
           $persons = persons($tournament);
           debug(count($persons));
           for ($i = 0; $i < $division->teamMembers; $i++) {
+            debug($i);
             ${$prefix.$i.'SelectDiv'} = $membersDiv->addDiv();
               ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'member'));
               ${$prefix.$i.'Select'}->addCombobox();
