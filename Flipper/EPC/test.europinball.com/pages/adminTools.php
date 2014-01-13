@@ -258,6 +258,7 @@
                 $teams = teams($division); 
                 debug($division);
                 ${$prefix.$subPrefix.'Div'} = ${$prefix.'DivisionTabs'}->addDiv($prefix.$subPrefix.'Div');
+                  ${$prefix.$subPrefix.'Div'}->dataTitle = $division->divisionName;
                   ${$prefix.$subPrefix.'SelectDiv'} = ${$prefix.$subPrefix.'Div'}->addDiv();
                     ${$prefix.$subPrefix.'Select'} = ${$prefix.$subPrefix.'SelectDiv'}->addContent($teams->getSelectObj($prefix.$subPrefix.'teams', NULL, 'Teams'));
                     ${$prefix.$subPrefix.'Select'}->addCombobox();
