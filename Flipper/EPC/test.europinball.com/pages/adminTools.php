@@ -11,6 +11,7 @@
     $volunteer = volunteer('login');
     $tournament = tournament('active');
     $persons = persons($tournament);
+    $teams = teams($tournament);
     $volunteers = volunteers($tournament);
     $adminDiv = new div('adminDiv');
     if ($volunteer->receptionist) {
@@ -250,6 +251,47 @@
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
           ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+          ${$prefix.'SelectDiv'} = ${$prefix.'Div'}->addDiv();
+            ${$prefix.'Select'} = ${$prefix.'SelectDiv'}->addContent($teams->getSelectObj($prefix.'Teams', NULL, 'Teams'));
+            ${$prefix.'Select'}->addCombobox();
+            ${$prefix.'Select'}->addValueSpan('Team ID:');
+            $editSections = array('edit', 'photo', 'members', 'admin');
+            foreach ($editSections as $editSection) {
+              $editScripts .= '
+                $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "team", type: "'.$editSection.'", id: $(this).val()})
+                .done(function(data) {
+                  $("#" + el.id + "'.ucfirst($editSection).'Div").html(data);
+                  modals--;
+                  if (modals == 0) {
+                    $("body").removeClass("modal");
+                    $("#" + el.id + "Tabs").show();
+                  }
+                });
+              ';
+            }
+            ${$prefix.'Select'}->addChange('
+              var el = this;
+              $("#" + el.id + "Tabs").hide();
+              if ($(el).val() != 0) {
+                $("body").addClass("modal");
+                var modals = '.count($editSections).';
+                '.$editScripts.'
+              }
+            ');
+            ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
+          //$teamsSelectDiv
+          $teamEditTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
+            $teamEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'EditDiv', NULL, array('data-title' => 'Team profile'));
+            //$teamEditDiv
+            $teamPhotoEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'PhotoDiv', NULL, array('data-title' => 'Team photo/logo'));
+            //$teamPhotoEditDiv
+            $teamMembersEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'MembersDiv', NULL, array('data-title' => 'Team members'));
+            //$teamMembersEditDiv
+            $teamAdminEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
+            //$teamAdminEditDiv
+            $teamEditTabs->addCss('margin-top', '15px');
+          //$teamsEditDiv
+        //$teamEditTabs
           ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
         //${$prefix.'Div'}
         $prefix = 'groups';
