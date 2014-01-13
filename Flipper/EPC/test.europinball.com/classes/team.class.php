@@ -119,6 +119,7 @@
           }
         }
       }
+        debug_print_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS);        
       parent::__construct($data, $search, $depth);
     }
 
