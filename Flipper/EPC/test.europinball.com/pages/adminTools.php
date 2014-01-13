@@ -255,7 +255,7 @@
               foreach (config::$activeTeamDivisions as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $subPrefix = $divisionType;
-                $teams = teams($division);
+                $teams = teams($division); 
                 debug($division);
                 ${$prefix.$subPrefix.'Div'} = ${$prefix.'DivisionTabs'}->addDiv($prefix.$subPrefix.'Div');
                   ${$prefix.$subPrefix.'SelectDiv'} = ${$prefix.$subPrefix.'Div'}->addDiv();
