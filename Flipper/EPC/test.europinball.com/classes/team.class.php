@@ -315,7 +315,7 @@
                 var el = this;
                 if (el.id == "'.$prefix.'shortName") {
                   $(el).val($(el).val().toUpperCase());
-                } 
+                }  
                 var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
                 var region_id = (this.id == "'.$prefix.'city") ? $("#'.$prefix.'region_id").val() : null;
                 var country_id = (this.id == "'.$prefix.'city" || this.id == "'.$prefix.'region") ? $("#'.$prefix.'country_id").val() : null;
