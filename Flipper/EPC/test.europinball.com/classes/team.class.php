@@ -194,8 +194,11 @@
           $members = persons($this, $tournament);
           $persons = persons($tournament);
           debug(count($persons));
-          foreach ($members as $member) {
-            
+          for ($i = 0; $i < $division->teamMembers; $i++) {
+            ${$prefix.$i.'SelectDiv'} = ${$prefix.$i.'Div'}->addDiv();
+              ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $member[$i]->id, 'member'));
+              ${$prefix.$i.'Select'}->addCombobox();
+              ${$prefix.$i.'Select'}->addValueSpan('Person ID:');
           }
           $membersDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $membersDiv;
