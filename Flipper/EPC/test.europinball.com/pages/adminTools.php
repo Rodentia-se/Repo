@@ -279,7 +279,7 @@
               }
             ');
             ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
-          //$teamsSelectDiv
+          //$teamsSelectDiv 
           $teamEditTabs = ${$prefix.'Div'}->addTabs(NULL, ${$prefix.'Select'}.'Tabs', 'hidden');
             $teamEditDiv = $teamEditTabs->addDiv(${$prefix.'Select'}->id.'EditDiv', NULL, array('data-title' => 'Team profile'));
             //$teamEditDiv
