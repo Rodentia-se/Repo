@@ -60,6 +60,8 @@
             $objs = $this->db->getObjectsByProps(static::$objClass, $props, $cond);
           } else {
             $prop = (property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data);
+            debug($data);
+            debug($prop);
             $objs = $this->db->getObjectsByProp(static::$objClass, $prop.'_id', $data->id);
           }
         }
