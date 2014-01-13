@@ -185,12 +185,14 @@
 
     public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
+      $prefix = $prefix.'Team';
       switch ($type) {
         case 'members':
         case 'member':
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
-          $members = players($this, $tournament);
+          $members = persons($this, $tournament);
+          debug($members);
           $membersDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');
           return $membersDiv;
         break;
@@ -239,7 +241,6 @@
         case 'player':
         case 'team':
         default:
-          $prefix = $prefix.'Team';
           $comboboxClass = $prefix.'combobox';
           $editClass = $prefix.'edit';
           $profileDiv = new div($prefix.'EditDiv');
