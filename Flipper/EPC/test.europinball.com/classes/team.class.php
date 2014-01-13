@@ -169,14 +169,9 @@
       if (!preg_match('/^[a-zA-ZåäöÅÄÖüÛïÎëÊÿŸçßéÉæøÆØáÁóÓàÀČčŁłĳŠšŮ0-9 \-_#\$]{3,32}$/', $name)) {
         return validated(FALSE, 'The name must be at least three character and can only include a-Z, A-Z, most of ÜÅÄÖ and similar, 0-9, spaces, #, $, dashes and underscores.', $obj);
       } else {
-        $team = team('name', $name);
+        $team = team($name, 'name');
         if ($team) {
-          $currentTeam = team('current');
-          if ($team->id == $currentTeam->id) {
-            return validated(TRUE, 'That name does already belong to your team, you didn\'t change it.', $obj);
-          } else {
-            return validated(FALSE, 'That name is already taken.', $obj);
-          }
+          return validated(FALSE, 'That name is already taken.', $obj);
         }
       }
       return validated(TRUE, 'That name is up for grabs.', $obj);
