@@ -194,6 +194,7 @@
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
           $members = persons($this, $tournament);
           $persons = ($this->national) ? persons($tournament, $this->country) : persons($tournament);
+          debug($this->tournamentDivision->teamMembers); 
           for ($i = 0; $i < $this->tournamentDivision->teamMembers; $i++) {
             ${$prefix.$i.'SelectDiv'} = $membersDiv->addDiv();
               ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'member', array('class' => $comboboxClass)));
