@@ -198,7 +198,7 @@
           $persons = ($this->national) ? persons($tournament, $this->country) : persons($tournament);
           for ($i = 0; $i < $division->teamMembers; $i++) {
             ${$prefix.$i.'SelectDiv'} = $membersDiv->addDiv();
-              ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'member', array('class' => $comboboxClass)));
+              ${$prefix.$i.'Select'} = ${$prefix.$i.'SelectDiv'}->addContent($persons->getSelectObj($prefix.$i.'member', $members[$i]->id, 'Member', array('class' => $comboboxClass)));
               ${$prefix.$i.'Select'}->addCombobox();
               ${$prefix.$i.'Select'}->addValueSpan('Person ID:');
           }
