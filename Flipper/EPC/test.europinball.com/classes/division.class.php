@@ -91,12 +91,21 @@
         $data = array($data => 1);
         $search = TRUE;
       }
-      if (isObj($data) && get_class($data) == 'tournament') {
+      if (isTournament($data)) {
         $search = (is_string($search) && in_array($search, config::$divisions)) ? $search : 'main';
         $data = array(
           'tournamentEdition_id' => $data->id, 
           'd.'.$search => 1
         );
+      }
+      if (isPlayer($data)) {
+        $data = $data->tournamentDivision_id;
+      }
+      if (isPlayer($search)) {
+        $search = $search->tournamentDivision_id;
+      }
+      if (isPlayer($depth)) {
+        $depth = $depth->tournamentDivision_id;
       }
       parent::__construct($data, $search, $depth);
     }
