@@ -193,6 +193,9 @@
           $membersDiv = new div();
           $membersDiv->addH2('Team members', array('class' => 'entry-title'));
           $members = persons($this, $tournament);
+          $player = player($this, $tournament);
+          $division = division($player);
+          denug($division);
           $persons = ($this->national) ? persons($tournament, $this->country) : persons($tournament);
           debug($this->tournamentDivision->teamMembers); 
           for ($i = 0; $i < $this->tournamentDivision->teamMembers; $i++) {
