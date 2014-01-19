@@ -105,7 +105,19 @@
       return in_array($this->id, config::$activeDivisions);
     }
     
+    public function updatePaid() {
+      $query = '
+        update player pl 
+          left join person p 
+            on pl.person_id = p.id 
+          set pl.paid = p.paid 
+          where p.paid is not null;
+      ';
+      return $this->db->update($query);
+    }
+    
     public function calcWaiting($number = NULL) {
+      $this->updatePaid();
       $query = '
         update player 
           right join (
