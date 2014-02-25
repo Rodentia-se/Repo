@@ -82,7 +82,7 @@
             //$waitingDiv
           }
           $personMailAddresses = $persons->getListOf('mailAddress');
-          $mainPlayers = players('main');
+          $mainPlayers = players(division('main'));
           debug($mainPlayers);
           $inTournamentPersons = $mainPlayers->getFiltered('waiting', 0, '>', TRUE);
           $inTournamentMailAddresses = $inTournamentPersons->getListOf('mailAddress'); 
