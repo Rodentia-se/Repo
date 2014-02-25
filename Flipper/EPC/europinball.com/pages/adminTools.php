@@ -83,7 +83,6 @@
           }
           $personMailAddresses = $persons->getListOf('mailAddress');
           $mainPlayers = players(division('main'));
-          debug($mainPlayers);
           $inTournamentPersons = $mainPlayers->getFiltered('waiting', 0, '>', TRUE);
           $inTournamentMailAddresses = $inTournamentPersons->getListOf('mailAddress'); 
           if ($personMailAddresses || $inTournamentMailAddresses) {
@@ -98,7 +97,7 @@
             //}
           }
           if ($personMailAddresses) {
-            $personMailDiv = $personMailTabs->addDiv('personMailDiv', NULL, array('data-title' => 'All players'));
+            $personMailDiv = $personMailTabs->addDiv('personMailDiv', NULL, array('data-title' => 'All registered players'));
               $personMailDiv->addParagraph('Email addresses to all players that have registered an email address, no matter if they are in the tournament or not;');
               $personMailDiv->addParagraph(implode(', ', $personMailAddresses), $prefix.'mailAddresses', 'toCopy');
             //}
