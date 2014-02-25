@@ -92,7 +92,7 @@
           }
           if ($inTournamentMailAddresses) {
             $inTournamentMailDiv = $personMailTabs->addDiv('inTournamentMailDiv', NULL, array('data-title' => 'Players in the tournament'));
-              $inTournamentMailDiv->addParagraph('Email addresses to the '.config::$participationLimit.' players that are in the tournament, i.e. NOT on the waiting list');
+              $inTournamentMailDiv->addParagraph('Email addresses to the '.config::$participationLimit['main'].' players that are in the tournament, i.e. NOT on the waiting list');
               $inTournamentMailDiv->addParagraph(implode(', ', $inTournamentMailAddresses), $prefix.'inTournamentMailAddresses', 'toCopy');
             //}
           }
