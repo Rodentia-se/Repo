@@ -82,11 +82,24 @@
             //$waitingDiv
           }
           $personMailAddresses = $persons->getListOf('mailAddress');
-          if ($personMailAddresses) {
+          $inTournamentPersons = $person->getFiltered('waiting', NULL);
+          $inTournamentMailAddresses = $inTournamentPersons->getListOf('mailAddress'); 
+          if ($personMailAddresses || $inTournamentMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
-            ${$prefix.'Div'}->addParagraph('Email addresses to all players that have registered their email address. Click in the box to copy the addresses to your clipboard.');
-            ${$prefix.'Div'}->addParagraph(implode(', ', $personMailAddresses), $prefix.'mailAddresses', 'toCopy');
-            ${$prefix.'Div'}->addParagraph('More coming soon...')->style = 'margin-top: 15px';
+            ${$prefix.'Div'}->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
+            $personMailTabs = ${$prefix.'Div'}->addTabs(NULL, 'personMailTabs');
+          }
+          if ($inTournamentMailAddresses) {
+            $inTournamentMailDiv = $personMailTabs->addDiv('inTournamentMailDiv', NULL, array('data-title' => 'Players in the tournament'));
+              $inTournamentMailDiv->addParagraph('Email addresses to the '..' players that are in the tournament, i.e. NOT on the waiting list');
+              $inTournamentMailDiv->addParagraph(implode(', ', $inTournamentMailAddresses), $prefix.'inTournamentMailAddresses', 'toCopy');
+            //}
+          }
+          if ($personMailAddresses) {
+            $personMailDiv = $personMailTabs->addDiv('personMailDiv', NULL, array('data-title' => 'All players'));
+              $personMailDiv->addParagraph('Email addresses to all players that have registered an email address, no matter if they are in the tournament or not;');
+              $personMailDiv->addParagraph(implode(', ', $personMailAddresses), $prefix.'mailAddresses', 'toCopy');
+            //}
           }
         //Players
         $prefix = 'users';
