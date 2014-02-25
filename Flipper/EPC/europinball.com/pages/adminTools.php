@@ -82,7 +82,7 @@
             //$waitingDiv
           }
           $personMailAddresses = $persons->getListOf('mailAddress');
-          $inTournamentPersons = $person->getFiltered('waiting', NULL);
+          $inTournamentPersons = $person->getFiltered('waiting', 0, '>', TRUE);
           $inTournamentMailAddresses = $inTournamentPersons->getListOf('mailAddress'); 
           if ($personMailAddresses || $inTournamentMailAddresses) {
             ${$prefix.'Div'}->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
