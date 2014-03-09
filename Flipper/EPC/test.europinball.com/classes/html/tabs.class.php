@@ -66,6 +66,9 @@
           $("#'.$this->id.'").tabs({
             active: tab'.$this->id.'Index,
             activate: function(event, ui) {
+              if ($(ui.panel).is(":empty")) {
+                $(ui.panel).append("<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\">Loading...</div>")
+              }
               dataStore.setItem("tab'.$this->id.'Index", ui.newTab.parent().children().index(ui.newTab));
               var firstField = ui.newPanel.find("input[type=text],textarea,select").filter(":visible:first");
               if (firstField) {
@@ -73,6 +76,12 @@
               }
             },
             create: function(event, ui) {
+              var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
+              if (firstField) {
+                firstField.focus();
+              }
+            },
+            load: function(event, ui) {
               var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
               if (firstField) {
                 firstField.focus();
