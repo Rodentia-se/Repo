@@ -5,10 +5,18 @@
 
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
+    $division = division('main');
+    $persons = persons($division);
     $prefix = 'groups';
     ${$prefix.'Div'} = new div($prefix.'Div');
       ${$prefix.'Div'}->data_title = ucfirst($prefix);
       ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
+      $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
+        $qualGroups = qualGroups($division);
+        foreach ($qualGroups as $qualGroup) {
+          $tabs->addAjaxTab(config::$baseHref.'/ajax/admin/qualGroup.php', ucfirst($adminTab));
+        }
+      //$tabs
       ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
     //${$prefix.'Div'}
     echo ${$prefix.'Div'}->getHtml();
