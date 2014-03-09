@@ -6,6 +6,7 @@
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
 
+    $tournament = tournament('active');
     $persons = persons($tournament);
     $volunteers = volunteers($tournament);
       $prefix = 'users';
