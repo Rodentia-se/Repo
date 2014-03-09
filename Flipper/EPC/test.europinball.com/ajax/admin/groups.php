@@ -15,7 +15,7 @@
         $qualGroups = qualGroups($division);
         $qualGroups->order('acronym');
         foreach ($qualGroups as $qualGroup) {
-          $tabs->addAjaxTab(config::$baseHref.'/ajax/object.php?obj=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
+          $tabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
         }
       //$tabs
       ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
