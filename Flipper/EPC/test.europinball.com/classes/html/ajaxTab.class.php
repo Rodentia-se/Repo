@@ -4,9 +4,6 @@
     
     public function __construct($url = NULL, $text = 'link', array $params = NULL) {
       $params['data-title'] = ($params['data-title']) ? $params['data-title'] : $text;
-      if (is_string($text) || get_class($text) != 'span') {
-        $text = new span($text);
-      }
       parent::__construct($url, $text, $params);
     }
 //    public function __construct($url = NULL, $text = 'link', array $params = NULL) {
