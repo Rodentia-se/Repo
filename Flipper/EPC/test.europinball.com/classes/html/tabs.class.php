@@ -64,6 +64,7 @@
           };
           tab'.$this->id.'Index = (parseInt(tab'.$this->id.'Index)) ? parseInt(tab'.$this->id.'Index) : 0;
           $("#'.$this->id.'").tabs({
+            cache: true,
             active: tab'.$this->id.'Index,
             activate: function(event, ui) {
               if ($(ui.panel).is(":empty")) {
