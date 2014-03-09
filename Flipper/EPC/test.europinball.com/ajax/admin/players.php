@@ -1,4 +1,3 @@
-    $volunteer = volunteer('login');
     $tournament = tournament('active');
     $persons = persons($tournament);
     $volunteers = volunteers($tournament);

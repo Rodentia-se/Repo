@@ -48,6 +48,7 @@
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
           $li->addLink(((get_class($content) == 'ajaxTab') ? $content->href : '#'.$content->id), $content->data_title);
+          debug($content);
         }
         return ($string) ? $ul->getHtml() : $ul;
       }
