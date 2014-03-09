@@ -3,10 +3,11 @@
   define('__ROOT__', dirname(dirname(dirname(__FILE__))));
   require_once(__ROOT__.'/functions/init.php');
 
-  $tournament = tournament('active');
-  $persons = persons($tournament);
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
+    
+    $tournament = tournament('active');
+    $persons = persons($tournament);
     $prefix = 'players';
     ${$prefix.'Div'} = new div($prefix.'Div');
       ${$prefix.'Div'}->data_title = ucfirst($prefix);
