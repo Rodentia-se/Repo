@@ -123,7 +123,7 @@
         '.((config::$msg) ? '.tooltipster("show");' :'').'
         $(document).ajaxError(function(event, jqHXR, settings, error) {
           $("body").removeClass("modal");
-          if (error != "canceled") {
+          if (jqHXR.getAllResponseHeaders()) {
             showMsg("Fail: " + error + " trying " + settings.url);
           }
         });
