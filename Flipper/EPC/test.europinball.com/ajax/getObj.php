@@ -59,9 +59,6 @@
         $arrClass = $class::$arrClass;
         $objs = $arrClass($obj);
       } else {
-        debug($class);
-        debug($id);
-        debug($obj);
         jsonEcho(failure('Could not find the '.$class), TRUE);
       }
     } else if (isGroup($class, TRUE)) {
