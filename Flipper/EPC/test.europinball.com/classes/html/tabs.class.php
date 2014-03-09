@@ -77,6 +77,7 @@
                 $(ui.panel).append("<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\">Loading...</div>")
                 return true;
               } else {
+                event.preventDefault();
                 return false;
               }
             },
