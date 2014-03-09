@@ -6,7 +6,7 @@
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
         $prefix = 't-shirts';
-        $tshirtsDiv = $tabs->addDiv($prefix.'Div');
+        $tshirtsDiv = new div($prefix.'Div');
           $tshirtsDiv->data_title = ucfirst($prefix);
           $tshirtsDiv->addH2($tshirtsDiv->data_title, array('class' => 'entry-title'));
           $paymentLevels = $persons->getListOf('paid');
