@@ -26,7 +26,7 @@
         if (get_class($content) == 'ajaxTab') {
           $div = $content;
           $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : (($div->content[0]) ? $div->content[0] : ucfirst($div->id)));
-        } (get_class($content) == 'div') {
+        } else if (get_class($content) == 'div') {
           $div = $content;
           $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : ucfirst($div->id));
         } else {
