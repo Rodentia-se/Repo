@@ -41,8 +41,10 @@
     }
   }
   
+  debug($class);
   if ($class) {
     if (isObj($class, TRUE)) {
+      debug($class, '2');
       if ($id) {
         if (isId($id)) {
           $obj = $class($id);
