@@ -41,17 +41,14 @@
     }
   }
   
-  debug($class);
   if ($class) {
     if (isObj($class, TRUE)) {
-      debug($class, '2');
       if ($id) {
         if (isId($id)) {
           $obj = $class($id);
         } else {
           jsonEcho(failure('Invalid '.$class.' ID '.$id), TRUE);
         }
-        debug($obj);
       } else {
         $data = objCheck($data, $data_id);
         $search = objCheck($search, $search_id);
