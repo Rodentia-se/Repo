@@ -1,3 +1,5 @@
+    $volunteers = volunteers($tournament);
+
         $prefix = 'users';
         ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
           ${$prefix.'Div'}->data_title = ucfirst($prefix);
