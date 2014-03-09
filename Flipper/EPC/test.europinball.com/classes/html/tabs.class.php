@@ -78,6 +78,7 @@
                 return true;
               } else {
                 event.preventDefault();
+                showMsg();
                 return false;
               }
             },
