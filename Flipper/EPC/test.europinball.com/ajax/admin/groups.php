@@ -14,7 +14,7 @@
       $tabs = ${$prefix.'Div'}->addTabs(NULL, 'adminTabs');
         $qualGroups = qualGroups($division);
         foreach ($qualGroups as $qualGroup) {
-          $tabs->addAjaxTab(config::$baseHref.'/ajax/admin/qualGroup.php', ucfirst($adminTab));
+          $tabs->addAjaxTab(config::$baseHref.'/ajax/object.php?obj=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->name));
         }
       //$tabs
       ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
