@@ -41,6 +41,7 @@
       $tshirtsDiv->addTable($rows, $headers)->addDatatables();
       $tshirtOrders = tshirtOrders($tournament);
       $mailAddresses = $tshirtOrders->getListOf('mailAddress');
+      $personMailAddresses = $persons->getListOf('mailAddress');
       $otherAddresses = array_diff($personMailAddresses, $mailAddresses);
       $tshirtsPaidPersons = $persons->getFiltered('paid', 45, '>=');
       $tshirtsPaidAddresses = $tshirtsPaidPersons->getListOf('mailAddress');
