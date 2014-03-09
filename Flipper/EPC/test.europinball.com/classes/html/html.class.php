@@ -788,6 +788,12 @@
       return $element;
     }
 
+    public function addAjaxTab($url = NULL, $contents = 'Tab', array $params = NULL) {
+      $element = new ajaxTab($url, $contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
     public function addParagraph($contents = NULL, $id = NULL, $class = NULL, array $params = NULL) {
       $element = new paragraph($contents, $id, $class, $params);
       $this->addContent($element);

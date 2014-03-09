@@ -23,7 +23,10 @@
         }
         return $return;
       } else if (isHtml($content)) {
-        if (get_class($content) == 'div') {
+        if (get_class($content) == 'ajaxTab') {
+          $div = $content;
+          $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : (($div->content[0]) ? $div->content[0] : ucfirst($div->id)));
+        } (get_class($content) == 'div') {
           $div = $content;
           $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : ucfirst($div->id));
         } else {
@@ -44,7 +47,7 @@
         $ul = new ul();
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
-          $li->addLink('#'.$content->id, $content->data_title);
+          $li->addLink(((get_class($content) == 'ajaxTab') ? $content->href : '#'.$content->id), $content->data_title);
         }
         return ($string) ? $ul->getHtml() : $ul;
       }
