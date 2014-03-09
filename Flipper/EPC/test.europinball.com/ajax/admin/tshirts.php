@@ -1,3 +1,10 @@
+<?php
+
+  define('__ROOT__', dirname(dirname(dirname(__FILE__))));
+  require_once(__ROOT__.'/functions/init.php');
+
+  $volunteer = volunteer('login');
+  if ($volunteer->receptionist) {
         $prefix = 't-shirts';
         $tshirtsDiv = $tabs->addDiv($prefix.'Div');
           $tshirtsDiv->data_title = ucfirst($prefix);
@@ -67,3 +74,9 @@
           }
           $tshirtsDiv->addParagraph('More coming soon...')->addCss('margin-top', '15px');;
         //$tshirtsDiv
+        echo $tshirtsDiv->getHtml();
+      } else {
+        echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
+      }
+
+    ?>
