@@ -11,7 +11,7 @@
     ${$prefix.'Div'} = new div($prefix.'Div');
       ${$prefix.'Div'}->data_title = ucfirst($prefix);
       ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-      $tabs = $adminDiv->addTabs(NULL, 'adminTabs');
+      $tabs = ${$prefix.'Div'}->addTabs(NULL, 'adminTabs');
         $qualGroups = qualGroups($division);
         foreach ($qualGroups as $qualGroup) {
           $tabs->addAjaxTab(config::$baseHref.'/ajax/admin/qualGroup.php', ucfirst($adminTab));
