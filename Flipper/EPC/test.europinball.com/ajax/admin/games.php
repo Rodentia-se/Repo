@@ -5,6 +5,7 @@
 
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
+    $tournament = tournament('active');
     $prefix = 'games';
     ${$prefix.'Div'} = new div($prefix.'Div');
       ${$prefix.'Div'}->data_title = ucfirst($prefix);
