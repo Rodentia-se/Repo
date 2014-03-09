@@ -13,6 +13,7 @@
       ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
       $tabs = ${$prefix.'Div'}->addTabs(NULL, 'groupTabs');
         $qualGroups = qualGroups($division);
+        $qualGroups->order('acronym');
         foreach ($qualGroups as $qualGroup) {
           $tabs->addAjaxTab(config::$baseHref.'/ajax/object.php?obj=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
         }
