@@ -55,21 +55,6 @@
       return NULL;
     }
     
-    protected function getContent($index = NULL, $string = TRUE) {
-      if ($this->contents) {
-        if ($index) {
-          $return = parent::getContent($index, $string);
-          return (get_class($return) == 'ajaxTab') ? NULL : $return;
-        } else {
-          foreach ($this->contents as $index => $content) {
-            $return .= $this->getContent($index, $string);
-          }
-          return $return;
-        }
-      }
-      return NULL;
-    }
-
     protected function getFooter($index = NULL, $string = TRUE) {
       $script = new scriptCode('
         $(document).ready(function() {
