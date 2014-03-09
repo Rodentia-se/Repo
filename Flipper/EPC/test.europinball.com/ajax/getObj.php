@@ -46,7 +46,6 @@
       if ($id) {
         if (isId($id)) {
           $obj = $class($id);
-          debug($obj);
         } else {
           jsonEcho(failure('Invalid '.$class.' ID '.$id), TRUE);
         }
