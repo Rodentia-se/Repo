@@ -201,7 +201,7 @@
     echo($json);
     if (is_int($exit)) {
       exit($exit);
-    else if (is($exit)) {
+    } else if (is($exit)) {
       exit();
     }
     return TRUE;
