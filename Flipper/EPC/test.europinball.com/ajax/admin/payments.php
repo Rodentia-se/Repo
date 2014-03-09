@@ -112,6 +112,7 @@
         });
       ');
     //}
+    echo ${$prefix.'Div'}->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
   }
