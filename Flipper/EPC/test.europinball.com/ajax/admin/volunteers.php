@@ -6,7 +6,7 @@
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
     $prefix = 'volunteers';
-    ${$prefix.'Div'} = $tabs->addDiv($prefix.'Div');
+    ${$prefix.'Div'} = new div($prefix.'Div');
       ${$prefix.'Div'}->data_title = ucfirst($prefix);
       ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
       $volunteers = volunteers('active');
