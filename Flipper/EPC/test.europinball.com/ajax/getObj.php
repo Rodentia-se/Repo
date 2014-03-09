@@ -48,7 +48,7 @@
           $obj = $class($id);
           debug($obj);
         } else {
-          failure('Invalid '.$class.' ID '.$id);
+          jsonEcho(failure('Invalid '.$class.' ID '.$id), TRUE);
         }
       } else {
         $data = objCheck($data, $data_id);
@@ -60,7 +60,7 @@
         $objs = $arrClass($obj);
       } else {
         debug($obj);
-        failure('Could not find the '.$class);
+        jsonEcho(failure('Could not find the '.$class), TRUE);
       }
     } else if (isGroup($class, TRUE)) {
       $data = objCheck($data, $data_id);
