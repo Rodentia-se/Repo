@@ -59,6 +59,7 @@
           }
         }
         ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
+        echo ${$prefix.'Div'}->getHtml();
       //Users
       
     } else {
