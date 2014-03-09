@@ -49,6 +49,7 @@
         } else {
           jsonEcho(failure('Invalid '.$class.' ID '.$id), TRUE);
         }
+        debug($obj);
       } else {
         $data = objCheck($data, $data_id);
         $search = objCheck($search, $search_id);
