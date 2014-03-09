@@ -3,6 +3,7 @@
   class ajaxTab extends link {
     
     public function __construct($url = NULL, $text = 'link', array $params = NULL) {
+      $params['data-title'] = ($params['data-title']) ? $params['data-title'] : $text;
       parent::__construct($url, $text, $params);
     }
 //    public function __construct($url = NULL, $text = 'link', array $params = NULL) {
