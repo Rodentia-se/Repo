@@ -75,8 +75,8 @@
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
           $tr->addTd('Add');
-          debug($tr);
           $table->addContent($tr);
+          debug($table);
           return $div;
         break;
       }
