@@ -67,11 +67,15 @@
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
-          $playerSelect = $players->getSelect($prefix.'qualGroupAddPlayer', NULL, FALSE, NULL, TRUE);
-//          $playerSelect->addCombobox();
-          $rows[] = array(0, $playerSelect, 'Add');
           $div->addH3('Players', array('class' => 'entry-title'));
-          $div->addTable($rows, $headers)->addDatatables();
+          $table = $div->addTable($rows, $headers)->addDatatables();
+          $tr = new tr();
+          $tr->addTd(0);
+          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, 'Choose...'));
+          $playerSelect->addCombobox();
+          $tr->addTd($playerSelect);
+          $tr->addTd('Add');
+          $table->addTr($tr);
           return $div;
         break;
       }
