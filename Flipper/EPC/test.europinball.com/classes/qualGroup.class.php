@@ -72,7 +72,7 @@
           $table->addDatatables();
           $tr = new tr();
           $tr->addTd(0);
-          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, 'Choose...');
+          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, FALSE);
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
           $tr->addTd('Add');
