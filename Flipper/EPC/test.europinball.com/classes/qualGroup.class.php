@@ -57,11 +57,10 @@
     
     public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
       switch ($type) {
-        case 'payment':
+        case 'payment': 
         default:
           $div = new div($prefix.'qualGroupEditDiv'.$this->id);
           $regRow = $this->getRegRow(TRUE);
-          debug($this);
           $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
