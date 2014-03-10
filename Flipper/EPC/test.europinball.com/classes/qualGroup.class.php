@@ -40,7 +40,8 @@
     
     public function getRegRow($array = FALSE) {
       $return = array(
-        $this->getLink(),
+        $this->getLink()
+/*
         $this->getLink('shortName'),
         (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
         (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
@@ -51,6 +52,7 @@
         (($this->person) ? $this->person->getPhotoIcon() : ''),
         (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
         (($this->paid) ? 'Yes' : '')
+*/
       );
       return ($array) ? $return : (object) $return;
     }
@@ -60,12 +62,13 @@
         case 'payment': 
         default:
           $div = new div($prefix.'qualGroupEditDiv'.$this->id);
-          $regRow = $this->getRegRow(TRUE);
           $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
+          $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'closeIcon'));
+//          $delIcon->addClick('');
           foreach ($groupPlayers as $groupPlayer) {
-            $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
+            $rows[] = array($groupPlayer->id, $groupPlayer->name, $delIcon);
           }
           $div->addH3('Players', array('class' => 'entry-title'));
           $table = $div->addTable($rows, $headers);
@@ -75,7 +78,8 @@
           $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer'.$this->id, NULL, FALSE);
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
-          $tr->addTd('Add');
+          $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'addIcon'));
+          $tr->addTd($addIcon)->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
           return $div;
