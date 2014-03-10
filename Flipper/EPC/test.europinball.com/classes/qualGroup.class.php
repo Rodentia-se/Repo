@@ -55,7 +55,6 @@
       return ($array) ? $return : (object) $return;
     }
     
-    public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
     public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
       switch ($type) {
         case 'payment':
