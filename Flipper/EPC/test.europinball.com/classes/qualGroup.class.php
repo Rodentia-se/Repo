@@ -81,7 +81,6 @@
           $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'icon'));
           $td = $tr->addTd($addIcon);
           $td->entities = FALSE;
-          debug($td);
           $tr->type = 'tbody';
           $table->addContent($tr);
           return $div;
