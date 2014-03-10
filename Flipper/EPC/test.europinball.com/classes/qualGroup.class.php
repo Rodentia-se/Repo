@@ -66,6 +66,7 @@
       }
       $div->addH3('Players', array('class' => 'entry-title'));
       $div->addTable($rows, $headers)->addDatatables();
+      return $div;
     }
 
   }
