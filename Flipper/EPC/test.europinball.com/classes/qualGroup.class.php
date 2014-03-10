@@ -71,9 +71,9 @@
           $table = $div->addTable($rows, $headers)->addDatatables();
           $tr = new tr();
           $tr->addTd(0);
-          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, 'Choose...'));
+          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, 'Choose...');
           $playerSelect->addCombobox();
-          $tr->addTd($playerSelect);
+          $tr->addTd($playerSelect)->entities = FALSE;
           $tr->addTd('Add');
           $table->addTr($tr);
           return $div;
