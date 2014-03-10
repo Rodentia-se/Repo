@@ -38,21 +38,34 @@
     );
 */
     
-    public function getEdit($array = FALSE) {
-        $return = array(
-          $this->getLink(),
-          $this->getLink('shortName'),
-          (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
-          (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
-          (is_object($this->country)) ? $this->country->name : $this->countryName,
-          (is_object($this->country)) ? $this->country->getIcon() : $this->countryName,
-          (($this->ifpaRank) ? $this->ifpaRank : (($this->getLink('ifpa')) ? 99000 : 100000)),
-          str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
-          (($this->person) ? $this->person->getPhotoIcon() : ''),
-          (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
-          (($this->paid) ? 'Yes' : '')
-        );
-        return ($array) ? $return : (object) $return;
+    public function getRegRow($array = FALSE) {
+      $return = array(
+        $this->getLink(),
+        $this->getLink('shortName'),
+        (is_object($this->city)) ? $this->city->getLink() : $this->cityName,
+        (is_object($this->region)) ? $this->region->getLink() : $this->regionName,
+        (is_object($this->country)) ? $this->country->name : $this->countryName,
+        (is_object($this->country)) ? $this->country->getIcon() : $this->countryName,
+        (($this->ifpaRank) ? $this->ifpaRank : (($this->getLink('ifpa')) ? 99000 : 100000)),
+        str_replace('Unranked', 'Unr', $this->getLink('ifpa')),
+        (($this->person) ? $this->person->getPhotoIcon() : ''),
+        (($this->waiting) ? ((isId($this->waiting)) ? $this->waiting : '*'): ''),
+        (($this->paid) ? 'Yes' : '')
+      );
+      return ($array) ? $return : (object) $return;
+    }
+    
+    public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $div = new div($prefix.'qualGroupEditDiv'.$this->id);
+      $regRow = $this->getRegRow(TRUE);
+      $players = players($this->division);
+      $groupPlayers = players($this);
+      $headers = array('ID', 'Name', 'Delete');
+      foreach ($groupPlayers as $groupPlayer) {
+        $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
+      }
+      $div->addH3('Players', array('class' => 'entry-title'));
+      $div->addTable($rows, $headers)->addDatatables();
     }
 
   }
