@@ -63,10 +63,11 @@
           $regRow = $this->getRegRow(TRUE);
           $players = players($this->division);
           $groupPlayers = players($this);
-          $headers = array('ID', 'Name', 'Delete');
+          $headers = array('ID', 'Name', 'Action');
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
+          $rows[] = array(0, 'New player', 'Add');
           $div->addH3('Players', array('class' => 'entry-title'));
           $div->addTable($rows, $headers)->addDatatables();
           return $div;
