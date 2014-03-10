@@ -65,7 +65,7 @@
           $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
-          $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'closeIcon'));
+          $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'icon'));
 //          $delIcon->addClick('');
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, $delIcon);
@@ -78,7 +78,7 @@
           $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer'.$this->id, NULL, FALSE);
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
-          $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'addIcon'));
+          $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'icon'));
           $tr->addTd($addIcon)->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
