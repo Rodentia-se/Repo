@@ -68,7 +68,8 @@
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
           $div->addH3('Players', array('class' => 'entry-title'));
-          $table = $div->addTable($rows, $headers)->addDatatables();
+          $table = $div->addTable($rows, $headers);
+          $table->addDatatables();
           $tr = new tr();
           $tr->addTd(0);
           $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, 'Choose...');
