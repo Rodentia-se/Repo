@@ -205,7 +205,7 @@
       }
       if (!$this->select) {
         $name = ($name) ? $name : get_class($this);
-        $label = ($label) ? $label : ucfirst($name);
+        $label = ($label || $label === FALSE) ? $label : ucfirst($name);
         $params['id'] = ($params['id']) ? $params['id'] : $name;
         $options[] = new option('Choose...', 0, !$selected);
         foreach ($this as $obj) {

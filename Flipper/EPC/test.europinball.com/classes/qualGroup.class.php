@@ -73,13 +73,12 @@
           $table->addDatatables();
           $tr = new tr();
           $tr->addTd(0);
-          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, FALSE);
+          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer'.$this->id, NULL, FALSE);
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
           $tr->addTd('Add');
           $tr->type = 'tbody';
           $table->addContent($tr);
-          debug($table);
           return $div;
         break;
       }
