@@ -14,7 +14,7 @@
         if (@get_class($obj) == 'tr') {
           return $obj->addContent($content, $replace, $index);
         } else {
-          $tr = new tr(trim($content));
+          $tr = new tr($content);
           $tr->type = 'thead';
           return $this->addHeader($tr, $replace, $header);
         }
@@ -103,7 +103,7 @@
               if (is_array($header)) {
                 $tr = $thead->addTr();
                 foreach ($header as $cell) {
-                  $tr->addTd(trim($cell));
+                  $tr->addTd($cell);
                 }
               } else {
                 warning('Table header object at index '.$key.' is not a table row or array! ('.get_class($header).')');
