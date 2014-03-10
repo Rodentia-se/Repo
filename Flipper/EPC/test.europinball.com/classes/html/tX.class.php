@@ -3,6 +3,7 @@
   class tX extends html {
     
     public function __construct($type = 'td', $contents = NULL, array $params = NULL) {
+      $this->inline = TRUE;
       parent::__construct($type, $contents, $params);
       $this->inline = TRUE;
     }
