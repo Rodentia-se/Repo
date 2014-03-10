@@ -56,17 +56,22 @@
     }
     
     public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
-      $div = new div($prefix.'qualGroupEditDiv'.$this->id);
-      $regRow = $this->getRegRow(TRUE);
-      $players = players($this->division);
-      $groupPlayers = players($this);
-      $headers = array('ID', 'Name', 'Delete');
-      foreach ($groupPlayers as $groupPlayer) {
-        $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
+      switch ($type) {
+        case 'payment':
+        default:
+          $div = new div($prefix.'qualGroupEditDiv'.$this->id);
+          $regRow = $this->getRegRow(TRUE);
+          $players = players($this->division);
+          $groupPlayers = players($this);
+          $headers = array('ID', 'Name', 'Delete');
+          foreach ($groupPlayers as $groupPlayer) {
+            $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
+          }
+          $div->addH3('Players', array('class' => 'entry-title'));
+          $div->addTable($rows, $headers)->addDatatables();
+          return $div;
+        break;
       }
-      $div->addH3('Players', array('class' => 'entry-title'));
-      $div->addTable($rows, $headers)->addDatatables();
-      return $div;
     }
 
   }
