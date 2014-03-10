@@ -68,7 +68,7 @@
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
           $playerSelect = $players->getSelect($prefix.'qualGroupAddPlayer', NULL, FALSE, NULL, TRUE);
-          $playerSelect->addCombobox();
+//          $playerSelect->addCombobox();
           $rows[] = array(0, $playerSelect->getHtml(), 'Add');
           $div->addH3('Players', array('class' => 'entry-title'));
           $div->addTable($rows, $headers)->addDatatables();
