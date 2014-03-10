@@ -55,6 +55,7 @@
       return ($array) ? $return : (object) $return;
     }
     
+    public function getSelect($id = NULL, $class = NULL, $label = TRUE, $selected = NULL, $add = FALSE) {
     public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
       switch ($type) {
         case 'payment':
@@ -67,7 +68,7 @@
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
-          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, FALSE);
+          $playerSelect = $players->getSelect($prefix.'qualGroupAddPlayer', NULL, FALSE, NULL, TRUE);
           $playerSelect->addCombobox();
           $rows[] = array(0, $playerSelect->getHtml(), 'Add');
           $div->addH3('Players', array('class' => 'entry-title'));
