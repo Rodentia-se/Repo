@@ -61,6 +61,7 @@
         default:
           $div = new div($prefix.'qualGroupEditDiv'.$this->id);
           $regRow = $this->getRegRow(TRUE);
+          debug($this);
           $players = players($this->division);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
