@@ -14,7 +14,7 @@
         if (@get_class($obj) == 'tr') {
           return $obj->addContent($content, $replace, $index);
         } else {
-          $tr = new tr($content);
+          $tr = new tr(trim($content));
           $tr->type = 'thead';
           return $this->addHeader($tr, $replace, $header);
         }
