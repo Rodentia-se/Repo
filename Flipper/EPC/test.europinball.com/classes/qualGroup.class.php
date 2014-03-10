@@ -62,7 +62,7 @@
           $div = new div($prefix.'qualGroupEditDiv'.$this->id);
           $regRow = $this->getRegRow(TRUE);
           debug($this);
-          $players = players($this->division);
+          $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
           foreach ($groupPlayers as $groupPlayer) {
