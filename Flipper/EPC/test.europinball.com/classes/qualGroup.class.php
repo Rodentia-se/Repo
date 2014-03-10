@@ -67,7 +67,7 @@
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, 'Delete');
           }
-          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer');
+          $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer', NULL, FALSE);
           $playerSelect->addCombobox();
           $rows[] = array(0, $playerSelect->getHtml(), 'Add');
           $div->addH3('Players', array('class' => 'entry-title'));
