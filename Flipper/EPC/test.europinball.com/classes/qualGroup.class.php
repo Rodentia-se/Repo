@@ -117,8 +117,6 @@
               }
             });
           ');
-          $delIcon->addClick('
-          ');
           $div->addScriptCode('
           $(".delIcon").click(function() {
               alert("hej");
