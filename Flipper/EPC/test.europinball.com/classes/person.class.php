@@ -497,6 +497,9 @@
         case 'photo':
           return $this->getPhotoEdit($prefix);
         break;
+        case 'photo':
+          return $this->getQrLabels($prefix);
+        break;
         case 'user':
         case 'users':
           $this->getVolunteer($tournament);
@@ -858,6 +861,19 @@
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
+      }
+    }
+    
+    public function getQrLabels($division) {
+      if (isDivision($division)) {
+        $player = player($this, $division);
+        return $player->getQrLabel();
+      } else {
+        $players = players($this);
+        foreach ($players as $player) {
+          $return .= $player->getQrLabel();
+        }
+        return $return;
       }
     }
 
