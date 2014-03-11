@@ -278,6 +278,7 @@ input[id $= "Currency_combobox"] {
 }
 
 .qrTable td {
+  align: center;
   line-height: normal;
   vertical-align: top;
   width: 50%;
