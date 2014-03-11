@@ -882,13 +882,11 @@
     }
 
     public function getQrLabel() {
-    	echo "<div>";
-    	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
-    	echo "<center>".$this->name."<br/><font size=\"6\"><b>".(($this->shortName) ? $this->shortName : ucfirst($this->firstName.' '.ucfirst($this->lastName)))."</font></b>";
-    	echo "<br/><font size=\"7\">".$this->id."</font><br/>".((isCountry($this->country)) ? $this->country->name : '');
-      echo "</center></td><td><img src=\"".$this->getLink('qr')."\"/><br/>";
-    	echo "</td></tr></table>";
-    	echo "</div>";      
+    	echo '<div><table class="qrtable"><tr><td>';
+    	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : ucfirst($this->firstName.' '.ucfirst($this->lastName))).'</span>';
+    	echo '<br/><span class="qrId">'.$this->id."</span><br/>".((isCountry($this->country)) ? $this->country->name : '');
+      echo '</center></td><td><img src="'.$this->getLink('qr').'"/><br/>';
+    	echo '</td></tr></table></div>';
     }
 
     public static function validateMailAddress($email, $obj = FALSE) {
