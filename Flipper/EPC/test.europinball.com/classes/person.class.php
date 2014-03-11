@@ -876,6 +876,7 @@
     	echo '</td></tr></table></div>';
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
+        echo '<link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css">';
     		echo '<script>window.print()</script>';
     	}
     }
