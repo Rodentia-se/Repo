@@ -7,16 +7,15 @@
 	$oHTTPContext = new HTTPContext();
 	$bAutoPrint = $oHTTPContext->getString("autoPrint"); //adminPlayersEdit
 
-	$iIDPlayer = $oHTTPContext->getInt("playerId");
+	$id = $oHTTPContext->getInt("playerId");
 
-	$oLabel = new PlayerLabel();
-	$oLabel->FromPlayer($iIDPlayer);
+	$player = player($id);
 
 	echo "<div>";
 	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
-	echo "<center>" . $oLabel->firstName() . " " . $oLabel->lastName() . "<br/><font size=\"6\"><b>" . $oLabel->initials() . "</font></b> ";
-	echo "<br/><font size=\"7\">" . $iIDPlayer . "</font><br/> " . $oLabel->country();
-	echo "</center></td><td><img src=\"" . $oLabel->image() . "\"/><br/>";
+	echo "<center>".$player->name."<br/><font size=\"6\"><b>".$player->initials."</font></b>";
+	echo "<br/><font size=\"7\">".$player->id."</font><br/>".((isCountry($player->country)) ? $player->country->name : '');
+	echo "</center></td><td><img src=\"".$player->getPhoto()."\"/><br/>";
 	echo "</td></tr></table>";
 	echo "</div>";
 		
