@@ -86,7 +86,7 @@
           $table->addContent($tr);
           $addIcon->addClick('
             var el = $("#'.$playerSelect->id.'");
-            var combobox = document.getElementById(el.id + "_combobox");
+            var combobox = document.getElementById('.$playerSelect->id.' + "_combobox");
             $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
             $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).val(), prop: "qualGroup_id", value: '.$this->id.'})
             .done(function(data) {
