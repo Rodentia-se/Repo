@@ -274,7 +274,8 @@ input[id $= "Currency_combobox"] {
 .qrTable {
   table-layout: fixed;
   word-wrap: break-word;
-  width:; 288pt;
+  width: 288pt;
+  vertical-align: top;
 }
 
 .qrTable td {
