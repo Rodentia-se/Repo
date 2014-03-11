@@ -124,6 +124,11 @@
     public static $nationalTeamQualGroupLimit = FALSE;
     public static $nationalTeamCost = 0;
  
+    public static $recreational = TRUE;
+    public static $recreationalDivision = 18;
+    public static $recreationalQualGroupLimit = FALSE;
+    public static $recreationalCost = 0;
+ 
     public static $baseHref = 'https://test.europinball.org/';
     public static $baseDir = '/www/test.europinball.com/';
     public static $supportEmail = 'support@europinball.org';
