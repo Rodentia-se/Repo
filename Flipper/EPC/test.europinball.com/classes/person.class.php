@@ -858,6 +858,10 @@
             return 'Unranked';
           }
         break;
+        case 'qr':
+          QRcode::png('pid='.$this->id.'&tag='.$this->initials, config::baseDir.'/images/objects/person/qr/'.$this->id.'png', 0, 6, 0);
+          return config::baseHref.'/images/objects/person/qr/'.$this->id.'png';
+        break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
@@ -877,18 +881,12 @@
       }
     }
 
-    public function getQr() {
-      return QRcode::png('pid='.$this->id.'&tag='.$this->initials);      
-    }
-
     public function getQrLabel() {
     	echo "<div>";
     	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
     	echo "<center>".$this->name."<br/><font size=\"6\"><b>".$this->initials."</font></b>";
     	echo "<br/><font size=\"7\">".$this->id."</font><br/>".((isCountry($this->country)) ? $this->country->name : '');
-      echo "</center></td><td><img src=\"data:image/png,";
-      $this->getQr();
-      echo "\"/><br/>";
+      echo "</center></td><td><img src=\"".$this->getLink('qr')."\"/><br/>";
     	echo "</td></tr></table>";
     	echo "</div>";      
     }
