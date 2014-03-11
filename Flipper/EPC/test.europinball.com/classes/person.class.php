@@ -877,6 +877,10 @@
       }
     }
 
+    public function getQr() {
+      return QRcode::png('pid='.$this->id.'&tag='.$this->initials);      
+    }
+
     public function getQrLabel() {
     	echo "<div>";
     	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
