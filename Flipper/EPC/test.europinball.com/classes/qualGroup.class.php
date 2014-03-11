@@ -102,7 +102,7 @@
           ');
           $delIcon->addClick('
             alert("hej");
-            var position = $("#'.$table->id.'").dataTable().fnGetPosition(this);
+            var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
             alert(position);
             var row = position[0];
             alert(row);
