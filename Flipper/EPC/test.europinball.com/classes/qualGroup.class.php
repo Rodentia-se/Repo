@@ -101,6 +101,7 @@
             });
           ');
           $delIcon->addClick('
+            alert("hej");
             var position = $("#'.$table->id.'").dataTable().fnGetPosition(this);
             var row = position[0];
             alert(row);
