@@ -23,7 +23,10 @@
         }
         return $return;
       } else if (isHtml($content)) {
-        if (get_class($content) == 'div') {
+        if (get_class($content) == 'ajaxTab') {
+          $div = $content;
+          $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : (($div->content[0]) ? $div->content[0] : ucfirst($div->id)));
+        } else if (get_class($content) == 'div') {
           $div = $content;
           $div->params['data-title'] = ($div->data_title) ? $div->data_title : (($div->title) ? $div->title : ucfirst($div->id));
         } else {
@@ -44,7 +47,7 @@
         $ul = new ul();
         foreach ($this->contents as $content) {
           $li = $ul->addLi();
-          $li->addLink('#'.$content->id, $content->data_title);
+          $li->addLink(((get_class($content) == 'ajaxTab') ? $content->href : '#'.$content->id), $content->data_title);
         }
         return ($string) ? $ul->getHtml() : $ul;
       }
@@ -69,7 +72,18 @@
                 firstField.focus();
               }
             },
-            create: function(event, ui) {
+            beforeLoad: function(event, ui) {
+              if ($(ui.panel).is(":empty")) {
+                $(ui.panel).append("<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\"><img title=\"Loading data...\" alt=\"Loading data...\" id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loadingImage\" src=\"'.config::$baseHref.'/images/ajax-loader.gif\"></div>");
+                return true;
+              } else if ($(ui.panel).html() == "<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\"><img title=\"Loading data...\" alt=\"Loading data...\" id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loadingImage\" src=\"'.config::$baseHref.'/images/ajax-loader.gif\"></div>") {
+                return true;
+              } else {
+                event.preventDefault();
+                return false;
+              }
+            },
+            load: function(event, ui) {
               var firstField = ui.panel.find("input[type=text],textarea,select").filter(":visible:first");
               if (firstField) {
                 firstField.focus();

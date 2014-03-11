@@ -199,8 +199,10 @@
     }
     header('Content-Type: application/json');
     echo($json);
-    if (is($exit)) {
+    if (is_int($exit)) {
       exit($exit);
+    } else if (is($exit)) {
+      exit();
     }
     return TRUE;
   }

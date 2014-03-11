@@ -50,7 +50,7 @@
       if (get_class($this) == 'html') {
         $this->selfClose = (in_array($this->element, array('input', 'img', 'hr', 'br', 'meta', 'link'))) ? TRUE : FALSE;
         $this->crlf = (in_array($this->element, array('a', 'img', 'span', 'label'))) ? NULL : "\n";
-        $this->contentCrlf = (in_array($this->element, array('a', 'link', 'p', 'h1', 'h2', 'h3', 'h4', 'hr', 'br', 'li', 'input', 'img', 'span', 'label', 'option'))) ? NULL : "\n";
+        $this->contentCrlf = (in_array($this->element, array('a', 'link', 'p', 'h1', 'h2', 'h3', 'h4', 'hr', 'br', 'li', 'input', 'img', 'span', 'label', 'option', 'td', 'th'))) ? NULL : "\n";
         $this->settings['display'] = (in_array($this->element, array('img', 'span', 'label'))) ? 'inline' : 'block';
         if (in_array($this->element, array('img', 'script'))) {
           $this->contentParam = 'src';
@@ -784,6 +784,12 @@
 
     public function addLink($url = NULL, $contents = 'link', array $params = NULL) {
       $element = new link($url, $contents, $params);
+      $this->addContent($element);
+      return $element;
+    }
+
+    public function addAjaxTab($url = NULL, $contents = 'Tab', array $params = NULL) {
+      $element = new ajaxTab($url, $contents, $params);
       $this->addContent($element);
       return $element;
     }

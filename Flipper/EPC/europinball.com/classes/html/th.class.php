@@ -1,6 +1,6 @@
 <?php
 
-  class th extends html {
+  class th extends tX {
     
     public function __construct($contents = NULL, array $params = NULL) {
       parent::__construct('th', $contents, $params);

@@ -103,7 +103,7 @@
               if (is_array($header)) {
                 $tr = $thead->addTr();
                 foreach ($header as $cell) {
-                  $tr->addTd($cell);
+                  $tr->addTh($cell);
                 }
               } else {
                 warning('Table header object at index '.$key.' is not a table row or array! ('.get_class($header).')');
