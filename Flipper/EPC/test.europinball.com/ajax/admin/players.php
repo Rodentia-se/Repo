@@ -47,7 +47,9 @@
         $photoEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
         //$photoEditDiv
         $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
-        $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'QrDiv', NULL, array('data-title' => 'QR code'));
+        $qrEditDiv = $profileTabs->addDiv($profileSelect->id.'QrDiv', NULL, array('data-title' => 'QR code'));
+        $qrEditP = $qrEditDiv->addParagraph('Click to print. ');
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person', 'Click here to print all codes.');
         $profileTabs->addCss('margin-top', '15px');
       //}$profileTabs
       ${$prefix.'Div'}->addH2('Waiting list', array('class' => 'entry-title'));
