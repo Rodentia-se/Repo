@@ -270,3 +270,25 @@ td.icon img {
 input[id $= "Currency_combobox"] {
   width: 50px; 
 }
+
+.qrTable {
+  table-layout: fixed;
+  word-wrap: break-word;
+  width: 288pt;
+}
+
+.qrTable td {
+  line-height: normal;
+  vertical-align: top;
+  width: 50%;
+}
+
+.qrInitials {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.qrId {
+  font-size: 3em;
+}
+

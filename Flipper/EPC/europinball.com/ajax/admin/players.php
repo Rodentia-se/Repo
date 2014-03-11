@@ -16,7 +16,7 @@
         $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit profile and photo'));
         $profileSelect->addCombobox();
         $profileSelect->addValueSpan('Person ID:');
-        $editSections = array('edit', 'photo', 'admin');
+        $editSections = array('edit', 'photo', 'admin', 'qr');
         foreach ($editSections as $editSection) {
           $editScripts .= '
             $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$editSection.'", id: $(this).val()})
@@ -47,6 +47,7 @@
         $photoEditDiv = $profileTabs->addDiv($profileSelect->id.'PhotoDiv', NULL, array('data-title' => 'Player photo'));
         //$photoEditDiv
         $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'AdminDiv', NULL, array('data-title' => 'Admin settings'));
+        $adminEditDiv = $profileTabs->addDiv($profileSelect->id.'QrDiv', NULL, array('data-title' => 'QR code'));
         $profileTabs->addCss('margin-top', '15px');
       //}$profileTabs
       ${$prefix.'Div'}->addH2('Waiting list', array('class' => 'entry-title'));
