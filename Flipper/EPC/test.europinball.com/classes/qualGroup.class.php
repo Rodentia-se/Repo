@@ -79,10 +79,40 @@
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
           $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'icon'));
+          
           $td = $tr->addTd($addIcon);
           $td->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
+          $addIcon->addClick('
+            var el = $("#'.$playerSelect->id.'");
+            var combobox = document.getElementById(el.id + "_combobox");
+            $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
+            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).val(), prop: "qualGroup_id", value: '.$this->id.'})
+            .done(function(data) {
+              $(combobox).tooltipster("update", data.reason).tooltipster("show");
+              if (data.valid) {
+                $("#'.$table->id.'").dataTable().fnAddData({
+                  $(el).val(),
+                  $(el).children(":selected").text(),
+                  "Delete"
+                });
+                $(el).data("previous", $(el).val());
+              } else {
+                $(el).val($(el).data("previous"));
+              }
+            });
+          ');
+          $div->addScriptCode('
+            $("#'.$playerSelect->id.'_combobox").tooltipster({
+              theme: ".tooltipster-light",
+              content: "Updating the database...",
+              trigger: "custom",
+              position: "right",
+              offsetX: 38,
+              timer: 3000
+            });
+          ');
           return $div;
         break;
       }
