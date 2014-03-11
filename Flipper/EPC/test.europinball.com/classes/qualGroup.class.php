@@ -66,7 +66,6 @@
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
           $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'icon'));
-//          $delIcon->addClick('');
           foreach ($groupPlayers as $groupPlayer) {
             $rows[] = array($groupPlayer->id, $groupPlayer->name, $delIcon);
           }
@@ -79,12 +78,11 @@
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
           $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add player', array('class' => 'icon'));
-          
           $td = $tr->addTd($addIcon);
           $td->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
-          $addIcon->addClick('qualGroupAddPlayer12
+          $addIcon->addClick('
             var el = $("#'.$playerSelect->id.'");
             var combobox = document.getElementById("'.$playerSelect->id.'_combobox");
             $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
@@ -95,10 +93,23 @@
                 $("#'.$table->id.'").dataTable().fnAddData([
                   $(el).val(),
                   $(el).children(":selected").text(),
-                  "<img class=\"icon\" title=\"Click to remove player\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
+                  "<img class=\"icon\" title=\"Click to remove player\" id=\"\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
                 ]);
                 $(el).val(0);
                 $(el).change();
+              }
+            });
+          ');
+          $delIcon->addClick('
+            var position = $("#'.$table->id.'").dataTable().fnGetPosition(this);
+            var row = position[0];
+            var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+            showMsg("Updating the database...");
+            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: data[0], prop: "qualGroup_id", value: 0})
+            .done(function(data) {
+              showMsg(data.reason);
+              if (data.valid) {
+                $("#'.$table->id.'").dataTable().fnDeleteRow(row);
               }
             });
           ');
