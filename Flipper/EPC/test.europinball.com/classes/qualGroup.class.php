@@ -95,7 +95,7 @@
                 $("#'.$table->id.'").dataTable().fnAddData([
                   $(el).val(),
                   $(el).children(":selected").text(),
-                  "Delete"
+                  "<img class=\"icon\" title=\"Click to remove player\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
                 ]);
                 $(el).val(0);
                 $(el).change();
