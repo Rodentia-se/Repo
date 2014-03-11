@@ -119,13 +119,9 @@
           ');
           $div->addScriptCode('
           $(".delIcon").click(function() {
-              alert("hej");
               var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-              alert(position);
               var row = position[0];
-              alert(row);
               var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-              alert(data[0]);
               showMsg("Updating the database...");
               $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: data[0], prop: "qualGroup_id", value: 0})
               .done(function(data) {
