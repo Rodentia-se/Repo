@@ -869,7 +869,7 @@
     }
     
     public function getQrLabel() {
-    	echo '<div onclick="window.open(\"'.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1\")" title="Click to print"><table class="qrTable"><tr><td>';
+    	echo '<div onclick="window.open(\''.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1\')" title="Click to print"><table class="qrTable"><tr><td>';
     	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)).'</span>';
     	echo '<br/><span class="qrId">'.$this->id."</span><br/>".((isCountry($this->country)) ? $this->country->name : '');
       echo '</center></td><td><img src="'.$this->getLink('qr').'"/><br/>';
