@@ -10,6 +10,7 @@
 	$id = $oHTTPContext->getInt("playerId");
 
 	$player = player($id);
+  debug($player);
 
 	echo "<div>";
 	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
