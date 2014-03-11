@@ -115,6 +115,7 @@
     case 'edit':
     case 'user':
     case 'users':
+    case 'qr':
     case 'groupsAdmin':
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {
