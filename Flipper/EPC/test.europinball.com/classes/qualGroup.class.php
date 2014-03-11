@@ -97,9 +97,8 @@
                   $(el).children(":selected").text(),
                   "Delete"
                 ]);
-                $(el).data("previous", $(el).val());
-              } else {
-                $(el).val($(el).data("previous"));
+                $(el).val(0);
+                $(combobox).val("Choose...");
               }
             });
           ');
