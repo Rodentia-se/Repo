@@ -859,7 +859,7 @@
           }
         break;
         case 'qr':
-          QRcode::png('pid='.$this->id.'&tag='.$this->initials, config::$baseDir.'/images/objects/person/qr/'.$this->id.'png', 0, 6, 0);
+          QRcode::png('pid='.$this->id.'&tag='.$this->shortName, config::$baseDir.'/images/objects/person/qr/'.$this->id.'png', 0, 6, 0);
           return config::$baseHref.'/images/objects/person/qr/'.$this->id.'png';
         break;
         default:
@@ -868,19 +868,6 @@
       }
     }
     
-    public function getQrLabels($division) {
-      if (isDivision($division)) {
-        $player = player($this, $division);
-        return $player->getQrLabel();
-      } else {
-        $players = players($this);
-        foreach ($players as $player) {
-          $return .= $player->getQrLabel();
-        }
-        return $return;
-      }
-    }
-
     public function getQrLabel() {
     	echo '<div><table class="qrTable"><tr><td>';
     	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : ucfirst($this->firstName.' '.ucfirst($this->lastName))).'</span>';
