@@ -282,11 +282,11 @@ input[id $= "Currency_combobox"] {
 }
 
 .qrInitials {
-  font-size: 6pt;
+  font-size: 2em;
   font-weight: bold;
 }
 
 .qrId {
-  font-size: 8pt;
+  font-size: 3em;
 }
 
