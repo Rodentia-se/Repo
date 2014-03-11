@@ -498,7 +498,7 @@
           return $this->getPhotoEdit($prefix);
         break;
         case 'qr':
-          return $this->getQrLabels($prefix);
+          return $this->getQrLabel($prefix);
         break;
         case 'user':
         case 'users':
@@ -875,6 +875,16 @@
         }
         return $return;
       }
+    }
+
+    public function getQrLabel() {
+    	echo "<div>";
+    	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
+    	echo "<center>".$this->name."<br/><font size=\"6\"><b>".$this->initials."</font></b>";
+    	echo "<br/><font size=\"7\">".$this->id."</font><br/>".((isCountry($this->country)) ? $this->country->name : '');
+      echo "</center></td><td><img src=\"data:image/png,".$this->getQr()."\"/><br/>";
+    	echo "</td></tr></table>";
+    	echo "</div>";      
     }
 
     public static function validateMailAddress($email, $obj = FALSE) {
