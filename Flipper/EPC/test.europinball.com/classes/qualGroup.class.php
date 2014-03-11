@@ -70,6 +70,7 @@
             $rows[] = array($groupPlayer->id, $groupPlayer->name, $delIcon);
           }
           $div->addH3('Players', array('class' => 'entry-title'));
+          $div->addParagraph($this->name);
           $table = $div->addTable($rows, $headers);
           $table->addDatatables();
           $tr = new tr();
