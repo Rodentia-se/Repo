@@ -314,9 +314,9 @@
     public function getQrLabel() {
     	echo "<div>";
     	echo "<table style=\"table-layout: fixed;word-wrap:break-word;\" width=\"288pt\"><tr><td width=\"50%\">";
-    	echo "<center>".$player->name."<br/><font size=\"6\"><b>".$player->initials."</font></b>";
-    	echo "<br/><font size=\"7\">".$player->id."</font><br/>".((isCountry($player->country)) ? $player->country->name : '');
-      echo "</center></td><td><img src=\"".$player->getPhoto()."\"/><br/>";
+    	echo "<center>".$this->name."<br/><font size=\"6\"><b>".$this->initials."</font></b>";
+    	echo "<br/><font size=\"7\">".$this->id."</font><br/>".((isCountry($this->country)) ? $this->country->name : '');
+      echo "</center></td><td><img src=\"".$this->getQr()."\"/><br/>";
     	echo "</td></tr></table>";
     	echo "</div>";      
     }
