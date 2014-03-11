@@ -65,8 +65,8 @@
           $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');
-          $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'icon'));
           foreach ($groupPlayers as $groupPlayer) {
+            $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove player', array('class' => 'icon delIcon'));
             $rows[] = array($groupPlayer->id, $groupPlayer->name, $delIcon);
           }
           $div->addH3('Players', array('class' => 'entry-title'));
@@ -118,23 +118,25 @@
             });
           ');
           $delIcon->addClick('
-            alert("hej");
-            var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-            alert(position);
-            var row = position[0];
-            alert(row);
-            var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-            alert(data[0]);
-            showMsg("Updating the database...");
-            $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: data[0], prop: "qualGroup_id", value: 0})
-            .done(function(data) {
-              showMsg(data.reason);
-              if (data.valid) {
-                $("#'.$table->id.'").dataTable().fnDeleteRow(row);
-              }
-            });
           ');
           $div->addScriptCode('
+          $(".delIcon").click(function() {
+              alert("hej");
+              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+              alert(position);
+              var row = position[0];
+              alert(row);
+              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+              alert(data[0]);
+              showMsg("Updating the database...");
+              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: data[0], prop: "qualGroup_id", value: 0})
+              .done(function(data) {
+                showMsg(data.reason);
+                if (data.valid) {
+                  $("#'.$table->id.'").dataTable().fnDeleteRow(row);
+                }
+              });
+            });
             $("#'.$playerSelect->id.'_combobox").tooltipster({
               theme: ".tooltipster-light",
               content: "Updating the database...",
