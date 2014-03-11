@@ -103,6 +103,7 @@
           $delIcon->addClick('
             alert("hej");
             var position = $("#'.$table->id.'").dataTable().fnGetPosition(this);
+            alert(position);
             var row = position[0];
             alert(row);
             var data = $("#'.$table->id.'").dataTable().fnGetData(row);
