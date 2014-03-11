@@ -310,6 +310,10 @@
         return parent::getPhoto($defaults, $thumbnail, $anchor);
       }
     }
+    
+    public function getQr() {
+      return QRcode::png('pid='.$this->id.'&tag='.$this->initials);      
+    }
 
     public function getQrLabel() {
     	echo "<div>";
