@@ -74,7 +74,7 @@
           $table = $div->addTable($rows, $headers);
           $table->addDatatables();
           $tr = new tr();
-          $tr->addTd(0);
+          $tr->addTd('Add player');
           $playerSelect = $players->getSelectObj($prefix.'qualGroupAddPlayer'.$this->id, NULL, FALSE);
           $playerSelect->addCombobox();
           $tr->addTd($playerSelect)->entities = FALSE;
@@ -98,7 +98,7 @@
                   "Delete"
                 ]);
                 $(el).val(0);
-                $(combobox).val("Choose...");
+                $(el).change();
               }
             });
           ');
