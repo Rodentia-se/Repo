@@ -870,7 +870,7 @@
     
     public function getQrLabel() {
     	echo '<div><table class="qrTable"><tr><td>';
-    	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : ucfirst($this->firstName.' '.ucfirst($this->lastName))).'</span>';
+    	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)).'</span>';
     	echo '<br/><span class="qrId">'.$this->id."</span><br/>".((isCountry($this->country)) ? $this->country->name : '');
       echo '</center></td><td><img src="'.$this->getLink('qr').'"/><br/>';
     	echo '</td></tr></table></div>';
