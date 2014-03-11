@@ -74,9 +74,9 @@
             },
             beforeLoad: function(event, ui) {
               if ($(ui.panel).is(":empty")) {
-                $(ui.panel).append("<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\">Loading...</div>");
+                $(ui.panel).append("<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\"><img title=\"Loading data...\" alt=\"Loading data...\" id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loadingImage\" src=\"'.config::$baseHref.'/images/ajax-loader.gif\"></div>");
                 return true;
-              } else if ($(ui.panel).html() == "<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\">Loading...</div>") {
+              } else if ($(ui.panel).html() == "<div id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loading\"><img title=\"Loading data...\" alt=\"Loading data...\" id=\"tab'.$this->id.'_" + tab'.$this->id.'Index + "loadingImage\" src=\"'.config::$baseHref.'/images/ajax-loader.gif\"></div>") {
                 return true;
               } else {
                 event.preventDefault();
