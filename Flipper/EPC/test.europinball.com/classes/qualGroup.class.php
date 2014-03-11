@@ -93,8 +93,25 @@
                 $("#'.$table->id.'").dataTable().fnAddData([
                   $(el).val(),
                   $(el).children(":selected").text(),
-                  "<img class=\"icon\" title=\"Click to remove player\" id=\"\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
+                  "<img class=\"icon\" title=\"Click to remove player\" id=\"'.$prefix.'qualGroupEditDiv'.$this->id.'_" + $(el).val() + "\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
                 ]);
+                $("#'.$prefix.'qualGroupEditDiv'.$this->id.'_" + $(el).val()).click(function() {
+                  alert("hej");
+                  var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                  alert(position);
+                  var row = position[0];
+                  alert(row);
+                  var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                  alert(data[0]);
+                  showMsg("Updating the database...");
+                  $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: data[0], prop: "qualGroup_id", value: 0})
+                  .done(function(data) {
+                    showMsg(data.reason);
+                    if (data.valid) {
+                      $("#'.$table->id.'").dataTable().fnDeleteRow(row);
+                    }
+                  });
+                });                
                 $(el).val(0);
                 $(el).change();
               }
