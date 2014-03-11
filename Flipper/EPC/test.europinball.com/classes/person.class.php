@@ -884,8 +884,7 @@
       $td->addSpan($this->id, NULL, 'qrId');
       $td->addBr();
       $td->addSpan(((isCountry($this->country)) ? $this->country->name : ''));
-      $qrTr = $table->addTr();
-      $qrTd = $qrTr->addTd();
+      $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
