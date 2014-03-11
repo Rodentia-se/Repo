@@ -869,16 +869,35 @@
     }
     
     public function getQrLabel() {
-    	echo '<div onclick="window.open(\''.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1\')" title="Click to print"><table class="qrTable"><tr><td>';
-    	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)).'</span>';
-    	echo '<br/><span class="qrId">'.$this->id."</span><br/>".((isCountry($this->country)) ? $this->country->name : '');
-      echo '</center></td><td><img src="'.$this->getLink('qr').'"/><br/>';
-    	echo '</td></tr></table></div>';
+      $div = new div();
+      $div->addClick('
+        window.open("'.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1");
+      ');
+      $div->title = 'Click to print';
+      $table = $div->addTable();
+      $table->class = 'qrTable';
+      $tr = $table->addTr();
+      $td = $tr->addTd($this->name);
+      $td->addBr();
+      $td->addSpan((($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)), NULL, 'qrInitials');
+      $td->addBr();
+      $td->addSpan($this->id, NULL, 'qrId');
+      $td->addBr();
+      $td->addSpan(((isCountry($this->country)) ? $this->country->name : ''));
+      $qrTr = $table->addTr();
+      $qrTd = $qrTr->addTd();
+      $qrTd->addImg($this->getLink('qr'));
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
-        echo '<link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css">';
-    		echo '<script>window.print()</script>';
+        $div->addCssFile(config::$baseHref.'/css/epc.css');
+        $div->addScriptCode('
+          window.print();
+        ');
+    	} else {
+        $qrEditP = $div->addParagraph('Click to print. ');
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person', 'Click here to print all codes.');
     	}
+      return $div;
     }
 
     public static function validateMailAddress($email, $obj = FALSE) {
