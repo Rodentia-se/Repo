@@ -84,9 +84,9 @@
           $td->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
-          $addIcon->addClick('
+          $addIcon->addClick('qualGroupAddPlayer12
             var el = $("#'.$playerSelect->id.'");
-            var combobox = document.getElementById('.$playerSelect->id.' + "_combobox");
+            var combobox = document.getElementById("'.$playerSelect->id.'_combobox");
             $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
             $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).val(), prop: "qualGroup_id", value: '.$this->id.'})
             .done(function(data) {
