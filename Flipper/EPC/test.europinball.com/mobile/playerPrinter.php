@@ -1,5 +1,4 @@
 <?php
-	require_once('../functions/general.php');
 	require_once('mobile.php');
 
 	echo "<html><body>";
