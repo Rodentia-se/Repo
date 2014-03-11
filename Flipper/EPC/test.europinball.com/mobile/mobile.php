@@ -57,7 +57,7 @@
   {
     public function getPlayer($id)
     {
-      return getPlayerById(DataMapper::$db, $id);
+      return player(DataMapper::$db, $id);
     }
   }
 
@@ -65,7 +65,7 @@
   {
     public function getTeam($id)
     {
-      return getTeamById(DataMapper::$db, $id);
+      return team(DataMapper::$db, $id);
     }
   }
 
@@ -117,7 +117,7 @@
       if ($idEntry == null || $idEntry == '' || $idEntry == false){
         $result = false;
       } else {
-        if (getEntryById(DataMapper::$db, $idEntry) == false){
+        if (entry(DataMapper::$db, $idEntry) == false){
           $result = false;
         }
       }
@@ -188,7 +188,7 @@
   {
     public function getDivision($idGame)
     {
-      $m = getMachineById(DataMapper::$db, $idGame);
+      $m = machine(DataMapper::$db, $idGame);
       return $m->tournamentDivision_id;
     }
   }
@@ -308,7 +308,7 @@
     private $gameImg = MOB_LOAD_URL_GAME;
     public function FromGame($gameId)
     {
-      $aGame = getMachineById(DataMapper::$db, $gameId);
+      $aGame = machine(DataMapper::$db, $gameId);
 
       if ($aGame != false)
       {
