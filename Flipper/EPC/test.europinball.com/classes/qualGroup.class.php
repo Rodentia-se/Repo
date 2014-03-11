@@ -92,11 +92,11 @@
             .done(function(data) {
               $(combobox).tooltipster("update", data.reason).tooltipster("show");
               if (data.valid) {
-//                $("#'.$table->id.'").dataTable().fnAddData({
-//                  $(el).val(),
-//                  $(el).children(":selected").text(),
-//                  "Delete"
-//                });
+                $("#'.$table->id.'").dataTable().fnAddData([
+                  $(el).val(),
+                  $(el).children(":selected").text(),
+                  "Delete"
+                ]);
                 $(el).data("previous", $(el).val());
               } else {
                 $(el).val($(el).data("previous"));
