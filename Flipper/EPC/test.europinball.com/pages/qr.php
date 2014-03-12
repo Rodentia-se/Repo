@@ -14,7 +14,7 @@
         $obj = $class($id);
         echo $obj->getQrLabel();
       } else {
-        $objs = $class($tournament);
+        $objs = $class::$arrClass($tournament);
         debug($class);
         debug($objs);
         foreach ($objs as $obj) {
