@@ -895,7 +895,7 @@
           window.print();
         ');
     	} else {
-        $qrEditP = $div->addParagraph('Click to print. ');
+        $qrEditP = $div->addParagraph('Click above to print. ');
         $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person', 'Click here to print all codes.');
     	}
       return $div;
