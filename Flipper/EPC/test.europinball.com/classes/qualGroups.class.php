@@ -55,6 +55,8 @@
         ';
         $prop = NULL;
       }
+      debug($data);
+      debug($prop);
       parent::__construct($data, $prop, $cond);
     }
     
