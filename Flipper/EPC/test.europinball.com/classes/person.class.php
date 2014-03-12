@@ -897,7 +897,7 @@
         ');
     	} else {
         $qrEditP = $div->addParagraph('Click above to print. ');
-        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person', 'Click here to print all codes.');
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person&autoPrint=1', 'Click here to print all codes.', array('target' => '_blank'));
     	}
       return $div;
     }
