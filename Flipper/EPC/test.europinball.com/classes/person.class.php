@@ -885,7 +885,11 @@
       $td->addBr();
       $td->addSpan($this->id, NULL, 'qrId');
       $td->addBr();
-      $td->addSpan(((isCountry($this->country)) ? $this->country->name : ''));
+      $flag = (isset($_REQUEST['flag'])) ? $_REQUEST['flag'] : NULL;
+      if (isCountry($this->country)) {
+        $td->addSpan($this->country->name);
+        $td->addImg($this->country->getPhoto(FALSE, TRUE, FALSE));
+      }
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
       $qrTd->class = 'qrTd';
