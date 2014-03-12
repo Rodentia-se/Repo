@@ -56,6 +56,7 @@
         $prop = NULL;
       }
       parent::__construct($data, $prop, $cond);
+      $this->order('name');
     }
     
   }
