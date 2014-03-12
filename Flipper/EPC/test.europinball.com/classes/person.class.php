@@ -888,7 +888,7 @@
       $flag = (isset($_REQUEST['flag'])) ? $_REQUEST['flag'] : NULL;
       if (isCountry($this->country)) {
         $td->addSpan($this->country->name);
-        $td->addImg($this->country->getPhoto(FALSE, TRUE, FALSE))->class = 'photoIcon';
+        $td->addImg($this->country->getPhoto(FALSE, TRUE, FALSE))->class = 'icon';
       }
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
