@@ -878,6 +878,7 @@
       $table->class = 'qrTable';
       $tr = $table->addTr();
       $td = $tr->addTd($this->name);
+      $td->class = 'qrLabelTd';
       $td->addBr();
       $td->addSpan((($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)), NULL, 'qrInitials');
       $td->addBr();
