@@ -898,7 +898,7 @@
     	} else {
         $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1"', 'Click here or above to print.', array('target' => '_blank'));
-        $qrEditP->addBr();
+        $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person&autoPrint=1', 'Click here to print all codes.', array('target' => '_blank'));
     	}
       return $div;
