@@ -39,7 +39,7 @@
 */
     
     public static $infoProps = array(
-      'name',
+      'name' => 'acronym',
       'date',
       'start' => 'startTime',
       'end' => 'endTime'

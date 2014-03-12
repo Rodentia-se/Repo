@@ -294,7 +294,7 @@
             }
           } else if (method_exists($this, $prop)) {
             $html = $this->$prop();
-          } else if ($prop == 'name') {
+          } else if ($prop == 'name' || $label == 'name') {
             $context = (get_class($this) == 'player' || get_class($this) == 'team') ? division($this->tournamentDivision) : getTournament();
             if (isTournament($context) || isDivision($context)) {
               $arrClass = static::$arrClass;
