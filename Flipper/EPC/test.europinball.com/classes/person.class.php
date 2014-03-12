@@ -886,6 +886,7 @@
       $td->addSpan(((isCountry($this->country)) ? $this->country->name : ''));
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
+      $qrTd->class = 'qrTd';
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
         $div->addCssFile(config::$baseHref.'/css/epc.css');
