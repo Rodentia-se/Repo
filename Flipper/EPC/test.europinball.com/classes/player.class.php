@@ -140,7 +140,7 @@
       'region',
       'country',
       'continent',
-      'qualGroup',
+      'Group' => 'qualGroup',
       'IFPA' => 'ifpaLink',
       'members' => 'getMemberInfo'
     );
