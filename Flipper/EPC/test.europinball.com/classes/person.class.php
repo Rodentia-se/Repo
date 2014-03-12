@@ -870,11 +870,12 @@
     
     public function getQrLabel() {
       $div = new div();
-      $div->addClick('
+      $qrDiv = $div->addDiv();
+      $qrDiv->addClick('
         window.open("'.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1");
       ');
-      $div->title = 'Click to print';
-      $table = $div->addTable();
+      $qrDiv->title = 'Click to print';
+      $table = $qrDiv->addTable();
       $table->class = 'qrTable';
       $tr = $table->addTr();
       $td = $tr->addTd($this->name);
@@ -890,8 +891,8 @@
       $qrTd->class = 'qrTd';
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
-        $div->addCssFile(config::$baseHref.'/css/epc.css');
-        $div->addScriptCode('
+        $qrDiv->addCssFile(config::$baseHref.'/css/epc.css');
+        $qrDiv->addScriptCode('
           window.print();
         ');
     	} else {
