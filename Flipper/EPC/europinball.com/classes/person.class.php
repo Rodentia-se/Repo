@@ -869,16 +869,44 @@
     }
     
     public function getQrLabel() {
-    	echo '<div onclick="window.open(\''.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1\')" title="Click to print"><table class="qrTable"><tr><td>';
-    	echo '<center>'.$this->name.'<br/><span class="qrInitials">'.(($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)).'</span>';
-    	echo '<br/><span class="qrId">'.$this->id."</span><br/>".((isCountry($this->country)) ? $this->country->name : '');
-      echo '</center></td><td><img src="'.$this->getLink('qr').'"/><br/>';
-    	echo '</td></tr></table></div>';
+      $div = new div();
+      $qrDiv = $div->addDiv();
+      $qrDiv->addClick('
+        window.open("'.config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1");
+      ');
+      $qrDiv->title = 'Click to print';
+      $table = $qrDiv->addTable();
+      $table->class = 'qrTable';
+      $tr = $table->addTr();
+      $td = $tr->addTd($this->name);
+      $td->class = 'qrLabelTd';
+      $td->addBr();
+      $td->addSpan((($this->shortName) ? $this->shortName : substr(ucfirst($this->firstName), 0, 1).' '.substr(ucfirst($this->lastName), 0, 1)), NULL, 'qrInitials');
+      $td->addBr();
+      $td->addSpan($this->id, NULL, 'qrId');
+      $td->addBr();
+      $flag = (isset($_REQUEST['flag'])) ? $_REQUEST['flag'] : NULL;
+      if (isCountry($this->country)) {
+        $td->addImg($this->country->getPhoto(FALSE, TRUE, FALSE))->class = 'icon';
+        $td->addSpan($this->country->name)->addCss('margin-left', '10px');
+      }
+      $qrTd = $tr->addTd();
+      $qrTd->addImg($this->getLink('qr'));
+      $qrTd->class = 'qrTd';
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
-        echo '<link href="'.config::$baseHref.'/css/epc.css" rel="stylesheet" type="text/css">';
-    		echo '<script>window.print()</script>';
+        $qrDiv->addCssFile(config::$baseHref.'/css/epc.css');
+        $qrDiv->addScriptCode('
+          window.print();
+        ');
+    	} else {
+        $div->addBr();
+        $qrEditP = $div->addParagraph();
+        $qrEditP->addLink(config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1"', 'Click here or above to print.', array('target' => '_blank'));
+        $qrEditP = $div->addParagraph();
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person&autoPrint=1', 'Click here to print all codes.', array('target' => '_blank'));
     	}
+      return $div;
     }
 
     public static function validateMailAddress($email, $obj = FALSE) {

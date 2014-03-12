@@ -18,7 +18,6 @@
           $tabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?type=groupsAdmin&class=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
         }
       //$tabs
-//      ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
     //${$prefix.'Div'}
     echo ${$prefix.'Div'}->getHtml();
   } else {
