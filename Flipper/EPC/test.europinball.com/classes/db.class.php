@@ -159,6 +159,7 @@
     }
 
     public function getObjectsByWhere($class, $where = 1) {
+      debug($where);
       $query = $class::$select.' '.((preg_match('/^where /', trim($where))) ? '' : ((preg_match('/^left join /', trim($where))) ? '' : 'where ')).$where;
       $sth = $this->query($query);
       if (!$sth) {
