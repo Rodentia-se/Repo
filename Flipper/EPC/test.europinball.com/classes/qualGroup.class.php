@@ -44,7 +44,25 @@
       'start' => 'startTime',
       'end' => 'endTime'
     );
+    
+    public static $infoChildren = array(
+      'players'
+    );
 
+    public function getChildrenTabs($division = 'main') {
+      $division = getDivision($division);
+      $tabs = new tabs(NULL, 'childrenTabs');
+        foreach (static::$infoChildren as $childArrayClass) {
+          $children = $childArrayClass($division, $this);
+          if ($children && count($children) > 0) {
+            $childrenDiv = $tabs->addDiv($childArrayClass.'Div');
+            $childrenDiv->addContent($children->getTable());
+          }
+        }
+      //}
+      return $tabs;
+    }
+    
     public function getRegRow($array = FALSE) {
       $return = array(
         $this->getLink()
