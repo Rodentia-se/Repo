@@ -140,6 +140,7 @@
       'region',
       'country',
       'continent',
+      'Group' => 'qualGroup',
       'IFPA' => 'ifpaLink',
       'members' => 'getMemberInfo'
     );
@@ -310,8 +311,7 @@
         return parent::getPhoto($defaults, $thumbnail, $anchor);
       }
     }
-
-
+    
   }
 
 ?>
