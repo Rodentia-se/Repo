@@ -85,6 +85,15 @@
           $td->entities = FALSE;
           $tr->type = 'tbody';
           $table->addContent($tr);
+          $groupPlayerMailAddresses = $groupPlayers->getListOf('mailAddress');
+          if ($groupPlayerMailAddresses) {
+            $div->addH2('Email addresses', array('class' => 'entry-title'))->addCss('margin-top', '15px');
+            $div->addParagraph('Note: Players that haven\'t registered their email address are not included. Click in the box to copy the addresses to your clipboard.', NULL, 'italic');
+            $groupPlayerMailDiv = $div->addDiv('groupPlayerMailDiv');
+              $groupPlayerMailDiv->addParagraph('Email addresses to the players in group '.$this->acronym);
+              $groupPlayerMailDiv->addParagraph(implode(', ', $groupPlayerMailAddresses), $prefix.'groupPlayerMailAddresses', 'toCopy');
+            //$groupPlayerMailDiv
+          }
           $addIcon->addClick('
             var el = $("#'.$playerSelect->id.'");
             var combobox = document.getElementById("'.$playerSelect->id.'_combobox");
