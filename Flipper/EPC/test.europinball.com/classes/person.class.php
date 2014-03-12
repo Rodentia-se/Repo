@@ -895,6 +895,7 @@
       $qrTd->class = 'qrTd';
       $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
     	if($print) {
+        $qrDiv->addBr();
         $qrDiv->addCssFile(config::$baseHref.'/css/epc.css');
         $qrDiv->addScriptCode('
           window.print();
