@@ -38,6 +38,13 @@
     );
 */
     
+    public static $infoProps = array(
+      'name' => 'acronym',
+      'date',
+      'start' => 'startTime',
+      'end' => 'endTime'
+    );
+
     public function getRegRow($array = FALSE) {
       $return = array(
         $this->getLink()
