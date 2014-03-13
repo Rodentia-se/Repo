@@ -645,7 +645,7 @@
             $machineSelect = $machines->getSelectObj($prefix.'scoresMachineAddSelect_'.$player->tournamentDivision_id, NULL, FALSE);
             $machineSelect->addCombobox();
             $tr->addTd($machineSelect)->entities = FALSE;
-            $addInput = new input('score', 0);
+            $addInput = new input('score', 0, 'text', FALSE);
             $td = $tr->addTd($addInput);
             $td = $tr->addTd();
             $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add score', array('class' => 'icon'));
