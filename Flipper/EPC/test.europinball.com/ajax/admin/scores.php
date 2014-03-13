@@ -41,6 +41,8 @@
         ');
         ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
       //$profileSelectDiv
+      $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
+        $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv', NULL, array('data-title' => 'Player profile'));
     echo ${$prefix.'Div'}->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
