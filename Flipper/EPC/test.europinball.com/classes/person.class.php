@@ -677,6 +677,15 @@
                 }
               });
             });
+            $(".editIcon").click(function() {
+              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+              var row = position[0];
+              $("#'.$scoreRowHidden->id.'").val(row);
+              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+              $("#'.$scoreIdHidden->id.'").val(data[0]);
+              $("#'.$dialogScore->id.'").val(data[2]);
+              $("#'.$dialog->id.'").dialog("open");
+            });
           ');
           return $div;
         break;
