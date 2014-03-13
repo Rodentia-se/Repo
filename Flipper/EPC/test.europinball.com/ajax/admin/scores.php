@@ -30,7 +30,7 @@
         });          
       ');
       $div->addFocus('#'.$select->id.'_combobox', TRUE);
-    echo ${$prefix.'Div'}->getHtml();
+    echo $div->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
   }
