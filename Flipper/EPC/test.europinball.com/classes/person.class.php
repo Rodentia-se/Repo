@@ -630,6 +630,7 @@
             $scores = scores($player);
             $headers = array('ID', 'Machine ID', 'Game', 'Score', 'Action');
             foreach ($scores as $score) {
+              debug($score);
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
               $rows[] = array($score->id, $score->machine_id, $score->game->name, $score->score, $delIcon);
             }
