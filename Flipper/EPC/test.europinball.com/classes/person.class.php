@@ -644,14 +644,23 @@
           $dialog = $div->addDiv('scoresEditDialog');
           $dialog->addH2('Edit score');
           $dialogScore = $dialog->addInput('Score', 0);
+          $dialogScore->addTooltip();
           $scoreIdHidden = $dialog->addHidden('scoreId', '0');
           $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
           $dialog->addDialog(array('buttons' => '{
             "OK": function() {
-              $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
+              $("#'.$dialogScore->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreRowHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
+              .done(function(data) {
+                $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
+                if (data.valid) {
+                  $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
+                  $(this).dialog("close");
+                }
+              });
             },
             "Cancel": function() {
-              $(this).dialog("close")
+              $(this).dialog("close");
             }
           }'));
           $div->addScriptCode('
@@ -668,15 +677,15 @@
                 }
               });
             });
-            $(".editIcon").click(function() {
-              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-              var row = position[0];
-              $("#'.$scoreRowHidden->id.'").val(row);
-              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-              $("#'.$scoreIdHidden->id.'").val(data[0]);
-              $("#'.$dialog->id.'").dialog("open");
-            });
           ');
+          $("#'.$playerSelect->id.'_combobox").tooltipster({
+            theme: ".tooltipster-light",
+            content: "Updating the database...",
+            trigger: "custom",
+            position: "right",
+            offsetX: 38,
+            timer: 3000
+          });
           return $div;
         break;
         case 'profile':
