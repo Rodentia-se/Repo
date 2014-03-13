@@ -643,11 +643,12 @@
           }
           $dialog = $div->addDiv('scoresEditDialog');
           $dialog->addH2('Edit score');
-          $dialog->addInput('Score', 0);
+          $dialogScore = $dialog->addInput('Score', 0);
           $scoreIdHidden = $dialog->addHidden('scoreId', '0');
+          $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
           $dialog->addDialog(array('buttons' => '{
             "OK": function() {
-              $(this).dialog("close")
+              $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
             },
             "Cancel": function() {
               $(this).dialog("close")
@@ -668,12 +669,13 @@
               });
             });
             $(".editIcon").click(function() {
-                var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-                var row = position[0];
-                var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-                $("#'.$scoreIdHidden->id.'").val(data[0]);
-                $("#'.$dialog->id.'").dialog("open");
-              });
+              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+              var row = position[0];
+              $("#'.$scoreRowHidden->id.'").val(row);
+              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+              $("#'.$scoreIdHidden->id.'").val(data[0]);
+              $("#'.$dialog->id.'").dialog("open");
+            });
           ');
           return $div;
         break;
