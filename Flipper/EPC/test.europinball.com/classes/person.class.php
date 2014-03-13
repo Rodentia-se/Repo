@@ -647,6 +647,7 @@
             $machineSelect->addValueSpan('ID:');
             $tr->addTd($machineSelect)->entities = FALSE;
             $addInput = new input('score', 0, 'text', FALSE);
+            $addInput->class = 'short';
             $td = $tr->addTd($addInput);
             $td = $tr->addTd();
             $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add score', array('class' => 'icon'));
@@ -678,7 +679,6 @@
               }
             }'));
             $div->addScriptCode('
-              $("#'.$addInput->id.'_combobox").addClass("short");
               $(".delIcon'.$player->tournamentDivision_id.'").click(function() {
                 var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
                 var row = position[0];
