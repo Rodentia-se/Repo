@@ -623,7 +623,7 @@
 //          $players = players($this, $tournament);
 // TODO: Remove EPC 2014 specific restriction
           $division = division(16);
-          $players = player($this, $division);
+          $players = players($this, $division);
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
