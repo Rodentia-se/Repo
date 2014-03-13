@@ -625,7 +625,6 @@
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
-            debug($scores);
             foreach ($scores as $score) {
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
               $rows[] = array($score->id, $score->machine->name, $score->score, $delIcon);
