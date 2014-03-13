@@ -645,7 +645,10 @@
           $dialog->addH2('Edit score');
           $dialog->addInput('Score', 0);
           $scoreIdHidden = $dialog->addHidden('scoreId', '0');
-          $dialog->addDialog();
+          $dialog->addDialog(array('buttons' => '
+            OK: function() {$(this).dialog("close")},
+            Cancel: function() {$(this).dialog("close")}
+          '));
           $div->addScriptCode('
           $(".delIcon").click(function() {
               var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
