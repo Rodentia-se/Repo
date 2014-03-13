@@ -11,21 +11,22 @@
     $div = new div('scoresDiv');
       $div->data_title = "Scores";
       $selectDiv = $div->addDiv();
-        $select = $selectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit scores'));
+        $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit scores'));
         $select->addCombobox();
         $select->addValueSpan('Person ID:');
       //selectDiv
       $scoresResultDiv = $div->addDiv('scoresResultDiv', NULL, array('data-title' => 'Player scores'));
       $select->addChange('
+        alert("hej");
         var el = this;
         if ($(el).val() != 0) {
           $("#'.$scoresResultDiv->id.'").hide();
           $("body").addClass("modal");
-          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "scores", id: $(this).val()})
+          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "scores", id: $(el).val()})
           .done(function(data) {
             $("#'.$scoresResultDiv->id.'").html(data);
             $("body").removeClass("modal");
-            $("#" + el.id + "Tabs").show();
+            $("#'.$scoresResultDiv->id.'").show();
           }
         });          
       ');
