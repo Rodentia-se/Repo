@@ -633,7 +633,7 @@
             foreach ($scores as $score) {
               $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
-              $select = $machines->getSelectObj('scoresSelect', $score->machine_id, FALSE);
+              $select = $machines->getSelectObj('scoresSelect', $score->machine, FALSE);
               $select->addCombobox();
               $select->addValueSpan('Machine ID:');
               $rows[] = array($score->id, $select, $score->score, $editIcon, $delIcon);
