@@ -133,7 +133,6 @@
                   "<img class=\"icon\" title=\"Click to remove player\" id=\"'.$prefix.'qualGroupEditDiv'.$this->id.'_" + $(el).val() + "\" alt=\"Click to remove player\" src=\"'.config::$baseHref.'/images/cancel.png\">"
                 ]);
                 $("#'.$prefix.'qualGroupEditDiv'.$this->id.'_" + $(el).val()).click(function() {
-                  alert("hej");
                   var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
                   alert(position);
                   var row = position[0];

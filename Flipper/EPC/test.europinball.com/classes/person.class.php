@@ -632,6 +632,7 @@
             $machines = machines($player->tournamentDivision);
             foreach ($scores as $score) {
               $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
+              public function addDialog(array $props = NULL, $selector = NULL, $indents = NULL) {
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
               $select = $machines->getSelectObj('scoresSelect_'.$score->id, $score->machine, FALSE);
               $select->addCombobox();
@@ -641,6 +642,23 @@
             $table = $scoresEditDiv->addTable($rows, $headers);
             $table->addDatatables();
           }
+          $dialog = $div->addDiv('scoresEditDialog');
+          $dialog->addDialog();
+          $div->addScriptCode('
+          $(".delIcon").click(function() {
+              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+              var row = position[0];
+              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+              showMsg("Updating the database...");
+              $.post("'.config::$baseHref.'/ajax/delObj.php", {class: "score", id: data[0]})
+              .done(function(data) {
+                showMsg(data.reason);
+                if (data.valid) {
+                  $("#'.$table->id.'").dataTable().fnDeleteRow(row);
+                }
+              });
+            });
+          ');
           return $div;
         break;
         case 'profile':
