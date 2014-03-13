@@ -631,63 +631,75 @@
             $headers = array('Score ID', 'Machine', 'Score', 'Edit', 'Delete');
             $machines = machines($player->tournamentDivision);
             foreach ($scores as $score) {
-              $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
-              $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
-              $select = $machines->getSelectObj('scoresSelect_'.$score->id, $score->machine, FALSE);
+              $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'.$player->tournamentDivision_id));
+              $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'.$player->tournamentDivision_id));
+              $select = $machines->getSelectObj('scoresMachineSelect_'.$score->id, $score->machine, FALSE);
               $select->addCombobox();
               $select->addValueSpan('ID:');
               $rows[] = array($score->id, $select, $score->score, $editIcon, $delIcon);
             }
             $table = $scoresEditDiv->addTable($rows, $headers);
             $table->addDatatables();
+            $tr = new tr();
+            $tr->addTd('Add score');
+            $machineSelect = $machines->getSelectObj($prefix.'scoresMachineAddSelect_'.$player->tournamentDivision_id, NULL, FALSE);
+            $machineSelect->addCombobox();
+            $tr->addTd($machineSelect)->entities = FALSE;
+            $addInput = new input('score', 0);
+            $td = $tr->addTd($addInput);
+            $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add score', array('class' => 'icon'));
+            $td = $tr->addTd($addIcon);
+            $td->entities = FALSE;
+            $tr->type = 'tbody';
+            $table->addContent($tr);
+            $dialog = $div->addDiv('scoresEditDialog');
+            $dialog->addH2('Edit score');
+            $dialogScore = $dialog->addInput('Score', 0);
+            $dialogScore->addTooltip();
+            $scoreIdHidden = $dialog->addHidden('scoreId', '0');
+            $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
+            $dialog->addDialog(array('buttons' => '{
+              "OK": function() {
+                var dialog = this;
+                $("#'.$dialogScore->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreIdHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
+                .done(function(data) {
+                  $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
+                    $(dialog).dialog("close");
+                  }
+                });
+              },
+              "Cancel": function() {
+                $(this).dialog("close");
+              }
+            }'));
+            $div->addScriptCode('
+            $(".delIcon'.$player->tournamentDivision_id.'").click(function() {
+                var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                var row = position[0];
+                var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                showMsg("Updating the database...");
+                $.post("'.config::$baseHref.'/ajax/delObj.php", {class: "score", id: data[0]})
+                .done(function(data) {
+                  showMsg(data.reason);
+                  if (data.valid) {
+                    $("#'.$table->id.'").dataTable().fnDeleteRow(row);
+                  }
+                });
+              });
+              $(".editIcon'.$player->tournamentDivision_id.'").click(function() {
+                var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                var row = position[0];
+                $("#'.$scoreRowHidden->id.'").val(row);
+                var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                $("#'.$scoreIdHidden->id.'").val(data[0]);
+                $("#'.$dialogScore->id.'").val(data[2]);
+                $("#'.$dialog->id.'").dialog("open");
+              });
+            ');
           }
-          $dialog = $div->addDiv('scoresEditDialog');
-          $dialog->addH2('Edit score');
-          $dialogScore = $dialog->addInput('Score', 0);
-          $dialogScore->addTooltip();
-          $scoreIdHidden = $dialog->addHidden('scoreId', '0');
-          $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
-          $dialog->addDialog(array('buttons' => '{
-            "OK": function() {
-              var dialog = this;
-              $("#'.$dialogScore->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreIdHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
-              .done(function(data) {
-                $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
-                if (data.valid) {
-                  $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
-                  $(dialog).dialog("close");
-                }
-              });
-            },
-            "Cancel": function() {
-              $(this).dialog("close");
-            }
-          }'));
-          $div->addScriptCode('
-          $(".delIcon").click(function() {
-              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-              var row = position[0];
-              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-              showMsg("Updating the database...");
-              $.post("'.config::$baseHref.'/ajax/delObj.php", {class: "score", id: data[0]})
-              .done(function(data) {
-                showMsg(data.reason);
-                if (data.valid) {
-                  $("#'.$table->id.'").dataTable().fnDeleteRow(row);
-                }
-              });
-            });
-            $(".editIcon").click(function() {
-              var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
-              var row = position[0];
-              $("#'.$scoreRowHidden->id.'").val(row);
-              var data = $("#'.$table->id.'").dataTable().fnGetData(row);
-              $("#'.$scoreIdHidden->id.'").val(data[0]);
-              $("#'.$dialogScore->id.'").val(data[2]);
-              $("#'.$dialog->id.'").dialog("open");
-            });
-          ');
           return $div;
         break;
         case 'profile':
