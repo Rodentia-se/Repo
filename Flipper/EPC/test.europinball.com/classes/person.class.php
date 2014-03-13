@@ -618,6 +618,16 @@
           //$usersDiv
           return $usersDiv;
         break;
+        case 'scores':
+          $div = new div($prefix.'ScoresEditDiv_'.$this->id);
+          $players = players($this);
+          foreach($players as $player) {
+            $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTab_'.$this->id.'_Div'.$player->tournamentDivision_id);
+            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'_EditDiv', NULL, array('data-title' => $player->tournamentDivision->name));
+            $profileEditDiv->addParagraph('Div '.$player->tournamentDivision->name.' '.$this->name);
+          }
+          return $div;
+        break;
         case 'profile':
         case 'edit':
         case 'player':

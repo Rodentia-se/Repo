@@ -84,7 +84,7 @@
     
     public function getEdit($type = 'groupsAdmin', $title = NULL, $tournament = NULL, $prefix = NULL) {
       switch ($type) {
-        case 'payment': 
+        case 'groupsAdmin': 
         default:
           $div = new div($prefix.'qualGroupEditDiv'.$this->id);
           $players = players($this->tournamentDivision);
