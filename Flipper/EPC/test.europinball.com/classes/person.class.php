@@ -620,7 +620,7 @@
         break;
         case 'scores':
           $div = new div($prefix.'ScoresEditDiv_'.$this->id);
-          $players = players($this);
+          $players = players($this, $tournament);
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
           foreach($players as $player) {
             $profileEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
