@@ -650,7 +650,7 @@
           $dialog->addDialog(array('buttons' => '{
             "OK": function() {
               $("#'.$dialogScore->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
-              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreRowHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
+              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreIdHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
               .done(function(data) {
                 $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
                 if (data.valid) {
