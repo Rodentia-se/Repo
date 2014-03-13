@@ -647,6 +647,7 @@
             $tr->addTd($machineSelect)->entities = FALSE;
             $addInput = new input('score', 0);
             $td = $tr->addTd($addInput);
+            $td = $tr->addTd();
             $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add score', array('class' => 'icon'));
             $td = $tr->addTd($addIcon);
             $td->entities = FALSE;
