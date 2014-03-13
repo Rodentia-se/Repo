@@ -678,7 +678,8 @@
               }
             }'));
             $div->addScriptCode('
-            $(".delIcon'.$player->tournamentDivision_id.'").click(function() {
+              $("#'.$addInput->id.'_combobox").addClass("short");
+              $(".delIcon'.$player->tournamentDivision_id.'").click(function() {
                 var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
                 var row = position[0];
                 var data = $("#'.$table->id.'").dataTable().fnGetData(row);
