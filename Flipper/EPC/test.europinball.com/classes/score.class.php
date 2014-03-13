@@ -40,7 +40,7 @@
       'tournamentEdition' => 'tournament',
       'tournamentDivision' => 'division',
       'player' => 'player',
-      'machine' => 'game'
+      'machine' => 'machine'
     );
 
   }
