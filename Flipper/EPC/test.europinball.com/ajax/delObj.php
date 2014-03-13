@@ -17,7 +17,7 @@
               if (isObj($obj)) {
                 $delete = $obj->delete();
                 if ($delete) {
-                  $json = success($obj);
+                  $json = success($obj->name.' deleted');
                 } else {
                   $json = failure('Could not delete '.$obj->name);
                 }
