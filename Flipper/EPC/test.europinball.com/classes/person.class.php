@@ -648,6 +648,7 @@
             $tr->addTd($machineSelect)->entities = FALSE;
             $addInput = new input('score', 0, 'text', FALSE);
             $addInput->class = 'short';
+            $addInput->addTooltip();
             $td = $tr->addTd($addInput);
             $td = $tr->addTd();
             $addIcon = new img(config::$baseHref.'/images/add_icon.gif', 'Click to add score', array('class' => 'icon'));
@@ -661,6 +662,42 @@
             $dialogScore->addTooltip();
             $scoreIdHidden = $dialog->addHidden('scoreId', '0');
             $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
+            $addIcon->addClick('
+              var props = {
+                "player_id": $("#'.$player->id.'").val(),
+                "machine_id": $("#'.$machineSelect->id.'").val(),
+                "score": $("#'.$addInput->id.'").val()
+              };
+              $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/addObj.php", {class: "score", props: JSON.stringify(props)})
+              .done(function(data) {
+                $("#'.$addInput->id.'").tooltipster("update", data.reason).tooltipster("show");
+                if (data.valid) {
+                  $("#'.$table->id.'").dataTable().fnAddData([
+                    data.id,
+                    $("#'.$machineSelect->id.'_combobox").val() + " (refresh to change)",
+                    $("#'.$addInput->id.'").val() + " (refresh to change)",
+                    NULL,
+                    "<img class=\"icon\" title=\"Click to remove score\" id=\"'.$prefix.'ScoreDelete" + data.id + "\" alt=\"Click to remove score\" src=\"'.config::$baseHref.'/images/cancel.png\">"
+                  ]);
+                  $("#'.$prefix.'ScoreDelete" + data.id).click(function() {
+                    var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                    var row = position[0];
+                    var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                    showMsg("Updating the database...");
+                    $.post("'.config::$baseHref.'/ajax/delObj.php", {class: "score", id: data[0]})
+                    .done(function(data) {
+                      showMsg(data.reason);
+                      if (data.valid) {
+                        $("#'.$table->id.'").dataTable().fnDeleteRow(row);
+                      }
+                    });
+                  });                
+                  $(el).val(0);
+                  $(el).change();
+                }
+              });
+            ');
             $dialog->addDialog(array('buttons' => '{
               "OK": function() {
                 var dialog = this;
