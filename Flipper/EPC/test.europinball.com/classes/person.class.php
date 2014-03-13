@@ -646,8 +646,12 @@
           $dialog->addInput('Score', 0);
           $scoreIdHidden = $dialog->addHidden('scoreId', '0');
           $dialog->addDialog(array('buttons' => '
-            OK: function() {$(this).dialog("close")},
-            Cancel: function() {$(this).dialog("close")}
+            "OK": function() {
+              $(this).dialog("close")
+            },
+            "Cancel": function() {
+              $(this).dialog("close")
+            }
           '));
           $div->addScriptCode('
           $(".delIcon").click(function() {
