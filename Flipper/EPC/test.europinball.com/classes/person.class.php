@@ -649,13 +649,14 @@
           $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
           $dialog->addDialog(array('buttons' => '{
             "OK": function() {
+              var dialog = this;
               $("#'.$dialogScore->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "score", id: $("#'.$scoreIdHidden->id.'").val(), prop: "score", value: $("#'.$dialogScore->id.'").val()})
               .done(function(data) {
                 $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
                 if (data.valid) {
                   $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
-                  $(this).dialog("close");
+                  $(dialog).dialog("close");
                 }
               });
             },
