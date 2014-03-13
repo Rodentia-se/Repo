@@ -624,7 +624,11 @@
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
           foreach($players as $player) {
             $profileEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
-            $profileEditDiv->addParagraph('Div '.$player->tournamentDivision->name.' '.$this->name);
+            $scores = scores($player);
+            foreach ($scores as $score) {
+              $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
+              $rows[] = array($score->id, $score->machine->name, $score->score, $delIcon);
+            }
           }
           return $div;
         break;
