@@ -642,6 +642,9 @@
             $table->addDatatables();
           }
           $dialog = $div->addDiv('scoresEditDialog');
+          $dialog->addH2('Edit score');
+          $dialog->addInput('Score', 0);
+          $scoreIdHidden = $dialog->addHidden('scoreId', '0');
           $dialog->addDialog();
           $div->addScriptCode('
           $(".delIcon").click(function() {
@@ -657,6 +660,13 @@
                 }
               });
             });
+            $(".editIcon").click(function() {
+                var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                var row = position[0];
+                var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                $("#'.$scoreIdHidden->id.'").val(data[0]);
+                $("#'.$dialog->id.'").dialog("open");
+              });
           ');
           return $div;
         break;
