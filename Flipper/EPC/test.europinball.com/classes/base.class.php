@@ -137,7 +137,7 @@
     }
     
     public function setProp($prop, $value = NULL) {
-      if (isObj($prop, TRUE)) {
+      if (isObj($prop, TRUE) && static::$parents[$prop]) {
         if (!is_null($value)) {
           if (!isObj($value)) {
             $class = static::$parents[$prop];
