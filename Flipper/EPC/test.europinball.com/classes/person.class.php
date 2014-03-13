@@ -644,6 +644,7 @@
             $tr->addTd('Add score');
             $machineSelect = $machines->getSelectObj($prefix.'scoresMachineAddSelect_'.$player->tournamentDivision_id, NULL, FALSE);
             $machineSelect->addCombobox();
+            $machineSelect->addValueSpan('ID:');
             $tr->addTd($machineSelect)->entities = FALSE;
             $addInput = new input('score', 0, 'text', FALSE);
             $td = $tr->addTd($addInput);
