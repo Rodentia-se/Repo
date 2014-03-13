@@ -628,10 +628,11 @@
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
-            $headers = array('ID', 'Machine ID', 'Game', 'Score', 'Action');
+            $headers = array('Score ID', 'Machine ID', 'Game', 'Score', 'Action');
             foreach ($scores as $score) {
+              $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
-              $rows[] = array($score->id, $score->machine_id, $score->machineName, $score->score, $delIcon);
+              $rows[] = array($score->id.' '.$editIcon, $score->machine_id.' '.$editIcon, $score->machineName, $score->score.' '.$editIcon, $delIcon);
             }
             $table = $scoresEditDiv->addTable($rows, $headers);
             $table->addDatatables();
