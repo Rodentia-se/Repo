@@ -8,41 +8,28 @@
     $tournament = tournament('active');
     $persons = persons($tournament);
     $prefix = 'scores';
-
-    ${$prefix.'Div'} = new div($prefix.'Div');
-      ${$prefix.'Div'}->data_title = ucfirst($prefix);
-      ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-      $profileSelectDiv = ${$prefix.'Div'}->addDiv();
-        $profileSelect = $profileSelectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit scores'));
-        $profileSelect->addCombobox();
-        $profileSelect->addValueSpan('Person ID:');
-        $editSections = array('scores');
-        foreach ($editSections as $editSection) {
-          $editScripts .= '
-            $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "'.$editSection.'", id: $(this).val()})
-            .done(function(data) {
-              $("#" + el.id + "'.ucfirst($editSection).'Div").html(data);
-              modals--;
-              if (modals == 0) {
-                $("body").removeClass("modal");
-                $("#" + el.id + "Tabs").show();
-              }
-            });
-          ';
-        }
-        $profileSelect->addChange('
-          var el = this;
-          $("#" + el.id + "Tabs").hide();
-          if ($(el).val() != 0) {
-            $("body").addClass("modal");
-            var modals = '.count($editSections).';
-            '.$editScripts.'
+    $div = new div('scoresDiv');
+      $div->data_title = "Scores";
+      $selectDiv = $div->addDiv();
+        $select = $selectDiv->addContent($persons->getSelectObj($prefix.'Profile', NULL, 'Edit scores'));
+        $select->addCombobox();
+        $select->addValueSpan('Person ID:');
+      //selectDiv
+      $scoresResultDiv = $div->addDiv('scoresResultDiv', NULL, array('data-title' => 'Player scores'));
+      $select->addChange('
+        var el = this;
+        if ($(el).val() != 0) {
+          $("#'.$scoresResultDiv->id.'").hide();
+          $("body").addClass("modal");
+          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "scores", id: $(this).val()})
+          .done(function(data) {
+            $("#'.$scoresResultDiv->id.'").html(data);
+            $("body").removeClass("modal");
+            $("#" + el.id + "Tabs").show();
           }
-        ');
-        ${$prefix.'Div'}->addFocus('#'.$profileSelect->id.'_combobox', TRUE);
-      //$profileSelectDiv
-      $profileTabs = ${$prefix.'Div'}->addTabs(NULL, $prefix.'ProfileTabs', 'hidden');
-        $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'EditDiv', NULL, array('data-title' => 'Player profile'));
+        });          
+      ');
+      $div->addFocus('#'.$select->id.'_combobox', TRUE);
     echo ${$prefix.'Div'}->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
