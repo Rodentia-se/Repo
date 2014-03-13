@@ -628,7 +628,7 @@
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
-            $headers = array('Score ID', 'Machine', 'Score', 'Action');
+            $headers = array('Score ID', 'Machine', 'Score', 'Edit', 'Action');
             $machines = machines($player->tournamentDivision);
             foreach ($scores as $score) {
               $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
