@@ -628,14 +628,14 @@
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
-            $headers = array('Score ID', 'Machine', 'Score', 'Edit', 'Action');
+            $headers = array('Score ID', 'Machine', 'Score', 'Edit', 'Delete');
             $machines = machines($player->tournamentDivision);
             foreach ($scores as $score) {
               $editIcon = new img(config::$baseHref.'/images/edit.png', 'Click to edit', array('class' => 'icon editIcon'));
               $delIcon = new img(config::$baseHref.'/images/cancel.png', 'Click to remove score', array('class' => 'icon delIcon'));
               $select = $machines->getSelectObj('scoresSelect', $score->machine, FALSE);
               $select->addCombobox();
-              $select->addValueSpan('Machine ID:');
+              $select->addValueSpan('ID:');
               $rows[] = array($score->id, $select, $score->score, $editIcon, $delIcon);
             }
             $table = $scoresEditDiv->addTable($rows, $headers);
