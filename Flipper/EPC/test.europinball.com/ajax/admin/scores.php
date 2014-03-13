@@ -27,8 +27,8 @@
             $("#'.$scoresResultDiv->id.'").html(data);
             $("body").removeClass("modal");
             $("#'.$scoresResultDiv->id.'").show();
-          }
-        });          
+          });
+        }          
       ');
       $div->addFocus('#'.$select->id.'_combobox', TRUE);
     echo $div->getHtml();
