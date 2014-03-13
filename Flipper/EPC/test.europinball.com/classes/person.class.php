@@ -678,14 +678,6 @@
               });
             });
           ');
-          $("#'.$playerSelect->id.'_combobox").tooltipster({
-            theme: ".tooltipster-light",
-            content: "Updating the database...",
-            trigger: "custom",
-            position: "right",
-            offsetX: 38,
-            timer: 3000
-          });
           return $div;
         break;
         case 'profile':
