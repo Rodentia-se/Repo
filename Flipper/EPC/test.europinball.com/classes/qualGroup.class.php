@@ -86,7 +86,7 @@
       switch ($type) {
         case 'groupsAdmin': 
         default:
-          $div = new div($prefix.'qualGroupEditDiv'.$this->id);
+          $div = new div($prefix.'qualGroupEditDiv_'.$this->id);
           $players = players($this->tournamentDivision);
           $groupPlayers = players($this);
           $headers = array('ID', 'Name', 'Action');

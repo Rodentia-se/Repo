@@ -621,9 +621,9 @@
         case 'scores':
           $div = new div($prefix.'ScoresEditDiv_'.$this->id);
           $players = players($this);
+          $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
           foreach($players as $player) {
-            $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTab_'.$this->id.'_Div'.$player->tournamentDivision_id);
-            $profileEditDiv = $profileTabs->addDiv($profileSelect->id.'_EditDiv', NULL, array('data-title' => $player->tournamentDivision->name));
+            $profileEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $profileEditDiv->addParagraph('Div '.$player->tournamentDivision->name.' '.$this->name);
           }
           return $div;

@@ -17,7 +17,6 @@
       //selectDiv
       $scoresResultDiv = $div->addDiv('scoresResultDiv', NULL, array('data-title' => 'Player scores'));
       $select->addChange('
-        alert("hej");
         var el = this;
         if ($(el).val() != 0) {
           $("#'.$scoresResultDiv->id.'").hide();
