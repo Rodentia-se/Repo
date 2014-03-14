@@ -646,7 +646,7 @@
             $machineSelect->addCombobox();
             $machineSelect->addValueSpan('ID:');
             $tr->addTd($machineSelect)->entities = FALSE;
-            $addInput = new input();
+            $addInput = new input('score', 0, 'text', FALSE);
             $addInput->class = 'short';
             $addInput->addTooltip();
             $td = $tr->addTd($addInput);
@@ -658,7 +658,7 @@
             $table->addContent($tr);
             $dialog = $div->addDiv();
             $dialog->addH2('Edit score');
-            $dialogScore = $dialog->addInput('Score', 0);
+            $dialogScore = $dialog->addInput();
             $dialogScore->addTooltip();
             $scoreIdHidden = $dialog->addHidden();
             $scoreRowHidden = $dialog->addHidden();
