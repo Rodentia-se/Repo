@@ -19,7 +19,7 @@
             }
             $save = $obj->save();
             if ($save) {
-              $json = success($obj->name.' added');
+              $json = success($obj->name.' added', $obj);
             } else {
               $json = failure('Could not add '.$obj->name);
             }
