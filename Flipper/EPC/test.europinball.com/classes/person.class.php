@@ -710,8 +710,9 @@
                     $("#'.$dialogScore->id.'").val(data[2]);
                     $("#'.$dialog->id.'").dialog("open");
                   });
-                  $(el).val(0);
-                  $(el).change();
+                  $("#'.$machineSelect->id.'").val(0);
+                  $("#'.$machineSelect->id.'").change();
+                  $("#'.$addInput->id.'").val(0);
                 }
               });
             ');
