@@ -255,7 +255,7 @@
       $cols = ($cols) ? $cols : array_keys($obj);
       foreach ($cols as $col) {
         $prop = (property_exists($this, 'table') && static::$cols[$col]) ? static::$cols[$col] : $col;
-        $updates[] = '´'.$col.'´'.(($nulls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
+        $updates[] = '`'.$col.'`'.(($nulls && $obj[$prop] === NULL) ? ' is ' : ' = ').db::getAlias($col);
         $values[db::getAlias($col)] = (isObj($obj[$prop])) ? $obj[$prop]->name : $obj[$prop];
       }
       return array('update' => implode($updates, $cond), 'values' => $values);
