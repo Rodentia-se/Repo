@@ -42,7 +42,7 @@
         $context = division($tournament, $prop);
         $secondParam = 'data';
       }
-      if ($context) {
+      if ($context->id) {
         $class = static::$objClass;
         $column = (property_exists($class, 'table')) ? $class::$table.'_id' : $class.'_id';
         if (isObj($$secondParam)) {

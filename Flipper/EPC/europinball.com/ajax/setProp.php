@@ -188,7 +188,7 @@
           $json = failure('No class provided');
         }
       } else {
-        $json = failure('Could not identify the target person');
+        $json = failure('Could not identify you. Are you logged in?');
       }
     } else {
       $json = failure('No property provided');

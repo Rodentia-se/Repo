@@ -5,13 +5,32 @@
 
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
+    $tournament = tournament('active');
+    $persons = persons($tournament);
     $prefix = 'scores';
-    ${$prefix.'Div'} = new div($prefix.'Div');
-      ${$prefix.'Div'}->data_title = ucfirst($prefix);
-      ${$prefix.'Div'}->addH2(${$prefix.'Div'}->data_title, array('class' => 'entry-title'));
-      ${$prefix.'Div'}->addParagraph('More coming soon...')->addCss('margin-top', '15px');
-    //${$prefix.'Div'}
-    echo ${$prefix.'Div'}->getHtml();
+    $div = new div('scoresDiv');
+      $div->data_title = "Scores";
+      $selectDiv = $div->addDiv();
+        $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit scores'));
+        $select->addCombobox();
+        $select->addValueSpan('Person ID:');
+      //selectDiv
+      $scoresResultDiv = $div->addDiv('scoresResultDiv', NULL, array('data-title' => 'Player scores'));
+      $select->addChange('
+        var el = this;
+        if ($(el).val() != 0) {
+          $("#'.$scoresResultDiv->id.'").hide();
+          $("body").addClass("modal");
+          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "scores", id: $(el).val()})
+          .done(function(data) {
+            $("#'.$scoresResultDiv->id.'").html(data);
+            $("body").removeClass("modal");
+            $("#'.$scoresResultDiv->id.'").show();
+          });
+        }          
+      ');
+      $div->addFocus('#'.$select->id.'_combobox', TRUE);
+    echo $div->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
   }
