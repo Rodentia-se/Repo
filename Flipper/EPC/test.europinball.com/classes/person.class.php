@@ -683,9 +683,9 @@
                 if (data.valid) {
                   $("#'.$table->id.'").dataTable().fnAddData([
                     data.id,
-                    $("#'.$machineSelect->id.'_combobox").val() + " (refresh to change)",
-                    $("#'.$addInput->id.'").val() + " (refresh to change)",
-                    NULL,
+                    "Game",
+                    data.score,
+                    "<img class=\"icon\" title=\"Click to edit score\" id=\"'.$prefix.'ScoreEdit" + data.id + "\" alt=\"Click to edit score\" src=\"'.config::$baseHref.'/images/edit.png\">",
                     "<img class=\"icon\" title=\"Click to remove score\" id=\"'.$prefix.'ScoreDelete" + data.id + "\" alt=\"Click to remove score\" src=\"'.config::$baseHref.'/images/cancel.png\">"
                   ]);
                   $("#'.$prefix.'ScoreDelete" + data.id).click(function() {
@@ -700,7 +700,16 @@
                         $("#'.$table->id.'").dataTable().fnDeleteRow(row);
                       }
                     });
-                  });                
+                  });
+                  $("#'.$prefix.'ScoreEdit" + data.id).click(function() {
+                    var position = $("#'.$table->id.'").dataTable().fnGetPosition(this.parentNode);
+                    var row = position[0];
+                    $("#'.$scoreRowHidden->id.'").val(row);
+                    var data = $("#'.$table->id.'").dataTable().fnGetData(row);
+                    $("#'.$scoreIdHidden->id.'").val(data[0]);
+                    $("#'.$dialogScore->id.'").val(data[2]);
+                    $("#'.$dialog->id.'").dialog("open");
+                  });
                   $(el).val(0);
                   $(el).change();
                 }
