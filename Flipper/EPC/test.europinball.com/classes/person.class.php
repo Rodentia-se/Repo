@@ -656,7 +656,7 @@
             $td->entities = FALSE;
             $tr->type = 'tbody';
             $table->addContent($tr);
-            $dialog = $div->addDiv('scoresEditDialog');
+            $dialog = $div->addDiv();
             $dialog->addH2('Edit score');
             $dialogScore = $dialog->addInput('Score', 0);
             $dialogScore->addTooltip();
