@@ -724,7 +724,7 @@
                 .done(function(data) {
                   $("#'.$dialogScore->id.'").tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
-                    $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), $("#'.$scoreRowHidden->id.'").val(), 2);
+                    $("#'.$table->id.'").dataTable().fnUpdate($("#'.$dialogScore->id.'").val(), parseInt($("#'.$scoreRowHidden->id.'").val()), 2);
                     $(dialog).dialog("close");
                   }
                 });
