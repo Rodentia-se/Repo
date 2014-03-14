@@ -646,7 +646,7 @@
             $machineSelect->addCombobox();
             $machineSelect->addValueSpan('ID:');
             $tr->addTd($machineSelect)->entities = FALSE;
-            $addInput = new input('score', 0, 'text', FALSE);
+            $addInput = new input();
             $addInput->class = 'short';
             $addInput->addTooltip();
             $td = $tr->addTd($addInput);
@@ -660,8 +660,8 @@
             $dialog->addH2('Edit score');
             $dialogScore = $dialog->addInput('Score', 0);
             $dialogScore->addTooltip();
-            $scoreIdHidden = $dialog->addHidden('scoreId', '0');
-            $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
+            $scoreIdHidden = $dialog->addHidden();
+            $scoreRowHidden = $dialog->addHidden();
             $addIcon->addClick('
               var props = {
                 "player_id": '.$player->id.',
