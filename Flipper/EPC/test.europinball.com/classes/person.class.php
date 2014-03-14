@@ -674,7 +674,7 @@
                 "firstName": "'.$player->firstName.'",
                 "city_id": '.$player->city_id.',
                 "country_id": '.$player->country_id.',
-                "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.'"
+                "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.', '.$machine->shortName.'"
               };
               $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/addObj.php", {class: "score", props: JSON.stringify(props)})
