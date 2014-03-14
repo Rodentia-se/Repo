@@ -664,7 +664,7 @@
             $scoreRowHidden = $dialog->addHidden('scoreRow', '0');
             $addIcon->addClick('
               var props = {
-                "player_id": $("#'.$player->id.'").val(),
+                "player_id": '.$player->id.',
                 "machine_id": $("#'.$machineSelect->id.'").val(),
                 "score": $("#'.$addInput->id.'").val(),
                 "tournamentDivision_id": '.$division->id.',
