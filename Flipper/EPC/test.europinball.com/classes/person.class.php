@@ -674,7 +674,7 @@
                 "firstName": "'.$player->firstName.'",
                 "city_id": '.$player->city_id.',
                 "country_id": '.$player->country_id.',
-                "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.', '.$machine->shortName.'"
+                "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.', " + $("#'.$machineSelect->id.'").children(":selected").text()
               };
               $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/addObj.php", {class: "score", props: JSON.stringify(props)})
@@ -683,7 +683,7 @@
                 if (data.valid) {
                   $("#'.$table->id.'").dataTable().fnAddData([
                     data.id,
-                    "Game",
+                    $("#'.$machineSelect->id.'").children(":selected").text() + " (ID: " + $("#'.$machineSelect->id.'").val() + " - refresh to change)",
                     data.score,
                     "<img class=\"icon\" title=\"Click to edit score\" id=\"'.$prefix.'ScoreEdit" + data.id + "\" alt=\"Click to edit score\" src=\"'.config::$baseHref.'/images/edit.png\">",
                     "<img class=\"icon\" title=\"Click to remove score\" id=\"'.$prefix.'ScoreDelete" + data.id + "\" alt=\"Click to remove score\" src=\"'.config::$baseHref.'/images/cancel.png\">"
