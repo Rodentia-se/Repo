@@ -17,8 +17,8 @@
             foreach ($props as $prop => $value) {
               $obj->$prop = $value;
             }
-            $save = $obj->save();
-            if ($save) {
+            $obj->id = $obj->save();
+            if (isId($obj->id)) {
               $json = success($obj->name.' added', $obj);
             } else {
               $json = failure('Could not add '.$obj->name);
