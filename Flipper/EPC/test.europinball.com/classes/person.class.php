@@ -667,6 +667,13 @@
                 "player_id": $("#'.$player->id.'").val(),
                 "machine_id": $("#'.$machineSelect->id.'").val(),
                 "score": $("#'.$addInput->id.'").val(),
+                "tournamentDivision_id": '.$division->id.',
+                "tournamentEdition_id": '.$tournament->id.',
+                "person_id": '.$this->id.',
+                "lastName": '.$player->lastName.',
+                "firstName": '.$player->firstName.',
+                "city_id": '.$player->city_id.',
+                "country_id": '.$player->country_id.',
                 "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.'"
               };
               $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
