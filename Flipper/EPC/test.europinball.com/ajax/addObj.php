@@ -4,7 +4,7 @@
   require_once(__ROOT__.'/functions/init.php');
   
   $class = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-  $props = (isId($_REQUEST['props'])) ? $_REQUEST['props'] : NULL;
+  $props = (isset($_REQUEST['props'])) ? $_REQUEST['props'] : NULL;
   
   if ($class) {
     $volunteer = person('login');
