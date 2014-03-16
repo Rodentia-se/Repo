@@ -187,6 +187,9 @@
                     if ($(el).is(":checkbox")) {
                       $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
                       $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
+                      console.log($("#'.$machineEditTabs->id.'").tabs("option");
+                      ui.newTab.attr('aria-controls', element.href);
+                      $(ui.newPanel).load(element.href);
                     }
                   } else {
                     if ($(el).is(":checkbox")) {
