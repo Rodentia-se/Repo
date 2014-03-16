@@ -16,6 +16,8 @@
     $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
     $division = division($tournament, 'recreational');
     debug($division);
+    $division = division($tournament, 'main');
+    debug($division);
   } else {
     echo('statusCode=1'); // Login failed
   }
