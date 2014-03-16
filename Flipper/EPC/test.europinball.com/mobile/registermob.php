@@ -9,7 +9,7 @@
   if ($volunteer->receptionist) {
     echo('yes');
   } else {
-    echo('no');
+    echo(config::$login->verified);
   }
   debug($volunteer);
   
