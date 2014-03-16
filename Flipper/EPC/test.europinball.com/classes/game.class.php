@@ -141,11 +141,6 @@
                   $machineEditTab->dataTitle = $division->divisionName;
                 }
               }
-
-                $adminTabs = array('players', 'users', 'payments', 'teams', 'groups', 'games', 'scores', 'results', 'volunteers', 'tshirts', 'other');
-                foreach ($adminTabs as $adminTab) {
-                  $tabs->addAjaxTab(config::$baseHref.'/ajax/admin/'.$adminTab.'.php', ucfirst($adminTab));
-                }
               //$tabs
 //              $division = division(18); // @todo: Remove hard coded division ID!
 //              $machines = machines($this, $division);
