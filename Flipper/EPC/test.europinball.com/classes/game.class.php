@@ -133,12 +133,13 @@
               foreach (array_merge(config::$activeDivisions, array('recreational')) as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
-                $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass, 'data-tab' => $tab));
                 if ($machines && count($machines) > 0) {
                   $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id='.$machines[0]->id, ucfirst($divisionType));
                 } else {
                   $machineEditTabs->addDiv()->dataTitle = $division->divisionName;
                 }
+                $tab++;
               }
               $editDiv->addContent($machineEditdiv);
             //}
@@ -184,7 +185,7 @@
                       $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
                     }
                     if ($(el).is(":checkbox")) {
-                      $("#'.$machineEditTabs->id.'").tabs("load");
+                      $("#'.$machineEditTabs->id.'").tabs("load", $($el).data("tab"));
                     }
                   } else {
                     if ($(el).is(":checkbox")) {
