@@ -98,11 +98,14 @@
       switch ($type) {
         case 'edit':
         default:
+          $editClass = $prefix.'machineEdit';
           $editDiv = new div($prefix.'MachineEditDiv');
-          $editDiv->addH3((($title) ? $title : 'Edit machine'), array('class' => 'entry-title'));
-          $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter or move away from the field.', NULL, 'italic');
-          $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
-          $spinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls');
+            $editDiv->addH3((($title) ? $title : 'Edit machine'), array('class' => 'entry-title'));
+            $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
+            $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
+              $ballsSpinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
+            $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
+              $extraBallsBox = $extraBallsDiv->addCheckbox('Extra balls allowed', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass));
           return $editDiv;
         break;
       }
