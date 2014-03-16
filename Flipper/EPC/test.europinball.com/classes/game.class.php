@@ -135,10 +135,9 @@
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
                 if ($machines && count($machines) > 0) {
-                  $machineEditTab = $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id='.$machines[0]->id, ucfirst($divisionType));
+                  $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id='.$machines[0]->id, ucfirst($divisionType));
                 } else {
-                  $machineEditTab = $machineEditTabs->addDiv();
-                  $machineEditTab->dataTitle = $division->divisionName;
+                  $machineEditTabs->addDiv()->dataTitle = $division->divisionName;
                 }
               }
               $editDiv->addContent($machineEditdiv);
@@ -183,6 +182,9 @@
                     $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
                     if (el.name == "rules") {
                       $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
+                    }
+                    if ($(el).is(":checkbox")) {
+                      $("#'.$machineEditTabs.'").tabs("load");
                     }
                   } else {
                     if ($(el).is(":checkbox")) {

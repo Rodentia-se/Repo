@@ -118,7 +118,6 @@
                 $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj($prefix.'Owner', NULL, 'Choose owner'));
                 $ownerSelect->addCombobox();
                 $ownerSelect->addValueSpan('Owner ID:');
-            
           return $editDiv;
         break;
       }
