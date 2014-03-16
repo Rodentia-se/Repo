@@ -128,16 +128,14 @@
             //}
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
-              $natTeamDiv = division(18);
-              $recreational
-              foreach (config::$activeDivisions as $divisionType) {
+              foreach (array_merge(config::$activeDivisions, 'recreational') as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
               }
-              $division = division(18); // @todo: Remove hard coded division ID!
-              $machines = machines($this, $division);
-              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
+//              $division = division(18); // @todo: Remove hard coded division ID!
+//              $machines = machines($this, $division);
+//              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
             //}
             $editDiv->addScriptCode('
               $(".'.$comboboxClass.'").combobox()
