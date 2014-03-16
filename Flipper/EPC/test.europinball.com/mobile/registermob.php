@@ -18,6 +18,7 @@
     debug($division, "DIV");
     $division = division($tournament, 'main');
     debug($division, "DIV");
+    echo('hej');
   } else {
     echo('statusCode=1'); // Login failed
   }
