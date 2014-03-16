@@ -105,8 +105,9 @@
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
               $ballsSpinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
-              $extraBallsDiv->addLabel('', NULL, NULL, 'normal');
-              $extraBallsBox = $extraBallsDiv->addCheckbox('Extra balls allowed', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass));
+              $extraBallsDiv->addLabel('Extra balls allowed', NULL, NULL, 'normal');
+              $extraBallsBox = $extraBallsDiv->addCheckbox('extraBalls', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass));
+              $extraBallsBox->label = FALSE;
           return $editDiv;
         break;
       }
