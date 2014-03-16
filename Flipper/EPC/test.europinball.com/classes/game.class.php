@@ -128,11 +128,25 @@
             //}
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
+              $machineEditdiv = new div();
+              $machineEditTabs = $machineEditdiv->addTabs(NULL, 'adminTabs');
               foreach (array_merge(config::$activeDivisions, array('recreational')) as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
+                if ($machines && count($machines) > 0) {
+                  $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&$id='.$machines[0]->id, ucfirst($divisionType));
+                } else {
+                  $machineEditTab = $machineEditTabs->addDiv();
+                  $machineEditTab->dataTitle = $division->divisionName;
+                }
               }
+
+                $adminTabs = array('players', 'users', 'payments', 'teams', 'groups', 'games', 'scores', 'results', 'volunteers', 'tshirts', 'other');
+                foreach ($adminTabs as $adminTab) {
+                  $tabs->addAjaxTab(config::$baseHref.'/ajax/admin/'.$adminTab.'.php', ucfirst($adminTab));
+                }
+              //$tabs
 //              $division = division(18); // @todo: Remove hard coded division ID!
 //              $machines = machines($this, $division);
 //              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
