@@ -139,7 +139,7 @@
     
     public static $photoExts = array('png', 'jpg', 'jpeg', 'gif', 'PNG', 'JPG', 'JPEG', 'GIF');
     public static $addables = array('city', 'region');
-    public static $divisions = array('main', 'classics', 'eighties', 'team', 'nationalTeam');
+    public static $divisions = array('main', 'classics', 'split', 'juniors', 'eighties', 'team', 'nationalTeam', 'side', 'recreational');
     public static $singleDivisions = array('main', 'classics', 'eighties');
     public static $teamDivisions = array('team', 'nationalTeam');
 
