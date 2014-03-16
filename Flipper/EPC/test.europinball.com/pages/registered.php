@@ -62,6 +62,7 @@
       $page->closeUl();
       foreach ($divisions as $division) {
         $rows = array();
+        echo($division->id);
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
           $page->startDiv($division->shortName.ucfirst($type));
           if (count($objs[$division->id]) > 0) {
