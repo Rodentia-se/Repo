@@ -208,7 +208,29 @@
         break;
       }
     }
-
+    
+    function addDivision($division = NULL) {
+      $division = division($division);
+      if (isDivision($division)) {
+        $tournament = tournament($division->tournamentEdition_id);
+        $machine = machine($this, $division);
+        if ($machine) {
+          return $machine->id;
+        } else {
+          $machine = new machine();
+          $machine->game_id = $this->id;
+          $machine->game = $this->name;
+          $machine->gameAcronym = $this->shortName;
+          $machine->tournamentEdition_id = $division->tournamentEdition_id;
+          $machine->tournamentDivision_id = $division->id;
+          $machine->name = $tournament->name.', '.$division->divisionName.': '.$this->shortName;
+          $machine->manufacturer_id = $this->manufacturer_id;
+          $machine->manufacturerName = $this->manufacturerName;
+          return $machine->save();
+        }
+      }
+      return FALSE;
+    }
 
   }
 
