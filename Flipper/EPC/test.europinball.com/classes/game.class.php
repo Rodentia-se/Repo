@@ -128,7 +128,7 @@
             //}
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
-              foreach (array_merge(config::$activeDivisions, 'recreational') as $divisionType) {
+              foreach (array_merge(config::$activeDivisions, array('recreational')) as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
