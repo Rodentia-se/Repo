@@ -15,9 +15,9 @@
     $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
     $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
     $division = division($tournament, 'recreational');
-    debug($division);
+    debug($division, "DIV");
     $division = division($tournament, 'main');
-    debug($division);
+    debug($division, "DIV");
   } else {
     echo('statusCode=1'); // Login failed
   }
