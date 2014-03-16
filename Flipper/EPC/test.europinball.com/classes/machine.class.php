@@ -100,7 +100,7 @@
         default:
           $editClass = $prefix.'machineEdit';
           $editDiv = new div($prefix.'MachineEditDiv');
-            $editDiv->addH3((($title) ? $title : 'Edit machine'), array('class' => 'entry-title'));
+            $editDiv->addH3((($title) ? $title : 'Edit machine: '.$this->shortName.' in '.$this->divisionName), array('class' => 'entry-title'));
             $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
               $ballsSpinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
@@ -112,6 +112,13 @@
               $onePlayerAllowedDiv->addLabel('Single player allowed', NULL, NULL, 'normal');
               $onePlayerAllowedBox = $onePlayerAllowedDiv->addCheckbox('onePlayerAllowed', ($this->onePlayerAllowed), array('id' => $prefix.'onePlayerAllowed'.$this->id, 'class' => $editClass));
               $onePlayerAllowedBox->label = FALSE;
+            $owners = owners('all');
+            $ownerDiv = $editDiv->addDiv($prefix.'OwnerDiv');
+              $ownerSelectDiv = $editDiv->addDiv();
+                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj($prefix.'Owner', NULL, 'Choose owner'));
+                $ownerSelect->addCombobox();
+                $ownerSelect->addValueSpan('Owner ID:');
+            
           return $editDiv;
         break;
       }
