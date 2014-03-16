@@ -2,6 +2,7 @@
 
   define('__ROOT__', dirname(dirname(__FILE__)));
   require_once(__ROOT__.'/functions/init.php');
+  noError();
 
   config::$login->verified = TRUE; // No nonce
   config::$login->action('login');
