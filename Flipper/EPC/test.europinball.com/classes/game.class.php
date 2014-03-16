@@ -128,6 +128,8 @@
             //}
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
+              $natTeamDiv = division(18);
+              $recreational
               foreach (config::$activeDivisions as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
@@ -225,7 +227,7 @@
           $machine->tournamentDivision_id = $division->id;
           $machine->name = $tournament->name.', '.$division->divisionName.': '.$this->shortName;
           $machine->manufacturer_id = $this->manufacturer_id;
-          $machine->manufacturerName = $this->manufacturerName;
+          $machine->manufacturer = $this->manufacturerName;
           return $machine->save();
         }
       }

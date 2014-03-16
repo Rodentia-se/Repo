@@ -30,9 +30,9 @@
           }
         ');
         ${$prefix.'Div'}->addFocus('#'.${$prefix.'Select'}->id.'_combobox', TRUE);
-      //$usersSelectDiv
+      //$gamesSelectDiv
       ${$prefix.'Div'}->addDiv(${$prefix.'Select'}->id.'EditDiv');
-      //$usersEditDiv
+      //$gamesEditDiv
       $owners = owners('active');
       $mailAddresses = $owners->getListOf('mailAddress');
       if ($mailAddresses) {

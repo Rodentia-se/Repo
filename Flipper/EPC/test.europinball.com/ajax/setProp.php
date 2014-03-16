@@ -108,7 +108,7 @@
                       } else {
                         $json = failure('Invalid property class '.$propClass);
                       }
-                    } else if (in_array($prop, config::$divisions) && in_array($class, array('person', 'game'))) {
+                    } else if (in_array($prop, array_merge(config::$divisions, 'recreational')) && in_array($class, array('person', 'game'))) {
                       $tournament = tournament(config::$activeTournament);
                       if ($tournament) {
                         switch ($class) {
