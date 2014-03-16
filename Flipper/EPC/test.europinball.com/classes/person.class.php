@@ -625,6 +625,7 @@
           $division = division(16);
           $players = players($this, $division);
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
+          $entries = entries($this, $division);
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
