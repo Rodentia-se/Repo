@@ -9,16 +9,17 @@
   config::$login->action('login');
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
+    echo('hej');
     $tournament = getTournament('active');
-    $personId = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-    $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
-    $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
-    $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
     $division = division($tournament, 'recreational');
     debug($division, "DIV");
     $division = division($tournament, 'main');
     debug($division, "DIV");
-    echo('hej');
+
+    $personId = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
+    $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
+    $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
+    $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
   } else {
     echo('statusCode=1'); // Login failed
   }
