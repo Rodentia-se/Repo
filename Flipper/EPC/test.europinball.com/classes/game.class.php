@@ -186,6 +186,7 @@
                     }
                     if ($(el).is(":checkbox")) {
                       $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
+                      $("#'.$machineEditTabs->id.'").find("ul>li a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("href", url);
                       $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
                       console.log($("#'.$machineEditTabs->id.'").tabs("option"));
                     }
