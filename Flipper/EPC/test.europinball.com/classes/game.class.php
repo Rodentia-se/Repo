@@ -187,7 +187,7 @@
                     if ($(el).is(":checkbox")) {
                       $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
                       $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
-                      console.log($("#'.$machineEditTabs->id.'").tabs("option");
+                      console.log($("#'.$machineEditTabs->id.'").tabs("option"));
                     }
                   } else {
                     if ($(el).is(":checkbox")) {
