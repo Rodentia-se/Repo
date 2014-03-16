@@ -9,12 +9,17 @@
   config::$login->action('login');
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
-    echo('hej');
+    echo('hej1');
     $tournament = getTournament('active');
+    echo('hej2');
     $division = division($tournament, 'recreational');
+    echo('hej3');
     debug($division, "DIV");
+    echo('hej4');
     $division = division($tournament, 'main');
+    echo('hej5');
     debug($division, "DIV");
+    echo('hej6');
 
     $personId = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
     $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
