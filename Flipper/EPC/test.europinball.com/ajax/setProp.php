@@ -126,7 +126,7 @@
                               if ($subObj) {
                                 $$subObj = $subObj($obj, $division);
                                 if (isObj($$subObj)) {
-                                  $json = success('Added '.$obj->name.' to the '.$division->divisionName);
+                                  $json = success('Added '.$obj->name.' to the '.$division->divisionName, array('id' => $$subObj->id));
                                 } else {
                                   $json = failure('Could not add '.$obj->name.' to the '.$division->divisionName);
                                 }
