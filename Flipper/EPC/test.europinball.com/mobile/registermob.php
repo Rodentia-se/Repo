@@ -7,10 +7,13 @@
   config::$login->action('login');
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
-    echo('yes');
+    
   } else {
     echo('statusCode=1'); // Login failed
   }
   debug($volunteer);
   
 ?>
+
+// https://www.flippersm.se/mobile/registermob.php?playerId=55&gameId=20&score=200000&user=bitwalk&password=abc123
+

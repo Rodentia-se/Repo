@@ -6,15 +6,19 @@
   
   config::$login = new auth();
 
-    if ($_SESSION['msg']) {
-      config::$msg = $_SESSION['msg'];
-      unset($_SESSION['msg']);
-    }
+  if ($_SESSION['msg']) {
+    config::$msg = $_SESSION['msg'];
+    unset($_SESSION['msg']);
+  }
+    
+  function noError($noError = TRUE, $noWarning = TRUE, $noDebug = TRUE) {
+    config::$debug = !$noDebug;
+    config::$showWarnings = !$noWarning;
+    config::$showErrors = !$noError;
+  }
 
   if (isset($_REQUEST['noError'])) {
-    config::$debug = FALSE;
-    config::$showWarnings = FALSE;
-    config::$showErrors = FALSE;
+    noError();
   }
 
   if (isset($_REQUEST['debug'])) {
