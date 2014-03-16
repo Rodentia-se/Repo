@@ -141,7 +141,7 @@
                   $machineEditTab->dataTitle = $division->divisionName;
                 }
               }
-              $$editDiv->addContent($machineEditdiv);
+              $editDiv->addContent($machineEditdiv);
               //$tabs
 //              $division = division(18); // @todo: Remove hard coded division ID!
 //              $machines = machines($this, $division);
