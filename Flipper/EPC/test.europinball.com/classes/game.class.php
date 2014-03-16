@@ -135,7 +135,7 @@
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
                 if ($machines && count($machines) > 0) {
-                  $machineEditTab = $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&$id='.$machines[0]->id, ucfirst($divisionType));
+                  $machineEditTab = $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id='.$machines[0]->id, ucfirst($divisionType));
                 } else {
                   $machineEditTab = $machineEditTabs->addDiv();
                   $machineEditTab->dataTitle = $division->divisionName;
