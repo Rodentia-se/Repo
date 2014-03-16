@@ -142,10 +142,6 @@
                 }
               }
               $editDiv->addContent($machineEditdiv);
-              //$tabs
-//              $division = division(18); // @todo: Remove hard coded division ID!
-//              $machines = machines($this, $division);
-//              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
             //}
             $editDiv->addScriptCode('
               $(".'.$comboboxClass.'").combobox()

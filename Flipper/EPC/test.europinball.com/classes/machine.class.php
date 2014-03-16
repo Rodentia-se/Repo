@@ -93,6 +93,21 @@
       return ($array) ? $return : (object) $return;
     }
 
+    public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $tournament = getTournament($tournament);
+      switch ($type) {
+        case 'edit':
+        default:
+          $editDiv = new div($prefix.'MachineEditDiv');
+          $editDiv->addH3((($title) ? $title : 'Edit machine'), array('class' => 'entry-title'));
+          $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter or move away from the field.', NULL, 'italic');
+          $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
+          $spinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls');
+          return $editDiv;
+        break;
+      }
+    }
+
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
         case 'ipdb':
