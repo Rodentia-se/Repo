@@ -185,7 +185,7 @@
                       $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
                     }
                     if ($(el).is(":checkbox")) {
-                      $("#'.$machineEditTabs->id.'").tabs("options", "active", $(el).data("tab"));
+                      $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
                       $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
                     }
                   } else {
