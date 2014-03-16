@@ -129,13 +129,13 @@
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
               $machineEditdiv = new div();
-              $machineEditTabs = $machineEditdiv->addTabs(NULL, 'adminTabs');
+              $machineEditTabs = $machineEditdiv->addTabs();
               foreach (array_merge(config::$activeDivisions, array('recreational')) as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
                 $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
                 if ($machines && count($machines) > 0) {
-                  $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&$id='.$machines[0]->id, ucfirst($divisionType));
+                  $machineEditTab = $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&$id='.$machines[0]->id, ucfirst($divisionType));
                 } else {
                   $machineEditTab = $machineEditTabs->addDiv();
                   $machineEditTab->dataTitle = $division->divisionName;
