@@ -207,10 +207,9 @@
       $td->addBr();
       $td->addSpan($this->shortName, NULL, 'qrId');
       $td->addBr();
-      $td->addSpan($this->id, NULL, 'qrId');
-      $td->addBr();
       $division = division($this->tournamentDivision_id);
-      $td->addSpan($division->divisionName);
+      $td->addSpan($division->divisionName.' ');
+      $td->addSpan($this->id, NULL, 'qrId');
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
       $qrTd->class = 'qrTd';
