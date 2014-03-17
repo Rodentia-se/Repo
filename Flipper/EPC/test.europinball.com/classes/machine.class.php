@@ -182,8 +182,7 @@
                 timer: 3000
               });
             ');
-            $editDiv->addContent($this->getQrLabel());
-            
+            $editDiv->addContent($this->getQrLabel())->addCss('margin-top: 20px;');
           //$editDiv
           return $editDiv;
         break;
