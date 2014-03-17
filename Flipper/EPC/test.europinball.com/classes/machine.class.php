@@ -208,6 +208,7 @@
       $td->addSpan($this->shortName, NULL, 'qrId');
       $td->addBr();
       $td->addSpan($this->id, NULL, 'qrId');
+      $td->addSpan($this->manufacturerName);
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
       $qrTd->class = 'qrTd';
