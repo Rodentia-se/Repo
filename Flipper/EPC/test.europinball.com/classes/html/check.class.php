@@ -6,7 +6,8 @@
       $params['name'] = ($name) ? $name : (($params['name']) ? $params['name'] : $value);
       $params['id'] = ($params['id']) ? $params['id'] : $name;
       $params['checked'] = ($checked || $params['checked']) ? TRUE : FALSE;
-      parent::__construct($name, $value, $type, TRUE, $params);
+      $label = ($params['label']) ? $params['label'] : TRUE; 
+      parent::__construct($name, $value, $type, $label, $params);
     }
 //    input public function __construct($name = NULL, $value = NULL, $type = 'text', $label = TRUE, array $params = NULL) {
 //    html public function __construct($element = 'span', $contents = NULL, array $params = NULL, $id = NULL, $class = NULL, array $css = NULL, $indents = 0) {
