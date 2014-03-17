@@ -17,5 +17,6 @@
         echo $machine->getQrLabel();
       }
     }
+  }
 
 ?>

@@ -17,5 +17,6 @@
         echo $person->getQrLabel();
       }
     }
+  }
 
 ?>
