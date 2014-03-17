@@ -14,9 +14,15 @@
     if (isId($personId)) {
       $person = person($personId);
       if (isPerson($person)) {
-        echo $person->getQrLabel();
+        echo($person->getQrLabel());
+      } else {
+        echo('Can not find person ID '.$personId);
       }
+    } else {
+      echo('Invalid person ID '.$personId);
     }
+  } else {
+    echo('Login or authorization failed');
   }
 
 ?>

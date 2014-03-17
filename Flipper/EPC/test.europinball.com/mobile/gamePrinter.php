@@ -14,9 +14,15 @@
     if (isId($machineId)) {
       $machine = machine($machineId);
       if (isMachine($machine)) {
-        echo $machine->getQrLabel();
+        echo($machine->getQrLabel());
+      } else {
+        echo('Can not find machine ID '.$machineId);
       }
+    } else {
+      echo('Invalid machine ID '.$machineId);
     }
+  } else {
+    echo('Login or authorization failed');
   }
 
 ?>

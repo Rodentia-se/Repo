@@ -5,30 +5,73 @@
   require_once(__ROOT__.'/functions/init.php');
   noError(TRUE, TRUE, FALSE);
 
-  config::$login->verified = TRUE; // No nonce
-  config::$login->action('login');
+  $page = new page('Register');
+  if (!$page->loggedin()) {
+    config::$login->verified = TRUE; // No nonce
+    config::$login->action('login');
+  }
+
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
-    echo('hej1');
-    $tournament = getTournament('active');
-    echo('hej2');
-    $division = division($tournament, 'recreational');
-    echo('hej3');
-    debug($division, "DIV");
-    echo('hej4');
-    $division = division($tournament, 'main');
-    echo('hej5');
-    debug($division, "DIV");
-    echo('hej6');
-
-    $personId = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
-    $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
-    $prop = (isset($_REQUEST['prop'])) ? $_REQUEST['prop'] : NULL;
-    $value = (isset($_REQUEST['value'])) ? $_REQUEST['value'] : NULL;
+    $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
+    $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
+    $regScore = (isset($_REQUEST['score'])) ? $_REQUEST['score'] : NULL;
+    if (isId($machineId)) {
+      $machine = machine($machineId);
+      if (isMachine($machine)) {
+        $division = division($machine);
+        if (isDivision($division)) {
+          if (isId($personId)) {
+            $person = person($personId);
+            if (isPerson($person)) {
+              $score = score($person, $machine)
+                if (isScore($score)) {
+                  if ($score->score) {
+                    echo('statusCode=4');
+                  } else {
+                    if (isInt($regScore)) {
+                      if ($regScore > 0) {
+                        $score->score = $regScore;
+                        $save = $score->save();
+                        if ($save) {
+                          $checkScore = score($score->id);
+                          if ($checkScore->score == $regScore) {
+                            echo('statusCode=0');
+                          } else {
+                            echo('statusCode=2');
+                          }
+                        }
+                      } else {
+                        echo('statusCode=2');
+                      }
+                    } else {
+                      echo('statusCode=2');
+                    }
+                  }
+                } else {
+                  echo('statusCode=2');
+                }
+              } else {
+                echo('statusCode=2');
+              }
+            } else {
+              echo('statusCode=2');
+            }
+          } else {
+            echo('statusCode=2');
+          }
+        } else {
+          echo('statusCode=2');
+        }
+      } else {
+        echo('statusCode=2');
+      }
+    } else {
+      echo('statusCode=1'); // Login failed
+    }
   } else {
     echo('statusCode=1'); // Login failed
   }
-  debug($volunteer);
   
 ?>
 
