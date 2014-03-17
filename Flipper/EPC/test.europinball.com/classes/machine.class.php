@@ -105,19 +105,23 @@
             $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
               $ballsSpinner = $ballsDiv->addSpinner('balls', (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
+              $ballsSpinner->id = $prefix.'Balls'.$this->id;
             //$ballsDiv
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
               $extraBallsDiv->addLabel('Extra balls', NULL, NULL, 'normal');
               $extraBallsBox = $extraBallsDiv->addCheckbox('extraBalls', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass, 'label' => 'Allowed'));
+              $extraBallsBox->id = $prefix.'ExtraBalls'.$this->id;
             //$extraBallsDiv
             $onePlayerAllowedDiv = $editDiv->addDiv($prefix.'MachineOnePlayerAllowedDiv');
               $onePlayerAllowedDiv->addLabel('Single player play', NULL, NULL, 'normal');
               $onePlayerAllowedBox = $onePlayerAllowedDiv->addCheckbox('onePlayerAllowed', ($this->onePlayerAllowed), array('id' => $prefix.'onePlayerAllowed'.$this->id, 'class' => $editClass, 'label' => 'Allowed'));
+              $onePlayerAllowedBox->id = $prefix.'OnePlayerAllowed'.$this->id;
             //$onePlayerAllowedDiv
             $owners = owners('all');
             $ownerDiv = $editDiv->addDiv($prefix.'OwnerDiv');
               $ownerSelectDiv = $editDiv->addDiv();
                 $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj('owner_id', $this->owner_id, 'Owner', array('class' => $comboboxClass)));
+                  $ownerSelect->id = $prefix.'OwnerSelect'.$this->id;
                   $ownerSelect->addCombobox();
                   $ownerSelect->addValueSpan('Owner ID:');
                 //$ownerSelect
