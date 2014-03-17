@@ -104,20 +104,30 @@
             $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
               $ballsSpinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
+            //$ballsDiv
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
-              $extraBallsDiv->addLabel('Extra balls allowed', NULL, NULL, 'normal');
+              $extraBallsDiv->addLabel('Extra balls', NULL, NULL, 'normal');
               $extraBallsBox = $extraBallsDiv->addCheckbox('extraBalls', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass));
-              $extraBallsBox->label = FALSE;
+              $extraBallsBox->label = 'allowed';
+            //$extraBallsDiv
             $onePlayerAllowedDiv = $editDiv->addDiv($prefix.'MachineOnePlayerAllowedDiv');
-              $onePlayerAllowedDiv->addLabel('Single player allowed', NULL, NULL, 'normal');
+              $onePlayerAllowedDiv->addLabel('Single player play', NULL, NULL, 'normal');
               $onePlayerAllowedBox = $onePlayerAllowedDiv->addCheckbox('onePlayerAllowed', ($this->onePlayerAllowed), array('id' => $prefix.'onePlayerAllowed'.$this->id, 'class' => $editClass));
-              $onePlayerAllowedBox->label = FALSE;
+              $onePlayerAllowedBox->label = 'allowed';
+            //$onePlayerAllowedDiv
             $owners = owners('all');
             $ownerDiv = $editDiv->addDiv($prefix.'OwnerDiv');
               $ownerSelectDiv = $editDiv->addDiv();
-                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj($prefix.'Owner', NULL, 'Choose owner'));
-                $ownerSelect->addCombobox();
-                $ownerSelect->addValueSpan('Owner ID:');
+                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj($prefix.'MachineOwnerSelect', NULL, 'Choose owner'));
+                  $ownerSelect->addCombobox();
+                  $ownerSelect->addValueSpan('Owner ID:');
+                //$ownerSelect
+              //$ownerSelectDiv
+            //$ownerDiv
+            $editDiv->addScriptCode('
+              
+            ');
+          //$editDiv
           return $editDiv;
         break;
       }
