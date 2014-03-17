@@ -202,7 +202,7 @@
       $table = $qrDiv->addTable();
       $table->class = 'qrTable';
       $tr = $table->addTr();
-      $td = $tr->addTd();
+      $td = $tr->addTd($this->manufacturerName);
       $td->class = 'qrLabelTd';
       $td->addBr();
       $td->addSpan($this->shortName, NULL, 'qrId');
