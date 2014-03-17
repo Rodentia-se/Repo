@@ -12,7 +12,6 @@
 
     
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
-      debug($prop);
       parent::__construct($data, $prop, $cond);
     }
     
