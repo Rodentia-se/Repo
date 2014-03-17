@@ -205,7 +205,7 @@
       $td = $tr->addTd($this->manufacturerName);
       $td->class = 'qrLabelTd';
       $td->addBr();
-      $td->addSpan($this->shortName, NULL, 'qrId');
+      $td->addSpan($this->shortName, NULL, 'qrInitials');
       $td->addBr();
       $td->addSpan($this->id, NULL, 'qrId');
       $td->addBr();
