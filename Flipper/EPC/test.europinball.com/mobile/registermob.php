@@ -29,7 +29,7 @@
                 if ($score->score) {
                   echo('statusCode=4');
                 } else {
-                  if (isInt($regScore)) {
+                  if (isId($regScore)) {
                     if ($regScore > 0) {
                       $score->score = $regScore;
                       $save = $score->save();
