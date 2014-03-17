@@ -107,7 +107,7 @@
             //$ballsDiv
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
               $extraBallsDiv->addLabel('Extra balls', NULL, NULL, 'normal');
-              $extraBallsBox = $extraBallsDiv->addCheckbox('extraBalls', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass, 'label' => 'allowed'));
+              $extraBallsBox = $extraBallsDiv->addCheckbox('extraBalls', ($this->extraBalls), array('id' => $prefix.'extraBalls'.$this->id, 'class' => $editClass));
             //$extraBallsDiv
             $onePlayerAllowedDiv = $editDiv->addDiv($prefix.'MachineOnePlayerAllowedDiv');
               $onePlayerAllowedDiv->addLabel('Single player play', NULL, NULL, 'normal');
