@@ -58,6 +58,7 @@
         ';
         $values['qeId'] = $this->id;
         $sth = $this->db->select($query, $values);
+        debug($sth);
         if ($sth) {
           foreach ($sth->fetch(PDO::FETCH_ASSOC) as $key => $value) {
             $this->$key = $value;
