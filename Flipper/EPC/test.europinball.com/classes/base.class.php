@@ -73,12 +73,10 @@
           if (isAssoc($data)) {
             $obj = $this->db->getObjectByProps(get_class($this), $data);
           } else if (isObj($data) && isId($data->id)) {
-            debug('1'.get_class($this));
             $dataClass = get_class($data);
             $dataTable = (property_exists($data, 'table')) ? $dataClass::$table : $dataClass;
             $objSearch[$dataTable.'_id'] = $data->id;
             if (isObj($search) && isId($search->id)) {
-              debug('2'.get_class($this));
               $searchClass = get_class($search);
               $searchTable = (property_exists($search, 'table')) ? $searchClass::$table : $searchClass;
               $objSearch[$searchTable.'_id'] = $search->id;
