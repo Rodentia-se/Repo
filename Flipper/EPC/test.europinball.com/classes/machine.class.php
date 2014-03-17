@@ -117,7 +117,7 @@
             $owners = owners('all');
             $ownerDiv = $editDiv->addDiv($prefix.'OwnerDiv');
               $ownerSelectDiv = $editDiv->addDiv();
-                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj('owner', $this->owner_id, 'Choose owner'));
+                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj('owner_id', $this->owner_id, 'Owner', array('class' => $comboboxClass)));
                   $ownerSelect->addCombobox();
                   $ownerSelect->addValueSpan('Owner ID:');
                 //$ownerSelect
