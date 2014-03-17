@@ -161,21 +161,12 @@
                   $(el).tooltipster("update", data.reason).tooltipster("show");
                   if (data.valid) {
                     $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
-                    if (el.name == "rules") {
-                      $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
-                    }
                   } else {
                     if ($(el).is(":checkbox")) {
                       el.checked = ($(el).data("previous"));
                     } else {
                       $(el).val($(el).data("previous"));
                     }
-                  }
-                  if ($(el).is(":checkbox")) {
-                    $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
-                    $("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("href", "'.config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id=" + data.id);
-                    $("#" + $("#'.$machineEditTabs->id.'").find("ul > li").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("aria-controls")).empty();
-                    $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
                   }
                 });
               })
@@ -186,14 +177,6 @@
                 trigger: "custom",
                 timer: 3000
               });
-              $(".'.$dateClass.'").spinner({
-                min: 1920,
-                max: '.date('Y').',
-                stop: function(event, ui) {
-                  $(".'.$dateClass.'").change();
-                }
-              });
-              $(".buttonLink").button();              
             ');
           //$editDiv
           return $editDiv;
