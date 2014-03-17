@@ -24,7 +24,7 @@
           if (isId($personId)) {
             $person = person($personId);
             if (isPerson($person)) {
-              $score = score($person, $machine)
+              $score = score($person, $machine);
                 if (isScore($score)) {
                   if ($score->score) {
                     echo('statusCode=4');
