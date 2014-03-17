@@ -63,6 +63,7 @@
             $this->$key = $value;
           }
         }
+        debug($this);
       }
     }
 
