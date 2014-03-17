@@ -11,6 +11,7 @@
       if ($type && !($this instanceof select)) {
         $params['type'] = $type;
       }
+      $label = ($label || $label === FALSE) ? $label : (($params['label']) ? $params['label'] : TRUE); 
       $this->label($label);
       $params['data-previous'] = ($params['previous']) ? $params['previous'] : (($params['data-previous']) ? $params['data-previous'] : $value);
       $this->settings['insideLabel'] = ($this instanceof check) ? TRUE : FALSE;
