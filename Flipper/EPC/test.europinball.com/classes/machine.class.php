@@ -200,10 +200,10 @@
       $table = $qrDiv->addTable();
       $table->class = 'qrTable';
       $tr = $table->addTr();
-      $td = $tr->addTd($this->name);
+      $td = $tr->addTd();
       $td->class = 'qrLabelTd';
       $td->addBr();
-      $td->addSpan($this->shortName);
+      $td->addSpan($this->shortName, NULL, 'qrId');
       $td->addBr();
       $td->addSpan($this->id, NULL, 'qrId');
       $qrTd = $tr->addTd();
