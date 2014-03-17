@@ -49,6 +49,9 @@
           $objs[] = $data;
         } else {
           debug('2'.get_class($this));
+          if (get_class($this) == 'entries') {
+            debug($prop);
+          }
           if (isObj($prop) && $prop->id) {
             debug('3'.get_class($this));
             $props = array(
