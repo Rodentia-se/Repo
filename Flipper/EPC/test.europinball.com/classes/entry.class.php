@@ -57,10 +57,9 @@
           group by qualEntry_id
         ';
         $values['qeId'] = $this->id;
-        $sth = $this->db->select($query, $values);
-        debug($sth);
-        if ($sth) {
-          foreach ($sth->fetch(PDO::FETCH_ASSOC) as $key => $value) {
+        $fields = $this->db->select($query, $values);
+        if ($fields) {
+          foreach ($fields[0] as $key => $value) {
             $this->$key = $value;
           }
         }
