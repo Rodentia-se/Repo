@@ -182,11 +182,49 @@
                 timer: 3000
               });
             ');
+            $editDiv->addContent($this->getQrLabel());
+            
           //$editDiv
           return $editDiv;
         break;
       }
     }
+    
+    public function getQrLabel() {
+      $div = new div();
+      $qrDiv = $div->addDiv();
+      $qrDiv->addClick('
+        window.open("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=qr&id='.$this->id.'&autoPrint=1&flags=1");
+      ');
+      $qrDiv->title = 'Click to print';
+      $table = $qrDiv->addTable();
+      $table->class = 'qrTable';
+      $tr = $table->addTr();
+      $td = $tr->addTd($this->name);
+      $td->class = 'qrLabelTd';
+      $td->addBr();
+      $td->addSpan($this->shortName);
+      $td->addBr();
+      $td->addSpan($this->id, NULL, 'qrId');
+      $qrTd = $tr->addTd();
+      $qrTd->addImg($this->getLink('qr'));
+      $qrTd->class = 'qrTd';
+      $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
+    	if($print) {
+        $qrDiv->addCssFile(config::$baseHref.'/css/epc.css');
+        $qrDiv->addScriptCode('
+          window.print();
+        ');
+    	} else {
+        $div->addBr();
+        $qrEditP = $div->addParagraph();
+        $qrEditP->addLink(config::$baseHref.'/ajax/getObj.php?class=person&type=qr&id='.$this->id.'&autoPrint=1"', 'Click here or above to print.', array('target' => '_blank'));
+        $qrEditP = $div->addParagraph();
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person&autoPrint=1&', 'Click here to print all codes.', array('target' => '_blank'));
+    	}
+      return $div;
+    }
+    
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
