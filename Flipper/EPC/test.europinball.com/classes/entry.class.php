@@ -56,6 +56,7 @@
           where qualEntry_id = :qeId
           group by qualEntry_id
         ';
+        debug($this->id, "ID");
         $value['qeId'] = $this->id;
         $sth = $this->db->select($query, $values);
         if ($sth) {
