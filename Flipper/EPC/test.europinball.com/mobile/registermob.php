@@ -25,21 +25,20 @@
             $person = person($personId);
             if (isPerson($person)) {
               $score = score($person, $machine);
-                if (isScore($score)) {
-                  if ($score->score) {
-                    echo('statusCode=4');
-                  } else {
-                    if (isInt($regScore)) {
-                      if ($regScore > 0) {
-                        $score->score = $regScore;
-                        $save = $score->save();
-                        if ($save) {
-                          $checkScore = score($score->id);
-                          if ($checkScore->score == $regScore) {
-                            echo('statusCode=0');
-                          } else {
-                            echo('statusCode=2');
-                          }
+              if (isScore($score)) {
+                if ($score->score) {
+                  echo('statusCode=4');
+                } else {
+                  if (isInt($regScore)) {
+                    if ($regScore > 0) {
+                      $score->score = $regScore;
+                      $save = $score->save();
+                      if ($save) {
+                        $checkScore = score($score->id);
+                        if ($checkScore->score == $regScore) {
+                          echo('statusCode=0');
+                        } else {
+                          echo('statusCode=2');
                         }
                       } else {
                         echo('statusCode=2');
@@ -47,9 +46,9 @@
                     } else {
                       echo('statusCode=2');
                     }
+                  } else {
+                    echo('statusCode=2');
                   }
-                } else {
-                  echo('statusCode=2');
                 }
               } else {
                 echo('statusCode=2');
@@ -67,7 +66,7 @@
         echo('statusCode=2');
       }
     } else {
-      echo('statusCode=1'); // Login failed
+      echo('statusCode=2');
     }
   } else {
     echo('statusCode=1'); // Login failed
