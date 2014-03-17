@@ -53,8 +53,8 @@
             max(points) as bestPoints,
             min(place) as bestPlace
           from qualScore 
-          where qualEntry_id = :qeId
           group by qualEntry_id
+          where qualEntry_id = :qeId
         ';
         $values['qeId'] = $this->id;
         $sth = $this->db->select($query, $values);
