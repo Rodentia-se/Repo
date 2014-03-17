@@ -118,7 +118,7 @@
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
-  function divisions($data = NULL, $prop = NULL, $cond = 'and') {
+  function divisions($data = NULL, $search = NULL, $cond = 'and') {
     return objs(__FUNCTION__, $data, $search, $cond);
   }
 
@@ -155,7 +155,7 @@
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
-  function entries($data = NULL, $prop = NULL, $cond = 'and') {
+  function entries($data = NULL, $search = NULL, $cond = 'and') {
     return objs(__FUNCTION__, $data, $search, $cond);
   }
 
@@ -223,7 +223,7 @@
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
-  function locations($data = NULL, $prop = NULL, $cond = 'and') {
+  function locations($data = NULL, $search = NULL, $cond = 'and') {
     return objs(__FUNCTION__, $data, $search, $cond);
   }
 
@@ -495,7 +495,7 @@
     return obj(__FUNCTION__, $data, $search, $depth);
   }
 
-  function tournaments($data = NULL, $prop = NULL, $cond = 'and') {
+  function tournaments($data = NULL, $search = NULL, $cond = 'and') {
     return objs(__FUNCTION__, $data, $search, $cond);
   }
 
