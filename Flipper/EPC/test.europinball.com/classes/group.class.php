@@ -42,12 +42,15 @@
       } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (isObj($data) && $data->id) {
+        debug('1'.get_class($this));
         if (get_class($data) == static::$objClass) {
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;
         } else {
+          debug('2'.get_class($this));
           if (isObj($prop) && $prop->id) {
+            debug('3'.get_class($this));
             $props = array(
               ((property_exists($data, 'table')) ? get_class_vars(get_class($data))['table'] : get_class($data)).'_id' => $data->id,
               ((property_exists($prop, 'table')) ? get_class_vars(get_class($prop))['table'] : get_class($prop)).'_id' => $prop->id
