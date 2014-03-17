@@ -671,7 +671,7 @@
                 "score": $("#'.$addInput->id.'").val(),
                 "tournamentDivision_id": '.$division->id.',
                 "tournamentEdition_id": '.$tournament->id.',
-                "entry_id": '.$entry->id.',
+                "qualEntry_id": '.$entry->id.',
                 "person_id": '.$this->id.',
                 "lastName": "'.$player->lastName.'",
                 "firstName": "'.$player->firstName.'",
