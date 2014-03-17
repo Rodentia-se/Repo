@@ -194,7 +194,7 @@
                   if ($(el).is(":checkbox")) {
                     $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
                     $("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("href", "'.config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id=" + data.id);
-                    console.log($("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("aria-control"));
+                    console.log($("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")));
                     $("#" + $("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("aria-control")).empty();
                     $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
                   }
