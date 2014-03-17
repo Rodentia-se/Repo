@@ -98,14 +98,8 @@
           'd.'.$search => 1
         );
       }
-      if (isPlayer($data)) {
+      if (isObj($data) && $data->tournamentDivision_id) {
         $data = $data->tournamentDivision_id;
-      }
-      if (isPlayer($search)) {
-        $search = $search->tournamentDivision_id;
-      }
-      if (isPlayer($depth)) {
-        $depth = $depth->tournamentDivision_id;
       }
       parent::__construct($data, $search, $depth);
     }
