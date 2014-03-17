@@ -56,8 +56,7 @@
           where qualEntry_id = :qeId
           group by qualEntry_id
         ';
-        debug($this->id, "ID");
-        $value['qeId'] = $this->id;
+        $values['qeId'] = $this->id;
         $sth = $this->db->select($query, $values);
         if ($sth) {
           foreach ($sth->fetch(PDO::FETCH_ASSOC) as $key => $value) {
