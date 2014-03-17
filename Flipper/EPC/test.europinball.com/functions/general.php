@@ -30,6 +30,10 @@
     return ($string || $string === 0 || $string === "0") ? TRUE : FALSE;
   }
   
+  function isNum($string ) {
+    return ($string === 0 || $string === "0" || ) ? TRUE : FALSE;
+  }
+  
   function isZero($string ) {
     return ($string === 0 || $string === "0") ? TRUE : FALSE;
   }
