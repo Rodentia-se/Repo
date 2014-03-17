@@ -98,12 +98,13 @@
       switch ($type) {
         case 'edit':
         default:
-          $editClass = $prefix.'machineEdit';
+          $comboboxClass = $prefix.'machineCombobox'.$this->id;
+          $editClass = $prefix.'machineEdit'.$this->id;
           $editDiv = new div($prefix.'MachineEditDiv');
             $editDiv->addH3((($title) ? $title : 'Edit machine: '.$this->shortName.' in '.$this->tournamentDivisionName), array('class' => 'entry-title'));
             $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
-              $ballsSpinner = $ballsDiv->addSpinner($prefix.'MachineBallsDiv'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
+              $ballsSpinner = $ballsDiv->addSpinner('balls', (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
             //$ballsDiv
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');
               $extraBallsDiv->addLabel('Extra balls', NULL, NULL, 'normal');
@@ -116,14 +117,83 @@
             $owners = owners('all');
             $ownerDiv = $editDiv->addDiv($prefix.'OwnerDiv');
               $ownerSelectDiv = $editDiv->addDiv();
-                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj($prefix.'MachineOwnerSelect', NULL, 'Choose owner'));
+                $ownerSelect = $ownerSelectDiv->addContent($owners->getSelectObj('owner', $this->owner_id, 'Choose owner'));
                   $ownerSelect->addCombobox();
                   $ownerSelect->addValueSpan('Owner ID:');
                 //$ownerSelect
               //$ownerSelectDiv
             //$ownerDiv
             $editDiv->addScriptCode('
-              
+              $(".'.$comboboxClass.'").combobox()
+              .change(function(){
+                var el = this;
+                $("body").addClass("modal");
+                var combobox = document.getElementById(el.id + "_combobox");
+                $(combobox).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: $(el).val()})
+                .done(function(data) {
+                  $("body").removeClass("modal");
+                  $(combobox).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", $(el).val());
+                  } else {
+                    $(el).val($(el).data("previous"));
+                  }
+                  $(combobox).val($(el).children(":selected").text())
+                });
+              });
+              $(".custom-combobox-input").tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                trigger: "custom",
+                position: "right",
+                offsetX: 38,
+                timer: 3000
+              });
+              $(".'.$editClass.'").change(function(){
+                var el = this;
+                $("body").addClass("modal");
+                var value = ($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val();
+                $(el).tooltipster("update", "Updating the database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "'.get_class($this).'", id: '.$this->id.', prop: el.name, value: value})
+                .done(function(data) {
+                  $("body").removeClass("modal");
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", (($(el).is(":checkbox")) ? ((el.checked) ? 1 : 0) : $(el).val()));
+                    if (el.name == "rules") {
+                      $("#'.$gameRulesLink->id.'").attr("href", $(el).val());
+                    }
+                  } else {
+                    if ($(el).is(":checkbox")) {
+                      el.checked = ($(el).data("previous"));
+                    } else {
+                      $(el).val($(el).data("previous"));
+                    }
+                  }
+                  if ($(el).is(":checkbox")) {
+                    $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
+                    $("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("href", "'.config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id=" + data.id);
+                    $("#" + $("#'.$machineEditTabs->id.'").find("ul > li").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("aria-controls")).empty();
+                    $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
+                  }
+                });
+              })
+              .tooltipster({
+                theme: ".tooltipster-light",
+                content: "Updating the database...",
+                position: "right",
+                trigger: "custom",
+                timer: 3000
+              });
+              $(".'.$dateClass.'").spinner({
+                min: 1920,
+                max: '.date('Y').',
+                stop: function(event, ui) {
+                  $(".'.$dateClass.'").change();
+                }
+              });
+              $(".buttonLink").button();              
             ');
           //$editDiv
           return $editDiv;
