@@ -96,6 +96,9 @@
     public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
+        case 'qr':
+          return $this->getQrLabel();
+        break;
         case 'edit':
         default:
           $comboboxClass = $prefix.'machineCombobox'.$this->id;

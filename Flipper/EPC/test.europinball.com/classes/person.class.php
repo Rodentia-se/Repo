@@ -498,7 +498,7 @@
           return $this->getPhotoEdit($prefix);
         break;
         case 'qr':
-          return $this->getQrLabel($prefix);
+          return $this->getQrLabel();
         break;
         case 'user':
         case 'users':
