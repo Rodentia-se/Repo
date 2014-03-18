@@ -42,7 +42,7 @@
       } else if (isObj($data) && $data->id && is_string($prop)) {
         $objs = $this->db->getObjectsByProp(static::$objClass, $prop, $data->id);
       } else if (isObj($data) && $data->id) {
-        if (get_class($data) == static::$objClass) {
+        if (get_class($data) == static::$objClass) { 
           $class = get_class($this);
           $objs = new $class();
           $objs[] = $data;

@@ -171,6 +171,9 @@
       switch ($action) {
         case 'login':
           if ($this->verified) {
+            if (!isset($_REQUEST['username']) && isset($_REQUEST['user'])) {
+              $_REQUEST['username'] = $_REQUEST['user'];
+            }
             if ($_REQUEST['username'] && $_REQUEST['password']) {
               if ($this->login($_REQUEST['username'], $_REQUEST['password'])) {
                 config::$msg = 'You have been logged in.';

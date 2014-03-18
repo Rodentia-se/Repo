@@ -91,12 +91,15 @@
         $data = array($data => 1);
         $search = TRUE;
       }
-      if (isObj($data) && get_class($data) == 'tournament') {
+      if (isTournament($data)) {
         $search = (is_string($search) && in_array($search, config::$divisions)) ? $search : 'main';
         $data = array(
           'tournamentEdition_id' => $data->id, 
           'd.'.$search => 1
         );
+      }
+      if (isObj($data) && $data->tournamentDivision_id) {
+        $data = $data->tournamentDivision_id;
       }
       parent::__construct($data, $search, $depth);
     }
@@ -105,19 +108,7 @@
       return in_array($this->id, config::$activeDivisions);
     }
     
-    public function updatePaid() {
-      $query = '
-        update player pl 
-          left join person p 
-            on pl.person_id = p.id 
-          set pl.paid = p.paid 
-          where p.paid is not null;
-      ';
-      return $this->db->update($query);
-    }
-    
     public function calcWaiting($number = NULL) {
-      $this->updatePaid();
       $query = '
         update player 
           right join (
@@ -127,7 +118,7 @@
             from player, 
               (SELECT @rownum :=0)r
             where player.tournamentDivision_id = '.$this->id.'
-             order by ifnull(player.noWaiting, 0) desc, if(ifnull(player.paid, 0) > 0, 1, 0) desc, player.id asc
+             order by ifnull(player.noWaiting, 0) desc, player.id asc
             ) AS players
             ON players.pid = player.id
           set player.waiting = if(players.seq > '.(($number) ? $number : config::$participationLimit[$this->type]).', players.seq - '.(($number) ? $number : config::$participationLimit[$this->type]).', NULL)

@@ -1,67 +1,77 @@
 <?php
-  require_once('../functions/general.php');
-  require_once('mobile.php');
+//  https://www.flippersm.se/mobile/registermob.php?playerId=55&gameId=20&score=200000&user=bitwalk&password=abc123
 
-  $oHTTPContext = new HTTPContext();
-  $oGame = new Game();
-  $oValidator = new Validator();
-  $oEntry = new Entry();
-  $oString = new String();
+  define('__ROOT__', dirname(dirname(__FILE__)));
+  require_once(__ROOT__.'/functions/init.php');
+  noError(TRUE, TRUE, FALSE);
 
-  $sUserName = $oHTTPContext->getString("user");
-  $sPassword = $oHTTPContext->getString("password");
+  $page = new page('Register');
+  if (!$page->loggedin()) {
+    config::$login->verified = TRUE; // No nonce
+    config::$login->action('login');
+  }
 
-  if($sUserName != null && $sPassword != null)
-  {
-    $oUser = new User();
-    if($oUser->logIn($sUserName, $sPassword)){
-      $iIDPlayer = $oHTTPContext->getInt("playerId");
-      $iIDTeam = $oHTTPContext->getInt("teamId");
-      if (($iIDTeam != null) && ($iIDPlayer == null))
-      {
-        $iIDPlayer = $iIDTeam;
-      }
-      $iIDGame = $oHTTPContext->getInt("gameId");
-      $sScore = $oHTTPContext->getString("score");
-
-      $iIDEntry = $oHTTPContext->getString("entryId");
-
-      if($iIDEntry == null) {
-        $div = $oGame->getDivision($iIDGame);
-        if ($div != false){
-          $entry = $oEntry->fromPlayerAndDivision($iIDPlayer, $div);
-          $iIDEntry = (string)$entry->id;
-        }
-      }
-
-      if($oEntry->isValidEntryID($iIDEntry)){
-        $iScore = $oString->stripNonNumericChars($sScore);
-        $scores = $oEntry->getScores($iIDEntry, $iIDGame);
-        $idScore = null;
-        foreach($scores as $score){
-          if (($score->score == null) || ($score->score == 0) || ($score->score == '0')){
-            $idScore = $score->id;
-            break;
-          }
-        } 
-
-        if($idScore == null){
-          echo "statusCode=4";            // already has score
-        } else {
-          if($oValidator->positiveInt($iScore)){
-            $oEntry->updateScore($idScore, $iScore);
-            echo "statusCode=0";          // entry score registred
+  $volunteer = volunteer('login');
+  if ($volunteer->scorekeeper) {
+    $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
+    $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
+    $regScore = (isset($_REQUEST['score'])) ? $_REQUEST['score'] : NULL;
+    if (isId($machineId)) {
+      $machine = machine($machineId);
+      if (isMachine($machine)) {
+        $division = division($machine);
+        if (isDivision($division)) {
+          if (isId($personId)) {
+            $person = person($personId);
+            if (isPerson($person)) {
+              $score = score($person, $machine);
+              if (isScore($score)) {
+                if ($score->score) {
+                  echo('statusCode=4');
+                } else {
+                  if (isId($regScore)) {
+                    if ($regScore > 0) {
+                      $score->score = $regScore;
+                      $save = $score->save();
+                      if ($save) {
+                        $checkScore = score($score->id);
+                        if ($checkScore->score == $regScore) {
+                          echo('statusCode=0');
+                        } else {
+                          echo('statusCode=2');
+                        }
+                      } else {
+                        echo('statusCode=2');
+                      }
+                    } else {
+                      echo('statusCode=2');
+                    }
+                  } else {
+                    echo('statusCode=2');
+                  }
+                }
+              } else {
+                echo('statusCode=2');
+              }
+            } else {
+              echo('statusCode=2');
+            }
           } else {
-            echo "statusCode=2";          // score invalid
+            echo('statusCode=2');
           }
+        } else {
+          echo('statusCode=2');
         }
       } else {
-        echo "statusCode=2";
+        echo('statusCode=2');
       }
     } else {
-      echo "statusCode=1";
+      echo('statusCode=2');
     }
   } else {
-    echo "statusCode=1";
+    echo('statusCode=1'); // Login failed
   }
+  
 ?>
+
+

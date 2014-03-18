@@ -1,27 +1,28 @@
 <?php
-	require_once('../functions/general.php');
-	require_once('mobile.php');
+  define('__ROOT__', dirname(dirname(__FILE__)));
+  require_once(__ROOT__.'/functions/init.php');
 
-	echo "<html><body>";
+  $page = new page('Register');
+  if (!$page->loggedin()) {
+    config::$login->verified = TRUE; // No nonce
+    config::$login->action('login');
+  }
 
-	$oHTTPContext = new HTTPContext();
-	$bAutoPrint = $oHTTPContext->getString("autoPrint");
-
-	$iIDGame = $oHTTPContext->getInt("gameId");
-
-	$oLabel = new GameLabel();
-	$oLabel->FromGame($iIDGame);
-	
-	echo "<div>";
-	echo "<table  width=\"288pt\" style=\"table-layout: fixed;word-wrap:break-word;\" ><tr><td width=\"50%\">";
-		echo "<center><b>" . $oLabel->name() . "</b><br/>(ID:" . $iIDGame . ")</center></td><td>";
-		echo "<img src=\"" . $oLabel->image() . "\" /><br/>";
-	echo "</td></tr></table>";
-	echo "</div>";
-
-	if($bAutoPrint != null && $bAutoPrint == "true"){
-		echo "<script>window.print()</script>";
-	}
-	echo "</body></html>";
+  $volunteer = volunteer('login');
+  if ($volunteer->scorekeeper) {
+    $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
+    if (isId($machineId)) {
+      $machine = machine($machineId);
+      if (isMachine($machine)) {
+        echo($machine->getQrLabel());
+      } else {
+        echo('Can not find machine ID '.$machineId);
+      }
+    } else {
+      echo('Invalid machine ID '.$machineId);
+    }
+  } else {
+    echo('Login or authorization failed');
+  }
 
 ?>

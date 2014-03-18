@@ -128,14 +128,20 @@
             //}
             $div = $editDiv->addDiv($prefix.'GameDivisionsDiv', 'divisionsDiv');
               $div->addLabel('Divisions', NULL, NULL, 'normal');
-              foreach (config::$activeDivisions as $divisionType) {
+              $machineEditdiv = new div();
+              $machineEditTabs = $machineEditdiv->addTabs();
+              foreach (array_merge(config::$activeDivisions, array('recreational')) as $divisionType) {
                 $division = division($tournament, $divisionType);
                 $machines = machines($this, $division);
-                $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass));
+                $box[$divisionType] = $div->addCheckbox($divisionType, ($machines && count($machines) > 0), array('id' => $prefix.'Game'.$divisionType, 'class' => $editClass, 'data-tab' => $tab));
+                if ($machines && count($machines) > 0) {
+                  $machineEditTabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id='.$machines[0]->id, ucfirst($divisionType));
+                } else {
+                  $machineEditTabs->addDiv()->dataTitle = $division->divisionName;
+                }
+                $tab++;
               }
-              $division = division(18); // @todo: Remove hard coded division ID!
-              $machines = machines($this, $division);
-              $box['recreational'] = $div->addCheckbox('recreational', ($machines && count($machines) > 0), array('id' => $prefix.'Gamerecreational', 'class' => $editClass));
+              $editDiv->addContent($machineEditdiv);
             //}
             $editDiv->addScriptCode('
               $(".'.$comboboxClass.'").combobox()
@@ -185,6 +191,12 @@
                       $(el).val($(el).data("previous"));
                     }
                   }
+                  if ($(el).is(":checkbox")) {
+                    $("#'.$machineEditTabs->id.'").tabs("option", "active", $(el).data("tab"));
+                    $("#'.$machineEditTabs->id.'").find("ul > li > a").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("href", "'.config::$baseHref.'/ajax/getObj.php?class=machine&type=edit&id=" + data.id);
+                    $("#" + $("#'.$machineEditTabs->id.'").find("ul > li").eq($("#'.$machineEditTabs->id.'").tabs("option", "active")).attr("aria-controls")).empty();
+                    $("#'.$machineEditTabs->id.'").tabs("load", $(el).data("tab"));
+                  }
                 });
               })
               .tooltipster({
@@ -208,7 +220,29 @@
         break;
       }
     }
-
+    
+    function addDivision($division = NULL) {
+      $division = division($division);
+      if (isDivision($division)) {
+        $tournament = tournament($division->tournamentEdition_id);
+        $machine = machine($this, $division);
+        if ($machine) {
+          return $machine->id;
+        } else {
+          $machine = new machine();
+          $machine->game_id = $this->id;
+          $machine->game = $this->name;
+          $machine->gameAcronym = $this->shortName;
+          $machine->tournamentEdition_id = $division->tournamentEdition_id;
+          $machine->tournamentDivision_id = $division->id;
+          $machine->name = $tournament->name.', '.$division->divisionName.': '.$this->shortName;
+          $machine->manufacturer_id = $this->manufacturer_id;
+          $machine->manufacturer = $this->manufacturerName;
+          return $machine->save();
+        }
+      }
+      return FALSE;
+    }
 
   }
 

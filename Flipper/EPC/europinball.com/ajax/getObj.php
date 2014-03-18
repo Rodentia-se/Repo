@@ -116,7 +116,7 @@
     case 'user':
     case 'users':
     case 'qr':
-    case 'groupsAdmin':
+    case 'edit':
     case 'scores':
       if (isGroup($objs) && count($objs) > 0) {
         foreach ($objs as $obj) {

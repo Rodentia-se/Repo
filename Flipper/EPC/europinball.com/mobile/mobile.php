@@ -1,5 +1,6 @@
 <?php
-  require_once('../functions/general.php');
+  define('__ROOT__', dirname(dirname(__FILE__)));
+  require_once(__ROOT__.'/functions/init.php');
   require_once("phpqrcode/phpqrcode.php");
 
   define('MOB_SAVE_URL_PLAYER', __baseHref__ . "/images/objects/mobile/playerimg.png");
@@ -56,7 +57,7 @@
   {
     public function getPlayer($id)
     {
-      return getPlayerById(DataMapper::$db, $id);
+      return player(DataMapper::$db, $id);
     }
   }
 
@@ -64,7 +65,7 @@
   {
     public function getTeam($id)
     {
-      return getTeamById(DataMapper::$db, $id);
+      return team(DataMapper::$db, $id);
     }
   }
 
@@ -116,7 +117,7 @@
       if ($idEntry == null || $idEntry == '' || $idEntry == false){
         $result = false;
       } else {
-        if (getEntryById(DataMapper::$db, $idEntry) == false){
+        if (entry(DataMapper::$db, $idEntry) == false){
           $result = false;
         }
       }
@@ -187,7 +188,7 @@
   {
     public function getDivision($idGame)
     {
-      $m = getMachineById(DataMapper::$db, $idGame);
+      $m = machine(DataMapper::$db, $idGame);
       return $m->tournamentDivision_id;
     }
   }
@@ -307,7 +308,7 @@
     private $gameImg = MOB_LOAD_URL_GAME;
     public function FromGame($gameId)
     {
-      $aGame = getMachineById(DataMapper::$db, $gameId);
+      $aGame = machine(DataMapper::$db, $gameId);
 
       if ($aGame != false)
       {

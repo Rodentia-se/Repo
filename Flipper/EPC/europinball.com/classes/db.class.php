@@ -57,6 +57,7 @@
           return FALSE;
         }
       } else {
+        debug($query);
         $sth = $this->query($query);
         if (!$sth) {
           return FALSE;

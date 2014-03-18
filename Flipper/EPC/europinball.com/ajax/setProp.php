@@ -108,7 +108,7 @@
                       } else {
                         $json = failure('Invalid property class '.$propClass);
                       }
-                    } else if (in_array($prop, config::$divisions) && in_array($class, array('person', 'game'))) {
+                    } else if (in_array($prop, array_merge(config::$divisions, array('recreational'))) && in_array($class, array('person', 'game'))) {
                       $tournament = tournament(config::$activeTournament);
                       if ($tournament) {
                         switch ($class) {
@@ -126,7 +126,7 @@
                               if ($subObj) {
                                 $$subObj = $subObj($obj, $division);
                                 if (isObj($$subObj)) {
-                                  $json = success('Added '.$obj->name.' to the '.$division->divisionName);
+                                  $json = success('Added '.$obj->name.' to the '.$division->divisionName, array('id' => $$subObj->id));
                                 } else {
                                   $json = failure('Could not add '.$obj->name.' to the '.$division->divisionName);
                                 }

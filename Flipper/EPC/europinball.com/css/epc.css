@@ -107,6 +107,10 @@ span.info {
   margin-right: 10px;
 }
 
+input[type=checkbox] + .label {
+  text-align: left;
+}
+
 .divisionsDiv .label:not(.normal) {
   width: auto;
 }

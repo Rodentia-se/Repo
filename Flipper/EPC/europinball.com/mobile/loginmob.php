@@ -1,22 +1,18 @@
 <?php
-  require_once('../functions/general.php');
-  require_once('mobile.php');
+  define('__ROOT__', dirname(dirname(__FILE__)));
+  require_once(__ROOT__.'/functions/init.php');
 
-  $oHTTPContext = new HTTPContext();
+  $page = new page('Register');
+  if (!$page->loggedin()) {
+    config::$login->verified = TRUE; // No nonce
+    config::$login->action('login');
+  }
 
-  $sUsername = $oHTTPContext->getString("user");
-  $sPassword = $oHTTPContext->getString("password");
-
-  if($sUsername != null && $sPassword != null)
-  {
-    $oUser = new User();
-    if(!$oUser->logIn($sUsername, $sPassword)){
-      echo "statusCode=1";
-    } else {
-      echo "statusCode=0";
-    }
+  $volunteer = volunteer('login');
+  if ($volunteer->scorekeeper) {
+    echo('statusCode=0');
   } else {
-    echo "statusCode=1";
+    echo('statusCode=1');
   }
 
 ?>

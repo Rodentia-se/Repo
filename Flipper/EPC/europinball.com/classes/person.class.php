@@ -498,7 +498,7 @@
           return $this->getPhotoEdit($prefix);
         break;
         case 'qr':
-          return $this->getQrLabel($prefix);
+          return $this->getQrLabel();
         break;
         case 'user':
         case 'users':
@@ -621,10 +621,12 @@
         case 'scores':
           $div = new div($prefix.'ScoresEditDiv_'.$this->id);
 //          $players = players($this, $tournament);
-// TODO: Remove EPC 2014 specific restriction
+// TODO: Remove EPC 2014 specific restrictions
           $division = division(16);
           $players = players($this, $division);
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
+          $entries = entries($this, $division);
+          $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
           foreach($players as $player) {
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
@@ -669,6 +671,7 @@
                 "score": $("#'.$addInput->id.'").val(),
                 "tournamentDivision_id": '.$division->id.',
                 "tournamentEdition_id": '.$tournament->id.',
+                "qualEntry_id": '.$entry->id.',
                 "person_id": '.$this->id.',
                 "lastName": "'.$player->lastName.'",
                 "firstName": "'.$player->firstName.'",
