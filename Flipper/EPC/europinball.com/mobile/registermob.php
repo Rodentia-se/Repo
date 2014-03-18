@@ -10,7 +10,8 @@
     config::$login->verified = TRUE; // No nonce
     config::$login->action('login');
   }
-
+  debug(config::$login);
+  
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
     $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
