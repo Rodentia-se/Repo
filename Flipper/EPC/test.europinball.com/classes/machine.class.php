@@ -219,7 +219,7 @@
         $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/ajax/getObj.php?class=machine&type=qr&id='.$this->id.'&autoPrint=1"', 'Click here or above to print.', array('target' => '_blank'));
         $qrEditP = $div->addParagraph();
-        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=machine&division='.$division->id.'&autoPrint=1&', 'Click here to print all codes for '.$division->divisionName.'.', array('target' => '_blank'));
+        $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=machine&division='.$division->id.'&autoPrint=1&', 'Click here to print all codes for '.$division->divisionName.' division.', array('target' => '_blank'));
         $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=machine&autoPrint=1&', 'Click here to print all codes for all divisions.', array('target' => '_blank'));
     	}
