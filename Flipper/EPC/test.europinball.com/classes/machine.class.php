@@ -214,13 +214,7 @@
       $qrTd = $tr->addTd();
       $qrTd->addImg($this->getLink('qr'));
       $qrTd->class = 'qrTd';
-      $print = (isset($_REQUEST['autoPrint'])) ? $_REQUEST['autoPrint'] : NULL;
-    	if($print) {
-        $qrDiv->addCssFile(config::$baseHref.'/css/epc.css');
-        $qrDiv->addScriptCode('
-          window.print();
-        ');
-    	} else {
+    	if(!isset($_REQUEST['autoPrint']) || !$_REQUEST['autoPrint']) {
         $div->addBr();
         $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/ajax/getObj.php?class=machine&type=qr&id='.$this->id.'&autoPrint=1"', 'Click here or above to print.', array('target' => '_blank'));
