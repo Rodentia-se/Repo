@@ -5,10 +5,19 @@
 
   $class = (isset($_REQUEST['class'])) ? $_REQUEST['class'] : NULL;
   $id = (isset($_REQUEST['id'])) ? $_REQUEST['id'] : NULL;
+  $divisionId = (isset($_REQUEST['division'])) ? $_REQUEST['division'] : NULL;
 
   $volunteer = volunteer('login');
   if ($volunteer->receptionist) {
-    $tournament = tournament('active');
+    if (isId($divisionId)) {
+      $division = division($divisionId);
+      if (isDivision($division)) {
+        $context = $division;
+      }
+    }
+    if (!$context) {
+      $context = tournament('active');
+    }
     if (isObj($class, TRUE)) {
       echo '
         <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
@@ -24,7 +33,7 @@
         echo $obj->getQrLabel();
       } else {
         $class = $class::$arrClass;
-        $objs = $class($tournament);
+        $objs = $class($context);
         foreach ($objs as $obj) {
           $output .= $obj->getQrLabel()."<br /><br />\n";
         }
