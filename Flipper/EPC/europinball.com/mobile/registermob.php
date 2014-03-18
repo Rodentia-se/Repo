@@ -6,6 +6,7 @@
   noError(TRUE, TRUE, FALSE);
 
   if (isset($_REQUEST['user']) || isset($_REQUEST['username'])) {
+    config::$login->action('logout');
     config::$login->verified = TRUE; // No nonce
     config::$login->action('login');
   } else {
