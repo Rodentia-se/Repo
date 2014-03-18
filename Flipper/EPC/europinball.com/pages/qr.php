@@ -15,6 +15,7 @@
         <html>
           <head>
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+            <link type="text/css" rel="stylesheet" href="'.config::$baseHref.'/css/epc.css">
           </head>
           <body>
       ';
@@ -29,7 +30,15 @@
         }
         echo $output;
       }
-      echo '</body></html>';
+      echo '
+          </body>
+            '.((isset($_REQUEST['autoPrint'])) ? '
+              <script type="text/javascript">
+                window.print();
+              </script>' 
+            : '').'
+        </html>
+      ';
     }
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
