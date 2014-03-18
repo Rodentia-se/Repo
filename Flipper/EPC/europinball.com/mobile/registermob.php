@@ -5,10 +5,11 @@
   require_once(__ROOT__.'/functions/init.php');
   noError(TRUE, TRUE, FALSE);
 
-  $page = new page('Register');
-  if (!$page->loggedin()) {
+  if (isset($_REQUEST['user']) || isset($_REQUEST['username'])) {
     config::$login->verified = TRUE; // No nonce
     config::$login->action('login');
+  } else {
+    $page = new page('Register');    
   }
   
   $volunteer = volunteer('login');
