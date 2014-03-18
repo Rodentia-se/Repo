@@ -10,7 +10,11 @@
     config::$login->verified = TRUE; // No nonce
     config::$login->action('login');
   }
-  debug(config::$login);
+  
+  $debug = (isset($_REQUEST['debug'])) ? $_REQUEST['debug'] : NULL;
+  if ($debug) {
+    debug(config::$login);    
+  }
   
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
