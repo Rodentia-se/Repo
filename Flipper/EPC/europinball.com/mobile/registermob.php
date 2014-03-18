@@ -11,11 +11,6 @@
     config::$login->action('login');
   }
   
-  $debug = (isset($_REQUEST['debug'])) ? $_REQUEST['debug'] : NULL;
-  if ($debug) {
-    debug(config::$login);    
-  }
-  
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
     $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
@@ -77,6 +72,11 @@
     echo('statusCode=1'); // Login failed
   }
   
+  $debug = (isset($_REQUEST['debug'])) ? $_REQUEST['debug'] : NULL;
+  if ($debug) {
+    debug(config::$login);    
+  }
+    
 ?>
 
 
