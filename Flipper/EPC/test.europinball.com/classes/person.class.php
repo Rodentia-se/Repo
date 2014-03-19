@@ -690,8 +690,8 @@
                 "person_id": '.$this->id.',
                 "lastName": "'.(($player->lastName) ? $player->lastName : '').'",
                 "firstName": "'.(($player->firstName) ? $player->firstName : '').'",
-                "city_id": '.(($player->city_id) ? $player->city_id : 'NULL').',
-                "country_id": '.(($player->country_id) ? $player->country_id : 'NULL').',
+                "city_id": '.(($player->city_id) ? $player->city_id : 'null').',
+                "country_id": '.(($player->country_id) ? $player->country_id : 'null').',
                 "name": "'.$tournament->name.', '.$division->divisionName.', '.(($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1)).', " + $("#'.$machineSelect->id.'").children(":selected").text()
               };
               $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
