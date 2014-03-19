@@ -5,20 +5,19 @@
   require_once(__ROOT__.'/functions/init.php');
   noError(TRUE, TRUE, FALSE);
 
-  if (isset($_REQUEST['user']) || isset($_REQUEST['username'])) {
-    config::$login->action('logout');
+  $page = new page('Register');
+  if (!$page->loggedin()) {
     config::$login->verified = TRUE; // No nonce
     config::$login->action('login');
-  } else {
-    $page = new page('Register');    
   }
-  
+
   $volunteer = volunteer('login');
   if ($volunteer->scorekeeper) {
     $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
     $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
-    $regScore = (isset($_REQUEST['score'])) ? $_REQUEST['score'] : NULL;
-    if (isId($machineId)) {
+    $regScore = (isset($_REQUEST['score'])) ? preg_replace('/[^0-9]/', '', $_REQUEST['score']) : NULL;
+
+      if (isId($machineId)) {
       $machine = machine($machineId);
       if (isMachine($machine)) {
         $division = division($machine);
@@ -74,11 +73,6 @@
     echo('statusCode=1'); // Login failed
   }
   
-  $debug = (isset($_REQUEST['debug'])) ? $_REQUEST['debug'] : NULL;
-  if ($debug) {
-    debug(config::$login);    
-  }
-    
 ?>
 
 

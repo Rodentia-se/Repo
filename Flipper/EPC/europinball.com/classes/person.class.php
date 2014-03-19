@@ -131,6 +131,8 @@
         if (isTournament($tournament)) {
           $this->getVolunteer($tournament);
         }
+        $this->shortName = ($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1);
+        $this->shortName = ($this->shortName) ? $this->shortName : 'X X';
       }
     }
 
@@ -625,9 +627,24 @@
           $division = division(16);
           $players = players($this, $division);
           $scoresTabs = $div->addTabs(NULL, $prefix.'ScoresEditTabs_'.$this->id.'_Div');
-          $entries = entries($this, $division);
-          $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
           foreach($players as $player) {
+            $entries = entries($player, $division);
+            if ($entries && count($entries) > 0) {
+              $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
+            } else {
+              $entry = new entry();
+              $entry->name = $tournament->name.', '.$division->divisionName.': '.$player->shortName;
+              $entry->person_id = $this->id;
+              $entry->player_id = $player->id;
+              $entry->tournamentDivision_id = $player->tournamentDivision_id;
+              $entry->tournamentEdition_id = $player->tournamentEdition_id;
+              $entry->firstName = $player->firstName;
+              $entry->lastName = $player->lastName;
+              $entry->initials = ($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1);
+              $entry->city_id = $player->city_id;
+              $entry->country_id = $player->country_id;
+              $entry->id = $entry->save();              
+            }
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);
             $headers = array('Score ID', 'Machine', 'Score', 'Edit', 'Action');
@@ -673,11 +690,11 @@
                 "tournamentEdition_id": '.$tournament->id.',
                 "qualEntry_id": '.$entry->id.',
                 "person_id": '.$this->id.',
-                "lastName": "'.$player->lastName.'",
-                "firstName": "'.$player->firstName.'",
-                "city_id": '.$player->city_id.',
-                "country_id": '.$player->country_id.',
-                "name": "'.$tournament->name.', '.$division->divisionName.', '.$player->shortName.', " + $("#'.$machineSelect->id.'").children(":selected").text()
+                "lastName": "'.(($player->lastName) ? $player->lastName : '').'",
+                "firstName": "'.(($player->firstName) ? $player->firstName : '').'",
+                "city_id": '.(($player->city_id) ? $player->city_id : 'null').',
+                "country_id": '.(($player->country_id) ? $player->country_id : 'null').',
+                "name": "'.$tournament->name.', '.$division->divisionName.', '.(($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1)).', " + $("#'.$machineSelect->id.'").children(":selected").text()
               };
               $("#'.$addInput->id.'").tooltipster("update", "Updating the database...").tooltipster("show");
               $.post("'.config::$baseHref.'/ajax/addObj.php", {class: "score", props: JSON.stringify(props)})

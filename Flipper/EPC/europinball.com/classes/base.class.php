@@ -424,7 +424,7 @@
           $url = ($this->id) ? config::$baseHref.'/object/?obj='.get_class($this).'&id='.$this->id : NULL;
         break;
         case 'qr':
-          QRcode::png('pid='.$this->id.'&'.((get_class($this) == 'person') ? 'tag' : ((get_class($this) == 'machine') ? 'game' : get_class($this))).'='.$this->shortName, config::$baseDir.'/images/objects/'.get_class($this).'/qr/'.$this->id.'.png', 0, 6, 0);
+          QRcode::png(((get_class($this) == 'machine') ? 'g' : substr(get_class($this),0,1)).'id='.$this->id.'&'.((get_class($this) == 'person') ? 'tag' : ((get_class($this) == 'machine') ? 'game' : get_class($this))).'='.$this->shortName, config::$baseDir.'/images/objects/'.get_class($this).'/qr/'.$this->id.'.png', 0, 6, 0);
           return config::$baseHref.'/images/objects/'.get_class($this).'/qr/'.$this->id.'.png';
         break;
         default:
