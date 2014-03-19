@@ -17,7 +17,7 @@
     $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
     $regScore = (isset($_REQUEST['score'])) ? preg_replace('/[^0-9]/', '', $_REQUEST['score']) : NULL;
 
-    if (isId($machineId)) {
+      if (isId($machineId)) {
       $machine = machine($machineId);
       if (isMachine($machine)) {
         $division = division($machine);
