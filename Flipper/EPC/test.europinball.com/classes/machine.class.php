@@ -233,10 +233,6 @@
         case 'rules':
           return $this->game->getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
-        case 'qr':
-          QRcode::png('gid='.$this->id.'&game='.$this->shortName, config::$baseDir.'/images/objects/machine/qr/'.$this->id.'png', 0, 6, 0);
-          return config::$baseHref.'/images/objects/machine/qr/'.$this->id.'png';
-        break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;

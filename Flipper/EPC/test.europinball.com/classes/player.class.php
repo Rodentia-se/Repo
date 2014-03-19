@@ -188,6 +188,9 @@
           }
           return ($url && $anchor) ? '<a href="'.$url.'" target="_new">'.(($this->ifpaRank && $this->ifpaRank != 0) ? $this->ifpaRank : 'Unranked').'</a>' : $url;
         break;
+        case 'qr':
+          return $this->person->getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
