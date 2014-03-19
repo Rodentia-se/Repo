@@ -15,7 +15,8 @@
   if ($volunteer->scorekeeper) {
     $personId = (isset($_REQUEST['playerId'])) ? $_REQUEST['playerId'] : NULL;
     $machineId = (isset($_REQUEST['gameId'])) ? $_REQUEST['gameId'] : NULL;
-    $regScore = (isset($_REQUEST['score'])) ? $_REQUEST['score'] : NULL;
+    $regScore = (isset($_REQUEST['score'])) ? preg_replace('/[^0-9]/', '', $_REQUEST['score']) : NULL;
+
     if (isId($machineId)) {
       $machine = machine($machineId);
       if (isMachine($machine)) {
