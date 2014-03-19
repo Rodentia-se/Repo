@@ -1003,10 +1003,6 @@
             return 'Unranked';
           }
         break;
-        case 'qr':
-          QRcode::png('pid='.$this->id.'&tag='.$this->shortName, config::$baseDir.'/images/objects/person/qr/'.$this->id.'png', 0, 6, 0);
-          return config::$baseHref.'/images/objects/person/qr/'.$this->id.'png';
-        break;
         default:
           return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
         break;
