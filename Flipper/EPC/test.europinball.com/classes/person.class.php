@@ -638,7 +638,7 @@
               $entry->tournamentEdition_id = $player->tournamentEdition_id;
               $entry->firstName = $player->firstName;
               $entry->lastName = $player->lastName;
-              $entry->initials = $player->shortName;
+              $entry->initials = ($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1);
               $entry->city_id = $player->city_id;
               $entry->country_id = $player->country_id;
               $entry->id = $entry->save();              
