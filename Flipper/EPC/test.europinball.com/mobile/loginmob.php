@@ -1,6 +1,8 @@
 <?php
+
   define('__ROOT__', dirname(dirname(__FILE__)));
   require_once(__ROOT__.'/functions/init.php');
+  noError(TRUE, TRUE, FALSE);
 
   $page = new page('Register');
   if (!$page->loggedin()) {
