@@ -131,6 +131,8 @@
         if (isTournament($tournament)) {
           $this->getVolunteer($tournament);
         }
+        $this->shortName = ($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1);
+        $this->shortName = ($this->shortName) ? $this->shortName : 'X X');
       }
     }
 

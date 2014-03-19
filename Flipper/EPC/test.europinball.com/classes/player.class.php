@@ -176,6 +176,8 @@
       }
       parent::__construct($data, $search, $depth);
       $this->ifpaLink = $this->getLink('ifpa');
+      $this->shortName = ($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1);
+      $this->shortName = ($this->shortName) ? $this->shortName : 'X X');
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
