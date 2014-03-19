@@ -27,6 +27,7 @@
         o.machine_id as machine_id,
         o.city_id as city_id,
         o.country_id as country_id,
+        o.qualEntry_id as qualEntry_id,
         o.tournamentDivision_id as tournamentDivision_id,
         o.tournamentEdition_id as tournamentEdition_id,
         o.comment as comment
@@ -39,6 +40,7 @@
       'country' => 'country',
       'tournamentEdition' => 'tournament',
       'tournamentDivision' => 'division',
+      'qualEntry' => 'entry',
       'player' => 'player',
       'machine' => 'machine'
     );
