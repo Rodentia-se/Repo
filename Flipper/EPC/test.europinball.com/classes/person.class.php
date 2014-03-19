@@ -989,7 +989,7 @@
       $tournament = getTournament();
       $volunteer = volunteer($this, $tournament);
       if (!isVolunteer($volunteer)) {
-        $volunteer = $this->addVolunteer($tournament);
+        $volunteer = volunteer($this->addVolunteer($tournament));
       }
       if (isVolunteer($volunteer)) {
         return $volunteer->setProp('adminLevel_id', $adminLevel->id);
