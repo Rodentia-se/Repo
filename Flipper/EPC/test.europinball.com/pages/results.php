@@ -122,7 +122,7 @@
               $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
             }
           } else {
-            $page->addParagraph('Results are not yet available.');
+            $page->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
           }
         $page->closeDiv();
       }
