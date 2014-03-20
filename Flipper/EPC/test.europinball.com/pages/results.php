@@ -55,6 +55,7 @@
     $page->startUl();
       foreach ($divisions as $division) {
         $objs[$division->id] = $type($division);
+        $objs[$division->id]->filter('waiting', 0, '>');
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
           $page->addLi('<a href="#'.$division->shortName.ucfirst($type).'">'.$division->divisionName.'</a>');
         }
