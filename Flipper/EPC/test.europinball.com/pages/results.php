@@ -119,10 +119,10 @@
                 });
               ');
             } else {
-              $page->addParagraph('Results are not yet available.');
+              $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
             }
           } else {
-            $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
+            $page->addParagraph('Results are not yet available.');
           }
         $page->closeDiv();
       }
