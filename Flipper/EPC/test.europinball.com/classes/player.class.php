@@ -315,7 +315,9 @@
         $scores = scores($entry);
         if ($scores && count($scores) > 0) {
           foreach ($scores as $score) {
-            $machines .= '#'.$score->place.' on '.$score->machine->getLink().' ('.$score->points.')<br />';
+            if ($score->place) {
+              $machines .= '#'.$score->place.' on '.$score->machine->getLink().' ('.$score->points.')<br />';
+            }
           }
         }
       }
