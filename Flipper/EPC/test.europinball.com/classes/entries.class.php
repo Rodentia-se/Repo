@@ -5,7 +5,7 @@
     public static $objClass = 'entry';
     public static $all = array();
     public static $order = array(
-      'prop' => 'bestPoints',
+      'prop' => 'fullPoints',
       'type' => 'numeric',
       'dir' => 'desc'
     );
@@ -14,7 +14,7 @@
     public function __construct($data = NULL, $prop = NULL, $cond = 'and') {
       parent::__construct($data, $prop, $cond);
     }
-    
+        
   }
 
 ?>

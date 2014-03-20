@@ -306,6 +306,30 @@
       return FALSE;
     }
 
+    public function getResultsRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $entries = entries($this);
+      if ($entries && count($entries) > 0) {
+        $entry = $entries[0];
+        $scores = scores($entry);
+        if ($scores && count($scores) > 0) {
+          foreach ($scores as $score) {
+            $machines .= '#'.$score->place.' on '.$score->machine->getLink().' ('.$score->points.')<br />';
+          }
+        }
+      }
+      $return = array(
+        $entry->place,
+        $this->getLink(),
+        (($this->person) ? $this->person->getPhotoIcon() : ''),
+        (is_object($this->country)) ? $this->country->getIcon() : '',
+        $machines,
+        $entry->points        
+      );
+      return ($array) ? $return : (object) $return;
+    }
+
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       if ($this->team_id) {
         $team = team($this->team_id);

@@ -66,17 +66,7 @@
           $page->startDiv($division->shortName.ucfirst($type));
           if (count($objs[$division->id]) > 0) {
             if ($type == 'players') {
-              if ($division->team) {
-                if ($division->national) {
-                  $headers = array('Place', 'Country', 'Flag', 'Games', 'Points');
-                  $aoColumnDefs = '{"sClass": "icon", "aTargets": [ 2 ] }';
-                } else {
-                  $headers = array('Place', 'Name', 'Picture', 'Games', 'Points');
-                  $aoColumnDefs = '';
-                }
-              } else {
-                $headers = array('Place', 'Name', 'Photo', 'Games', 'Points');
-              }
+              $headers = array('Place', 'Name', 'Photo', 'Country', 'Games', 'Points');
             }
             foreach ($objs[$division->id] as $obj) {
               $rows[] = $obj->getResultsRow(TRUE);
@@ -94,7 +84,7 @@
                 "bJQueryUI": true,
             	  "sPaginationType": "full_numbers",
                 "aoColumnDefs": [
-                  {"sClass": "icon", "aTargets": [ 2 ] }
+                  {"sClass": "icon", "aTargets": [ 2, 3 ] }
                 ],
                 "fnDrawCallback": function() {
                   $(".photoPopup").each(function() {
