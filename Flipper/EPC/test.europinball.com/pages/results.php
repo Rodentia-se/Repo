@@ -68,7 +68,7 @@
           if ($division->id == 16) {
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
-                $headers = array('Place', 'Name', 'Photo', 'Country', 'Games', 'Points');
+                $headers = array('Order', 'Place', 'Name', 'Photo', 'Country', 'Games', 'Points');
               }
               foreach ($objs[$division->id] as $obj) {
                 $rows[] = $obj->getResultsRow(TRUE);
@@ -86,7 +86,9 @@
                   "bJQueryUI": true,
               	  "sPaginationType": "full_numbers",
                   "aoColumnDefs": [
-                    {"sClass": "icon", "aTargets": [ 2, 3 ] }
+                    {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                    {"bVisible": false, "aTargets": [ 0 ] },
+                    {"sClass": "icon", "aTargets": [ 3, 4 ] }
                   ],
                   "fnDrawCallback": function() {
                     $(".photoPopup").each(function() {
