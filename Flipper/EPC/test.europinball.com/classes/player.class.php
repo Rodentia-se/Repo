@@ -322,7 +322,7 @@
         }
       }
       $return = array(
-        (($entry->place) ? $entry->place : 999999)
+        (($entry->place) ? $entry->place : 999999),
         $entry->place,
         $this->getLink(),
         (($this->person) ? $this->person->getPhotoIcon() : ''),
