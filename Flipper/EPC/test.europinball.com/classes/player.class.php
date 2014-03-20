@@ -326,6 +326,7 @@
         $entry->place,
         $this->getLink(),
         (($this->person) ? $this->person->getPhotoIcon() : ''),
+        (is_object($this->country)) ? $this->country->name : '',
         (is_object($this->country)) ? $this->country->getIcon() : '',
         $machines,
         $entry->points        
