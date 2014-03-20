@@ -68,7 +68,7 @@
           if ($division->id == 16) {
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
-                $headers = array('Order', 'Place', 'Name', 'Photo', 'Country', 'Games', 'Points');
+                $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
               }
               foreach ($objs[$division->id] as $obj) {
                 $rows[] = $obj->getResultsRow(TRUE);
@@ -86,7 +86,8 @@
                   "bJQueryUI": true,
               	  "sPaginationType": "full_numbers",
                   "aoColumnDefs": [
-                    {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                  {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                  {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
                     {"bVisible": false, "aTargets": [ 0 ] },
                     {"sClass": "icon", "aTargets": [ 3, 4 ] }
                   ],
