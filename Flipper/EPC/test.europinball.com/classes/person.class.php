@@ -1060,6 +1060,12 @@
         $qrEditP = $div->addParagraph();
         $qrEditP->addLink(config::$baseHref.'/pages/qr.php?class=person&autoPrint=1&flags=1', 'Click here to print all codes.', array('target' => '_blank'));
     	}
+      if (isset($_REQUEST['autoPrint']) && $_REQUEST['autoPrint']) {
+        $div->addScriptCode('
+          window.print();
+        ');
+        $div->addCssFile(config::$baseHref.'/css/epc.css');
+      }
       return $div;
     }
 

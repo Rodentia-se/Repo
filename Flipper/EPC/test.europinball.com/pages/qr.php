@@ -41,7 +41,7 @@
       }
       echo '
           </body>
-            '.((isset($_REQUEST['autoPrint'])) ? '
+            '.((isset($_REQUEST['autoPrint']) && $_REQUEST['autoPrint']) ? '
               <script type="text/javascript">
                 window.print();
               </script>' 

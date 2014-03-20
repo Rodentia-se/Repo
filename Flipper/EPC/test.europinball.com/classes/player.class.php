@@ -309,7 +309,7 @@
     public function getResultsRow($array = FALSE) {
       // @todo: Handle custom headers
       // @todo: Change to object
-      $entries = entries($this);
+      $entries = entries($this, $this->division);
       if ($entries && count($entries) > 0) {
         $entry = $entries[0];
         $scores = scores($entry);
