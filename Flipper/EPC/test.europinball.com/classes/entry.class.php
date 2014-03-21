@@ -99,7 +99,8 @@
         $points += $score->fullPoints;
       }
       if ($save) {
-        $this->points = ($points) ? $points : NULL;
+        $this->fullPoints = ($points) ? $points : NULL;
+        $this->points = $this->fullPoints;
         if (!$this->save()) {
           return FALSE;
         }
