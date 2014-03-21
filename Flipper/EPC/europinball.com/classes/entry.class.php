@@ -93,6 +93,30 @@
       }
     }
 
+    public function calcPoints($save = TRUE) {
+      $scores = scores($this);
+      foreach ($scores as $score) {
+        $points += $score->fullPoints;
+      }
+      if ($save) {
+        $this->points = ($points) ? $points : NULL;
+        if (!$this->save()) {
+          return FALSE;
+        }
+      }
+      return $points;
+    }
+
+    public function setPoints($points = NULL) {
+      $this->points = ($points) ? $points : NULL;
+      return $this->save();
+    }
+
+    public function setPlace($place = NULL) {
+      $this->place = ($place) ? $place : NULL;
+      return $this->save();
+    }
+
   }
 
 ?>

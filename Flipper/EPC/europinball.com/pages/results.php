@@ -65,7 +65,8 @@
         $rows = array();
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
           $page->startDiv($division->shortName.ucfirst($type));
-          if ($division->id == 16) {
+          if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
+            $division->calcPlaces();
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
                 $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');

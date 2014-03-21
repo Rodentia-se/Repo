@@ -108,6 +108,16 @@
       return in_array($this->id, config::$activeDivisions);
     }
     
+    public function calcPlaces() {
+      $machines = machines($this);
+      $entries = entries($this);
+      if ($machines && count($machines) > 0 && $entries && count($entries) > 0) {
+        $machines->calcPoints();
+        $entries->calcPlaces();
+      }
+      return FALSE;
+    }
+    
     public function calcWaiting($number = NULL) {
       $query = '
         update player 
@@ -130,8 +140,8 @@
       } else {
         return FALSE;
       }
-    } 
-    
+    }
+        
   }
 
 ?>
