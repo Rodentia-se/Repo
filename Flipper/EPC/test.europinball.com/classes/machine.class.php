@@ -244,18 +244,19 @@
             $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
           ');
           $div->addScriptCode('
-            $("#'.$table->id.'").dataTable({
-              "bProcessing": true,
-              "bDestroy": true,
-              "bJQueryUI": true,
-          	  "sPaginationType": "full_numbers",
-              "aoColumnDefs": [
-              {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
-              {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                {"bVisible": false, "aTargets": [ 0, 4 ] },
-                {"sClass": "icon", "aTargets": [ 3, 5 ] }
-              ],
-              "fnDrawCallback": function() {
+            $(document).ready(function() {
+              $("#'.$table->id.'").dataTable({
+                "bProcessing": true,
+                "bDestroy": true,
+                "bJQueryUI": true,
+          	    "sPaginationType": "full_numbers",
+                "aoColumnDefs": [
+                  {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                  {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                  {"bVisible": false, "aTargets": [ 0, 4 ] },
+                  {"sClass": "icon", "aTargets": [ 3, 5 ] }
+                ],
+                "fnDrawCallback": function() {
                 $(".photoPopup").each(function() {
                   $(this).dialog({
                     autoOpen: false,
@@ -264,7 +265,7 @@
                     height: "auto"
                   });
                 });
-                $("#MachineResultsTable'.$this->id.'Table").css("width", "");
+                $("#'.$table->id.'").css("width", "");
                 $(".photoIcon").click(function() {
                   var photoDiv = $(this).data("photodiv");
                   $("#" + photoDiv).dialog("open");
@@ -280,9 +281,6 @@
               },
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
-            });
-            $("#'.$reloadButton->id.'").click(function() {
-              $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
             });
           ');
         } else {
