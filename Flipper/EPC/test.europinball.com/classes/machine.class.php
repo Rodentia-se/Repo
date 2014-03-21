@@ -237,8 +237,8 @@
           foreach ($scores as $score) {
             $rows[] = $score->getResultsRow(TRUE);
           }
-          $reloadP = '<input type="button" id="MachineResults'.$this->id.'_reloadButton" class="reloadButton" value="Reload the table">';
-          $div->addParagraph($reloadP);
+          $reloadP = $div->addParagraph($reloadP);
+          $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
           $div->addTable('MachineResultsTable'.$this->id, $headers, $rows, 'resultsTable');
           $div->addScript('
             var tbl = [];
