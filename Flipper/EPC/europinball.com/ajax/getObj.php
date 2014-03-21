@@ -11,7 +11,7 @@
   $search_id = (isset($_REQUEST['search_id'])) ? $_REQUEST['search_id'] : NULL;
   $type = (isset($_REQUEST['type'])) ? $_REQUEST['type'] : NULL;
 
-  $types = array('regSearch', 'registered', 'edit', 'photo', 'user', 'users', 'admin', 'members', 'groupsAdmin', 'qr', 'scores');
+  $types = array('regSearch', 'registered', 'results', 'edit', 'photo', 'user', 'users', 'admin', 'members', 'groupsAdmin', 'qr', 'scores');
   if (!in_array($type, $types)) {
     jsonEcho(failure('Invalid type '.$type), TRUE);
   }
@@ -97,6 +97,20 @@
         foreach ($objs as $obj) {
           $json->aaData[] = $obj->getObj('getRegSearch');
         } 
+      }
+      jsonEcho($json);
+    break;
+    case 'results':
+      $json = (object) array(
+        'sEcho' => $_REQUEST['sEcho'],
+        'iTotalRecords' => count($objs),
+        'iTotalDisplayRecords' => count($objs),
+        'aaData' => array()
+      );
+      if (isGroup($objs) && count($objs) > 0) {
+        foreach ($objs as $obj) {
+          $json->aaData[] = $obj->getObj('getResultsRow', TRUE);
+        }
       }
       jsonEcho($json);
     break;

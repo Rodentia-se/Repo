@@ -5,6 +5,9 @@ function customTemplate($page) {
 		case 'registration':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/register.php');
 	  break;
+		case 'results':
+			include($_SERVER['DOCUMENT_ROOT'].'/pages/results.php');
+	  break;
 		case 'players':
 			include($_SERVER['DOCUMENT_ROOT'].'/pages/registered.php');
 	  break;

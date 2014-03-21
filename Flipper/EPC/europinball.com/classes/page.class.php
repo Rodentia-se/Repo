@@ -134,14 +134,16 @@
             $("#" + this.id.replace("_combobox", "")).change();
           }
         })
-        $(".toCopy").tooltipster({
-          theme: ".tooltipster-light",
-          content: "Copied text to clipboard",
-          trigger: "custom",
-          position: "top",
-          timer: 3000
-        })
-        .click(function() {
+        $("body").on("click", ".toCopy", function() {
+          if (!$(this).data("tooltipster")) {
+            $(this).tooltipster({
+              theme: ".tooltipster-light",
+              content: "Copied text to clipboard",
+              trigger: "custom",
+              position: "top",
+              timer: 3000
+            });
+          }
           $(this).zclip({
             path: "'.config::$baseHref.'/js/contrib/ZeroClipboard.swf",
             copy: $(this).text(),

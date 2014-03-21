@@ -43,6 +43,32 @@
       )
     );
 */
+    
+    public function addScore($machine, $score = NULL) {
+      $machine = machine($machine);
+      if (isMachine($machine) && $machine->tournamentDivision_id == $this->tournamentDivision_id) {
+        $tournament = tournament($this->tournamentEdition_id);
+        $division = division($this->tournamentDivision_id);
+        $player = player($this->player_id);
+        $score = new entry(array(
+          'name' => $tournament->name.', '.$division->divisionName.', '.(($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1)).', '.$machine->name,
+          'score' => $score,
+          'person_id' => $this->person_id,
+          'player_id' => $this->player_id,
+          'machine_id' => $machine->id,
+          'tournamentDivision_id' => $division->id,
+          'tournamentEdition_id' => $tournament->id,
+          'qualEntry_id' => $this->id,
+          'firstName' => $player->firstName,
+          'lastName' => $player->lastName,
+          'city_id' => $player->city_id,
+          'country_id' => $player->country_id
+        ));
+        $score->id = $score->save();
+        return ($score->id) ? $score : FALSE;
+      }
+      return FALSE;
+    }
 
     public function populate() {
       parent::populate();

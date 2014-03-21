@@ -25,7 +25,16 @@
           if (isId($personId)) {
             $person = person($personId);
             if (isPerson($person)) {
-              $score = score($person, $machine);
+              $entries = entries($person, $division);
+              if ($entries && count($entries) > 0) {
+                $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
+              } else {
+                $entry = entry($player->addEntry());
+              }
+              $score = score($entry, $machine);
+              if (!isScore($core)) {
+                $score = $entry->addScore($machine);
+              }
               if (isScore($score)) {
                 if ($score->score) {
                   echo('statusCode=4');

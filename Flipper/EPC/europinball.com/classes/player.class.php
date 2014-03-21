@@ -179,6 +179,25 @@
       $this->shortName = ($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1);
       $this->shortName = ($this->shortName) ? $this->shortName : 'X X';
     }
+    
+    public function addEntry() {
+      $tournament = tournament($this->tournamentEdition_id);
+      $division = division($this->tournamentDivision_id);
+      $entry = new entry(array(
+        'name' => $tournament->name.', '.$division->divisionName.': '.$this->shortName,
+        'person_id' => $this->person_id,
+        'player_id' => $this->id,
+        'tournamentDivision_id' => $division->id,
+        'tournamentEdition_id' => $tournament->id,
+        'firstName' => $this->firstName,
+        'lastName' => $this->lastName,
+        'initials' => (($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1)),
+        'city_id' => $this->city_id,
+        'country_id' => $this->country_id
+      ));
+      $entry->id = $entry->save();
+      return ($entry->id) ? $entry : FALSE;
+    }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
@@ -304,6 +323,34 @@
         return ($array) ? $return : (object) $return;
       }
       return FALSE;
+    }
+
+    public function getResultsRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $entries = entries($this, $this->division);
+      if ($entries && count($entries) > 0) {
+        $entry = $entries[0];
+        $scores = scores($entry);
+        if ($scores && count($scores) > 0) {
+          foreach ($scores as $score) {
+            if ($score->place) {
+              $machines .= '#'.$score->place.' on '.$score->machine->getLink().' ('.$score->points.')<br />';
+            }
+          }
+        }
+      }
+      $return = array(
+        (($entry->place) ? $entry->place : 999999),
+        $entry->place,
+        $this->getLink(),
+        (($this->person) ? $this->person->getPhotoIcon() : ''),
+        (is_object($this->country)) ? $this->country->name : '',
+        (is_object($this->country)) ? $this->country->getIcon() : '',
+        $machines,
+        $entry->points        
+      );
+      return ($array) ? $return : (object) $return;
     }
 
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
