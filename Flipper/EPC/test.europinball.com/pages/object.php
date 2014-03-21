@@ -4,6 +4,8 @@
   require_once(__ROOT__.'/functions/init.php');
 
   $page = new page('Info');
+  $page->datatables = TRUE;
+  $page->datatablesReload = TRUE;
 
   $obj = (isset($_REQUEST['obj'])) ? $_REQUEST['obj'] : null;
   $id = (isId($_REQUEST['id'])) ? $_REQUEST['id'] : null;
