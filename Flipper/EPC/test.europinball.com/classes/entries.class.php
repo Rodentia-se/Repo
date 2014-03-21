@@ -34,7 +34,7 @@
         $place = 0;
         foreach ($this as $entry) {
           $place++;
-          $entry->setPlace((($entry->pooints) ? $place : 0);
+          $entry->setPlace((($entry->pooints) ? $place : NULL);
         }
         return TRUE;
       } else {
