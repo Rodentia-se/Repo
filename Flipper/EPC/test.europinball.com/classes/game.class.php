@@ -252,7 +252,7 @@
         foreach ($divisions as $division) {
           $machine = machine($division, $this);
           if (isMachine($machine)) {
-            $div = $tabs->addDiv('gameResultsDiv'.$division->id);
+            $div = $tabs->addDiv($division->divisionName);
             $div->addContent($machine->getTable());
           }
         }
