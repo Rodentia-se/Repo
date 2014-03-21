@@ -61,6 +61,7 @@
           'qualEntry_id' => $this->id,
           'firstName' => $player->firstName,
           'lastName' => $player->lastName,
+          'initials' => (($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1)),
           'city_id' => $player->city_id,
           'country_id' => $player->country_id
         ));
