@@ -257,30 +257,31 @@
                   {"sClass": "icon", "aTargets": [ 3, 5 ] }
                 ],
                 "fnDrawCallback": function() {
-                $(".photoPopup").each(function() {
-                  $(this).dialog({
-                    autoOpen: false,
-                    modal: true, 
-                    width: "auto",
-                    height: "auto"
+                  $(".photoPopup").each(function() {
+                    $(this).dialog({
+                      autoOpen: false,
+                      modal: true, 
+                      width: "auto",
+                      height: "auto"
+                    });
                   });
-                });
-                $("#'.$table->id.'").css("width", "");
-                $(".photoIcon").click(function() {
-                  var photoDiv = $(this).data("photodiv");
-                  $("#" + photoDiv).dialog("open");
-                  $(document).on("click", ".ui-widget-overlay", function() {
-                    $("#" + photoDiv).dialog("close");
+                  $("#'.$table->id.'").css("width", "");
+                  $(".photoIcon").click(function() {
+                    var photoDiv = $(this).data("photodiv");
+                    $("#" + photoDiv).dialog("open");
+                    $(document).on("click", ".ui-widget-overlay", function() {
+                      $("#" + photoDiv).dialog("close");
+                    });
                   });
-                });
-                $("#mainContent").removeClass("modal");
-                return true;
-              },
-              "oLanguage": {
-                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
-              },
-              "iDisplayLength": -1,
-              "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+                  $("#mainContent").removeClass("modal");
+                  return true;
+                },
+                "oLanguage": {
+                  "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
+                },
+                "iDisplayLength": -1,
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+              });
             });
           ');
         } else {
