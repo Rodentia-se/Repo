@@ -98,7 +98,7 @@
       foreach ($scores as $score) {
         $points += $score->fullPoints;
       }
-      if ($set) {
+      if ($save) {
         $this->points = ($points) ? $points : NULL;
         if (!$this->save()) {
           return FALSE;
