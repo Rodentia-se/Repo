@@ -632,8 +632,7 @@
             if ($entries && count($entries) > 0) {
               $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
             } else {
-              $entry = entry($player->addEntry());
-              debug($entry);
+              $entry = $player->addEntry();
             }
             $scoresEditDiv = $scoresTabs->addDiv($prefix.'ScoresEditTabs_'.$this->id.'_Div_'.$player->tournamentDivision_id, NULL, array('data-title' => $player->tournamentDivision->name));
             $scores = scores($player);

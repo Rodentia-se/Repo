@@ -195,7 +195,8 @@
         'city_id' => $this->city_id,
         'country_id' => $this->country_id
       ));
-      return $entry->save();
+      $entry->id = $entry->save();
+      return ($entry->id) ? $entry : FALSE;
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {

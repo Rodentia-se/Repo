@@ -31,14 +31,9 @@
               } else {
                 $entry = entry($player->addEntry());
               }
-              
-              
-              $score = score($person, $machine);
-              if (!isScore($score)) {
-                $score = new score(
-                  
-                );
-                $score->id = $score->save();
+              $score = score($entry, $machine);
+              if (!isScore($core)) {
+                $score = $entry->addScore($machine);
               }
               if (isScore($score)) {
                 if ($score->score) {
