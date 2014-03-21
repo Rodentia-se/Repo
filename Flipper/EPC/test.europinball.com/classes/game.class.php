@@ -253,7 +253,7 @@
           $machine = machine($division, $this);
           if (isMachine($machine)) {
             $div = $tabs->addDiv($childArrayClass.'Div');
-            $div->addContent($machine->getResultsTable());
+            $div->addContent($machine->getTable());
           }
         }
         return $tabs;
