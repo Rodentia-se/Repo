@@ -59,8 +59,8 @@
       // @todo: Handle custom headers
       // @todo: Change to object
       $return = array(
-        (($score->place) ? $score->place : 999999),
-        $score->place,
+        (($this->place) ? $this->place : 999999),
+        $this->place,
         $this->player->getLink(),
         (($this->person) ? $this->person->getPhotoIcon() : ''),
         (is_object($this->person->country)) ? $this->person->country->name : '',
