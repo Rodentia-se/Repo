@@ -90,7 +90,7 @@
                   {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
                   {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
                     {"bVisible": false, "aTargets": [ 0, 4 ] },
-                    {"sClass": "icon", "aTargets": [ 3, 4 ] }
+                    {"sClass": "icon", "aTargets": [ 3, 5 ] }
                   ],
                   "fnDrawCallback": function() {
                     $(".photoPopup").each(function() {

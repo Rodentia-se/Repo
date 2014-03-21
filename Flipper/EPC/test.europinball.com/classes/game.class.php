@@ -244,6 +244,22 @@
       return FALSE;
     }
 
+    public function getChildrenTabs($tournament = 'active') {
+      $tournament = getTournament($tournament);
+      $divisions = divisions($tournament);
+      if ($divisions && count($divisions) > 0) {
+        $tabs = new tabs(NULL, 'gameResultsTabs');
+        foreach ($divisions as $division) {
+          $machine = machine($division, $this);
+          if (isMachine($machine)) {
+            $div = $tabs->addDiv($childArrayClass.'Div');
+            $div->addContent($machine->getResultsTable());
+          }
+        }
+        return $tabs;
+      }
+    }
+
   }
 
 ?>

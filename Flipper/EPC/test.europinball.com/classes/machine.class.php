@@ -225,8 +225,76 @@
     	}
       return $div;
     }
+
+    public function getTable($id = NULL, $class = NULL, array $headers = NULL) {
+      $scores = scores($this);
+      $div = new div();
+      if ($scores && count($scores) > 0) {
+        $scores->filter('score', 0, '>');
+        $scores->order('score', 'numeric', 'desc');
+        if ($scores && count($scores) > 0) {
+          $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Score', 'Points');
+          foreach ($scores as $score) {
+            $rows[] = $score->getResultsRow(TRUE);
+          }
+          $reloadP = '<input type="button" id="MachineResults'.$this->id.'_reloadButton" class="reloadButton" value="Reload the table">';
+          $div->addParagraph($reloadP);
+          $div->addTable('MachineResultsTable'.$this->id, $headers, $rows, 'resultsTable');
+          $div->addScript('
+            var tbl = [];
+            tbl["'.$this->id.'"] = $("#MachineResultsTable'.$this->id.'").dataTable({
+              "bProcessing": true,
+              "bDestroy": true,
+              "bJQueryUI": true,
+          	  "sPaginationType": "full_numbers",
+              "aoColumnDefs": [
+              {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+              {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                {"bVisible": false, "aTargets": [ 0, 4 ] },
+                {"sClass": "icon", "aTargets": [ 3, 5 ] }
+              ],
+              "fnDrawCallback": function() {
+                $(".photoPopup").each(function() {
+                  $(this).dialog({
+                    autoOpen: false,
+                    modal: true, 
+                    width: "auto",
+                    height: "auto"
+                  });
+                });
+                $("#MachineResultsTable'.$this->id.'Table").css("width", "");
+                $(".photoIcon").click(function() {
+                  var photoDiv = $(this).data("photodiv");
+                  $("#" + photoDiv).dialog("open");
+                  $(document).on("click", ".ui-widget-overlay", function() {
+                    $("#" + photoDiv).dialog("close");
+                  });
+                });
+                $("#mainContent").removeClass("modal");
+                return true;
+              },
+              "oLanguage": {
+                "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
+              },
+              "iDisplayLength": -1,
+              "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+            });
+            $("#MachineResults'.$this->id.'_reloadButton").click(function() {
+              tbl["'.$this->id.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
+            });
+          ');
+        } else {
+          $div->addParagraph('No scores are registered on this machine yet');
+        }
+      } else {
+        $div->addParagraph('No scores are registered on this machine yet');
+      }
+      return $div;
+    }
+
+
     
-    function calcPoints($save = TRUE, $calcPlaces = TRUE) {
+    public function calcPoints($save = TRUE, $calcPlaces = TRUE) {
       if ($calcPlaces) {
         $this->calcPlaces($save);
       }
