@@ -33,7 +33,10 @@
                 } else {
                   $entry = entry($player->addEntry());
                 }
+                debug($entry->id);
+                debug($machine->id);
                 $score = score($entry, $machine);
+                debug($score);
                 if (!isScore($core)) {
                   debug('no score found');
                   $scores = scores($entry);
