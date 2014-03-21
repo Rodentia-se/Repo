@@ -50,7 +50,7 @@
         $tournament = tournament($this->tournamentEdition_id);
         $division = division($this->tournamentDivision_id);
         $player = player($this->player_id);
-        $score = new entry(array(
+        $score = new score(array(
           'name' => $tournament->name.', '.$division->divisionName.', '.(($player->shortName) ? $player->shortName : substr($player->firstName, 0, 1).' '.substr($player->lastName, 0, 1)).', '.$machine->name,
           'score' => $score,
           'person_id' => $this->person_id,
