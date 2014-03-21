@@ -53,7 +53,7 @@
                           if ($checkScore->score == $regScore) {
                             echo('statusCode=0');
                           } else {
-                            echo('statusCode=2');
+                            echo('statusCode=5');
                           }
                         } else {
                           echo('statusCode=2');
