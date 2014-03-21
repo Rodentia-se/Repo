@@ -237,7 +237,6 @@
           foreach ($scores as $score) {
             $rows[] = $score->getResultsRow(TRUE);
           }
-          debut($rows);
           $reloadP = $div->addParagraph($reloadP);
           $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
           $div->addTable('MachineResultsTable'.$this->id, $headers, $rows, 'resultsTable');
