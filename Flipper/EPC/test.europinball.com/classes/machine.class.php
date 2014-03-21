@@ -238,11 +238,10 @@
             $rows[] = $score->getResultsRow(TRUE);
           }
           $reloadP = $div->addParagraph($reloadP);
-          $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
-          $div->addTable($rows, $headers, 'MachineResultsTable'.$this->id, 'resultsTable');
+          $reloadButton = $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
+          $table = $div->addTable($rows, $headers, 'MachineResultsTable'.$this->id, 'resultsTable');
           $div->addScript('
-            var tbl = []; 
-            tbl["'.$this->id.'"] = $("#MachineResultsTable'.$this->id.'").dataTable({
+            $("#'.$table->id.'").dataTable({
               "bProcessing": true,
               "bDestroy": true,
               "bJQueryUI": true,
@@ -279,8 +278,8 @@
               "iDisplayLength": -1,
               "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
             });
-            $("#MachineResults'.$this->id.'_reloadButton").click(function() {
-              tbl["'.$this->id.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
+            $("#'.$reloadButton->id.'").click(function() {
+              $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
             });
           ');
         } else {
