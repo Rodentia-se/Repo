@@ -58,6 +58,26 @@
       }
       return $tabs;
     }
+
+    public function calcPoints($save = TRUE, $calcPlaces = TRUE) {
+      if (count($this) > 0) {
+        foreach ($this as $machine) {
+          $machine->calcPoints($save, $calcPlaces);
+        }
+        return TRUE;
+      }
+      return FALSE;
+    }
+
+    public function calcPlaces($calcPoints = TRUE) {
+      if (count($this) > 0) {
+        foreach ($this as $machine) {
+          $machine->calcPoints($calcPoints);
+        }
+        return TRUE;
+      }
+      return FALSE;
+    }
     
   }
 

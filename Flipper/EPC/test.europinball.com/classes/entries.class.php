@@ -15,17 +15,17 @@
       parent::__construct($data, $prop, $cond);
     }
     
-    function calcPoints($save = TRUE) {
+    public function calcPoints($save = TRUE) {
       if (count($this) > 0) {
         foreach ($this as $entry) {
-          $entry->points = $entry->calcPoints($save);
+          $entry->calcPoints($save);
         }
         return TRUE;
       }
       return FALSE;
     }
         
-    function calcPlaces($calcPoints = TRUE) {
+    public function calcPlaces($calcPoints = TRUE) {
       if (count($this) > 0) {
         if ($calcPoints) {
           $this->calcPoints();
