@@ -34,7 +34,6 @@
         $entries->order('fullPoints', 'numeric', 'desc');
         $place = 0;
         foreach ($entries as $entry) {
-          $
           $place++;
           $entry->setPlace((($entry->points) ? $place : NULL));
         }
