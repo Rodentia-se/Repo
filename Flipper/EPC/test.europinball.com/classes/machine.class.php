@@ -234,7 +234,8 @@
       $scores->filter('place', '0', '>');
       if ($scores && count($scores) > 0) {
         foreach ($scores as $score) {
-          $points = 100 * (1 - ($score->place - 0.5) / count($scores));
+//          $points = 100 * (1 - ($score->place - 0.5) / count($scores));
+          $points = (+ ((count($scores) + 0.5 - $score->place) * (config::$calcFixed / count($scores))) + (((1 - (($score->place - 0.5) / count($scores)) ^ 0.5) ^ config::$calcCoefficient) * config:$calcDynamic) );
           $score->points = $points;
           if ($save) {
             $score->save();

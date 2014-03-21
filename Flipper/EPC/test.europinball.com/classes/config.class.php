@@ -113,6 +113,10 @@
     public static $eightiesDivision = 16;
     public static $eightiesQualGroupLimit = FALSE;
     public static $eightiesCost = 0;
+    
+    public static $calcFixed = 50;
+    public static $calcDynamic = 50;
+    public static $calcCoefficient = 2;
  
     public static $team = FALSE;
     public static $teamDivision = FALSE;
