@@ -241,7 +241,7 @@
           $reloadButton = $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
           $table = $div->addTable($rows, $headers, 'MachineResultsTable'.$this->id, 'resultsTable');
           $reloadButton->addClick('
-            $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&id='.$this->id.'&type=results");
+            $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machines&type=results&data=game&data_id='.$this->game_id.'");
           ');
           $div->addScriptCode('
             $(document).ready(function() {
@@ -292,8 +292,6 @@
       }
       return $div;
     }
-
-
     
     public function calcPoints($save = TRUE, $calcPlaces = TRUE) {
       if ($calcPlaces) {
