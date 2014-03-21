@@ -282,6 +282,7 @@
                 "iDisplayLength": -1,
                 "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
               });
+              $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=scores&type=results&data=machine&data_id='.$this->id.'");
             });
           ');
         } else {
