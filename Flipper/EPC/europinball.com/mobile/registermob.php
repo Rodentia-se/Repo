@@ -34,7 +34,7 @@
                   $entry = entry($player->addEntry());
                 }
                 $score = score($entry, $machine);
-                if (!isScore($core)) {
+                if (!isScore($score)) {
                   $scores = scores($entry);
                   if (!$scores || count($scores) < 5) {
                     $score = $entry->addScore($machine);
