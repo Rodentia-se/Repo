@@ -61,7 +61,7 @@
       $return = array(
         (($score->place) ? $score->place : 999999),
         $score->place,
-        $this->person->getLink(),
+        $this->player->getLink(),
         (($this->person) ? $this->person->getPhotoIcon() : ''),
         (is_object($this->person->country)) ? $this->person->country->name : '',
         (is_object($this->person->country)) ? $this->person->country->getIcon() : '',
