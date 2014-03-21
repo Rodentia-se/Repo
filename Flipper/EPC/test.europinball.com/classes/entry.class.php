@@ -92,7 +92,7 @@
         }
       }
     }
-
+    
     public function calcPoints($save = TRUE) {
       $scores = scores($this);
       foreach ($scores as $score) {
