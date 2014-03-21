@@ -14,16 +14,6 @@
       parent::__construct($data, $prop, $cond);
     }
     
-    public function setPoints($points = NULL) {
-      $this->points = ($points) ? $points : NULL;
-      return $this->save();
-    }
-
-    public function setPlace($place = NULL) {
-      $this->place = ($place) ? $place : NULL;
-      return $this->save();
-    }
-
   }
 
 ?>
