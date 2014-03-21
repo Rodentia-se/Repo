@@ -25,28 +25,36 @@
           if (isId($personId)) {
             $person = person($personId);
             if (isPerson($person)) {
-              $entries = entries($person, $division);
-              if ($entries && count($entries) > 0) {
-                $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
-              } else {
-                $entry = entry($player->addEntry());
-              }
-              $score = score($entry, $machine);
-              if (!isScore($core)) {
-                $score = $entry->addScore($machine);
-              }
-              if (isScore($score)) {
-                if ($score->score) {
-                  echo('statusCode=4');
+              $player = player($person, $division);
+              if (isPlayer($player)) {
+                $entries = entries($player);
+                if ($entries && count($entries) > 0) {
+                  $entry = $entries[0];  // TODO: Remove EPC 2014 specific restrictions
                 } else {
-                  if (isId($regScore)) {
-                    if ($regScore > 0) {
-                      $score->score = $regScore;
-                      $save = $score->save();
-                      if ($save) {
-                        $checkScore = score($score->id);
-                        if ($checkScore->score == $regScore) {
-                          echo('statusCode=0');
+                  $entry = entry($player->addEntry());
+                }
+                $score = score($entry, $machine);
+                if (!isScore($core)) {
+                  $scores = scores($entry);
+                  if (!$scores || count($scores) < 5) {
+                    $score = $entry->addScore($machine);
+                  }
+                }
+                if (isScore($score)) {
+                  if ($score->score) {
+                    echo('statusCode=4');
+                  } else {
+                    if (isId($regScore)) {
+                      if ($regScore > 0) {
+                        $score->score = $regScore;
+                        $save = $score->save();
+                        if ($save) {
+                          $checkScore = score($score->id);
+                          if ($checkScore->score == $regScore) {
+                            echo('statusCode=0');
+                          } else {
+                            echo('statusCode=2');
+                          }
                         } else {
                           echo('statusCode=2');
                         }
@@ -56,9 +64,9 @@
                     } else {
                       echo('statusCode=2');
                     }
-                  } else {
-                    echo('statusCode=2');
                   }
+                } else {
+                  echo('statusCode=2');
                 }
               } else {
                 echo('statusCode=2');
