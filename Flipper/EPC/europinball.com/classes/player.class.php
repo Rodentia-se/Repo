@@ -335,7 +335,7 @@
         if ($scores && count($scores) > 0) {
           foreach ($scores as $score) {
             if ($score->place) {
-              $machines .= '#'.$score->place.' on '.$score->machine->getLink().' ('.$score->points.')<br />';
+              $machines .= '#'.$score->place.' on '.$score->machine->getLink().' (<span title="'.$score->fullPoints.'">'.$score->points.'</span>)<br />';
             }
           }
         }
@@ -348,7 +348,7 @@
         (is_object($this->country)) ? $this->country->name : '',
         (is_object($this->country)) ? $this->country->getIcon() : '',
         $machines,
-        $entry->points        
+        '<span title="'.$entry->fullPoints.'">'.$entry->points.'</span>'
       );
       return ($array) ? $return : (object) $return;
     }
