@@ -30,9 +30,10 @@
         if ($calcPoints) {
           $this->calcPoints();
         }
-        $this->order('fullPoints', 'numeric', 'desc');
+        $entries = $this->getFiltered('fullPoints', 0, '>');
+        $entries->order('fullPoints', 'numeric', 'desc');
         $place = 0;
-        foreach ($this as $entry) {
+        foreach ($entries as $entry) {
           $place++;
           $entry->setPlace((($entry->points) ? $place : NULL));
         }
