@@ -226,6 +226,43 @@
       return $div;
     }
     
+    function calcPoints($save = TRUE, $calcPlaces = TRUE) {
+      if ($calcPlaces) {
+        $this->calcPlaces($save);
+      }
+      $scores = scores($this);
+      $scores->filter('place', '0', '>');
+      if ($scores && count($scores) > 0) {
+        foreach ($scores as $score) {
+          $points = 100 * (1 - ($score->place - 0.5) / $number );
+          $score->points = $points;
+          if ($save) {
+            $score->save();
+          }
+        }
+        return TRUE;
+      }
+      return FALSE;
+    }
+    
+    public function calcPlaces($save = TRUE) {
+      $scores = scores($this);
+      $scores->filter('score', '0', '>');
+      if ($scores && count($scores) > 0) {
+        $scores->order('score', 'numeric', 'desc');
+        $place = 0;
+        foreach ($scores as $score) {
+          $place++;
+          if ($save) {
+            $score->setPlace($place);
+          } else {
+            $score->place = $place;
+          }
+        }
+        return TRUE;
+      }
+      return FALSE;
+    }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
       switch ($type) {
