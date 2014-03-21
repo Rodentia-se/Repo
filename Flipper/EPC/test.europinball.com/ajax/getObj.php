@@ -101,6 +101,9 @@
       jsonEcho($json);
     break;
     case 'results':
+      if (isDivision($data)) { 
+        $data->calcPlaces();
+      }
       $json = (object) array(
         'sEcho' => $_REQUEST['sEcho'],
         'iTotalRecords' => count($objs),
