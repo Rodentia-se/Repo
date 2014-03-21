@@ -36,6 +36,7 @@
               if (!isScore($core)) {
                 $score = $entry->addScore($machine);
               }
+              debug($score);
               if (isScore($score)) {
                 if ($score->score) {
                   echo('statusCode=4');
