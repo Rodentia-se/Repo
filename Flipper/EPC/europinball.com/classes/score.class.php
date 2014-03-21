@@ -55,6 +55,22 @@
       return $this->save();
     }
 
+    public function getResultsRow($array = FALSE) {
+      // @todo: Handle custom headers
+      // @todo: Change to object
+      $return = array(
+        (($this->place) ? $this->place : 999999),
+        $this->place,
+        $this->player->getLink(),
+        (($this->person) ? $this->person->getPhotoIcon() : ''),
+        (is_object($this->person->country)) ? $this->person->country->name : '',
+        (is_object($this->person->country)) ? $this->person->country->getIcon() : '',
+        $this->score,
+        '<span title="'.$this->fullPoints.'">'.$this->points.'</span>'
+      );
+      return ($array) ? $return : (object) $return;
+    }
+
   }
 
 ?>

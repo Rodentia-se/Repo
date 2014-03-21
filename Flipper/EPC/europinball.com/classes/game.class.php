@@ -244,6 +244,24 @@
       return FALSE;
     }
 
+    public function getChildrenTabs($tournament = 'active') {
+      $tournament = getTournament($tournament);
+      $divisions = divisions($tournament);
+      if ($divisions && count($divisions) > 0) {
+        $tabs = new tabs(NULL, 'gameResultsTabs');
+        foreach ($divisions as $division) {
+          if ($division->id == 16) { // TODO: Remove EPC 2014 specifics
+            $machine = machine($division, $this);
+            if (isMachine($machine)) {
+              $div = $tabs->addDiv($division->divisionName);
+              $div->addContent($machine->getTable());
+            }
+          }
+        }
+        return $tabs;
+      }
+    }
+
   }
 
 ?>
