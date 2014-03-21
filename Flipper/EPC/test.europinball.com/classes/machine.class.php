@@ -234,7 +234,7 @@
       $scores->filter('place', '0', '>');
       if ($scores && count($scores) > 0) {
         foreach ($scores as $score) {
-          $points = 100 * (1 - ($score->place - 0.5) / $number );
+          $points = 100 * (1 - ($score->place - 0.5) / count($scores));
           $score->points = $points;
           if ($save) {
             $score->save();
