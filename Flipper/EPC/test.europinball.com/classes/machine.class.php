@@ -240,6 +240,7 @@
           $reloadP = $div->addParagraph($reloadP);
           $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
           $div->addTable('MachineResultsTable'.$this->id, $headers, $rows, 'resultsTable');
+          $div->addTable($rows, $headers, 'MachineResultsTable'.$this->id, 'resultsTable');
           $div->addScript('
             var tbl = [];
             tbl["'.$this->id.'"] = $("#MachineResultsTable'.$this->id.'").dataTable({
