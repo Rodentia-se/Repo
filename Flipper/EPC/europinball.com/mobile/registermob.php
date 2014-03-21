@@ -35,6 +35,7 @@
                 }
                 $score = score($entry, $machine);
                 if (!isScore($core)) {
+                  debug('no score found');
                   $scores = scores($entry);
                   if (!$scores || count($scores) < 5) {
                     $score = $entry->addScore($machine);
