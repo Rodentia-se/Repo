@@ -181,24 +181,21 @@
     }
     
     public function addEntry() {
-      if ($machine->tournamentDivision_id == $this->tournamentDivision_id) {
-        $tournament = tournament($this->tournamentEdition_id);
-        $division = division($this->tournamentDivision_id);
-        $entry = new entry(array(
-          'name' => $tournament->name.', '.$division->divisionName.': '.$this->shortName,
-          'person_id' => $this->person_id,
-          'player_id' => $this->id,
-          'tournamentDivision_id' => $division->id,
-          'tournamentEdition_id' => $tournament->id,
-          'firstName' => $this->firstName,
-          'lastName' => $this->lastName,
-          'initials' => (($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1)),
-          'city_id' => $this->city_id,
-          'country_id' => $this->country_id
-        ));
-        return $entry->save();
-      }
-      return FALSE;
+      $tournament = tournament($this->tournamentEdition_id);
+      $division = division($this->tournamentDivision_id);
+      $entry = new entry(array(
+        'name' => $tournament->name.', '.$division->divisionName.': '.$this->shortName,
+        'person_id' => $this->person_id,
+        'player_id' => $this->id,
+        'tournamentDivision_id' => $division->id,
+        'tournamentEdition_id' => $tournament->id,
+        'firstName' => $this->firstName,
+        'lastName' => $this->lastName,
+        'initials' => (($this->shortName) ? $this->shortName : substr($this->firstName, 0, 1).' '.substr($this->lastName, 0, 1)),
+        'city_id' => $this->city_id,
+        'country_id' => $this->country_id
+      ));
+      return $entry->save();
     }
 
     public function getLink($type = 'object', $anchor = true, $thumbnail = false, $preview = false, $defaults = true) {
