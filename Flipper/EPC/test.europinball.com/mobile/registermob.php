@@ -49,14 +49,7 @@
                         $score->score = $regScore;
                         $save = $score->save();
                         if ($save) {
-                          $checkScore = score($save);
-                          if ($checkScore->score == $regScore) {
-                            echo('statusCode=0');
-                          } else {
-                            debug($checkScore);
-                            debug($regScore);
-                            echo('statusCode=5');
-                          }
+                          echo('statusCode=0');
                         } else {
                           echo('statusCode=2');
                         }
