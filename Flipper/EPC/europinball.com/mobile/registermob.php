@@ -31,7 +31,7 @@
               } else {
                 $entry = entry($player->addEntry());
               }
-              $score = scores($entry, $machine);
+              $score = score($entry, $machine);
               debug($score);
               if (!isScore($core)) {
                 $score = $entry->addScore($machine);
