@@ -241,7 +241,7 @@
           $reloadButton = $reloadP->addButton('Reload the table', 'MachineResults'.$this->id.'_reloadButton', array('class' => 'reloadButton'));
           $table = $div->addTable($rows, $headers, 'MachineResultsTable'.$this->id, 'resultsTable');
           $reloadButton->addClick('
-            $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&type=results");
+            $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=machine&id='.$this->id.'&type=results");
           ');
           $div->addScriptCode('
             $(document).ready(function() {
