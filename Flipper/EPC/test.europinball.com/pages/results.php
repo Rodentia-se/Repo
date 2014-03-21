@@ -47,7 +47,7 @@
     break;
   }
 
-  $page = new page('Results '.$title);
+  $page = new page('Qualification results ');
   $page->modal = TRUE;
   
   $page->addH2('Results');
