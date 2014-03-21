@@ -133,7 +133,6 @@
     }
     
     public function getObjectByProps($class, $props, $cond = 'and') {
-      debug($props);
       $sth = $this->getObjectsByPropsHelper($class, $props, $cond);
       return $this->getRow($sth, $class);
     }
