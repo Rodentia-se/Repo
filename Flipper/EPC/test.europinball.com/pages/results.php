@@ -51,34 +51,18 @@
   $page->datatables = TRUE;
   $page->datatablesReload = TRUE;
   
-  $page->addH2('Results');
-  $page->startDiv('tabs');
-    $page->startUl();
+  $div = new div();
+    $div->addH2('Results');
+    $tabs = $div->addTabs('tabs');
       foreach ($divisions as $division) {
         $objs[$division->id] = $type($division);
         $objs[$division->id]->filter('waiting', 0, '>', TRUE);
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
-          $page->addLi('<a href="'.config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id.'">'.$division->divisionName.'</a>');
+          $tabs->addAjaxTab(config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id, $division->divisionName);
         }
       }
-    $page->closeUl();
-    $page->addScript('
-      var index = "key";
-      var dataStore = window.sessionStorage;
-      try {
-        var oldIndex = dataStore.getItem(index);
-      } catch(e) {
-        var oldIndex = 0;
-      }
-      $("#tabs").tabs({
-        active: oldIndex,
-        activate: function(event, ui) {
-          var newIndex = ui.newTab.parent().children().index(ui.newTab);
-          dataStore.setItem(index, newIndex) 
-        }
-      });
-    ');
-  $page->closeDiv();
+    //Tabs
+  //Div
   
   $page->submit();
 
