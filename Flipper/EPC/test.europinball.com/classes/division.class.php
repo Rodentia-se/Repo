@@ -245,7 +245,7 @@
         $qualDiv->addCss('margin-bottom', '20px');
         $div->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
-        $div->addDiv()->addCss('clear', 'both');
+        $div->addDiv()->class = 'clearer';
         $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
         $div->addCssFile(config::$baseHref.'/css/contrib/jquery.bracket.min.css');
         $div->addScriptCode('
