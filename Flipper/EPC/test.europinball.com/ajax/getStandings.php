@@ -102,7 +102,7 @@
                   "iDisplayLength": -1,
                   "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
                 });
-                $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
+                $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
               ');
             } else {
               $div->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
