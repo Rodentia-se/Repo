@@ -114,14 +114,17 @@
             echo($p->getHtml());
           }
         } else {
-          $('Invalid division');
+          $p = new paragraph('Invalid division');
+          echo($p->getHtml());
         }
       } else {
-        echo('Invalid division ID');
+        $p = new paragraph('Invalid division ID');
+        echo($p->getHtml());
       }
     break;
     default:
-      echo('Invalid class');
+      $p = new paragraph('Invalid class');
+      echo($p->getHtml());
     break;
   }
 
