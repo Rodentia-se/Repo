@@ -219,7 +219,7 @@
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
         $qualP = $div->addParagraph();
-        $qualP->addH2('Group 1');
+        $qualP->addH2('Group 1')->class = 'entry-title';
         $qualP->addSpan('1: Spain (63p)');
         $qualP->addBr();
         $qualP->addSpan('1: Finland (43p)');
@@ -227,7 +227,7 @@
         $qualP->addSpan('1: Germany (41p)');
         $qualP->addBr();
         $qualP->addSpan('1: Sweden (38p)');
-        $qualP->addH2('Group 2');
+        $qualP->addH2('Group 2')->class = 'entry-title';
         $qualP->addSpan('1: Italy (85p)');
         $qualP->addBr();
         $qualP->addSpan('1: Netherlands (56p)');
@@ -235,7 +235,7 @@
         $qualP->addSpan('1: Poland (49p)');
         $qualP->addBr();
         $qualP->addSpan('1: Austria (31p)');
-        $qualP->addH2('Finals');
+        $qualP->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->addCss('clear', 'both');
         $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
