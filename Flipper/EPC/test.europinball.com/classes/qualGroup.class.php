@@ -178,6 +178,35 @@
       }
     }
     
+    public function getStandings() {
+      $qualDiv = new div();
+      $standings = $qualGroup->getStandingsImg('standings');
+      if ($standings) {
+        $qualDiv->addH2('Standings')->class = 'entry-title';
+        $qualP = $qualDiv->addParagraph();
+        $qualP->addContent($standings);
+      }
+      $found = TRUE;
+      $num = 0;
+      while ($found) {
+        $num++;
+        $matches = $qualGroup->getMatchesImg($num);
+        if ($matches) {
+          if ($num == 1) {
+            $qualDiv->addH2('Matches')->class = 'entry-title';
+          }
+          $qualP = $qualDiv->addParagraph();
+          $qualP->addContent($matches);
+        } else {
+          $found = FALSE;
+        }
+      }
+      if (!$standings && !$matches) {
+        $qualP = $qualDiv->addParagraph('There are no standings available for group '.$qualGroup->acronym.' yet.');
+      }
+      return $div->getHtml();
+    }
+    
     public function getStandingsImg($htmlObj = TRUE) {
       $url = $this->getLink('standings', FALSE);
       if ($url) {
