@@ -53,7 +53,7 @@
   
   $div = new div();
     $div->addH2('Results')->class = 'entry-title';
-    $tabs = $div->addTabs();
+    $tabs = $div->addTabs(NULL, 'resultTabs');
       foreach ($divisions as $division) {
         $tabs->addAjaxTab(config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id, $division->divisionName);
       }
