@@ -108,16 +108,17 @@
             } else {
               $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
             }
+            $page->submit();
           } else {
-            $page->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
-          }      
+            $p = new paragraph('Results for the '.$division->divisionName.' division are not yet available.');
+            echo($p->getHtml());
+          }
         } else {
-          echo('Invalid division');
+          $('Invalid division');
         }
       } else {
         echo('Invalid division ID');
       }
-      $page->submit();
     break;
     default:
       echo('Invalid class');
