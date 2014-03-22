@@ -1,8 +1,0 @@
-<div class = 'bred'>
-<p>
-<?php  
-die(print_r($_POST));  
-?>
-
-</div>
-<hr />
