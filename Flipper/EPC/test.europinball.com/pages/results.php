@@ -61,7 +61,6 @@
         }
       }
     $page->closeUl();
-  }
   $page->closeDiv();
   $page->addScript('
     var index = "key";
