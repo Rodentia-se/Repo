@@ -203,7 +203,7 @@
           $return->addCss('width', '100%');
           $return->addCss('cursor', 'pointer');
           $return->addClick('
-            window.open('.$url.');
+            window.open("'.$url.'");
           ');
         } else {
           $return = $url;
