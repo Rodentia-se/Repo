@@ -276,7 +276,7 @@ input[id $= "Currency_combobox"] {
 }
 
 span[id ^= "5"] {
-  width: 50px; 
+  float: right;  
 }
 
 
