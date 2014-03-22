@@ -11,7 +11,7 @@
       if (isId($id)) {
         $division = division($id);
         if (isDivision($division)) {
-          $html = $division->getStandings()
+          $html = $division->getStandings();
           echo($html->getHtml());
         } else {
           $p = new paragraph('Invalid division');
