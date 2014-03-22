@@ -216,6 +216,67 @@
           ');
         //Div
         return $div;
+      } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
+        $div = new div();
+        $qualDiv = $div->addDiv();
+        $group1div = $qualDiv->addDiv();
+        $group1div->addCss('float', 'left');
+        $h2 = $group1div->addH2('Group 1');
+        $h2->class = 'entry-title';
+        $h2->addCss('clear', 'none');        
+        $group1div->addSpan('1: Spain (63p)');
+        $group1div->addBr();
+        $group1div->addSpan('2: Finland (43p)');
+        $group1div->addBr();
+        $group1div->addSpan('3: Germany (41p)');
+        $group1div->addBr();
+        $group1div->addSpan('4: Sweden (38p)');
+        $group2div = $qualDiv->addDiv();
+        $h2 = $group2div->addH2('Group 2');
+        $h2->class = 'entry-title';
+        $h2->addCss('clear', 'none');        
+        $group2div->addSpan('1: Italy (85p)');
+        $group2div->addBr();
+        $group2div->addSpan('2: Netherlands (56p)');
+        $group2div->addBr();
+        $group2div->addSpan('3: Poland (49p)');
+        $group2div->addBr();
+        $group2div->addSpan('4: Austria (31p)');
+        $qualDiv->addCss('margin-bottom', '20px');
+        $div->addH2('Finals')->class = 'entry-title';
+        $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
+        $div->addDiv()->class = 'clearer';
+        $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
+        $div->addCssFile(config::$baseHref.'/css/contrib/jquery.bracket.min.css');
+        $div->addScriptCode('
+          var doubleElimination = {
+            "teams": [
+              ["Spain", "Austria"],
+              ["Germany", "Netherlands"],
+              ["Finland", "Poland"],
+              ["Sweden", "Italy"]
+            ],
+            results : [[ /* WINNER BRACKET */
+              [[1, 0], [1, 0], [1, 0], [0, 1]],
+              [[0, 1], [1, 0]],
+              [[1, 0]]
+            ], [         /* LOSER BRACKET */
+              [[1, 0], [1, 0]],
+              [[0, 1], [0, 1]],
+              [[0, 1]],
+              [[1, 0]]
+            ], [         /* FINALS */
+              [[1, 0]]
+            ]]
+          }
+          $(function() {
+            $("#'.$bracketDiv->id.'").bracket({
+              init: doubleElimination,
+              skipConsolationRound: true
+            });
+          });
+        ');
+        return $div;
       } else {
         $p = new paragraph('Results for the '.$this->divisionName.' division are not yet available.');
         return $p;

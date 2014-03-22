@@ -149,7 +149,7 @@ input[type=text], input[type=password] {
   box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset;
 }
 
-input[yype=text]:disabled, input[type=password]:disabled {
+input[type=text]:disabled, input[type=password]:disabled {
   opacity: .35;
   filter: Alpha(Opacity=35);
   background-image: none;
@@ -274,6 +274,11 @@ td.icon img {
 input[id $= "Currency_combobox"] {
   width: 50px; 
 }
+
+span[id ^= "result-"] {
+  float: right;
+}
+
 
 .qrTable {
   cursor: pointer;
