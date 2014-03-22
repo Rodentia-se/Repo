@@ -51,12 +51,12 @@
             $players = players($division);
             $players->filter('waiting', 0, '>', TRUE);
             $div = new div();
-            if (count($objs[$division->id]) > 0) {
+            if (count($players) > 0) {
               if ($type == 'players') {
                 $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
               }
-              foreach ($objs[$division->id] as $obj) {
-                $rows[] = $obj->getResultsRow(TRUE);
+              foreach ($players as $player) {
+                $rows[] = $player->getResultsRow(TRUE);
               }
               $reloadP = $div->addParagraph($reloadP);
               $reloadButton = $reloadP->addButton('Reload the table', $division->shortName.'_reloadButton', array('class' => 'reloadButton'));
