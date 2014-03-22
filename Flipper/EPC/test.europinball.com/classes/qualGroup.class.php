@@ -211,7 +211,6 @@
       }
       return FALSE;
     }
-    public function __construct($src = NULL, $title = NULL, array $params = NULL) {
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
       switch ($type) {
