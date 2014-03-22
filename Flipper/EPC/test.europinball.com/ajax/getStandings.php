@@ -48,6 +48,8 @@
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
+            $page = new page('Qualification results ');
+            $page->modal = TRUE;
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
                 $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
@@ -56,8 +58,6 @@
                 $rows[] = $obj->getResultsRow(TRUE);
               }
               $reloadP = '<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">';
-              $page = new page('Qualification results ');
-              $page->modal = TRUE;
               $page->addParagraph($reloadP);
               $page->addTable($division->shortName.'Table', $headers, $rows, 'resultsTable');
               $page->datatables = TRUE;
