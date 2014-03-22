@@ -218,7 +218,8 @@
         return $div;
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
-        $group1div = $div->addDiv();
+        $qualDiv = $div->addDiv();
+        $group1div = $qualDiv->addDiv();
         $group1div->addCss('float', 'left');
         $group1div->addCss('position', 'relative');
         $qualP = $group1div->addParagraph();
@@ -230,7 +231,7 @@
         $qualP->addSpan('1: Germany (41p)');
         $qualP->addBr();
         $qualP->addSpan('1: Sweden (38p)');
-        $group2div = $div->addDiv();
+        $group2div = $qualDiv->addDiv();
         $group2div->addCss('position', 'relative');
         $qualP = $group2div->addParagraph();
         $qualP->addH2('Group 2')->class = 'entry-title';
