@@ -249,6 +249,7 @@
                 "bProcessing": true,
                 "bDestroy": true,
                 "bJQueryUI": true,
+                "bAutoWidth": false,
           	    "sPaginationType": "full_numbers",
                 "aoColumnDefs": [
                   {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
