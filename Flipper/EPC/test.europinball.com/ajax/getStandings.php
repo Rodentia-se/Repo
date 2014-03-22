@@ -53,9 +53,9 @@
             $div = new div();
             if (count($players) > 0) {
               $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
-              foreach ($players as $player) {
-                $rows[] = $player->getResultsRow(TRUE);
-              }
+//              foreach ($players as $player) {
+//                $rows[] = $player->getResultsRow(TRUE);
+//              }
               $reloadP = $div->addParagraph($reloadP);
               $reloadButton = $reloadP->addButton('Reload the table', $division->shortName.'_reloadButton', array('class' => 'reloadButton'));
               $table = $div->addTable($rows, $headers, $division->shortName.'Table', 'resultsTable');
