@@ -216,7 +216,7 @@
           ');
         //Div
         return $div;
-      } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
+      } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
         $bracketDiv = new div('bracketDiv'.$this->id);
         $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
