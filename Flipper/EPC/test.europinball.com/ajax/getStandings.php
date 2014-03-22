@@ -65,44 +65,46 @@
                 $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
               ');
               $div->addScriptCode('
-                $("#'.$table->id.'").dataTable({
-                  "bProcessing": true,
-                  "bDestroy": true,
-                  "bJQueryUI": true,
-              	  "sPaginationType": "full_numbers",
-                  "aoColumnDefs": [
-                  {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
-                  {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
-                    {"bVisible": false, "aTargets": [ 0, 4 ] },
-                    {"sClass": "icon", "aTargets": [ 3, 5 ] }
-                  ],
-                  "fnDrawCallback": function() {
-                    $(".photoPopup").each(function() {
-                      $(this).dialog({
-                        autoOpen: false,
-                        modal: true, 
-                        width: "auto",
-                        height: "auto"
+                $(document).ready(function() {
+                  $("#'.$table->id.'").dataTable({
+                    "bProcessing": true,
+                    "bDestroy": true,
+                    "bJQueryUI": true,
+                	  "sPaginationType": "full_numbers",
+                    "aoColumnDefs": [
+                    {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                    {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                      {"bVisible": false, "aTargets": [ 0, 4 ] },
+                      {"sClass": "icon", "aTargets": [ 3, 5 ] }
+                    ],
+                    "fnDrawCallback": function() {
+                      $(".photoPopup").each(function() {
+                        $(this).dialog({
+                          autoOpen: false,
+                          modal: true, 
+                          width: "auto",
+                          height: "auto"
+                        });
                       });
-                    });
-                    $("#'.$table->id.'").css("width", "");
-                    $(".photoIcon").click(function() {
-                      var photoDiv = $(this).data("photodiv");
-                      $("#" + photoDiv).dialog("open");
-                      $(document).on("click", ".ui-widget-overlay", function() {
-                        $("#" + photoDiv).dialog("close");
+                      $("#'.$table->id.'").css("width", "");
+                      $(".photoIcon").click(function() {
+                        var photoDiv = $(this).data("photodiv");
+                        $("#" + photoDiv).dialog("open");
+                        $(document).on("click", ".ui-widget-overlay", function() {
+                          $("#" + photoDiv).dialog("close");
+                        });
                       });
-                    });
-                    $("#mainContent").removeClass("modal");
-                    return true;
-                  },
-                  "oLanguage": {
-                    "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
-                  },
-                  "iDisplayLength": -1,
-                  "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+                      $("#mainContent").removeClass("modal");
+                      return true;
+                    },
+                    "oLanguage": {
+                      "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
+                    },
+                    "iDisplayLength": -1,
+                    "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+                  });
+                  $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
                 });
-                $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
               ');
             } else {
               $div->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
