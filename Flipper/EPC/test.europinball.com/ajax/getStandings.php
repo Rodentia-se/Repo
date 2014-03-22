@@ -87,7 +87,6 @@
                         });
                       });
                       $("#mainContent").removeClass("modal");
-                      $("#'.$table->id.'").dataTable().fnAdjustColumnSizing();
                       return true;
                     },
                     "oLanguage": {
@@ -97,6 +96,7 @@
                     "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
                   });
                   $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
+                  $(":button").button();
                 });
               ');
             //Div
