@@ -245,7 +245,8 @@
           }
           $(function() {
             $("#'.$bracketDiv->id.'").bracket({
-              init: doubleElimination
+              init: doubleElimination,
+              skipConsolationRound: true
             });
           });
         ');
