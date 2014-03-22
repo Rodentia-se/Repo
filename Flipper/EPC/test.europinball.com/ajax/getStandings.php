@@ -103,9 +103,9 @@
                 $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
               ');
             } else {
-              $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
+              $div->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
             }
-            $page->submit();
+            echo($div->getHtml());
           } else {
             $p = new paragraph('Results for the '.$division->divisionName.' division are not yet available.');
             echo($p->getHtml());
