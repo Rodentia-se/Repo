@@ -68,7 +68,7 @@
           if ($division->id == 15) {
             $qualGroups = qualGroups($division);
             if ($qualGroups && count($qualGroups) > 0) {
-              $div = new $div();
+              $div = new div();
               $div->addH2('Qualification group standings');
               $tabs = $div->addTabs();
               foreach($qualGroups as $qualGroup) {
@@ -95,6 +95,7 @@
                   }
                 } 
               }
+              $page->addContenc($div->getHtml());
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
