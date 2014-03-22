@@ -87,6 +87,7 @@
                         });
                       });
                       $("#mainContent").removeClass("modal");
+                      $("#'.$table->id.'").dataTable().fnAdjustColumnSizing();
                       return true;
                     },
                     "oLanguage": {
