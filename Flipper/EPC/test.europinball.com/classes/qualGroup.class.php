@@ -185,7 +185,7 @@
           $return = new img($url, 'Click to view full size');
           $return->addCss('width', '100%');
           $return->addClick('
-            window.open('.$url.');
+            window.open("'.$url.'");
           ');
         } else {
           $return = $url;
