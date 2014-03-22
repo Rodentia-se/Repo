@@ -275,10 +275,11 @@ input[id $= "Currency_combobox"] {
   width: 50px; 
 }
 
+/*
 span[id ^= "result-"] {
   float: right;
 }
-
+*/
 
 .qrTable {
   cursor: pointer;
