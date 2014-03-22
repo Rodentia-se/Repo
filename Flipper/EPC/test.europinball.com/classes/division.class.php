@@ -235,6 +235,7 @@
         $qualP->addSpan('1: Poland (49p)');
         $qualP->addBr();
         $qualP->addSpan('1: Austria (31p)');
+        $qualP->addH2('Finals');
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->addCss('clear', 'both');
         $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
