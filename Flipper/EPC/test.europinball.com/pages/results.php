@@ -61,22 +61,6 @@
       }
     $page->closeUl();
   $page->closeDiv();
-  $page->addScript('
-    var index = "key";
-    var dataStore = window.sessionStorage;
-    try {
-      var oldIndex = dataStore.getItem(index);
-    } catch(e) {
-      var oldIndex = 0;
-    }
-    $("#tabs").tabs({
-      active: oldIndex,
-      activate: function(event, ui) {
-        var newIndex = ui.newTab.parent().children().index(ui.newTab);
-        dataStore.setItem(index, newIndex) 
-      }
-    });
-  ');
   
   $page->submit();
 
