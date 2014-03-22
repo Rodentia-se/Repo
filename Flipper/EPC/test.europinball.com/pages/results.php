@@ -95,7 +95,7 @@
                   }
                 } 
               }
-              $page->addContenc($div->getHtml());
+              $page->addContent($div->getHtml());
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
