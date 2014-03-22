@@ -218,7 +218,9 @@
         return $div;
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
-        $qualP = $div->addParagraph();
+        $group1div = $div->addDiv();
+        $group1div->addCss('float', 'left')
+        $qualP = $group1div->addParagraph();
         $qualP->addH2('Group 1')->class = 'entry-title';
         $qualP->addSpan('1: Spain (63p)');
         $qualP->addBr();
@@ -227,7 +229,8 @@
         $qualP->addSpan('1: Germany (41p)');
         $qualP->addBr();
         $qualP->addSpan('1: Sweden (38p)');
-        $qualP->addBr();
+        $group1div = $div->addDiv();
+        $qualP = $group1div->addParagraph();
         $qualP->addH2('Group 2')->class = 'entry-title';
         $qualP->addSpan('1: Italy (85p)');
         $qualP->addBr();
@@ -236,7 +239,6 @@
         $qualP->addSpan('1: Poland (49p)');
         $qualP->addBr();
         $qualP->addSpan('1: Austria (31p)');
-        $qualP->addBr();
         $qualP->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->addCss('clear', 'both');
