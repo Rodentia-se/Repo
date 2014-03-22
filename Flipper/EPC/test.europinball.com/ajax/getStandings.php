@@ -48,7 +48,7 @@
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
-            $players = $players($division);
+            $players = players($division);
             $players->filter('waiting', 0, '>', TRUE);
             $div = new div();
             if (count($objs[$division->id]) > 0) {
