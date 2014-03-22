@@ -93,7 +93,10 @@
                   } else {
                     $found = FALSE;
                   }
-                } 
+                }
+                if (!$standings && !$matches) {
+                  $qualP = $qualDiv->addParagraph('There are no standings available for group '.$qualGroup->acronym.' yet.');
+                }
               }
               $page->addContent($div->getHtml());
             }
