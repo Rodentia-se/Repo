@@ -57,7 +57,7 @@
         $objs[$division->id] = $type($division);
         $objs[$division->id]->filter('waiting', 0, '>', TRUE);
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
-          $page->addLi('<a href="'.config::$baseHref.'/ajax/getStandings?class=division&id='.$division->id.'">'.$division->divisionName.'</a>');
+          $page->addLi('<a href="'.config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id.'">'.$division->divisionName.'</a>');
         }
       }
     $page->closeUl();
