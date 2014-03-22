@@ -52,9 +52,7 @@
             $players->filter('waiting', 0, '>', TRUE);
             $div = new div();
             if (count($players) > 0) {
-              if ($type == 'players') {
-                $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
-              }
+              $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
               foreach ($players as $player) {
                 $rows[] = $player->getResultsRow(TRUE);
               }
