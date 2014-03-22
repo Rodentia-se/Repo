@@ -242,6 +242,7 @@
         $group2div->addSpan('3: Poland (49p)');
         $group2div->addBr();
         $group2div->addSpan('4: Austria (31p)');
+        $qualDiv->addCss('margin-bottom', '20px');
         $div->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->addCss('clear', 'both');
