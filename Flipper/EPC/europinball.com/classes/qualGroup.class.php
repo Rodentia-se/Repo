@@ -177,6 +177,66 @@
         break;
       }
     }
+    
+    public function getStandingsImg($htmlObj = TRUE) {
+      $url = $this->getLink('standings', FALSE);
+      if ($url) {
+        if ($htmlObj) {
+          $return = new img($url, 'Click to view full size');
+          $return->addCss('width', '100%');
+          $return->addCss('cursor', 'pointer');
+          $return->addClick('
+            window.open("'.$url.'");
+          ');
+        } else {
+          $return = $url;
+        }
+        return $return;
+      }
+      return FALSE;
+    }
+
+    public function getMatchesImg($num = 1, $htmlObj = TRUE) {
+      $url = $this->getLink('matches', FALSE, $num);
+      if ($url) {
+        if ($htmlObj) {
+          $return = new img($url, 'Click to view full size');
+          $return->addCss('width', '100%');
+          $return->addCss('cursor', 'pointer');
+          $return->addClick('
+            window.open("'.$url.'");
+          ');
+        } else {
+          $return = $url;
+        }
+        return $return;
+      }
+      return FALSE;
+    }
+
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
+      switch ($type) {
+        case 'standings':
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/qualGroup/standings/'.$this->id.'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/qualGroup/standings/'.$this->id.'.'.$ext;
+            }
+          }
+          return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
+        break;
+        case 'matches':
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/qualGroup/matches/'.$this->id.(($thumbnail && $thumbnail !== TRUE) ? '_'.$thumbnail : '').'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/qualGroup/matches/'.$this->id.(($thumbnail && $thumbnail !== TRUE) ? '_'.$thumbnail : '').'.'.$ext;
+            }
+          }
+          return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
+        break;
+        default:
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
+      }
+    }
 
   }
 
