@@ -229,8 +229,9 @@
         $qualP->addSpan('1: Germany (41p)');
         $qualP->addBr();
         $qualP->addSpan('1: Sweden (38p)');
-        $group1div = $div->addDiv();
-        $qualP = $group1div->addParagraph();
+        $group2div = $div->addDiv();
+        $group2div->addCss('position', 'relative');
+        $qualP = $group2div->addParagraph();
         $qualP->addH2('Group 2')->class = 'entry-title';
         $qualP->addSpan('1: Italy (85p)');
         $qualP->addBr();
