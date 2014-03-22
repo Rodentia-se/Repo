@@ -88,6 +88,7 @@
               if (firstField) {
                 firstField.focus();
               }
+              $("#'.$this->id.'").tabs("refresh");
             }
           });
         });
