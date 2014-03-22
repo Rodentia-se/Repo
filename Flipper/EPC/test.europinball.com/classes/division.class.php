@@ -227,6 +227,7 @@
         $qualP->addSpan('1: Germany (41p)');
         $qualP->addBr();
         $qualP->addSpan('1: Sweden (38p)');
+        $qualP->addBr();
         $qualP->addH2('Group 2')->class = 'entry-title';
         $qualP->addSpan('1: Italy (85p)');
         $qualP->addBr();
@@ -235,6 +236,7 @@
         $qualP->addSpan('1: Poland (49p)');
         $qualP->addBr();
         $qualP->addSpan('1: Austria (31p)');
+        $qualP->addBr();
         $qualP->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->addCss('clear', 'both');
