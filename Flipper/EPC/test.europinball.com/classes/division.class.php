@@ -156,8 +156,8 @@
           return $div;
         }
       } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
-        if (!file_exists(config::$baseDir.'/calcPlaces_div'.$this->id.'.lock')) {
-          $fh = fopen(config::$baseDir.'/calcPlaces_div'.$this->id.'.lock', 'w');
+        if (!file_exists(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock')) {
+          $fh = fopen(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock', 'w');
           fwrite($fh, 'Place calculation has been started');
           fclose($fh);
           $this->calcPlaces();
