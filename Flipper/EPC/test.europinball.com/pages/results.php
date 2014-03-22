@@ -48,7 +48,6 @@
   }
 
   $page = new page('Qualification results ');
-  $page->modal = TRUE;
   
   $page->addH2('Results');
   $page->startDiv('tabs');
