@@ -182,7 +182,11 @@
       $url = $this->getLink('standings', FALSE);
       if ($url) {
         if ($htmlObj) {
-          $return = new img($url);
+          $return = new img($url, 'Click to view full size');
+          $return->addCss('width', '100%');
+          $return->addClick('
+            window.open('.$url.');
+          ');
         } else {
           $return = $url;
         }
@@ -195,7 +199,11 @@
       $url = $this->getLink('matches', FALSE, $num);
       if ($url) {
         if ($htmlObj) {
-          $return = new img($url);
+          $return = new img($url, 'Click to view full size');
+          $return->addCss('width', '100%');
+          $return->addClick('
+            window.open('.$url.');
+          ');
         } else {
           $return = $url;
         }
@@ -203,6 +211,7 @@
       }
       return FALSE;
     }
+    public function __construct($src = NULL, $title = NULL, array $params = NULL) {
 
     public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
       switch ($type) {
