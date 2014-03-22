@@ -65,7 +65,38 @@
         $rows = array();
         if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
           $page->startDiv($division->shortName.ucfirst($type));
-          if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
+          if ($division->id == 15) {
+            $qualGroups = qualGroups($division);
+            if ($qualGroups && count($qualGroups) > 0) {
+              $div = new $div();
+              $div->addH2('Qualification group standings');
+              $tabs = $div->addTabs();
+              foreach($qualGroups as $qualGroup) {
+                $qualDiv = $tabs->addDiv($qualGroup->acronym);
+                $standings = $qualGroup->getStandings('standings');
+                if ($standings) {
+                  $qualDiv->addH2('Standings');
+                  $qualP = $qualDiv->addParagraph();
+                  $qualP->addContent($standings);
+                }
+                $found = TRUE;
+                $num = 0;
+                while ($found) {
+                  $num++;
+                  $matches = $qualGroup->getMatches($num);
+                  if ($matches) {
+                    if ($num == 1) {
+                      $qualDiv->addH2('Matches');
+                    }
+                    $qualP = $qualDiv->addParagraph();
+                    $qualP->addContent($matches);
+                  } else {
+                    $found = FALSE;
+                  }
+                } 
+              }
+            }
+          } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {

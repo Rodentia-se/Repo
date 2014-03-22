@@ -177,6 +177,56 @@
         break;
       }
     }
+    
+    public function getStandings($htmlObj = TRUE) {
+      $url = $this->getLink('standings');
+      if ($url) {
+        if ($htmlObj) {
+          $return = new img($url);
+        } else {
+          $return = $url;
+        }
+        return $return;
+      }
+      return FALSE;
+    }
+
+    public function getMatches($num = 1, $htmlObj = TRUE) {
+      $url = $this->getLink('matches', $num);
+      if ($url) {
+        if ($htmlObj) {
+          $return = new img($url);
+        } else {
+          $return = $url;
+        }
+        return $return;
+      }
+      return FALSE;
+    }
+
+    public function getLink($type = 'object', $anchor = TRUE, $thumbnail = FALSE, $preview = FALSE, $defaults = TRUE, $text = NULL) {
+      switch ($type) {
+        case 'standings':
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/qualGroup/'.$this->id.'_standings'.$ext)) {
+              $url = config::$baseHref.'/images/objects/qualGroup/'.$this->id.'_standings.'.$ext;
+            }
+          }
+          return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
+        break;
+        case 'matches'
+          foreach (config::$photoExts as $ext) {
+            if (file_exists(config::$baseDir.'/images/objects/qualGroup/'.$this->id.'_standings'.$ext)) {
+              $url = config::$baseHref.'/images/objects/qualGroup/'.$this->id.'_standings.'.$ext;
+            }
+          }
+          return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
+        break;
+        default:
+          return parent::getLink($type, $anchor, $thumbnail, $preview, $defaults);
+        break;
+      }
+    }
 
   }
 
