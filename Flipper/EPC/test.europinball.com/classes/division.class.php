@@ -221,10 +221,10 @@
         $qualDiv = $div->addDiv();
         $group1div = $qualDiv->addDiv();
         $group1div->addCss('float', 'left');
-        $group1div->addCss('position', 'relative');
         $qualP1 = $group1div->addParagraph();
-        $qualP1->addCss('clear', 'none');
-        $qualP1->addH2('Group 1')->class = 'entry-title';
+        $h2 = $qualP1->addH2('Group 1');
+        $h2->class = 'entry-title';
+        $h2->addCss('clear', 'none');        
         $qualP1->addSpan('1: Spain (63p)');
         $qualP1->addBr();
         $qualP1->addSpan('1: Finland (43p)');
@@ -233,10 +233,10 @@
         $qualP1->addBr();
         $qualP1->addSpan('1: Sweden (38p)');
         $group2div = $qualDiv->addDiv();
-        $group2div->addCss('position', 'relative');
         $qualP2 = $group2div->addParagraph();
-        $qualP2->addCss('clear', 'none');
-        $qualP2->addH2('Group 2')->class = 'entry-title';
+        $h2 = $qualP2->addH2('Group 2');
+        $h2->class = 'entry-title';
+        $h2->addCss('clear', 'none');        
         $qualP2->addSpan('1: Italy (85p)');
         $qualP2->addBr();
         $qualP2->addSpan('1: Netherlands (56p)');
