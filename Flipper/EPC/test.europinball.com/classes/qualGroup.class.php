@@ -180,7 +180,7 @@
     
     public function getStandings() {
       $qualDiv = new div();
-      $standings = $qualGroup->getStandingsImg('standings');
+      $standings = $this->getStandingsImg('standings');
       if ($standings) {
         $qualDiv->addH2('Standings')->class = 'entry-title';
         $qualP = $qualDiv->addParagraph();
@@ -190,7 +190,7 @@
       $num = 0;
       while ($found) {
         $num++;
-        $matches = $qualGroup->getMatchesImg($num);
+        $matches = $this->getMatchesImg($num);
         if ($matches) {
           if ($num == 1) {
             $qualDiv->addH2('Matches')->class = 'entry-title';
@@ -202,7 +202,7 @@
         }
       }
       if (!$standings && !$matches) {
-        $qualP = $qualDiv->addParagraph('There are no standings available for group '.$qualGroup->acronym.' yet.');
+        $qualP = $qualDiv->addParagraph('There are no standings available for group '.$this->acronym.' yet.');
       }
       return $div->getHtml();
     }
