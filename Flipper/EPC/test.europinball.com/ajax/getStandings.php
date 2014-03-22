@@ -48,6 +48,8 @@
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
+            $players = $players($division);
+            $players->filter('waiting', 0, '>', TRUE);
             $div = new div();
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
@@ -103,7 +105,7 @@
                 $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
               ');
             } else {
-              $div->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
+              $div->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
             }
             echo($div->getHtml());
           } else {
