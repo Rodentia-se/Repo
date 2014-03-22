@@ -69,13 +69,13 @@
             $qualGroups = qualGroups($division);
             if ($qualGroups && count($qualGroups) > 0) {
               $div = new div();
-              $div->addH2('Qualification group standings');
+              $div->addH2('Qualification group standings')->class = 'entry-title';
               $tabs = $div->addTabs();
               foreach($qualGroups as $qualGroup) {
                 $qualDiv = $tabs->addDiv($qualGroup->acronym);
                 $standings = $qualGroup->getStandingsImg('standings');
                 if ($standings) {
-                  $qualDiv->addH2('Standings');
+                  $qualDiv->addH2('Standings')->class = 'entry-title';
                   $qualP = $qualDiv->addParagraph();
                   $qualP->addContent($standings);
                 }
@@ -86,7 +86,7 @@
                   $matches = $qualGroup->getMatchesImg($num);
                   if ($matches) {
                     if ($num == 1) {
-                      $qualDiv->addH2('Matches');
+                      $qualDiv->addH2('Matches')->class = 'entry-title';
                     }
                     $qualP = $qualDiv->addParagraph();
                     $qualP->addContent($matches);
