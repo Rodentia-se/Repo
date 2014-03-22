@@ -219,7 +219,7 @@
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
         $group1div = $div->addDiv();
-        $group1div->addCss('float', 'left')
+        $group1div->addCss('float', 'left');
         $qualP = $group1div->addParagraph();
         $qualP->addH2('Group 1')->class = 'entry-title';
         $qualP->addSpan('1: Spain (63p)');
