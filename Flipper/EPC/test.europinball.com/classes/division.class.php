@@ -216,6 +216,35 @@
           ');
         //Div
         return $div;
+      } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
+        $div = new div();
+        $bracketDiv = new div('bracketDiv'.$this->id);
+        $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
+        $div->addCssFile(config::$baseHref.'/css/contrib/jquery.bracket.min.css');
+        $div->addScriptCode('
+          var doubleElimination = {
+            "teams": [
+              ["Spain", "Austria"],
+              ["Germany", "Netherlands"],
+              ["Finland", "Poland"],
+              ["Sweden", "Italy"]
+            ],
+            results : [[ /* WINNER BRACKET */
+              [[1, 0], [1, 0], [1, 0], [0, 1]],
+              [[0, 1], [1, 0]],
+              [[1, 0]]
+            ], [         /* LOSER BRACKET */
+              [[1, 0], [1, 0]],
+              [[1, 0], [1, 0]],
+              [[1, 0]],
+              [[1, 0]]
+            ], [         /* FINALS */
+              [[1, 0]]
+            ]]
+          }
+          $(function({$("#'.$bracketDiv->id.'").bracket({init: doubleElimination})}));
+        ');
+        return $div;
       } else {
         $p = new paragraph('Results for the '.$this->divisionName.' division are not yet available.');
         return $p;
