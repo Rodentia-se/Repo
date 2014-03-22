@@ -243,7 +243,11 @@
               [[1, 0]]
             ]]
           }
-          $(function({$("#'.$bracketDiv->id.'").bracket({init: doubleElimination})}));
+          $(function() {
+            $("#'.$bracketDiv->id.'").bracket({
+              init: doubleElimination
+            });
+          });
         ');
         return $div;
       } else {
