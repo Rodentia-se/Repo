@@ -52,8 +52,8 @@
   $page->datatablesReload = TRUE;
   
   $div = new div();
-    $div->addH2('Results');
-    $tabs = $div->addTabs('tabs');
+    $div->addH2('Results')->class = 'entry-title';
+    $tabs = $div->addTabs();
       foreach ($divisions as $division) {
         $objs[$division->id] = $type($division);
         $objs[$division->id]->filter('waiting', 0, '>', TRUE);
