@@ -220,6 +220,7 @@
         $div = new div();
         $group1div = $div->addDiv();
         $group1div->addCss('float', 'left');
+        $group1div->addCss('position', 'relative');
         $qualP = $group1div->addParagraph();
         $qualP->addH2('Group 1')->class = 'entry-title';
         $qualP->addSpan('1: Spain (63p)');
