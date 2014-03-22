@@ -219,8 +219,7 @@
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
-        $fillDiv = $div->addDiv();
-        $fillDiv->addParagraph('&nbsp;')->addCss('clear', 'both');
+        $div->addDiv()->addCss('clear', 'both');
         $div->addScriptFile(config::$baseHref.'/js/contrib/jquery.bracket.min.js');
         $div->addCssFile(config::$baseHref.'/css/contrib/jquery.bracket.min.css');
         $div->addScriptCode('
