@@ -219,7 +219,6 @@
       } else if ($this->id == 17) {  // TODO: Remove EPC 2014 specifics
         $div = new div();
         $qualDiv = $div->addDiv();
-        $qualDiv->addCss
         $group1div = $qualDiv->addDiv();
         $group1div->addCss('float', 'left');
         $group1div->addCss('position', 'relative');
