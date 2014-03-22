@@ -179,7 +179,7 @@
     }
     
     public function getStandingsImg($htmlObj = TRUE) {
-      $url = $this->getLink('standings');
+      $url = $this->getLink('standings', FALSE);
       if ($url) {
         if ($htmlObj) {
           $return = new img($url);
@@ -192,7 +192,7 @@
     }
 
     public function getMatchesImg($num = 1, $htmlObj = TRUE) {
-      $url = $this->getLink('matches', $num);
+      $url = $this->getLink('matches', FALSE, $num);
       if ($url) {
         if ($htmlObj) {
           $return = new img($url);
@@ -216,8 +216,8 @@
         break;
         case 'matches':
           foreach (config::$photoExts as $ext) {
-            if (file_exists(config::$baseDir.'/images/objects/qualGroup/matches/'.$this->id.(($anchor && $anchor !== TRUE) ? '_'.$anchor : '').'.'.$ext)) {
-              $url = config::$baseHref.'/images/objects/qualGroup/matches/'.$this->id.(($anchor && $anchor !== TRUE) ? '_'.$anchor : '').'.'.$ext;
+            if (file_exists(config::$baseDir.'/images/objects/qualGroup/matches/'.$this->id.(($thumbnail && $thumbnail !== TRUE) ? '_'.$thumbnail : '').'.'.$ext)) {
+              $url = config::$baseHref.'/images/objects/qualGroup/matches/'.$this->id.(($thumbnail && $thumbnail !== TRUE) ? '_'.$thumbnail : '').'.'.$ext;
             }
           }
           return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
