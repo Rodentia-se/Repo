@@ -48,17 +48,11 @@
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
-            $players = players($division);
-            $players->filter('waiting', 0, '>', TRUE);
             $div = new div();
-            if (count($players) > 0) {
               $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
-//              foreach ($players as $player) {
-//                $rows[] = $player->getResultsRow(TRUE);
-//              }
               $reloadP = $div->addParagraph($reloadP);
               $reloadButton = $reloadP->addButton('Reload the table', $division->shortName.'_reloadButton', array('class' => 'reloadButton'));
-              $table = $div->addTable($rows, $headers, $division->shortName.'Table', 'resultsTable');
+              $table = $div->addTable(NULL, $headers, $division->shortName.'Table', 'resultsTable');
               $reloadButton->addClick('
                 $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
               ');
@@ -104,9 +98,7 @@
                   $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
                 });
               ');
-            } else {
-              $div->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
-            }
+            //Div
             echo($div->getHtml());
           } else {
             $p = new paragraph('Results for the '.$division->divisionName.' division are not yet available.');
