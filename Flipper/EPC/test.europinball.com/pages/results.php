@@ -63,6 +63,7 @@
       }
     //Tabs
   //Div
+  $page->addContent($div);
   
   $page->submit();
 
