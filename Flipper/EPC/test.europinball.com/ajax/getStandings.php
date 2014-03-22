@@ -85,7 +85,7 @@
                         height: "auto"
                       });
                     });
-                    $("#'.$table->id.'Table").css("width", "");
+                    $("#'.$table->id.'").css("width", "");
                     $(".photoIcon").click(function() {
                       var photoDiv = $(this).data("photodiv");
                       $("#" + photoDiv).dialog("open");
