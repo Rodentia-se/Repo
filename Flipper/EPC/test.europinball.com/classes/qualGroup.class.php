@@ -214,7 +214,7 @@
           }
           return ($url && $anchor) ? '<a href="'.$url.'">'.(($text) ? $text : $this->name).'</a>' : $url;
         break;
-        case 'matches'
+        case 'matches':
           foreach (config::$photoExts as $ext) {
             if (file_exists(config::$baseDir.'/images/objects/qualGroup/matches/'.$this->id.(($anchor && $anchor !== TRUE) ? '_'.$anchor : '').'.'.$ext)) {
               $url = config::$baseHref.'/images/objects/qualGroup/matches/'.$this->id.(($anchor && $anchor !== TRUE) ? '_'.$anchor : '').'.'.$ext;
