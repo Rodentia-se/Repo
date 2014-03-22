@@ -153,7 +153,7 @@
             $qualDiv = $tabs->addDiv($qualGroup->acronym);
             $qualDiv->addContent($qualGroup->getStandings());
           }
-          return $div->getHtml();
+          return $div;
         }
       } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
         $this->calcPlaces();
@@ -210,10 +210,10 @@
             });
           ');
         //Div
-        return $div->getHtml();
+        return $div;
       } else {
         $p = new paragraph('Results for the '.$this->divisionName.' division are not yet available.');
-        return $p->getHtml();
+        return $p;
       }      
     }
         
