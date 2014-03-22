@@ -55,11 +55,7 @@
     $div->addH2('Results')->class = 'entry-title';
     $tabs = $div->addTabs();
       foreach ($divisions as $division) {
-        $objs[$division->id] = $type($division);
-        $objs[$division->id]->filter('waiting', 0, '>', TRUE);
-        if (count($objs[$division->id]) > 0 || config::$showEmptyDivisions) {
-          $tabs->addAjaxTab(config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id, $division->divisionName);
-        }
+        $tabs->addAjaxTab(config::$baseHref.'/ajax/getStandings.php?class=division&id='.$division->id, $division->divisionName);
       }
     //Tabs
   //Div

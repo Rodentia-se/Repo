@@ -141,6 +141,81 @@
         return FALSE;
       }
     }
+    
+    public function getStandings() {
+      if ($this->id == 15) {
+        $qualGroups = qualGroups($this);
+        if ($qualGroups && count($qualGroups) > 0) {
+          $div = new div();
+          $div->addH2('Qualification group standings')->class = 'entry-title';
+          $tabs = $div->addTabs();
+          foreach($qualGroups as $qualGroup) {
+            $qualDiv = $tabs->addDiv($qualGroup->acronym);
+            $qualDiv->addContent($qualGroup->getStandings());
+          }
+          return $div;
+        }
+      } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
+        $this->calcPlaces();
+        $div = new div();
+          $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
+          $reloadP = $div->addParagraph($reloadP);
+          $reloadButton = $reloadP->addButton('Reload the table', $this->shortName.'_reloadButton', array('class' => 'reloadButton'));
+          $table = $div->addTable(NULL, $headers, $this->shortName.'Table', 'resultsTable');
+          $reloadButton->addClick('
+            $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
+          ');
+          $div->addScriptCode('
+            $(document).ready(function() {
+              $("#'.$table->id.'").dataTable({
+                "bProcessing": true,
+                "bDestroy": true,
+                "bJQueryUI": true,
+                "bAutoWidth": false,
+            	  "sPaginationType": "full_numbers",
+                "aoColumnDefs": [
+                {"aDataSort": [ 0 ], "aTargets": [ 1 ] },
+                {"aDataSort": [ 4 ], "aTargets": [ 5 ] },
+                  {"bVisible": false, "aTargets": [ 0, 4 ] },
+                  {"sClass": "icon", "aTargets": [ 3, 5 ] }
+                ],
+                "fnDrawCallback": function() {
+                  $(".photoPopup").each(function() {
+                    $(this).dialog({
+                      autoOpen: false,
+                      modal: true, 
+                      width: "auto",
+                      height: "auto"
+                    });
+                  });
+                  $("#'.$table->id.'").css("width", "");
+                  $(".photoIcon").click(function() {
+                    var photoDiv = $(this).data("photodiv");
+                    $("#" + photoDiv).dialog("open");
+                    $(document).on("click", ".ui-widget-overlay", function() {
+                      $("#" + photoDiv).dialog("close");
+                    });
+                  });
+                  $("#mainContent").removeClass("modal");
+                  return true;
+                },
+                "oLanguage": {
+                  "sProcessing": "<img src=\"'.config::$baseHref.'/images/ajax-loader-white.gif\" alt=\"Loading data...\">"
+                },
+                "iDisplayLength": -1,
+                "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
+              });
+              $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
+              $(":button").button();
+            });
+          ');
+        //Div
+        return $div;
+      } else {
+        $p = new paragraph('Results for the '.$this->divisionName.' division are not yet available.');
+        return $p;
+      }      
+    }
         
   }
 
