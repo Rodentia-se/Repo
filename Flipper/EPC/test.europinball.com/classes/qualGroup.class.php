@@ -204,7 +204,7 @@
       if (!$standings && !$matches) {
         $qualP = $qualDiv->addParagraph('There are no standings available for group '.$this->acronym.' yet.');
       }
-      return $div;
+      return $qualDiv;
     }
     
     public function getStandingsImg($htmlObj = TRUE) {
