@@ -44,7 +44,7 @@
                   $qualP = $qualDiv->addParagraph('There are no standings available for group '.$qualGroup->acronym.' yet.');
                 }
               }
-              $page->addContent($div->getHtml());
+              echo($div->getHtml());
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
@@ -56,6 +56,8 @@
                 $rows[] = $obj->getResultsRow(TRUE);
               }
               $reloadP = '<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">';
+              $page = new page('Qualification results ');
+              $page->modal = TRUE;
               $page->addParagraph($reloadP);
               $page->addTable($division->shortName.'Table', $headers, $rows, 'resultsTable');
               $page->datatables = TRUE;
@@ -109,9 +111,17 @@
           } else {
             $page->addParagraph('Results for the '.$division->divisionName.' division are not yet available.');
           }      
+        } else {
+          echo('Invalid division');
         }
-  
-
-    ?>          
-        }
+      } else {
+        echo('Invalid division ID');
       }
+      $page->submit();
+    break;
+    default:
+      echo('Invalid class');
+    break;
+  }
+
+?>          
