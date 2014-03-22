@@ -48,6 +48,8 @@
   }
 
   $page = new page('Qualification results ');
+  $page->datatables = TRUE;
+  $page->datatablesReload = TRUE;
   
   $page->addH2('Results');
   $page->startDiv('tabs');

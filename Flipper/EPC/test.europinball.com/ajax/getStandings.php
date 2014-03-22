@@ -48,8 +48,7 @@
             }
           } else if ($division->id == 16) {  // TODO: Remove EPC 2014 specifics
             $division->calcPlaces();
-            $page = new page('Qualification results ');
-            $page->modal = TRUE;
+            $div = new div();
             if (count($objs[$division->id]) > 0) {
               if ($type == 'players') {
                 $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
@@ -57,14 +56,14 @@
               foreach ($objs[$division->id] as $obj) {
                 $rows[] = $obj->getResultsRow(TRUE);
               }
-              $reloadP = '<input type="button" id="'.$division->shortName.'_reloadButton" class="reloadButton" value="Reload the table">';
-              $page->addParagraph($reloadP);
-              $page->addTable($division->shortName.'Table', $headers, $rows, 'resultsTable');
-              $page->datatables = TRUE;
-              $page->datatablesReload = TRUE;
-              $page->addScript('
-                var tbl = [];
-                tbl["'.$division->shortName.'"] = $("#'.$division->shortName.'Table").dataTable({
+              $reloadP = $div->addParagraph($reloadP);
+              $reloadButton = $reloadP->addButton('Reload the table', $division->shortName.'_reloadButton', array('class' => 'reloadButton'));
+              $table = $div->addTable($rows, $headers, $division->shortName.'Table', 'resultsTable');
+              $reloadButton->addClick('
+                $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$division->id.'");
+              ');
+              $div->addScriptCode('
+                $("#'.$table->id.'").dataTable({
                   "bProcessing": true,
                   "bDestroy": true,
                   "bJQueryUI": true,
@@ -84,7 +83,7 @@
                         height: "auto"
                       });
                     });
-                    $("#'.$division->shortName.'Table").css("width", "");
+                    $("#'.$table->id.'Table").css("width", "");
                     $(".photoIcon").click(function() {
                       var photoDiv = $(this).data("photodiv");
                       $("#" + photoDiv).dialog("open");
@@ -101,9 +100,7 @@
                   "iDisplayLength": -1,
                   "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]]
                 });
-                $("#'.$division->shortName.'_reloadButton").click(function() {
-                  tbl["'.$division->shortName.'"].fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class='.$type.'&type=results&data=division&data_id='.$division->id.'");
-                });
+                $("#'.$table->id.'").dataTable().fnReloadAjax("'.config::$baseHref.'/ajax/getObj.php?class=players&type=results&data=division&data_id='.$this->id.'");
               ');
             } else {
               $page->addParagraph('No '.$type.' are registered in the '.strtolower($division->divisionName));
