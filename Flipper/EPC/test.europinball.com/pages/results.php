@@ -73,7 +73,7 @@
               $tabs = $div->addTabs();
               foreach($qualGroups as $qualGroup) {
                 $qualDiv = $tabs->addDiv($qualGroup->acronym);
-                $standings = $qualGroup->getStandings('standings');
+                $standings = $qualGroup->getStandingsImg('standings');
                 if ($standings) {
                   $qualDiv->addH2('Standings');
                   $qualP = $qualDiv->addParagraph();
@@ -83,7 +83,7 @@
                 $num = 0;
                 while ($found) {
                   $num++;
-                  $matches = $qualGroup->getMatches($num);
+                  $matches = $qualGroup->getMatchesImg($num);
                   if ($matches) {
                     if ($num == 1) {
                       $qualDiv->addH2('Matches');
