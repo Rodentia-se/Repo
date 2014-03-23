@@ -146,14 +146,14 @@
       if ($this->id == 15) {
         $div = new div();
         $div->addH2('Finals bracket')->class = 'entry-title';
-        $p = $div->addParagrapg();
+        $p = $div->addParagraph();
         $img = $p->addImg(config::$baseHref.'/images/2014/finals.jpg', 'Click to view full size');
         $img->addCss('width', '100%');
         $img->addCss('cursor', 'pointer');
         $img->addClick('
           window.open("'.config::$baseHref.'/images/2014/finals.jpg");
         ');
-        $img->addCss('margin-bottom', '40px');
+        $img->addCss('margin-bottom', '20px');
         $div->addH2('Qualification group standings')->class = 'entry-title';
         $levelsDiv = $div->addDiv('qualGroupLevelsDiv'.$this->id);
         $qualGroups = qualGroups($this);
