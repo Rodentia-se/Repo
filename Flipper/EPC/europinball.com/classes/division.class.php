@@ -212,15 +212,15 @@
                   $h2->addCss('clear', 'none');
                 $playerDiv = $groupDiv->addDiv();
                   $playerDiv->addCss('float', 'left');
-                  $playerDiv->addCss('height', '16px');
                 $flagDiv = $groupDiv->addDiv();
                   $flagDiv->addCss('float', 'left');
                 $scoreDiv = $groupDiv->addDiv();
                   $scoreDiv->addCss('float', 'left');
-                  $scoreDiv->addCss('height', '16px');
                 for ($place = 1; $place <= 4; $place++) {
-                  $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
-                  $playerDiv->addBr();
+                  $nameDiv = $playerDic->addDiv();
+                  $nameDiv->addCss('height', '16px');
+                  $nameDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
+                  $nameDiv->addBr();
                   $flagDiv->addSpan(((is_object(${'player'.$place}[$semi]->country)) ? ${'player'.$place}[$semi]->country->getIcon() : ''))->escape = FALSE;
                   $flagDiv->addBr();
                   $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
