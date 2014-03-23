@@ -270,6 +270,7 @@
                 $scoreDiv->addBr();
               //scoreDiv
             }
+          $div->addDiv()->class = 'clearer';
           $h2 = $div->addH2('Qualifications');
           $h2->class = 'entry-title';
           $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
