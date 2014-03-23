@@ -159,6 +159,7 @@
               $qualDiv = $tabs->addDiv($qualGroup->acronym);
               $qualDiv->addContent($qualGroup->getStandings());
             }
+            $level++;
           } else {
             if ($level == 1) {
               $div->addParagrapg('No qualification group standings are available');
