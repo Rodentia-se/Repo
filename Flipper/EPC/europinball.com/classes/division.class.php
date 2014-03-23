@@ -256,7 +256,7 @@
         $group2div->addSpan('6: UK (25p)');
         $group2div->addBr();
         $group2div->addSpan('7: Denmark (21p)');
-        $qualDiv->addCss('margin-bottom', '20px');
+        $qualDiv->addCss('margin-bottom', '40px');
         $div->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->class = 'clearer';
