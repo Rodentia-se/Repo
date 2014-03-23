@@ -17,6 +17,7 @@
         o.date as date,
         o.startTime as startTime,
         o.endTime as endTime,
+        o.level as level,
         o.tournamentDivision_id as tournamentDivision_id,
         o.comment as comment
       from qualGroup o

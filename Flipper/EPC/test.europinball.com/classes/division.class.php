@@ -144,17 +144,34 @@
     
     public function getStandings() {
       if ($this->id == 15) {
+        $div = new div();
+        $div->addH2('Qualification group standings')->class = 'entry-title';
+        $levelsDiv = $div->addDiv('qualGroupLevelsDiv'.$this->id);
         $qualGroups = qualGroups($this);
-        if ($qualGroups && count($qualGroups) > 0) {
-          $div = new div();
-          $div->addH2('Qualification group standings')->class = 'entry-title';
-          $tabs = $div->addTabs();
-          foreach($qualGroups as $qualGroup) {
-            $qualDiv = $tabs->addDiv($qualGroup->acronym);
-            $qualDiv->addContent($qualGroup->getStandings());
+        $level = 1;
+        while ($level) {
+          $levelGroups = $qualGroups->getFiltered('level', $level);
+          if ($levelGroups && count($levelGroups) > 0) {
+            $levelDiv = $levelsDiv->addDiv();
+            $levelDiv->addH3('Level '.$level);
+            $tabs = $levelDiv->addTabs();
+            foreach($levelGroups as $qualGroup) {
+              $qualDiv = $tabs->addDiv($qualGroup->acronym);
+              $qualDiv->addContent($qualGroup->getStandings());
+            }
+          } else {
+            if ($level == 1) {
+              $div->addParagrapg('No qualification group standings are available');
+            }
+            unset($level);
           }
-          return $div;
         }
+        $div->addScriptCode('
+          $(document).ready(function() {
+            $(#'.$levelsDiv->id.').accordion();
+          });
+        ');
+        return $div;
       } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
         if (!file_exists(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock')) {
           $fh = fopen(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock', 'w');
