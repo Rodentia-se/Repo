@@ -236,6 +236,7 @@
               //groupDiv
             }
           $finalDiv = $div->addDiv();
+            $finalDiv->addCss('margin-bottom', '20px');
             $machine = machine(490);
             $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
               $h2->class = 'bold';
@@ -271,7 +272,6 @@
             }
           $h2 = $div->addH2('Qualifications');
           $h2->class = 'entry-title';
-          $h2->addCss('margin-top', '40px');
           $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
           $reloadP = $div->addParagraph($reloadP);
           $reloadButton = $reloadP->addButton('Reload the table', $this->shortName.'_reloadButton', array('class' => 'reloadButton'));
