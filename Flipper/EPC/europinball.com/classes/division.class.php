@@ -210,21 +210,22 @@
                   $h2->escape = FALSE;
                   $h2->class = 'bold';
                   $h2->addCss('clear', 'none');
-                $playerDiv = $groupDiv->addDiv();
-                  $playerDiv->addCss('float', 'left');
+                $playersDiv = $groupDiv->addDiv();
+                  $playersDiv->addCss('float', 'left');
                 $flagDiv = $groupDiv->addDiv();
                   $flagDiv->addCss('float', 'left');
-                $scoreDiv = $groupDiv->addDiv();
-                  $scoreDiv->addCss('float', 'left');
+                $scoresDiv = $groupDiv->addDiv();
+                  $scoresDiv->addCss('float', 'left');
                 for ($place = 1; $place <= 4; $place++) {
-                  $nameDiv = $playerDic->addDiv();
-                  $nameDiv->addCss('height', '16px');
-                  $nameDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
-                  $nameDiv->addBr();
+                  $playerDiv = $playersDiv->addDiv();
+                    $playerDiv->addCss('height', '16px');
+                    $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
+                    $playerDiv->addBr();
                   $flagDiv->addSpan(((is_object(${'player'.$place}[$semi]->country)) ? ${'player'.$place}[$semi]->country->getIcon() : ''))->escape = FALSE;
-                  $flagDiv->addBr();
-                  $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
-                  $scoreDiv->addBr();
+                    $flagDiv->addBr();
+                  $scoreDiv = $scoresDiv->addDiv();
+                    $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
+                    $scoreDiv->addBr();
                 }
               //GroupDiv
             }
