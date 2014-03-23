@@ -207,11 +207,11 @@
                 $scoreDiv->addCss('float', 'left');
                 $scoreDiv->addSpan('3: '.$player3->getLink());
               for ($place = 1; $place <= 4; $place++) {
-                $playerDiv->addSpan($place.': '.${'player'.$place}->getLink());
+                $playerDiv->addSpan($place.': '.${'player'.$place}->getLink())->escape = FALSE;
                 $playerDiv->addBr();
-                $flagDiv->addSpan(((is_object(${'player'.$place}->country)) ? ${'player'.$place}->country->getIcon() : ''));
+                $flagDiv->addSpan(((is_object(${'player'.$place}->country)) ? ${'player'.$place}->country->getIcon() : ''))->escape = FALSE;
                 $flagDiv->addBr();
-                $scoreDiv->addSpan(${'player'.$place}->score);
+                $scoreDiv->addSpan(${'player'.$place}->score)->escape = FALSE;
                 $scoreDiv->addBr();
               }
             $group2div = $semiDiv->addDiv();
