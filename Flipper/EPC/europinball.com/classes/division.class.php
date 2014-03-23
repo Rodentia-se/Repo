@@ -218,12 +218,13 @@
                   $scoresDiv->addCss('float', 'left');
                 for ($place = 1; $place <= 4; $place++) {
                   $playerDiv = $playersDiv->addDiv();
-                    $playerDiv->addCss('height', '16px');
+                    $playerDiv->addCss('height', '18px');
                     $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
                     $playerDiv->addBr();
                   $flagDiv->addSpan(((is_object(${'player'.$place}[$semi]->country)) ? ${'player'.$place}[$semi]->country->getIcon() : ''))->escape = FALSE;
                     $flagDiv->addBr();
                   $scoreDiv = $scoresDiv->addDiv();
+                    $scoreDiv->addCss('height', '18px');
                     $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
                     $scoreDiv->addBr();
                 }
