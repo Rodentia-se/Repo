@@ -207,6 +207,7 @@
               $groupDiv = $semiDiv->addDiv();
                 $groupDiv->addCss('float', 'left');
                 $groupDiv->addCss('margin-right', '40px');
+                $groupDiv->addCss('margin-bottom', '40px');
                 $h2 = $groupDiv->addH2('Semifinal on '.$machine[$semi]->getLink());
                   $h2->escape = FALSE;
                   $h2->class = 'bold';
@@ -235,7 +236,6 @@
               //groupDiv
             }
           $finalDiv = $div->addDiv();
-          $finalDiv->addCss('margin-top', '40px');
             $machine = machine(490);
             $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
               $h2->class = 'bold';
