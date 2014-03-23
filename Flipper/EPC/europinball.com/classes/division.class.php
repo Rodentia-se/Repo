@@ -202,7 +202,7 @@
               $player3[2]->score = '438.290';
             $player4[2] = player(2115);
               $player4[2]->score = '91.070';
-            for ($semi = 1; $secmi <= 2; $semi++) {
+            for ($semi = 1; $semi <= 2; $semi++) {
               $groupDiv = $semiDiv->addDiv();
                 $groupDiv->addCss('float', 'left');
                 $h2 = $groupDiv->addH2('Semifinal on '.$machine[$semi]->getLink());
