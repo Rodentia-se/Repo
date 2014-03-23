@@ -169,7 +169,8 @@
         $div->addScriptCode('
           $(document).ready(function() {
             $("#'.$levelsDiv->id.'").accordion({
-              collapsible: true
+              collapsible: true,
+              heightStyle: "content"
             });
           });
         ');
