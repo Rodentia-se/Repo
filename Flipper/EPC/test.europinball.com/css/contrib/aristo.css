@@ -1246,6 +1246,7 @@
 }
 
 .ui-accordion .ui-accordion-header {
+  font-weight: bold;
   cursor: pointer;
   position: relative;
   margin-top: 1px;
