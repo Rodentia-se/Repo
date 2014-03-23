@@ -205,16 +205,19 @@
             for ($semi = 1; $semi <= 2; $semi++) {
               $groupDiv = $semiDiv->addDiv();
                 $groupDiv->addCss('float', 'left');
+                $groupDiv->addCss('margin-right', '40px');
                 $h2 = $groupDiv->addH2('Semifinal on '.$machine[$semi]->getLink());
                   $h2->escape = FALSE;
                   $h2->class = 'bold';
                   $h2->addCss('clear', 'none');
                 $playerDiv = $groupDiv->addDiv();
                   $playerDiv->addCss('float', 'left');
+                  $playerDiv->addCss('height', '16px');
                 $flagDiv = $groupDiv->addDiv();
                   $flagDiv->addCss('float', 'left');
                 $scoreDiv = $groupDiv->addDiv();
                   $scoreDiv->addCss('float', 'left');
+                  $scoreDiv->addCss('height', '16px');
                 for ($place = 1; $place <= 4; $place++) {
                   $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
                   $playerDiv->addBr();
