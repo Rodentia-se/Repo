@@ -248,11 +248,11 @@
               $player3->score = '109.360';
             $player4 = player(2292);
               $player4->score = '74.160';
-            $playersDiv = $groupDiv->addDiv();
+            $playersDiv = $finalDiv->addDiv();
               $playersDiv->addCss('float', 'left');
-            $flagDiv = $groupDiv->addDiv();
+            $flagDiv = $finalDiv->addDiv();
               $flagDiv->addCss('float', 'left');
-            $scoresDiv = $groupDiv->addDiv();
+            $scoresDiv = $finalDiv->addDiv();
               $scoresDiv->addCss('float', 'left');
             for ($place = 1; $place <= 4; $place++) {
               $playerDiv = $playersDiv->addDiv();
