@@ -189,7 +189,6 @@
               $machine = machine(402);
               $h2 = $group1div->addH2('Semifinal on '.$machine->getLink());
                 $h2->escape = FALSE;
-                $h2->class = 'entry-title';
                 $h2->addCss('clear', 'none');  
               $player1 = player(2088);
               $player2 = player(2292);
@@ -206,7 +205,6 @@
               $machine = machine(405);
               $h2 = $group2div->addH2('Semifinal on '.$machine->getLink());
                 $h2->escape = FALSE;
-                $h2->class = 'entry-title';
                 $h2->addCss('clear', 'none');  
               $player1 = player(2150);
               $player2 = player(2256);
@@ -223,7 +221,6 @@
             $finalDiv = $div->addDiv();
               $machine = machine(490);
               $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
-                $h2->class = 'entry-title';
                 $h2->escape = FALSE;
               $player1 = player(2088);
               $player2 = player(2150);
