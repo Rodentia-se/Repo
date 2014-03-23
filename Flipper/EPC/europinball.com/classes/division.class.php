@@ -251,7 +251,9 @@
             $finalDiv->addSpan('3: '.$player3->getLink().' '.((is_object($player3->country)) ? $player3->country->getIcon() : '').' (109.360)')->escape = FALSE;
             $finalDiv->addBr();
             $finalDiv->addSpan('4: '.$player4->getLink().' '.((is_object($player4->country)) ? $player4->country->getIcon() : '').' (74.160)')->escape = FALSE;
-          $div->addH2('Qualifications')->class = 'entry-title';
+          $h2 = $div->addH2('Qualifications');
+          $h2->class = 'entry-title';
+          $h2->addCss('margin-top', '40px');
           $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
           $reloadP = $div->addParagraph($reloadP);
           $reloadButton = $reloadP->addButton('Reload the table', $this->shortName.'_reloadButton', array('class' => 'reloadButton'));
