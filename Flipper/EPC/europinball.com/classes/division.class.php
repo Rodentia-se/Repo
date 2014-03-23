@@ -205,7 +205,6 @@
                 $flagDiv->addCss('float', 'left');
               $scoreDiv = $group1div->addDiv();
                 $scoreDiv->addCss('float', 'left');
-                $scoreDiv->addSpan('3: '.$player3->getLink());
               for ($place = 1; $place <= 4; $place++) {
                 $playerDiv->addSpan($place.': '.${'player'.$place}->getLink())->escape = FALSE;
                 $playerDiv->addBr();
