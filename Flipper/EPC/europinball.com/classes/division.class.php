@@ -238,7 +238,7 @@
         $group1div->addBr();
         $group1div->addSpan('7: Romania (21p)');
         $group1div->addBr();
-        $group1div->addSpan('8: Hungaria (18p)');
+        $group1div->addSpan('8: Hungary (18p)');
         $group2div = $qualDiv->addDiv();
         $h2 = $group2div->addH2('Group 2');
         $h2->class = 'entry-title';
