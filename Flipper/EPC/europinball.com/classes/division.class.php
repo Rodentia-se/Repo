@@ -144,17 +144,36 @@
     
     public function getStandings() {
       if ($this->id == 15) {
+        $div = new div();
+        $div->addH2('Qualification group standings')->class = 'entry-title';
+        $levelsDiv = $div->addDiv('qualGroupLevelsDiv'.$this->id);
         $qualGroups = qualGroups($this);
-        if ($qualGroups && count($qualGroups) > 0) {
-          $div = new div();
-          $div->addH2('Qualification group standings')->class = 'entry-title';
-          $tabs = $div->addTabs();
-          foreach($qualGroups as $qualGroup) {
-            $qualDiv = $tabs->addDiv($qualGroup->acronym);
-            $qualDiv->addContent($qualGroup->getStandings());
+        $level = 1;
+        while ($level) {
+          $levelGroups = $qualGroups->getFiltered('level', $level);
+          if ($levelGroups && count($levelGroups) > 0) {
+            $levelsDiv->addH3('Level '.$level);
+            $tabs = $levelsDiv->addTabs();
+            foreach($levelGroups as $qualGroup) {
+              $qualDiv = $tabs->addDiv($qualGroup->acronym);
+              $qualDiv->addContent($qualGroup->getStandings());
+            }
+            $level++;
+          } else {
+            if ($level == 1) {
+              $div->addParagrapg('No qualification group standings are available');
+            }
+            unset($level);
           }
-          return $div;
         }
+        $div->addScriptCode('
+          $(document).ready(function() {
+            $("#'.$levelsDiv->id.'").accordion({
+              collapsible: true
+            });
+          });
+        ');
+        return $div;
       } else if ($this->id == 16) {  // TODO: Remove EPC 2014 specifics
         if (!file_exists(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock')) {
           $fh = fopen(config::$baseDir.'/logs/calcPlaces_div'.$this->id.'.lock', 'w');
@@ -232,13 +251,7 @@
         $group1div->addBr();
         $group1div->addSpan('4: Sweden (38p)');
         $group1div->addBr();
-        $group1div->addSpan('5: Switzerland (36p)');
-        $group1div->addBr();
-        $group1div->addSpan('6: Belgium (35p)');
-        $group1div->addBr();
-        $group1div->addSpan('7: Romania (21p)');
-        $group1div->addBr();
-        $group1div->addSpan('8: Hungary (18p)');
+        $group1div->addSpan('5-: ...');
         $group2div = $qualDiv->addDiv();
         $h2 = $group2div->addH2('Group 2');
         $h2->class = 'entry-title';
@@ -251,12 +264,8 @@
         $group2div->addBr();
         $group2div->addSpan('4: Austria (31p)');
         $group2div->addBr();
-        $group2div->addSpan('5: France (28p)');
-        $group2div->addBr();
-        $group2div->addSpan('6: UK (25p)');
-        $group2div->addBr();
-        $group2div->addSpan('7: Denmark (21p)');
-        $qualDiv->addCss('margin-bottom', '40px');
+        $group2div->addSpan('5-: ...');
+        $qualDiv->addCss('margin-bottom', '20px');
         $div->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
         $div->addDiv()->class = 'clearer';
