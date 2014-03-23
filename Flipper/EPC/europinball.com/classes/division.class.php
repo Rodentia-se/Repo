@@ -183,6 +183,7 @@
           $this->calcPlaces();
         }
         $div = new div();
+          $div->addH2('Finals')->class = 'entry-title';
           $semiDiv = $div->addDiv();
             $machine[1] = machine(402);
             $player1[1] = player(2088);
@@ -233,22 +234,23 @@
               //GroupDiv
             }
             $semiDiv->addCss('margin-bottom', '40px');
-            $finalDiv = $div->addDiv();
-              $machine = machine(490);
-              $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
-                $h2->class = 'bold';
-                $h2->escape = FALSE;
-              $player1 = player(2088);
-              $player2 = player(2150);
-              $player3 = player(2256);
-              $player4 = player(2292);      
-              $finalDiv->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (215.170)')->escape = FALSE;
-              $finalDiv->addBr();
-              $finalDiv->addSpan('2: '.$player2->getLink().' '.((is_object($player2->country)) ? $player2->country->getIcon() : '').' (174.150)')->escape = FALSE;
-              $finalDiv->addBr();
-              $finalDiv->addSpan('3: '.$player3->getLink().' '.((is_object($player3->country)) ? $player3->country->getIcon() : '').' (109.360)')->escape = FALSE;
-              $finalDiv->addBr();
-              $finalDiv->addSpan('4: '.$player4->getLink().' '.((is_object($player4->country)) ? $player4->country->getIcon() : '').' (74.160)')->escape = FALSE;
+          $finalDiv = $div->addDiv();
+            $machine = machine(490);
+            $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
+              $h2->class = 'bold';
+              $h2->escape = FALSE;
+            $player1 = player(2088);
+            $player2 = player(2150);
+            $player3 = player(2256);
+            $player4 = player(2292);      
+            $finalDiv->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (215.170)')->escape = FALSE;
+            $finalDiv->addBr();
+            $finalDiv->addSpan('2: '.$player2->getLink().' '.((is_object($player2->country)) ? $player2->country->getIcon() : '').' (174.150)')->escape = FALSE;
+            $finalDiv->addBr();
+            $finalDiv->addSpan('3: '.$player3->getLink().' '.((is_object($player3->country)) ? $player3->country->getIcon() : '').' (109.360)')->escape = FALSE;
+            $finalDiv->addBr();
+            $finalDiv->addSpan('4: '.$player4->getLink().' '.((is_object($player4->country)) ? $player4->country->getIcon() : '').' (74.160)')->escape = FALSE;
+          $div->addH2('Qualifications')->class = 'entry-title';
           $headers = array('Order', 'Place', 'Name', 'Photo', 'Country sort', 'Country', 'Games', 'Points');
           $reloadP = $div->addParagraph($reloadP);
           $reloadButton = $reloadP->addButton('Reload the table', $this->shortName.'_reloadButton', array('class' => 'reloadButton'));
