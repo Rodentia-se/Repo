@@ -232,7 +232,13 @@
         $group1div->addBr();
         $group1div->addSpan('4: Sweden (38p)');
         $group1div->addBr();
-        $group1div->addSpan('5-: ...');
+        $group1div->addSpan('5: Switzerland (36p)');
+        $group1div->addBr();
+        $group1div->addSpan('6: Belgium (35p)');
+        $group1div->addBr();
+        $group1div->addSpan('7: Romania (21p)');
+        $group1div->addBr();
+        $group1div->addSpan('8: Hungaria (18p)');
         $group2div = $qualDiv->addDiv();
         $h2 = $group2div->addH2('Group 2');
         $h2->class = 'entry-title';
@@ -245,7 +251,11 @@
         $group2div->addBr();
         $group2div->addSpan('4: Austria (31p)');
         $group2div->addBr();
-        $group2div->addSpan('5-: ...');
+        $group2div->addSpan('5: France (28p)');
+        $group2div->addBr();
+        $group2div->addSpan('6: UK (25p)');
+        $group2div->addBr();
+        $group2div->addSpan('7: Denmark (21p)');
         $qualDiv->addCss('margin-bottom', '20px');
         $div->addH2('Finals')->class = 'entry-title';
         $bracketDiv = $div->addDiv('bracketDiv'.$this->id);
