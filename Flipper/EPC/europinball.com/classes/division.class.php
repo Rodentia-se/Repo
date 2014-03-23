@@ -236,7 +236,7 @@
               //groupDiv
             }
           $finalDiv = $div->addDiv();
-            $finalDiv->addCss('margin-bottom', '20px');
+            $finalDiv->addCss('margin-bottom', '40px');
             $machine = machine(490);
             $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
               $h2->class = 'bold';
