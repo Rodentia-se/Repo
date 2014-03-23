@@ -184,52 +184,47 @@
         }
         $div = new div();
           $semiDiv = $div->addDiv();
-            $group1div = $semiDiv->addDiv();
-              $group1div->addCss('float', 'left');
-              $machine = machine(402);
-              $h2 = $group1div->addH2('Semifinal on '.$machine->getLink());
-                $h2->escape = FALSE;
-                $h2->class = 'bold';
-                $h2->addCss('clear', 'none');
-              $player1 = player(2088);
-                $player1->score = '1.299.510';
-              $player2 = player(2292);
-                $player2->score = '1.112.380';
-              $player3 = player(2482);
-                $player3->score = '712.080';
-              $player4 = player(1847);
-                $player4->score = '657.040';
-              $playerDiv = $group1div->addDiv();
-                $playerDiv->addCss('float', 'left');
-              $flagDiv = $group1div->addDiv();
-                $flagDiv->addCss('float', 'left');
-              $scoreDiv = $group1div->addDiv();
-                $scoreDiv->addCss('float', 'left');
-              for ($place = 1; $place <= 4; $place++) {
-                $playerDiv->addSpan($place.': '.${'player'.$place}->getLink())->escape = FALSE;
-                $playerDiv->addBr();
-                $flagDiv->addSpan(((is_object(${'player'.$place}->country)) ? ${'player'.$place}->country->getIcon() : ''))->escape = FALSE;
-                $flagDiv->addBr();
-                $scoreDiv->addSpan(${'player'.$place}->score)->escape = FALSE;
-                $scoreDiv->addBr();
-              }
-            $group2div = $semiDiv->addDiv();
-              $machine = machine(405);
-              $h2 = $group2div->addH2('Semifinal on '.$machine->getLink());
-                $h2->escape = FALSE;
-                $h2->class = 'bold';
-                $h2->addCss('clear', 'none');  
-              $player1 = player(2150);
-              $player2 = player(2256);
-              $player3 = player(2062);
-              $player4 = player(2115);      
-              $group2div->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (2.340.550)')->escape = FALSE;
-              $group2div->addBr();
-              $group2div->addSpan('2: '.$player2->getLink().' '.((is_object($player2->country)) ? $player2->country->getIcon() : '').' (2.140.490)')->escape = FALSE;
-              $group2div->addBr();
-              $group2div->addSpan('3: '.$player3->getLink().' '.((is_object($player3->country)) ? $player3->country->getIcon() : '').' (438.290)')->escape = FALSE;
-              $group2div->addBr();
-              $group2div->addSpan('4: '.$player4->getLink().' '.((is_object($player4->country)) ? $player4->country->getIcon() : '').' (91.070)')->escape = FALSE;
+            $machine[1] = machine(402);
+            $player1[1] = player(2088);
+              $player1[1]->score = '1.299.510';
+            $player2[1] = player(2292);
+              $player2[1]->score = '1.112.380';
+            $player3[1] = player(2482);
+              $player3[1]->score = '712.080';
+            $player4[1] = player(1847);
+              $player4[1]->score = '657.040';
+            $machine[2] = machine(405);
+            $player1[2] = player(2150);
+              $player1[2]->score = '2.340.550';
+            $player2[2] = player(2256);
+              $player2[2]->score = '2.140.490';
+            $player3[2] = player(2062);
+              $player3[2]->score = '438.290';
+            $player4[2] = player(2115);
+              $player4[2]->score = '91.070';
+            for ($semi = 1; $secmi <= 2; $semi++) {
+              $groupDiv = $semiDiv->addDiv();
+                $groupDiv->addCss('float', 'left');
+                $h2 = $groupDiv->addH2('Semifinal on '.$machine[$semi]->getLink());
+                  $h2->escape = FALSE;
+                  $h2->class = 'bold';
+                  $h2->addCss('clear', 'none');
+                $playerDiv = $groupDiv->addDiv();
+                  $playerDiv->addCss('float', 'left');
+                $flagDiv = $groupDiv->addDiv();
+                  $flagDiv->addCss('float', 'left');
+                $scoreDiv = $groupDiv->addDiv();
+                  $scoreDiv->addCss('float', 'left');
+                for ($place = 1; $place <= 4; $place++) {
+                  $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
+                  $playerDiv->addBr();
+                  $flagDiv->addSpan(((is_object(${'player'.$place}[$semi]->country)) ? ${'player'.$place}[$semi]->country->getIcon() : ''))->escape = FALSE;
+                  $flagDiv->addBr();
+                  $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
+                  $scoreDiv->addBr();
+                }
+              //GroupDiv
+            }
             $semiDiv->addCss('margin-bottom', '40px');
             $finalDiv = $div->addDiv();
               $machine = machine(490);
