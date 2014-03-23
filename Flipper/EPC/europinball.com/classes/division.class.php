@@ -146,7 +146,7 @@
       if ($this->id == 15) {
         $div = new div();
         $div->addH2('Finals bracket')->class = 'entry-title';
-        $p = $div->addParagrapg();
+        $p = $div->addParagraph();
         $img = $p->addImg(config::$baseHref.'/images/2014/finals.jpg', 'Click to view full size');
         $img->addCss('width', '100%');
         $img->addCss('cursor', 'pointer');
