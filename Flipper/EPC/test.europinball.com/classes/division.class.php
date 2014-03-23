@@ -152,9 +152,8 @@
         while ($level) {
           $levelGroups = $qualGroups->getFiltered('level', $level);
           if ($levelGroups && count($levelGroups) > 0) {
-            $levelDiv = $levelsDiv->addDiv();
-            $levelDiv->addH3('Level '.$level);
-            $tabs = $levelDiv->addTabs();
+            $levelsDiv->addH3('Level '.$level);
+            $tabs = $levelsDiv->addTabs();
             foreach($levelGroups as $qualGroup) {
               $qualDiv = $tabs->addDiv($qualGroup->acronym);
               $qualDiv->addContent($qualGroup->getStandings());
