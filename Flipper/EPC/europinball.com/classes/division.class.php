@@ -191,16 +191,16 @@
             $player2[1] = player(2292);
               $player2[1]->score = '1.112.380';
             $player3[1] = player(2482);
-              $player3[1]->score = '712.080';
+              $player3[1]->score = '  712.080';
             $player4[1] = player(1847);
-              $player4[1]->score = '657.040';
+              $player4[1]->score = '  657.040';
             $machine[2] = machine(405);
             $player1[2] = player(2150);
               $player1[2]->score = '2.340.550';
             $player2[2] = player(2256);
               $player2[2]->score = '2.140.490';
             $player3[2] = player(2062);
-              $player3[2]->score = '438.290';
+              $player3[2]->score = '  438.290';
             $player4[2] = player(2115);
               $player4[2]->score = '91.070';
             for ($semi = 1; $semi <= 2; $semi++) {
@@ -248,7 +248,7 @@
             $player3 = player(2256);
               $player3->score = '109.360';
             $player4 = player(2292);
-              $player4->score = '74.160';
+              $player4->score = ' 74.160';
             $playersDiv = $finalDiv->addDiv();
               $playersDiv->addCss('float', 'left');
             $flagDiv = $finalDiv->addDiv();
