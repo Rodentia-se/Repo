@@ -241,16 +241,34 @@
               $h2->class = 'bold';
               $h2->escape = FALSE;
             $player1 = player(2088);
+              $player1->score = '215.170';
             $player2 = player(2150);
+              $player2->score = '174.150';
             $player3 = player(2256);
-            $player4 = player(2292);      
-            $finalDiv->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (215.170)')->escape = FALSE;
-            $finalDiv->addBr();
-            $finalDiv->addSpan('2: '.$player2->getLink().' '.((is_object($player2->country)) ? $player2->country->getIcon() : '').' (174.150)')->escape = FALSE;
-            $finalDiv->addBr();
-            $finalDiv->addSpan('3: '.$player3->getLink().' '.((is_object($player3->country)) ? $player3->country->getIcon() : '').' (109.360)')->escape = FALSE;
-            $finalDiv->addBr();
-            $finalDiv->addSpan('4: '.$player4->getLink().' '.((is_object($player4->country)) ? $player4->country->getIcon() : '').' (74.160)')->escape = FALSE;
+              $player3->score = '109.360';
+            $player4 = player(2292);
+              $player4->score = '74.160';
+            $playersDiv = $groupDiv->addDiv();
+              $playersDiv->addCss('float', 'left');
+            $flagDiv = $groupDiv->addDiv();
+              $flagDiv->addCss('float', 'left');
+            $scoresDiv = $groupDiv->addDiv();
+              $scoresDiv->addCss('float', 'left');
+            for ($place = 1; $place <= 4; $place++) {
+              $playerDiv = $playersDiv->addDiv();
+                $playerDiv->addCss('height', '18px');
+                $playerDiv->addCss('margin-right', '20px');
+                $playerDiv->addSpan($place.': '.${'player'.$place}->getLink())->escape = FALSE;
+                $playerDiv->addBr();
+              $flagDiv->addSpan(((is_object(${'player'.$place}->country)) ? ${'player'.$place}->country->getIcon() : ''))->escape = FALSE;
+              $flagDiv->addBr();
+              $scoreDiv = $scoresDiv->addDiv();
+                $scoreDiv->addCss('height', '18px');
+                $scoreDiv->addCss('margin-left', '20px');
+                $scoreDiv->addSpan(${'player'.$place}->score)->escape = FALSE;
+                $scoreDiv->addBr();
+              //scoreDiv
+            }
           $h2 = $div->addH2('Qualifications');
           $h2->class = 'entry-title';
           $h2->addCss('margin-top', '40px');
