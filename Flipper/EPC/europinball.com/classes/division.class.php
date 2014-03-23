@@ -153,7 +153,7 @@
         $img->addClick('
           window.open("'.config::$baseHref.'/images/2014/finals.jpg");
         ');
-//        $img->addCss('margin-bottom', '40px');
+        $img->addCss('margin-bottom', '20px');
         $div->addH2('Qualification group standings')->class = 'entry-title';
         $levelsDiv = $div->addDiv('qualGroupLevelsDiv'.$this->id);
         $qualGroups = qualGroups($this);
