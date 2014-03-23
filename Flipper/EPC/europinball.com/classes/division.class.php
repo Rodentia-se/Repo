@@ -224,10 +224,10 @@
                     $playerDiv->addSpan($place.': '.${'player'.$place}[$semi]->getLink())->escape = FALSE;
                     $playerDiv->addBr();
                   $flagDiv->addSpan(((is_object(${'player'.$place}[$semi]->country)) ? ${'player'.$place}[$semi]->country->getIcon() : ''))->escape = FALSE;
-                    $flagDiv->addBr();
+                  $flagDiv->addBr();
                   $scoreDiv = $scoresDiv->addDiv();
                     $scoreDiv->addCss('height', '18px');
-                    $scoreDiv->addCss('margin-right', '20px');
+                    $scoreDiv->addCss('margin-left', '20px');
                     $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
                     $scoreDiv->addBr();
                   //scoreDiv
