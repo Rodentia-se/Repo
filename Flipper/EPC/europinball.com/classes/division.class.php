@@ -230,8 +230,9 @@
                     $scoreDiv->addCss('margin-right', '20px');
                     $scoreDiv->addSpan(${'player'.$place}[$semi]->score)->escape = FALSE;
                     $scoreDiv->addBr();
+                  //scoreDiv
                 }
-              //GroupDiv
+              //groupDiv
             }
             $semiDiv->addCss('margin-bottom', '40px');
           $finalDiv = $div->addDiv();
