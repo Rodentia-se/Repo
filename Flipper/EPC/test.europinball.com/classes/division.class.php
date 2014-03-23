@@ -152,7 +152,7 @@
         while ($level) {
           $levelGroups = $qualGroups->getFiltered('level', $level);
           if ($levelGroups && count($levelGroups) > 0) {
-            $levelsDiv->addH3('Round '.$level);
+            $levelsDiv->addH3('Round '.$level)->class = 'entry-title';
             $tabs = $levelsDiv->addTabs();
             foreach($levelGroups as $qualGroup) {
               $qualDiv = $tabs->addDiv($qualGroup->acronym);
