@@ -194,7 +194,7 @@
           $player2 = player(2292);
           $player3 = player(2482);
           $player4 = player(1847);      
-          $group1div->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (1.299.510)');
+          $group1div->addSpan('1: '.$player1->getLink().' '.((is_object($player1->country)) ? $player1->country->getIcon() : '').' (1.299.510)')->escape = FALSE;
           $group1div->addBr();
           $group1div->addSpan('2: '.$player2->getLink().' '.((is_object($player2->country)) ? $player2->country->getIcon() : '').' (1.112.380)');
           $group1div->addBr();
