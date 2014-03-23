@@ -224,7 +224,7 @@
           $machine = machine(490);
           $h2 = $finalDiv->addH2('Final on '.$machine->getLink());
           $h2->class = 'entry-title';
-          $h2->escape = FALSE
+          $h2->escape = FALSE;
           $player1 = player(2088);
           $player2 = player(2150);
           $player3 = player(2256);
