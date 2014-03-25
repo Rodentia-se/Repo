@@ -276,7 +276,7 @@
                 });
               ');
               $placeChange = '
-                if (parseInt(("#'.$wpprSpinner->id.'").val()) == 0) {
+                if (parseInt($("#'.$wpprSpinner->id.'").val()) == 0) {
                   $("#'.$wpprSpinner->id.'").val($(el).val());
                   $("#'.$wpprSpinner->id.'").change();
                 }
