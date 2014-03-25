@@ -11,7 +11,7 @@
     $div = new div('resultsDiv');
       $div->data_title = "Results";
       $selectDiv = $div->addDiv();
-        $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for specific player'));
+        $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for:'));
         $select->addCombobox();
         $select->addValueSpan('Person ID:');
       //selectDiv
