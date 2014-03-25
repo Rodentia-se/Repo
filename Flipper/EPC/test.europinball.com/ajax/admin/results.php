@@ -21,7 +21,7 @@
         if ($(el).val() != 0) {
           $("#'.$resultsPersonDiv->id.'").hide();
           $("body").addClass("modal");
-          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "results", id: $(el).val()})
+          $.post("'.config::$baseHref.'/ajax/getObj.php", {class: "person", type: "resultsEdit", id: $(el).val()})
           .done(function(data) {
             $("#'.$resultsPersonDiv->id.'").html(data);
             $("body").removeClass("modal");
