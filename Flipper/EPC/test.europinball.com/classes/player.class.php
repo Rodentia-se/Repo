@@ -252,7 +252,7 @@
         case 'resultsEdit':
           $div = new div();
           $allPlayers = players($this->division);
-          $div->addLabel($this->tournamentDivision->name);
+          $div->addLabel($this->tournamentDivision->name)->class = 'short';
           for ($num = 0; $num <= count($allPlayers); $num++) {
             $places[] = $num;
           }
