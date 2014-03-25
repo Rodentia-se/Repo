@@ -252,7 +252,7 @@
         case 'resultsEdit':
           $div = new div();
           $allPlayers = players($this->division);
-          $div->addLabel($this->tournamentDivision->name)->addClass('short');
+          $div->addLabel($this->tournamentDivision->name)->addClasses('short');
           $placeSpinner = $div->addSpinner('Place', $this->place, TRUE, array('id' => $prefix.'placeSelect'.$this->id));
           $wpprSpinner = $div->addSpinner('WPPR', $this->place, TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
           return $div;
