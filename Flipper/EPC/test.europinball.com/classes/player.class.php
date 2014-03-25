@@ -255,9 +255,11 @@
           $div->addLabel($this->tournamentDivision->name.':')->addClasses('short');
           $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSelect'.$this->id));
             $placeSpinner->addClasses('short');
+            $placeSpinner->data_playerid = $this->id;
             $placeSpinner->label->addClasses('veryShort');
           $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
             $wpprSpinner->addClasses('short');
+            $wpprSpinner->data_playerid = $this->id;
             $wpprSpinner->label->addClasses('veryShort');
           return $div;
         break;
@@ -273,7 +275,7 @@
       }
       return FALSE;
     }
-
+    
     public function getPhotoEdit($prefix = NULL, $class = NULL) {
       if (!is_object($this->person)) {
         $this->populate(1);
