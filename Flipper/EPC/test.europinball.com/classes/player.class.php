@@ -251,16 +251,19 @@
       switch ($type) {
         case 'resultsEdit':
           $div = new div();
-          $allPlayers = players($this->division);
           $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSelect'.$this->id));
             $placeSpinner->addClasses('short');
             $placeSpinner->data_playerid = $this->id;
             $placeSpinner->label->addClasses('veryShort');
-          $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
-            $wpprSpinner->addClasses('short');
-            $wpprSpinner->data_playerid = $this->id;
-            $wpprSpinner->label->addClasses('veryShort');
-          return $div;
+          $array[] = $placeSpinner;
+          if (!$this->team) {
+            $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
+              $wpprSpinner->addClasses('short');
+              $wpprSpinner->data_playerid = $this->id;
+              $wpprSpinner->label->addClasses('veryShort');
+              $array[] = $wpprSpinner;
+            }
+          return $array;
         break;
         default:
           if (!is_object($this->person)) {
