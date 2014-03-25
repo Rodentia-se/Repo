@@ -10,6 +10,8 @@
     $prefix = 'results';
     $div = new div('resultsDiv');
       $div->addH2('Edit results')->addClasses('entry-title');
+      $div->addParagraph('<b>Place</b>: This is the final place in the tournament. Four players on a tied 5th place should all get 5 here.')->escape = FALSE;
+      $div->addParagraph('<b>WPPR</b>: This is the place reported to IFPA, with the average place rounded up. Four players on a tied 5th place should all get 6 here.')->escape = FALSE;
       $selectDiv = $div->addDiv();
         $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for:'));
         $select->addCombobox();
