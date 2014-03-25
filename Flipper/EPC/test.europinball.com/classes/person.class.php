@@ -630,7 +630,7 @@
               $div->addContent($player->getEdit('results', $title, $tournament, $prefix));
             }
           }
-          return $div          
+          return $div;        
         break;
         case 'scores':
           $div = new div($prefix.'ScoresEditDiv_'.$this->id);
