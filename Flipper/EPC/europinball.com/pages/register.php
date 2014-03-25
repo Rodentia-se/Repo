@@ -3,7 +3,7 @@
   define('__ROOT__', dirname(dirname(__FILE__))); 
   require_once(__ROOT__.'/functions/init.php');
 
-  header('Location: '.config::$baseHref.'/edit/');
+  header('Location: '.config::$baseHref.'/results/');
 
   $page = new page('Register');
 

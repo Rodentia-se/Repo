@@ -128,7 +128,7 @@
           html::$ids = array_diff(html::$ids, array($this->accessories['label']->id));
         }
         if ($label === TRUE) {
-          $this->accessories['label'] = new label(ucfirst($this->params['name']), $this->params['name'], $this->params['name'].'Label');
+          $this->accessories['label'] = new label(ucfirst($this->params['name']), $this->params['name']);
         } else {
           $this->accessories['label'] = (isHtml($label)) ? $label : new label($label, $this->params['name']);
         }

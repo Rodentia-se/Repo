@@ -903,8 +903,8 @@
       return $element;
     }
 
-    public function addSpinner($name = NULL, $value = NULL, $type = 'text', $label = NULL, array $params = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
-      $element = new input($name, $value, $type, $label, $params);
+    public function addSpinner($name = NULL, $value = NULL, $label = NULL, array $params = NULL, array $props = NULL, $selector = NULL, $indents = NULL) {
+      $element = new input($name, $value, 'text', $label, $params);
       $element->addSpinner($props, $selector, $indents);
       $this->addContent($element);
       return $element;

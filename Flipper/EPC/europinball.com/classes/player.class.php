@@ -247,15 +247,65 @@
     }
     
     public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
-      if (!is_object($this->person)) {
-        $this->populate(1);
-      }
-      if (is_object($this->person)) {
-        return $this->person->getEdit($type, $title, $tournament, $prefix);
+      $tournament = getTournament($tournament);
+      switch ($type) {
+        case 'resultsEdit':
+          $div = new div();
+          $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSelect'.$this->id));
+            $placeSpinner->addClasses('short');
+            $placeSpinner->data_playerid = $this->id;
+            $placeSpinner->label->addClasses('veryShort');
+            $placeSpinner->addTooltip();
+            $placeSpinner->addChange('
+              var el = this;
+              $(el).tooltipster("update", "Updating database...").tooltipster("show");
+              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "place", value: $(el).val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.valid) {
+                  $(el).data("previous", $(el).val());
+                } else {
+                  $(el).val($(el).data("previous"));
+                }
+              });
+            ');
+          $array[] = $placeSpinner;
+          if (!$this->team) {
+            $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
+              $wpprSpinner->addClasses('short');
+              $wpprSpinner->data_playerid = $this->id;
+              $wpprSpinner->label->addClasses('veryShort');
+              $wpprSpinner->addTooltip();
+              $wpprSpinner->addChange('
+                var el = this;
+                $(el).tooltipster("update", "Updating database...").tooltipster("show");
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "wpprPlace", value: $(el).val()})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", $(el).val());
+                  } else {
+                    $(el).val($(el).data("previous"));
+                  }
+                });
+              ');
+              $array[] = $wpprSpinner;
+            }
+          return $array;
+        break;
+        default:
+          if (!is_object($this->person)) {
+            $this->populate(1);
+          }
+          if (is_object($this->person)) {
+            return $this->person->getEdit($type, $title, $tournament, $prefix);
+          }
+          return FALSE;
+        break;
       }
       return FALSE;
     }
-
+    
     public function getPhotoEdit($prefix = NULL, $class = NULL) {
       if (!is_object($this->person)) {
         $this->populate(1);
