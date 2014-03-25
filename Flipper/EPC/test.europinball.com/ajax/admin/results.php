@@ -12,7 +12,9 @@
       $div->addH2('Edit results')->addClasses('entry-title');
       $div->addParagraph('<b>Place</b>: This is the final place in the tournament. Four players on a tied 5th place should all get 5 here.')->escape = FALSE;
       $div->addParagraph('<b>WPPR</b>: This is the place reported to IFPA, with the average place rounded up. Four players on a tied 5th place should all get 6 here.')->escape = FALSE;
-      $selectDiv = $div->addDiv();
+      $tabs = $div->addTabs(NULL, 'groupTabs');
+      $personDiv = $tabs->addDiv('Specific person');
+      $selectDiv = $personDiv->addDiv();
         $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for:'));
         $select->addCombobox();
         $select->addValueSpan('Person ID:');
@@ -32,6 +34,15 @@
         }          
       ');
       $div->addFocus('#'.$select->id.'_combobox', TRUE);
+      foreach (config::$activeDivisions as $divisionId) {
+        $division = division($divisionId);
+        $divisionDiv[$divisionId] = $tabs->addDiv($division->divisionName);
+        $players = players($division);
+        $players->order('place', 'numeric', 'desc');
+        foreach ($players as $player) {
+          $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
+        }
+      }
     echo $div->getHtml();
   } else {
     echo 'Admin login required. Please make sure you are logged in as an administrator and try again.';
