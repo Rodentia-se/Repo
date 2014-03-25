@@ -631,6 +631,7 @@
               $div->addContent($player->getEdit('resultsEdit', $title, $tournament, $prefix));
             }
           }
+          $div->addCss('margin-top', '20px');
           return $div;        
         break;
         case 'scores':
