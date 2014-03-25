@@ -277,6 +277,21 @@
               $wpprSpinner->addClasses('short');
               $wpprSpinner->data_playerid = $this->id;
               $wpprSpinner->label->addClasses('veryShort');
+              $wpprSpinner->addChange('
+                var el = this;
+                $(el).tooltipster("update", "Updating database...").tooltipster("show");
+                $("body").addClass("modal");
+                $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "wpprPlace", value: $(el).val()})
+                .done(function(data) {
+                  $(el).tooltipster("update", data.reason).tooltipster("show");
+                  if (data.valid) {
+                    $(el).data("previous", $(el).val());
+                  } else {
+                    $(el).val($(el).data("previous"));
+                  }
+                  $("body").removeClass("modal");
+                });
+              ');
               $array[] = $wpprSpinner;
             }
           return $array;
