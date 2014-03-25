@@ -255,6 +255,22 @@
             $placeSpinner->addClasses('short');
             $placeSpinner->data_playerid = $this->id;
             $placeSpinner->label->addClasses('veryShort');
+            $placeSpinner->addTooltip();
+            $placeSpinner->addChange('
+              var el = this;
+              $(el).tooltipster("update", "Updating database...").tooltipster("show");
+              $("body").addClass("modal");
+              $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "place", value: $(el).val()})
+              .done(function(data) {
+                $(el).tooltipster("update", data.reason).tooltipster("show");
+                if (data.valid) {
+                  $(el).data("previous", $(el).val());
+                } else {
+                  $(el).val($(el).data("previous"));
+                }
+                $("body").removeClass("modal");
+              });
+            ');
           $array[] = $placeSpinner;
           if (!$this->team) {
             $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
