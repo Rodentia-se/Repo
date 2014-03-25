@@ -107,7 +107,7 @@
             $editDiv->addH3((($title) ? $title : 'Edit machine: '.$this->shortName.' in '.$this->tournamentDivisionName), array('class' => 'entry-title'));
             $editDiv->addParagraph('Note: All changes below are INSTANT when you press enter, press a button or move away from the field.', NULL, 'italic');
             $ballsDiv = $editDiv->addDiv($prefix.'MachineBallsDiv');
-              $ballsSpinner = $ballsDiv->addSpinner($prefix.'Balls'.$this->id, (($this->balls) ? $this->balls : 3), 'text', 'Number of balls', array('class' => $editClass));
+              $ballsSpinner = $ballsDiv->addSpinner($prefix.'Balls'.$this->id, (($this->balls) ? $this->balls : 3), 'Number of balls', array('class' => $editClass));
               $ballsSpinner->name = 'balls';
             //$ballsDiv
             $extraBallsDiv = $editDiv->addDiv($prefix.'MachineExtraBallsDiv');

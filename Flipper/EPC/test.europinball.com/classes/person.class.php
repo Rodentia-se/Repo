@@ -275,7 +275,7 @@
                   );
                   $player = player($this, $division);
                   $divisionNum = ($player) ? 1 : 0;
-                  $spinner = $divisionDiv->addSpinner($prefix.'Payments_'.$division->id, $divisionNum, 'text', ucfirst($division->type), $spinnerParams);
+                  $spinner = $divisionDiv->addSpinner($prefix.'Payments_'.$division->id, $divisionNum, ucfirst($division->type), $spinnerParams);
                     $moneySpan = $divisionDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                     $costs += $spinner->value * $spinner->{'data-eachcost'};
                     $num += $spinner->value;
@@ -293,7 +293,7 @@
                 'class' => 'numOfTshirts paymentsSpinner enterChange',
                 'data-eachcost' => config::$tshirtCost
               );
-              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentsTshirts', $tshirtNum, 'text', 'T-shirts', $spinnerParams);
+              $spinner = $tshirtDiv->addSpinner($prefix.'PaymentsTshirts', $tshirtNum, 'T-shirts', $spinnerParams);
                 $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                 $costs += $spinner->value * $spinner->{'data-eachcost'};
               //}
@@ -433,7 +433,7 @@
                   'data-tshirtorderid' => (($tshirtOrder) ? $tshirtOrder->id : 0),
                   'data-eachcost' => config::$tshirtCost
                 );
-                $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), 'text', $tshirt->name, $spinnerParams);
+                $spinner = $tshirtDiv->addSpinner($prefix.'TshirtOrder_'.$tshirt->id, (($tshirtOrder) ? $tshirtOrder->number : 0), $tshirt->name, $spinnerParams);
                   $moneySpan = $tshirtDiv->addMoneySpan($spinner->value * $spinner->{'data-eachcost'}, $spinner->id.'_moneySpan', config::$currencies[$defaultCurrency]['format'], array('class' => 'payments'));
                   $costs += $spinner->value * $spinner->{'data-eachcost'};
                   $num += $spinner->value;

@@ -253,11 +253,8 @@
           $div = new div();
           $allPlayers = players($this->division);
           $div->addLabel($this->tournamentDivision->name)->class = 'short';
-          for ($num = 0; $num <= count($allPlayers); $num++) {
-            $places[] = $num;
-          }
-          $placeSelect = $div->addSelect('Place', $places, $this->place, TRUE, array('id' => $prefix.'placeSelect'.$this->id));
-          $wpprSelect = $div->addSelect('WPPR', $places, $this->place, TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
+          $placeSpinner = $div->addSpinner('Place', $this->place, TRUE, array('id' => $prefix.'placeSelect'.$this->id));
+          $wpprSpinner = $div->addSpinner('WPPR', $this->place, TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
           return $div;
         break;
         default:
