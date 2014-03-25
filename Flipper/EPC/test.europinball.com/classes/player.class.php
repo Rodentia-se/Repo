@@ -259,7 +259,6 @@
             $placeSpinner->addChange('
               var el = this;
               $(el).tooltipster("update", "Updating database...").tooltipster("show");
-              $("body").addClass("modal");
               $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "place", value: $(el).val()})
               .done(function(data) {
                 $(el).tooltipster("update", data.reason).tooltipster("show");
@@ -268,7 +267,6 @@
                 } else {
                   $(el).val($(el).data("previous"));
                 }
-                $("body").removeClass("modal");
               });
             ');
           $array[] = $placeSpinner;
@@ -280,7 +278,6 @@
               $wpprSpinner->addChange('
                 var el = this;
                 $(el).tooltipster("update", "Updating database...").tooltipster("show");
-                $("body").addClass("modal");
                 $.post("'.config::$baseHref.'/ajax/setProp.php", {class: "player", id: $(el).data("playerid"), prop: "wpprPlace", value: $(el).val()})
                 .done(function(data) {
                   $(el).tooltipster("update", data.reason).tooltipster("show");
@@ -289,7 +286,6 @@
                   } else {
                     $(el).val($(el).data("previous"));
                   }
-                  $("body").removeClass("modal");
                 });
               ');
               $array[] = $wpprSpinner;
