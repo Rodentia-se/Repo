@@ -15,7 +15,9 @@
         $qualGroups = qualGroups($division);
         $qualGroups->order('acronym');
         foreach ($qualGroups as $qualGroup) {
-          $tabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?type=edit&class=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
+          if ($qualGroup->level == 1) {
+            $tabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?type=edit&class=qualGroup&id='.$qualGroup->id, ucfirst($qualGroup->acronym));
+          }
         }
       //$tabs
     //${$prefix.'Div'}
