@@ -425,7 +425,7 @@
           $players->filter('waiting', FALSE);
           foreach ($players as $player) {
             $playerDiv = $div->addDiv();
-            $playerDiv->addLabel($player->name.':')->addClasses('left');
+            $playerDiv->addLabel($player->name.':');
             $playerDiv->addContent($player->getEdit('resultsEdit'));
           }
         break;

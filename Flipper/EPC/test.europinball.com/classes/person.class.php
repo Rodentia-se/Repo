@@ -627,7 +627,7 @@
           if ($players && count($players) > 0) {
             foreach ($players as $player) {
               $playerDiv = $div->addDiv();
-              $playerDiv->addLabel($player->tournamentDivision->name.':')->addClasses('short left');
+              $playerDiv->addLabel($player->tournamentDivision->name.':')->addClasses('short');
               $playerDiv->addContent($player->getEdit('resultsEdit', $title, $tournament, $prefix));
             }
           }
