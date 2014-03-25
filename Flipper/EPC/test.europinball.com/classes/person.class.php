@@ -627,7 +627,7 @@
           $players = players($this);
           if ($players && count($players) > 0) {
             foreach ($players as $player) {
-              $div->addContent($player->getEdit('results', $title, $tournament, $prefix));
+              $div->addContent($player->getEdit('resultsEdit', $title, $tournament, $prefix));
             }
           }
           return $div;        
