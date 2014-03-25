@@ -276,9 +276,9 @@
                 });
               ');
               $placeChange = '
-                if (!$("#'.$placeSpinner->id.'").val()) {
-                  $("#'.$placeSpinner->id.'").val($(el).val());
-                  $("#'.$placeSpinner->id.'").change();
+                if (!$("#'.$wpprSpinner->id.'").val()) {
+                  $("#'.$wpprSpinner->id.'").val($(el).val());
+                  $("#'.$wpprSpinner->id.'").change();
                 }
               ';
             }
