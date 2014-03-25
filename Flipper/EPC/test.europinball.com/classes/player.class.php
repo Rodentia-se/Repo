@@ -275,6 +275,7 @@
               $wpprSpinner->addClasses('short');
               $wpprSpinner->data_playerid = $this->id;
               $wpprSpinner->label->addClasses('veryShort');
+              $wpprSpinner->addTooltip();
               $wpprSpinner->addChange('
                 var el = this;
                 $(el).tooltipster("update", "Updating database...").tooltipster("show");
