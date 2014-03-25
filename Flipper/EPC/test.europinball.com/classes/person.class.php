@@ -626,12 +626,13 @@
           $players = players($this, $tournament);
           if ($players && count($players) > 0) {
             foreach ($players as $player) {
-              $div->addLabel($player->tournamentDivision->name.':')->addClasses('short left');
-              $div->addContent($player->getEdit('resultsEdit', $title, $tournament, $prefix));
+              $playerDiv = $div->addDiv();
+              $playerDiv->addLabel($player->tournamentDivision->name.':')->addClasses('short left');
+              $playerDiv->addContent($player->getEdit('resultsEdit', $title, $tournament, $prefix));
             }
           }
           $div->addCss('margin-top', '20px');
-          return $div;        
+          return $div;
         break;
         case 'scores':
           $div = new div($prefix.'ScoresEditDiv_'.$this->id);
