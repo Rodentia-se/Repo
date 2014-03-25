@@ -622,8 +622,8 @@
         break;
         case 'resultsEdit':
           $div = new div($prefix.'ResultsEditDiv_'.$this->id);
-          $div->addParagraph('Place: This is the final place in the tournament. Four players on a tied 5th place should all get 5 here.');
-          $div->addParagraph('WPPR: This is the place reported to IFPA, with the average place rounded up. Four players on a tied 5th place should all get 6 here.');
+          $div->addParagraph('<b>Place</b>: This is the final place in the tournament. Four players on a tied 5th place should all get 5 here.')->escape = FALSE;
+          $div->addParagraph('<b>WPPR</b>: This is the place reported to IFPA, with the average place rounded up. Four players on a tied 5th place should all get 6 here.')->escape = FALSE;
           $players = players($this);
           if ($players && count($players) > 0) {
             foreach ($players as $player) {

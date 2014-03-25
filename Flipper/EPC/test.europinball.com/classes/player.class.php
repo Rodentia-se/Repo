@@ -252,14 +252,12 @@
         case 'resultsEdit':
           $div = new div();
           $allPlayers = players($this->division);
-          $div->addLabel($this->division->name);
+          $div->addLabel($this->tournamentDivision->name);
           for ($num = 0; $num <= count($allPlayers); $num++) {
             $places[] = $num;
           }
-          $placeSelect = $div->addSelect('Place', $places, $this->place);
-          $placeSelect->id = $prefix.'placeSelect'.$this->id;
-          $wpprSelect = $div->addSelect('WPPR', $places, $this->place);
-          $wpprSelect->id = $prefix.'wpprSelect'.$this->id;
+          $placeSelect = $div->addSelect('Place', $places, $this->place, TRUE, array('id' => $prefix.'placeSelect'.$this->id));
+          $wpprSelect = $div->addSelect('WPPR', $places, $this->place, TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
           return $div;
         break;
         default:
