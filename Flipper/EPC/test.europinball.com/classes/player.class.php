@@ -353,6 +353,20 @@
       return ($array) ? $return : (object) $return;
     }
 
+    public function getEdit($type = 'edit', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $div = new div();
+      $allPlayers = players($this->division);
+      $div->addLabel($this->division->name);
+      for ($num = 0; $num <= count($allPlayers); $num++) {
+        $places[] = $num;
+      }
+      $placeSelect = $div->addSelect('Place', $places, $this->place);
+      $placeSelect->id = $prefix.'placeSelect'.$this->id;
+      $wpprSelect = $div->addSelect('WPPR', $places, $this->place);
+      $wpprSelect->id = $prefix.'wpprSelect'.$this->id;
+      return $div;
+    }
+
     public function getPhoto($defaults = TRUE, $thumbnail = FALSE, $anchor = FALSE) {
       if ($this->team_id) {
         $team = team($this->team_id);
