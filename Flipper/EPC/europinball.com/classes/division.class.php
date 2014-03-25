@@ -199,10 +199,10 @@
               $player1[1]->score = '1.299.510';
             $player2[1] = player(2292);
               $player2[1]->score = '1.112.380';
-            $player3[1] = player(2482);
-              $player3[1]->score = '712.080';
-            $player4[1] = player(1847);
-              $player4[1]->score = '657.040';
+            $player3[1] = player(1847);
+              $player3[1]->score = '657.040';
+            $player4[1] = player(2482);
+              $player4[1]->score = '412.080';
             $machine[2] = machine(405);
             $player1[2] = player(2150);
               $player1[2]->score = '2.340.550';
