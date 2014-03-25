@@ -251,13 +251,13 @@
       switch ($type) {
         case 'resultsEdit':
           $div = new div();
-          $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSelect'.$this->id));
+          $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSpinner'.$this->id));
             $placeSpinner->addClasses('short');
             $placeSpinner->data_playerid = $this->id;
             $placeSpinner->label->addClasses('veryShort');
             $placeSpinner->addTooltip();
           if (!$this->team) {
-            $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
+            $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSpinner'.$this->id));
               $wpprSpinner->addClasses('short');
               $wpprSpinner->data_playerid = $this->id;
               $wpprSpinner->label->addClasses('veryShort');
