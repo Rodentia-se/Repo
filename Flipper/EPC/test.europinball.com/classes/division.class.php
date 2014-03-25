@@ -424,8 +424,8 @@
           $players->order('place', 'numeric', 'desc');
           $players->filter('waiting', FALSE);
           foreach ($players as $player) {
-            $divisionDiv[$divisionId]->addLabel($player->name.':')->addClasses('left');
-            $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
+            $div->addLabel($player->name.':')->addClasses('left');
+            $div->addContent($player->getEdit('resultsEdit'));
           }
         break;
       }
