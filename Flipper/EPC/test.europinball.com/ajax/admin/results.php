@@ -9,7 +9,7 @@
     $persons = persons($tournament);
     $prefix = 'results';
     $div = new div('resultsDiv');
-      $div->data_title = "Results";
+      $div->addH2("Edit results");
       $selectDiv = $div->addDiv();
         $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for:'));
         $select->addCombobox();
