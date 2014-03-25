@@ -14,7 +14,7 @@
       $div->addParagraph('<b>WPPR</b>: This is the place reported to IFPA, with the average place rounded up. Four players on a tied 5th place should all get 6 here.')->escape = FALSE;
       $tabs = $div->addTabs(NULL, 'groupTabs');
       $personDiv = $tabs->addDiv('Specific person');
-      $personDiv->data_title('Specific person');
+      $personDiv->data_title = 'Specific person';
       $selectDiv = $personDiv->addDiv();
         $select = $selectDiv->addContent($persons->getSelectObj('scoresSelect', NULL, 'Edit results for:'));
         $select->addCombobox();
