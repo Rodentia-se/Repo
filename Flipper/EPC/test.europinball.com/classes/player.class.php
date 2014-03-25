@@ -249,7 +249,7 @@
     public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
       $tournament = getTournament($tournament);
       switch ($type) {
-        case 'results':
+        case 'resultsEdit':
           $div = new div();
           $allPlayers = players($this->division);
           $div->addLabel($this->division->name);
