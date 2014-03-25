@@ -40,7 +40,7 @@
         $divisionDiv[$divisionId] = $tabs->addDiv($division->divisionName);
         $players = players($division);
         $players->order('place', 'numeric', 'desc');
-        $players->filter('waiting');
+        $players->filter('waiting', FALSE);
         foreach ($players as $player) {
           $divisionDiv[$divisionId]->addLabel($player->name.':')->addClasses('short');
           $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
