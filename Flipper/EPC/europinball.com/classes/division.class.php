@@ -421,8 +421,10 @@
         case 'resultsEdit':
           $div = new div();
           $players = players($this);
-          $players->order('place', 'numeric', 'desc');
-          $players->filter('waiting', FALSE);
+          if ($this->id != 15) {
+            $players->order('place', 'numeric', 'desc');
+            $players->filter('waiting', FALSE);
+          }
           foreach ($players as $player) {
             $playerDiv = $div->addDiv();
             $playerDiv->addLabel($player->name.':');
