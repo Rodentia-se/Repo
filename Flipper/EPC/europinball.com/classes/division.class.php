@@ -422,7 +422,7 @@
           $div = new div();
           $players = players($this);
           if ($this->id != 15) {
-            $players->order('place', 'numeric', 'desc');
+            $players->order('place', 'numeric', 'asc');
             $players->filter('waiting', FALSE);
           }
           foreach ($players as $player) {
