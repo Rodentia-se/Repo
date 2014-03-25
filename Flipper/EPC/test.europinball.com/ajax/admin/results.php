@@ -42,7 +42,7 @@
         $players->order('place', 'numeric', 'desc');
         $players->filter('waiting');
         foreach ($players as $player) {
-          $div->addLabel($this->name.':')->addClasses('short');
+          $divisionDiv[$divisionId]->addLabel($player->name.':')->addClasses('short');
           $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
         }
       }
