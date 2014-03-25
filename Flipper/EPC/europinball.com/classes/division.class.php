@@ -421,9 +421,9 @@
         case 'resultsEdit':
           $div = new div();
           $players = players($this);
+          $players->filter('waiting', FALSE);
           if ($this->id != 15) {
             $players->order('place', 'numeric', 'asc');
-            $players->filter('waiting', FALSE);
           }
           foreach ($players as $player) {
             $playerDiv = $div->addDiv();
