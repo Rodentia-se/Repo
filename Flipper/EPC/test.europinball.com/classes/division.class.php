@@ -415,6 +415,19 @@
         return $p;
       }      
     }
+    
+    public function getEdit($type = 'profile', $title = NULL, $tournament = NULL, $prefix = NULL) {
+      $div = new div();
+      $players = players($this);
+      $players->order('place', 'numeric', 'desc');
+      $players->filter('waiting', FALSE);
+      foreach ($players as $player) {
+        $divisionDiv[$divisionId]->addLabel($player->name.':')->addClasses('left');
+        $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
+      }
+      return $div;
+    }
+    
         
   }
 

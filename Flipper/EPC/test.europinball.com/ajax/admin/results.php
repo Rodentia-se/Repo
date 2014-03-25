@@ -37,14 +37,7 @@
       $div->addFocus('#'.$select->id.'_combobox', TRUE);
       foreach (config::$activeDivisions as $divisionId) {
         $division = division($divisionId);
-        $divisionDiv[$divisionId] = $tabs->addDiv($division->divisionName);
-        $players = players($division);
-        $players->order('place', 'numeric', 'desc');
-        $players->filter('waiting', FALSE);
-        foreach ($players as $player) {
-          $divisionDiv[$divisionId]->addLabel($player->name.':')->addClasses('left');
-          $divisionDiv[$divisionId]->addContent($player->getEdit('resultsEdit'));
-        }
+        $tabs->addAjaxTab(config::$baseHref.'/ajax/getObj.php?type=resultsEdit&class=division&id='.$division->id, $division->divisionName);
       }
     echo $div->getHtml();
   } else {
