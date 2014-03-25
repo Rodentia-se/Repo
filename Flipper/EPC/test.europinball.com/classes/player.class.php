@@ -254,9 +254,9 @@
           $allPlayers = players($this->division);
           $div->addLabel($this->tournamentDivision->name)->addClasses('short');
           $placeSpinner = $div->addSpinner('Place', (($this->place) ? $this->place : 0), TRUE, array('id' => $prefix.'placeSelect'.$this->id));
-          $placeSpinner->label->addClasses('short');
+          $placeSpinner->label->addClasses('veryShort');
           $wpprSpinner = $div->addSpinner('WPPR', (($this->wpprPlace) ? $this->wpprPlace : 0), TRUE, array('id' => $prefix.'wpprSelect'.$this->id));
-          $wpprSpinner->label->addClasses('short');
+          $wpprSpinner->label->addClasses('veryShort');
           return $div;
         break;
         default:
